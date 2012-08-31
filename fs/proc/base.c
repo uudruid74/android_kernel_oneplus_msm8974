@@ -410,12 +410,13 @@ static const struct file_operations proc_lstats_operations = {
 
 static int proc_oom_score(struct task_struct *task, char *buffer)
 {
+	unsigned long totalpages = totalram_pages + total_swap_pages;
 	unsigned long points = 0;
 
 	read_lock(&tasklist_lock);
 	if (pid_alive(task))
-		points = oom_badness(task, NULL, NULL,
-					totalram_pages + total_swap_pages);
+		points = oom_badness(task, NULL, NULL, totalpages) *
+						1000 / totalpages;
 	read_unlock(&tasklist_lock);
 	return sprintf(buffer, "%lu\n", points);
 }
@@ -870,36 +871,36 @@ static const struct file_operations proc_environ_operations = {
 	.llseek		= generic_file_llseek,
 };
 
-static ssize_t oom_adjust_read(struct file *file, char __user *buf,
-				size_t count, loff_t *ppos)
+static ssize_t oom_adj_read(struct file *file, char __user *buf, size_t count,
+			    loff_t *ppos)
 {
 	struct task_struct *task = get_proc_task(file->f_path.dentry->d_inode);
 	char buffer[PROC_NUMBUF];
+	int oom_adj = OOM_ADJUST_MIN;
 	size_t len;
-	int oom_adjust = OOM_DISABLE;
 	unsigned long flags;
 
 	if (!task)
 		return -ESRCH;
-
 	if (lock_task_sighand(task, &flags)) {
-		oom_adjust = task->signal->oom_adj;
+		if (task->signal->oom_score_adj == OOM_SCORE_ADJ_MAX)
+			oom_adj = OOM_ADJUST_MAX;
+		else
+			oom_adj = (task->signal->oom_score_adj * -OOM_DISABLE) /
+				  OOM_SCORE_ADJ_MAX;
 		unlock_task_sighand(task, &flags);
 	}
-
 	put_task_struct(task);
-
-	len = snprintf(buffer, sizeof(buffer), "%i\n", oom_adjust);
-
+	len = snprintf(buffer, sizeof(buffer), "%d\n", oom_adj);
 	return simple_read_from_buffer(buf, count, ppos, buffer, len);
 }
 
-static ssize_t oom_adjust_write(struct file *file, const char __user *buf,
-				size_t count, loff_t *ppos)
+static ssize_t oom_adj_write(struct file *file, const char __user *buf,
+			     size_t count, loff_t *ppos)
 {
 	struct task_struct *task;
 	char buffer[PROC_NUMBUF];
-	int oom_adjust;
+	int oom_adj;
 	unsigned long flags;
 	int err;
 
@@ -911,11 +912,11 @@ static ssize_t oom_adjust_write(struct file *file, const char __user *buf,
 		goto out;
 	}
 
-	err = kstrtoint(strstrip(buffer), 0, &oom_adjust);
+	err = kstrtoint(strstrip(buffer), 0, &oom_adj);
 	if (err)
 		goto out;
-	if ((oom_adjust < OOM_ADJUST_MIN || oom_adjust > OOM_ADJUST_MAX) &&
-	     oom_adjust != OOM_DISABLE) {
+	if ((oom_adj < OOM_ADJUST_MIN || oom_adj > OOM_ADJUST_MAX) &&
+	     oom_adj != OOM_DISABLE) {
 		err = -EINVAL;
 		goto out;
 	}
@@ -937,28 +938,34 @@ static ssize_t oom_adjust_write(struct file *file, const char __user *buf,
 		goto err_task_lock;
 	}
 
-	if (oom_adjust < task->signal->oom_adj && !capable(CAP_SYS_RESOURCE)) {
+	/*
+	 * Scale /proc/pid/oom_score_adj appropriately ensuring that a maximum
+	 * value is always attainable.
+	 */
+	if (oom_adj == OOM_ADJUST_MAX)
+		oom_adj = OOM_SCORE_ADJ_MAX;
+	else
+		oom_adj = (oom_adj * OOM_SCORE_ADJ_MAX) / -OOM_DISABLE;
+
+	if (oom_adj < task->signal->oom_score_adj &&
+	    !capable(CAP_SYS_RESOURCE)) {
 		err = -EACCES;
 		goto err_sighand;
 	}
 
 	/*
-	 * Warn that /proc/pid/oom_adj is deprecated, see
-	 * Documentation/feature-removal-schedule.txt.
+	 * /proc/pid/oom_adj is provided for legacy purposes, ask users to use
+	 * /proc/pid/oom_score_adj instead.
 	 */
 	printk_once(KERN_WARNING "%s (%d): /proc/%d/oom_adj is deprecated, please use /proc/%d/oom_score_adj instead.\n",
 		  current->comm, task_pid_nr(current), task_pid_nr(task),
 		  task_pid_nr(task));
-	task->signal->oom_adj = oom_adjust;
-	/*
-	 * Scale /proc/pid/oom_score_adj appropriately ensuring that a maximum
-	 * value is always attainable.
-	 */
-	if (task->signal->oom_adj == OOM_ADJUST_MAX)
-		task->signal->oom_score_adj = OOM_SCORE_ADJ_MAX;
-	else
-		task->signal->oom_score_adj = (oom_adjust * OOM_SCORE_ADJ_MAX) /
-								-OOM_DISABLE;
+
+	task->signal->oom_score_adj = oom_adj;
+#ifdef CONFIG_ANDROID_LMK_ADJ_RBTREE
+	delete_from_adj_tree(task);
+	add_2_adj_tree(task);
+#endif
 	trace_oom_score_adj_update(task);
 err_sighand:
 	unlock_task_sighand(task, &flags);
@@ -969,9 +976,9 @@ out:
 	return err < 0 ? err : count;
 }
 
-static const struct file_operations proc_oom_adjust_operations = {
-	.read		= oom_adjust_read,
-	.write		= oom_adjust_write,
+static const struct file_operations proc_oom_adj_operations = {
+	.read		= oom_adj_read,
+	.write		= oom_adj_write,
 	.llseek		= generic_file_llseek,
 };
 
@@ -980,7 +987,7 @@ static ssize_t oom_score_adj_read(struct file *file, char __user *buf,
 {
 	struct task_struct *task = get_proc_task(file->f_path.dentry->d_inode);
 	char buffer[PROC_NUMBUF];
-	int oom_score_adj = OOM_SCORE_ADJ_MIN;
+	short oom_score_adj = OOM_SCORE_ADJ_MIN;
 	unsigned long flags;
 	size_t len;
 
@@ -991,7 +998,7 @@ static ssize_t oom_score_adj_read(struct file *file, char __user *buf,
 		unlock_task_sighand(task, &flags);
 	}
 	put_task_struct(task);
-	len = snprintf(buffer, sizeof(buffer), "%d\n", oom_score_adj);
+	len = snprintf(buffer, sizeof(buffer), "%hd\n", oom_score_adj);
 	return simple_read_from_buffer(buf, count, ppos, buffer, len);
 }
 
@@ -1038,25 +1045,21 @@ static ssize_t oom_score_adj_write(struct file *file, const char __user *buf,
 		goto err_task_lock;
 	}
 
-	if (oom_score_adj < task->signal->oom_score_adj_min &&
+	if ((short)oom_score_adj < task->signal->oom_score_adj_min &&
 			!capable(CAP_SYS_RESOURCE)) {
 		err = -EACCES;
 		goto err_sighand;
 	}
 
-	task->signal->oom_score_adj = oom_score_adj;
+	task->signal->oom_score_adj = (short)oom_score_adj;
+#ifdef CONFIG_ANDROID_LMK_ADJ_RBTREE
+	delete_from_adj_tree(task);
+	add_2_adj_tree(task);
+#endif
 	if (has_capability_noaudit(current, CAP_SYS_RESOURCE))
-		task->signal->oom_score_adj_min = oom_score_adj;
+		task->signal->oom_score_adj_min = (short)oom_score_adj;
 	trace_oom_score_adj_update(task);
-	/*
-	 * Scale /proc/pid/oom_adj appropriately ensuring that OOM_DISABLE is
-	 * always attainable.
-	 */
-	if (task->signal->oom_score_adj == OOM_SCORE_ADJ_MIN)
-		task->signal->oom_adj = OOM_DISABLE;
-	else
-		task->signal->oom_adj = (oom_score_adj * OOM_ADJUST_MAX) /
-							OOM_SCORE_ADJ_MAX;
+
 err_sighand:
 	unlock_task_sighand(task, &flags);
 err_task_lock:
@@ -3012,7 +3015,7 @@ static const struct pid_entry tgid_base_stuff[] = {
 	REG("cgroup",  S_IRUGO, proc_cgroup_operations),
 #endif
 	INF("oom_score",  S_IRUGO, proc_oom_score),
-	REG("oom_adj",    S_IRUSR, proc_oom_adjust_operations),
+	ANDROID("oom_adj",    S_IRUSR, proc_oom_adjust_operations),
 	REG("oom_score_adj", S_IRUSR, proc_oom_score_adj_operations),
 #ifdef CONFIG_AUDITSYSCALL
 	REG("loginuid",   S_IWUSR|S_IRUGO, proc_loginuid_operations),

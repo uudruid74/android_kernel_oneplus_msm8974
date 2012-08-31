@@ -328,6 +328,8 @@ static struct task_struct *dup_task_struct(struct task_struct *orig)
 
 	account_kernel_stack(ti, 1);
 
+	RB_CLEAR_NODE(&tsk->adj_node);
+
 	return tsk;
 
 out:
@@ -1076,7 +1078,6 @@ static int copy_signal(unsigned long clone_flags, struct task_struct *tsk)
 	init_rwsem(&sig->group_rwsem);
 #endif
 
-	sig->oom_adj = current->signal->oom_adj;
 	sig->oom_score_adj = current->signal->oom_score_adj;
 	sig->oom_score_adj_min = current->signal->oom_score_adj_min;
 
@@ -1499,6 +1500,9 @@ static struct task_struct *copy_process(unsigned long clone_flags,
 			attach_pid(p, PIDTYPE_SID, task_session(current));
 			list_add_tail(&p->sibling, &p->real_parent->children);
 			list_add_tail_rcu(&p->tasks, &init_task.tasks);
+#ifdef CONFIG_ANDROID_LMK_ADJ_RBTREE
+			add_2_adj_tree(p);
+#endif
 			__this_cpu_inc(process_counts);
 		} else {
 			list_add_tail_rcu(&p->thread_node,
