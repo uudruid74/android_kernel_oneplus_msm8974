@@ -2289,7 +2289,7 @@ static ssize_t es325_reset_set(struct device *dev,
 
 	struct es325_priv *es325 = &es325_priv;
 
-    if (!es325->pdata->reset_gpio) {
+    if (es325->pdata->reset_gpio < 0) {
         return -1;
     }
     gpio_set_value(es325->pdata->reset_gpio, 0); 
@@ -5264,13 +5264,16 @@ static struct esxxx_platform_data *es325_populate_dt_pdata(struct device *dev, s
 
 	#ifdef CONFIG_MACH_MSM8974_14001
 	//liuyan 2013-9-11 add for es325 reset gpio
-	pdata->reset_gpio=0;
 	if(dev->parent){
 	    parent_ctl=dev_get_drvdata(dev->parent);
 	    if(parent_ctl){
                pdata->reset_gpio =parent_ctl->reset_gpio;
 	        printk("%s: reset gpio %d\n",__func__,pdata->reset_gpio);
+	    }else{
+               pdata->reset_gpio=0;
 	    }
+       }else{
+           pdata->reset_gpio=0;
 	}
 	#else
 	pdata->reset_gpio = of_get_named_gpio(dev->of_node,
@@ -5683,12 +5686,10 @@ static int es325_slim_probe(struct slim_device *sbdev)
 	}
 	*/
 
-	if (pdata->reset_gpio) {
-		gpio_set_value(pdata->reset_gpio, 0);
-		mdelay(1);
-		gpio_set_value(pdata->reset_gpio, 1);
-		mdelay(50);
-	}
+	gpio_set_value(pdata->reset_gpio, 0);
+	mdelay(1);
+	gpio_set_value(pdata->reset_gpio, 1);
+	mdelay(50);
 
 	es325_priv.pdata = pdata;
 
