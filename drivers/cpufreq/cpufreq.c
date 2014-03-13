@@ -1822,7 +1822,8 @@ static int __cpufreq_set_policy(struct cpufreq_policy *data,
 	memcpy(&policy->cpuinfo, &data->cpuinfo,
 				sizeof(struct cpufreq_cpuinfo));
 
-	if (policy->min > data->user_policy.max || policy->max < data->user_policy.min) {
+	if (policy->min > data->user_policy.max
+		|| policy->max < data->user_policy.min) {
 		pr_debug("CPUFREQ: %s: pmin:%d, pmax:%d, min:%d, max:%d\n",
 			__func__, policy->min, policy->max, data->user_policy.min, data->user_policy.max);
 #ifndef CONFIG_SEC_PM
