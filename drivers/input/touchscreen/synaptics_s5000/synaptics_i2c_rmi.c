@@ -1528,16 +1528,6 @@ static int synaptics_rmi4_f12_abs_report(struct synaptics_rmi4_data *rmi4_data,
 					return touch_count;
 				}
 				#endif
-
-
-
-#if defined(CONFIG_USE_INPUTLOCATION_FOR_ENG)
-				dev_info(&rmi4_data->i2c_client->dev, "[%d][P] 0x%02x, x = %d, y = %d, wx = %d, wy = %d\n",
-					finger, finger_status, x, y, wx, wy);
-#else
-				dev_info(&rmi4_data->i2c_client->dev, "[%d][P] 0x%02x\n",
-					finger, finger_status);
-#endif
 			} else {
 				rmi4_data->finger[finger].mcount++;
 				#ifdef TSP_PATTERN_TRACKING_METHOD
@@ -1558,22 +1548,8 @@ static int synaptics_rmi4_f12_abs_report(struct synaptics_rmi4_data *rmi4_data,
 			touch_count++;
 		}
 
-		if (rmi4_data->finger[finger].state && !finger_status) {
-#if defined(CONFIG_USE_INPUTLOCATION_FOR_ENG)
-//#ifndef SEC_PRODUCT_SHIP
-			/* TODO : Remove version information when H/W dose not changed */
-			dev_info(&rmi4_data->i2c_client->dev, "[%d][R] 0x%02x M[%d], Ver[%02X%02X%02X%02X]\n",
-				finger, finger_status, rmi4_data->finger[finger].mcount,
-				rmi4_data->ic_revision_of_ic, rmi4_data->panel_revision,
-				rmi4_data->fw_version_of_ic, rmi4_data->glove_mode_enables);
-#else
-			dev_info(&rmi4_data->i2c_client->dev, "[%d][R] 0x%02x M[%d], Ver[%02X%02X%02X%02X]\n",
-				finger, finger_status, rmi4_data->finger[finger].mcount,
-				rmi4_data->ic_revision_of_ic, rmi4_data->panel_revision,
-				rmi4_data->fw_version_of_ic, rmi4_data->glove_mode_enables);
-#endif
+		if (rmi4_data->finger[finger].state && !finger_status)
 			rmi4_data->finger[finger].mcount = 0;
-		}
 
 		rmi4_data->finger[finger].state = finger_status;
 	}
