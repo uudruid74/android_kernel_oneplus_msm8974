@@ -12958,7 +12958,6 @@ static int __wlan_hdd_cfg80211_add_station(struct wiphy *wiphy,
     hdd_adapter_t *pAdapter =  WLAN_HDD_GET_PRIV_PTR(dev);
     int status = -EPERM;
 #ifdef FEATURE_WLAN_TDLS
-    hdd_adapter_t *pAdapter =  WLAN_HDD_GET_PRIV_PTR(dev);
     u32 mask, set;
     ENTER();
 
