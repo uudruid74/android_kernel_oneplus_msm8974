@@ -12,6 +12,7 @@
  */
 #include <linux/linkage.h>
 #include <linux/init.h>
+#include <asm/assembler.h>
 #include <asm/memory.h>
 
 	__CPUINIT
@@ -61,7 +62,7 @@ ENTRY(v7_invalidate_l1)
 	bgt	1b
 	dsb
 	isb
-	mov	pc, lr
+	ret	lr
 ENDPROC(v7_invalidate_l1)
 
 ENTRY(shmobile_invalidate_start)

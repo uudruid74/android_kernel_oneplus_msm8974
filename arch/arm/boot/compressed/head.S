@@ -9,6 +9,7 @@
  * published by the Free Software Foundation.
  */
 #include <linux/linkage.h>
+#include <asm/assembler.h>
 
 	.arch	armv7-a
 /*
