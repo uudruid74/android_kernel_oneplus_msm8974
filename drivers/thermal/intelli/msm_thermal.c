@@ -26,9 +26,10 @@
 #include <linux/msm_thermal.h>
 #include <mach/cpufreq.h>
 
-#define DEFAULT_POLLING_MS	500
-/* last 3 minutes based on 250ms polling cycle */
-#define MAX_HISTORY_SZ		((3*60*1000) / DEFAULT_POLLING_MS)
+/* poll every 1000ms */
+#define DEFAULT_POLLING_MS	1000
+/* store last 3 minutes of history */
+#define MAX_HISTORY_SZ		180
 
 struct msm_thermal_stat_data {
 	int32_t temp_history[MAX_HISTORY_SZ];
