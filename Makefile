@@ -331,7 +331,7 @@ include $(srctree)/scripts/Kbuild.include
 AS		= $(CROSS_COMPILE)as
 LD		= $(CROSS_COMPILE)ld
 LDFINAL	= $(LD)
-CC		= $(CROSS_COMPILE)gcc
+CC		= ccache $(CROSS_COMPILE)gcc
 CPP		= $(CC) -E
 ifdef CONFIG_LTO_SLIM
 AR		= $(CROSS_COMPILE)gcc-ar
