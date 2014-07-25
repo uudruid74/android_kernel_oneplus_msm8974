@@ -254,6 +254,11 @@ int mdss_dsi_panel_reset(struct mdss_panel_data *pdata, int enable)
 				if (pdata->panel_info.rst_seq[++i])
 					usleep(pinfo->rst_seq[i] * 1000);
 			}
+#ifdef CONFIG_MACH_OPPO
+			if (gpio_is_valid(ctrl_pdata->lcd_5v_en_gpio)) {
+				gpio_direction_output(ctrl_pdata->lcd_5v_en_gpio, 1);
+			}
+#endif
 		}
 
 		if (gpio_is_valid(ctrl_pdata->mode_gpio)) {
