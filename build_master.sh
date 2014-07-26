@@ -1,8 +1,8 @@
 #!/bin/sh
 if [ "${1}" = "skip" ] ; then
-	device=$(echo $(\ls e330*.img) | sed s/.img//g)
+	device=$(echo $(\ls *.img) | sed s/.img//g)
 	rm arter97-kernel-$device-"$(cat version)".zip 2>/dev/null
-	cp e330*.img kernelzip/boot.img
+	cp *.img kernelzip/boot.img
 	cd kernelzip/
 	7z a -mx9 arter97-kernel-$device-"$(cat ../version)"-tmp.zip *
 	zipalign -v 4 arter97-kernel-$device-"$(cat ../version)"-tmp.zip ../arter97-kernel-$device-"$(cat ../version)".zip
