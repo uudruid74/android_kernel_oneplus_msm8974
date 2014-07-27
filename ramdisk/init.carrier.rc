@@ -83,4 +83,3 @@ on property:sys.qseecomd.enable=true
 service dmb /system/bin/dmbserver
     class main
     user root
-    oneshot
