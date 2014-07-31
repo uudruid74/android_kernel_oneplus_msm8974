@@ -8,7 +8,7 @@ mount -t f2fs -o ro,noatime,nodiratime,discard /dev/block/platform/msm_sdcc.1/by
 if [ -f /system/framework/multiwindow.jar ] ; then
 	umount -f /system
 	mount -t ext4 -o noatime,nodiratime,data=ordered,barrier=0,discard,nosuid,nodev,noauto_da_alloc,journal_async_commit,errors=panic /dev/block/platform/msm_sdcc.1/by-name/userdata /arter97/data
-	mount -t f2fs -o noatime,nodiratime,discard,nosuid,nodev /dev/block/platform/msm_sdcc.1/by-name/userdata /arter97/data
+	mount -t f2fs -o noatime,nodiratime,nobarrier,discard,nosuid,nodev /dev/block/platform/msm_sdcc.1/by-name/userdata /arter97/data
 	rm /arter97/data/arter97_secondrom/system/lib/modules
 	rm -rf /arter97/data/arter97_secondrom/system/lib/modules/*
 	ln -s /lib/modules/dhd.ko /arter97/data/arter97_secondrom/system/lib/modules/dhd.ko
@@ -40,7 +40,7 @@ if [ -f /system/framework/multiwindow.jar ] ; then
 else
 	rm -rf /arter97
 	mount -t ext4 -o noatime,nodiratime,data=ordered,barrier=0,discard,nosuid,nodev,noauto_da_alloc,journal_async_commit,errors=panic /dev/block/platform/msm_sdcc.1/by-name/userdata /data
-	mount -t f2fs -o noatime,nodiratime,discard,nosuid,nodev /dev/block/platform/msm_sdcc.1/by-name/userdata /data
+	mount -t f2fs -o noatime,nodiratime,nobarrier,discard,nosuid,nodev /dev/block/platform/msm_sdcc.1/by-name/userdata /data
 	mount -t ext4 -o noatime,nodiratime,data=ordered,barrier=0,discard,nosuid,nodev,noauto_da_alloc,journal_async_commit,errors=panic /dev/block/platform/msm_sdcc.1/by-name/cache /cache
-	mount -t f2fs -o noatime,nodiratime,discard,nosuid,nodev /dev/block/platform/msm_sdcc.1/by-name/cache /cache
+	mount -t f2fs -o noatime,nodiratime,nobarrier,discard,nosuid,nodev /dev/block/platform/msm_sdcc.1/by-name/cache /cache
 fi
