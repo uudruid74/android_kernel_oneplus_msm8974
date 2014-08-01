@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 chmod 644 file_contexts
 chmod 644 se*
 chmod 644 *.rc

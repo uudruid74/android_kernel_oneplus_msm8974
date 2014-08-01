@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # update update-binary from http://get.cm/?device=hlte latest nightly
 # by arter97

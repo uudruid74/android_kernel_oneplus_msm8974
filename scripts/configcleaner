@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # ----------------------------------------------------------------------
 # configcleaner 1.0 - removes the input CONFIG values from .config cleanly.
 #

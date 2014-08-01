@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 git reset --hard
 if [ "${1}" = "nozip" ] ; then
 	git ls-files . --ignored --exclude-standard --others --directory | grep -v 'zip' | while read file; do echo $file; rm -rf $file; done

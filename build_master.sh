@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 if [ "${1}" = "skip" ] ; then
 	device=$(echo $(\ls *.img) | sed s/.img//g)
 	rm arter97-kernel-$device-"$(cat version)".zip 2>/dev/null
