@@ -21,10 +21,10 @@ done
 value=$(cat /sys/devices/virtual/lcd/panel/panel/auto_brightness)
 echo "$value" > /sys/devices/virtual/lcd/panel/panel/auto_brightness
 
-echo "1" > /sys/module/intelli_plug/parameters/intelli_plug_active
-echo "1" > /sys/module/msm_thermal/core_control/enabled
-
 echo "intelliactive" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 echo "intelliactive" > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
 echo "intelliactive" > /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor
 echo "intelliactive" > /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor
+
+echo "1" > /sys/module/intelli_plug/parameters/intelli_plug_active
+echo "1" > /sys/module/msm_thermal/core_control/enabled
