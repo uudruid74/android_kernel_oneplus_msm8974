@@ -857,7 +857,7 @@ service fastmmisrv /system/bin/sh /init.qcom.factory.sh
 on ffbm
     start fastmmisrv
 
-service after-boot /system/bin/sh /sbin/after-boot.sh
+service arter97 /system/bin/sh /sbin/boot.sh
     class late_start
     user root
     oneshot
