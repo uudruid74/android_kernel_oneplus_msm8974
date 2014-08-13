@@ -554,25 +554,6 @@ static void gpio_keys_gpio_report_event(struct gpio_button_data *bdata)
 	unsigned int type = button->type ?: EV_KEY;
 	int state = (gpio_get_value_cansleep(button->gpio) ? 1 : 0) ^ button->active_low;
 
-	//mdnie negative effect toggle by gm
-	if (button->code == 172) {
-		if (state) {
-			gpio_sync_worker(false);
-			if (get_time_inms() - homekey_lasttime < 300) {
-				homekey_count++;
-				printk(KERN_INFO "repeated home_key action %d.\n", homekey_count);
-			} else {
-				homekey_count = 0;
-			}
-		} else {
-			if (homekey_count == 3) {
-				mdnie_toggle_negative();
-				homekey_count = 0;
-			}
-			homekey_lasttime = get_time_inms();
-		}
-	}
-
 	printk(KERN_INFO "%s: %s key is %s\n",
 		__func__, button->desc, state ? "pressed" : "released");
 
@@ -583,6 +564,27 @@ static void gpio_keys_gpio_report_event(struct gpio_button_data *bdata)
 		input_event(input, type, button->code, !!state);
 	}
 	input_sync(input);
+
+	if (!suspended) {
+		//mdnie negative effect toggle by gm
+		if (button->code == 172) {
+			if (state) {
+				gpio_sync_worker(false);
+				if (get_time_inms() - homekey_lasttime < 300) {
+					homekey_count++;
+					printk(KERN_INFO "repeated home_key action %d.\n", homekey_count);
+				} else {
+					homekey_count = 0;
+				}
+			} else {
+				if (homekey_count == 3) {
+					mdnie_toggle_negative();
+					homekey_count = 0;
+				}
+				homekey_lasttime = get_time_inms();
+			}
+		}
+	}
 }
 
 static void gpio_keys_early_suspend(struct power_suspend *handler)
