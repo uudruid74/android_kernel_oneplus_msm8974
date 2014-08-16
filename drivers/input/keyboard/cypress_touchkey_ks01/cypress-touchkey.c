@@ -82,7 +82,7 @@
 #define CYPRESS_65_IC_MASK	0x04
 */
 
-#define USE_OPEN_CLOSE
+#undef USE_OPEN_CLOSE
 #undef DO_NOT_USE_FUNC_PARAM
 
 static int vol_mv_level = 33;
