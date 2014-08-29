@@ -1,4 +1,6 @@
-#!/system/bin/sh
+#!/res/busybox sh
+
+export PATH=/res/asset:$PATH
 
 echo "0" > /sys/module/intelli_plug/parameters/intelli_plug_active
 echo "0" > /sys/module/msm_thermal/core_control/enabled
