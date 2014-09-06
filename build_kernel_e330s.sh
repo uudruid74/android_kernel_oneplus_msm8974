@@ -43,7 +43,7 @@ rm -rf $RAMFS_TMP.cpio
 cp -ax $RAMFS_SOURCE $RAMFS_TMP
 cd $RAMFS_TMP
 
-find . -name '*.sh' -exec chmod 777 {} \;
+find . -name '*.sh' -exec chmod 755 {} \;
 
 $KERNELDIR/ramdisk_fix_permissions.sh 2>/dev/null
 
