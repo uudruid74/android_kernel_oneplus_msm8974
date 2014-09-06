@@ -3,7 +3,7 @@
 export PATH=/res/asset:$PATH
 
 echo "0" > /sys/module/intelli_plug/parameters/intelli_plug_active
-echo "0" > /sys/module/msm_thermal/core_control/enabled
+echo "1" > /sys/module/msm_thermal/core_control/enabled
 echo "1" > /sys/devices/system/cpu/cpu1/online
 echo "1" > /sys/devices/system/cpu/cpu2/online
 echo "1" > /sys/devices/system/cpu/cpu3/online
@@ -112,5 +112,3 @@ if [[ ! $(cat /sys/devices/i2c.75/i2c-13/13-0066/max77803-charger/power_supply/s
 else
 	echo "1" > /sys/module/intelli_plug/parameters/intelli_plug_nr_run_profile_sel
 fi
-
-echo "1" > /sys/module/msm_thermal/core_control/enabled
