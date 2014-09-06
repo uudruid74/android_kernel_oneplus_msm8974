@@ -7,6 +7,6 @@ rm -rf fs/f2fs
 git checkout f2fs/dev -- fs/f2fs
 
 git log --oneline f2fs/linux-3.4 | head -1 | awk '{print $1}' | while read patch; do git cherry-pick --no-commit $patch; done
-git cherry-pick --no-commit 7c0f01651f1829ddaeca53252e613c1012c163dd
+git cherry-pick --no-commit c37e7c3b70dba1344c241c5af1697c66b9d37332
 
 git status
