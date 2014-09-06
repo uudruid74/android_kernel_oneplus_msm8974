@@ -118,3 +118,5 @@ if [[ ! $(cat /sys/devices/i2c.75/i2c-13/13-0066/max77803-charger/power_supply/s
 else
 	echo "1" > /sys/module/intelli_plug/parameters/intelli_plug_nr_run_profile_sel
 fi
+
+touch /dev/bootdone
