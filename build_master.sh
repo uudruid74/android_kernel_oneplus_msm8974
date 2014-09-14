@@ -56,10 +56,12 @@ ls -al arter97-kernel*.zip
 rm arter97-recovery-e330s-"$(cat version_recovery | awk '{print $1}')".zip 2>/dev/null
 cp recovery.img recoveryzip/recovery.img
 cd recoveryzip/
+cp ../kernelzip/META-INF/com/google/android/update-binary META-INF/com/google/android/update-binary
 sed -i -e s/PHILZ_VERSION/$(cat ../version_recovery | awk '{print $1}')/g -e s/CWM_VERSION/$(cat ../version_recovery | awk '{print $2 }')/g META-INF/com/google/android/updater-script
 7z a -mx9 arter97-recovery-e330s-"$(cat ../version_recovery | awk '{print $1}')"-tmp.zip *
 zipalign -v 4 arter97-recovery-e330s-"$(cat ../version_recovery | awk '{print $1}')"-tmp.zip ../arter97-recovery-e330s-"$(cat ../version_recovery | awk '{print $1}')".zip
 sed -i -e s/$(cat ../version_recovery | awk '{print $1}')/PHILZ_VERSION/g -e s/$(cat ../version_recovery | awk '{print $2 }')/CWM_VERSION/g META-INF/com/google/android/updater-script
 rm arter97-recovery-e330s-"$(cat ../version_recovery | awk '{print $1}')"-tmp.zip
 cd ..
+rm recoveryzip/META-INF/com/google/android/update-binary
 ls -al arter97-recovery-e330s-"$(cat version_recovery | awk '{print $1}')".zip
