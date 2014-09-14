@@ -9,7 +9,7 @@ if [ "${1}" = "skip" ] ; then
 	rm arter97-kernel-$device-"$(cat ../version)"-tmp.zip
 	cd ..
 	ls -al arter97-kernel-$device-"$(cat version)".zip
-	return 0
+	exit 0
 fi
 
 ./build_clean.sh
