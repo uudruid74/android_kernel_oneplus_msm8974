@@ -248,8 +248,17 @@ retry:
 
 	/* update fsync_mark if its inode nat entry is still alive */
 	e = __lookup_nat_cache(nm_i, ni->ino);
-	if (e)
+	if (e) {
+		/*
+		 * CP | inode(x) | dnode(F)
+		 *  -> CP | inode(x) | dnode(F) | inode(DF)
+		 */
+		if (!e->checkpointed && !e->fsync_done &&
+				ni->ino != ni->nid && fsync_done)
+			goto skip;
 		e->fsync_done = fsync_done;
+	}
+skip:
 	write_unlock(&nm_i->nat_tree_lock);
 }
 
@@ -1682,7 +1691,7 @@ int restore_node_summary(struct f2fs_sb_info *sbi,
 	struct f2fs_summary *sum_entry;
 	struct inode *inode = sbi->sb->s_bdev->bd_inode;
 	block_t addr;
-	int bio_blocks = MAX_BIO_BLOCKS(max_hw_blocks(sbi));
+	int bio_blocks = MAX_BIO_BLOCKS(sbi);
 	struct page *pages[bio_blocks];
 	int i, idx, last_offset, nrpages, err = 0;
 
@@ -1797,14 +1806,6 @@ static void merge_nats_in_set(struct f2fs_sb_info *sbi)
 	write_unlock(&nm_i->nat_tree_lock);
 }
 
-static bool __has_cursum_space(struct f2fs_summary_block *sum, int size)
-{
-	if (nats_in_cursum(sum) + size <= NAT_JOURNAL_ENTRIES)
-		return true;
-	else
-		return false;
-}
-
 static void remove_nats_in_journal(struct f2fs_sb_info *sbi)
 {
 	struct f2fs_nm_info *nm_i = NM_I(sbi);
@@ -1859,7 +1860,7 @@ void flush_nat_entries(struct f2fs_sb_info *sbi)
 	 * entries, remove all entries from journal and merge them
 	 * into nat entry set.
 	 */
-	if (!__has_cursum_space(sum, nm_i->dirty_nat_cnt)) {
+	if (!__has_cursum_space(sum, nm_i->dirty_nat_cnt, NAT_JOURNAL)) {
 		remove_nats_in_journal(sbi);
 
 		/*
@@ -1882,7 +1883,8 @@ void flush_nat_entries(struct f2fs_sb_info *sbi)
 		struct page *page;
 		nid_t start_nid = nes->start_nid;
 
-		if (to_journal && !__has_cursum_space(sum, nes->entry_cnt))
+		if (to_journal &&
+			!__has_cursum_space(sum, nes->entry_cnt, NAT_JOURNAL))
 			to_journal = false;
 
 		if (to_journal) {

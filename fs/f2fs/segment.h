@@ -77,23 +77,24 @@
 
 #define SIT_ENTRY_OFFSET(sit_i, segno)					\
 	(segno % sit_i->sents_per_block)
-#define SIT_BLOCK_OFFSET(sit_i, segno)					\
+#define SIT_BLOCK_OFFSET(segno)					\
 	(segno / SIT_ENTRY_PER_BLOCK)
-#define	START_SEGNO(sit_i, segno)		\
-	(SIT_BLOCK_OFFSET(sit_i, segno) * SIT_ENTRY_PER_BLOCK)
+#define	START_SEGNO(segno)		\
+	(SIT_BLOCK_OFFSET(segno) * SIT_ENTRY_PER_BLOCK)
 #define SIT_BLK_CNT(sbi)			\
 	((TOTAL_SEGS(sbi) + SIT_ENTRY_PER_BLOCK - 1) / SIT_ENTRY_PER_BLOCK)
 #define f2fs_bitmap_size(nr)			\
 	(BITS_TO_LONGS(nr) * sizeof(unsigned long))
 #define TOTAL_SEGS(sbi)	(SM_I(sbi)->main_segments)
 #define TOTAL_SECS(sbi)	(sbi->total_sections)
+#define TOTAL_BLKS(sbi)	(SM_I(sbi)->segment_count << sbi->log_blocks_per_seg)
 
 #define SECTOR_FROM_BLOCK(sbi, blk_addr)				\
 	(((sector_t)blk_addr) << (sbi)->log_sectors_per_block)
 #define SECTOR_TO_BLOCK(sbi, sectors)					\
 	(sectors >> (sbi)->log_sectors_per_block)
-#define MAX_BIO_BLOCKS(max_hw_blocks)					\
-	(min((int)max_hw_blocks, BIO_MAX_PAGES))
+#define MAX_BIO_BLOCKS(sbi)					\
+	(min((int)max_hw_blocks(sbi), BIO_MAX_PAGES))
 
 /*
  * indicate a block allocation direction: RIGHT and LEFT.
@@ -235,6 +236,12 @@ struct curseg_info {
 	unsigned short next_blkoff;		/* next block offset to write */
 	unsigned int zone;			/* current zone number */
 	unsigned int next_segno;		/* preallocated segment */
+};
+
+struct sit_entry_set {
+	struct list_head set_list;	/* link with all sit sets */
+	unsigned int start_segno;	/* start segno of sits in set */
+	unsigned int entry_cnt;		/* the # of sit entries in set */
 };
 
 /*
@@ -466,15 +473,20 @@ static inline int utilization(struct f2fs_sb_info *sbi)
  * F2FS_IPU_UTIL - if FS utilization is over threashold,
  * F2FS_IPU_SSR_UTIL - if SSR mode is activated and FS utilization is over
  *                     threashold,
+ * F2FS_IPU_FSYNC - activated in fsync path only for high performance flash
+ *                     storages. IPU will be triggered only if the # of dirty
+ *                     pages over min_fsync_blocks.
  * F2FS_IPUT_DISABLE - disable IPU. (=default option)
  */
 #define DEF_MIN_IPU_UTIL	70
+#define DEF_MIN_FSYNC_BLOCKS	8
 
 enum {
 	F2FS_IPU_FORCE,
 	F2FS_IPU_SSR,
 	F2FS_IPU_UTIL,
 	F2FS_IPU_SSR_UTIL,
+	F2FS_IPU_FSYNC,
 	F2FS_IPU_DISABLE,
 };
 
@@ -485,10 +497,6 @@ static inline bool need_inplace_update(struct inode *inode)
 	/* IPU can be done only for the user data */
 	if (S_ISDIR(inode->i_mode))
 		return false;
-
-	/* this is only set during fdatasync */
-	if (is_inode_flag_set(F2FS_I(inode), FI_NEED_IPU))
-		return true;
 
 	switch (SM_I(sbi)->ipu_policy) {
 	case F2FS_IPU_FORCE:
@@ -503,6 +511,11 @@ static inline bool need_inplace_update(struct inode *inode)
 		break;
 	case F2FS_IPU_SSR_UTIL:
 		if (need_SSR(sbi) && utilization(sbi) > SM_I(sbi)->min_ipu_util)
+			return true;
+		break;
+	case F2FS_IPU_FSYNC:
+		/* this is only set during fdatasync */
+		if (is_inode_flag_set(F2FS_I(inode), FI_NEED_IPU))
 			return true;
 		break;
 	case F2FS_IPU_DISABLE:
@@ -541,7 +554,7 @@ static inline void check_seg_range(struct f2fs_sb_info *sbi, unsigned int segno)
 static inline void verify_block_addr(struct f2fs_sb_info *sbi, block_t blk_addr)
 {
 	struct f2fs_sm_info *sm_info = SM_I(sbi);
-	block_t total_blks = sm_info->segment_count << sbi->log_blocks_per_seg;
+	block_t total_blks = TOTAL_BLKS(sbi);
 	block_t start_addr = sm_info->seg0_blkaddr;
 	block_t end_addr = start_addr + total_blks - 1;
 	BUG_ON(blk_addr < start_addr);
@@ -594,7 +607,7 @@ static inline void check_seg_range(struct f2fs_sb_info *sbi, unsigned int segno)
 static inline void verify_block_addr(struct f2fs_sb_info *sbi, block_t blk_addr)
 {
 	struct f2fs_sm_info *sm_info = SM_I(sbi);
-	block_t total_blks = sm_info->segment_count << sbi->log_blocks_per_seg;
+	block_t total_blks = TOTAL_BLKS(sbi);
 	block_t start_addr = sm_info->seg0_blkaddr;
 	block_t end_addr = start_addr + total_blks - 1;
 
@@ -624,7 +637,7 @@ static inline pgoff_t current_sit_addr(struct f2fs_sb_info *sbi,
 						unsigned int start)
 {
 	struct sit_info *sit_i = SIT_I(sbi);
-	unsigned int offset = SIT_BLOCK_OFFSET(sit_i, start);
+	unsigned int offset = SIT_BLOCK_OFFSET(start);
 	block_t blk_addr = sit_i->sit_base_addr + offset;
 
 	check_seg_range(sbi, start);
@@ -651,7 +664,7 @@ static inline pgoff_t next_sit_addr(struct f2fs_sb_info *sbi,
 
 static inline void set_to_next_sit(struct sit_info *sit_i, unsigned int start)
 {
-	unsigned int block_off = SIT_BLOCK_OFFSET(sit_i, start);
+	unsigned int block_off = SIT_BLOCK_OFFSET(start);
 
 	if (f2fs_test_bit(block_off, sit_i->sit_bitmap))
 		f2fs_clear_bit(block_off, sit_i->sit_bitmap);
@@ -715,7 +728,7 @@ static inline int nr_pages_to_skip(struct f2fs_sb_info *sbi, int type)
 	else if (type == NODE)
 		return 3 * sbi->blocks_per_seg;
 	else if (type == META)
-		return MAX_BIO_BLOCKS(max_hw_blocks(sbi));
+		return MAX_BIO_BLOCKS(sbi);
 	else
 		return 0;
 }
@@ -738,7 +751,7 @@ static inline long nr_pages_to_write(struct f2fs_sb_info *sbi, int type,
 	else if (type == NODE)
 		desired = 3 * max_hw_blocks(sbi);
 	else
-		desired = MAX_BIO_BLOCKS(max_hw_blocks(sbi));
+		desired = MAX_BIO_BLOCKS(sbi);
 
 	wbc->nr_to_write = desired;
 	return desired - nr_to_write;

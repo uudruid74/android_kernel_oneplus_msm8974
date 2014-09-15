@@ -25,6 +25,54 @@
 #define __reverse_ffz(x) __reverse_ffs(~(x))
 
 static struct kmem_cache *discard_entry_slab;
+static struct kmem_cache *sit_entry_set_slab;
+
+/**
+ * Copied from latest lib/llist.c
+ * llist_for_each_entry_safe - iterate over some deleted entries of
+ *                             lock-less list of given type
+ *			       safe against removal of list entry
+ * @pos:	the type * to use as a loop cursor.
+ * @n:		another type * to use as temporary storage
+ * @node:	the first entry of deleted list entries.
+ * @member:	the name of the llist_node with the struct.
+ *
+ * In general, some entries of the lock-less list can be traversed
+ * safely only after being removed from list, so start with an entry
+ * instead of list head.
+ *
+ * If being used on entries deleted from lock-less list directly, the
+ * traverse order is from the newest to the oldest added entry.  If
+ * you want to traverse from the oldest to the newest, you must
+ * reverse the order by yourself before traversing.
+ */
+#define llist_for_each_entry_safe(pos, n, node, member)			       \
+	for (pos = llist_entry((node), typeof(*pos), member);		       \
+		&pos->member != NULL &&					       \
+		(n = llist_entry(pos->member.next, typeof(*n), member), true); \
+		pos = n)
+
+/**
+ * Copied from latest lib/llist.c
+ * llist_reverse_order - reverse order of a llist chain
+ * @head:	first item of the list to be reversed
+ *
+ * Reverse the order of a chain of llist entries and return the
+ * new first entry.
+ */
+struct llist_node *llist_reverse_order(struct llist_node *head)
+{
+	struct llist_node *new_head = NULL;
+
+	while (head) {
+		struct llist_node *tmp = head;
+		head = head->next;
+		tmp->next = new_head;
+		new_head = tmp;
+	}
+
+	return new_head;
+}
 
 /*
  * __reverse_ffs is copied from include/asm-generic/bitops/__ffs.h since
@@ -232,24 +280,20 @@ repeat:
 	if (kthread_should_stop())
 		return 0;
 
-	spin_lock(&fcc->issue_lock);
-	if (fcc->issue_list) {
-		fcc->dispatch_list = fcc->issue_list;
-		fcc->issue_list = fcc->issue_tail = NULL;
-	}
-	spin_unlock(&fcc->issue_lock);
-
-	if (fcc->dispatch_list) {
+	if (!llist_empty(&fcc->issue_list)) {
 		struct bio *bio = bio_alloc(GFP_NOIO, 0);
 		struct flush_cmd *cmd, *next;
 		int ret;
 
+		fcc->dispatch_list = llist_del_all(&fcc->issue_list);
+		fcc->dispatch_list = llist_reverse_order(fcc->dispatch_list);
+
 		bio->bi_bdev = sbi->sb->s_bdev;
 		ret = __submit_bio_wait(WRITE_FLUSH, bio);
 
-		for (cmd = fcc->dispatch_list; cmd; cmd = next) {
+		llist_for_each_entry_safe(cmd, next,
+					  fcc->dispatch_list, llnode) {
 			cmd->ret = ret;
-			next = cmd->next;
 			complete(&cmd->wait);
 		}
 		bio_put(bio);
@@ -257,7 +301,7 @@ repeat:
 	}
 
 	wait_event_interruptible(*q,
-			kthread_should_stop() || fcc->issue_list);
+		kthread_should_stop() || !llist_empty(&fcc->issue_list));
 	goto repeat;
 }
 
@@ -276,15 +320,8 @@ int f2fs_issue_flush(struct f2fs_sb_info *sbi)
 		return blkdev_issue_flush(sbi->sb->s_bdev, GFP_KERNEL, NULL);
 
 	init_completion(&cmd.wait);
-	cmd.next = NULL;
 
-	spin_lock(&fcc->issue_lock);
-	if (fcc->issue_list)
-		fcc->issue_tail->next = &cmd;
-	else
-		fcc->issue_list = &cmd;
-	fcc->issue_tail = &cmd;
-	spin_unlock(&fcc->issue_lock);
+	llist_add(&cmd.llnode, &fcc->issue_list);
 
 	if (!fcc->dispatch_list)
 		wake_up(&fcc->flush_wait_queue);
@@ -303,8 +340,8 @@ int create_flush_cmd_control(struct f2fs_sb_info *sbi)
 	fcc = kzalloc(sizeof(struct flush_cmd_control), GFP_KERNEL);
 	if (!fcc)
 		return -ENOMEM;
-	spin_lock_init(&fcc->issue_lock);
 	init_waitqueue_head(&fcc->flush_wait_queue);
+	init_llist_head(&fcc->issue_list);
 	SM_I(sbi)->cmd_control_info = fcc;
 	fcc->f2fs_issue_flush = kthread_run(issue_flush_thread, sbi,
 				"f2fs_flush-%u:%u", MAJOR(dev), MINOR(dev));
@@ -519,11 +556,16 @@ void clear_prefree_segments(struct f2fs_sb_info *sbi)
 	}
 }
 
-static void __mark_sit_entry_dirty(struct f2fs_sb_info *sbi, unsigned int segno)
+static bool __mark_sit_entry_dirty(struct f2fs_sb_info *sbi, unsigned int segno)
 {
 	struct sit_info *sit_i = SIT_I(sbi);
-	if (!__test_and_set_bit(segno, sit_i->dirty_sentries_bitmap))
+
+	if (!__test_and_set_bit(segno, sit_i->dirty_sentries_bitmap)) {
 		sit_i->dirty_sentries++;
+		return false;
+	}
+
+	return true;
 }
 
 static void __set_sit_entry_type(struct f2fs_sb_info *sbi, int type,
@@ -1430,7 +1472,7 @@ static struct page *get_current_sit_page(struct f2fs_sb_info *sbi,
 					unsigned int segno)
 {
 	struct sit_info *sit_i = SIT_I(sbi);
-	unsigned int offset = SIT_BLOCK_OFFSET(sit_i, segno);
+	unsigned int offset = SIT_BLOCK_OFFSET(segno);
 	block_t blk_addr = sit_i->sit_base_addr + offset;
 
 	check_seg_range(sbi, segno);
@@ -1470,27 +1512,86 @@ static struct page *get_next_sit_page(struct f2fs_sb_info *sbi,
 	return dst_page;
 }
 
-static bool flush_sits_in_journal(struct f2fs_sb_info *sbi)
+static struct sit_entry_set *grab_sit_entry_set(void)
+{
+	struct sit_entry_set *ses =
+			f2fs_kmem_cache_alloc(sit_entry_set_slab, GFP_ATOMIC);
+
+	ses->entry_cnt = 0;
+	INIT_LIST_HEAD(&ses->set_list);
+	return ses;
+}
+
+static void release_sit_entry_set(struct sit_entry_set *ses)
+{
+	list_del(&ses->set_list);
+	kmem_cache_free(sit_entry_set_slab, ses);
+}
+
+static void adjust_sit_entry_set(struct sit_entry_set *ses,
+						struct list_head *head)
+{
+	struct sit_entry_set *next = ses;
+
+	if (list_is_last(&ses->set_list, head))
+		return;
+
+	list_for_each_entry_continue(next, head, set_list)
+		if (ses->entry_cnt <= next->entry_cnt)
+			break;
+
+	list_move_tail(&ses->set_list, &next->set_list);
+}
+
+static void add_sit_entry(unsigned int segno, struct list_head *head)
+{
+	struct sit_entry_set *ses;
+	unsigned int start_segno = START_SEGNO(segno);
+
+	list_for_each_entry(ses, head, set_list) {
+		if (ses->start_segno == start_segno) {
+			ses->entry_cnt++;
+			adjust_sit_entry_set(ses, head);
+			return;
+		}
+	}
+
+	ses = grab_sit_entry_set();
+
+	ses->start_segno = start_segno;
+	ses->entry_cnt++;
+	list_add(&ses->set_list, head);
+}
+
+static void add_sits_in_set(struct f2fs_sb_info *sbi)
+{
+	struct f2fs_sm_info *sm_info = SM_I(sbi);
+	struct list_head *set_list = &sm_info->sit_entry_set;
+	unsigned long *bitmap = SIT_I(sbi)->dirty_sentries_bitmap;
+	unsigned long nsegs = TOTAL_SEGS(sbi);
+	unsigned int segno;
+
+	for_each_set_bit(segno, bitmap, nsegs)
+		add_sit_entry(segno, set_list);
+}
+
+static void remove_sits_in_journal(struct f2fs_sb_info *sbi)
 {
 	struct curseg_info *curseg = CURSEG_I(sbi, CURSEG_COLD_DATA);
 	struct f2fs_summary_block *sum = curseg->sum_blk;
 	int i;
 
-	/*
-	 * If the journal area in the current summary is full of sit entries,
-	 * all the sit entries will be flushed. Otherwise the sit entries
-	 * are not able to replace with newly hot sit entries.
-	 */
-	if (sits_in_cursum(sum) >= SIT_JOURNAL_ENTRIES) {
-		for (i = sits_in_cursum(sum) - 1; i >= 0; i--) {
-			unsigned int segno;
-			segno = le32_to_cpu(segno_in_journal(sum, i));
-			__mark_sit_entry_dirty(sbi, segno);
-		}
-		update_sits_in_cursum(sum, -sits_in_cursum(sum));
-		return true;
+	for (i = sits_in_cursum(sum) - 1; i >= 0; i--) {
+		unsigned int segno;
+		bool dirtied;
+
+		segno = le32_to_cpu(segno_in_journal(sum, i));
+		dirtied = __mark_sit_entry_dirty(sbi, segno);
+
+		if (!dirtied)
+			add_sit_entry(segno, &SM_I(sbi)->sit_entry_set);
 	}
-	return false;
+	update_sits_in_cursum(sum, -sits_in_cursum(sum));
 }
 
 /*
@@ -1503,67 +1604,94 @@ void flush_sit_entries(struct f2fs_sb_info *sbi)
 	unsigned long *bitmap = sit_i->dirty_sentries_bitmap;
 	struct curseg_info *curseg = CURSEG_I(sbi, CURSEG_COLD_DATA);
 	struct f2fs_summary_block *sum = curseg->sum_blk;
+	struct sit_entry_set *ses, *tmp;
+	struct list_head *head = &SM_I(sbi)->sit_entry_set;
 	unsigned long nsegs = TOTAL_SEGS(sbi);
-	struct page *page = NULL;
-	struct f2fs_sit_block *raw_sit = NULL;
-	unsigned int start = 0, end = 0;
-	unsigned int segno;
-	bool flushed;
+	bool to_journal = true;
 
 	mutex_lock(&curseg->curseg_mutex);
 	mutex_lock(&sit_i->sentry_lock);
 
 	/*
-	 * "flushed" indicates whether sit entries in journal are flushed
-	 * to the SIT area or not.
+	 * add and account sit entries of dirty bitmap in sit entry
+	 * set temporarily
 	 */
-	flushed = flush_sits_in_journal(sbi);
+	add_sits_in_set(sbi);
 
-	for_each_set_bit(segno, bitmap, nsegs) {
-		struct seg_entry *se = get_seg_entry(sbi, segno);
-		int sit_offset, offset;
+	/*
+	 * if there are no enough space in journal to store dirty sit
+	 * entries, remove all entries from journal and add and account
+	 * them in sit entry set.
+	 */
+	if (!__has_cursum_space(sum, sit_i->dirty_sentries, SIT_JOURNAL))
+		remove_sits_in_journal(sbi);
 
-		sit_offset = SIT_ENTRY_OFFSET(sit_i, segno);
+	if (!sit_i->dirty_sentries)
+		goto out;
 
-		/* add discard candidates */
-		if (SM_I(sbi)->nr_discards < SM_I(sbi)->max_discards)
-			add_discard_addrs(sbi, segno, se);
+	/*
+	 * there are two steps to flush sit entries:
+	 * #1, flush sit entries to journal in current cold data summary block.
+	 * #2, flush sit entries to sit page.
+	 */
+	list_for_each_entry_safe(ses, tmp, head, set_list) {
+		struct page *page;
+		struct f2fs_sit_block *raw_sit = NULL;
+		unsigned int start_segno = ses->start_segno;
+		unsigned int end = min(start_segno + SIT_ENTRY_PER_BLOCK,
+								nsegs);
+		unsigned int segno = start_segno;
 
-		if (flushed)
-			goto to_sit_page;
+		if (to_journal &&
+			!__has_cursum_space(sum, ses->entry_cnt, SIT_JOURNAL))
+			to_journal = false;
 
-		offset = lookup_journal_in_cursum(sum, SIT_JOURNAL, segno, 1);
-		if (offset >= 0) {
-			segno_in_journal(sum, offset) = cpu_to_le32(segno);
-			seg_info_to_raw_sit(se, &sit_in_journal(sum, offset));
-			goto flush_done;
-		}
-to_sit_page:
-		if (!page || (start > segno) || (segno > end)) {
-			if (page) {
-				f2fs_put_page(page, 1);
-				page = NULL;
-			}
-
-			start = START_SEGNO(sit_i, segno);
-			end = start + SIT_ENTRY_PER_BLOCK - 1;
-
-			/* read sit block that will be updated */
-			page = get_next_sit_page(sbi, start);
+		if (!to_journal) {
+			page = get_next_sit_page(sbi, start_segno);
 			raw_sit = page_address(page);
 		}
 
-		/* udpate entry in SIT block */
-		seg_info_to_raw_sit(se, &raw_sit->entries[sit_offset]);
-flush_done:
-		__clear_bit(segno, bitmap);
-		sit_i->dirty_sentries--;
+		/* flush dirty sit entries in region of current sit set */
+		for_each_set_bit_from(segno, bitmap, end) {
+			int offset, sit_offset;
+			struct seg_entry *se = get_seg_entry(sbi, segno);
+
+			/* add discard candidates */
+			if (SM_I(sbi)->nr_discards < SM_I(sbi)->max_discards)
+				add_discard_addrs(sbi, segno, se);
+
+			if (to_journal) {
+				offset = lookup_journal_in_cursum(sum,
+							SIT_JOURNAL, segno, 1);
+				f2fs_bug_on(sbi, offset < 0);
+				segno_in_journal(sum, offset) =
+							cpu_to_le32(segno);
+				seg_info_to_raw_sit(se,
+						&sit_in_journal(sum, offset));
+			} else {
+				sit_offset = SIT_ENTRY_OFFSET(sit_i, segno);
+				seg_info_to_raw_sit(se,
+						&raw_sit->entries[sit_offset]);
+			}
+
+			__clear_bit(segno, bitmap);
+			sit_i->dirty_sentries--;
+			ses->entry_cnt--;
+		}
+
+		if (!to_journal)
+			f2fs_put_page(page, 1);
+
+		f2fs_bug_on(sbi, ses->entry_cnt);
+		release_sit_entry_set(ses);
 	}
+
+	f2fs_bug_on(sbi, !list_empty(head));
+	f2fs_bug_on(sbi, sit_i->dirty_sentries);
+
+out:
 	mutex_unlock(&sit_i->sentry_lock);
 	mutex_unlock(&curseg->curseg_mutex);
-
-	/* writeout last modified SIT block */
-	f2fs_put_page(page, 1);
 
 	set_prefree_as_free_segments(sbi);
 }
@@ -1703,7 +1831,7 @@ static void build_sit_entries(struct f2fs_sb_info *sbi)
 	int sit_blk_cnt = SIT_BLK_CNT(sbi);
 	unsigned int i, start, end;
 	unsigned int readed, start_blk = 0;
-	int nrpages = MAX_BIO_BLOCKS(max_hw_blocks(sbi));
+	int nrpages = MAX_BIO_BLOCKS(sbi);
 
 	do {
 		readed = ra_meta_pages(sbi, start_blk, nrpages, META_SIT);
@@ -1874,12 +2002,15 @@ int build_segment_manager(struct f2fs_sb_info *sbi)
 	sm_info->ssa_blkaddr = le32_to_cpu(raw_super->ssa_blkaddr);
 	sm_info->rec_prefree_segments = sm_info->main_segments *
 					DEF_RECLAIM_PREFREE_SEGMENTS / 100;
-	sm_info->ipu_policy = F2FS_IPU_DISABLE;
+	sm_info->ipu_policy = F2FS_IPU_FSYNC;
 	sm_info->min_ipu_util = DEF_MIN_IPU_UTIL;
+	sm_info->min_fsync_blocks = DEF_MIN_FSYNC_BLOCKS;
 
 	INIT_LIST_HEAD(&sm_info->discard_list);
 	sm_info->nr_discards = 0;
 	sm_info->max_discards = 0;
+
+	INIT_LIST_HEAD(&sm_info->sit_entry_set);
 
 	if (test_opt(sbi, FLUSH_MERGE) && !f2fs_readonly(sbi->sb)) {
 		err = create_flush_cmd_control(sbi);
@@ -2010,11 +2141,22 @@ int __init create_segment_manager_caches(void)
 	discard_entry_slab = f2fs_kmem_cache_create("discard_entry",
 			sizeof(struct discard_entry));
 	if (!discard_entry_slab)
-		return -ENOMEM;
+		goto fail;
+
+	sit_entry_set_slab = f2fs_kmem_cache_create("sit_entry_set",
+			sizeof(struct nat_entry_set));
+	if (!sit_entry_set_slab)
+		goto destory_discard_entry;
 	return 0;
+
+destory_discard_entry:
+	kmem_cache_destroy(discard_entry_slab);
+fail:
+	return -ENOMEM;
 }
 
 void destroy_segment_manager_caches(void)
 {
+	kmem_cache_destroy(sit_entry_set_slab);
 	kmem_cache_destroy(discard_entry_slab);
 }
