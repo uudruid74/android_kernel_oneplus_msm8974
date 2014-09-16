@@ -9,7 +9,6 @@
 #include <linux/device.h>
 #include <linux/mutex.h>
 #include <linux/pm_wakeup.h>
-#include <mach/cpufreq.h>
 
 #ifdef CONFIG_POWERSUSPEND
 #include <linux/powersuspend.h>
@@ -27,9 +26,6 @@ static struct workqueue_struct *autosleep_wq;
  */
 static DEFINE_MUTEX(autosleep_lock);
 static struct wakeup_source *autosleep_ws;
-struct delayed_work boost_off;
-
-#define MAX_FREQ_LIMIT	2265600
 
 static void try_to_suspend(struct work_struct *work)
 {
@@ -134,9 +130,6 @@ int pm_autosleep_set_state(suspend_state_t state)
 		set_power_suspend_state_autosleep_hook(POWER_SUSPEND_ACTIVE);
 #endif
 	} else {
-		pr_info("%s: locking cpufreq for resume boost\n", __func__);
-		msm_cpufreq_set_freq_limits(0, MAX_FREQ_LIMIT, MSM_CPUFREQ_NO_LIMIT);
-		schedule_delayed_work(&boost_off, msecs_to_jiffies(2500));
 		pm_wakep_autosleep_enabled(false);
 #ifdef CONFIG_POWERSUSPEND
 		// Yank555.lu : add hook to handle powersuspend tasks (wakeup)
@@ -148,12 +141,6 @@ int pm_autosleep_set_state(suspend_state_t state)
 	return 0;
 }
 
-static void set_boost_off(struct work_struct *work)
-{
-	pr_info("%s: freeing resume cpufreq lock\n", __func__);
-	msm_cpufreq_set_freq_limits(1, MSM_CPUFREQ_NO_LIMIT, MSM_CPUFREQ_NO_LIMIT);
-}
-
 int __init pm_autosleep_init(void)
 {
 	autosleep_ws = wakeup_source_register("autosleep");
@@ -161,10 +148,8 @@ int __init pm_autosleep_init(void)
 		return -ENOMEM;
 
 	autosleep_wq = alloc_ordered_workqueue("autosleep", 0);
-	if (autosleep_wq) {
-		INIT_DELAYED_WORK(&boost_off, set_boost_off);
+	if (autosleep_wq)
 		return 0;
-	}
 
 	wakeup_source_unregister(autosleep_ws);
 	return -ENOMEM;
