@@ -2,18 +2,18 @@
 if [ "${1}" = "skip" ] ; then
 	device=$(echo $(\ls *.img) | sed s/.img//g)
 	if [ "$device" = "recovery" ] ; then
-		rm arter97-recovery-e330s-"$(cat version_recovery | awk '{print $1}')".zip 2>/dev/null
+		rm arter97-recovery-i9506-"$(cat version_recovery | awk '{print $1}')".zip 2>/dev/null
 		cp recovery.img recoveryzip/recovery.img
 		cd recoveryzip/
 		cp ../kernelzip/META-INF/com/google/android/update-binary META-INF/com/google/android/update-binary
 		sed -i -e s/PHILZ_VERSION/$(cat ../version_recovery | awk '{print $1}')/g -e s/CWM_VERSION/$(cat ../version_recovery | awk '{print $2 }')/g META-INF/com/google/android/updater-script
-		7z a -mx9 arter97-recovery-e330s-"$(cat ../version_recovery | awk '{print $1}')"-tmp.zip *
-		zipalign -v 4 arter97-recovery-e330s-"$(cat ../version_recovery | awk '{print $1}')"-tmp.zip ../arter97-recovery-e330s-"$(cat ../version_recovery | awk '{print $1}')".zip
+		7z a -mx9 arter97-recovery-i9506-"$(cat ../version_recovery | awk '{print $1}')"-tmp.zip *
+		zipalign -v 4 arter97-recovery-i9506-"$(cat ../version_recovery | awk '{print $1}')"-tmp.zip ../arter97-recovery-i9506-"$(cat ../version_recovery | awk '{print $1}')".zip
 		sed -i -e s/$(cat ../version_recovery | awk '{print $1}')/PHILZ_VERSION/g -e s/$(cat ../version_recovery | awk '{print $2 }')/CWM_VERSION/g META-INF/com/google/android/updater-script
-		rm arter97-recovery-e330s-"$(cat ../version_recovery | awk '{print $1}')"-tmp.zip
+		rm arter97-recovery-i9506-"$(cat ../version_recovery | awk '{print $1}')"-tmp.zip
 		cd ..
 		rm recoveryzip/META-INF/com/google/android/update-binary
-		ls -al arter97-recovery-e330s-"$(cat version_recovery | awk '{print $1}')".zip
+		ls -al arter97-recovery-i9506-"$(cat version_recovery | awk '{print $1}')".zip
 	else
 		rm arter97-kernel-$device-"$(cat version)".zip 2>/dev/null
 		cp *.img kernelzip/boot.img
@@ -68,15 +68,15 @@ ls -al arter97-kernel*.zip
 ./build_clean.sh nozip
 ./build_recovery.sh CC='$(CROSS_COMPILE)gcc'
 
-rm arter97-recovery-e330s-"$(cat version_recovery | awk '{print $1}')".zip 2>/dev/null
+rm arter97-recovery-i9506-"$(cat version_recovery | awk '{print $1}')".zip 2>/dev/null
 cp recovery.img recoveryzip/recovery.img
 cd recoveryzip/
 cp ../kernelzip/META-INF/com/google/android/update-binary META-INF/com/google/android/update-binary
 sed -i -e s/PHILZ_VERSION/$(cat ../version_recovery | awk '{print $1}')/g -e s/CWM_VERSION/$(cat ../version_recovery | awk '{print $2 }')/g META-INF/com/google/android/updater-script
-7z a -mx9 arter97-recovery-e330s-"$(cat ../version_recovery | awk '{print $1}')"-tmp.zip *
-zipalign -v 4 arter97-recovery-e330s-"$(cat ../version_recovery | awk '{print $1}')"-tmp.zip ../arter97-recovery-e330s-"$(cat ../version_recovery | awk '{print $1}')".zip
+7z a -mx9 arter97-recovery-i9506-"$(cat ../version_recovery | awk '{print $1}')"-tmp.zip *
+zipalign -v 4 arter97-recovery-i9506-"$(cat ../version_recovery | awk '{print $1}')"-tmp.zip ../arter97-recovery-i9506-"$(cat ../version_recovery | awk '{print $1}')".zip
 sed -i -e s/$(cat ../version_recovery | awk '{print $1}')/PHILZ_VERSION/g -e s/$(cat ../version_recovery | awk '{print $2 }')/CWM_VERSION/g META-INF/com/google/android/updater-script
-rm arter97-recovery-e330s-"$(cat ../version_recovery | awk '{print $1}')"-tmp.zip
+rm arter97-recovery-i9506-"$(cat ../version_recovery | awk '{print $1}')"-tmp.zip
 cd ..
 rm recoveryzip/META-INF/com/google/android/update-binary
-ls -al arter97-recovery-e330s-"$(cat version_recovery | awk '{print $1}')".zip
+ls -al arter97-recovery-i9506-"$(cat version_recovery | awk '{print $1}')".zip
