@@ -924,7 +924,7 @@ static irqreturn_t flip_cover_detect(int irq, void *dev_id)
 		ddata->flip_cover, ddata->flip_cover?"on":"off");
 
 	input_report_switch(ddata->input,
-		SW_FLIP, ddata->flip_cover);
+		SW_LID, ddata->flip_cover);
 	input_sync(ddata->input);
 out:
 	return IRQ_HANDLED;
@@ -1234,7 +1234,7 @@ static int gpio_keys_get_devtree_pdata(struct device *dev,
 
 		buttons[i].desc = of_get_property(pp, "label", NULL);
 #ifdef CONFIG_SENSORS_HALL
-		if ((buttons[i].code == SW_FLIP) || (buttons[i].code == SW_LID)) {
+		if ((buttons[i].code == SW_LID) || (buttons[i].code == SW_LID)) {
 			pdata->gpio_flip_cover = buttons[i].gpio;
 			pdata->flip_code = buttons[i].code;
 			pdata->nbuttons--;
