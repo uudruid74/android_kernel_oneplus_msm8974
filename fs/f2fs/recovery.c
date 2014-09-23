@@ -174,13 +174,10 @@ static int find_fsync_dnodes(struct f2fs_sb_info *sbi, struct list_head *head)
 		struct fsync_inode_entry *entry;
 
 		if (blkaddr < SM_I(sbi)->main_blkaddr ||
-					blkaddr > TOTAL_BLKS(sbi))
+					blkaddr >= TOTAL_BLKS(sbi))
 			return 0;
 
-		page = get_meta_page(sbi, blkaddr);
-
-		ra_meta_pages(sbi, next_blkaddr_of_node(page),
-					MAX_BIO_BLOCKS(sbi), META_POR);
+		page = get_meta_page_ra(sbi, blkaddr);
 
 		if (cp_ver != cpver_of_node(page))
 			break;
@@ -441,10 +438,7 @@ static int recover_data(struct f2fs_sb_info *sbi,
 					blkaddr > TOTAL_BLKS(sbi))
 			break;
 
-		page = get_meta_page(sbi, blkaddr);
-
-		ra_meta_pages(sbi, next_blkaddr_of_node(page),
-					MAX_BIO_BLOCKS(sbi), META_POR);
+		page = get_meta_page_ra(sbi, blkaddr);
 
 		if (cp_ver != cpver_of_node(page)) {
 			f2fs_put_page(page, 1);
@@ -463,8 +457,10 @@ static int recover_data(struct f2fs_sb_info *sbi,
 			recover_inode(entry->inode, page);
 		if (entry->last_dentry == blkaddr) {
 			err = recover_dentry(entry->inode, page);
-			if (err)
+			if (err) {
+				f2fs_put_page(page, 1);
 				break;
+			}
 		}
 		err = do_recover_data(sbi, entry->inode, page, blkaddr);
 		if (err) {
@@ -546,8 +542,11 @@ out:
 		set_ckpt_flags(sbi->ckpt, CP_ERROR_FLAG);
 		mutex_unlock(&sbi->cp_mutex);
 	} else if (need_writecp) {
+		struct cp_control cpc = {
+			.reason = CP_SYNC,
+		};
 		mutex_unlock(&sbi->cp_mutex);
-		write_checkpoint(sbi, false);
+		write_checkpoint(sbi, &cpc);
 	} else {
 		mutex_unlock(&sbi->cp_mutex);
 	}
