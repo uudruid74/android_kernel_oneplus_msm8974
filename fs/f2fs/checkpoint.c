@@ -98,7 +98,7 @@ static inline block_t get_max_meta_blks(struct f2fs_sb_info *sbi, int type)
 	case META_CP:
 		return 0;
 	case META_POR:
-		return SM_I(sbi)->main_blkaddr + TOTAL_BLKS(sbi);
+		return SM_I(sbi)->seg0_blkaddr + TOTAL_BLKS(sbi);
 	default:
 		BUG();
 	}
