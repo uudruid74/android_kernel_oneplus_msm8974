@@ -222,46 +222,45 @@ found_middle:
 }
 
 /* For atomic write support */
-void register_atomic_page(struct inode *inode, struct page *page)
+void register_db_page(struct inode *inode, struct page *page)
 {
 	struct f2fs_inode_info *fi = F2FS_I(inode);
-	struct atomic_pages *new;
+	struct db_pages *new;
 
 	new = f2fs_kmem_cache_alloc(aw_entry_slab, GFP_NOFS);
 
 	/* add atomic page indices to the list */
-	new->aid = (u64)current->pid;
 	new->page = page;
 	INIT_LIST_HEAD(&new->list);
 
 	/* increase reference count with clean state */
-	mutex_lock(&fi->atomic_lock);
+	mutex_lock(&fi->db_lock);
 	get_page(page);
-	list_add_tail(&new->list, &fi->atomic_pages);
-	mutex_unlock(&fi->atomic_lock);
+	list_add_tail(&new->list, &fi->db_pages);
+	mutex_unlock(&fi->db_lock);
 }
 
-void invalidate_atomic_page(struct inode *inode, struct page *page)
+void invalidate_db_page(struct inode *inode, struct page *page)
 {
 	struct f2fs_inode_info *fi = F2FS_I(inode);
-	struct atomic_pages *cur, *tmp;
+	struct db_pages *cur, *tmp;
 
-	mutex_lock(&fi->atomic_lock);
-	list_for_each_entry_safe(cur, tmp, &fi->atomic_pages, list) {
+	mutex_lock(&fi->db_lock);
+	list_for_each_entry_safe(cur, tmp, &fi->db_pages, list) {
 		if (cur->page == page) {
 			put_page(page);
 			list_del(&cur->list);
 			kmem_cache_free(aw_entry_slab, cur);
 		}
 	}
-	mutex_unlock(&fi->atomic_lock);
+	mutex_unlock(&fi->db_lock);
 }
 
-void commit_atomic_pages(struct inode *inode, bool abort)
+void commit_db_pages(struct inode *inode, bool abort)
 {
 	struct f2fs_sb_info *sbi = F2FS_I_SB(inode);
 	struct f2fs_inode_info *fi = F2FS_I(inode);
-	struct atomic_pages *cur, *tmp;
+	struct db_pages *cur, *tmp;
 	bool submit_bio = false;
 	struct f2fs_io_info fio = {
 		.type = DATA,
@@ -271,8 +270,8 @@ void commit_atomic_pages(struct inode *inode, bool abort)
 	f2fs_balance_fs(sbi);
 	f2fs_lock_op(sbi);
 
-	mutex_lock(&fi->atomic_lock);
-	list_for_each_entry_safe(cur, tmp, &fi->atomic_pages, list) {
+	mutex_lock(&fi->db_lock);
+	list_for_each_entry_safe(cur, tmp, &fi->db_pages, list) {
 		lock_page(cur->page);
 		if (!abort && cur->page->mapping == inode->i_mapping) {
 			f2fs_wait_on_page_writeback(cur->page, DATA);
@@ -287,7 +286,7 @@ void commit_atomic_pages(struct inode *inode, bool abort)
 	}
 	if (submit_bio)
 		f2fs_submit_merged_bio(sbi, DATA, WRITE);
-	mutex_unlock(&fi->atomic_lock);
+	mutex_unlock(&fi->db_lock);
 
 	filemap_fdatawait_range(inode->i_mapping, 0, LLONG_MAX);
 	f2fs_unlock_op(sbi);
@@ -2295,8 +2294,8 @@ int __init create_segment_manager_caches(void)
 			sizeof(struct nat_entry_set));
 	if (!sit_entry_set_slab)
 		goto destory_discard_entry;
-	aw_entry_slab = f2fs_kmem_cache_create("atomic_entry",
-			sizeof(struct atomic_pages));
+	aw_entry_slab = f2fs_kmem_cache_create("db_page_entry",
+			sizeof(struct db_pages));
 	if (!aw_entry_slab)
 		goto destroy_sit_entry_set;
 	return 0;
