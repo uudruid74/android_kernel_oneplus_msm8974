@@ -130,6 +130,7 @@ struct cypress_touchkey_info {
 	int glove_value;
 #endif
 
+	atomic_t keypad_enable;
 };
 
 void touchkey_charger_infom(bool en);
