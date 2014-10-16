@@ -1054,7 +1054,6 @@ static void check_spread(struct cfs_rq *cfs_rq, struct sched_entity *se)
 #endif
 }
 
-extern bool powerboosted;
 static void
 place_entity(struct cfs_rq *cfs_rq, struct sched_entity *se, int initial)
 {
@@ -1077,7 +1076,7 @@ place_entity(struct cfs_rq *cfs_rq, struct sched_entity *se, int initial)
 		 * Halve their sleep time's effect, to allow
 		 * for a gentler effect of sleepers:
 		 */
-		if (sched_feat(GENTLE_FAIR_SLEEPERS) && !powerboosted)
+		if (sched_feat(GENTLE_FAIR_SLEEPERS))
 			thresh >>= 1;
 
 		vruntime -= thresh;
