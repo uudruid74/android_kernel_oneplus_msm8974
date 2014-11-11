@@ -236,6 +236,9 @@ static int f2fs_unlink(struct inode *dir, struct dentry *dentry)
 
 	/* In order to evict this inode, we set it dirty */
 	mark_inode_dirty(inode);
+
+	if (IS_DIRSYNC(dir))
+		f2fs_sync_fs(sbi->sb, 1);
 fail:
 	trace_f2fs_unlink_exit(inode, err);
 	return err;
