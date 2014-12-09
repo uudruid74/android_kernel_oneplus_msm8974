@@ -95,6 +95,7 @@ struct cpufreq_interactive_cpuinfo {
 	u64 hispeed_validate_time; /* cluster hispeed_validate_time */
 	u64 local_hvtime; /* per-cpu hispeed_validate_time */
 	struct rw_semaphore enable_sem;
+	bool reject_notification;
 	int governor_enabled;
 	int prev_load;
 	int minfreq_boost;
@@ -867,6 +868,9 @@ static void cpufreq_interactive_idle_start(void)
 		&per_cpu(cpuinfo, smp_processor_id());
 	int pending;
 	u64 now;
+
+	if (pcpu->reject_notification)
+		return;
 
 	if (!down_read_trylock(&pcpu->enable_sem))
 		return;
@@ -1916,12 +1920,14 @@ static int cpufreq_governor_arteractive(struct cpufreq_policy *policy,
 				pcpu->floor_validate_time;
 			pcpu->local_hvtime = pcpu->floor_validate_time;
 			pcpu->max_freq = policy->max;
+			pcpu->reject_notification = true;
 			down_write(&pcpu->enable_sem);
 			del_timer_sync(&pcpu->cpu_timer);
 			del_timer_sync(&pcpu->cpu_slack_timer);
 			cpufreq_interactive_timer_start(j);
 			pcpu->governor_enabled = 1;
 			up_write(&pcpu->enable_sem);
+			pcpu->reject_notification = false;
 		}
 
 		/*
@@ -1950,12 +1956,14 @@ static int cpufreq_governor_arteractive(struct cpufreq_policy *policy,
 		mutex_lock(&gov_lock);
 		for_each_cpu(j, policy->cpus) {
 			pcpu = &per_cpu(cpuinfo, j);
+			pcpu->reject_notification = true;
 			down_write(&pcpu->enable_sem);
 			pcpu->governor_enabled = 0;
 			pcpu->target_freq = 0;
 			del_timer_sync(&pcpu->cpu_timer);
 			del_timer_sync(&pcpu->cpu_slack_timer);
 			up_write(&pcpu->enable_sem);
+			pcpu->reject_notification = false;
 		}
 
 		if (--active_count > 0) {
@@ -2004,12 +2012,14 @@ static int cpufreq_governor_arteractive(struct cpufreq_policy *policy,
 			 * stopped unexpectedly.
 			 */
 			if (policy->max > pcpu->max_freq) {
+				pcpu->reject_notification = true;
 				down_write(&pcpu->enable_sem);
 				del_timer_sync(&pcpu->cpu_timer);
 				del_timer_sync(&pcpu->cpu_slack_timer);
 				cpufreq_interactive_timer_resched(j);
 				pcpu->minfreq_boost = 1;
 				up_write(&pcpu->enable_sem);
+				pcpu->reject_notification = false;
 			}
 
 			pcpu->max_freq = policy->max;
