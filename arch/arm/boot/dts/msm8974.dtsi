@@ -1706,6 +1706,7 @@
 			interrupts = <0 131 0>, <0 179 0>;
 			interrupt-names = "irq", "otg_irq";
 			tx-fifo-resize;
+			maximum-speed="high";
 		};
 	};
 
