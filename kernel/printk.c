@@ -41,7 +41,7 @@
 #include <linux/cpu.h>
 #include <linux/notifier.h>
 #include <linux/rculist.h>
-#include <linux/poll.h>
+#include <linux/rtc.h>
 
 #include <asm/uaccess.h>
 
@@ -215,9 +215,13 @@ static volatile unsigned int logbuf_cpu = UINT_MAX;
 
 #define LOG_LINE_MAX 1024
 
+<<<<<<< HEAD
 /* record buffer */
 #define __LOG_BUF_LEN (1 << CONFIG_LOG_BUF_SHIFT)
 static char __log_buf[__LOG_BUF_LEN];
+=======
+char __log_buf[__LOG_BUF_LEN];
+>>>>>>> 6f6354b... OnePlus: bring in 14001/A0001/One/bacon
 static char *log_buf = __log_buf;
 static u32 log_buf_len = __LOG_BUF_LEN;
 
@@ -1147,6 +1151,23 @@ static void zap_locks(void)
 	sema_init(&console_sem, 1);
 }
 
+<<<<<<< HEAD
+=======
+#if defined(CONFIG_PRINTK_TIME)
+static bool printk_time = 1;
+#else
+static bool printk_time = 0;
+#endif
+module_param_named(time, printk_time, bool, S_IRUGO | S_IWUSR);
+
+static bool print_wall_time = 1;
+module_param_named(print_wall_time, print_wall_time, bool, S_IRUGO | S_IWUSR);
+
+
+static bool always_kmsg_dump;
+module_param_named(always_kmsg_dump, always_kmsg_dump, bool, S_IRUGO | S_IWUSR);
+
+>>>>>>> 6f6354b... OnePlus: bring in 14001/A0001/One/bacon
 /* Check if we have any console registered that can be called early in boot. */
 static int have_callable_console(void)
 {
@@ -1222,6 +1243,7 @@ static inline void printk_delay(void)
 		}
 	}
 }
+void getnstimeofday_no_nsecs(struct timespec *ts);
 
 asmlinkage int vprintk_emit(int facility, int level,
 				const char *dict, size_t dictlen,
@@ -1236,9 +1258,19 @@ asmlinkage int vprintk_emit(int facility, int level,
 	size_t textlen;
 	unsigned long flags;
 	int this_cpu;
+<<<<<<< HEAD
 	bool newline = false;
 	bool cont = false;
 	int printed_len = 0;
+=======
+	char *p;
+	size_t plen;
+	char special;
+	struct timespec ts;
+	struct rtc_time tm;
+
+
+>>>>>>> 6f6354b... OnePlus: bring in 14001/A0001/One/bacon
 
 	boot_delay_msec();
 	printk_delay();
@@ -1316,6 +1348,7 @@ asmlinkage int vprintk_emit(int facility, int level,
 		buflen = 0;
 	}
 
+<<<<<<< HEAD
 	if (buflen == 0) {
 		/* remember level for first message in the buffer */
 		if (level == -1)
@@ -1323,6 +1356,39 @@ asmlinkage int vprintk_emit(int facility, int level,
 		else
 			buflevel = level;
 	}
+=======
+			if (printk_time) {
+				/* Add the current time stamp */
+				char tbuf[50], *tp;
+				unsigned tlen;
+				unsigned long long t;
+				unsigned long nanosec_rem;
+
+
+
+				if(print_wall_time){
+					t = cpu_clock(printk_cpu);
+					nanosec_rem = do_div(t, 1000000000);
+					getnstimeofday_no_nsecs(&ts);
+					ts.tv_sec += 8*60*60; //Trasfer to Beijing time, UTC + 8
+					rtc_time_to_tm(ts.tv_sec, &tm);
+
+					tlen = sprintf(tbuf, "[%02d%02d%02d_%02d:%02d:%02d.%06lu]@%d ",
+									tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday,
+									tm.tm_hour, tm.tm_min, tm.tm_sec, nanosec_rem/1000,smp_processor_id());
+
+				}else{
+					t = cpu_clock(printk_cpu);
+					nanosec_rem = do_div(t, 1000000000);
+					tlen = sprintf(tbuf, "[%5lu.%06lu] ",
+							(unsigned long) t,
+							nanosec_rem / 1000);
+				}
+				for (tp = tbuf; tp < tbuf + tlen; tp++)
+					emit_log_char(*tp);
+				printed_len += tlen;
+			}
+>>>>>>> 6f6354b... OnePlus: bring in 14001/A0001/One/bacon
 
 	if (buflen || !newline) {
 		/* append to existing buffer, or buffer until next message */
