@@ -1827,6 +1827,7 @@ static ssize_t mipi_samsung_auto_brightness_show(struct device *dev,
 #if defined(CONFIG_FB_MSM_MIPI_SAMSUNG_OCTA_VIDEO_FULL_HD_PT_PANEL)
 static unsigned int mipi_samsung_manufacture_id(struct mdss_panel_data *pdata);
 static int mdss_dsi_panel_dimming_init(struct mdss_panel_data *pdata);
+static bool mdss_dsi_panel_onoff = true;
 #endif
 
 static ssize_t mipi_samsung_auto_brightness_store(struct device *dev,
@@ -1835,6 +1836,10 @@ static ssize_t mipi_samsung_auto_brightness_store(struct device *dev,
 	static int first_auto_br = 0;
 
 #if defined(CONFIG_FB_MSM_MIPI_SAMSUNG_OCTA_VIDEO_FULL_HD_PT_PANEL)
+	if (!msd.manufacture_id && !mdss_dsi_panel_onoff) {
+		pr_info("%s: cowardly refusing to write - (!msd.manufacture_id && !mdss_dsi_panel_onoff)", __func__);
+		return size;
+	}
 	if (!msd.manufacture_id) {
 		msd.manufacture_id = mipi_samsung_manufacture_id(msd.pdata);
 		mdss_dsi_panel_dimming_init(msd.pdata);
@@ -3124,6 +3129,9 @@ static int mdss_dsi_panel_on(struct mdss_panel_data *pdata)
 #ifdef CONFIG_POWERSUSPEND
 	set_power_suspend_state_panel_hook(POWER_SUSPEND_INACTIVE);
 #endif
+#if defined(CONFIG_FB_MSM_MIPI_SAMSUNG_OCTA_VIDEO_FULL_HD_PT_PANEL)
+	mdss_dsi_panel_onoff = true;
+#endif
 
 	return 0;
 }
@@ -3176,6 +3184,9 @@ static int mdss_dsi_panel_off(struct mdss_panel_data *pdata)
 
 #ifdef CONFIG_POWERSUSPEND
 	set_power_suspend_state_panel_hook(POWER_SUSPEND_ACTIVE);
+#endif
+#if defined(CONFIG_FB_MSM_MIPI_SAMSUNG_OCTA_VIDEO_FULL_HD_PT_PANEL)
+	mdss_dsi_panel_onoff = false;
 #endif
 
 	return 0;
