@@ -35,6 +35,9 @@
  *                     Rest of the cores can slowly ramp up and match the actual workload.
  *                     This is not recommended on devices where reducing latency is very important.
  *                 Apply some several CAF(3.4 & 3.10) and Chromium(3.14) commits.
+ *                 Timer slack & timer rate adjusted to 30000.
+ *                     "We're no longer managing timer_rate from the PowerHAL, so set it to
+ *                      30000 which will improve battery live." - Steve Kondik
  *
  */
 
@@ -144,7 +147,7 @@ static unsigned long min_sample_time = DEFAULT_MIN_SAMPLE_TIME;
 /*
  * The sample rate of the timer used to increase frequency
  */
-#define DEFAULT_TIMER_RATE 20000
+#define DEFAULT_TIMER_RATE 30000
 static unsigned long timer_rate = DEFAULT_TIMER_RATE;
 
 /* Busy SDF parameters*/
@@ -172,7 +175,7 @@ static u64 boostpulse_endtime;
  * Max additional time to wait in idle, beyond timer_rate, at speeds above
  * minimum before wakeup to reduce speed, or -1 if unnecessary.
  */
-#define DEFAULT_TIMER_SLACK 20000
+#define DEFAULT_TIMER_SLACK 30000
 static int timer_slack_val = DEFAULT_TIMER_SLACK;
 
 static bool io_is_busy = 1;
