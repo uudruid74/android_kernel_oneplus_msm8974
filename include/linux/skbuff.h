@@ -269,6 +269,13 @@ struct skb_shared_info {
 	/* Intermediate layers must ensure that destructor_arg
 	 * remains valid until skb destructor */
 	void *		destructor_arg;
+    
+ // ------------- START of KNOX_VPN ------------------//
+	uid_t uid;
+	pid_t pid;
+	u_int32_t knox_mark;
+ // ------------- END of KNOX_VPN -------------------//
+
 
 	/* must be last field, see pskb_expand_head() */
 	skb_frag_t	frags[MAX_SKB_FRAGS];
@@ -495,6 +502,7 @@ struct sk_buff {
 				*data;
 	unsigned int		truesize;
 	atomic_t		users;
+
 };
 
 #ifdef __KERNEL__
@@ -1881,8 +1889,6 @@ static inline int __skb_cow(struct sk_buff *skb, unsigned int headroom,
 {
 	int delta = 0;
 
-	if (headroom < NET_SKB_PAD)
-		headroom = NET_SKB_PAD;
 	if (headroom > skb_headroom(skb))
 		delta = headroom - skb_headroom(skb);
 
