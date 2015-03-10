@@ -42,8 +42,8 @@ static int blkpg_ioctl(struct block_device *bdev, struct blkpg_ioctl_arg __user 
 		case BLKPG_ADD_PARTITION:
 			start = p.start >> 9;
 			length = p.length >> 9;
-			/* check for fit in a hd_struct */ 
-			if (sizeof(sector_t) == sizeof(long) && 
+			/* check for fit in a hd_struct */
+			if (sizeof(sector_t) == sizeof(long) &&
 			    sizeof(long long) > sizeof(long)) {
 				long pstart = start, plength = length;
 				if (pstart != start || plength != length
@@ -137,7 +137,7 @@ static int blk_ioctl_discard(struct block_device *bdev, uint64_t start,
 		flags |= BLKDEV_DISCARD_SECURE;
 
 	ST_LOG("%s %d:%d %lu %lu",secure?"SECDIS":"DIS",MAJOR(bdev->bd_dev),MINOR(bdev->bd_dev),start,len);
-	
+
 	return blkdev_issue_discard(bdev, start, len, GFP_KERNEL, flags);
 }
 

@@ -704,7 +704,7 @@ static struct msm_gpiomux_config msm_blsp_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &gpio_suspend_config[2],
 		},
 	},
- 	{
+	{
 		.gpio      = 25,		/* BLSP5 QUP I2C_DAT */
 		.settings = {
 			[GPIOMUX_SUSPENDED] = &gpio_i2c_config_4,
@@ -1895,7 +1895,7 @@ void __init msm_8974_init_gpiomux(void)
 
 	msm_gpiomux_install(msm_taiko_config, ARRAY_SIZE(msm_taiko_config));
 	msm_gpiomux_install(speaker_enable_config, ARRAY_SIZE(speaker_enable_config));
-	msm_gpiomux_install(ear_send_end_config, ARRAY_SIZE(ear_send_end_config));	
+	msm_gpiomux_install(ear_send_end_config, ARRAY_SIZE(ear_send_end_config));
 
 	msm_gpiomux_install(msm_hsic_hub_configs,
 				ARRAY_SIZE(msm_hsic_hub_configs));

@@ -140,8 +140,8 @@ void mdss_i2c_panel_cmds_send(void)
 
 	id=tc35876x_i2c_read_reg(0x0580);
 	pr_info("%s: ID :- %X\n",__func__, id);
-	/**************************************************					
-	TC358764/65XBG DSI Basic Parameters.  Following 10 setting should be pefromed in LP mode						
+	/**************************************************
+	TC358764/65XBG DSI Basic Parameters.  Following 10 setting should be pefromed in LP mode
 	**************************************************/
 	tc35876x_write_reg(0x013C,	0x00030005);
 	tc35876x_write_reg(0x0114,	0x000000003);
@@ -153,8 +153,8 @@ void mdss_i2c_panel_cmds_send(void)
 	tc35876x_write_reg(0x0210,	0x00000001F);
 	tc35876x_write_reg(0x0104,	0x00000001);
 	tc35876x_write_reg(0x0204,	0x00000001);
-	/**************************************************	
-	TC358764/65XBG Timing and mode setting	
+	/**************************************************
+	TC358764/65XBG Timing and mode setting
 	**************************************************/
 	tc35876x_write_reg(0x450,	0x03F00120);
 	tc35876x_write_reg(0x454,	0x0032001C);
@@ -163,12 +163,12 @@ void mdss_i2c_panel_cmds_send(void)
 	tc35876x_write_reg(0x460,	0x000A0320);
 	tc35876x_write_reg(0x464,	0x00000001);
 	tc35876x_write_reg(0x4A0,	0x00448006);
-	//More than 100us	
+	//More than 100us
 	udelay(200);
 	tc35876x_write_reg(0x4A0,	0x00048006);
 	tc35876x_write_reg(0x504,	0x00000004);
-	/**************************************************	
-	TC358764/65XBG LVDS Color mapping setting	
+	/**************************************************
+	TC358764/65XBG LVDS Color mapping setting
 	**************************************************/
 	tc35876x_write_reg(0x480,	0x03020100);
 	tc35876x_write_reg(0x484,	0x08050704);
@@ -177,8 +177,8 @@ void mdss_i2c_panel_cmds_send(void)
 	tc35876x_write_reg(0x490,	0x12111716);
 	tc35876x_write_reg(0x494,	0x1B151413);
 	tc35876x_write_reg(0x498,	0x061A1918);
-	/**************************************************	
-	TC358764/65XBG LVDS enable	
+	/**************************************************
+	TC358764/65XBG LVDS enable
 	**************************************************/
 	tc35876x_write_reg(0x49C,	0x00000001);
 }
@@ -507,7 +507,7 @@ static void mdss_dsi_panel_bl_ctrl(struct mdss_panel_data *pdata,
 
 	ctrl_pdata = container_of(pdata, struct mdss_dsi_ctrl_pdata,
 				panel_data);
-	
+
 	pr_err("%s:@@@@@@@@@@@@@@@@@@@ bklt_ctrl:%d :bl_level=%d\n", __func__,ctrl_pdata->bklt_ctrl,bl_level);
 	switch (ctrl_pdata->bklt_ctrl) {
 	case BL_WLED:
@@ -540,7 +540,7 @@ static int mdss_dsi_panel_on(struct mdss_panel_data *pdata)
 	ctrl = container_of(pdata, struct mdss_dsi_ctrl_pdata,
 				panel_data);
 
-	pr_debug("%s: ctrl=%p ndx=%d\n", __func__, ctrl, ctrl->ndx);	
+	pr_debug("%s: ctrl=%p ndx=%d\n", __func__, ctrl, ctrl->ndx);
 
 #if !defined(CONFIG_TC358764_I2C_CONTROL)
 	if (ctrl->on_cmds.cmd_cnt)
@@ -1005,7 +1005,7 @@ static int mdss_panel_parse_dt(struct device_node *np,
 		pinfo->mipi.dst_format =
 			DSI_VIDEO_DST_FORMAT_RGB888;
 	}
-	
+
 	pdest = of_get_property(np,
 			"qcom,mdss-dsi-panel-destination", NULL);
 	if (strlen(pdest) != 9) {
@@ -1056,7 +1056,7 @@ static int mdss_panel_parse_dt(struct device_node *np,
 			ctrl_pdata->bklt_ctrl = BL_PWM;
 		} else if (!strncmp(data, "bl_ctrl_dcs", 11)) {
 			ctrl_pdata->bklt_ctrl = BL_DCS_CMD;
- 		}
+		}
 	}
 	rc = of_property_read_u32(np, "qcom,mdss-brightness-max-level", &tmp);
 	pinfo->brightness_max = (!rc ? tmp : MDSS_MAX_BL_BRIGHTNESS);
@@ -1069,7 +1069,7 @@ static int mdss_panel_parse_dt(struct device_node *np,
 
 	rc = of_property_read_u32(np, "qcom,mdss-dsi-interleave-mode", &tmp);
 	pinfo->mipi.interleave_mode = (!rc ? tmp : 0);
- 
+
 	pinfo->mipi.vsync_enable = of_property_read_bool(np,
 		"qcom,mdss-dsi-te-check-enable");
 	pinfo->mipi.hw_vsync_mode = of_property_read_bool(np,
@@ -1118,7 +1118,7 @@ static int mdss_panel_parse_dt(struct device_node *np,
 
 	rc = of_property_read_u32(np, "qcom,mdss-dsi-color-order", &tmp);
 	pinfo->mipi.rgb_swap = (!rc ? tmp : DSI_RGB_SWAP_RGB);
-	
+
 	rc = of_property_read_u32(np, "qcom,mdss-force-clk-lane-hs", &tmp);
 	pinfo->mipi.force_clk_lane_hs = (!rc ? tmp : 0);
 
@@ -1561,7 +1561,7 @@ int mdss_dsi_panel_init(struct device_node *node,
 			__func__, disp_esd_gpio, rc);
 	}
 
-	rc = request_threaded_irq(err_fg_gpio, NULL, err_fg_irq_handler, 
+	rc = request_threaded_irq(err_fg_gpio, NULL, err_fg_irq_handler,
 		IRQF_TRIGGER_HIGH | IRQF_ONESHOT, "esd_detect", NULL);
 	if (rc) {
 		pr_err("%s : Failed to request_irq. :ret=%d", __func__, rc);

@@ -129,12 +129,12 @@ static int sp_syscall(int num, int arg0, int arg1, int arg2, int arg3)
 	mm_segment_t old_fs;
 
 	old_fs = get_fs();
- 	set_fs(KERNEL_DS);
+	set_fs(KERNEL_DS);
 
-  	__asm__ __volatile__ (
- 	"	syscall					\n"
- 	: "=r" (_num), "=r" (_arg3)
- 	: "r" (_num), "r" (_arg0), "r" (_arg1), "r" (_arg2), "r" (_arg3));
+	__asm__ __volatile__ (
+	"	syscall					\n"
+	: "=r" (_num), "=r" (_arg3)
+	: "r" (_num), "r" (_arg0), "r" (_arg1), "r" (_arg2), "r" (_arg3));
 
 	set_fs(old_fs);
 
@@ -242,29 +242,29 @@ void sp_work_handle_request(void)
 	switch (sc.cmd) {
 	/* needs the flags argument translating from SDE kit to
 	   linux */
- 	case MTSP_SYSCALL_PIPEFREQ:
- 		ret.retval = cpu_khz * 1000;
- 		ret.errno = 0;
- 		break;
+	case MTSP_SYSCALL_PIPEFREQ:
+		ret.retval = cpu_khz * 1000;
+		ret.errno = 0;
+		break;
 
- 	case MTSP_SYSCALL_GETTOD:
- 		memset(&tz, 0, sizeof(tz));
- 		if ((ret.retval = sp_syscall(__NR_gettimeofday, (int)&tv,
+	case MTSP_SYSCALL_GETTOD:
+		memset(&tz, 0, sizeof(tz));
+		if ((ret.retval = sp_syscall(__NR_gettimeofday, (int)&tv,
 					     (int)&tz, 0, 0)) == 0)
 			ret.retval = tv.tv_sec;
 		break;
 
- 	case MTSP_SYSCALL_EXIT:
+	case MTSP_SYSCALL_EXIT:
 		list_for_each_entry(n, &kspd_notifylist, list)
 			n->kspd_sp_exit(tclimit);
 		sp_stopping = 1;
 
 		printk(KERN_DEBUG "KSPD got exit syscall from SP exitcode %d\n",
 		       generic.arg0);
- 		break;
+		break;
 
- 	case MTSP_SYSCALL_OPEN:
- 		generic.arg1 = translate_open_flags(generic.arg1);
+	case MTSP_SYSCALL_OPEN:
+		generic.arg1 = translate_open_flags(generic.arg1);
 
 		vcwd = vpe_getcwd(tclimit);
 
@@ -274,12 +274,12 @@ void sp_work_handle_request(void)
 		sys_chdir(vcwd);
 		set_fs(old_fs);
 
- 		sc.cmd = __NR_open;
+		sc.cmd = __NR_open;
 
 		/* fall through */
 
-  	default:
- 		if ((sc.cmd >= __NR_Linux) &&
+	default:
+		if ((sc.cmd >= __NR_Linux) &&
 		    (sc.cmd <= (__NR_Linux +  __NR_Linux_syscalls)) )
 			cmd = sc.cmd;
 		else
@@ -289,10 +289,10 @@ void sp_work_handle_request(void)
 			ret.retval = sp_syscall(cmd, generic.arg0, generic.arg1,
 			                        generic.arg2, generic.arg3);
 		} else
- 			printk(KERN_WARNING
+			printk(KERN_WARNING
 			       "KSPD: Unknown SP syscall number %d\n", sc.cmd);
 		break;
- 	} /* switch */
+	} /* switch */
 
 	if (vpe_getuid(tclimit)) {
 		err = sp_setfsuidgid(0, 0);

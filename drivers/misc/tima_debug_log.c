@@ -75,7 +75,7 @@ static const struct file_operations tima_proc_fops = {
 /**
  *      tima_debug_log_read_init -  Initialization function for TIMA
  *
- *      It creates and initializes tima proc entry with initialized read handler 
+ *      It creates and initializes tima proc entry with initialized read handler
  */
 static int __init tima_debug_log_read_init(void)
 {
@@ -102,7 +102,7 @@ error_return:
 /**
  *      tima_debug_log_read_exit -  Cleanup Code for TIMA
  *
- *      It removes /proc/tima proc entry and does the required cleanup operations 
+ *      It removes /proc/tima proc entry and does the required cleanup operations
  */
 static void __exit tima_debug_log_read_exit(void)
 {

@@ -660,8 +660,8 @@ sisfb_validate_mode(struct sis_video_info *ivideo, int myindex, u32 vbflags)
 		}
 
 		if(SiS_GetModeID_LCD(ivideo->sisvga_engine, vbflags, sisbios_mode[myindex].xres,
-			 	sisbios_mode[myindex].yres, 0, ivideo->sisfb_fstn,
-			 	ivideo->SiS_Pr.SiS_CustomT, xres, yres, ivideo->vbflags2) < 0x14) {
+				sisbios_mode[myindex].yres, 0, ivideo->sisfb_fstn,
+				ivideo->SiS_Pr.SiS_CustomT, xres, yres, ivideo->vbflags2) < 0x14) {
 			return -1;
 		}
 		break;
@@ -1246,7 +1246,7 @@ sisfb_do_set_var(struct fb_var_screeninfo *var, int isactive, struct fb_info *in
 		ivideo->sisfb_mode_idx = -1;
 	}
 
-       	if(ivideo->sisfb_mode_idx < 0) {
+	if(ivideo->sisfb_mode_idx < 0) {
 		printk(KERN_ERR "sisfb: Mode %dx%dx%d not supported\n", var->xres,
 		       var->yres, var->bits_per_pixel);
 		ivideo->sisfb_mode_idx = old_mode;
@@ -6048,7 +6048,7 @@ sisfb_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 	/* Find PCI systems for Chrontel/GPIO communication setup */
 	if(ivideo->chip == SIS_630) {
 		i = 0;
-        	do {
+		do {
 			if(mychswtable[i].subsysVendor == ivideo->subsysvendor &&
 			   mychswtable[i].subsysCard   == ivideo->subsysdevice) {
 				ivideo->SiS_Pr.SiS_ChSW = true;
@@ -6878,6 +6878,3 @@ EXPORT_SYMBOL(sis_malloc);
 EXPORT_SYMBOL(sis_free);
 EXPORT_SYMBOL_GPL(sis_malloc_new);
 EXPORT_SYMBOL_GPL(sis_free_new);
-
-
-

@@ -228,7 +228,7 @@ config REGULATOR_MAX77803
 	depends on MFD_MAX77803
 	help
 	   This driver provides support for the voltage regulators of the
- 	   MAX77803 PMIC
+	   MAX77803 PMIC
 	   The MAX77803 is a companion power management IC for the smart phones
 	   The Maxim Max 77803 handles PMIC, MUIC, and the flash LED control.
 
@@ -502,4 +502,3 @@ config REGULATOR_QPNP
 	  regulators.  They also provide voltage switches and boost regulators.
 
 endif
-

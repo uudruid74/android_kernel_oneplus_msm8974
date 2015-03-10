@@ -167,4 +167,3 @@
 						 * 0:500K, 1:40M*/
 
 #endif	/*__RTL8712_SYSCFG_BITDEF_H__*/
-

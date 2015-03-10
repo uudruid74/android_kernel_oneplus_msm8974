@@ -220,4 +220,3 @@ MACHINE_START(AFEB9260, "Custom afeb9260 board")
 	.init_irq	= at91_init_irq_default,
 	.init_machine	= afeb9260_board_init,
 MACHINE_END
-

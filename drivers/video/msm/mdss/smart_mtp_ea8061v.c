@@ -2840,7 +2840,7 @@ static void pure_gamma_init(struct SMART_DIM *pSmart, char *str, int size)
 	temp_candela_coeff = curve_2p2_350;
 	temp_candela_coeff = curve_1p9_360;
 	temp_candela_coeff = curve_2p15_360;
-	temp_candela_coeff = curve_2p2_360;	
+	temp_candela_coeff = curve_2p2_360;
 }
 
 

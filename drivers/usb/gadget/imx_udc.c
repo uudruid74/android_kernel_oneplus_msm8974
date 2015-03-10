@@ -308,9 +308,9 @@ void imx_ep_stall(struct imx_ep_struct *imx_ep)
 			temp = __raw_readl(imx_usb->base
 						+ USB_EP_STAT(EP_NO(imx_ep)));
 			if (!(temp & EPSTAT_STALL))
-	 			break;
-	 		udelay(20);
-	 	}
+				break;
+			udelay(20);
+		}
 		if (i == 100)
 			D_ERR(imx_usb->dev, "<%s> Non finished stall on %s\n",
 				__func__, imx_ep->ep.name);

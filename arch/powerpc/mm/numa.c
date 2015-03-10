@@ -1046,7 +1046,7 @@ void __init do_init_bootmem(void)
 					sizeof(struct pglist_data),
 					SMP_CACHE_BYTES, end_pfn);
 
-  		dbg("node %d\n", nid);
+		dbg("node %d\n", nid);
 		dbg("NODE_DATA() = %p\n", NODE_DATA(nid));
 
 		NODE_DATA(nid)->bdata = &bootmem_node_data[nid];
@@ -1054,10 +1054,10 @@ void __init do_init_bootmem(void)
 		NODE_DATA(nid)->node_spanned_pages = end_pfn - start_pfn;
 
 		if (NODE_DATA(nid)->node_spanned_pages == 0)
-  			continue;
+			continue;
 
-  		dbg("start_paddr = %lx\n", start_pfn << PAGE_SHIFT);
-  		dbg("end_paddr = %lx\n", end_pfn << PAGE_SHIFT);
+		dbg("start_paddr = %lx\n", start_pfn << PAGE_SHIFT);
+		dbg("end_paddr = %lx\n", end_pfn << PAGE_SHIFT);
 
 		bootmap_pages = bootmem_bootmap_pages(end_pfn - start_pfn);
 		bootmem_vaddr = careful_zallocation(nid,

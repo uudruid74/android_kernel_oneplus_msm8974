@@ -53,7 +53,7 @@ __cmpxchg(volatile void *ptr, unsigned long old, unsigned long new, int size)
 	({ __typeof__(*(ptr)) _o_ = (o);				      \
 	   __typeof__(*(ptr)) _n_ = (n);				      \
 	   (__typeof__(*(ptr))) __cmpxchg((ptr), (unsigned long)_o_,	      \
-	   			        (unsigned long)_n_, sizeof (*(ptr))); \
+				        (unsigned long)_n_, sizeof (*(ptr))); \
 	})
 
 #include <asm-generic/cmpxchg-local.h>

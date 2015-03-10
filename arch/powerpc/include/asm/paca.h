@@ -63,7 +63,7 @@ struct paca_struct {
 	struct lppaca *lppaca_ptr;	/* Pointer to LpPaca for PLIC */
 #endif /* CONFIG_PPC_BOOK3S */
 	/*
-	 * MAGIC: the spinlock functions in arch/powerpc/lib/locks.c 
+	 * MAGIC: the spinlock functions in arch/powerpc/lib/locks.c
 	 * load lock_token and paca_index with a single lwz
 	 * instruction.  They must travel together and be properly
 	 * aligned.
@@ -96,7 +96,7 @@ struct paca_struct {
 	u64 exgen[11] __attribute__((aligned(0x80)));
 	u64 exmc[11];		/* used for machine checks */
 	u64 exslb[11];		/* used for SLB/segment table misses
- 				 * on the linear mapping */
+				 * on the linear mapping */
 	/* SLB related definitions */
 	u16 vmalloc_sllp;
 	u16 slb_cache_ptr;

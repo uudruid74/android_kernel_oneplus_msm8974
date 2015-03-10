@@ -710,8 +710,8 @@ static int dlm_remaster_locks(struct dlm_ctxt *dlm, u8 dead_node)
 			spin_unlock(&dlm->spinlock);
 
 			/* all nodes are now in DLM_RECO_NODE_DATA_DONE state
-	 		 * just send a finalize message to everyone and
-	 		 * clean up */
+			 * just send a finalize message to everyone and
+			 * clean up */
 			mlog(0, "all nodes are done! send finalize\n");
 			ret = dlm_send_finalize_reco_message(dlm);
 			if (ret < 0)
@@ -916,8 +916,8 @@ static void dlm_request_all_locks_worker(struct dlm_work_item *item, void *data)
 	}
 
 	/* lock resources should have already been moved to the
- 	 * dlm->reco.resources list.  now move items from that list
- 	 * to a temp list if the dead owner matches.  note that the
+	 * dlm->reco.resources list.  now move items from that list
+	 * to a temp list if the dead owner matches.  note that the
 	 * whole cluster recovers only one node at a time, so we
 	 * can safely move UNKNOWN lock resources for each recovery
 	 * session. */
@@ -929,7 +929,7 @@ static void dlm_request_all_locks_worker(struct dlm_work_item *item, void *data)
 	 * the dlm_reco_thread should detect this */
 	list_for_each_entry(res, &resources, recovering) {
 		ret = dlm_send_one_lockres(dlm, res, mres, reco_master,
-				   	DLM_MRES_RECOVERY);
+					DLM_MRES_RECOVERY);
 		if (ret < 0) {
 			mlog(ML_ERROR, "%s: node %u went down while sending "
 			     "recovery state for dead node %u, ret=%d\n", dlm->name,
@@ -1051,7 +1051,7 @@ int dlm_reco_data_done_handler(struct o2net_msg *msg, u32 len, void *data,
 
 static void dlm_move_reco_locks_to_list(struct dlm_ctxt *dlm,
 					struct list_head *list,
-				       	u8 dead_node)
+					u8 dead_node)
 {
 	struct dlm_lock_resource *res, *next;
 	struct dlm_lock *lock;
@@ -1400,7 +1400,7 @@ int dlm_mig_lockres_handler(struct o2net_msg *msg, u32 len, void *data,
 	 * and RECOVERY flag changed when it completes. */
 	res = dlm_lookup_lockres(dlm, mres->lockname, mres->lockname_len);
 	if (res) {
-	 	/* this will get a ref on res */
+		/* this will get a ref on res */
 		/* mark it as recovering/migrating and hash it */
 		spin_lock(&res->spinlock);
 		if (mres->flags & DLM_MRES_RECOVERY) {
@@ -1918,22 +1918,22 @@ static int dlm_process_recovery_data(struct dlm_ctxt *dlm,
 				BUG_ON(ml->type != LKM_EXMODE &&
 				       ml->type != LKM_PRMODE);
 				if (!dlm_lvb_is_empty(res->lvb) &&
- 				    (ml->type == LKM_EXMODE ||
- 				     memcmp(res->lvb, mres->lvb, DLM_LVB_LEN))) {
- 					int i;
- 					mlog(ML_ERROR, "%s:%.*s: received bad "
- 					     "lvb! type=%d\n", dlm->name,
- 					     res->lockname.len,
- 					     res->lockname.name, ml->type);
- 					printk("lockres lvb=[");
- 					for (i=0; i<DLM_LVB_LEN; i++)
- 						printk("%02x", res->lvb[i]);
- 					printk("]\nmigrated lvb=[");
- 					for (i=0; i<DLM_LVB_LEN; i++)
- 						printk("%02x", mres->lvb[i]);
- 					printk("]\n");
- 					dlm_print_one_lock_resource(res);
- 					BUG();
+				    (ml->type == LKM_EXMODE ||
+				     memcmp(res->lvb, mres->lvb, DLM_LVB_LEN))) {
+					int i;
+					mlog(ML_ERROR, "%s:%.*s: received bad "
+					     "lvb! type=%d\n", dlm->name,
+					     res->lockname.len,
+					     res->lockname.name, ml->type);
+					printk("lockres lvb=[");
+					for (i=0; i<DLM_LVB_LEN; i++)
+						printk("%02x", res->lvb[i]);
+					printk("]\nmigrated lvb=[");
+					for (i=0; i<DLM_LVB_LEN; i++)
+						printk("%02x", mres->lvb[i]);
+					printk("]\n");
+					dlm_print_one_lock_resource(res);
+					BUG();
 				}
 				memcpy(res->lvb, mres->lvb, DLM_LVB_LEN);
 			}
@@ -1969,7 +1969,7 @@ skip_lvb:
 
 				mlog(ML_NOTICE, "sent lock: type=%d, conv=%d, "
 				     "node=%u, cookie=%u:%llu, queue=%d\n",
-	      			     ml->type, ml->convert_type, ml->node,
+				     ml->type, ml->convert_type, ml->node,
 				     dlm_get_lock_cookie_node(be64_to_cpu(ml->cookie)),
 				     dlm_get_lock_cookie_seq(be64_to_cpu(ml->cookie)),
 				     ml->list);
@@ -2313,8 +2313,8 @@ static void dlm_do_local_recovery_cleanup(struct dlm_ctxt *dlm, u8 dead_node)
 	for (i = 0; i < DLM_HASH_BUCKETS; i++) {
 		bucket = dlm_lockres_hash(dlm, i);
 		hlist_for_each_entry(res, iter, bucket, hash_node) {
- 			/* always prune any $RECOVERY entries for dead nodes,
- 			 * otherwise hangs can occur during later recovery */
+			/* always prune any $RECOVERY entries for dead nodes,
+			 * otherwise hangs can occur during later recovery */
 			if (dlm_is_recovery_lock(res->lockname.name,
 						 res->lockname.len)) {
 				spin_lock(&res->spinlock);

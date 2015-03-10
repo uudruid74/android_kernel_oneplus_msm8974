@@ -40,4 +40,3 @@ s32 fc8300_tuner_deinit(HANDLE handle, DEVICEID devid);
 #endif
 
 #endif /* __FC8300_TUN__ */
-

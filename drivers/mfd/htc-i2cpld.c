@@ -697,4 +697,3 @@ module_exit(htcpld_core_exit);
 MODULE_AUTHOR("Cory Maccarrone <darkstar6262@gmail.com>");
 MODULE_DESCRIPTION("I2C HTC PLD Driver");
 MODULE_LICENSE("GPL");
-

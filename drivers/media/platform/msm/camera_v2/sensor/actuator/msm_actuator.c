@@ -215,7 +215,7 @@ static int32_t msm_actuator_hall_effect_init_focus(
 		return rc;
 	}
 	usleep_range(1000, 1100);
-	
+
 	#endif ///////////////////////////////////////////////////////////////////////////////////
 
 	CDBG("%s exit Line %d\n", __func__, __LINE__);
@@ -735,7 +735,7 @@ static int32_t msm_actuator_hvcm_set_position(
 	int32_t index;
 	uint8_t lsb, msb;
         struct msm_camera_i2c_reg_setting reg_setting;
-	
+
 	CDBG("%s Enter : steps = %d \n", __func__, set_pos->number_of_steps);
 	if (set_pos->number_of_steps  == 0)
 		return rc;
@@ -770,7 +770,7 @@ static int32_t msm_actuator_hvcm_set_position(
 	return rc;
 }
  /*End - Added by Justin_Qualcomm for SEMCO Actuator Direct Move : 20130718*/
- 
+
 static int32_t msm_actuator_init(struct msm_actuator_ctrl_t *a_ctrl,
 	struct msm_actuator_set_info_t *set_info) {
 	struct reg_settings_t *init_settings = NULL;

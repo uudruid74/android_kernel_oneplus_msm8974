@@ -249,7 +249,7 @@ END_FTR_SECTION_IFSET(CPU_FTR_SPEC7450)
 	oris	r3,r3,0x8000
 	mtspr	SPRN_L2CR,r3
 	sync
-	
+
 	/* Enable L2 HW prefetch on 744x/745x */
 BEGIN_FTR_SECTION
 	mfspr	r3,SPRN_MSSCR0
@@ -415,7 +415,7 @@ _GLOBAL(__flush_disable_L1)
 BEGIN_FTR_SECTION
 	DSSALL
 END_FTR_SECTION_IFSET(CPU_FTR_ALTIVEC)
- 	sync
+	sync
 
 	/* Load counter to 0x4000 cache lines (512k) and
 	 * load cache with datas
@@ -446,7 +446,7 @@ END_FTR_SECTION_IFSET(CPU_FTR_ALTIVEC)
 	mtspr	SPRN_HID0,r3
 	sync
 	isync
- 	blr
+	blr
 
 /* inval_enable_L1	- Invalidate and enable L1 cache
  *
@@ -465,6 +465,4 @@ _GLOBAL(__inval_enable_L1)
 	mtspr	SPRN_HID0,r3
 	sync
 
- 	blr
-
-
+	blr

@@ -486,4 +486,3 @@ extern void omap_prcm_irq_complete(void);
 # endif
 
 #endif
-

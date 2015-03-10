@@ -1970,7 +1970,7 @@ static int soc_dapm_mux_update_power(struct snd_soc_dapm_widget *widget,
 	}
 
 	if (found) {
-	  		dapm_mark_dirty(widget, "mux change");
+			dapm_mark_dirty(widget, "mux change");
 			dapm_power_widgets(widget->dapm,
 					   SND_SOC_DAPM_STREAM_NOP);
 		}

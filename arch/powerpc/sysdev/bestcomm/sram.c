@@ -175,4 +175,3 @@ void bcom_sram_free(void *ptr)
 	spin_unlock(&bcom_sram->lock);
 }
 EXPORT_SYMBOL_GPL(bcom_sram_free);
-

@@ -55,4 +55,3 @@
 
 
 #endif	/*__RTL8712_INTERRUPT_BITDEF_H__*/
-

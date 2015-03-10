@@ -126,7 +126,7 @@ static int __init wax_init_chip(struct parisc_device *dev)
 }
 
 static struct parisc_device_id wax_tbl[] = {
-  	{ HPHW_BA, HVERSION_REV_ANY_ID, HVERSION_ANY_ID, 0x0008e },
+	{ HPHW_BA, HVERSION_REV_ANY_ID, HVERSION_ANY_ID, 0x0008e },
 	{ 0, }
 };
 

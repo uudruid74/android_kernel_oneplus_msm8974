@@ -3740,4 +3740,3 @@ char *mdnie_tune_value[MAX_mDNIe_MODE][MAX_BACKGROUND_MODE][MAX_OUTDOOR_MODE][2]
 };
 
 #endif
-

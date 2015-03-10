@@ -1108,4 +1108,3 @@ static void __exit rtsx_exit(void)
 
 module_init(rtsx_init)
 module_exit(rtsx_exit)
-

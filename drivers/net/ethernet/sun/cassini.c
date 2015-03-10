@@ -512,7 +512,7 @@ page_err:
 /* initialize spare pool of rx buffers, but allocate during the open */
 static void cas_spare_init(struct cas *cp)
 {
-  	spin_lock(&cp->rx_inuse_lock);
+	spin_lock(&cp->rx_inuse_lock);
 	INIT_LIST_HEAD(&cp->rx_inuse_list);
 	spin_unlock(&cp->rx_inuse_lock);
 
@@ -2989,7 +2989,7 @@ static u32 cas_setup_multicast(struct cas *cp)
 		rxcfg |= MAC_RX_CFG_PROMISC_EN;
 
 	} else if (cp->dev->flags & IFF_ALLMULTI) {
-	    	for (i=0; i < 16; i++)
+		for (i=0; i < 16; i++)
 			writel(0xFFFF, cp->regs + REG_MAC_HASH_TABLEN(i));
 		rxcfg |= MAC_RX_CFG_HASH_FILTER_EN;
 

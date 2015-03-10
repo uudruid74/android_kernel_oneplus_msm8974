@@ -319,4 +319,3 @@ void setup_json_export(void)
 	if (err)
 		die("error registering JSON export extension");
 }
-

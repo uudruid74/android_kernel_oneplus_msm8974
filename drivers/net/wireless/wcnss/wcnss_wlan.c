@@ -818,7 +818,7 @@ void wcnss_pronto_log_debug_regs(void)
 	reg_addr = penv->pronto_mcu_base + MCU_APB2PHY_STATUS_OFFSET;
 	reg = readl_relaxed(reg_addr);
 	pr_err("MCU_APB2PHY_STATUS %08x\n", reg);
-	
+
 	reg_addr = penv->pronto_mcu_base + MCU_CBR_CCAHB_ERR_OFFSET;
 	reg = readl_relaxed(reg_addr);
 	pr_err("MCU_CBR_CCAHB_ERR %08x\n", reg);

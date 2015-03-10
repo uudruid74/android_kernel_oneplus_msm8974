@@ -39,4 +39,3 @@ extern void ms_wait(s32 ms);
 #endif
 
 #endif /* __FCI_OAL_H__ */
-

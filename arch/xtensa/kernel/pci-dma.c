@@ -88,7 +88,7 @@ void consistent_sync(void *vaddr, size_t size, int direction)
 	case PCI_DMA_TODEVICE:          /* writeback only */
 	case PCI_DMA_BIDIRECTIONAL:     /* writeback and invalidate */
 		__flush_invalidate_dcache_range((unsigned long)vaddr,
-				    		(unsigned long)size);
+						(unsigned long)size);
 		break;
 	}
 }

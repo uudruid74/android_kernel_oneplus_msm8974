@@ -440,4 +440,3 @@ struct platform_device fsm9xxx_device_watchdog = {
 	.num_resources	= ARRAY_SIZE(msm_watchdog_resources),
 	.resource	= msm_watchdog_resources,
 };
-

@@ -543,7 +543,7 @@ int t3b2_mac_watchdog_task(struct cmac *mac)
 	if (tx_mcnt == mac->tx_mcnt && mac->rx_pause == s->rx_pause) {
 		tx_xcnt = (G_TXSPI4SOPCNT(t3_read_reg(adap,
 						A_XGM_TX_SPI4_SOP_EOP_CNT +
-					       	mac->offset)));
+						mac->offset)));
 		if (tx_xcnt == 0) {
 			t3_write_reg(adap, A_TP_PIO_ADDR,
 				     A_TP_TX_DROP_CNT_CH0 + macidx(mac));

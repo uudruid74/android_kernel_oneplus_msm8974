@@ -1,4 +1,4 @@
-/* 
+/*
         epat.c  (c) 1997-8  Grant R. Guenther <grant@torque.net>
                             Under the terms of the GNU General Public License.
 
@@ -6,7 +6,7 @@
         to IDE adapter from Shuttle Technologies.  This adapter is
         used in many popular parallel port disk products such as the
         SyQuest EZ drives, the Avatar Shark and the Imation SuperDisk.
-	
+
 */
 
 /* Changes:
@@ -73,7 +73,7 @@ static int epat_read_regr( PIA *pi, int cont, int regr )
 
 	switch (pi->mode) {
 
-	case 0:	w0(r); w2(1); w2(3); 
+	case 0:	w0(r); w2(1); w2(3);
 		a = r1(); w2(4); b = r1();
 		return j44(a,b);
 
@@ -105,7 +105,7 @@ static void epat_read_block( PIA *pi, char * buf, int count )
 		for(k=0;k<count;k++) {
 			if (k == count-1) w0(0xfd);
 			w2(6+ph); a = r1();
-			if (a & 8) b = a; 
+			if (a & 8) b = a;
 			  else { w2(4+ph); b = r1(); }
 			buf[k] = j44(a,b);
 			ph =  1 - ph;
@@ -116,7 +116,7 @@ static void epat_read_block( PIA *pi, char * buf, int count )
 	case 1: w0(0x47); w2(1); w2(5); w0(0xff);
 		ph = 0;
 		for(k=0;k<count;k++) {
-			if (k == count-1) w0(0xfd); 
+			if (k == count-1) w0(0xfd);
 			w2(4+ph);
 			a = r1(); b = r2();
 			buf[k] = j53(a,b);
@@ -132,7 +132,7 @@ static void epat_read_block( PIA *pi, char * buf, int count )
 			buf[k] = r0();
 			ph = 1 - ph;
 		}
-		w2(0x26); w2(0x27); buf[count-1] = r0(); 
+		w2(0x26); w2(0x27); buf[count-1] = r0();
 		w2(0x25); w2(4);
 		break;
 
@@ -159,7 +159,7 @@ static void epat_read_block( PIA *pi, char * buf, int count )
 	}
 }
 
-static void epat_write_block( PIA *pi, char * buf, int count )   
+static void epat_write_block( PIA *pi, char * buf, int count )
 
 {	int ph, k;
 
@@ -170,24 +170,24 @@ static void epat_write_block( PIA *pi, char * buf, int count )
 	case 2: w0(0x67); w2(1); w2(5);
 		ph = 0;
 		for(k=0;k<count;k++) {
-		  	w0(buf[k]);
+			w0(buf[k]);
 			w2(4+ph);
 			ph = 1 - ph;
 		}
 		w2(7); w2(4);
 		break;
 
-	case 3: w3(0xc0); 
+	case 3: w3(0xc0);
 		for(k=0;k<count;k++) w4(buf[k]);
 		w2(4);
 		break;
 
-	case 4: w3(0xc0); 
+	case 4: w3(0xc0);
 		for(k=0;k<(count/2);k++) w4w(((u16 *)buf)[k]);
 		w2(4);
 		break;
 
-	case 5: w3(0xc0); 
+	case 5: w3(0xc0);
 		for(k=0;k<(count/4);k++) w4l(((u32 *)buf)[k]);
 		w2(4);
 		break;
@@ -215,7 +215,7 @@ static void epat_connect ( PIA *pi )
 {       pi->saved_r0 = r0();
         pi->saved_r2 = r2();
 
- 	/* Initialize the chip */
+	/* Initialize the chip */
 	CPP(0);
 
 	if (epatc8) {
@@ -259,7 +259,7 @@ static int epat_test_proto( PIA *pi, char * scratch, int verbose )
 
 	epat_connect(pi);
 	for (j=0;j<2;j++) {
-  	    WRi(6,0xa0+j*0x10);
+	    WRi(6,0xa0+j*0x10);
             for (k=0;k<256;k++) {
                 WRi(2,k^0xaa);
                 WRi(3,k^0x55);
@@ -272,7 +272,7 @@ static int epat_test_proto( PIA *pi, char * scratch, int verbose )
         epat_connect(pi);
         WR(0x13,1); WR(0x13,0); WR(0xa,0x11);
         epat_read_block(pi,scratch,512);
-	
+
         for (k=0;k<256;k++) {
             if ((scratch[2*k] & 0xff) != k) f++;
             if ((scratch[2*k+1] & 0xff) != (0xff-k)) f++;
@@ -283,14 +283,14 @@ static int epat_test_proto( PIA *pi, char * scratch, int verbose )
             printk("%s: epat: port 0x%x, mode %d, ccr %x, test=(%d,%d,%d)\n",
 		   pi->device,pi->port,pi->mode,cc,e[0],e[1],f);
 	}
-	
+
         return (e[0] && e[1]) || f;
 }
 
 static void epat_log_adapter( PIA *pi, char * scratch, int verbose )
 
 {	int	ver;
-        char    *mode_string[6] = 
+        char    *mode_string[6] =
 		   {"4-bit","5/3","8-bit","EPP-8","EPP-16","EPP-32"};
 
 	epat_connect(pi);

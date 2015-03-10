@@ -199,4 +199,3 @@ choose your own default through the command-line with the
 
 
             John Shifflett    jshiffle@netcom.com
-

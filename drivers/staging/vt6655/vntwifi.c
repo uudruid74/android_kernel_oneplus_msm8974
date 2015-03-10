@@ -804,4 +804,3 @@ VNTWIFIbRadarPresent(
     return true;
 }
 */
-

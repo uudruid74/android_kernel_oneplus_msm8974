@@ -955,4 +955,3 @@ CommTransp_Notify(const CommTranspID *notificationCenterID,
 	QP_Notify(&args);
 	return 0;
 }
-

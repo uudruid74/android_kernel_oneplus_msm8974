@@ -832,7 +832,7 @@ static int radeon_dp_link_train_finish(struct radeon_dp_link_train_info *dp_info
 static int radeon_dp_link_train_cr(struct radeon_dp_link_train_info *dp_info)
 {
 	bool clock_recovery;
- 	u8 voltage;
+	u8 voltage;
 	int i;
 
 	radeon_dp_set_tp(dp_info, DP_TRAINING_PATTERN_1);

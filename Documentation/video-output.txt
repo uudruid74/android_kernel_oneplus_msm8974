@@ -31,4 +31,3 @@ linux:/sys/class/video_output # tree .
    |-- state
    |-- subsystem -> ../../../class/video_output
    `-- uevent
-

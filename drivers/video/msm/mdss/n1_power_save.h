@@ -173,7 +173,7 @@ struct tcon_reg_info *power_save_tune_value[TCON_AUTO_BR_MAX][TCON_LEVEL_MAX][TC
 			SNOTE2_APP,
 			CALL_APP, = 13
 		*/
-   	 /* auto brightness off */
+	 /* auto brightness off */
 	{
 
 		/* Illumiatation Level 1 */

@@ -41,7 +41,7 @@
 /*	i2c@75 {
 		cell-index = <75>;
 		compatible = "i2c-gpio";
-		gpios = <&msmgpio 20 0 
+		gpios = <&msmgpio 20 0
 			&msmgpio 21 0>;*/
 
 	backlight_lp8556@2C {
@@ -83,7 +83,7 @@
        };
 
 /*
-	i2c@f9923000 {  // BLSP1 QUP1 
+	i2c@f9923000 {  // BLSP1 QUP1
 		compatible = "qcom,i2c-qup";
 		qcom,scl-gpio = <&msmgpio 3 0>;
 		qcom,sda-gpio = <&msmgpio 2 0>;
@@ -114,7 +114,7 @@
 			sx9500-i2c,nirq-gpio = <&msmgpio 66 0x00>;
 		};
 	};
-	i2c@f9924000 { // BLSP1 QUP2 
+	i2c@f9924000 { // BLSP1 QUP2
 		compatible = "qcom,i2c-qup";
 		qcom,scl-gpio = <&msmgpio 7 0>;
 		qcom,sda-gpio = <&msmgpio 6 0>;
@@ -190,13 +190,13 @@
 			cypress,sda-gpio = <&msmgpio 55 0x00>;
 			cypress,irq-gpio = <&msmgpio 24 0x1>;
 
-			cypress,touchkey_i2cldo-gpio = <&pm8226_gpios 2 0x00>;			
-			cypress,touchkey_vddldo-gpio = <&pm8226_gpios 3 0x00>;	
-			
-			cypress,twotouch_id-gpio = <&pm8226_gpios 7 0x00>;	
-			cypress,twotouch_rst-gpio = <&msmgpio 36 0x00>;	
-			cypress,twotouch_grip-gpio = <&msmgpio 49 0x00>;	
-			
+			cypress,touchkey_i2cldo-gpio = <&pm8226_gpios 2 0x00>;
+			cypress,touchkey_vddldo-gpio = <&pm8226_gpios 3 0x00>;
+
+			cypress,twotouch_id-gpio = <&pm8226_gpios 7 0x00>;
+			cypress,twotouch_rst-gpio = <&msmgpio 36 0x00>;
+			cypress,twotouch_grip-gpio = <&msmgpio 49 0x00>;
+
 			cypress,tkey-keycodes = <139 158>;
 			cypress,i2c-pull-up = <1>;
 		};
@@ -365,7 +365,7 @@
 		battery,temp_high_recovery_lpm = <450>;
 		battery,temp_low_threshold_lpm = <(-50)>;
 		battery,temp_low_recovery_lpm = <0>;
-		battery,full_check_type = <2>; /* SEC_BATTERY_FULLCHARGED_FG_CURRENT */ 
+		battery,full_check_type = <2>; /* SEC_BATTERY_FULLCHARGED_FG_CURRENT */
 		battery,full_check_type_2nd = <3>; /* SEC_BATTERY_FULLCHARGED_TIME */
 		battery,full_check_count = <1>;
 		battery,chg_gpio_full_check = <0>;
@@ -566,7 +566,7 @@
 				qcom,source-sel = <8>;
 				qcom,mode-ctrl = <0x60>;
 				qcom,pwm-channel = <0>;
-				qcom,start-idx = <1>;	
+				qcom,start-idx = <1>;
 				qcom,ramp-step-ms = <120>;
 				qcom,duty-pcts = [00 00 00 00 00
 						  00 00 00 00 00

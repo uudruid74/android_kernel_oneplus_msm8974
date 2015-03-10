@@ -1083,5 +1083,3 @@ late_initcall(smux_debugfs_init);
 module_init(smux_ctl_init);
 MODULE_DESCRIPTION("MSM SMUX Control Port");
 MODULE_LICENSE("GPL v2");
-
-

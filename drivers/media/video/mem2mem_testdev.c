@@ -1047,4 +1047,3 @@ static int __init m2mtest_init(void)
 
 module_init(m2mtest_init);
 module_exit(m2mtest_exit);
-

@@ -130,7 +130,7 @@ static int minix_remount (struct super_block * sb, int * flags, char * data)
 			ms->s_state = sbi->s_mount_state;
 		mark_buffer_dirty(sbi->s_sbh);
 	} else {
-	  	/* Mount a partition which is read-only, read-write. */
+		/* Mount a partition which is read-only, read-write. */
 		if (sbi->s_version != MINIX_V3) {
 			sbi->s_mount_state = ms->s_state;
 			ms->s_state &= ~MINIX_VALID_FS;
@@ -673,4 +673,3 @@ static void __exit exit_minix_fs(void)
 module_init(init_minix_fs)
 module_exit(exit_minix_fs)
 MODULE_LICENSE("GPL");
-

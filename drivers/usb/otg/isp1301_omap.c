@@ -1653,4 +1653,3 @@ static void __exit isp_exit(void)
 	i2c_del_driver(&isp1301_driver);
 }
 module_exit(isp_exit);
-

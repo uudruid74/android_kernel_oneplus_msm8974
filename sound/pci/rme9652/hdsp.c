@@ -739,7 +739,7 @@ static int snd_hdsp_load_firmware_from_cache(struct hdsp *hdsp) {
 
 		if (hdsp_fifo_wait (hdsp, 0, HDSP_LONG_WAIT)) {
 			snd_printk ("Hammerfall-DSP: timeout at end of firmware loading\n");
-		    	return -EIO;
+			return -EIO;
 		}
 
 #ifdef SNDRV_BIG_ENDIAN
@@ -3215,7 +3215,7 @@ static struct snd_kcontrol_new snd_hdsp_controls[] = {
 	.info =		snd_hdsp_control_spdif_mask_info,
 	.get =		snd_hdsp_control_spdif_mask_get,
 	.private_value = IEC958_AES0_NONAUDIO |
-  			 IEC958_AES0_PROFESSIONAL |
+			 IEC958_AES0_PROFESSIONAL |
 			 IEC958_AES0_CON_EMPHASIS,
 },
 {
@@ -4330,7 +4330,7 @@ static int snd_hdsp_hw_params(struct snd_pcm_substream *substream,
 		/* We're fine. */
 
 		spin_unlock_irq(&hdsp->lock);
- 		return 0;
+		return 0;
 
 	} else {
 		spin_unlock_irq(&hdsp->lock);
@@ -5076,7 +5076,7 @@ static int snd_hdsp_hwdep_ioctl(struct snd_hwdep *hw, struct file *file, unsigne
 		hdsp_version.io_type = hdsp->io_type;
 		hdsp_version.firmware_rev = hdsp->firmware_rev;
 		if ((err = copy_to_user(argp, &hdsp_version, sizeof(hdsp_version))))
-		    	return -EFAULT;
+			return -EFAULT;
 		break;
 	}
 	case SNDRV_HDSP_IOCTL_UPLOAD_FIRMWARE: {
@@ -5264,7 +5264,7 @@ static void snd_hdsp_initialize_channels(struct hdsp *hdsp)
 		break;
 
 	default:
- 		/* should never get here */
+		/* should never get here */
 		break;
 	}
 }

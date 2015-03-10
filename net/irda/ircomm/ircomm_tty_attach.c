@@ -994,4 +994,3 @@ static int ircomm_tty_state_ready(struct ircomm_tty_cb *self,
 	}
 	return ret;
 }
-

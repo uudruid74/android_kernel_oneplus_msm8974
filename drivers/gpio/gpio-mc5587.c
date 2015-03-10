@@ -566,7 +566,7 @@ static int mc5587_reset_chip(struct mc5587_gpio_platform_data *pdata)
 
 		gpio_free(reset_mc5587);
 		return 0;
-	} else 
+	} else
 		pr_err("%s: reset_mc5587 fail\n", __func__);
 	return 0;
 }
@@ -580,14 +580,14 @@ static ssize_t store_mc5587_gpio_inout(struct device *dev,
 {
 	int retval, off, val, gpio_mc5587;
 	char in_out, msg[13];
-	struct mc5587_gpio *data = dev_get_drvdata(dev);                 
+	struct mc5587_gpio *data = dev_get_drvdata(dev);
 
 	retval = sscanf(buf, "%c %d %d", &in_out, &off, &val);
 	if (retval == 0) {
 		dev_err(&data->client->dev, "[%s] fail to mc5587 out.\n", __func__);
 		return count;
-	}    
-	
+	}
+
 	gpio_mc5587 = 300 + off;
 	sprintf(msg, "exp-gpio%d\n", off);
 	if (gpio_is_valid(gpio_mc5587)) {
@@ -602,17 +602,17 @@ static ssize_t store_mc5587_gpio_inout(struct device *dev,
 			retval = gpio_direction_input(gpio_mc5587);
 			val = gpio_get_value(gpio_mc5587);
 		}
-		else 
+		else
 			retval = gpio_direction_output(gpio_mc5587, val);
 
-		if (retval) 
+		if (retval)
 			pr_err("%s: unable to set direction for gpio [%d]\n",
 						__func__, gpio_mc5587);
 
 		gpio_free(gpio_mc5587);
-	} 
+	}
 
-	pr_info("mc5587 mode set to dir[%c], offset[%d], val[%d]\n", in_out, off, val);  
+	pr_info("mc5587 mode set to dir[%c], offset[%d], val[%d]\n", in_out, off, val);
 
 	return count;
 }
@@ -759,8 +759,8 @@ static int __devinit mc5587_gpio_probe(struct i2c_client *client,
 
 err_irq:
 	mc5587_irq_teardown(dev);
-err_destroy:                          
-	device_destroy(sec_class, 0); 
+err_destroy:
+	device_destroy(sec_class, 0);
 err:
 	kfree(dev);
 	return ret;

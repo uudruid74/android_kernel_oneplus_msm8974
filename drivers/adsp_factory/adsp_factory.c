@@ -244,8 +244,3 @@ static void __devexit factory_adsp_exit(void)
 module_exit(factory_adsp_exit);
 MODULE_DESCRIPTION("Support for factory test sensors (adsp)");
 MODULE_LICENSE("GPL");
-
-
-
-
-

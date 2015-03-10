@@ -276,4 +276,3 @@ void __init puv3_core_init(void)
 			puv3_usb_resources, ARRAY_SIZE(puv3_usb_resources),
 			&puv3_usb_plat, sizeof(puv3_usb_plat));
 }
-

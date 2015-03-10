@@ -224,7 +224,7 @@ void spi_work(struct work_struct *work);
 
 /* Send SPRD main image through SPI */
 #define SPRD_BLOCK_SIZE	32768
-//#define SPRD_BLOCK_SIZE (16*8)  // Temp. 
+//#define SPRD_BLOCK_SIZE (16*8)  // Temp.
 //#define SPRD_BLOCK_SIZE (2048)
 
 

@@ -158,4 +158,3 @@ void ice40_fpga_firmware_update(struct synaptics_rmi4_data *rmi4_data)
 
 	msleep(10);
 }
-

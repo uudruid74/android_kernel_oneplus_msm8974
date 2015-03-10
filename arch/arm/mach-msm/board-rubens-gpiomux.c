@@ -271,7 +271,7 @@ static struct gpiomux_setting lcd_rst_act_cfg = {
 	.func = GPIOMUX_FUNC_GPIO,
 	.drv = GPIOMUX_DRV_2MA,
 	.pull = GPIOMUX_PULL_NONE,
-	.dir = GPIOMUX_OUT_HIGH,	
+	.dir = GPIOMUX_OUT_HIGH,
 };
 
 static struct gpiomux_setting lcd_rst_sus_cfg = {
@@ -481,7 +481,7 @@ static struct msm_gpiomux_config synaptics_wifi_rev0_configs[] __initdata = {
 			[GPIOMUX_ACTIVE] = &gpio_i2c_config_tsp,
 			[GPIOMUX_SUSPENDED] = &gpio_i2c_config_tsp,
 		},
-	},	
+	},
 };
 #endif
 
@@ -1359,7 +1359,7 @@ void __init msm8226_init_gpiomux(void)
 #if defined(CONFIG_MACH_RUBENSWIFI_OPEN)
 	if(system_rev == 0)
 		msm_gpiomux_install(synaptics_wifi_rev0_configs,
-			ARRAY_SIZE(synaptics_wifi_rev0_configs));	
+			ARRAY_SIZE(synaptics_wifi_rev0_configs));
 #endif
 
 	msm_gpiomux_install(wcnss_5wire_interface,

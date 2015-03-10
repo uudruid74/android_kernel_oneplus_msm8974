@@ -55,8 +55,8 @@ static struct fb_var_screeninfo cfag12864bfb_var __devinitdata = {
 	.yres_virtual = CFAG12864B_HEIGHT,
 	.bits_per_pixel = 1,
 	.red = { 0, 1, 0 },
-      	.green = { 0, 1, 0 },
-      	.blue = { 0, 1, 0 },
+	.green = { 0, 1, 0 },
+	.blue = { 0, 1, 0 },
 	.left_margin = 0,
 	.right_margin = 0,
 	.upper_margin = 0,
@@ -83,7 +83,7 @@ static struct fb_ops cfag12864bfb_ops = {
 static int __devinit cfag12864bfb_probe(struct platform_device *device)
 {
 	int ret = -EINVAL;
- 	struct fb_info *info = framebuffer_alloc(0, &device->dev);
+	struct fb_info *info = framebuffer_alloc(0, &device->dev);
 
 	if (!info)
 		goto none;

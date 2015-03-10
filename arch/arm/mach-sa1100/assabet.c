@@ -486,7 +486,7 @@ static struct sa1100_port_fns assabet_port_fns __initdata = {
 };
 
 static struct map_desc assabet_io_desc[] __initdata = {
-  	{	/* Board Control Register */
+	{	/* Board Control Register */
 		.virtual	=  0xf1000000,
 		.pfn		= __phys_to_pfn(0x12000000),
 		.length		= 0x00100000,

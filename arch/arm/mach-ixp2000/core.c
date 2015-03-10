@@ -5,12 +5,12 @@
  *
  * Author: Deepak Saxena <dsaxena@plexity.net>
  *
- * Copyright 2004 (C) MontaVista Software, Inc. 
+ * Copyright 2004 (C) MontaVista Software, Inc.
  *
  * Based on work Copyright (C) 2002-2003 Intel Corporation
- * 
+ *
  * This file is licensed under the terms of the GNU General Public
- * License version 2. This program is licensed "as is" without any 
+ * License version 2. This program is licensed "as is" without any
  * warranty of any kind, whether express or implied.
  */
 #include <linux/gpio.h>
@@ -72,7 +72,7 @@ void ixp2000_release_slowport(struct slowport_cfg *old_cfg)
 	ixp2000_reg_write(IXP2000_SLOWPORT_PCR, old_cfg->PCR);
 	ixp2000_reg_wrb(IXP2000_SLOWPORT_ADC, old_cfg->ADC);
 
-	spin_unlock_irqrestore(&ixp2000_slowport_lock, 
+	spin_unlock_irqrestore(&ixp2000_slowport_lock,
 					ixp2000_slowport_irq_flags);
 }
 
@@ -190,7 +190,7 @@ static volatile unsigned long *missing_jiffy_timer_csr;
 
 unsigned long ixp2000_gettimeoffset (void)
 {
- 	unsigned long offset;
+	unsigned long offset;
 
 	offset = next_jiffy_time - *missing_jiffy_timer_csr;
 
@@ -250,7 +250,7 @@ void __init ixp2000_init_time(unsigned long tick_rate)
 		ixp2000_reg_wrb(IXP2000_T2_CTL, (1 << 7));
 		missing_jiffy_timer_csr = IXP2000_T2_CSR;
 	}
- 	next_jiffy_time = 0xffffffff;
+	next_jiffy_time = 0xffffffff;
 
 	/* register for interrupt */
 	setup_irq(IRQ_IXP2000_TIMER1, &ixp2000_timer_irq);
@@ -298,10 +298,10 @@ EXPORT_SYMBOL(gpio_line_config);
  * IRQ handling IXP2000
  *************************************************************************/
 static void ixp2000_GPIO_irq_handler(unsigned int irq, struct irq_desc *desc)
-{                               
+{
 	int i;
 	unsigned long status = *IXP2000_GPIO_INST;
-		   
+
 	for (i = 0; i <= 7; i++) {
 		if (status & (1<<i)) {
 			generic_handle_irq(i + IRQ_IXP2000_GPIO0);
@@ -468,7 +468,7 @@ void __init ixp2000_init_irq(void)
 	ixp2000_reg_wrb(IXP2000_PCI_XSCALE_INT_ENABLE, 0);
 
 	/*
-	 * Certain bits in the IRQ status register of the 
+	 * Certain bits in the IRQ status register of the
 	 * IXP2000 are reserved. Instead of trying to map
 	 * things non 1:1 from bit position to IRQ number,
 	 * we mark the reserved IRQs as invalid. This makes

@@ -7,7 +7,7 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  */
- 
+
 #ifndef _MAX98504_H
 #define _MAX98504_H
 
@@ -562,7 +562,7 @@ struct max98504_cdata {
 
 struct max98504_priv {
 	struct snd_soc_codec *codec;
-	struct regmap *regmap;	
+	struct regmap *regmap;
 	enum max98504_type devtype;
 	void *control_data;
 	struct max98504_pdata *pdata;
@@ -573,4 +573,3 @@ struct max98504_priv {
 
 int max98504_set_speaker_status(int OnOff);
 #endif
-

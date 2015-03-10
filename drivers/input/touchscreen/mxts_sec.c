@@ -200,7 +200,7 @@ static void mxt_treat_dbg_data(struct mxt_data *data,
 	struct i2c_client *client = data->client;
 	struct mxt_fac_data *fdata = data->fdata;
 	u8 data_buffer[DATA_PER_NODE] = { 0 };
-	int x_num = num / data->fdata->num_ynode; 
+	int x_num = num / data->fdata->num_ynode;
 	int y_num = num % data->fdata->num_ynode;
 	u16 reference_temp = 0;
 #if ENABLE_TOUCH_KEY
@@ -637,8 +637,8 @@ static int mxt_load_patch_from_ums(struct mxt_data *data,
 
 #if 0
 	print_hex_dump(KERN_INFO, "PATCH FILE:", DUMP_PREFIX_NONE, 16, 1,
-		patch_data, fw.size, false);	
-#endif		
+		patch_data, fw.size, false);
+#endif
 	//ret = mxt_verify_fw(fw_info, &fw);
 	ret = 0;
 
@@ -674,8 +674,8 @@ static void patch_update(void *device_data)
 		ret = -EINVAL;
 		goto out;
 	}
-	
-	dev_info(&data->client->dev, "%s ppatch:%p %p\n", __func__, 
+
+	dev_info(&data->client->dev, "%s ppatch:%p %p\n", __func__,
 		patch_data, data->patch.patch);
 	ret = mxt_patch_init(data, data->patch.patch);
 
@@ -987,10 +987,10 @@ static void run_reference_read(void *device_data)
 
 	set_default_result(fdata);
 
-#if TSP_PATCH							
+#if TSP_PATCH
 	if(data->patch.event_cnt)
-		mxt_patch_test_event(data, 2); 			
-#endif	
+		mxt_patch_test_event(data, 2);
+#endif
 
 	ret = mxt_read_all_diagnostic_data(data,
 			MXT_DIAG_REFERENCE_MODE);
@@ -1461,7 +1461,7 @@ static void set_tk_threshold(void *device_data)
 	unsigned int revision;
 
 	set_default_result(fdata);
-	
+
 
 #ifdef KOR_REVISION
 	revision = 9; /* All of revision change threshold of Touch key */
@@ -1627,7 +1627,7 @@ static struct tsp_cmd tsp_cmds[] = {
 #endif
 #if TSP_PATCH
 	{TSP_CMD("patch_update", patch_update),},
-#endif	
+#endif
 	{TSP_CMD("not_support_cmd", not_support_cmd),},
 };
 

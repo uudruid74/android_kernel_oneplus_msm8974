@@ -1123,7 +1123,7 @@ typedef struct r8192_priv
 	u8	framesync;
 	u32 	framesyncC34;
 	u8   	framesyncMonitor;
-        	//Added by amy 080516  for RX related
+		//Added by amy 080516  for RX related
 	u16 	nrxAMPDU_size;
 	u8 	nrxAMPDU_aggr_num;
 
@@ -1205,7 +1205,7 @@ typedef enum{
 #ifdef JOHN_HWSEC
 struct ssid_thread {
 	struct net_device *dev;
-       	u8 name[IW_ESSID_MAX_SIZE + 1];
+	u8 name[IW_ESSID_MAX_SIZE + 1];
 };
 #endif
 

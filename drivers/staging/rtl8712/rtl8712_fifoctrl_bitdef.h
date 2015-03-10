@@ -142,4 +142,3 @@
 
 
 #endif	/*	__RTL8712_FIFOCTRL_BITDEF_H__ */
-

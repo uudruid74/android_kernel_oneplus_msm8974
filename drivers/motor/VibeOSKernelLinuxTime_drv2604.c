@@ -3,31 +3,31 @@
 ** File:
 **     VibeOSKernelLinuxTime_drv2604.c
 **
-** Description: 
+** Description:
 **     Time helper functions for Linux.
 **
-** Portions Copyright (c) 2008-2012 Immersion Corporation. All Rights Reserved. 
+** Portions Copyright (c) 2008-2012 Immersion Corporation. All Rights Reserved.
 **
-** This file contains Original Code and/or Modifications of Original Code 
-** as defined in and that are subject to the GNU Public License v2 - 
-** (the 'License'). You may not use this file except in compliance with the 
-** License. You should have received a copy of the GNU General Public License 
+** This file contains Original Code and/or Modifications of Original Code
+** as defined in and that are subject to the GNU Public License v2 -
+** (the 'License'). You may not use this file except in compliance with the
+** License. You should have received a copy of the GNU General Public License
 ** along with this program; if not, write to the Free Software Foundation, Inc.,
-** 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA or contact 
+** 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA or contact
 ** TouchSenseSales@immersion.com.
 **
-** The Original Code and all software distributed under the License are 
-** distributed on an 'AS IS' basis, WITHOUT WARRANTY OF ANY KIND, EITHER 
-** EXPRESS OR IMPLIED, AND IMMERSION HEREBY DISCLAIMS ALL SUCH WARRANTIES, 
-** INCLUDING WITHOUT LIMITATION, ANY WARRANTIES OF MERCHANTABILITY, FITNESS 
-** FOR A PARTICULAR PURPOSE, QUIET ENJOYMENT OR NON-INFRINGEMENT. Please see 
-** the License for the specific language governing rights and limitations 
+** The Original Code and all software distributed under the License are
+** distributed on an 'AS IS' basis, WITHOUT WARRANTY OF ANY KIND, EITHER
+** EXPRESS OR IMPLIED, AND IMMERSION HEREBY DISCLAIMS ALL SUCH WARRANTIES,
+** INCLUDING WITHOUT LIMITATION, ANY WARRANTIES OF MERCHANTABILITY, FITNESS
+** FOR A PARTICULAR PURPOSE, QUIET ENJOYMENT OR NON-INFRINGEMENT. Please see
+** the License for the specific language governing rights and limitations
 ** under the License.
 ** =========================================================================
 */
 
-/* 
-** Kernel standard software timer is used as an example but another type 
+/*
+** Kernel standard software timer is used as an example but another type
 ** of timer (such as HW timer or high-resolution software timer) might be used
 ** to achieve the 5ms required rate.
 */
@@ -121,8 +121,8 @@ static void VibeOSKernelLinuxStartTimer(void)
     {
         int res;
 
-        /* 
-        ** Use interruptible version of down to be safe 
+        /*
+        ** Use interruptible version of down to be safe
         ** (try to not being stuck here if the semaphore is not freed for any reason)
         */
         res = down_interruptible(&g_hSemaphore);  /* wait for the semaphore to be freed by the timer */
@@ -137,9 +137,9 @@ static void VibeOSKernelLinuxStartTimer(void)
 
 static void VibeOSKernelLinuxStopTimer(void)
 {
-    /* 
+    /*
     ** Stop the timer.
-    ** The timer is not restarted when the outputdata buffer is empty and it is 
+    ** The timer is not restarted when the outputdata buffer is empty and it is
     ** automatically removed from the timer list when it expires so there is no need to
     ** call del_timer or del_timer_sync in this function. We just mark it as stopped.
     */
@@ -152,7 +152,7 @@ static void VibeOSKernelLinuxStopTimer(void)
     ResetOutputData();
 
     g_bIsPlaying = false;
-} 
+}
 
 static void VibeOSKernelLinuxTerminateTimer(void)
 {

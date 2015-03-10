@@ -293,7 +293,7 @@
 			linux,code = <158>;
 			debounce-interval = <15>;
 		};
-		
+
 		menu_key {
 			label = "menu_key";
 			gpios = <&msmgpio 95 0x01>;

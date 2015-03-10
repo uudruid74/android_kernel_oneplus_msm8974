@@ -1823,4 +1823,3 @@ void sunrpc_cache_unregister_pipefs(struct cache_detail *cd)
 	cd->u.pipefs.dir = NULL;
 }
 EXPORT_SYMBOL_GPL(sunrpc_cache_unregister_pipefs);
-

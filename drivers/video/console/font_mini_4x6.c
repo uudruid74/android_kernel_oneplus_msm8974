@@ -18,15 +18,15 @@
 s{((0x)?[0-9a-fA-F]+)(.*\[([\*\ ]{4})\])}{
 
 	($num,$pat,$bits) = ($1,$3,$4);
-	
+
 	$bits =~ s/([^\s0])|(.)/ defined($1) + 0 /ge;
-	
+
 	$num = ord(pack("B8", $bits));
 	$num |= $num >> 4;
 	$num = sprintf("0x%.2x", $num);
-	
+
 	#print "$num,$pat,$bits\n";
-	
+
 	$num . $pat;
 }ge;
 
@@ -46,7 +46,7 @@ __END__;
 static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 
 	/*{*/
-	  	/*   Char 0: ' '  */
+		/*   Char 0: ' '  */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -55,7 +55,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 1: ' '  */
+		/*   Char 1: ' '  */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -64,7 +64,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 2: ' '  */
+		/*   Char 2: ' '  */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -73,7 +73,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 3: ' '  */
+		/*   Char 3: ' '  */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -82,7 +82,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 4: ' '  */
+		/*   Char 4: ' '  */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -91,7 +91,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 5: ' '  */
+		/*   Char 5: ' '  */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -100,7 +100,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 6: ' '  */
+		/*   Char 6: ' '  */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -109,7 +109,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 7: ' '  */
+		/*   Char 7: ' '  */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -118,7 +118,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 8: ' '  */
+		/*   Char 8: ' '  */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -127,7 +127,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 9: ' '  */
+		/*   Char 9: ' '  */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -136,7 +136,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 10: '' */
+		/*   Char 10: '' */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -145,7 +145,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 11: ' ' */
+		/*   Char 11: ' ' */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -154,7 +154,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 12: ' ' */
+		/*   Char 12: ' ' */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -163,7 +163,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 13: ' ' */
+		/*   Char 13: ' ' */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -172,7 +172,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 14: ' ' */
+		/*   Char 14: ' ' */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -181,7 +181,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 15: ' ' */
+		/*   Char 15: ' ' */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -190,7 +190,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 16: ' ' */
+		/*   Char 16: ' ' */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -199,7 +199,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 17: ' ' */
+		/*   Char 17: ' ' */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -208,7 +208,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 18: ' ' */
+		/*   Char 18: ' ' */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -217,7 +217,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 19: ' ' */
+		/*   Char 19: ' ' */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -226,7 +226,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 20: ' ' */
+		/*   Char 20: ' ' */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -235,7 +235,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 21: ' ' */
+		/*   Char 21: ' ' */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -244,7 +244,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 22: ' ' */
+		/*   Char 22: ' ' */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -253,7 +253,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 23: ' ' */
+		/*   Char 23: ' ' */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -262,7 +262,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 24: ' ' */
+		/*   Char 24: ' ' */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -271,7 +271,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 25: ' ' */
+		/*   Char 25: ' ' */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -280,7 +280,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 26: ' ' */
+		/*   Char 26: ' ' */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -289,7 +289,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 27: ' ' */
+		/*   Char 27: ' ' */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -298,7 +298,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 28: ' ' */
+		/*   Char 28: ' ' */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -307,7 +307,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 29: ' ' */
+		/*   Char 29: ' ' */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -316,7 +316,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 30: ' ' */
+		/*   Char 30: ' ' */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -325,7 +325,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 31: ' ' */
+		/*   Char 31: ' ' */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -334,7 +334,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 32: ' ' */
+		/*   Char 32: ' ' */
 	0x00,	/*=  [    ]       */
 	0x00,	/*=  [    ]       */
 	0x00,	/*=  [    ]       */
@@ -343,7 +343,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 33: '!' */
+		/*   Char 33: '!' */
 	0x44,	/*=  [ *  ]       */
 	0x44,	/*=  [ *  ]       */
 	0x44,	/*=  [ *  ]       */
@@ -352,7 +352,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 34: '"' */
+		/*   Char 34: '"' */
 	0xaa,	/*=  [* * ]       */
 	0xaa,	/*=  [* * ]       */
 	0x00,	/*=  [    ]       */
@@ -361,7 +361,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 35: '#' */
+		/*   Char 35: '#' */
 	0xaa,	/*=  [* * ]       */
 	0xff,	/*=  [****]       */
 	0xff,	/*=  [****]       */
@@ -370,7 +370,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 36: '$' */
+		/*   Char 36: '$' */
 	0x44,	/*=  [ *  ]       */
 	0x66,	/*=  [ ** ]       */
 	0xee,	/*=  [*** ]       */
@@ -379,7 +379,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 37: '%' */
+		/*   Char 37: '%' */
 	0xaa,	/*=  [* * ]       */
 	0x22,	/*=  [  * ]       */
 	0x44,	/*=  [ *  ]       */
@@ -388,7 +388,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 38: '&' */
+		/*   Char 38: '&' */
 	0x66,	/*=  [ ** ]       */
 	0x99,	/*=  [*  *]       */
 	0x66,	/*=  [ ** ]       */
@@ -397,7 +397,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 39: ''' */
+		/*   Char 39: ''' */
 	0x22,	/*=  [  * ]       */
 	0x44,	/*=  [ *  ]       */
 	0x00,	/*=  [    ]       */
@@ -406,7 +406,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 40: '(' */
+		/*   Char 40: '(' */
 	0x22,	/*=  [  * ]       */
 	0x44,	/*=  [ *  ]       */
 	0x44,	/*=  [ *  ]       */
@@ -415,7 +415,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 41: ')' */
+		/*   Char 41: ')' */
 	0x44,	/*=  [ *  ]       */
 	0x22,	/*=  [  * ]       */
 	0x22,	/*=  [  * ]       */
@@ -424,7 +424,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 42: '*' */
+		/*   Char 42: '*' */
 	0x00,	/*=  [    ]       */
 	0xee,	/*=  [*** ]       */
 	0xee,	/*=  [*** ]       */
@@ -433,7 +433,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 43: '+' */
+		/*   Char 43: '+' */
 	0x00,	/*=  [    ]       */
 	0x44,	/*=  [ *  ]       */
 	0xee,	/*=  [*** ]       */
@@ -442,7 +442,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 44: ',' */
+		/*   Char 44: ',' */
 	0x00,	/*=  [    ]       */
 	0x00,	/*=  [    ]       */
 	0x00,	/*=  [    ]       */
@@ -451,7 +451,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 45: '-' */
+		/*   Char 45: '-' */
 	0x00,	/*=  [    ]       */
 	0x00,	/*=  [    ]       */
 	0xee,	/*=  [*** ]       */
@@ -460,7 +460,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 46: '.' */
+		/*   Char 46: '.' */
 	0x00,	/*=  [    ]       */
 	0x00,	/*=  [    ]       */
 	0x00,	/*=  [    ]       */
@@ -469,7 +469,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 47: '/' */
+		/*   Char 47: '/' */
 	0x00,	/*=  [    ]       */
 	0x22,	/*=  [  * ]       */
 	0x44,	/*=  [ *  ]       */
@@ -478,7 +478,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=  [    ]       */
 	/*}*/
 	/*{*/
-	  	/*   Char 48: '0'   */
+		/*   Char 48: '0'   */
 	0x44,	/*=   [ *  ]        */
 	0xaa,	/*=   [* * ]        */
 	0xaa,	/*=   [* * ]        */
@@ -487,7 +487,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=   [    ]        */
 	/*}*/
 	/*{*/
-	  	/*   Char 49: '1'   */
+		/*   Char 49: '1'   */
 	0x44,	/*=   [ *  ]        */
 	0xcc,	/*=   [**  ]        */
 	0x44,	/*=   [ *  ]        */
@@ -496,7 +496,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=   [    ]        */
 	/*}*/
 	/*{*/
-	  	/*   Char 50: '2'   */
+		/*   Char 50: '2'   */
 	0xcc,	/*=   [**  ]        */
 	0x22,	/*=   [  * ]        */
 	0x44,	/*=   [ *  ]        */
@@ -505,7 +505,7 @@ static const unsigned char fontdata_mini_4x6[FONTDATAMAX] = {
 	0x00,	/*=   [    ]        */
 	/*}*/
 	/*{*/
-	  	/*   Char 51: '3'   */
+		/*   Char 51: '3'   */
 	0xee,	/*=   [*** ]        */
 	0x22,	/*=   [  * ]        */
 	0x66,	/*=   [ ** ]        */
@@ -2155,4 +2155,3 @@ const struct font_desc font_mini_4x6 = {
 	.data	= fontdata_mini_4x6,
 	.pref	= 3,
 };
-

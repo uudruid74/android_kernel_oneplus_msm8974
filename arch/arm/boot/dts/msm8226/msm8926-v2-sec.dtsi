@@ -595,7 +595,7 @@
                 qcom,msm-dai-q6-incall-music-2-rx {
                         compatible = "qcom,msm-dai-q6-dev";
                         qcom,msm-dai-q6-dev-id = <32770>;
-                };				
+                };
 	};
 
 	qcom,msm-pcm-hostless {
@@ -743,7 +743,7 @@
 		interrupt-names = "core_irq", "bam_irq";
 
 		qcom,bus-width = <8>;
-		
+
 		qcom,msm-bus,name = "sdcc1";
 		qcom,msm-bus,num-cases = <8>;
 		qcom,msm-bus,num-paths = <1>;
@@ -757,7 +757,7 @@
 				<78 512 2048000 4096000>; /* Max. bandwidth */
 		qcom,bus-bw-vectors-bps = <0 400000 20000000 25000000 50000000
 						100000000 200000000 4294967295>;
-		
+
 		status = "disabled";
 	};
 
@@ -784,7 +784,7 @@
 				<78 512 2048000 4096000>; /* Max. bandwidth */
 		qcom,bus-bw-vectors-bps = <0 400000 20000000 25000000 50000000
 						100000000 200000000 4294967295>;
-		
+
 		status = "disabled";
 	};
 
@@ -814,7 +814,7 @@
 				<81 512 2048000 4096000>; /* Max. bandwidth */
 		qcom,bus-bw-vectors-bps = <0 400000 20000000 25000000 50000000
 						100000000 200000000 4294967295>;
-		
+
 		status = "disabled";
 	};
 
@@ -827,7 +827,7 @@
 		interrupt-names = "hc_irq", "pwr_irq";
 
 		qcom,bus-width = <4>;
-		
+
 		qcom,msm-bus,name = "sdhc2";
 		qcom,msm-bus,num-cases = <8>;
 		qcom,msm-bus,num-paths = <1>;
@@ -933,7 +933,7 @@
 
 		status = "disabled";
 	};
-	
+
 	spmi_bus: qcom,spmi@fc4c0000 {
 		cell-index = <0>;
 		compatible = "qcom,spmi-pmic-arb";

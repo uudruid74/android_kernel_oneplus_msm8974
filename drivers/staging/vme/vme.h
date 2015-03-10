@@ -171,4 +171,3 @@ void vme_unregister_driver(struct vme_driver *);
 
 
 #endif /* _VME_H_ */
-

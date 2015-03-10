@@ -897,4 +897,3 @@ static inline int ocfs2_find_next_zero_bit_unaligned(void *bitmap, int max,
 }
 
 #endif  /* OCFS2_H */
-

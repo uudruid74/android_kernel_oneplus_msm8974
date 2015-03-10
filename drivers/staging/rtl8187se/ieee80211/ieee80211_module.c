@@ -140,11 +140,11 @@ struct net_device *alloc_ieee80211(int sizeof_priv)
 	spin_lock_init(&ieee->wpax_suitlist_lock);
 
 	ieee->wpax_type_set = 0;
- 	ieee->wpa_enabled = 0;
- 	ieee->tkip_countermeasures = 0;
- 	ieee->drop_unencrypted = 0;
- 	ieee->privacy_invoked = 0;
- 	ieee->ieee802_1x = 1;
+	ieee->wpa_enabled = 0;
+	ieee->tkip_countermeasures = 0;
+	ieee->drop_unencrypted = 0;
+	ieee->privacy_invoked = 0;
+	ieee->ieee802_1x = 1;
 	ieee->raw_tx = 0;
 
 	ieee80211_softmac_init(ieee);

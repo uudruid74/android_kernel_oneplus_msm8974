@@ -231,5 +231,3 @@ void atari_unregister_vme_int(unsigned long irq)
 	}
 }
 EXPORT_SYMBOL(atari_unregister_vme_int);
-
-

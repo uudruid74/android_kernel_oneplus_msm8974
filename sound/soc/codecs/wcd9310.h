@@ -279,4 +279,3 @@ enum {
 	TABLA_TX10,
 	TABLA_TX_MAX,
 };
-

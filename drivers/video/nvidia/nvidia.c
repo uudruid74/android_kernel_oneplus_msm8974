@@ -1358,7 +1358,7 @@ static int __devinit nvidiafb_probe(struct pci_dev *pd,
 		par->FbMapSize = 64 * 1024 * 1024;
 
 	if(par->Architecture >= NV_ARCH_40)
-  	        par->FbUsableSize = par->FbMapSize - (560 * 1024);
+	        par->FbUsableSize = par->FbMapSize - (560 * 1024);
 	else
 		par->FbUsableSize = par->FbMapSize - (128 * 1024);
 	par->ScratchBufferSize = (par->Architecture < NV_ARCH_10) ? 8 * 1024 :

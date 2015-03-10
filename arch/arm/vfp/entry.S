@@ -29,7 +29,7 @@ ENTRY(do_vfp)
 #endif
 	enable_irq
 	str	r2, [sp, #S_PC]		@ update regs->ARM_pc for Thumb 2 case
- 	ldr	r4, .LCvfp
+	ldr	r4, .LCvfp
 	ldr	r11, [r10, #TI_CPU]	@ CPU number
 	add	r10, r10, #TI_VFPSTATE	@ r10 = workspace
 	ldr	pc, [r4]		@ call VFP entry point

@@ -23,14 +23,14 @@ Module Name:
 
 Abstract:
 
- 	 AMD8111 based 10/100 Ethernet Controller driver definitions.
+	 AMD8111 based 10/100 Ethernet Controller driver definitions.
 
 Environment:
 
 	Kernel Mode
 
 Revision History:
- 	3.0.0
+	3.0.0
 	   Initial Revision.
 	3.0.1
 */
@@ -473,7 +473,7 @@ typedef enum {
 	PHY_RD_ERR		= (1 << 28),
 	PHY_PRE_SUP		= (1 << 27),
 	PHY_ADDR		= (1 << 21) | (1 << 22) | (1 << 23)|
-				  	(1 << 24) |(1 << 25),/* 25:21 */
+					(1 << 24) |(1 << 25),/* 25:21 */
 	PHY_REG_ADDR		= (1 << 16) | (1 << 17) | (1 << 18)|	 			  	   	  	(1 << 19) | (1 << 20),/* 20:16 */
 	PHY_DATA		= (0xF << 0)|(0xF << 4) |(0xF << 8)|
 					(0xF << 12),/* 15:0 */
@@ -488,7 +488,7 @@ typedef enum {
 	PMR_RD_CMD		= (1 << 29),
 	PMR_BANK		= (1 <<28),
 	PMR_ADDR		= (0xF << 16)|(1 << 20)|(1 << 21)|
-				  	(1 << 22),/* 22:16 */
+					(1 << 22),/* 22:16 */
 	PMR_B4			= (0xF << 0) | (0xF << 4),/* 15:0 */
 }PMAT0_BITS;
 
@@ -705,7 +705,7 @@ enum coal_type{
 };
 
 enum coal_mode{
-       	RX_INTR_COAL,
+	RX_INTR_COAL,
 	TX_INTR_COAL,
 	DISABLE_COAL,
 	ENABLE_COAL,
@@ -812,4 +812,3 @@ static bool dynamic_ipg[MAX_UNITS] = { [ 0 ... MAX_UNITS-1] = false };
 static unsigned int chip_version;
 
 #endif /* _AMD8111E_H */
-

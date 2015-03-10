@@ -36,7 +36,7 @@ void msWait(int ms)
 
 void OAL_CREATE_SEMAPHORE(void)
 {
-	mutex_init(&isdbt_lock);	
+	mutex_init(&isdbt_lock);
 }
 
 void OAL_DELETE_SEMAPHORE(void)
@@ -53,4 +53,3 @@ void OAL_RELEASE_SEMAPHORE(void)
 {
 	mutex_unlock(&isdbt_lock);
 }
-

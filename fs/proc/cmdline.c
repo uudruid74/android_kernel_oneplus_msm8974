@@ -8,7 +8,7 @@ static int cmdline_proc_show(struct seq_file *m, void *v)
 {
 	char *temp_saved_command_line, *temp;
 	int i;
-	
+
 	temp_saved_command_line = kmalloc(strlen(saved_command_line)+1, GFP_KERNEL);
 	memcpy(temp_saved_command_line, saved_command_line, strlen(saved_command_line)+1);
 	temp=strstr(temp_saved_command_line, "array");

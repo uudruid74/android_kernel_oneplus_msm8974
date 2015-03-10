@@ -65,7 +65,7 @@ static int __init parse_tag_acorn(const struct tag *tag)
 __tagtable(ATAG_ACORN, parse_tag_acorn);
 
 static struct map_desc rpc_io_desc[] __initdata = {
- 	{	/* VRAM		*/
+	{	/* VRAM		*/
 		.virtual	=  SCREEN_BASE,
 		.pfn		= __phys_to_pfn(SCREEN_START),
 		.length		= 	2*1048576,

@@ -289,7 +289,7 @@ int clock_debug_print_clock2(struct clk *c)
 	pr_cont("\n");
 
 return 1;
-} 
+}
 
 /**
  * clock_debug_print_enabled_clocks() - Print names of enabled clocks

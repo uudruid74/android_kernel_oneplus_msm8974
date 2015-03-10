@@ -154,7 +154,7 @@ static int cyttsp4_i2c_probe(struct i2c_client *client,
 	int rc;
 
 	pr_err("%s: \n", __func__);
-		 
+
 	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C)) {
 		dev_err(dev, "I2C functionality not Supported\n");
 		return -EIO;
@@ -180,7 +180,7 @@ static int cyttsp4_i2c_remove(struct i2c_client *client)
 	struct cyttsp4_core_data *cd = i2c_get_clientdata(client);
 
 	pr_debug("%s: \n", __func__);
-	
+
 	cyttsp4_release(cd);
 
 	match = of_match_device(of_match_ptr(cyttsp4_i2c_of_match), dev);

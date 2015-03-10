@@ -18,13 +18,13 @@
 	i2c_1: i2c@f9923000 {
 
 		status = "ok";
-		
+
 		isdb_fc8300@58 {
 			compatible = "isdb,isdb_fc8300";
 			reg = <0x58>;
 		};
 	};
-	
+
 	spi_1: spi@f9923000 {
 		status = "disabled";
 	};

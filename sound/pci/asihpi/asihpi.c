@@ -2992,4 +2992,3 @@ static void __exit snd_asihpi_exit(void)
 
 module_init(snd_asihpi_init)
 module_exit(snd_asihpi_exit)
-

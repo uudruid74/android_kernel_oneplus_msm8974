@@ -54,7 +54,7 @@
 #ifdef TUNER_CONFIG_IRQ_PC_LINUX
 #include "../../../i2c-parport-x/i2c-parport.h"
 #endif  /* TUNER_CONFIG_IRQ_PC_LINUX */
- 
+
 #include "tuner.h"
 
 extern struct isdbtmm_platform_data *isdbtmm_pdata;
@@ -86,12 +86,12 @@ void tuner_drv_gpio_config_poweroff( void );
  *    output  :   none
  ******************************************************************************/
 int tuner_drv_ctl_power( int data )
-{	
+{
 	/* power on */
 	if( data == TUNER_DRV_CTL_POWON )
 	{
 		printk("tuner_drv_ctl_power poweron\n");
-		
+
 		/* poweron gpio config setting */
 		tuner_drv_gpio_config_poweron();
 
@@ -99,10 +99,10 @@ int tuner_drv_ctl_power( int data )
 		gpio_set_value(isdbtmm_pdata->gpio_en, 1);
 		/* 15ms sleep */
 		usleep_range(15000, 15000);
-		
+
 		/* TMM_RST high */
 		gpio_set_value(isdbtmm_pdata->gpio_rst, 1);
-		
+
 		/* 2ms sleep */
 		usleep_range(2000, 2000);
 	}
@@ -110,29 +110,29 @@ int tuner_drv_ctl_power( int data )
 	else
 	{
 		printk("tuner_drv_ctl_power poweroff\n");
-		
+
 		/* poweroff gpio config setting */
 		tuner_drv_gpio_config_poweroff();
-		
+
 		gpio_set_value(isdbtmm_pdata->gpio_i2c_sda, 0);
               printk("ISDBTMM POWER OFF GPIO_I2C_SDA = %d\n",gpio_get_value_cansleep(isdbtmm_pdata->gpio_i2c_sda));
                 gpio_set_value(isdbtmm_pdata->gpio_spi_di, 0);
                 gpio_set_value(isdbtmm_pdata->gpio_spi_do, 0);
                 gpio_set_value(isdbtmm_pdata->gpio_spi_clk, 0);
                 gpio_set_value(isdbtmm_pdata->gpio_spi_cs, 0);
-		
+
 		/* 1ms sleep */
 		usleep_range(1000, 1000);
-	
+
 		/* TMM_RST low */
 		gpio_set_value(isdbtmm_pdata->gpio_rst, 0);
-		
+
 		/* 2ms sleep */
 		usleep_range(2000, 2000);
-		
+
 		/* TMM_PWR_EN low */
 		gpio_set_value(isdbtmm_pdata->gpio_en, 0);
-		
+
 	}
 	return 0;
 }
@@ -152,7 +152,7 @@ int tuner_drv_set_interrupt( void )
 {
 #ifndef TUNER_CONFIG_IRQ_PC_LINUX
     int ret;
-	
+
 	ret = request_irq( isdbtmm_pdata->gpio_int,
 					   tuner_interrupt,
 					   IRQF_DISABLED | IRQF_TRIGGER_RISING,
@@ -246,25 +246,25 @@ void tuner_drv_gpio_config_poweron( void )
     union power_supply_propval value;
 	tmm_chg_log("TMM Charge control: Sending TMM Tuner Powered ON Signal\n");
 	value.intval = TUNER_SWITCHED_ON_SIGNAL;
-    psy_do_property("battery", set, POWER_SUPPLY_PROP_CURRENT_NOW, value);					 
+    psy_do_property("battery", set, POWER_SUPPLY_PROP_CURRENT_NOW, value);
 #endif
-	
+
 	gpio_tlmm_config(GPIO_CFG(isdbtmm_pdata->gpio_spi_di, GPIOMUX_FUNC_1,
 					 GPIO_CFG_INPUT, GPIO_CFG_NO_PULL, GPIO_CFG_8MA),
 					 GPIO_CFG_ENABLE);
-	
+
 	gpio_tlmm_config(GPIO_CFG(isdbtmm_pdata->gpio_spi_do, GPIOMUX_FUNC_1,
 					 GPIO_CFG_OUTPUT, GPIO_CFG_NO_PULL, GPIO_CFG_8MA),
 					 GPIO_CFG_ENABLE);
-	
+
 	gpio_tlmm_config(GPIO_CFG(isdbtmm_pdata->gpio_spi_cs, GPIOMUX_FUNC_1,
 					 GPIO_CFG_OUTPUT, GPIO_CFG_NO_PULL, GPIO_CFG_8MA),
 					 GPIO_CFG_ENABLE);
-	
+
 	gpio_tlmm_config(GPIO_CFG(isdbtmm_pdata->gpio_spi_clk, GPIOMUX_FUNC_1,
 					 GPIO_CFG_OUTPUT, GPIO_CFG_NO_PULL, GPIO_CFG_8MA),
 					 GPIO_CFG_ENABLE);
-	
+
 	gpio_tlmm_config(GPIO_CFG(isdbtmm_pdata->gpio_int, GPIOMUX_FUNC_1,
 					 GPIO_CFG_INPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA),
 					 GPIO_CFG_ENABLE);
@@ -272,18 +272,18 @@ void tuner_drv_gpio_config_poweron( void )
 	gpio_tlmm_config(GPIO_CFG(isdbtmm_pdata->gpio_en, GPIOMUX_FUNC_GPIO,
 					 GPIO_CFG_OUTPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA),
 					 GPIO_CFG_ENABLE);
-		
+
 	gpio_tlmm_config(GPIO_CFG(isdbtmm_pdata->gpio_rst, GPIOMUX_FUNC_GPIO,
 					 GPIO_CFG_OUTPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA),
 					 GPIO_CFG_ENABLE);
-					 
+
 	gpio_tlmm_config(GPIO_CFG(isdbtmm_pdata->gpio_i2c_sda, GPIOMUX_FUNC_3,
 					 GPIO_CFG_OUTPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA),
-					 GPIO_CFG_ENABLE);		
-	
+					 GPIO_CFG_ENABLE);
+
 	gpio_tlmm_config(GPIO_CFG(isdbtmm_pdata->gpio_i2c_scl, GPIOMUX_FUNC_3,
 					 GPIO_CFG_OUTPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA),
-					 GPIO_CFG_ENABLE);		
+					 GPIO_CFG_ENABLE);
 
 	return;
 }
@@ -296,7 +296,7 @@ void driver_config_during_boot_up(void)
 		GPIO_CFG_OUTPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA),
 		GPIO_CFG_ENABLE);
 
-	printk("driver_config_during_boot_up()!\n");	
+	printk("driver_config_during_boot_up()!\n");
 */
 }
 
@@ -318,25 +318,25 @@ void tuner_drv_gpio_config_poweroff( void )
     union power_supply_propval value;
 	tmm_chg_log("TMM Charge control: Sending TMM Tuner Powered OFF Signal\n");
 	value.intval = TUNER_SWITCHED_OFF_SIGNAL;
-    psy_do_property("battery", set, POWER_SUPPLY_PROP_CURRENT_NOW, value);					 
+    psy_do_property("battery", set, POWER_SUPPLY_PROP_CURRENT_NOW, value);
 #endif
 
 	gpio_tlmm_config(GPIO_CFG(isdbtmm_pdata->gpio_spi_di, GPIOMUX_FUNC_GPIO,
 					 GPIO_CFG_INPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA),
 					 GPIO_CFG_ENABLE);
-	
+
 	gpio_tlmm_config(GPIO_CFG(isdbtmm_pdata->gpio_spi_do, GPIOMUX_FUNC_GPIO,
 					 GPIO_CFG_INPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA),
 					 GPIO_CFG_ENABLE);
-	
+
 	gpio_tlmm_config(GPIO_CFG(isdbtmm_pdata->gpio_spi_cs, GPIOMUX_FUNC_GPIO,
 					 GPIO_CFG_INPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA),
 					 GPIO_CFG_ENABLE);
-	
+
 	gpio_tlmm_config(GPIO_CFG(isdbtmm_pdata->gpio_spi_clk, GPIOMUX_FUNC_GPIO,
 					 GPIO_CFG_INPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA),
 					 GPIO_CFG_ENABLE);
-	
+
 	gpio_tlmm_config(GPIO_CFG(isdbtmm_pdata->gpio_int, GPIOMUX_FUNC_GPIO,
 					 GPIO_CFG_INPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA),
 					 GPIO_CFG_ENABLE);
@@ -344,14 +344,13 @@ void tuner_drv_gpio_config_poweroff( void )
 	gpio_tlmm_config(GPIO_CFG(isdbtmm_pdata->gpio_en, GPIOMUX_FUNC_GPIO,
 					 GPIO_CFG_OUTPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA),
 					 GPIO_CFG_ENABLE);
-		
+
 	gpio_tlmm_config(GPIO_CFG(isdbtmm_pdata->gpio_rst, GPIOMUX_FUNC_GPIO,
 					 GPIO_CFG_OUTPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA),
 					 GPIO_CFG_ENABLE);
 
-	
+
 	driver_config_during_boot_up();
-	
+
 	return;
 }
-

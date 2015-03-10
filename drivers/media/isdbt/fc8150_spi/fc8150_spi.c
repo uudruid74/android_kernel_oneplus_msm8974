@@ -55,11 +55,11 @@ static int __devinit fc8150_spi_probe(struct spi_device *spi)
 
 	if(spi == NULL)
 	printk("fc8150_spi_probe spi == NULL 2\n");
-	
+
 	fc8150_spi = spi;
 	if(fc8150_spi == NULL)
 	printk("fc8150_spi_probe spi == NULL 3\n");
-	
+
 	return ret;
 }
 
@@ -316,4 +316,3 @@ int fc8150_spi_deinit(HANDLE hDevice)
 {
 	return BBM_OK;
 }
-

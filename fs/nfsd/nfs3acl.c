@@ -264,4 +264,3 @@ struct svc_version	nfsd_acl_version3 = {
 		.vs_xdrsize	= NFS3_SVC_XDRSIZE,
 		.vs_hidden	= 0,
 };
-

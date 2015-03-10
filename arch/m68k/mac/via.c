@@ -519,7 +519,7 @@ void via_nubus_irq(unsigned int irq, struct irq_desc *desc)
 			slot_bit >>= 1;
 		} while (events);
 
- 		/* clear the CA1 interrupt and make certain there's no more. */
+		/* clear the CA1 interrupt and make certain there's no more. */
 		via2[gIFR] = 0x02 | rbv_clear;
 		events = ~via2[gBufA] & 0x7F;
 		if (rbv_present)

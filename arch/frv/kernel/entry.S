@@ -1427,7 +1427,7 @@ sys_call_table:
 	.long sys_removexattr	/* 235 */
 	.long sys_lremovexattr
 	.long sys_fremovexattr
- 	.long sys_tkill
+	.long sys_tkill
 	.long sys_sendfile64
 	.long sys_futex		/* 240 */
 	.long sys_sched_setaffinity
@@ -1446,22 +1446,22 @@ sys_call_table:
 	.long sys_epoll_create
 	.long sys_epoll_ctl	/* 255 */
 	.long sys_epoll_wait
- 	.long sys_remap_file_pages
- 	.long sys_set_tid_address
- 	.long sys_timer_create
- 	.long sys_timer_settime		/* 260 */
- 	.long sys_timer_gettime
- 	.long sys_timer_getoverrun
- 	.long sys_timer_delete
- 	.long sys_clock_settime
- 	.long sys_clock_gettime		/* 265 */
- 	.long sys_clock_getres
- 	.long sys_clock_nanosleep
+	.long sys_remap_file_pages
+	.long sys_set_tid_address
+	.long sys_timer_create
+	.long sys_timer_settime		/* 260 */
+	.long sys_timer_gettime
+	.long sys_timer_getoverrun
+	.long sys_timer_delete
+	.long sys_clock_settime
+	.long sys_clock_gettime		/* 265 */
+	.long sys_clock_getres
+	.long sys_clock_nanosleep
 	.long sys_statfs64
 	.long sys_fstatfs64
 	.long sys_tgkill	/* 270 */
 	.long sys_utimes
- 	.long sys_fadvise64_64
+	.long sys_fadvise64_64
 	.long sys_ni_syscall	/* sys_vserver */
 	.long sys_mbind
 	.long sys_get_mempolicy

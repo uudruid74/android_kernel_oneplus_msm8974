@@ -114,11 +114,11 @@ static u32 es325_internal_route_configs[ES325_INTERNAL_ROUTE_MAX][20] = {
 		0xb05a1ca1,	/* SBUS.Rx1 -> AUDIN2 */
 		0xb05a4cac,	/* SBUS.Tx2 <- AUDOUT1 */
 		0xb05a50ad,	/* SBUS.Tx3 <- AUDOUT2 */
-		0x901c0000,	/* Algo processing = off (COMMIT) */ 
+		0x901c0000,	/* Algo processing = off (COMMIT) */
 		0xffffffff	/* terminate */
 	},
 	/* [3]: Audio record, 1 channel */
-	{ 
+	{
 		0xb05c0004,	/* Algo = passthrough */
 		0xb04c0001,	/* Algo rate = 16kHz */
 		0xb05a18a4,	/* SBUS.Rx4 -> AUDIN1 */
@@ -127,7 +127,7 @@ static u32 es325_internal_route_configs[ES325_INTERNAL_ROUTE_MAX][20] = {
 		0xffffffff	/* terminate */
 	},
 	/* [4]: Audio record, 2 channels */
-	{ 
+	{
 		0xb05c0004,	/* Algo = passthrough */
 		0xb04c0001,	/* Algo rate = 16kHz */
 		0xb05a18a4,	/* SBUS.Rx4 -> AUDIN1 */
@@ -138,7 +138,7 @@ static u32 es325_internal_route_configs[ES325_INTERNAL_ROUTE_MAX][20] = {
 		0xffffffff	/* terminate */
 	},
 	/* [5]: 1-mic Headset */
-	{ 
+	{
 		0xb05c0001,	/* Algo = Voice processing */
 		0xb04c0001,	/* Algo rate = 16kHz */
 		0xb05e0001,	/* Mix rate = 16 kHz */
@@ -152,7 +152,7 @@ static u32 es325_internal_route_configs[ES325_INTERNAL_ROUTE_MAX][20] = {
 		0xffffffff	/* terminate */
 	},
 	/* [6]: 1-mic CS Voice (CT) */
-	{ 
+	{
 		0xb05c0001,	/* Algo = Voice processing */
 		0xb04c0001,	/* Algo rate = 16kHz */
 		0xb05e0001,	/* Mix rate = 16 kHz */
@@ -212,7 +212,7 @@ static u32 es325_internal_route_configs[ES325_INTERNAL_ROUTE_MAX][20] = {
 		0xffffffff	/* terminate */
 	},
 	/* [10]: 1-mic CS Voice (FT) */
-	{ 
+	{
 		0xb05c0001,	/* Algo = Voice processing */
 		0xb04c0001,	/* Algo rate = 16kHz */
 		0xb05e0001,	/* Mix rate = 16 kHz */
@@ -1872,7 +1872,7 @@ int es325_core_probe(struct device *dev)
 		dev_warn(es325_priv.dev, "%s(): es325_gpiob undefined\n",
 			 __func__);
 	}
-	
+
 	return rc;
 
 gpiob_gpio_direction_error:

@@ -476,7 +476,7 @@ static int test_register_io(unsigned long arg, unsigned int cmd)
 	IOCTL_REG_ACCESS_INFO __user *argp
 				= (IOCTL_REG_ACCESS_INFO __user *)arg;
 
-	if (mtv222_cb_ptr->is_power_on == FALSE) {			
+	if (mtv222_cb_ptr->is_power_on == FALSE) {
 		DMBMSG("[mtv] Power Down state!Must Power ON\n");
 		return -EFAULT;
 	}
@@ -588,7 +588,7 @@ static int test_register_io(unsigned long arg, unsigned int cmd)
 			unsigned int min, sec;
 			elapsed_ms = jiffies_to_msecs(diff_jiffies1-diff_jiffies_1st);
 			sec = elapsed_ms / 1000;
-			min = sec / 60;			
+			min = sec / 60;
 			DMBMSG("END [AGING SPI Memory Test with Single IO]\n");
 			DMBMSG("Total minutes: %u\n", min);
 		}
@@ -625,7 +625,7 @@ static int test_register_io(unsigned long arg, unsigned int cmd)
 			RTV_REG_MAP_SEL(page);
 
 		RTV_REG_BURST_GET(addr, reg_read_buf, read_cnt);
-	
+
 		src_ptr = reg_read_buf;
 		dst_ptr = argp->read_data;
 
@@ -690,25 +690,25 @@ static void test_power_on_off(unsigned int cmd)
 		}
 		break;
 
-	case IOCTL_TEST_MTV_POWER_OFF:	
+	case IOCTL_TEST_MTV_POWER_OFF:
 		if(mtv222_cb_ptr->is_power_on == TRUE) {
 			isdbt_control_gpio(false);
 			mtv222_cb_ptr->is_power_on = FALSE;
 		}
-		break;	
+		break;
 	}
 }
 
 
 /*==============================================================================
  * TDMB IO control commands(30 ~ 49)
- *============================================================================*/ 
+ *============================================================================*/
 static INLINE int mtv222_get_signal_qual_info(unsigned long arg)
 {
 	IOCTL_ISDBT_SIGNAL_QUAL_INFO sig;
 	void __user *argp = (void __user *)arg;
 
-	sig.lock_mask = rtvISDBT_GetLockStatus();	
+	sig.lock_mask = rtvISDBT_GetLockStatus();
 	sig.rssi = rtvISDBT_GetRSSI();
 
 	sig.ber_layer_A = rtvISDBT_GetBER();
@@ -799,10 +799,10 @@ static INLINE int mtv222_get_signal_info(unsigned long arg)
 	IOCTL_ISDBT_SIGNAL_INFO sig;
 	void __user *argp = (void __user *)arg;
 
-	sig.lock_mask = rtvISDBT_GetLockStatus();	
-	sig.ber = rtvISDBT_GetBER();	 
-	sig.cnr = rtvISDBT_GetCNR(); 
-	sig.per = rtvISDBT_GetPER(); 
+	sig.lock_mask = rtvISDBT_GetLockStatus();
+	sig.ber = rtvISDBT_GetBER();
+	sig.cnr = rtvISDBT_GetCNR();
+	sig.per = rtvISDBT_GetPER();
 	sig.rssi = rtvISDBT_GetRSSI();
 	sig.ant_level = rtvISDBT_GetAntennaLevel(sig.cnr);
 
@@ -1016,7 +1016,7 @@ static long mtv222_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 	int ret = 0;
 
 	mutex_lock(&mtv222_cb_ptr->ioctl_lock);
-	
+
 	switch (cmd) {
 	case IOCTL_ISDBT_POWER_ON:
 		ret = isdbt_power_on(arg);
@@ -1026,16 +1026,16 @@ static long mtv222_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 		break;
 
 	case IOCTL_ISDBT_POWER_OFF:
-		mtv222_disable_ts_out(); 
+		mtv222_disable_ts_out();
 		isdbt_power_off();
 		break;
 
 	case IOCTL_ISDBT_SCAN_CHANNEL:
 		ret = mtv222_scan_channel(arg);
 		break;
-			
+
 	case IOCTL_ISDBT_SET_CHANNEL:
-		ret = mtv222_set_channel(arg);		
+		ret = mtv222_set_channel(arg);
 		break;
 
 	case IOCTL_ISDBT_START_TS:
@@ -1044,7 +1044,7 @@ static long mtv222_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 
 	case IOCTL_ISDBT_STOP_TS:
 		mtv222_disable_ts_out();
-		break;			
+		break;
 
 	case IOCTL_ISDBT_GET_LOCK_STATUS:
 		ret = mtv222_get_lock_status(arg);
@@ -1084,10 +1084,10 @@ static long mtv222_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 		ret = test_gpio(arg, cmd);
 		break;
 
-	case IOCTL_TEST_MTV_POWER_ON:	
+	case IOCTL_TEST_MTV_POWER_ON:
 	case IOCTL_TEST_MTV_POWER_OFF:
 		test_power_on_off(cmd);
-		break;		
+		break;
 
 	case IOCTL_TEST_REG_SINGLE_READ:
 	case IOCTL_TEST_REG_BURST_READ:
@@ -1096,7 +1096,7 @@ static long mtv222_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 	case IOCTL_TEST_REG_ONLY_SPI_MEM_READ:
 		ret = test_register_io(arg, cmd);
 		break;
-	
+
 	default:
 		DMBERR("Invalid ioctl command: 0x%X\n", cmd);
 		ret = -ENOIOCTLCMD;
@@ -1119,13 +1119,13 @@ irqreturn_t mtv222_irq_handler(int irq, void *param)
 	}
 
 	/*
-	만약 처음이면 
+	만약 처음이면
 #ifdef SCHED_FIFO_USE
 	struct sched_param param = { .sched_priority = MAX_RT_PRIO - 1 };
 	sched_setscheduler(current, SCHED_FIFO, &param);
 #else
 	set_user_nice(current, -20);
-#endif	
+#endif
 	*/
 
 	RTV_GUARD_LOCK;
@@ -1152,7 +1152,7 @@ irqreturn_t mtv222_irq_handler(int irq, void *param)
 		tspb = tsb_get();
 		if (tspb) {
 			RTV_REG_MAP_SEL(SPI_MEM_PAGE);
-			RTV_REG_BURST_GET(0x10, tspb, intr_size); 
+			RTV_REG_BURST_GET(0x10, tspb, intr_size);
 
 #ifdef _MTV_KERNEL_FILE_DUMP_ENABLE
 			mtv_ts_dump_kfile_write(tspb, intr_size);
@@ -1161,8 +1161,8 @@ irqreturn_t mtv222_irq_handler(int irq, void *param)
 #if 0
 			{
 				UINT i;
-				const U8 *tspb = (const U8 *)tspb;	
-				
+				const U8 *tspb = (const U8 *)tspb;
+
 				for (i = 0; i < size/188; i++, tsp_buf_ptr += 188) {
 					DMBMSG("[%d] 0x%02X 0x%02X 0x%02X 0x%02X | 0x%02X\n",
 						i, tsp_buf_ptr[0], tsp_buf_ptr[1],
@@ -1171,7 +1171,7 @@ irqreturn_t mtv222_irq_handler(int irq, void *param)
 				}
 			}
 #endif
-	
+
 			/* Enqueue */
 			tsb_enqueue(tspb);
 
@@ -1191,7 +1191,7 @@ irqreturn_t mtv222_irq_handler(int irq, void *param)
 		}
 	} else
 		DMBMSG("No data interrupt (0x%02X)\n", istatus);
-	
+
 exit_isr:
 	RTV_GUARD_FREE;
 
@@ -1257,4 +1257,3 @@ struct isdbt_drv_func *mtv222_drv_func(void)
 	DMBMSG("isdbt_drv_func : mtv222\n");
 	return &raontech_mtv222_drv_func;
 }
-

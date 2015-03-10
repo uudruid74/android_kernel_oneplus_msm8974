@@ -496,7 +496,7 @@ static struct msm_gpiomux_config msm_blsp_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &gpio_i2c_config,
 		},
 	},
- 	{
+	{
 		.gpio      = 87,		/* BLSP12 QUP I2C_DAT */
 		.settings = {
 			[GPIOMUX_SUSPENDED] = &gpio_i2c_config,
@@ -1440,7 +1440,7 @@ void __init msm_8974_init_gpiomux(void)
 	msm_gpiomux_install(msm_taiko_config, ARRAY_SIZE(msm_taiko_config));
 	msm_gpiomux_install(es325_config, ARRAY_SIZE(es325_config));
 	msm_gpiomux_install(ear_send_end_config, ARRAY_SIZE(ear_send_end_config));
-	
+
 	msm_gpiomux_install(fuel_i2c_config, ARRAY_SIZE(fuel_i2c_config));
 #if !defined(CONFIG_SENSORS_SSP)
 	msm_gpiomux_install(msm_hsic_hub_configs,
@@ -1452,10 +1452,10 @@ void __init msm_8974_init_gpiomux(void)
 #endif
 
 	msm_gpiomux_install(msm_hdmi_configs, ARRAY_SIZE(msm_hdmi_configs));
-	
+
 	if(system_rev >=3)
 		msm_gpiomux_install(msm_hdmi_ddc_configs, ARRAY_SIZE(msm_hdmi_ddc_configs));
-		
+
 #if defined(CONFIG_BCM2079X_NFC_I2C) || defined(CONFIG_NFC_PN547)
 	msm_gpiomux_install(msm_nfc_configs,
 	ARRAY_SIZE(msm_nfc_configs));

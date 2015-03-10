@@ -449,7 +449,7 @@ repeat:
 			return iter->cur;
 
 	while (!prio_tree_right(iter, &r_index, &h_index)) {
-	    	while (!prio_tree_root(iter->cur) &&
+		while (!prio_tree_root(iter->cur) &&
 				iter->cur->parent->right == iter->cur)
 			prio_tree_parent(iter);
 

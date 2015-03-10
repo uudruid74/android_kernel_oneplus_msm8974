@@ -412,7 +412,7 @@ static int new_lockspace(const char *name, const char *cluster,
 	}
 
 	if (ops && ops_result) {
-	       	if (!dlm_config.ci_recover_callbacks)
+		if (!dlm_config.ci_recover_callbacks)
 			*ops_result = -EOPNOTSUPP;
 		else
 			*ops_result = 0;
@@ -869,4 +869,3 @@ void dlm_stop_lockspaces(void)
 	}
 	spin_unlock(&lslist_lock);
 }
-

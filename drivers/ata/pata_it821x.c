@@ -716,7 +716,7 @@ static void it821x_probe_firmware(struct ata_port *ap)
 				buf[507],
 				buf[508]);
 		for (i = 0; i < 4; i++)
- 			it821x_display_disk(i, buf + 128 * i);
+			it821x_display_disk(i, buf + 128 * i);
 		kfree(buf);
 	}
 }

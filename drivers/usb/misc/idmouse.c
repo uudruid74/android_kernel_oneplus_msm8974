@@ -267,7 +267,7 @@ static int idmouse_open(struct inode *inode, struct file *file)
 		/* save our object in the file's private structure */
 		file->private_data = dev;
 
-	} 
+	}
 
 error:
 
@@ -433,4 +433,3 @@ module_usb_driver(idmouse_driver);
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);
 MODULE_LICENSE("GPL");
-

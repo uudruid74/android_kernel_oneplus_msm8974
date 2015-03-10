@@ -142,4 +142,3 @@ static int __init fish_battery_init(void)
 module_init(fish_battery_init);
 MODULE_DESCRIPTION("Qualcomm fish battery driver");
 MODULE_LICENSE("GPL");
-

@@ -29,4 +29,3 @@ void iss_serial_puts( char *s )
 /*#error Need I/O ports to specific hardware!*/
 
 #endif
-

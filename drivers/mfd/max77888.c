@@ -163,7 +163,7 @@ static int of_max77888_dt(struct device *dev, struct max77888_platform_data *pda
 	}
 	else
 		muic_reset_pin = 1;
-	
+
 #endif
 
 	retval = of_property_read_u32(np, "max77888,irq-base", &pdata->irq_base);
@@ -194,7 +194,7 @@ static int max77888_i2c_probe(struct i2c_client *i2c,
 			      const struct i2c_device_id *id)
 {
 	struct max77888_dev *max77888;
-	struct max77888_platform_data *pdata; 
+	struct max77888_platform_data *pdata;
 	u8 reg_data;
 	int ret = 0;
 

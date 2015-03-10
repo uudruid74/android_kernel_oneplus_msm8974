@@ -78,7 +78,7 @@
  * Note: The temperature and voltage sensors are relocated on a different
  *	 I2C bus.
  */
-#define I2C_ADDR_VPD	0xA0	/* I2C address for the VPD EEPROM */ 
+#define I2C_ADDR_VPD	0xA0	/* I2C address for the VPD EEPROM */
 
 /*
  * Define Bits and Values of the registers
@@ -184,7 +184,7 @@
 #define	PCI_EN_IO	(1L<<23)  /*	 Bit 23:	Mapping to IO space  */
 #define	PCI_EN_FPROM	(1L<<22)  /*	 Bit 22:	FLASH mapped to mem? */
 				  /*	   1 = Map Flash to Memory	     */
-			  	  /*	   0 = Disable all addr. decoding    */
+				  /*	   0 = Disable all addr. decoding    */
 #define	PCI_PAGESIZE	(3L<<20)  /*	 Bit 21..20:	FLASH Page Size	     */
 #define	PCI_PAGE_16	(0L<<20)  /*		16 k pages		     */
 #define	PCI_PAGE_32K	(1L<<20)  /*		32 k pages		     */

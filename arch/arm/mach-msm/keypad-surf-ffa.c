@@ -276,4 +276,3 @@ struct platform_device keypad_device_7k_ffa = {
 		.platform_data	= &keypad_data_7k_ffa,
 	},
 };
-

@@ -1261,4 +1261,3 @@ struct android_usb_function conn_gadget_function = {
 	.attributes	= conn_gadget_function_attributes,
 };
 /* End DEVGURU ***************************************************************/
-

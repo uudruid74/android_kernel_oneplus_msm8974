@@ -459,7 +459,7 @@ static int vmlogrdr_receive_data(struct vmlogrdr_priv_t *priv)
 	}
 	if (!rc) {
 		priv->buffer_free = 0;
- 		user_data_count += iucv_data_count;
+		user_data_count += iucv_data_count;
 		priv->current_position = priv->buffer;
 		if (priv->residual_length == 0){
 			/* the whole record has been captured,

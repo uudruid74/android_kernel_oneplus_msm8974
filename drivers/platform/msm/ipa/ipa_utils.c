@@ -1402,4 +1402,3 @@ void ipa_bam_reg_dump(void)
 	}
 }
 EXPORT_SYMBOL(ipa_bam_reg_dump);
-

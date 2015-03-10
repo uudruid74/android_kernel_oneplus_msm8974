@@ -168,4 +168,3 @@ module_exit(spu_gov_exit);
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Christian Krafft <krafft@de.ibm.com>");
-

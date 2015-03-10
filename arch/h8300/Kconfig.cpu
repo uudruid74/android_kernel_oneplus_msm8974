@@ -50,7 +50,7 @@ config H8S_EDOSK2674
 	  Renesas EDOSK-2674 Evaluation Board Support
 	  More Information.
 	  <http://www.azpower.com/H8-uClinux/index.html>
- 	  <http://www.renesas.eu/products/tools/introductory_evaluation_tools/evaluation_development_os_kits/edosk2674r/edosk2674r_software_tools_root.jsp>
+	  <http://www.renesas.eu/products/tools/introductory_evaluation_tools/evaluation_development_os_kits/edosk2674r/edosk2674r_software_tools_root.jsp>
 
 config H8S_SIM
 	bool "H8S Simulator"

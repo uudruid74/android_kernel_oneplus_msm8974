@@ -1257,7 +1257,7 @@ static int ehci_hub_control (
 						&ehci->regs->port_status[ports];
 
 					temp = ehci_readl(ehci, sreg)
-					       	& ~PORT_RWC_BITS;
+						& ~PORT_RWC_BITS;
 					if (temp & PORT_PE)
 						ehci_writel(ehci,
 							temp | PORT_SUSPEND,

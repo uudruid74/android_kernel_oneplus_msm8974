@@ -578,7 +578,7 @@ config USB_SWITCH_RT8973
           The RT8973 is fully controlled using I2C and enables USB data,
           stereo and mono audio, video, microphone and UART data to use
           a common connector port.
-	  
+
 config USB_SWITCH_FSA9480
 	tristate "FSA9480 USB Switch"
 	depends on I2C
@@ -1067,7 +1067,7 @@ config SGLTE_QSC_MODEM
 	bool "SGLTE QSC MODEM DOWNLOAD"
 	default n
 	help
-	  This option enables SGLTE QSC Modem download.	  
+	  This option enables SGLTE QSC Modem download.
 
 source "drivers/misc/c2port/Kconfig"
 source "drivers/misc/eeprom/Kconfig"

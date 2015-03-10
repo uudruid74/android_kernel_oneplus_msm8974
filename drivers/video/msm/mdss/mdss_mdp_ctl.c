@@ -2938,4 +2938,3 @@ void mdss_mdp_mixer_read(void)
 
 }
 #endif
-

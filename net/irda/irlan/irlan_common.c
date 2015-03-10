@@ -1210,4 +1210,3 @@ MODULE_PARM_DESC(access, "Access type DIRECT=1, PEER=2, HOSTED=3");
 
 module_init(irlan_init);
 module_exit(irlan_cleanup);
-

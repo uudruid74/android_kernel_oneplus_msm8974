@@ -1666,4 +1666,3 @@ out:
 	pd_video_exit(pd);
 	return ret;
 }
-

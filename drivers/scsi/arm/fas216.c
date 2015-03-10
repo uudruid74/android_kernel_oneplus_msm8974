@@ -158,7 +158,7 @@ static void fas216_dumpstate(FAS216_Info *info)
 	is   = fas216_readb(info, REG_IS);
 	stat = fas216_readb(info, REG_STAT);
 	inst = fas216_readb(info, REG_INST);
-	
+
 	printk("FAS216: CTCL=%02X CTCM=%02X CMD=%02X STAT=%02X"
 	       " INST=%02X IS=%02X CFIS=%02X",
 		fas216_readb(info, REG_CTCL),
@@ -1653,7 +1653,7 @@ irqreturn_t fas216_intr(FAS216_Info *info)
 		else if (inst & INST_FUNCDONE)		/* function done		*/
 			fas216_funcdone_intr(info, stat, is);
 		else
-		    	fas216_log(info, 0, "unknown interrupt received:"
+			fas216_log(info, 0, "unknown interrupt received:"
 				" phase %s inst %02X is %02X stat %02X",
 				fas216_drv_phase(info), inst, is, stat);
 		handled = IRQ_HANDLED;
@@ -2144,7 +2144,7 @@ static void fas216_done(FAS216_Info *info, unsigned int result)
 
 	SCpnt = info->SCpnt;
 	info->SCpnt = NULL;
-    	info->scsi.phase = PHASE_IDLE;
+	info->scsi.phase = PHASE_IDLE;
 
 	if (info->scsi.aborting) {
 		fas216_log(info, 0, "uncaught abort - returning DID_ABORT");
@@ -2449,7 +2449,7 @@ int fas216_eh_abort(struct scsi_cmnd *SCpnt)
 	 * if the bus is free.
 	 */
 	case res_hw_abort:
-		
+
 
 	/*
 	 * We are unable to abort the command for some reason.
@@ -2856,7 +2856,7 @@ int fas216_init(struct Scsi_Host *host)
 	init_timer(&info->eh_timer);
 	info->eh_timer.data  = (unsigned long)info;
 	info->eh_timer.function = fas216_eh_timer;
-	
+
 	spin_lock_init(&info->host_lock);
 
 	memset(&info->stats, 0, sizeof(info->stats));

@@ -42,7 +42,7 @@ static void vunmap_pte_range(pmd_t *pmd, unsigned long addr, unsigned long end)
 #endif
 
 	pte = pte_offset_kernel(pmd, addr);
-	
+
 #ifdef CONFIG_TIMA_RKP_LAZY_MMU
 	do_lazy_mmu = 1;
 	if (do_lazy_mmu) {
@@ -2788,4 +2788,3 @@ static int __init proc_vmalloc_init(void)
 }
 module_init(proc_vmalloc_init);
 #endif
-

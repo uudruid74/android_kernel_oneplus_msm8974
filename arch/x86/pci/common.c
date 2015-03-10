@@ -478,7 +478,7 @@ void __init pcibios_set_cache_line_size(void)
 		printk(KERN_DEBUG "PCI: pci_cache_line_size set to %d bytes\n",
 			pci_dfl_cache_line_size << 2);
 	} else {
- 		pci_dfl_cache_line_size = 32 >> 2;
+		pci_dfl_cache_line_size = 32 >> 2;
 		printk(KERN_DEBUG "PCI: Unknown cacheline size. Setting to 32 bytes\n");
 	}
 }

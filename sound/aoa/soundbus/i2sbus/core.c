@@ -77,9 +77,9 @@ static void i2sbus_release_dev(struct device *dev)
 
 	i2sdev = container_of(dev, struct i2sbus_dev, sound.ofdev.dev);
 
- 	if (i2sdev->intfregs) iounmap(i2sdev->intfregs);
- 	if (i2sdev->out.dbdma) iounmap(i2sdev->out.dbdma);
- 	if (i2sdev->in.dbdma) iounmap(i2sdev->in.dbdma);
+	if (i2sdev->intfregs) iounmap(i2sdev->intfregs);
+	if (i2sdev->out.dbdma) iounmap(i2sdev->out.dbdma);
+	if (i2sdev->in.dbdma) iounmap(i2sdev->in.dbdma);
 	for (i = aoa_resource_i2smmio; i <= aoa_resource_rxdbdma; i++)
 		if (i2sdev->allocated_resource[i])
 			release_and_free_resource(i2sdev->allocated_resource[i]);

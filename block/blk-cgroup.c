@@ -1060,7 +1060,7 @@ static void blkio_update_policy_node_blkg(struct blkio_cgroup *blkcg,
 }
 
 static int blkiocg_file_write(struct cgroup *cgrp, struct cftype *cft,
- 				       const char *buffer)
+				       const char *buffer)
 {
 	int ret = 0;
 	char *buf;

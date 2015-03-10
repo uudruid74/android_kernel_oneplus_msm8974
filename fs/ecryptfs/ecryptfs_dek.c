@@ -56,7 +56,7 @@ int ecryptfs_is_persona_locked(int userid)
 
 extern int32_t sdp_mm_set_process_sensitive(unsigned int proc_id);
 
-int ecryptfs_get_sdp_dek(unsigned char *sig, int *sig_len, struct ecryptfs_crypt_stat *crypt_stat) 
+int ecryptfs_get_sdp_dek(unsigned char *sig, int *sig_len, struct ecryptfs_crypt_stat *crypt_stat)
 {
 	int rc = 0;
 	if(crypt_stat != NULL && (crypt_stat->flags & ECRYPTFS_DEK_SDP_ENABLED)) {
@@ -153,7 +153,7 @@ int parse_dek_packet(char *data,
 		memcpy(crypt_stat->sdp_dek.buf, &data[*packet_size], crypt_stat->sdp_dek.len);
 		(*packet_size) += crypt_stat->sdp_dek.len;
 	}
-	
+
 #if ECRYPTFS_DEK_DEBUG
 	DEK_LOGD("%s() : comm : %s [euid:%d]\n",
 		__func__, temp_comm, temp_euid);
@@ -187,7 +187,7 @@ static int ecryptfs_update_crypt_flag(struct dentry *dentry, int is_sensitive)
 	if (is_sensitive) {
 		crypt_stat->flags |= ECRYPTFS_DEK_IS_SENSITIVE;
 		/*
-		* Set sensirive for all the pages in the inode 
+		* Set sensirive for all the pages in the inode
 		*/
 		set_sensitive_mapping_pages(inode->i_mapping, 0, -1);
 	}
@@ -298,7 +298,7 @@ long ecryptfs_do_sdp_ioctl(struct file *file, unsigned int cmd, unsigned long ar
 		dek_arg_get_sdp_info req;
 
 		DEK_LOGD("ECRYPTFS_IOCTL_GET_SDP_INFO\n");
-	
+
 		memset(&req, 0, sizeof(dek_arg_get_sdp_info));
 		if(copy_from_user(&req, ubuf, sizeof(req))) {
 			DEK_LOGE("can't copy from user\n");
@@ -329,7 +329,7 @@ long ecryptfs_do_sdp_ioctl(struct file *file, unsigned int cmd, unsigned long ar
 		dek_arg_get_fek req;
 
 		DEK_LOGD("ECRYPTFS_IOCTL_GET_FEK\n");
-	
+
 		if (crypt_stat->flags & ECRYPTFS_DEK_IS_SENSITIVE) {
 			DEK_LOGE("don't return FEK of sensitive file\n");
 			return -EFAULT;
@@ -360,7 +360,7 @@ long ecryptfs_do_sdp_ioctl(struct file *file, unsigned int cmd, unsigned long ar
 		dek_arg_get_efek req;
 
 		DEK_LOGD("ECRYPTFS_IOCTL_GET_EFEK\n");
-	
+
 		memset(&req, 0, sizeof(dek_arg_get_efek));
 		if(copy_from_user(&req, ubuf, sizeof(req))) {
 			DEK_LOGE("can't copy from user\n");
@@ -386,7 +386,7 @@ long ecryptfs_do_sdp_ioctl(struct file *file, unsigned int cmd, unsigned long ar
 		dek_arg_set_efek req;
 
 		DEK_LOGD("ECRYPTFS_IOCTL_SET_EFEK\n");
-	
+
 		memset(&req, 0, sizeof(dek_arg_set_efek));
 		if(copy_from_user(&req, ubuf, sizeof(req))) {
 			DEK_LOGE("can't copy from user\n");

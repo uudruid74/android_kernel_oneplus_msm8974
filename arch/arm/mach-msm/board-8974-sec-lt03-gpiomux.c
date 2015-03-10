@@ -30,7 +30,7 @@
 		}, \
 	}
 #endif
-	
+
 static struct gpiomux_setting ap2mdm_cfg = {
 	.func = GPIOMUX_FUNC_GPIO,
 	.drv = GPIOMUX_DRV_8MA,
@@ -841,7 +841,7 @@ static struct msm_gpiomux_config msm_blsp_configs[] __initdata = {
 			[GPIOMUX_ACTIVE] = &gpio_i2c_act_config,
 		},
 	},
- 	{
+	{
 		.gpio      = 25,		/* BLSP5 QUP I2C_DAT */
 		.settings = {
 			[GPIOMUX_ACTIVE]    = &gpio_i2c_config_4,
@@ -881,7 +881,7 @@ static struct msm_gpiomux_config msm_blsp_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &gpio_i2c_config,
 		},
 	},
- 	{
+	{
 		.gpio      = 4,			/* BLSP2 UART TX */
 		.settings = {
 			[GPIOMUX_SUSPENDED] = &gpio_uart_config,
@@ -1080,7 +1080,7 @@ static struct msm_gpiomux_config msm_sensor_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &gpio_suspend_config[1],
 		},
 	},
-#endif	
+#endif
 #if 0
 	{
 		.gpio = 25, /* WEBCAM2_RESET_N */
@@ -1104,7 +1104,7 @@ static struct msm_gpiomux_config msm_sensor_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &gpio_suspend_config[1],
 		},
 	},
-#if !defined(CONFIG_MACH_LT03_LTE)		
+#if !defined(CONFIG_MACH_LT03_LTE)
 	{
 		.gpio = 28, /* WEBCAM1_STANDBY */
 		.settings = {
@@ -1112,7 +1112,7 @@ static struct msm_gpiomux_config msm_sensor_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &gpio_suspend_config[1],
 		},
 	},
-#endif	
+#endif
 	{
 		.gpio = 89, /* CAM1_STANDBY_N */
 		.settings = {
@@ -2039,9 +2039,9 @@ void __init msm_8974_init_gpiomux(void)
 	msm_gpiomux_install(msm8974_muic_configs, ARRAY_SIZE(msm8974_muic_configs));
 #endif
 	msm_gpiomux_install(msm_battery_configs, ARRAY_SIZE(msm_battery_configs));
-#if !defined(CONFIG_MACH_LT03_LTE)	
+#if !defined(CONFIG_MACH_LT03_LTE)
 	msm_gpiomux_install(msm_batteryotg_configs, ARRAY_SIZE(msm_batteryotg_configs));
-#endif	
+#endif
 
 #if !defined(CONFIG_BT_BCM4335) && !defined(CONFIG_BT_BCM4339)
 	msm_gpiomux_install(msm_blsp2_uart7_configs,

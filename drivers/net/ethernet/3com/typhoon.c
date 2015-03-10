@@ -174,13 +174,13 @@ static struct typhoon_card_info typhoon_card_info[] __devinitdata = {
 	{ "3Com Typhoon (3CR990-TX-95)",
 		TYPHOON_CRYPTO_DES},
 	{ "3Com Typhoon (3CR990-TX-97)",
-	 	TYPHOON_CRYPTO_DES | TYPHOON_CRYPTO_3DES},
+		TYPHOON_CRYPTO_DES | TYPHOON_CRYPTO_3DES},
 	{ "3Com Typhoon (3C990SVR)",
 		TYPHOON_CRYPTO_NONE},
 	{ "3Com Typhoon (3CR990SVR95)",
 		TYPHOON_CRYPTO_DES},
 	{ "3Com Typhoon (3CR990SVR97)",
-	 	TYPHOON_CRYPTO_DES | TYPHOON_CRYPTO_3DES},
+		TYPHOON_CRYPTO_DES | TYPHOON_CRYPTO_3DES},
 	{ "3Com Typhoon2 (3C990B-TX-M)",
 		TYPHOON_CRYPTO_VARIABLE},
 	{ "3Com Typhoon2 (3C990BSVR)",
@@ -188,11 +188,11 @@ static struct typhoon_card_info typhoon_card_info[] __devinitdata = {
 	{ "3Com Typhoon (3CR990-FX-95)",
 		TYPHOON_CRYPTO_DES | TYPHOON_FIBER},
 	{ "3Com Typhoon (3CR990-FX-97)",
-	 	TYPHOON_CRYPTO_DES | TYPHOON_CRYPTO_3DES | TYPHOON_FIBER},
+		TYPHOON_CRYPTO_DES | TYPHOON_CRYPTO_3DES | TYPHOON_FIBER},
 	{ "3Com Typhoon (3CR990-FX-95 Server)",
-	 	TYPHOON_CRYPTO_DES | TYPHOON_FIBER},
+		TYPHOON_CRYPTO_DES | TYPHOON_FIBER},
 	{ "3Com Typhoon (3CR990-FX-97 Server)",
-	 	TYPHOON_CRYPTO_DES | TYPHOON_CRYPTO_3DES | TYPHOON_FIBER},
+		TYPHOON_CRYPTO_DES | TYPHOON_CRYPTO_3DES | TYPHOON_FIBER},
 	{ "3Com Typhoon2 (3C990B-FX-97)",
 		TYPHOON_CRYPTO_VARIABLE | TYPHOON_FIBER},
 };
@@ -1031,7 +1031,7 @@ typhoon_get_settings(struct net_device *dev, struct ethtool_cmd *cmd)
 		cmd->port = PORT_FIBRE;
 	} else {
 		cmd->supported |= SUPPORTED_10baseT_Half |
-		    			SUPPORTED_10baseT_Full |
+					SUPPORTED_10baseT_Full |
 					SUPPORTED_TP;
 		cmd->advertising |= ADVERTISED_TP;
 		cmd->port = PORT_TP;
@@ -1734,7 +1734,7 @@ typhoon_poll(struct napi_struct *napi, int budget)
 
 	if(indexes->rxHiCleared != indexes->rxHiReady) {
 		work_done += typhoon_rx(tp, &tp->rxHiRing, &indexes->rxHiReady,
-			   		&indexes->rxHiCleared, budget);
+					&indexes->rxHiCleared, budget);
 	}
 
 	if(indexes->rxLoCleared != indexes->rxLoReady) {

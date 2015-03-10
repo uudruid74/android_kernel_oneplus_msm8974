@@ -10,12 +10,12 @@
 do						\
 {                                               \
     if (!_Head) {                           \
-        	_Head = _Packet;                \
+		_Head = _Packet;                \
         } 					\
 	else {                                  \
-        	(_Tail)->next = _Packet; 	\
+		(_Tail)->next = _Packet; 	\
         }                                       \
-   	(_Packet)->next = NULL;  		\
+	(_Packet)->next = NULL;  		\
     _Tail = _Packet;                        \
 }while(0)
 #define DEQUEUEPACKET(Head, Tail )            	\
@@ -23,7 +23,7 @@ do						\
 {   if(Head)			\
 	{                                            \
         if (!Head->next) {                      \
-        	Tail = NULL;                    \
+		Tail = NULL;                    \
         }                                       \
         Head = Head->next;                      \
 	}		\

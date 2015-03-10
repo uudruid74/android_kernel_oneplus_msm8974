@@ -35,11 +35,11 @@
 	i2c_99: i2c@f9965000 {
 		status = "disabled";
 	};
-	
+
 	aliases {
 		spi9 = &spi_9;
 	};
-	
+
 	spi_9: spi@f9965000 {
 		compatible = "qcom,spi-qup-v2";
 		reg = <0xf9965000 0x1000>, <0xf9944000 0x19000>;

@@ -165,7 +165,7 @@ void pcc_iorw(int sock, unsigned long port, void *buf, size_t size, size_t nmemb
 		} else {
 			/* read Byte */
 			while (nmemb--) {
-	    		*bp++ = readb(addr);
+			*bp++ = readb(addr);
 			}
 		}
 	} else {
@@ -190,10 +190,10 @@ void pcc_iorw(int sock, unsigned long port, void *buf, size_t size, size_t nmemb
 				} else
 #endif
 				writew(*bp++, addr);
-	    	}
+		}
 	    } else {
-	    	/* read Word */
-	    	while (nmemb--) {
+		/* read Word */
+		while (nmemb--) {
 #ifdef  PCC_DEBUG_DBEX
 				if (_dbex) {
 					unsigned char *cp = (unsigned char *)bp;
@@ -205,7 +205,7 @@ void pcc_iorw(int sock, unsigned long port, void *buf, size_t size, size_t nmemb
 				} else
 #endif
 				*bp++ = readw(addr);
-	    	}
+		}
 	    }
 	}
 
@@ -266,7 +266,7 @@ static unsigned int pcc_get(u_short sock, unsigned int reg)
 
 static void pcc_set(u_short sock, unsigned int reg, unsigned int data)
 {
-  	outl(data, socket[sock].base + reg);
+	outl(data, socket[sock].base + reg);
 }
 
 /*======================================================================
@@ -299,7 +299,7 @@ static int __init is_alive(u_short sock)
 static void add_pcc_socket(ulong base, int irq, ulong mapaddr,
 			   unsigned int ioaddr)
 {
-  	pcc_socket_t *t = &socket[pcc_sockets];
+	pcc_socket_t *t = &socket[pcc_sockets];
 
 	/* add sockets */
 	t->ioaddr = ioaddr;

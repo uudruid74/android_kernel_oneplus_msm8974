@@ -16,4 +16,3 @@ config VPNCLIENT_PROC_GID
    int "GID for special group"
    depends on VPNCLIENT_SECURITY
    default 1000
-

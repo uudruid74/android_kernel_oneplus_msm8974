@@ -933,4 +933,3 @@ int ps3av_cmd_video_get_monitor_info(struct ps3av_pkt_av_get_monitor_info *info,
 		| PS3AV_CMD_AV_LAYOUT_96 \
 		| PS3AV_CMD_AV_LAYOUT_176 \
 		| PS3AV_CMD_AV_LAYOUT_192)
-

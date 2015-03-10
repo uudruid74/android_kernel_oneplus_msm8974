@@ -2989,7 +2989,7 @@ void __init msm_8974_init_gpiomux(void)
  }
  else
  {
- 	msm_gpiomux_install(msm8974_felica_configs_rev06,
+	msm_gpiomux_install(msm8974_felica_configs_rev06,
 			ARRAY_SIZE(msm8974_felica_configs_rev06));
  }
 #endif /* CONFIG_FELICA */

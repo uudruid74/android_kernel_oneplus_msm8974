@@ -1057,4 +1057,3 @@ struct lcd_ctrl hwa742_ctrl = {
 	.suspend		= hwa742_suspend,
 	.resume			= hwa742_resume,
 };
-

@@ -758,4 +758,3 @@ globl(lwsync_fixup_test_expected_LWSYNC)
 globl(lwsync_fixup_test_expected_SYNC)
 1:	or	1,1,1
 	sync
-

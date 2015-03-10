@@ -1994,4 +1994,3 @@ int au0828_analog_register(struct au0828_dev *dev,
 
 	return 0;
 }
-

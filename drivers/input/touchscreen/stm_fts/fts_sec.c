@@ -1790,7 +1790,7 @@ static void report_rate(void *device_data)
 #else
 				fts_command(info, SENSEOFF);
 				fts_command(info, SENSEON_SLOW);
-#endif				
+#endif
 #ifdef FTS_SUPPORT_TOUCH_KEY
 					info->fts_command(info, FTS_CMD_KEY_SENSE_ON);
 #endif // FTS_SUPPORT_TOUCH_KEY
@@ -1802,10 +1802,10 @@ static void report_rate(void *device_data)
 			if (info->slow_report_rate) {
 #if defined(CONFIG_SEC_S_PROJECT)
 				fts_command(info, FTS_CMD_FAST_SCAN);
-#else				
+#else
 				fts_command(info, SENSEOFF);
 				fts_command(info, SENSEON);
-#endif				
+#endif
 #ifdef FTS_SUPPORT_TOUCH_KEY
 				info->fts_command(info, FTS_CMD_KEY_SENSE_ON);
 #endif // FTS_SUPPORT_TOUCH_KEY

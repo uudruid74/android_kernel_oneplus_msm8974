@@ -1073,4 +1073,3 @@ int clkdm_hwmod_disable(struct clockdomain *clkdm, struct omap_hwmod *oh)
 
 	return _clkdm_clk_hwmod_disable(clkdm);
 }
-

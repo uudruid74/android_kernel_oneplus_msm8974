@@ -330,4 +330,3 @@ module_platform_driver(psc_ac97_driver);
 MODULE_AUTHOR("Jon Smirl <jonsmirl@gmail.com>");
 MODULE_DESCRIPTION("mpc5200 AC97 module");
 MODULE_LICENSE("GPL");
-

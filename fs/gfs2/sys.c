@@ -659,4 +659,3 @@ void gfs2_sys_uninit(void)
 {
 	kset_unregister(gfs2_kset);
 }
-

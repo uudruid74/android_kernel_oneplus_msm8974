@@ -1,7 +1,7 @@
 /******************************************************************************
 * (c) COPYRIGHT 2010 RAONTECH, Inc. ALL RIGHTS RESERVED.
 *
-* TITLE 	  : RAONTECH TV ISDB-T services source file. 
+* TITLE 	  : RAONTECH TV ISDB-T services source file.
 *
 * FILENAME    : raontv_isdbt.c
 *
@@ -61,27 +61,27 @@ static const RTV_REG_INIT_INFO g_atOfdmInitData[] = {
 };
 
 static const RTV_REG_INIT_INFO g_atFecInitData[] = {
-	{0x16, 0xFF},	
-	{0x17, 0xFF}, 	
-	{0x18, 0xFF}, 	
-	{0x19, 0xFF}, 	
-	{0x24, 0x01}, 	
-	{0x4F, 0x00}, 	
-	{0x53, 0x3F}, 	
-	{0x83, 0x10}, 
-	{0x97, 0xFF},	
-	{0x98, 0xFF},	
-	{0x99, 0xFF},	
-	{0xA7, 0x40},	
-	{0xA8, 0x80},	
-	{0xA9, 0xB9},	
-	{0xAA, 0x80},	
-	{0xAB, 0x80},	
+	{0x16, 0xFF},
+	{0x17, 0xFF},
+	{0x18, 0xFF},
+	{0x19, 0xFF},
+	{0x24, 0x01},
+	{0x4F, 0x00},
+	{0x53, 0x3F},
+	{0x83, 0x10},
+	{0x97, 0xFF},
+	{0x98, 0xFF},
+	{0x99, 0xFF},
+	{0xA7, 0x40},
+	{0xA8, 0x80},
+	{0xA9, 0xB9},
+	{0xAA, 0x80},
+	{0xAB, 0x80},
 	{0xFC, 0x00}
-}; 
+};
 
 static void isdbt_UpdateMonitoring(void)
-{	
+{
 	RTV_REG_MAP_SEL(OFDM_PAGE);
 	RTV_REG_MASK_SET(0x25, 0x70, 0x20);
 	RTV_REG_MASK_SET(0x13, 0x80, 0x80);
@@ -96,13 +96,13 @@ static void isdbt_InitTOP_HOST(void)
 {
 	UINT nNumTblEntry;
 	const RTV_REG_INIT_INFO *ptTopHostInitData;
-	
+
 	RTV_REG_MAP_SEL(HOST_PAGE);
-	
+
 	/* Set the remained initial values. */
 	nNumTblEntry = sizeof(g_atTopHostInitData) / sizeof(RTV_REG_INIT_INFO);
 	ptTopHostInitData = g_atTopHostInitData;
-		
+
 	do {
 		RTV_REG_SET(ptTopHostInitData->bReg, ptTopHostInitData->bVal);
 		ptTopHostInitData++;
@@ -113,13 +113,13 @@ static void isdbt_InitOFDM(void)
 {
 	UINT nNumTblEntry;
 	const RTV_REG_INIT_INFO *ptOfdmInitData;
-	
+
 	RTV_REG_MAP_SEL(OFDM_PAGE);
-	
+
 	// Set the remained initial values.
 	nNumTblEntry = sizeof(g_atOfdmInitData) / sizeof(RTV_REG_INIT_INFO);
 	ptOfdmInitData = g_atOfdmInitData;
-		
+
 	do {
 		RTV_REG_SET(ptOfdmInitData->bReg, ptOfdmInitData->bVal);
 		ptOfdmInitData++;
@@ -130,9 +130,9 @@ static void isdbt_InitFEC(void)
 {
 	UINT nNumTblEntry;
 	const RTV_REG_INIT_INFO *ptFecInitData;
-	
+
 	RTV_REG_MAP_SEL(FEC_PAGE);
-	
+
 	nNumTblEntry = sizeof(g_atFecInitData) / sizeof(RTV_REG_INIT_INFO);
 	ptFecInitData = g_atFecInitData;
 
@@ -145,7 +145,7 @@ static void isdbt_InitFEC(void)
 static void isdbt_SoftResetFEC(void)
 {
 	RTV_REG_MAP_SEL(FEC_PAGE);
-	RTV_REG_MASK_SET(0xFB,0x01,0x01); 
+	RTV_REG_MASK_SET(0xFB,0x01,0x01);
 	RTV_REG_MASK_SET(0xFB,0x01,0x00);
 }
 
@@ -154,19 +154,19 @@ static void isdbt_InitDemod(void)
 
 	RTV_REG_MAP_SEL(HOST_PAGE);
 #if defined(RTV_IF_SPI) || defined(RTV_IF_EBI2)
-	RTV_REG_SET(0x05,0xBE); 
+	RTV_REG_SET(0x05,0xBE);
 #else
-	RTV_REG_SET(0x05,0x3E); 
+	RTV_REG_SET(0x05,0x3E);
 #endif
 
 	isdbt_InitTOP_HOST();
 
 	isdbt_InitOFDM();
-		
+
 	isdbt_InitFEC();
 
 	rtvOEM_ConfigureInterrupt();
-	
+
 #if defined(RTV_IF_SPI) || defined(RTV_IF_EBI2)
 	RTV_REG_MAP_SEL(FEC_PAGE);
 	RTV_REG_SET(0x9F, 0x00);
@@ -178,7 +178,7 @@ static void isdbt_InitDemod(void)
 	rtv_ConfigureTsifFormat();
 	RTV_REG_MASK_SET(0xA9, 0x07, RTV_COMM_CON47_CLK_SEL);
 #else
-	#error "Code not present"  	 	 
+	#error "Code not present"
 #endif
 
 #ifdef RTV_ERROR_TSP_OUTPUT_DISABLE
@@ -197,7 +197,7 @@ void rtvISDBT_StandbyMode(int on)
 	RTV_GUARD_LOCK;
 
 	RTV_REG_MAP_SEL(RF_PAGE);
-	
+
 	if (on)
 		RTV_REG_MASK_SET(0x27, 0x01, 0x01);
 	else
@@ -214,9 +214,9 @@ UINT rtvISDBT_GetLockStatus(void)
 
 	RTV_GUARD_LOCK;
 
-   	if (g_fRtvChannelChange) {
-   		RTV_GUARD_FREE;
-   		RTV_DBGMSG0("[rtvISDBT_GetLockStatus] RTV Freqency change state! \n");
+	if (g_fRtvChannelChange) {
+		RTV_GUARD_FREE;
+		RTV_DBGMSG0("[rtvISDBT_GetLockStatus] RTV Freqency change state! \n");
 		return 0x0;
 	}
 
@@ -242,13 +242,13 @@ UINT rtvISDBT_GetLockStatus(void)
 U8 rtvISDBT_GetAGC(void)
 {
 	U8 bAgc;
-	
+
 	RTV_GUARD_LOCK;
 
 	if (g_fRtvChannelChange) {
 		RTV_GUARD_FREE;
 		RTV_DBGMSG0("[rtvISDBT_GetAGC] RTV Freqency change state! \n");
-		return 0;	 
+		return 0;
 	}
 
 	RTV_REG_MAP_SEL(RF_PAGE);
@@ -280,7 +280,7 @@ S32 rtvISDBT_GetRSSI(void)
 	if (g_fRtvChannelChange) {
 		RTV_GUARD_FREE;
 		RTV_DBGMSG0("[rtvISDBT_GetRSSI] RTV Freqency change state! \n");
-		return 0;	 
+		return 0;
 	}
 
 	RTV_REG_MAP_SEL(RF_PAGE);
@@ -347,7 +347,7 @@ U32 rtvISDBT_GetPER(void)
 	if (g_fRtvChannelChange) {
 		RTV_GUARD_FREE;
 		RTV_DBGMSG0("[rtvISDBT_GetPER] RTV Freqency change state! \n");
-		return 0;	 
+		return 0;
 	}
 
 	isdbt_UpdateMonitoring();
@@ -375,8 +375,8 @@ U32 rtvISDBT_GetBER(void)
 
 	if (g_fRtvChannelChange) {
 		RTV_GUARD_FREE;
-		RTV_DBGMSG0("[rtvISDBT_GetBER] RTV Freqency change state! \n"); 
-		return 0;	 
+		RTV_DBGMSG0("[rtvISDBT_GetBER] RTV Freqency change state! \n");
+		return 0;
 	}
 
 	isdbt_UpdateMonitoring();
@@ -414,8 +414,8 @@ U32 rtvISDBT_GetCNR(void)
 
 	if (g_fRtvChannelChange) {
 		RTV_GUARD_FREE;
-		RTV_DBGMSG0("[rtvISDBT_GetCNR] RTV Freqency change state! \n"); 
-		return 0;	
+		RTV_DBGMSG0("[rtvISDBT_GetCNR] RTV Freqency change state! \n");
+		return 0;
 	}
 
 	rtv_UpdateAdj();
@@ -428,16 +428,16 @@ U32 rtvISDBT_GetCNR(void)
 	RTV_REG_MASK_SET(0x25, 0x70, 0x10);
 	RTV_REG_MASK_SET(0x13, 0x80, 0x80);
 	RTV_REG_MASK_SET(0x13, 0x80, 0x00);
-		
-	val = ((RTV_REG_GET(0xCA)&0xff)<<16) 
-		| ((RTV_REG_GET(0xC9)&0xff)<<8) 
+
+	val = ((RTV_REG_GET(0xCA)&0xff)<<16)
+		| ((RTV_REG_GET(0xC9)&0xff)<<8)
 		| (RTV_REG_GET(0xC8)&0xff);
 
 	RTV_GUARD_FREE;
-	
- 	if (Mode == 1) {
+
+	if (Mode == 1) {
 		/* QPSK */
-		if (val > 270000) { 
+		if (val > 270000) {
 			cn_a = 0;
 			cn_b = 0;
 			return 0;
@@ -538,7 +538,7 @@ U32 rtvISDBT_GetCNR(void)
 		}
 	} 	else if (Mode == 2) {
 		/* 16 QAM  */
-		if (val > 353500) { 
+		if (val > 353500) {
 			cn_a = 0;
 			cn_b = 0;
 		} else if (val > 353500) {
@@ -635,7 +635,7 @@ U32 rtvISDBT_GetCNR(void)
 			cn_a = 30;
 			cn_b = 0;
 		}
-	} else {	
+	} else {
 		cn_a = 0;
 		cn_b = 0;
 		return 0;
@@ -688,22 +688,22 @@ void rtvISDBT_GetTMCC(RTV_ISDBT_TMCC_INFO *ptTmccInfo)
 	U8 tempSeg = 0, tempModule = 0, tempCoderate = 0, tempInterl = 0;
 
 	if (ptTmccInfo == NULL)	{
-		RTV_DBGMSG0("[rtvISDBT_GetTMCC] RTV Invalid buffer pointer!\n"); 
+		RTV_DBGMSG0("[rtvISDBT_GetTMCC] RTV Invalid buffer pointer!\n");
 		return;
 	}
-		
+
 	RTV_GUARD_LOCK;
 
 	if (g_fRtvChannelChange) {
 		RTV_GUARD_FREE;
 		RTV_DBGMSG0("[rtvISDBT_GetTMCC] RTV Freqency change state! \n");
-		return;	
+		return;
 	}
 
 	RTV_REG_MAP_SEL(OFDM_PAGE);
 	tempData = RTV_REG_GET(0xC6);
 	R_Data = ((tempData & 0x30) >> 2) | ((tempData & 0xC0) >> 2);
-	
+
 	switch (R_Data & 0x03) {
 	case 0:
 		ptTmccInfo->eGuard = RTV_ISDBT_GUARD_1_32;
@@ -733,7 +733,7 @@ void rtvISDBT_GetTMCC(RTV_ISDBT_TMCC_INFO *ptTmccInfo)
 		break;
 	default:
 		break;
-	}	
+	}
 
 	RTV_REG_MAP_SEL(FEC_PAGE);
 	ptTmccInfo->fEWS = (RTV_REG_GET(0x7D)>>4)&0x01; //EWS
@@ -742,8 +742,8 @@ void rtvISDBT_GetTMCC(RTV_ISDBT_TMCC_INFO *ptTmccInfo)
 	tempCoderate = ((R_Data>>3) & 0x07);
 	tempModule = (R_Data & 0x07);
 	R_Data = RTV_REG_GET(0x7C) & 0x7f;
-	tempInterl = R_Data & 0x07;		
-	tempSeg = (R_Data>>3) & 0x0f;	
+	tempInterl = R_Data & 0x07;
+	tempSeg = (R_Data>>3) & 0x0f;
 
 	switch (tempCoderate) {
 	case 0:
@@ -826,7 +826,7 @@ void rtvISDBT_GetTMCC(RTV_ISDBT_TMCC_INFO *ptTmccInfo)
 			break;
 		}
 		break;
-		
+
 	case RTV_ISDBT_MODE_1:
 		switch (tempInterl) {
 		case 0:
@@ -850,7 +850,7 @@ void rtvISDBT_GetTMCC(RTV_ISDBT_TMCC_INFO *ptTmccInfo)
 		break;
 	default:
 		break;
-	}	
+	}
 
 	switch (tempSeg) {
 	case 1:
@@ -880,9 +880,9 @@ void rtvISDBT_GetTMCC(RTV_ISDBT_TMCC_INFO *ptTmccInfo)
 #define OFDM_RETRY_MS_CNT	(MAX_OFDM_RETRY_MS / 10)
 #define TMCC_RETRY_MS_CNT	(MAX_TMCC_RETRY_MS / 10)
 
-INT rtvISDBT_ScanFrequency(UINT nChNum) 
+INT rtvISDBT_ScanFrequency(UINT nChNum)
 {
-	INT nRet = RTV_SUCCESS;	
+	INT nRet = RTV_SUCCESS;
 	UINT dwChannelFreq;
 	int pwr_threshold = 0;
 	int peak_pwr = 0;
@@ -928,7 +928,7 @@ INT rtvISDBT_ScanFrequency(UINT nChNum)
 	RTV_REG_SET(0x30, 0x20);
 	RTV_REG_SET(0x39, 0x5A);
 	RTV_REG_SET(0x3A, 0x45);
-	
+
 #if (RTV_SRC_CLK_FREQ_KHz == 19200)
 	if ((nChNum & 0x01) == 0x00)
 		RTV_REG_SET(0x8E, 0x58);
@@ -978,11 +978,11 @@ INT rtvISDBT_ScanFrequency(UINT nChNum)
 	RTV_REG_SET(0x29, 0x29);   //2014-03-14 raontech
 	RTV_REG_SET(0x2B, 0x21);   //2014-03-14 raontech
 
-	RTV_REG_SET(0x37, 0x86); 
+	RTV_REG_SET(0x37, 0x86);
 	RTV_REG_SET(0x30, 0x28);
 	RTV_REG_SET(0x39, 0x6A);
 	RTV_REG_SET(0x3A, 0x5F);
-	
+
 	RTV_REG_MASK_SET(0x10, 0x01, 0x01);
 	RTV_REG_MASK_SET(0x10, 0x01, 0x00);
 
@@ -992,23 +992,23 @@ INT rtvISDBT_ScanFrequency(UINT nChNum)
 #endif
 		do {
 			rtv_UpdateAdj();
- 
+
 	RTV_REG_MAP_SEL(OFDM_PAGE);
 			RTV_REG_MASK_SET(0x25, 0x70, 0x20);
 			RTV_REG_MASK_SET(0x13, 0x80, 0x80);
 			RTV_REG_MASK_SET(0x13, 0x80, 0x00);
-	
+
 			Mon_FSM = (RTV_REG_GET(0xC0)>>4) & 0x07;
 			peak_pwr2 = ((RTV_REG_GET(0xCA)&0x3f)<<16)
 				 | ((RTV_REG_GET(0xC9)&0xff)<<8)
 				 | (RTV_REG_GET(0xC8)&0xff);
-	
+
 			CoarseCheck = (RTV_REG_GET(0xC2) & 0x40) >> 6;
 			if (Mon_FSM == 0x04)
 				CoarseCheck = 1;
 			if ((CoarseCheck == 1) && (peak_pwr2 >= pwr_threshold))
 				break;
-				
+
 #if defined(__KERNEL__) /* Linux kernel */
 			end_jiffies = get_jiffies_64();
 			diff_time = jiffies_to_msecs(end_jiffies - start_jiffies);
@@ -1023,7 +1023,7 @@ INT rtvISDBT_ScanFrequency(UINT nChNum)
 #if defined(__KERNEL__) /* Linux kernel */
 //	RTV_DBGMSG2("\t@@ MON: i(%u), diff_time(%u)\n", MON_FSM_MS_CNT-i, diff_time);
 #endif
- 
+
 	if (CoarseCheck == 1){
 #if defined(__KERNEL__) /* Linux kernel */
 		start_jiffies = get_jiffies_64();
@@ -1063,7 +1063,7 @@ INT rtvISDBT_ScanFrequency(UINT nChNum)
 		#if defined(__KERNEL__) /* Linux kernel */
 					 end_jiffies_TMCC = get_jiffies_64();
 					 diff_time
-					 	= jiffies_to_msecs(end_jiffies_TMCC-start_jiffies_TMCC);
+						= jiffies_to_msecs(end_jiffies_TMCC-start_jiffies_TMCC);
 					 if (diff_time >= MAX_TMCC_RETRY_MS) {
 						RTV_DBGMSG3("\t@@ ch(%u), TMCC: nTMCC_LockCnt(%u), diff_time(%u)\n", nChNum, TMCC_RETRY_MS_CNT-nTMCC_LockCnt, diff_time);
 						scan_stage= -3;
@@ -1101,12 +1101,12 @@ INT rtvISDBT_ScanFrequency(UINT nChNum)
 		 } while (--nOFDM_LockCnt);
 	 }
 	 else
-	 	scan_stage= -1;
+		scan_stage= -1;
 
 ISDBT_SCAN_FREQ_EXIT:
 	g_fRtvChannelChange = FALSE;
- 
- 	RTV_REG_MAP_SEL(OFDM_PAGE);
+
+	RTV_REG_MAP_SEL(OFDM_PAGE);
 	RTV_REG_SET(0x27, 0x5B);   //2014-03-14 raontech
 	RTV_REG_SET(0x24, 0x08);   //2014-03-14 raontech
 	RTV_REG_SET(0x29, 0x69);   //2014-03-14 raontech
@@ -1124,7 +1124,7 @@ ISDBT_SCAN_FREQ_EXIT:
 	RTV_DBGMSG3("\tOFDML = %d, OFDM_L_Cnt = %d SCAN Stage : %d\n", OFDM_L, OFDM_RETRY_MS_CNT - nOFDM_LockCnt,scan_stage);
 	RTV_DBGMSG3("\tTMCCL = %d, TMCC_L_Cnt = %d Lock Result : %d\n\n", TMCC_L, TMCC_RETRY_MS_CNT - nTMCC_LockCnt,sucess_flag);
 #endif
- 
+
 	return sucess_flag;
 }
 
@@ -1141,7 +1141,7 @@ void rtvISDBT_DisableStreamOut(void)
 void rtvISDBT_EnableStreamOut(void)
 {
 	RTV_GUARD_LOCK;
-	
+
 	rtv_StreamEnable();
 
 	RTV_GUARD_FREE;
@@ -1173,11 +1173,11 @@ void rtvISDBT_SwReset(void)
 	RTV_REG_MAP_SEL(OFDM_PAGE);
 	RTV_REG_MASK_SET(0x10,0x01,0x01);
 	RTV_REG_MASK_SET(0x10,0x01,0x00);
-	
+
 	RTV_REG_MAP_SEL(FEC_PAGE);
-	RTV_REG_MASK_SET(0xFB,0x01,0x01); 
+	RTV_REG_MASK_SET(0xFB,0x01,0x01);
 	RTV_REG_MASK_SET(0xFB,0x01,0x00);
-	
+
 	RTV_GUARD_FREE;
 }
 
@@ -1238,9 +1238,7 @@ INT rtvISDBT_Initialize(E_RTV_COUNTRY_BAND_TYPE eRtvCountryBandType,
 	RTV_DELAY_MS(100);
 
 	RTV_REG_MAP_SEL(RF_PAGE);
-	RTV_REG_SET(0x8F, 0x1C); 
+	RTV_REG_SET(0x8F, 0x1C);
 
 	return RTV_SUCCESS;
 }
-
-

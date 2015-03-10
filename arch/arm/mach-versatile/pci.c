@@ -118,13 +118,13 @@ static int versatile_read_config(struct pci_bus *bus, unsigned int devfn, int wh
 			v = __raw_readl(addr);
 			if (where & 2) v >>= 16;
 			if (where & 1) v >>= 8;
- 			v &= 0xff;
+			v &= 0xff;
 			break;
 
 		case 2:
 			v = __raw_readl(addr);
 			if (where & 2) v >>= 16;
- 			v &= 0xffff;
+			v &= 0xffff;
 			break;
 
 		default:

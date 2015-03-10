@@ -1,6 +1,6 @@
 /*
- * Device Tree Source for ACube Sam440ep  based off bamboo.dts code 
- * original copyrights below 
+ * Device Tree Source for ACube Sam440ep  based off bamboo.dts code
+ * original copyrights below
  *
  * Copyright (c) 2006, 2007 IBM Corp.
  * Josh Boyer <jwboyer@linux.vnet.ibm.com>
@@ -121,17 +121,17 @@
 		};
 
 		POB0: opb {
-		  	compatible = "ibm,opb-440ep", "ibm,opb-440gp", "ibm,opb";
+			compatible = "ibm,opb-440ep", "ibm,opb-440gp", "ibm,opb";
 			#address-cells = <1>;
 			#size-cells = <1>;
 			/* Bamboo is oddball in the 44x world and doesn't use the ERPN
 			 * bits.
 			 */
-		  	ranges = <0x00000000 0 0x00000000 0x80000000
+			ranges = <0x00000000 0 0x00000000 0x80000000
 			          0x80000000 0 0x80000000 0x80000000>;
-		  	interrupt-parent = <&UIC1>;
-		  	interrupts = <7 4>;
-		  	clock-frequency = <0>; /* Filled in by zImage */
+			interrupt-parent = <&UIC1>;
+			interrupts = <7 4>;
+			clock-frequency = <0>; /* Filled in by zImage */
 
 			EBC0: ebc {
 				compatible = "ibm,ebc-440ep", "ibm,ebc-440gp", "ibm,ebc";
@@ -144,48 +144,48 @@
 			};
 
 			UART0: serial@ef600300 {
-		   		device_type = "serial";
-		   		compatible = "ns16550";
-		   		reg = <0xef600300 8>;
-		   		virtual-reg = <0xef600300>;
-		   		clock-frequency = <0>; /* Filled in by zImage */
-		   		current-speed = <0x1c200>;
-		   		interrupt-parent = <&UIC0>;
-		   		interrupts = <0 4>;
-	   		};
+				device_type = "serial";
+				compatible = "ns16550";
+				reg = <0xef600300 8>;
+				virtual-reg = <0xef600300>;
+				clock-frequency = <0>; /* Filled in by zImage */
+				current-speed = <0x1c200>;
+				interrupt-parent = <&UIC0>;
+				interrupts = <0 4>;
+			};
 
 			UART1: serial@ef600400 {
-		   		device_type = "serial";
-		   		compatible = "ns16550";
-		   		reg = <0xef600400 8>;
-		   		virtual-reg = <0xef600400>;
-		   		clock-frequency = <0>;
-		   		current-speed = <0>;
-		   		interrupt-parent = <&UIC0>;
-		   		interrupts = <1 4>;
-	   		};
+				device_type = "serial";
+				compatible = "ns16550";
+				reg = <0xef600400 8>;
+				virtual-reg = <0xef600400>;
+				clock-frequency = <0>;
+				current-speed = <0>;
+				interrupt-parent = <&UIC0>;
+				interrupts = <1 4>;
+			};
 
 			UART2: serial@ef600500 {
-		   		device_type = "serial";
-		   		compatible = "ns16550";
-		   		reg = <0xef600500 8>;
-		   		virtual-reg = <0xef600500>;
-		   		clock-frequency = <0>;
-		   		current-speed = <0>;
-		   		interrupt-parent = <&UIC0>;
-		   		interrupts = <3 4>;
-	   		};
+				device_type = "serial";
+				compatible = "ns16550";
+				reg = <0xef600500 8>;
+				virtual-reg = <0xef600500>;
+				clock-frequency = <0>;
+				current-speed = <0>;
+				interrupt-parent = <&UIC0>;
+				interrupts = <3 4>;
+			};
 
 			UART3: serial@ef600600 {
-		   		device_type = "serial";
-		   		compatible = "ns16550";
-		   		reg = <0xef600600 8>;
-		   		virtual-reg = <0xef600600>;
-		   		clock-frequency = <0>;
-		   		current-speed = <0>;
-		   		interrupt-parent = <&UIC0>;
-		   		interrupts = <4 4>;
-	   		};
+				device_type = "serial";
+				compatible = "ns16550";
+				reg = <0xef600600 8>;
+				virtual-reg = <0xef600600>;
+				clock-frequency = <0>;
+				current-speed = <0>;
+				interrupt-parent = <&UIC0>;
+				interrupts = <4 4>;
+			};
 
 			IIC0: i2c@ef600700 {
                                 #address-cells = <1>;
@@ -260,7 +260,7 @@
 				reg = <0xef601000 0x80>;
 				interrupts = <8 4 9 4>;
 				interrupt-parent = <&UIC1>;
-			};	
+			};
 		};
 
 		PCI0: pci@ec000000 {

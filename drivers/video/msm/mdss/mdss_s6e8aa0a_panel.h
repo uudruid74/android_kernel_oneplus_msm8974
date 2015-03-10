@@ -46,7 +46,7 @@ enum {
 
 
  struct display_status{
- 	unsigned char auto_brightness;
+	unsigned char auto_brightness;
 	int bright_level;
 	int siop_status;
 	unsigned char acl_on;
@@ -57,7 +57,7 @@ enum {
  };
 
  struct mdss_samsung_driver_data{
- 	struct dsi_buf samsung_tx_buf;
+	struct dsi_buf samsung_tx_buf;
 	struct msm_fb_data_type *mfd;
 	struct dsi_buf samsung_rx_buf;
 	struct mdss_panel_common_pdata *mdss_samsung_disp_pdata;
@@ -147,7 +147,7 @@ enum {
 	PANEL_LDI_FPS_CHANGE,
 	PANEL_LDI_SET_VDDM_OFFSET, /*LDI_ADJ_VDDM_OFFSET*/
 	PANEL_PARTIAL_ON,
-	PANEL_PARTIAL_OFF	
+	PANEL_PARTIAL_OFF
 };
 
 void mdnie_lite_tuning_init(struct mdss_samsung_driver_data* msd);

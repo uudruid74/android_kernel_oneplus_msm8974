@@ -43,4 +43,3 @@ enum hbtp_afe_power_cmd {
 					enum hbtp_afe_power_cmd)
 
 #endif	/* _HBTP_INPUT_H */
-

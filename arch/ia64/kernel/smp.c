@@ -201,7 +201,7 @@ send_IPI_self (int op)
 void
 kdump_smp_send_stop(void)
 {
- 	send_IPI_allbutself(IPI_KDUMP_CPU_STOP);
+	send_IPI_allbutself(IPI_KDUMP_CPU_STOP);
 }
 
 void

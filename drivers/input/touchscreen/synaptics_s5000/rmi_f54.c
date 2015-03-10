@@ -2112,11 +2112,11 @@ static ssize_t cmd_list_show(struct device *dev,
 	return snprintf(buf, PAGE_SIZE, "%s\n", buffer);
 }
 
-/* Caution : Below function run the force calibration for the mutual touch. 
-* So it should be used for the specific case. 
-*/ 
-int synaptics_rmi4_force_calibration(void) 
-{ 
+/* Caution : Below function run the force calibration for the mutual touch.
+* So it should be used for the specific case.
+*/
+int synaptics_rmi4_force_calibration(void)
+{
 	int retval;
 	unsigned char command;
 	struct synaptics_rmi4_data *rmi4_data;

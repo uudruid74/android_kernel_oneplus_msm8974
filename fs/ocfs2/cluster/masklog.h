@@ -136,11 +136,11 @@ extern struct mlog_bits mlog_and_bits, mlog_not_bits;
 	  ((u64)(mask) >> 32) & bits.words[1] )
 #define __mlog_set_u64(mask, bits) do {			\
 	bits.words[0] |= (u32)(mask & 0xffffffff);	\
-       	bits.words[1] |= (u64)(mask) >> 32;		\
+	bits.words[1] |= (u64)(mask) >> 32;		\
 } while (0)
 #define __mlog_clear_u64(mask, bits) do {		\
 	bits.words[0] &= ~((u32)(mask & 0xffffffff));	\
-       	bits.words[1] &= ~((u64)(mask) >> 32);		\
+	bits.words[1] &= ~((u64)(mask) >> 32);		\
 } while (0)
 #define MLOG_BITS_RHS(mask) {				\
 	{						\

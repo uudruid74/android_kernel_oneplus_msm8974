@@ -34,8 +34,8 @@ extern "C" {
 #define ISDB_PR_ERR(A,...) pr_err("[FC8300_SPI]"A,##__VA_ARGS__)
 
 /* NOT shown at FACTORY */
-#define ISDB_PR_INFO(A,...) 
-#define ISDB_PR_DBG(A,...) 
+#define ISDB_PR_INFO(A,...)
+#define ISDB_PR_DBG(A,...)
 #else
 extern unsigned int sec_dbg_level;
 
@@ -56,7 +56,7 @@ extern unsigned int sec_dbg_level;
 			pr_debug("[FC8300_SPI]"A,##__VA_ARGS__);\
 	} while(0)
 #endif
-	
+
 /* #define FEATURE_DEBUG_BROADCAST */
 /* #define TS_DROP_DEBUG */
 //#define BBM_I2C_SPI
@@ -452,4 +452,3 @@ extern unsigned int sec_dbg_level;
 #endif
 
 #endif /* __FC8300_REGS_H__ */
-

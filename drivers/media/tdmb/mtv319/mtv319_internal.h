@@ -656,7 +656,7 @@ static INLINE INT rtv_OpenFIC(enum E_TDMB_STATE eTdmbState)
 
 /*=============================================================================
 * External functions for RAONTV driver core.
-*============================================================================*/ 
+*============================================================================*/
 INT rtv_InitSystem(void);
 
 #ifdef __cplusplus
@@ -664,5 +664,3 @@ INT rtv_InitSystem(void);
 #endif
 
 #endif /* __MTV319_INTERNAL_H__ */
-
-

@@ -870,7 +870,7 @@
    across the syscall. */
 
 #define K_CALL_CLOB_REGS "%r1", "%r2", K_USING_GR4 \
-	        	 "%r20", "%r29", "%r31"
+			 "%r20", "%r29", "%r31"
 
 #undef K_INLINE_SYSCALL
 #define K_INLINE_SYSCALL(name, nr, args...)	({			\

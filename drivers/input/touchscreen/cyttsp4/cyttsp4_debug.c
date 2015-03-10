@@ -362,7 +362,7 @@ int cyttsp4_debug_probe(struct device *dev)
 		dev_err(dev, "%s: cmd invalid\n", __func__);
 		return -EINVAL;
 	}
-	
+
 	/* get context and debug print buffers */
 	dd = kzalloc(sizeof(*dd), GFP_KERNEL);
 	if (!dd) {

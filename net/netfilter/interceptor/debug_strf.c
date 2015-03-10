@@ -203,4 +203,3 @@ format_ipaddress(
 
   return used;
 }
-

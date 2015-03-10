@@ -534,4 +534,3 @@ void zfcp_dbf_adapter_unregister(struct zfcp_adapter *adapter)
 	adapter->dbf = NULL;
 	zfcp_dbf_unregister(dbf);
 }
-

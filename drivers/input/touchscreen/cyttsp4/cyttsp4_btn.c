@@ -266,7 +266,7 @@ int cyttsp4_btn_probe(struct device *dev)
 	int rc = 0;
 
 	dev_info(dev, "%s: \n",	__func__);
-	
+
 	if (!pdata || !pdata->btn_pdata) {
 		dev_err(dev, "%s: Missing platform data\n", __func__);
 		rc = -ENODEV;
@@ -330,7 +330,7 @@ int cyttsp4_btn_release(struct device *dev)
 	struct cyttsp4_btn_data *bd = &cd->bd;
 
 	dev_info(dev, "%s: \n",	__func__);
-	
+
 	if (bd->input_device_registered) {
 		input_unregister_device(bd->input);
 	} else {

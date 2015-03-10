@@ -237,9 +237,9 @@ static PyObject *pyrf_read_event__repr(struct pyrf_event *pevent)
 				   pevent->event.read.pid,
 				   pevent->event.read.tid);
 	/*
- 	 * FIXME: return the array of read values,
- 	 * making this method useful ;-)
- 	 */
+	 * FIXME: return the array of read values,
+	 * making this method useful ;-)
+	 */
 }
 
 static PyTypeObject pyrf_read_event__type = {
@@ -754,7 +754,7 @@ static PyObject *pyrf_evlist__get_pollfd(struct pyrf_evlist *pevlist,
 			Py_DECREF(file);
 			goto free_list;
 		}
-			
+
 		Py_DECREF(file);
 	}
 

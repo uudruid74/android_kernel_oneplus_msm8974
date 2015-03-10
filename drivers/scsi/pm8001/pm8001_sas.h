@@ -499,4 +499,3 @@ int pm8001_bar4_shift(struct pm8001_hba_info *pm8001_ha, u32 shiftValue);
 extern struct device_attribute *pm8001_host_attrs[];
 
 #endif
-

@@ -822,14 +822,14 @@ static int resp_inquiry(struct scsi_cmnd * scp, int target,
 	arr[0] = pq_pdt;
 	if (0x2 & cmd[1]) {  /* CMDDT bit set */
 		mk_sense_buffer(devip, ILLEGAL_REQUEST, INVALID_FIELD_IN_CDB,
-			       	0);
+				0);
 		kfree(arr);
 		return check_condition_result;
 	} else if (0x1 & cmd[1]) {  /* EVPD bit set */
 		int lu_id_num, port_group_id, target_dev_id, len;
 		char lu_id_str[6];
 		int host_no = devip->sdbg_host->shost->host_no;
-		
+
 		port_group_id = (((host_no + 1) & 0x7f) << 8) +
 		    (devip->channel & 0x7f);
 		if (0 == scsi_debug_vpd_use_hostno)
@@ -1002,7 +1002,7 @@ static int resp_start_stop(struct scsi_cmnd * scp,
 	power_cond = (cmd[4] & 0xf0) >> 4;
 	if (power_cond) {
 		mk_sense_buffer(devip, ILLEGAL_REQUEST, INVALID_FIELD_IN_CDB,
-			       	0);
+				0);
 		return check_condition_result;
 	}
 	start = cmd[4] & 1;
@@ -1356,7 +1356,7 @@ static int resp_mode_sense(struct scsi_cmnd * scp, int target,
 	memset(arr, 0, SDEBUG_MAX_MSENSE_SZ);
 	if (0x3 == pcontrol) {  /* Saving values not supported */
 		mk_sense_buffer(devip, ILLEGAL_REQUEST, SAVING_PARAMS_UNSUP,
-			       	0);
+				0);
 		return check_condition_result;
 	}
 	target_dev_id = ((devip->sdbg_host->shost->host_no + 1) * 2000) +
@@ -1400,8 +1400,8 @@ static int resp_mode_sense(struct scsi_cmnd * scp, int target,
 	} else if (16 == bd_len) {
 		unsigned long long capac = sdebug_capacity;
 
-        	for (k = 0; k < 8; ++k, capac >>= 8)
-                	ap[7 - k] = capac & 0xff;
+		for (k = 0; k < 8; ++k, capac >>= 8)
+			ap[7 - k] = capac & 0xff;
 		ap[12] = (scsi_debug_sector_size >> 24) & 0xff;
 		ap[13] = (scsi_debug_sector_size >> 16) & 0xff;
 		ap[14] = (scsi_debug_sector_size >> 8) & 0xff;
@@ -1413,7 +1413,7 @@ static int resp_mode_sense(struct scsi_cmnd * scp, int target,
 	if ((subpcode > 0x0) && (subpcode < 0xff) && (0x19 != pcode)) {
 		/* TODO: Control Extension page */
 		mk_sense_buffer(devip, ILLEGAL_REQUEST, INVALID_FIELD_IN_CDB,
-			       	0);
+				0);
 		return check_condition_result;
 	}
 	switch (pcode) {
@@ -1480,7 +1480,7 @@ static int resp_mode_sense(struct scsi_cmnd * scp, int target,
 		break;
 	default:
 		mk_sense_buffer(devip, ILLEGAL_REQUEST, INVALID_FIELD_IN_CDB,
-			       	0);
+				0);
 		return check_condition_result;
 	}
 	if (msense_6)
@@ -2256,7 +2256,7 @@ static int resp_report_luns(struct scsi_cmnd * scp,
 	alloc_len = cmd[9] + (cmd[8] << 8) + (cmd[7] << 16) + (cmd[6] << 24);
 	if ((alloc_len < 4) || (select_report > 2)) {
 		mk_sense_buffer(devip, ILLEGAL_REQUEST, INVALID_FIELD_IN_CDB,
-			       	0);
+				0);
 		return check_condition_result;
 	}
 	/* can produce response with up to 16k luns (lun 0 to lun 16383) */

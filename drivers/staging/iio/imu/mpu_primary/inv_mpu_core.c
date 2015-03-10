@@ -4392,4 +4392,3 @@ MODULE_AUTHOR("Invensense Corporation");
 MODULE_DESCRIPTION("Invensense device driver");
 MODULE_LICENSE("GPL");
 MODULE_ALIAS("inv-mpu-iio");
-

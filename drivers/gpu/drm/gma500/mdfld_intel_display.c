@@ -1177,4 +1177,3 @@ const struct drm_crtc_helper_funcs mdfld_helper_funcs = {
 	.prepare = psb_intel_crtc_prepare,
 	.commit = psb_intel_crtc_commit,
 };
-

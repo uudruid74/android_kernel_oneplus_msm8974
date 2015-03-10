@@ -479,7 +479,7 @@ enum {
 	ES705_AUD_ZOOM_NARRATION
 };
 
-/* 
+/*
  * Default delay before switch to sleep - 2sec
  * To change delay value use SYSFS sleep delay entry
  */

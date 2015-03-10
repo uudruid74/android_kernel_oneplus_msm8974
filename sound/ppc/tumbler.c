@@ -20,7 +20,7 @@
  *   Rene Rebe <rene.rebe@gmx.net>:
  *     * update from shadow registers on wakeup and headphone plug
  *     * automatically toggle DRC on headphone plug
- *	
+ *
  */
 
 
@@ -63,7 +63,7 @@
 
 /* tas3001c */
 #define TAS_REG_PCM	TAS_REG_INPUT1
- 
+
 /* tas3004 */
 #define TAS_REG_LMIX	TAS_REG_INPUT1
 #define TAS_REG_RMIX	TAS_REG_INPUT2
@@ -164,7 +164,7 @@ static int snapper_init_client(struct pmac_keywest *i2c)
 	DBG("(I) snapper init client\n");
 	return send_init_client(i2c, regs);
 }
-	
+
 /*
  * gpio access
  */
@@ -212,10 +212,10 @@ static int tumbler_set_master_volume(struct pmac_tumbler *mix)
 {
 	unsigned char block[6];
 	unsigned int left_vol, right_vol;
-  
+
 	if (! mix->i2c.client)
 		return -ENODEV;
-  
+
 	if (! mix->master_switch[0])
 		left_vol = 0;
 	else {
@@ -240,7 +240,7 @@ static int tumbler_set_master_volume(struct pmac_tumbler *mix)
 	block[3] = (right_vol >> 16) & 0xff;
 	block[4] = (right_vol >> 8)  & 0xff;
 	block[5] = (right_vol >> 0)  & 0xff;
-  
+
 	if (i2c_smbus_write_i2c_block_data(mix->i2c.client, TAS_REG_VOL, 6,
 					   block) < 0) {
 		snd_printk(KERN_ERR "failed to set volume \n");
@@ -338,7 +338,7 @@ static int tumbler_set_drc(struct pmac_tumbler *mix)
 
 	if (! mix->i2c.client)
 		return -ENODEV;
-  
+
 	if (mix->drc_enable) {
 		val[0] = 0xc1; /* enable, 3:1 compression */
 		if (mix->drc_range > TAS3001_DRC_MAX)
@@ -373,7 +373,7 @@ static int snapper_set_drc(struct pmac_tumbler *mix)
 
 	if (! mix->i2c.client)
 		return -ENODEV;
-  
+
 	if (mix->drc_enable)
 		val[0] = 0x50; /* 3:1 above threshold */
 	else
@@ -500,10 +500,10 @@ static int tumbler_set_mono_volume(struct pmac_tumbler *mix,
 	unsigned char block[4];
 	unsigned int vol;
 	int i;
-  
+
 	if (! mix->i2c.client)
 		return -ENODEV;
-  
+
 	vol = mix->mono_vol[info->index];
 	if (vol >= info->max)
 		vol = info->max - 1;
@@ -757,7 +757,7 @@ static int tumbler_put_mute_switch(struct snd_kcontrol *kcontrol,
 #ifdef PMAC_SUPPORT_AUTOMUTE
 	if (chip->update_automute && chip->auto_mute)
 		return 0; /* don't touch in the auto-mute mode */
-#endif	
+#endif
 	if (! (mix = chip->mixer_data))
 		return -ENODEV;
 	switch(kcontrol->private_value) {
@@ -1063,17 +1063,17 @@ static struct device_node *find_audio_device(const char *name)
 {
 	struct device_node *gpiop;
 	struct device_node *np;
-  
+
 	gpiop = of_find_node_by_name(NULL, "gpio");
 	if (! gpiop)
 		return NULL;
-  
+
 	for (np = of_get_next_child(gpiop, NULL); np;
 			np = of_get_next_child(gpiop, np)) {
 		const char *property = of_get_property(np, "audio-gpio", NULL);
 		if (property && strcmp(property, name) == 0)
 			break;
-	}  
+	}
 	of_node_put(gpiop);
 	return np;
 }
@@ -1083,16 +1083,16 @@ static struct device_node *find_compatible_audio_device(const char *name)
 {
 	struct device_node *gpiop;
 	struct device_node *np;
-  
+
 	gpiop = of_find_node_by_name(NULL, "gpio");
 	if (!gpiop)
 		return NULL;
-  
+
 	for (np = of_get_next_child(gpiop, NULL); np;
 			np = of_get_next_child(gpiop, np)) {
 		if (of_device_is_compatible(np, name))
 			break;
-	}  
+	}
 	of_node_put(gpiop);
 	return np;
 }
@@ -1314,9 +1314,9 @@ static int __devinit tumbler_init(struct snd_pmac *chip)
 		irq = tumbler_find_device("keywest-gpio15",
 					  NULL, &mix->hp_detect, 1);
 	mix->headphone_irq = irq;
- 	irq = tumbler_find_device("line-output-detect",
+	irq = tumbler_find_device("line-output-detect",
 				  NULL, &mix->line_detect, 0);
- 	if (irq <= NO_IRQ)
+	if (irq <= NO_IRQ)
 		irq = tumbler_find_device("line-output-detect",
 					  NULL, &mix->line_detect, 1);
 	if (IS_G4DA && irq <= NO_IRQ)
@@ -1325,7 +1325,7 @@ static int __devinit tumbler_init(struct snd_pmac *chip)
 	mix->lineout_irq = irq;
 
 	tumbler_reset_audio(chip);
-  
+
 	return 0;
 }
 
@@ -1471,7 +1471,7 @@ int __devinit snd_pmac_tumbler_init(struct snd_pmac *chip)
 	tumbler_update_automute(chip, 0); /* update the status only */
 
 	/* activate headphone status interrupts */
-  	if (mix->headphone_irq >= 0) {
+	if (mix->headphone_irq >= 0) {
 		unsigned char val;
 		if ((err = request_irq(mix->headphone_irq, headphone_intr, 0,
 				       "Sound Headphone Detection", chip)) < 0)
@@ -1480,7 +1480,7 @@ int __devinit snd_pmac_tumbler_init(struct snd_pmac *chip)
 		val = do_gpio_read(&mix->hp_detect);
 		do_gpio_write(&mix->hp_detect, val | 0x80);
 	}
-  	if (mix->lineout_irq >= 0) {
+	if (mix->lineout_irq >= 0) {
 		unsigned char val;
 		if ((err = request_irq(mix->lineout_irq, headphone_intr, 0,
 				       "Sound Lineout Detection", chip)) < 0)

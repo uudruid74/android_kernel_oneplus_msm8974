@@ -1362,4 +1362,3 @@ int tipc_send_buf2port(u32 ref, struct tipc_portid const *dest,
 		return dsz;
 	return -ELINKCONG;
 }
-

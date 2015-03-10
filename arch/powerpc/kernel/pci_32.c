@@ -86,7 +86,7 @@ make_one_node_map(struct device_node* node, u8 pci_bus)
 	for_each_child_of_node(node, node) {
 		struct pci_dev* dev;
 		const unsigned int *class_code, *reg;
-	
+
 		class_code = of_get_property(node, "class-code", NULL);
 		if (!class_code || ((*class_code >> 8) != PCI_CLASS_BRIDGE_PCI &&
 			(*class_code >> 8) != PCI_CLASS_BRIDGE_CARDBUS))
@@ -103,7 +103,7 @@ make_one_node_map(struct device_node* node, u8 pci_bus)
 		pci_dev_put(dev);
 	}
 }
-	
+
 void
 pcibios_make_OF_bus_map(void)
 {
@@ -306,5 +306,3 @@ long sys_pciconfig_iobase(long which, unsigned long bus, unsigned long devfn)
 
 	return result;
 }
-
-

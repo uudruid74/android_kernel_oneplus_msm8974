@@ -272,7 +272,7 @@ static irqreturn_t pxa_irda_sir_irq(int irq, void *dev_id)
 
 	switch  (iir & 0x0F) {
 	case 0x06: /* Receiver Line Status */
-	  	lsr = STLSR;
+		lsr = STLSR;
 		while (lsr & LSR_FIFOE) {
 			data = STRBR;
 			if (lsr & (LSR_OE | LSR_PE | LSR_FE | LSR_BI)) {
@@ -293,21 +293,21 @@ static irqreturn_t pxa_irda_sir_irq(int irq, void *dev_id)
 		break;
 
 	case 0x04: /* Received Data Available */
-	  	   /* forth through */
+		   /* forth through */
 
 	case 0x0C: /* Character Timeout Indication */
-	  	do  {
+		do  {
 		    dev->stats.rx_bytes++;
 	            async_unwrap_char(dev, &dev->stats, &si->rx_buff, STRBR);
-	  	} while (STLSR & LSR_DR);
+		} while (STLSR & LSR_DR);
 		si->last_oscr = OSCR;
-	  	break;
+		break;
 
 	case 0x02: /* Transmit FIFO Data Request */
-	    	while ((si->tx_buff.len) && (STLSR & LSR_TDRQ)) {
-	    		STTHR = *si->tx_buff.data++;
+		while ((si->tx_buff.len) && (STLSR & LSR_TDRQ)) {
+			STTHR = *si->tx_buff.data++;
 			si->tx_buff.len -= 1;
-	    	}
+		}
 
 		if (si->tx_buff.len == 0) {
 			dev->stats.tx_packets++;
@@ -319,10 +319,10 @@ static irqreturn_t pxa_irda_sir_irq(int irq, void *dev_id)
 			si->last_oscr = OSCR;
 
 			/*
-		 	* Ok, we've finished transmitting.  Now enable
-		 	* the receiver.  Sometimes we get a receive IRQ
-		 	* immediately after a transmit...
-		 	*/
+			* Ok, we've finished transmitting.  Now enable
+			* the receiver.  Sometimes we get a receive IRQ
+			* immediately after a transmit...
+			*/
 			if (si->newspeed) {
 				pxa_irda_set_speed(si, si->newspeed);
 				si->newspeed = 0;

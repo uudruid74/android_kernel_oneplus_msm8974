@@ -44,4 +44,3 @@
 
 
 #endif /* __RTL8712_DEBUGCTRL_REGDEF_H__ */
-

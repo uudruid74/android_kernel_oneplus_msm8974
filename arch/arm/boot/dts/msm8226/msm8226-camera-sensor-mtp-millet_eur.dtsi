@@ -53,7 +53,7 @@
 		qcom,cci-master = <0>;
 		status = "ok";
 	};
- 
+
 	qcom,camera@2 {
 		cell-index = <2>;
 		compatible = "qcom,camera";
@@ -72,7 +72,7 @@
 				<&msmgpio 35 0>,
 				<&pm8226_gpios 6 0>,
 				<&msmgpio 112 0>,
-				<&msmgpio 16 0>;	
+				<&msmgpio 16 0>;
 		qcom,gpio-reset = <1>;
 		qcom,gpio-standby = <2>;
 		qcom,gpio-ext-camio-en = <3>;
@@ -83,6 +83,6 @@
 		qcom,gpio-req-tbl-label = "CAMIF_MCLK","CAM_RESET","CAM_STBY","CAM_IO_EN","CAM_ANALOG_EN","VTCAM_EN";
 		qcom,cci-master = <0>;
 		status = "ok";
-	};	
-	
+	};
+
 };

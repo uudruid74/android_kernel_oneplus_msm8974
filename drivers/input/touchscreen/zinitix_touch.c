@@ -969,7 +969,7 @@ out:
 		//zinitix_debug_msg("periodical esd repeated int occured\r\n");
 		if(write_cmd(info->client, BT532_CLEAR_INT_STATUS_CMD) != I2C_SUCCESS)
 			return false;
-		udelay(DELAY_FOR_SIGNAL_DELAY);	
+		udelay(DELAY_FOR_SIGNAL_DELAY);
 		return true;
 	}
 

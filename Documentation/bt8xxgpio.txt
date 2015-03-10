@@ -64,4 +64,3 @@ The GPIO pins are marked with G00-G23
            | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
            ^
            This is pin 1
-

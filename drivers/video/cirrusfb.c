@@ -2993,4 +2993,3 @@ static void cirrusfb_dbg_reg_dump(struct fb_info *info, caddr_t regbase)
 }
 
 #endif				/* CIRRUSFB_DEBUG */
-

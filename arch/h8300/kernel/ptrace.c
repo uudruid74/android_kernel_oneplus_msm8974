@@ -60,12 +60,12 @@ long arch_ptrace(struct task_struct *child, long request,
 	/* read the word at location addr in the USER area. */
 		case PTRACE_PEEKUSR: {
 			unsigned long tmp = 0;
-			
+
 			if ((addr & 3) || addr >= sizeof(struct user)) {
 				ret = -EIO;
 				break ;
 			}
-			
+
 		        ret = 0;  /* Default return condition */
 
 			if (regno < H8300_REGS_NO)
@@ -99,7 +99,7 @@ long arch_ptrace(struct task_struct *child, long request,
 				ret = -EIO;
 				break ;
 			}
-			    
+
 			if (regno == PT_ORIG_ER0) {
 				ret = -EIO;
 				break ;
@@ -112,7 +112,7 @@ long arch_ptrace(struct task_struct *child, long request,
 			break ;
 
 		case PTRACE_GETREGS: { /* Get all gp regs from the child. */
-		  	int i;
+			int i;
 			unsigned long tmp;
 			for (i = 0; i < H8300_REGS_NO; i++) {
 			    tmp = h8300_get_reg(child, i);

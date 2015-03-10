@@ -99,7 +99,7 @@
 		qcom,scl-gpio = <&msmgpio 19 0>;
 		qcom,sda-gpio = <&msmgpio 18 0>;
 
-		/*		
+		/*
 		touchcontroller@67 {
 			compatible = "bcmtch15xxx";
 			reg = <0x67>;
@@ -120,8 +120,8 @@
 			ext-button-count = <2>;
 			ext-button-map = <139 158>;
 		}; */
-		
-		/*		
+
+		/*
 		zinitix_touch@20 {
 				compatible = "zinitix,zinitix_touch";
 				reg = <0x20>;

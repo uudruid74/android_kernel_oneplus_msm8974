@@ -71,7 +71,7 @@ static int fc8150_i2c_probe(struct i2c_client *i2c_client,
 	PRINTF(NULL, "fc8150_i2c_probe called \n");
 	fc8150_i2c = i2c_client;
 	i2c_set_clientdata(i2c_client, NULL);
-	
+
 
 	PRINTF(NULL, "fc8150_i2c_probe OK \n");
 	return 0;
@@ -204,7 +204,7 @@ int fc8150_i2c_init(HANDLE hDevice, u16 param1, u16 param2)
 
 	if (fc8150_i2c == NULL)	//shubham
 		return -ENOMEM;
-		
+
 	res = i2c_add_driver(&fc8150_i2c_driver);
 
 	fc8150_tsif_setting(hDevice);

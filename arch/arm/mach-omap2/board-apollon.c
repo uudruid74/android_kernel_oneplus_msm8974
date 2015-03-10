@@ -335,7 +335,7 @@ static void __init omap_apollon_init(void)
 	omap_ctrl_writel(v, OMAP2_CONTROL_DEVCONF0);
 
 	/*
- 	 * Make sure the serial ports are muxed on at this point.
+	 * Make sure the serial ports are muxed on at this point.
 	 * You have to mux them off in device drivers later on
 	 * if not needed.
 	 */

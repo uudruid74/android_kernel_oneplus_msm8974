@@ -32,7 +32,7 @@
 /* Set the Edge Triggered behaviour for the target file descriptor */
 #define EPOLLET (1 << 31)
 
-/* 
+/*
  * On x86-64 make the 64bit structure have the same alignment as the
  * 32bit structure. This makes 32bit emulation easier.
  *
@@ -106,4 +106,3 @@ static inline void eventpoll_release(struct file *file) {}
 #endif /* #ifdef __KERNEL__ */
 
 #endif /* #ifndef _LINUX_EVENTPOLL_H */
-

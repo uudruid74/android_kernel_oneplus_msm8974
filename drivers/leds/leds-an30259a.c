@@ -871,7 +871,7 @@ static int __devinit an30259a_probe(struct i2c_client *client,
 		dev_err(&client->dev, "need I2C_FUNC_I2C.\n");
 		return -ENODEV;
 	}
- 
+
 	data = kzalloc(sizeof(*data), GFP_KERNEL);
 	if (!data) {
 		dev_err(&client->adapter->dev,

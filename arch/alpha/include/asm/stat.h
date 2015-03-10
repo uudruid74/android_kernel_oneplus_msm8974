@@ -37,12 +37,12 @@ struct stat64 {
 	unsigned int	__pad0;
 
 	unsigned long	st_atime;
-	unsigned long 	st_atime_nsec; 
+	unsigned long 	st_atime_nsec;
 	unsigned long	st_mtime;
 	unsigned long	st_mtime_nsec;
 	unsigned long	st_ctime;
 	unsigned long   st_ctime_nsec;
-  	long		__unused[3];
+	long		__unused[3];
 };
 
 #endif

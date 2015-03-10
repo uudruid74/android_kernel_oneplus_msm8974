@@ -930,7 +930,7 @@ static void mxt_report_input_data(struct mxt_data *data)
 	int i;
 	int count = 0;
 	int report_count = 0;
-//20140319 multiply 1.2 for palm gesture 
+//20140319 multiply 1.2 for palm gesture
 	u16 sumsize_dump = 0;
 	u16 component_dump = 0;
 
@@ -1191,7 +1191,7 @@ static void mxt_release_all_keys(struct mxt_data *data)
 							"%s: [TSP_KEY] Ignore menu R! by dummy key\n",
 								__func__);
 				} else if (data->ignore_menu_key_by_back) {
-					dev_info(&data->client->dev, 
+					dev_info(&data->client->dev,
 							"%s: [TSP_KEY] Ignore menu R! by back key\n",
 								 __func__);
 				} else {
@@ -2917,7 +2917,7 @@ static int __devinit mxt_probe(struct i2c_client *client,
 				0, MXT_AMPLITUDE_MAX, 0, 0);
 
 #if TSP_USE_PALM_FLAG
-	input_set_abs_params(input_dev, ABS_MT_PALM, 
+	input_set_abs_params(input_dev, ABS_MT_PALM,
 				0, MXT_PALM_MAX, 0, 0);
 #endif
 

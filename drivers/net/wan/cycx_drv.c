@@ -147,7 +147,7 @@ int cycx_setup(struct cycx_hw *hw, void *cfm, u32 len, unsigned long dpmbase)
 	/* Setup adapter dual-port memory window and test memory */
 	if (!dpmbase) {
 		pr_err("you must specify the dpm address!\n");
- 		return -EINVAL;
+		return -EINVAL;
 	} else if (!get_option_index(cyc2x_dpmbase_options, dpmbase)) {
 		pr_err("memory address 0x%lX is invalid!\n", dpmbase);
 		return -EINVAL;

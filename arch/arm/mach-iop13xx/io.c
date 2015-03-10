@@ -88,14 +88,14 @@ static void __iop13xx_iounmap(volatile void __iomem *addr)
 {
 	if (iop13xx_atue_mem_base)
 		if (addr >= (void __iomem *) iop13xx_atue_mem_base &&
-	 	    addr < (void __iomem *) (iop13xx_atue_mem_base +
-	 	    			     iop13xx_atue_mem_size))
+		    addr < (void __iomem *) (iop13xx_atue_mem_base +
+					     iop13xx_atue_mem_size))
 		    goto skip;
 
 	if (iop13xx_atux_mem_base)
 		if (addr >= (void __iomem *) iop13xx_atux_mem_base &&
-	 	    addr < (void __iomem *) (iop13xx_atux_mem_base +
-	 	    			     iop13xx_atux_mem_size))
+		    addr < (void __iomem *) (iop13xx_atux_mem_base +
+					     iop13xx_atux_mem_size))
 		    goto skip;
 
 	switch ((u32) addr) {

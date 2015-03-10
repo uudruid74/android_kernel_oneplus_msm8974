@@ -531,7 +531,7 @@ int ieee80211_rtl_xmit(struct sk_buff *skb,
 		  else
 			ieee->seq_ctrl[UP2AC(skb->priority) + 1]++;
 		} else {
-  		  if (ieee->seq_ctrl[0] == 0xFFF)
+		  if (ieee->seq_ctrl[0] == 0xFFF)
 			ieee->seq_ctrl[0] = 0;
 		  else
 			ieee->seq_ctrl[0]++;

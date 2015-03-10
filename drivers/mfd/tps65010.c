@@ -1095,4 +1095,3 @@ static void __exit tps_exit(void)
 	i2c_del_driver(&tps65010_driver);
 }
 module_exit(tps_exit);
-

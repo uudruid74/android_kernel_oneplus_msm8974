@@ -201,7 +201,7 @@ static int __kprobes kprobe_handler(struct pt_regs *regs)
 				/* If trap variant, then it belongs not to us */
 				kprobe_opcode_t cur_insn = *addr;
 				if (is_trap(cur_insn))
-		       			goto no_kprobe;
+					goto no_kprobe;
 				/* The breakpoint instruction was removed by
 				 * another cpu right after we hit, no further
 				 * handling of this interrupt is appropriate
@@ -227,7 +227,7 @@ static int __kprobes kprobe_handler(struct pt_regs *regs)
 			 */
 			kprobe_opcode_t cur_insn = *addr;
 			if (is_trap(cur_insn))
-		       		goto no_kprobe;
+				goto no_kprobe;
 			/*
 			 * The breakpoint instruction was removed right
 			 * after we hit it.  Another cpu has removed

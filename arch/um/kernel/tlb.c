@@ -45,7 +45,7 @@ struct host_vm_change {
 	((struct host_vm_change) \
 	 { .ops		= { { .type = NONE } },	\
 	   .id		= &mm->context.id, \
-       	   .data	= NULL, \
+	   .data	= NULL, \
 	   .index	= 0, \
 	   .force	= force })
 
@@ -139,7 +139,7 @@ static int add_munmap(unsigned long addr, unsigned long len,
 
 	hvc->ops[hvc->index++] = ((struct host_vm_op)
 				  { .type	= MUNMAP,
-			     	    .u = { .munmap = { .addr	= addr,
+				    .u = { .munmap = { .addr	= addr,
 						       .len	= len } } });
 	return ret;
 }
@@ -167,7 +167,7 @@ static int add_mprotect(unsigned long addr, unsigned long len,
 
 	hvc->ops[hvc->index++] = ((struct host_vm_op)
 				  { .type	= MPROTECT,
-			     	    .u = { .mprotect = { .addr	= addr,
+				    .u = { .mprotect = { .addr	= addr,
 							 .len	= len,
 							 .prot	= prot } } });
 	return ret;

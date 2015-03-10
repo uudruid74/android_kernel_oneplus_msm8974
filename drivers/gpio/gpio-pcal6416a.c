@@ -652,7 +652,7 @@ static ssize_t show_pcal6416a_gpio_state(struct device *dev,
 
 	for (i = 0; i < 16; i++) {
 		bufp += sprintf(bufp, "Expander[3%02d]", i);
-		if ((chip_state.reg_config>>i)&0x1) 
+		if ((chip_state.reg_config>>i)&0x1)
 			bufp += sprintf(bufp, " IN");
 		else {
 			if ((chip_state.reg_output>>i)&0x1)
@@ -669,7 +669,7 @@ static ssize_t show_pcal6416a_gpio_state(struct device *dev,
 			bufp += sprintf(bufp, " PULL_NONE");
 		if (i > 7)
 			drv_str = (chip_state.reg_drive1>>((i-8)*2)) & 0x3;
-		else 
+		else
 			drv_str = (chip_state.reg_drive0>>(i*2)) & 0x3;
 		switch(drv_str) {
 		case GPIO_CFG_6_25MA:
@@ -687,7 +687,7 @@ static ssize_t show_pcal6416a_gpio_state(struct device *dev,
 		}
 		if ((read_input>>i)&0x1)
 			bufp += sprintf(bufp, " VAL_HIGH\n");
-		else 
+		else
 			bufp += sprintf(bufp, " VAL_LOW\n");
 	}
 
@@ -797,7 +797,7 @@ static int expander_show(struct seq_file *s, void *unused)
 			seq_printf(s, " PULL_NONE");
 		if (i > 7)
 			drv_str = (chip_state.reg_drive1>>((i-8)*2)) & 0x3;
-		else 
+		else
 			drv_str = (chip_state.reg_drive0>>(i*2)) & 0x3;
 		switch(drv_str) {
 		case GPIO_CFG_6_25MA:
@@ -815,7 +815,7 @@ static int expander_show(struct seq_file *s, void *unused)
 		}
 		if ((read_input>>i)&0x1)
 			seq_printf(s, " VAL_HIGH\n");
-		else 
+		else
 			seq_printf(s, " VAL_LOW\n");
 	}
 
@@ -927,7 +927,7 @@ static int __devinit pcal6416a_gpio_probe(struct i2c_client *client,
 			} else {
 				pr_info("[%s]Expander setup success [%d]\n",
 						__func__, retry);
-				break;	
+				break;
 			}
 		}
 		if (retry++ > 5) {

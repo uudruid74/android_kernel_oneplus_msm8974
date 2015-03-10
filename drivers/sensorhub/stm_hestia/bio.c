@@ -121,7 +121,7 @@ static void indication_func(struct work_struct *work)
 		}
 		//data->bgm_timeout++;
 		pr_info(",[bgm] time out count is %d\n", data->bgm_timeout);
-	} else 
+	} else
 #endif
 	if (bgm_state == 0 && indi_value == 1 && strip_value == 0) {
 	/* strip inserted m Startup check OK */
@@ -234,7 +234,7 @@ static int bio_parse_dt(struct device *dev, struct bio_data *data)
 
 	if (data->strip_status >= 0) {
 		irq = gpio_to_irq(data->strip_status);
-	
+
 		rc = request_threaded_irq(irq, NULL,
 				bio_strip_irq_handler,
 				IRQF_TRIGGER_FALLING |

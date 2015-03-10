@@ -1536,7 +1536,7 @@ static int sec_debug_panic_handler(struct notifier_block *nb,
 	emerg_pet_watchdog();//CTC-should be modify
 	sec_debug_set_upload_magic(0x776655ee);
 
- 	len = strnlen(buf, 15);
+	len = strnlen(buf, 15);
 	if (!strncmp(buf, "User Fault", len))
 		sec_debug_set_upload_cause(UPLOAD_CAUSE_USER_FAULT);
 	else if (!strncmp(buf, "Crash Key", len))
@@ -1565,12 +1565,12 @@ static int sec_debug_panic_handler(struct notifier_block *nb,
 		sec_debug_hw_reset();
 #endif
 		return -EPERM;
-	}	
+	}
 
 /* enable after SSR feature
 	ssr_panic_handler_for_sec_dbg();
 */
-	for (i = 0; i < 10; i++) 
+	for (i = 0; i < 10; i++)
 	{
 	   touch_nmi_watchdog();
 	   mdelay(100);
@@ -1967,7 +1967,7 @@ int sec_debug_subsys_init(void)
 	}
 
 	memset(secdbg_subsys, 0, sizeof(secdbg_subsys));
-	
+
 	secdbg_subsys->secure_app_start_addr = tzapps_start_addr;
 	secdbg_subsys->secure_app_size = tzapps_size;
 
@@ -2032,7 +2032,7 @@ int sec_debug_subsys_init(void)
 	ADD_VAR_TO_VARMON(speed_bin);
 	ADD_VAR_TO_VARMON(pvs_bin);
 #endif
-#endif 
+#endif
 
 #ifdef CONFIG_ARCH_MSM8974PRO
 	ADD_VAR_TO_VARMON(pmc8974_rev);
@@ -2046,7 +2046,7 @@ int sec_debug_subsys_init(void)
 			offsetof(struct sec_debug_log, last_pet);
 		last_ns_paddr = secdbg_paddr +
 			offsetof(struct sec_debug_log, last_ns);
-		sec_debug_subsys_add_varmon("last_pet", 
+		sec_debug_subsys_add_varmon("last_pet",
 				sizeof((secdbg_log->last_pet)),last_pet_paddr);
 		sec_debug_subsys_add_varmon("last_ns",
 				sizeof((secdbg_log->last_ns.counter)), last_ns_paddr);

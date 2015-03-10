@@ -50,7 +50,7 @@
 			qcom,cal-mem7 = <4 0x3FFC 3 0 1 0>;
 
 
-			cam_vio-supply = <&pm8941_lvs2>;			
+			cam_vio-supply = <&pm8941_lvs2>;
 			qcom,cam-vreg-name = "cam_vio";
 			qcom,cam-vreg-type = <1>;
 			qcom,cam-vreg-min-voltage = <0>;
@@ -83,7 +83,7 @@
 		qcom,slave-id = <0x34 0x16 0x0134>;
 		qcom,csiphy-sd-index = <0>;
 		qcom,csid-sd-index = <0>;
-		qcom,actuator-src = <&actuator1>;	
+		qcom,actuator-src = <&actuator1>;
 		qcom,led-flash-src = <&led_flash0>;
 		qcom,eeprom-src = <&eeprom0>;
 		qcom,mount-angle = <0>;
@@ -211,7 +211,7 @@
 		status = "ok";
 	};
 
- 	qcom,camera@2 {
+	qcom,camera@2 {
 		cell-index = <2>;
 		compatible = "qcom,camera";
 		reg = <0x2>;

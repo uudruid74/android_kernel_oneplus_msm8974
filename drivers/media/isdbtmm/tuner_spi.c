@@ -98,17 +98,17 @@ static unsigned int 	max_loop_count = 5;
 /*** System Call ***/
 static int 			 SMT113J_SPI_open		(struct inode *inode,
 											 struct file *filp );
-static int 			 SMT113J_SPI_release	(struct inode *inode, 
+static int 			 SMT113J_SPI_release	(struct inode *inode,
 											 struct file *filp );
-static ssize_t 		 SMT113J_SPI_read		(struct file *filp, 
-											 char *buf, size_t count, 
+static ssize_t 		 SMT113J_SPI_read		(struct file *filp,
+											 char *buf, size_t count,
 											 loff_t * f_pos );
-static int 			 SMT113J_SPI_write		(struct file *filp, 
-											 const char __user * buf, 
-											 size_t count, 
+static int 			 SMT113J_SPI_write		(struct file *filp,
+											 const char __user * buf,
+											 size_t count,
 											 loff_t * f_pos );
-static long 		 SMT113J_SPI_ioctl		(struct file *filp, 
-											 unsigned int cmd, 
+static long 		 SMT113J_SPI_ioctl		(struct file *filp,
+											 unsigned int cmd,
 											 unsigned long arg );
 
 /*** Platform Registory Call ***/
@@ -184,7 +184,7 @@ static int smt113j_spi_cmd_init ( void )
 {
 	int	ret = 0;
 	ioctl_spi_internal_reg spi_command = { 0 };
-	
+
 	struct spi_message  m    = {{ 0 }};
 	struct spi_transfer t[3] = {{ 0 }};
 
@@ -194,26 +194,26 @@ static int smt113j_spi_cmd_init ( void )
 	/*** SPI command set  ***/
 	spi_command.cmd  = 0x01;
 	spi_command.data = 0xB1;
-	
+
 	/*** transfer data set ***/
 	t[0].tx_buf = &spi_command;
 	t[0].rx_buf = NULL;
 	t[0].len    = sizeof ( spi_command );
-	
+
 	spi_message_add_tail ( &t[0], &m );
 
 	/*** SPI transfer request ***/
 	ret = spi_sync ( smt113j_spi_device, &m );
 
-	if ( 0 > ret ) 
+	if ( 0 > ret )
 	{
 		ERROR_PRINT ("smt113j_spi_cmd_init : Sync Error << ret = %d >>", ret );
 	}
-	
+
 	printk("smt113j_spi_cmd_init << End : %d >>\n", ret );
-	
+
 	return ( ret );
-	
+
 }
 
 
@@ -224,7 +224,7 @@ static int smt113j_spi_cmd_pktsync ( void )
 {
 	int ret = 0;
 	ioctl_spi_pktsync spi_command = { 0 };
-	
+
 	struct spi_message  m    = {{ 0 }};
 	struct spi_transfer t[3] = {{ 0 }};
 
@@ -236,23 +236,23 @@ static int smt113j_spi_cmd_pktsync ( void )
 	spi_command.dum1 = 0x00;
 	spi_command.dum2 = 0x00;
 	spi_command.dum3 = 0x00;
-	
+
 	/*** transfer data set ***/
 	t[0].tx_buf = &spi_command;
 	t[0].rx_buf = NULL;
 	t[0].len    = sizeof ( spi_command );
-	
+
 	spi_message_add_tail ( &t[0], &m );
 
 	/*** SPI transfer request ***/
 	ret = spi_sync ( smt113j_spi_device, &m );
 
-	if ( 0 > ret ) 
+	if ( 0 > ret )
 	{
-		ERROR_PRINT ("smt113j_spi_cmd_pktsync : Sync Error << ret = %d >>", 
+		ERROR_PRINT ("smt113j_spi_cmd_pktsync : Sync Error << ret = %d >>",
 					 ret );
 	}
-	
+
 	printk("smt113j_spi_cmd_pktsync << End : %d >>\n", ret );
 
 	return ( ret );
@@ -271,7 +271,7 @@ static int smt113j_spi_cmd_bufstat ( unsigned char *status )
 	struct 			spi_message  m    	= {{ 0 }};
 	struct 			spi_transfer t[3] 	= {{ 0 }};
 
-	DEBUG_PRINT("smt113j_spi_cmd_bufstat << Start : %x >>", 
+	DEBUG_PRINT("smt113j_spi_cmd_bufstat << Start : %x >>",
 				(unsigned int)*status );
 
 	/*** argument check ***/
@@ -280,7 +280,7 @@ static int smt113j_spi_cmd_bufstat ( unsigned char *status )
 		ERROR_PRINT ("smt113j_spi_cmd_bufstat : Parameter Error");
 		return ( -EINVAL );
 	}
-	
+
 	/*** SPI message init ***/
 	spi_message_init ( &m );
 
@@ -289,35 +289,35 @@ static int smt113j_spi_cmd_bufstat ( unsigned char *status )
 	spi_command.read = 0x10;
 	spi_command.addr = 0x00;
 	spi_command.dum  = 0x00;
-	
+
 	/*** transfer data set ***/
 	t[0].tx_buf = &spi_command;
 	t[0].rx_buf = NULL;
 	t[0].len    = sizeof ( spi_command );
-	
+
 	spi_message_add_tail ( &t[0], &m );
 
 	/*** transfer data set ***/
 	t[1].tx_buf = NULL;
 	t[1].rx_buf = &data;
 	t[1].len    = sizeof ( unsigned char );
-	
+
 	spi_message_add_tail ( &t[1], &m );
 
 	/*** SPI transfer request ***/
 	ret = spi_sync ( smt113j_spi_device, &m );
 
-	if ( 0 > ret ) 
+	if ( 0 > ret )
 	{
-		ERROR_PRINT ("smt113j_spi_cmd_bufstat : Sync Error << ret = %d >>", 
+		ERROR_PRINT ("smt113j_spi_cmd_bufstat : Sync Error << ret = %d >>",
 					 ret );
 	}
 	/*** read data set ***/
 	*status = data;
-	
+
 	DEBUG_PRINT("smt113j_spi_cmd_bufstat << End : %x >>", *status );
 
-	return ( ret );	
+	return ( ret );
 
 }
 
@@ -332,18 +332,18 @@ static int smt113j_spi_cmd_pktread ( unsigned char *temp_buf )
 
 	struct spi_message  m    = {{ 0 }};
 	struct spi_transfer t[3] = {{ 0 }};
-	
+
 	DEBUG_PRINT("smt113j_spi_cmd_pktread << Start >>");
-	
+
 	/*** argument check ***/
 	if ( NULL == temp_buf )
 	{
 		ERROR_PRINT (
-			"smt113j_spi_cmd_pktread : Paramerter Error  << parm = %x >>", 
+			"smt113j_spi_cmd_pktread : Paramerter Error  << parm = %x >>",
 			(unsigned int)temp_buf );
 		return ( -EINVAL );
 	}
-	
+
 	/*** SPI command set  ***/
 	spi_command.cmd   	 = 0x0B;
 	spi_command.dum1 	 = 0x00;
@@ -352,49 +352,49 @@ static int smt113j_spi_cmd_pktread ( unsigned char *temp_buf )
 	/* TS Packet Num  ( 20 : LOOP_RX_PAKET + 1 ) */
 	spi_command.read_pkt = (LOOP_RX_PAKET - 1);
 	spi_command.dum2	 = 0x00;
-	
+
 //	for ( loop = 0; loop < MAX_LOOP_CNT; loop++ )
 	for ( loop = 0; loop < max_loop_count; loop++ )
 	{
 		/*** SPI message init ***/
 		spi_message_init ( &m );
-		
+
 		memset ( t, 0, sizeof ( t ));
 		memset ( spi_buf, 0, sizeof ( spi_buf ));
-			
+
 		/*** transfer data set ***/
 		t[0].tx_buf = &spi_command;
 		t[0].rx_buf = NULL;
 		t[0].len    = sizeof ( spi_command );
-		
+
 		spi_message_add_tail ( &t[0], &m );
 
 		/*** transfer data set ***/
 		t[1].tx_buf = NULL;
 		t[1].rx_buf = &spi_buf;
 		t[1].len    = sizeof ( unsigned char ) * LOOP_RX_PACKET_BYTE;
-		
+
 		spi_message_add_tail ( &t[1], &m );
 
 		/*** SPI transfer request ***/
 		ret = spi_sync ( smt113j_spi_device, &m );
 
-		if ( 0 > ret ) 
+		if ( 0 > ret )
 		{
 			ERROR_PRINT ("smt113j_spi_cmd_pktread : Sync Error << ret = %d >>",
 						 ret );
 			break;
 		}
 		/*** read data copy ***/
-		memcpy ( temp_buf, 
-				 spi_buf, 
+		memcpy ( temp_buf,
+				 spi_buf,
 				 sizeof ( unsigned char ) * ( LOOP_RX_PACKET_BYTE ));
-		
+
 		temp_buf += LOOP_RX_PACKET_BYTE;
 	}
 	DEBUG_PRINT("smt113j_spi_cmd_pktread << End : %x >>", ret );
-	
-	return ( ret );	
+
+	return ( ret );
 }
 
 
@@ -405,34 +405,34 @@ static int SMT113J_SPI_open(struct inode *inode, struct file *filp)
 {
 
 	int ret = 0;
-	unsigned int majorno = 0, 
+	unsigned int majorno = 0,
 				 minorno = 0;
 	unsigned char *devarea = NULL;
 
 	majorno = imajor(filp->f_dentry->d_inode);
 	minorno = iminor(filp->f_dentry->d_inode);
 
-	if (( majorno != NODE_MAJOR ) || 
-		( minorno != NODE_MINOR )) 
+	if (( majorno != NODE_MAJOR ) ||
+		( minorno != NODE_MINOR ))
 	{
 		ERROR_PRINT ("SMT113J_SPI_open Error : << No MAJOR(%d) or No MINOR(%d)",
 					 majorno,
 					 minorno );
 		return ( -ENODEV );
 	}
-	
+
 	/*** Private Data Area MALLOC Stataus Check ***/
 	if ( NULL != ( devarea = (unsigned char *)filp->private_data ))
 	{
 		ERROR_PRINT(
-			"SMT113J_SPI_open Error : << Used Private Data Area[0x%08x] >>", 
+			"SMT113J_SPI_open Error : << Used Private Data Area[0x%08x] >>",
 			(int)devarea );
 		return ( -ENODEV );
 	}
-	
+
 	/*** Private Data Area Alloc ***/
-	if ( NULL == ( devarea = (unsigned char *)kmalloc ( 
-								sizeof(smt113j_ioctl_data), GFP_KERNEL ))) 
+	if ( NULL == ( devarea = (unsigned char *)kmalloc (
+								sizeof(smt113j_ioctl_data), GFP_KERNEL )))
 	{
 		ERROR_PRINT(
 			"SMT113J_SPI_open Error : << Used Private Data Area Alloc Error");
@@ -440,16 +440,16 @@ static int SMT113J_SPI_open(struct inode *inode, struct file *filp)
 	}
 	memset ( devarea, 0,  sizeof ( smt113j_ioctl_data ));
 	filp->private_data = (void *)devarea;
-	
+
 	/*** buffer clear ***/
 	memset ( rx_pkt_buffer, 0, MAX_BUFFER_PKT * PAKCET_SIZE );
 	pwrite = 0;
 	pread  = 0;
-	
+
 	spi_open_cnt++;
-	
+
 	printk("SMT113J_SPI_open << End >>, spi_open_cnt = %d\n", spi_open_cnt);
-	
+
 	return ( ret );
 
 }
@@ -469,13 +469,13 @@ static int SMT113J_SPI_release(struct inode *inode, struct file *filp)
 		return ( ret );
 	}
 	spi_open_cnt--;
-	
+
 	if ( 0 != spi_open_cnt )
 	{
 		ERROR_PRINT ("Not Relase : Open Device Num[%d]", spi_open_cnt );
 		return ( ret );
 	}
-	
+
 	/*** Private Data Area Check ***/
 	if ( NULL == (unsigned char *)filp->private_data )
 	{
@@ -484,20 +484,20 @@ static int SMT113J_SPI_release(struct inode *inode, struct file *filp)
 	}
 	/*** thread stop ***/
 	smt113j_spi_thread_Stop();
-	
+
 	memset ( (unsigned char *)filp->private_data,
 			 0,
 			 sizeof ( smt113j_ioctl_data ));
 
-	kfree ( filp->private_data );	
-	
+	kfree ( filp->private_data );
+
 	filp->private_data = NULL;
-	
+
 	/*** buffer clear ***/
 	memset ( rx_pkt_buffer, 0, MAX_BUFFER_PKT * PAKCET_SIZE );
 	pwrite = 0;
 	pread  = 0;
-	
+
 	printk("SMT113J_SPI_release << End >>, ret = %d\n", ret);
 
 	return ret;
@@ -507,9 +507,9 @@ static int SMT113J_SPI_release(struct inode *inode, struct file *filp)
 /******************************************************************************/
 /*** 																		***/
 /******************************************************************************/
-static ssize_t SMT113J_SPI_read(struct file *filp, 
-								char *buf, 
-								size_t count, 
+static ssize_t SMT113J_SPI_read(struct file *filp,
+								char *buf,
+								size_t count,
 								loff_t * f_pos)
 {
 	int ret 	   = 0;
@@ -517,7 +517,7 @@ static ssize_t SMT113J_SPI_read(struct file *filp,
 	int get_packet = 0;
 	int tmp 	   = 0;
 	int ring_flg   = 0;
-	
+
 #ifdef 	USER_BUF_DEBUG
 	DEBUG_PRINT("SMT113J_SPI_read << Start >>");
 #endif	/* USER_BUF_DEBUG */
@@ -526,7 +526,7 @@ static ssize_t SMT113J_SPI_read(struct file *filp,
 	if ( SMT113J_SPI_SYNC_RUN != spi_work_thread->status )
 	{
 		/*** no packet */
-		printk("SMT113J_SPI_read << End : No Packet Sync Command(%d) >>\n", 
+		printk("SMT113J_SPI_read << End : No Packet Sync Command(%d) >>\n",
 					spi_work_thread->status );
 		return ( 0 );
 	}
@@ -537,7 +537,7 @@ static ssize_t SMT113J_SPI_read(struct file *filp,
 		printk("SMT113J_SPI_read << End : No Packet in kernel buffer>>\n");
 		return ( 0 );
 	}
-	
+
 	/*** calculation of the packet acquisition ***/
 	if ( pwrite > pread )
 	{
@@ -548,31 +548,31 @@ static ssize_t SMT113J_SPI_read(struct file *filp,
 	else
 	{
 		/* ring */
-		get_packet = ( pwrite + (MAX_BUFFER_PKT * PAKCET_SIZE) - pread ) 
+		get_packet = ( pwrite + (MAX_BUFFER_PKT * PAKCET_SIZE) - pread )
 					 / PAKCET_SIZE;
 		ring_flg = 1;
 	}
-	
+
 #ifdef 	USER_BUF_DEBUG
 	DEBUG_PRINT("SMT113J_SPI_read << ring : %d >>", ring_flg );
 	DEBUG_PRINT("-> pread = %d", pread );
 	DEBUG_PRINT("-> pwrite = %d", pwrite );
 	DEBUG_PRINT("-> get_packet = %d", get_packet );
 	DEBUG_PRINT("-> Buffer Start Address = %x", &rx_pkt_buffer[0] );
-	DEBUG_PRINT("-> Buffer End Address   = %x", 
+	DEBUG_PRINT("-> Buffer End Address   = %x",
 				&rx_pkt_buffer[(MAX_BUFFER_PKT * PAKCET_SIZE) - 1] );
 #endif	/* USER_BUF_DEBUG */
-	
+
 	if ( count > get_packet )
 	{
 		/* not ring */
-		if ( 0 == ring_flg ) 
+		if ( 0 == ring_flg )
 		{
-			if ( copy_to_user ( buf, &rx_pkt_buffer[pread], 
+			if ( copy_to_user ( buf, &rx_pkt_buffer[pread],
 								PAKCET_SIZE * get_packet ))
 			{
 				ERROR_PRINT(
-					"SMT113J_SPI_read * copy_to_user1 Error << ret = %d >>", 
+					"SMT113J_SPI_read * copy_to_user1 Error << ret = %d >>",
 					ret );
 				return ( -1 );
 			}
@@ -587,11 +587,11 @@ static ssize_t SMT113J_SPI_read(struct file *filp,
 		/* ring */
 		else
 		{
-			if ( copy_to_user ( buf, &rx_pkt_buffer[pread], 
+			if ( copy_to_user ( buf, &rx_pkt_buffer[pread],
 				 ( PAKCET_SIZE * ( MAX_BUFFER_PKT )) - pread ))
 			{
 				ERROR_PRINT(
-					"SMT113J_SPI_read * copy_to_user2 Error << ret = %d >>", 
+					"SMT113J_SPI_read * copy_to_user2 Error << ret = %d >>",
 					ret );
 				return ( -1 );
 			}
@@ -614,7 +614,7 @@ static ssize_t SMT113J_SPI_read(struct file *filp,
 			if ( copy_to_user ( buf, &rx_pkt_buffer[0], PAKCET_SIZE * tmp))
 			{
 				ERROR_PRINT(
-					"SMT113J_SPI_read * copy_to_user3 Error << ret = %d >>", 
+					"SMT113J_SPI_read * copy_to_user3 Error << ret = %d >>",
 					ret );
 				return ( cnt );
 			}
@@ -631,13 +631,13 @@ static ssize_t SMT113J_SPI_read(struct file *filp,
 	else
 	{
 		/*** not ring ***/
-		if ( 0 == ring_flg ) 
+		if ( 0 == ring_flg )
 		{
-			if ( copy_to_user ( buf, &rx_pkt_buffer[pread], 
+			if ( copy_to_user ( buf, &rx_pkt_buffer[pread],
 								PAKCET_SIZE * count ))
 			{
 				ERROR_PRINT(
-					"SMT113J_SPI_read * copy_to_user3 Error << ret = %d >>", 
+					"SMT113J_SPI_read * copy_to_user3 Error << ret = %d >>",
 					ret );
 				return ( -1 );
 			}
@@ -653,14 +653,14 @@ static ssize_t SMT113J_SPI_read(struct file *filp,
 		else
 		{
 			cnt = 0;
-	
+
 			if ( count <= (MAX_BUFFER_PKT - (pread / PAKCET_SIZE)))
 			{
-				if ( copy_to_user ( buf, &rx_pkt_buffer[pread], 
+				if ( copy_to_user ( buf, &rx_pkt_buffer[pread],
 								PAKCET_SIZE * count ))
 				{
 					ERROR_PRINT(
-					"SMT113J_SPI_read * copy_to_user3 Error << ret = %d >>", 
+					"SMT113J_SPI_read * copy_to_user3 Error << ret = %d >>",
 					ret );
 					return ( -1 );
 				}
@@ -669,11 +669,11 @@ static ssize_t SMT113J_SPI_read(struct file *filp,
 			}
 			else
 			{
-			if ( copy_to_user ( buf, &rx_pkt_buffer[pread], 
+			if ( copy_to_user ( buf, &rx_pkt_buffer[pread],
 				               ( PAKCET_SIZE * MAX_BUFFER_PKT ) - pread ))
 			{
 				ERROR_PRINT(
-					"SMT113J_SPI_read * copy_to_user3 Error << ret = %d >>", 
+					"SMT113J_SPI_read * copy_to_user3 Error << ret = %d >>",
 					ret );
 				return ( -1 );
 			}
@@ -685,7 +685,7 @@ static ssize_t SMT113J_SPI_read(struct file *filp,
 			if ( copy_to_user ( buf, &rx_pkt_buffer[0], PAKCET_SIZE * tmp ))
 			{
 				ERROR_PRINT(
-					"SMT113J_SPI_read * copy_to_user3 Error << ret = %d >>", 
+					"SMT113J_SPI_read * copy_to_user3 Error << ret = %d >>",
 					ret );
 					return ( -1 );
 			}
@@ -704,7 +704,7 @@ static ssize_t SMT113J_SPI_read(struct file *filp,
 #else
 	DEBUG_PRINT("SMT113J_SPI_read read packet = %d", cnt);
 #endif
-		
+
 	return ( cnt );
 
 }
@@ -713,14 +713,14 @@ static ssize_t SMT113J_SPI_read(struct file *filp,
 /******************************************************************************/
 /*** 																		***/
 /******************************************************************************/
-static int SMT113J_SPI_write(struct file *filp, 
-							 const char __user * buf, 
-							 size_t count, 
+static int SMT113J_SPI_write(struct file *filp,
+							 const char __user * buf,
+							 size_t count,
 							 loff_t * f_pos)
 
 {
 	DEBUG_PRINT("SMT113J_SPI_write << Not Sppurt >>");
-	
+
 	return ( -ENOTSUPP );
 }
 
@@ -728,14 +728,14 @@ static int SMT113J_SPI_write(struct file *filp,
 /******************************************************************************/
 /*** 																		***/
 /******************************************************************************/
-static long SMT113J_SPI_ioctl(struct file *filp, 
-							  unsigned int cmd, 
+static long SMT113J_SPI_ioctl(struct file *filp,
+							  unsigned int cmd,
 							  unsigned long arg)
 {
 	int 				ret = 0;
 	unsigned char 		pkt_status = 0;
 	TUNER_DATA_SPI_RW 	*debug_buf = (TUNER_DATA_SPI_RW*)arg;
-	
+
 	DEBUG_PRINT("SMT113J_SPI_ioctl << Start >>");
 
 	switch ( cmd )
@@ -751,7 +751,7 @@ static long SMT113J_SPI_ioctl(struct file *filp,
 			printk ("-> TUNER_SPI_IOCTL_PKTANSYNC\n");
 			smt113j_spi_thread_Stop();
 			break;
-				
+
 		/*** SPI Packet Synchronize ***/
 		case TUNER_SPI_IOCTL_PKTSYNC:
 			printk ("-> TUNER_SPI_IOCTL_PKTSYNC\n");
@@ -772,7 +772,7 @@ static long SMT113J_SPI_ioctl(struct file *filp,
 		case TUNER_SPI_IOCTL_BUFSTAT:
 			printk ("-> TUNER_SPI_IOCTL_BUFSTAT\n");
 			ret = smt113j_spi_cmd_bufstat ( &pkt_status );
-			
+
 			if ( 0 != ret )
 			{
 				pkt_status = 0;
@@ -781,28 +781,28 @@ static long SMT113J_SPI_ioctl(struct file *filp,
 				break;
 			}
 			/* Copy to User Area */
-			ret = put_user ( pkt_status, 
+			ret = put_user ( pkt_status,
 							(unsigned int __user *)&(debug_buf->val) );
 			if ( 0 != ret )
 			{
 				ERROR_PRINT ("-> put_user(arg_data->moni_cnt) Error : ret = %d",
 							 ret );
 				break;
-			}	
+			}
 			DEBUG_PRINT ("-> pkt_status = %d", pkt_status );
 			break;
 
 		/*** SPI TS Packet Read ***/
 		case TUNER_SPI_IOCTL_READPKT:
 			ret = smt113j_spi_cmd_pktread ( rx_buf_temp );
-		
+
 			if ( 0 > ret )
 			{
-				ERROR_PRINT("TUNER_SPI_IOCTL_READPKT : Error << ret = %d >>", 
+				ERROR_PRINT("TUNER_SPI_IOCTL_READPKT : Error << ret = %d >>",
 							ret );
 				break;
 			}
-			ret = copy_to_user ( rx_buf_temp, 
+			ret = copy_to_user ( rx_buf_temp,
 								(unsigned char *)debug_buf->buf, 256 );
 			if ( 0 > ret )
 			{
@@ -825,9 +825,9 @@ static long SMT113J_SPI_ioctl(struct file *filp,
 
 /******************************************************************************
  *    function:   smt113j_spi_thread_Init
- *    brief   :   
- *    date    :   
- *    author  :   
+ *    brief   :
+ *    date    :
+ *    author  :
  *
  *    return  :   none
  *    input   :   none
@@ -837,10 +837,10 @@ static int smt113j_spi_thread_Init ( void )
 {
 	int ret = 0;
 	struct sched_param param = { .sched_priority = 99 };
-	
+
 	spi_work_thread = kmalloc ( sizeof ( smt113j_spi_thread_t ), GFP_KERNEL );
-	
-	if ( !spi_work_thread ) 
+
+	if ( !spi_work_thread )
 	{
 		ERROR_PRINT ("smt113j_spi_thread_Init : Kmalloc Error");
 		return ( -EFAULT );
@@ -853,25 +853,25 @@ static int smt113j_spi_thread_Init ( void )
 	init_waitqueue_head ( &spi_work_thread->thread_wait );
 
 	/*** Thread generation and run ***/
-	spi_work_thread->thread_task = kthread_run ( smt113j_spi_thread_loop, 
-												 NULL, 
+	spi_work_thread->thread_task = kthread_run ( smt113j_spi_thread_loop,
+												 NULL,
 												 "SMT113J_SPI_Task" );
-	
-	if ( IS_ERR ( spi_work_thread->thread_task )) 
+
+	if ( IS_ERR ( spi_work_thread->thread_task ))
 	{
-		ERROR_PRINT ("smt113j_spi_thread_Init : kthread_run error : %p", 
+		ERROR_PRINT ("smt113j_spi_thread_Init : kthread_run error : %p",
 					 spi_work_thread->thread_task);
 		goto ERROR2;
 	}
-	
-	ret = sched_setscheduler ( spi_work_thread->thread_task, 
-							   SCHED_FIFO, 
+
+	ret = sched_setscheduler ( spi_work_thread->thread_task,
+							   SCHED_FIFO,
 							   &param );
-	
-	if ( ret < 0 ) 
+
+	if ( ret < 0 )
 	{
 		ERROR_PRINT (
-			"smt113j_spi_thread_Init : sched_setscheduler error ret[ %d ]", 
+			"smt113j_spi_thread_Init : sched_setscheduler error ret[ %d ]",
 			ret );
 		goto ERROR3;
 	}
@@ -889,16 +889,16 @@ ERROR2:
 	kfree ( spi_work_thread );
 
 	ERROR_PRINT ("smt113j_spi_thread_Init : Error");
-	
+
 	return ( ret );
 }
 
 
 /******************************************************************************
  *    function:   smt113j_spi_thread_Start
- *    brief   :   
- *    date    :   
- *    author  :   
+ *    brief   :
+ *    date    :
+ *    author  :
  *
  *    return  :   none
  *    input   :   none
@@ -909,19 +909,19 @@ static int smt113j_spi_thread_Start ( void )
 	printk("-> spi_work_thread->status[%d]\n", spi_work_thread->status );
 
 	/* multiple check */
-	if ( SMT113J_SPI_SYNC_RUN == spi_work_thread->status ) 
+	if ( SMT113J_SPI_SYNC_RUN == spi_work_thread->status )
 	{
 		DEBUG_PRINT("smt113j_spi_thread_Start( Double ) : End!");
 		return ( 0 );
 	}
 	/* thread run status set */
 	spi_work_thread->status = SMT113J_SPI_SYNC_RUN;
-	
+
 	pwrite = 0;
 	pread  = 0;
-	
+
 	wake_lock(&smt113j_spi_wake_lock);
-	
+
 	/* wakeup event */
 	wake_up_interruptible ( &(spi_work_thread->thread_wait ));
 
@@ -933,9 +933,9 @@ static int smt113j_spi_thread_Start ( void )
 
 /******************************************************************************
  *    function:   smt113j_spi_thread_Start
- *    brief   :   
- *    date    :   
- *    author  :   
+ *    brief   :
+ *    date    :
+ *    author  :
  *
  *    return  :   none
  *    input   :   none
@@ -943,7 +943,7 @@ static int smt113j_spi_thread_Start ( void )
  ******************************************************************************/
 static int smt113j_spi_thread_Stop ( void )
 {
-	DEBUG_PRINT("smt113j_spi_thread_Stop : Start! << %s >>", 
+	DEBUG_PRINT("smt113j_spi_thread_Stop : Start! << %s >>",
 				((spi_work_thread->status == SMT113J_SPI_SYNC_STOP)?
 				"SMT113J_SPI_SYNC_STOP":
 				(spi_work_thread->status == SMT113J_SPI_SYNC_RUN)?
@@ -953,26 +953,26 @@ static int smt113j_spi_thread_Stop ( void )
 	mutex_lock(&smt1113j_spi_device_lock);
 
 	spi_work_thread->status = SMT113J_SPI_SYNC_STOP;
-	
+
 	mutex_unlock(&smt1113j_spi_device_lock);
 
 	wake_unlock(&smt113j_spi_wake_lock);
-	
-	DEBUG_PRINT("smt113j_spi_thread_Stop : End! << %s >>", 
+
+	DEBUG_PRINT("smt113j_spi_thread_Stop : End! << %s >>",
 				((spi_work_thread->status == SMT113J_SPI_SYNC_STOP)?
 				"SMT113J_SPI_SYNC_STOP":
 				(spi_work_thread->status == SMT113J_SPI_SYNC_RUN)?
 				"SMT113J_SPI_SYNC_RUN":"other"));
 	DEBUG_PRINT("-> spi_work_thread->status [%d]", spi_work_thread->status );
-	
+
 	return ( 0 );
 }
 
 /******************************************************************************
  *    function:   smt113j_spi_thread_loop
- *    brief   :   
- *    date    :   
- *    author  :   
+ *    brief   :
+ *    date    :
+ *    author  :
  *
  *    return  :   none
  *    input   :   none
@@ -982,30 +982,30 @@ static int smt113j_spi_thread_loop ( void  *arg )
 {
 	int ret = 0;
 	unsigned char status = 0;
-	
+
 	printk("smt113j_spi_thread_loop : Start!\n");
 
-	while ( !kthread_should_stop() ) 
+	while ( !kthread_should_stop() )
 	{
-		DEBUG_PRINT("smt113j_spi_thread_loop : spi_work_thread->status[%d]!", 
+		DEBUG_PRINT("smt113j_spi_thread_loop : spi_work_thread->status[%d]!",
 					spi_work_thread->status );
 
 		/* wait event */
 		if ( SMT113J_SPI_SYNC_RUN != spi_work_thread->status )
 		{
 			DEBUG_PRINT("smt113j_spi_thread_loop : Thread Wait!");
-			
-	 		ret = wait_event_interruptible ( spi_work_thread->thread_wait, 
-	 					SMT113J_SPI_SYNC_STOP != spi_work_thread->status );
+
+			ret = wait_event_interruptible ( spi_work_thread->thread_wait,
+						SMT113J_SPI_SYNC_STOP != spi_work_thread->status );
 
 			if ( 0 != ret )
 			{
 				DEBUG_PRINT ("Not Interruptible : No Case");
 				continue;
 			}
-			
+
 			DEBUG_PRINT(
-				"smt113j_spi_thread_loop : Thread Run << status[%d] >>!", 
+				"smt113j_spi_thread_loop : Thread Run << status[%d] >>!",
 				spi_work_thread->status );
 		}
 		/*** SPI Sync ***/
@@ -1013,7 +1013,7 @@ static int smt113j_spi_thread_loop ( void  *arg )
 		{
 			/*** SPI Sync Command ***/
 			case SMT113J_SPI_SYNC_RUN:
-				
+
 				mutex_lock(&smt1113j_spi_device_lock);
 				if ( spi_work_thread->status == SMT113J_SPI_SYNC_RUN )
 				{
@@ -1021,19 +1021,19 @@ static int smt113j_spi_thread_loop ( void  *arg )
 				ret = smt113j_spi_cmd_bufstat ( &status );
 				}
 				mutex_unlock(&smt1113j_spi_device_lock);
-				
+
 				if ( 0 > ret )
 				{
 					ERROR_PRINT ("smt113j_spi_thread_loop : Pakcet Error = %d",
 								 ret );
 					continue;
 				}
-				DEBUG_PRINT("smt113j_spi_thread_loop : data ready buf = 0x%x", status);	
+				DEBUG_PRINT("smt113j_spi_thread_loop : data ready buf = 0x%x", status);
 				/*** Pakcet state ( status = 0x00<not ready>/0x01<ready> ) ***/
 				if ( 0x01 == ( status & 0x01 ))
 				{
 					DEBUG_PRINT (
-						"smt113j_spi_thread_read() before : status[%d]", 
+						"smt113j_spi_thread_read() before : status[%d]",
 						spi_work_thread->status );
 
 					mutex_lock(&smt1113j_spi_device_lock);
@@ -1045,14 +1045,14 @@ static int smt113j_spi_thread_loop ( void  *arg )
 					mutex_unlock(&smt1113j_spi_device_lock);
 
 					DEBUG_PRINT (
-						"smt113j_spi_thread_read() after : status[%d]", 
+						"smt113j_spi_thread_read() after : status[%d]",
 						spi_work_thread->status );
 
 				}
 				else
 				{
 					printk("smt113j_spi_thread_loop : No data in tuner buffer or Error occured\n");
-					
+
 					/*** inside chip buffer is over or under run check ***/
 					if ( 0 != ( status & 0x06 ))
 					{
@@ -1090,9 +1090,9 @@ static int smt113j_spi_thread_loop ( void  *arg )
 
 /******************************************************************************
  *    function:   smt113j_spi_thread_read
- *    brief   :   
- *    date    :   
- *    author  :   
+ *    brief   :
+ *    date    :
+ *    author  :
  *
  *    return  :   none
  *    input   :   none
@@ -1106,20 +1106,20 @@ static int smt113j_spi_thread_read ( void )
 	int cnt = 0;
 	int temp_write = pwrite;
 #endif	/* KERNEL_BUF_DEBUG */
-	
+
 	DEBUG_PRINT("smt113j_spi_thread_read : Start!");
 
 	/*** Read Packet***/
 	ret = smt113j_spi_cmd_pktread ( rx_buf_temp );
-	
+
 #ifdef 	KERNEL_BUF_DEBUG
 	DEBUG_PRINT("pwrite = %d", pwrite );
 	DEBUG_PRINT("pread = %d", pread );
-	
+
 	/*** debug test ***/
 	for ( cnt = 0; cnt < 20; cnt++ )
 	{
-		DEBUG_PRINT("read[0x%02x][0x%02x][0x%02x][0x%02x][0x%02x]!", 
+		DEBUG_PRINT("read[0x%02x][0x%02x][0x%02x][0x%02x][0x%02x]!",
 					rx_buf_temp[pread + (cnt*188)+0],
 					rx_buf_temp[pread + (cnt*188)+1],
 					rx_buf_temp[pread + (cnt*188)+2],
@@ -1136,14 +1136,14 @@ static int smt113j_spi_thread_read ( void )
 
 	if ((( pwrite / PAKCET_SIZE ) + MAX_RX_PACKET ) > MAX_BUFFER_PKT )
 	{
-		memcpy ( &rx_pkt_buffer[pwrite], 
-				 rx_buf_temp, 
+		memcpy ( &rx_pkt_buffer[pwrite],
+				 rx_buf_temp,
 				 (PAKCET_SIZE * MAX_BUFFER_PKT) - pwrite );
 #ifdef 	KERNEL_BUF_DEBUG
 		for ( cnt = 0; cnt < 20; cnt++ )
 		{
 			DEBUG_PRINT(
-				"read[0x%02x][0x%02x][0x%02x][0x%02x][0x%02x]!", 
+				"read[0x%02x][0x%02x][0x%02x][0x%02x][0x%02x]!",
 				rx_pkt_buffer[pwrite+(cnt*188)+0],
 				rx_pkt_buffer[pwrite+(cnt*188)+1],
 				rx_pkt_buffer[pwrite+(cnt*188)+2],
@@ -1151,9 +1151,9 @@ static int smt113j_spi_thread_read ( void )
 				rx_pkt_buffer[pwrite+(cnt*188)+4] );
 		}
 #endif	/* KERNEL_BUF_DEBUG */
-		memcpy ( rx_pkt_buffer, 
-				 &rx_buf_temp[(PAKCET_SIZE * MAX_BUFFER_PKT) - pwrite], 
-				 ( PAKCET_SIZE * MAX_RX_PACKET ) - 
+		memcpy ( rx_pkt_buffer,
+				 &rx_buf_temp[(PAKCET_SIZE * MAX_BUFFER_PKT) - pwrite],
+				 ( PAKCET_SIZE * MAX_RX_PACKET ) -
 				 (( PAKCET_SIZE * MAX_BUFFER_PKT ) - pwrite ));
 
 #ifdef 	KERNEL_BUF_DEBUG
@@ -1169,7 +1169,7 @@ static int smt113j_spi_thread_read ( void )
 		}
 #endif	/* KERNEL_BUF_DEBUG */
 
-		pwrite = ((PAKCET_SIZE * MAX_RX_PACKET) - 
+		pwrite = ((PAKCET_SIZE * MAX_RX_PACKET) -
 				 ((PAKCET_SIZE * MAX_BUFFER_PKT) - pwrite ));
 	}
 	else
@@ -1194,7 +1194,7 @@ static int smt113j_spi_thread_read ( void )
 #endif	/* KERNEL_BUF_DEBUG */
 	}
 	DEBUG_PRINT("smt113j_spi_thread_read : End!");
-	
+
 	return ( ret );
 }
 
@@ -1210,17 +1210,17 @@ static int smt113j_spi_probe(struct spi_device *spi)
 	spi->max_speed_hz = (27 * 1000 * 1000); /* 30MHz */
 
 	ret = spi_setup ( spi );
-	if ( ret < 0 ) 
+	if ( ret < 0 )
 	{
 		ERROR_PRINT("smt113j_spi_probe : spi_setup Failed = %d!", ret );
 		return ( ret );
 	}
 	smt113j_spi_device = spi;
 
-	wake_lock_init ( &smt113j_spi_wake_lock, 
-					 WAKE_LOCK_SUSPEND, 
+	wake_lock_init ( &smt113j_spi_wake_lock,
+					 WAKE_LOCK_SUSPEND,
 					 "smt113j_spi_wake_lock" );
-	
+
 	printk("smt113j_spi_probe : End!\n");
 
 	return ( 0 );
@@ -1234,7 +1234,7 @@ static int __devexit smt113j_spi_remove(struct spi_device *spi)
 	smt113j_spi_device = NULL;
 
 	printk ("smt113j_spi_remove : End\n");
-	
+
 	return 0;
 }
 
@@ -1247,45 +1247,45 @@ static int SMT113J_SPI_probe(struct platform_device *pdev)
 	int 	ret;
 	struct	device *SMT113J_SPI_dev;
 
- 	ret = register_chrdev ( NODE_MAJOR, NODE_PATHNAME, &SMT113J_SPI_ctl_fops );
-	
-	if ( 0 > ret ) 
+	ret = register_chrdev ( NODE_MAJOR, NODE_PATHNAME, &SMT113J_SPI_ctl_fops );
+
+	if ( 0 > ret )
 	{
-		ERROR_PRINT("SMT113J_SPI_probe : register_chrdev failed : ret = %d!", 
+		ERROR_PRINT("SMT113J_SPI_probe : register_chrdev failed : ret = %d!",
 					ret );
 		return ( -EFAULT );
 	}
-	
+
 	SMT113J_SPI_class = class_create(THIS_MODULE, NODE_PATHNAME);
 
-	if (IS_ERR(SMT113J_SPI_class)) 
+	if (IS_ERR(SMT113J_SPI_class))
 	{
-		ERROR_PRINT("SMT113J_SPI_probe : class_create failed : ret = %d!", 
+		ERROR_PRINT("SMT113J_SPI_probe : class_create failed : ret = %d!",
 					ret );
 		unregister_chrdev(NODE_MAJOR, NODE_PATHNAME);
 		class_destroy(SMT113J_SPI_class);
 		return ( -EFAULT );
 	}
 
-	SMT113J_SPI_dev = device_create ( SMT113J_SPI_class, 
+	SMT113J_SPI_dev = device_create ( SMT113J_SPI_class,
 									  NULL,
 									  MKDEV(NODE_MAJOR, NODE_MINOR),
-									  NULL, 
+									  NULL,
 									  NODE_PATHNAME);
 
-				
 
-	if (IS_ERR(SMT113J_SPI_dev)) 
+
+	if (IS_ERR(SMT113J_SPI_dev))
 	{
-		ERROR_PRINT("SMT113J_SPI_probe : device_create failed : ret = %d!", 
+		ERROR_PRINT("SMT113J_SPI_probe : device_create failed : ret = %d!",
 					ret );
 		unregister_chrdev(NODE_MAJOR, NODE_PATHNAME);
 		class_destroy(SMT113J_SPI_class);
 		return ( -EFAULT );
 	}
 	ret = spi_register_driver ( &smt113j_spi_driver );
-	
-	if (ret < 0) 
+
+	if (ret < 0)
 	{
 		ERROR_PRINT(
 			"SMT113J_SPI_probe : spi_register_driver failed : ret = %d!",
@@ -1294,9 +1294,9 @@ static int SMT113J_SPI_probe(struct platform_device *pdev)
 	}
 
 	smt113j_spi_thread_Init();
-	
+
 	printk("SMT113J_SPI_probe : End!\n");
-	
+
 	return 0;
 }
 
@@ -1307,11 +1307,11 @@ static int SMT113J_SPI_probe(struct platform_device *pdev)
 static int SMT113J_SPI_remove ( struct platform_device *pdev )
 {
 	int ret = 0;
-	
+
 	spi_unregister_driver ( &smt113j_spi_driver );
 
 	printk("SMT113J SMT113J_SPI_remove : End\n");
-	
+
 	return ( ret );
 }
 
@@ -1329,7 +1329,7 @@ int SMT113J_SPI_init(void)
 	if ( ret )
 	{
 		ERROR_PRINT("SMT113J_SPI_init : Error = %x", ret);
-		
+
 		return ( ret );
 	}
 	DEBUG_PRINT("SMT113J_SPI_init : End = %x", ret);
@@ -1354,7 +1354,7 @@ void SMT113J_SPI_exit(void)
 	platform_driver_unregister ( &SMT113J_SPI_driver );
 
 	DEBUG_PRINT("SMT113J SMT113J_SPI_exit : End");
-	
+
 	return;
 }
 
@@ -1364,4 +1364,3 @@ void SMT113J_SPI_exit(void)
 MODULE_AUTHOR("Samsung");
 MODULE_DESCRIPTION("ISDBTMM Driver");
 MODULE_LICENSE("GPL v2");
-

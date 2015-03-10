@@ -111,7 +111,7 @@ release_voice(struct snd_emux_voice *vp)
 static void
 terminate_voice(struct snd_emux_voice *vp)
 {
-	struct snd_emu8000 *hw; 
+	struct snd_emu8000 *hw;
 
 	hw = vp->hw;
 	EMU8000_DCYSUSV_WRITE(hw, vp->ch, 0x807F);
@@ -544,4 +544,3 @@ load_fx(struct snd_emux *emu, int type, int mode, const void __user *buf, long l
 	}
 	return -EINVAL;
 }
-

@@ -33,14 +33,14 @@ struct barcode_emul_platform_data {
 	u32 spi_clk_flag;
 	int spi_si;
 	u32 spi_si_flag;
-	int spi_en;	
+	int spi_en;
 	int cresetb;
 	u32 cresetb_flag;
 	int rst_n;
 	u32 rst_n_flag;
 	int fw_type;
 	int cdone;
-	u32 cdone_flag;	
+	u32 cdone_flag;
 #if defined CONFIG_IR_REMOCON_FPGA
 	int irda_wake;
 	u32 irda_wake_flag;

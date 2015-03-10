@@ -79,7 +79,7 @@ struct hpfs_super_block
   u32 magic1;				/* fa53 e9c5, more magic? */
   u8 version;				/* version of a filesystem  usually 2 */
   u8 funcversion;			/* functional version - oldest version
-  					   of filesystem that can understand
+					   of filesystem that can understand
 					   this disk */
   u16 zero;				/* 0 */
   fnode_secno root;			/* fnode of root directory */
@@ -162,7 +162,7 @@ struct hpfs_spare_block
   secno code_page_dir;			/* code page directory block */
   u32 n_code_pages;			/* number of code pages */
   u32 super_crc;			/* on HPFS386 and LAN Server this is
-  					   checksum of superblock, on normal
+					   checksum of superblock, on normal
 					   OS/2 unused */
   u32 spare_crc;			/* on HPFS386 checksum of spareblock */
   u32 zero1[15];			/* unused */
@@ -175,7 +175,7 @@ struct hpfs_spare_block
    I bet you can see it coming... */
 
 #define BAD_MAGIC 0
-       
+
 /* The hotfix map is 4 sectors long.  It looks like
 
        secno from[n_spares];
@@ -214,7 +214,7 @@ struct code_page_directory
 					   containing c.p. array */
     u16 index;				/* index in c.p. array in that sector*/
     u16 unknown;			/* some unknown value; usually 0;
-    					   2 in Japanese version */
+					   2 in Japanese version */
   } array[31];				/* unknown length */
 };
 
@@ -246,7 +246,7 @@ struct code_page_data
    16384 sectors is 8 meg, and each 8 meg band has a 4-sector bitmap.
    Bit order in the maps is little-endian.  0 means taken, 1 means free.
 
-   Bit map sectors are marked allocated in the bit maps, and so are sectors 
+   Bit map sectors are marked allocated in the bit maps, and so are sectors
    off the end of the partition.
 
    Band 0 is sectors 0-3fff, its map is in sectors 18-1b.
@@ -357,7 +357,7 @@ struct hpfs_dirent {
 					   struct code_page_data */
   u8 namelen, name[1];			/* file name */
   /* dnode_secno down;	  btree down pointer, if present,
-     			  follows name on next word boundary, or maybe it
+			  follows name on next word boundary, or maybe it
 			  precedes next dirent, which is on a word boundary. */
 };
 

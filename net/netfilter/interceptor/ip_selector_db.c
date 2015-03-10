@@ -203,4 +203,3 @@ ip_selector_db_lookup(
 
   return action;
 }
-

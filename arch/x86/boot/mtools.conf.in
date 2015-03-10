@@ -13,5 +13,3 @@ drive v:
 # 2.88 MB floppy disk image (mostly for virtual uses)
 drive w:
   file="@OBJ@/fdimage" cylinders=80 heads=2 sectors=36 filter
-
-

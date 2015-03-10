@@ -172,8 +172,8 @@ no_pgd:
 		"smc    #11\n"
 		"mov    r0, #0\n"
 		"mcr    p15, 0, r0, c8, c3, 0\n"
-       		"dsb\n"
-       		"isb\n"
+		"dsb\n"
+		"isb\n"
 		"pop    {r0-r1, r11}\n"
 		::"r"(cmd_id),"r"(pgd):"r0","r1","r11","cc");
 

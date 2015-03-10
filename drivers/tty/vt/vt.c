@@ -37,7 +37,7 @@
  *
  *     - Arno Griffioen <arno@usn.nl>
  *     - David Carter <carter@cs.bris.ac.uk>
- * 
+ *
  *   The abstract console driver provides a generic interface for a text
  *   console. It supports VGA text mode, frame buffer based graphical consoles
  *   and special graphics processors that are only accessible through some
@@ -282,7 +282,7 @@ static void notify_update(struct vc_data *vc)
 static inline unsigned short *screenpos(struct vc_data *vc, int offset, int viewed)
 {
 	unsigned short *p;
-	
+
 	if (!viewed)
 		p = (unsigned short *)(vc->vc_origin + offset);
 	else if (!vc->vc_sw->con_screen_pos)
@@ -1075,7 +1075,7 @@ static void gotoxy(struct vc_data *vc, int new_x, int new_y)
 			vc->vc_x = new_x;
 	}
 
- 	if (vc->vc_decom) {
+	if (vc->vc_decom) {
 		min_y = vc->vc_top;
 		max_y = vc->vc_bottom;
 	} else {
@@ -1114,13 +1114,13 @@ void scrollfront(struct vc_data *vc, int lines)
 
 static void lf(struct vc_data *vc)
 {
-    	/* don't scroll if above bottom of scrolling region, or
+	/* don't scroll if above bottom of scrolling region, or
 	 * if below scrolling region
 	 */
-    	if (vc->vc_y + 1 == vc->vc_bottom)
+	if (vc->vc_y + 1 == vc->vc_bottom)
 		scrup(vc, vc->vc_top, vc->vc_bottom, 1);
 	else if (vc->vc_y < vc->vc_rows - 1) {
-	    	vc->vc_y++;
+		vc->vc_y++;
 		vc->vc_pos += vc->vc_size_row;
 	}
 	vc->vc_need_wrap = 0;
@@ -1129,7 +1129,7 @@ static void lf(struct vc_data *vc)
 
 static void ri(struct vc_data *vc)
 {
-    	/* don't scroll if below top of scrolling region, or
+	/* don't scroll if below top of scrolling region, or
 	 * if above scrolling region
 	 */
 	if (vc->vc_y == vc->vc_top)
@@ -3260,7 +3260,7 @@ static int vt_bind(struct con_driver *con)
 	const struct consw *defcsw = NULL, *csw = NULL;
 	int i, more = 1, first = -1, last = -1, deflt = 0;
 
- 	if (!con->con || !(con->flag & CON_DRIVER_FLAG_MODULE) ||
+	if (!con->con || !(con->flag & CON_DRIVER_FLAG_MODULE) ||
 	    con_is_graphics(con->con, con->first, con->last))
 		goto err;
 
@@ -3311,7 +3311,7 @@ static int vt_unbind(struct con_driver *con)
 	const struct consw *csw = NULL;
 	int i, more = 1, first = -1, last = -1, deflt = 0;
 
- 	if (!con->con || !(con->flag & CON_DRIVER_FLAG_MODULE) ||
+	if (!con->con || !(con->flag & CON_DRIVER_FLAG_MODULE) ||
 	    con_is_graphics(con->con, con->first, con->last))
 		goto err;
 
@@ -4037,9 +4037,9 @@ void reset_palette(struct vc_data *vc)
  *  Font switching
  *
  *  Currently we only support fonts up to 32 pixels wide, at a maximum height
- *  of 32 pixels. Userspace fontdata is stored with 32 bytes (shorts/ints, 
- *  depending on width) reserved for each character which is kinda wasty, but 
- *  this is done in order to maintain compatibility with the EGA/VGA fonts. It 
+ *  of 32 pixels. Userspace fontdata is stored with 32 bytes (shorts/ints,
+ *  depending on width) reserved for each character which is kinda wasty, but
+ *  this is done in order to maintain compatibility with the EGA/VGA fonts. It
  *  is up to the actual low-level console-driver convert data into its favorite
  *  format (maybe we should add a `fontoffset' field to the `display'
  *  structure so we won't have to convert the fontdata all the time.
@@ -4078,7 +4078,7 @@ static int con_font_get(struct vc_data *vc, struct console_font_op *op)
 	if (op->data && font.charcount > op->charcount)
 		rc = -ENOSPC;
 	if (!(op->flags & KD_FONT_FLAG_OLD)) {
-		if (font.width > op->width || font.height > op->height) 
+		if (font.width > op->width || font.height > op->height)
 			rc = -ENOSPC;
 	} else {
 		if (font.width != 8)
@@ -4118,7 +4118,7 @@ static int con_font_set(struct vc_data *vc, struct console_font_op *op)
 		int h, i;
 		u8 __user *charmap = op->data;
 		u8 tmp;
-		
+
 		/* If from KDFONTOP ioctl, don't allow things which can be done in userland,
 		   so that we can get rid of this soon */
 		if (!(op->flags & KD_FONT_FLAG_OLD))

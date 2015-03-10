@@ -91,4 +91,3 @@ REV/DATE:  Fri Mar 18 15:54:32 EST 2005
 #define RCP15_L2VR3F1(reg)		MRC15(reg, 3, c15, c15, 1)
 
 #endif
-

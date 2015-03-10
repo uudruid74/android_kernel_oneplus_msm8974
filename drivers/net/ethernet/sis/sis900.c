@@ -574,7 +574,7 @@ static int __devinit sis900_probe(struct pci_dev *pci_dev,
 	pci_free_consistent(pci_dev, TX_TOTAL_SIZE, sis_priv->tx_ring,
 		sis_priv->tx_ring_dma);
  err_out_cleardev:
- 	pci_set_drvdata(pci_dev, NULL);
+	pci_set_drvdata(pci_dev, NULL);
 	pci_release_regions(pci_dev);
  err_out:
 	free_netdev(net_dev);
@@ -671,12 +671,12 @@ static int __devinit sis900_mii_probe(struct net_device * net_dev)
 	/* Reset phy if default phy is internal sis900 */
         if ((sis_priv->mii->phy_id0 == 0x001D) &&
 	    ((sis_priv->mii->phy_id1&0xFFF0) == 0x8000))
-        	status = sis900_reset_phy(net_dev, sis_priv->cur_phy);
+		status = sis900_reset_phy(net_dev, sis_priv->cur_phy);
 
         /* workaround for ICS1893 PHY */
         if ((sis_priv->mii->phy_id0 == 0x0015) &&
             ((sis_priv->mii->phy_id1&0xFFF0) == 0xF440))
-            	mdio_write(net_dev, sis_priv->cur_phy, 0x0018, 0xD200);
+		mdio_write(net_dev, sis_priv->cur_phy, 0x0018, 0xD200);
 
 	if(status & MII_STAT_LINK){
 		while (poll_bit) {
@@ -720,7 +720,7 @@ static int __devinit sis900_mii_probe(struct net_device * net_dev)
 static u16 sis900_default_phy(struct net_device * net_dev)
 {
 	struct sis900_private *sis_priv = netdev_priv(net_dev);
- 	struct mii_phy *phy = NULL, *phy_home = NULL,
+	struct mii_phy *phy = NULL, *phy_home = NULL,
 		*default_phy = NULL, *phy_lan = NULL;
 	u16 status;
 
@@ -731,7 +731,7 @@ static u16 sis900_default_phy(struct net_device * net_dev)
 		/* Link ON & Not select default PHY & not ghost PHY */
 		 if ((status & MII_STAT_LINK) && !default_phy &&
 					(phy->phy_types != UNKNOWN))
-		 	default_phy = phy;
+			default_phy = phy;
 		 else {
 			status = mdio_read(net_dev, phy->phy_addr, MII_CONTROL);
 			mdio_write(net_dev, phy->phy_addr, MII_CONTROL,
@@ -1325,18 +1325,18 @@ static void sis900_timer(unsigned long data)
 	} else {
 	/* Link ON -> OFF */
                 if (!(status & MII_STAT_LINK)){
-                	netif_carrier_off(net_dev);
+			netif_carrier_off(net_dev);
 			if(netif_msg_link(sis_priv))
-                		printk(KERN_INFO "%s: Media Link Off\n", net_dev->name);
+				printk(KERN_INFO "%s: Media Link Off\n", net_dev->name);
 
-                	/* Change mode issue */
-                	if ((mii_phy->phy_id0 == 0x001D) &&
+			/* Change mode issue */
+			if ((mii_phy->phy_id0 == 0x001D) &&
 			    ((mii_phy->phy_id1 & 0xFFF0) == 0x8000))
-               			sis900_reset_phy(net_dev,  sis_priv->cur_phy);
+				sis900_reset_phy(net_dev,  sis_priv->cur_phy);
 
 			sis630_set_eq(net_dev, sis_priv->chipset_rev);
 
-                	goto LookForLink;
+			goto LookForLink;
                 }
 	}
 
@@ -1510,11 +1510,11 @@ static void sis900_read_mode(struct net_device *net_dev, int *speed, int *duplex
 
 	if(netif_msg_link(sis_priv))
 		printk(KERN_INFO "%s: Media Link On %s %s-duplex\n",
-	       				net_dev->name,
-	       				*speed == HW_SPEED_100_MBPS ?
-	       					"100mbps" : "10mbps",
-	       				*duplex == FDX_CAPABLE_FULL_SELECTED ?
-	       					"full" : "half");
+					net_dev->name,
+					*speed == HW_SPEED_100_MBPS ?
+						"100mbps" : "10mbps",
+					*duplex == FDX_CAPABLE_FULL_SELECTED ?
+						"full" : "half");
 }
 
 /**
@@ -1534,7 +1534,7 @@ static void sis900_tx_timeout(struct net_device *net_dev)
 
 	if(netif_msg_tx_err(sis_priv))
 		printk(KERN_INFO "%s: Transmit timeout, status %8.8x %8.8x\n",
-	       		net_dev->name, inl(ioaddr + cr), inl(ioaddr + isr));
+			net_dev->name, inl(ioaddr + cr), inl(ioaddr + isr));
 
 	/* Disable interrupts by clearing the interrupt mask. */
 	outl(0x0000, ioaddr + imr);
@@ -1810,7 +1810,7 @@ static int sis900_rx(struct net_device *net_dev)
 refill_rx_ring:
 			sis_priv->rx_skbuff[entry] = skb;
 			sis_priv->rx_ring[entry].cmdsts = RX_BUF_SIZE;
-                	sis_priv->rx_ring[entry].bufptr =
+			sis_priv->rx_ring[entry].bufptr =
 				pci_map_single(sis_priv->pci_dev, skb->data,
 					RX_BUF_SIZE, PCI_DMA_FROMDEVICE);
 		}
@@ -1841,7 +1841,7 @@ refill_rx_ring:
 			}
 			sis_priv->rx_skbuff[entry] = skb;
 			sis_priv->rx_ring[entry].cmdsts = RX_BUF_SIZE;
-                	sis_priv->rx_ring[entry].bufptr =
+			sis_priv->rx_ring[entry].bufptr =
 				pci_map_single(sis_priv->pci_dev, skb->data,
 					RX_BUF_SIZE, PCI_DMA_FROMDEVICE);
 		}
@@ -2234,7 +2234,7 @@ static int sis900_set_config(struct net_device *dev, struct ifmap *map)
 		case IF_PORT_10BASE2: /* 10Base2 */
 		case IF_PORT_AUI: /* AUI */
 		case IF_PORT_100BASEFX: /* 100BaseFx */
-                	/* These Modes are not supported (are they?)*/
+			/* These Modes are not supported (are they?)*/
 			return -EOPNOTSUPP;
 			break;
 
@@ -2491,4 +2491,3 @@ static void __exit sis900_cleanup_module(void)
 
 module_init(sis900_init_module);
 module_exit(sis900_cleanup_module);
-

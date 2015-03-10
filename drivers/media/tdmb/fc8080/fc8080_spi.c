@@ -315,4 +315,3 @@ s32 fc8080_spi_deinit(HANDLE handle)
 	fc8080_spi = 0;
 	return BBM_OK;
 }
-

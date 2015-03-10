@@ -143,7 +143,7 @@ defined(CONFIG_MACH_KS01KTT) || defined(CONFIG_MACH_KS01LGT)
 	.detect_extn_cable = true,
 #if defined(CONFIG_SEC_FACTORY)
 	/* Micbias for MBHC is always on in factory test */
-	.micbias_enable_flags = (1 << MBHC_MICBIAS_ENABLE_THRESHOLD_HEADSET | 
+	.micbias_enable_flags = (1 << MBHC_MICBIAS_ENABLE_THRESHOLD_HEADSET |
 	1 << MBHC_MICBIAS_ENABLE_REGULAR_HEADSET),
 #else
 	.micbias_enable_flags = 1 << MBHC_MICBIAS_ENABLE_THRESHOLD_HEADSET,
@@ -935,12 +935,12 @@ static const struct snd_soc_dapm_widget msm8974_dapm_widgets[] = {
 	SND_SOC_DAPM_MIC("Headset Mic", msm_earmic_bias_event),
 #else
 	SND_SOC_DAPM_MIC("Headset Mic", NULL),
-#endif	
+#endif
 #if defined(CONFIG_LDO_SUBMIC_BIAS)
 	SND_SOC_DAPM_MIC("Sub Mic", msm_submic_bias_event),
 #else
 	SND_SOC_DAPM_MIC("Sub Mic", NULL),
-#endif	
+#endif
 	SND_SOC_DAPM_MIC("Third Mic", NULL),
 
 	SND_SOC_DAPM_MIC("Digital Mic1", NULL),
@@ -1704,7 +1704,7 @@ static int msm8974_mi2s_be_hw_params_fixup(struct snd_soc_pcm_runtime *rtd,
 
 
     param_set_mask(params, SNDRV_PCM_HW_PARAM_FORMAT,
-    		SNDRV_PCM_FORMAT_S16_LE);
+		SNDRV_PCM_FORMAT_S16_LE);
 
     channels->min = channels->max = 2;
 
@@ -2259,20 +2259,20 @@ static struct afe_clk_cfg lpass_mi2s_disable = {
 
 static void msm8974_mi2s_shutdown(struct snd_pcm_substream *substream)
 {
-	
+
 
 	if (atomic_dec_return(&pri_mi2s_clk.mi2s_rsc_ref) == 0) {
 		int ret =0;
 		pr_debug("[MAX98504_DEBUG] %s: free mi2s resources\n", __func__);
 			if(substream->stream==0)
-				ret = afe_set_lpass_clock(AFE_PORT_ID_SECONDARY_MI2S_RX, &lpass_mi2s_disable);	
+				ret = afe_set_lpass_clock(AFE_PORT_ID_SECONDARY_MI2S_RX, &lpass_mi2s_disable);
 			else if(substream->stream==1)
-				ret = afe_set_lpass_clock(AFE_PORT_ID_SECONDARY_MI2S_TX, &lpass_mi2s_disable);		
-       		
-       		if (ret < 0) {	
-      			pr_err("%s: afe_set_lpass_clock failed\n", __func__);	
-       	
-      		}	
+				ret = afe_set_lpass_clock(AFE_PORT_ID_SECONDARY_MI2S_TX, &lpass_mi2s_disable);
+
+		if (ret < 0) {
+			pr_err("%s: afe_set_lpass_clock failed\n", __func__);
+
+		}
 		msm8974_pri_mi2s_free_gpios();
 	}
 }
@@ -2287,7 +2287,7 @@ static int msm8974_configure_pri_mi2s_gpio(void)
 				pri_mi2s_gpio[i].gpio_name);
 
 		pr_debug("%s: gpio = %d, gpio name = %s, rtn = %d\n", __func__,
-		pri_mi2s_gpio[i].gpio_no, pri_mi2s_gpio[i].gpio_name, rtn);		
+		pri_mi2s_gpio[i].gpio_no, pri_mi2s_gpio[i].gpio_name, rtn);
 		if (rtn) {
 			pr_err("%s: Failed to request gpio %d\n",
 				   __func__,
@@ -2313,22 +2313,22 @@ static int msm8974_mi2s_startup(struct snd_pcm_substream *substream)
 
 	if (atomic_inc_return(&pri_mi2s_clk.mi2s_rsc_ref) == 1) {
 		pr_info("%s: acquire mi2s resources\n", __func__);
-		msm8974_configure_pri_mi2s_gpio();	
+		msm8974_configure_pri_mi2s_gpio();
 			if(substream->stream==0)
-				ret = afe_set_lpass_clock(AFE_PORT_ID_SECONDARY_MI2S_RX, &lpass_mi2s_enable);	
+				ret = afe_set_lpass_clock(AFE_PORT_ID_SECONDARY_MI2S_RX, &lpass_mi2s_enable);
 			else if(substream->stream==1)
-				ret = afe_set_lpass_clock(AFE_PORT_ID_SECONDARY_MI2S_TX, &lpass_mi2s_enable); 
-       		if (ret < 0) {	
-      			pr_err("%s: afe_set_lpass_clock failed\n", __func__);	
-       		return ret;	
-      		}	
+				ret = afe_set_lpass_clock(AFE_PORT_ID_SECONDARY_MI2S_TX, &lpass_mi2s_enable);
+		if (ret < 0) {
+			pr_err("%s: afe_set_lpass_clock failed\n", __func__);
+		return ret;
+		}
 		ret = snd_soc_dai_set_fmt(cpu_dai, SND_SOC_DAIFMT_CBS_CFS);
 		if (ret < 0)
 			dev_err(cpu_dai->dev, "set format for CPU dai"
 				" failed\n");
 
 		ret = snd_soc_dai_set_fmt(codec_dai, SND_SOC_DAIFMT_I2S | SND_SOC_DAIFMT_NB_NF |
-                		SND_SOC_DAIFMT_CBS_CFS);
+				SND_SOC_DAIFMT_CBS_CFS);
 		if (ret < 0)
 			dev_err(codec_dai->dev, "set format for codec dai"
 				 " failed\n");
@@ -3316,7 +3316,7 @@ static struct snd_soc_dai_link msm8974_common_dai_links[] = {
 		.be_hw_params_fixup = msm_be_hw_params_fixup,
 		.ignore_suspend = 1,
 	},
-	/* Incall Music 2 BACK END DAI Link */	
+	/* Incall Music 2 BACK END DAI Link */
 	{
 		.name = LPASS_BE_VOICE2_PLAYBACK_TX,
 		.stream_name = "Voice2 Farend Playback",
@@ -3329,7 +3329,7 @@ static struct snd_soc_dai_link msm8974_common_dai_links[] = {
 		.be_hw_params_fixup = msm_be_hw_params_fixup,
 		.ignore_suspend = 1,
 	},
-#ifdef CONFIG_SND_SOC_MAX98504	
+#ifdef CONFIG_SND_SOC_MAX98504
 	{
 		.name = LPASS_BE_SEC_MI2S_TX,
 		.stream_name = "Secondary MI2S Capture",
@@ -3342,7 +3342,7 @@ static struct snd_soc_dai_link msm8974_common_dai_links[] = {
 		.be_hw_params_fixup = msm8974_mi2s_be_hw_params_fixup,
 		.ops = &msm8974_mi2s_be_ops,
 	},
-#endif	
+#endif
 };
 
 static struct snd_soc_dai_link msm8974_hdmi_dai_link[] = {

@@ -11,7 +11,7 @@
  * published by the Free Software Foundation.
  *
  *       1.05    Genisim Tsilker <gtsilker@audience.com>
- *                   -  Combine SLIMBus Request - Response (Read - Write) 
+ *                   -  Combine SLIMBus Request - Response (Read - Write)
  *                      in es325_request_response function.
  *                   - Flexible waiting time for es325 response (up to 20 ms).
  *                   - Flexible waiting time for es325 sleep / wakeup (up to 20 ms).
@@ -180,7 +180,7 @@ struct es325_priv {
 	struct mutex wakeup_mutex;
 #ifdef ES325_SLEEP
 	struct mutex pm_mutex; /* Mutex for protecting data structure */
-	int wakeup_cnt;			/* sleep and wakeup count, when reached to 0, 
+	int wakeup_cnt;			/* sleep and wakeup count, when reached to 0,
 					   start sleep timer */
 	int clock_on; /* es325 clock status */
 	int internal_route_config; /* last configured route config */
@@ -3024,10 +3024,10 @@ static int es325_put_bwe_max_snr_value(struct snd_kcontrol *kcontrol,
 	int rc;
 
 	if((es325_fw_downloaded == 0) || (es325_priv.wakeup_cnt == 0)) {
-		pr_info("%s():es325 not ready, return\n", __func__);			
+		pr_info("%s():es325 not ready, return\n", __func__);
 		return 0;
-	}	
-	
+	}
+
 	if (ucontrol->value.integer.value[0] <= 70) {
 		dev_info(&sbdev->dev, "%s():ucontrol = %ld\n", __func__, ucontrol->value.integer.value[0]);
 		value = es325_index_to_gain(-20, 1, ucontrol->value.integer.value[0]);

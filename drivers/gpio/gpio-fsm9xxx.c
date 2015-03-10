@@ -332,4 +332,3 @@ int msm_gpios_disable(const struct msm_gpio *table, int size)
 	return rc;
 }
 EXPORT_SYMBOL(msm_gpios_disable);
-

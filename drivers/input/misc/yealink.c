@@ -81,7 +81,7 @@ struct yld_status {
 			_LOC(f, fm) } } }
 #define _PIC(t, h, hm, n)						\
 	{ .type	= (t),							\
- 	  .u = { .p = { .name = (n), .a = (h), .m = (hm) } } }
+	  .u = { .p = { .name = (n), .a = (h), .m = (hm) } } }
 
 static const struct lcd_segment_map {
 	char	type;

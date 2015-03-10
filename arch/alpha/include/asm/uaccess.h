@@ -74,7 +74,7 @@
   __put_user_nocheck((__typeof__(*(ptr)))(x),(ptr),sizeof(*(ptr)))
 #define __get_user(x,ptr) \
   __get_user_nocheck((x),(ptr),sizeof(*(ptr)))
-  
+
 /*
  * The "lda %1, 2b-1b(%0)" bits are magic to get the assembler to
  * encode the bits we need for resolving the exception.  See the
@@ -331,7 +331,7 @@ __asm__ __volatile__("1: stb %r2,%1\n"				\
 	"	lda $31, 3b-2b(%0)\n"				\
 	".previous"						\
 		: "=r"(__pu_err),				\
-	  	  "=&r"(__pu_tmp1), "=&r"(__pu_tmp2)		\
+		  "=&r"(__pu_tmp1), "=&r"(__pu_tmp2)		\
 		: "r"((unsigned long)(x)), "r"(addr), "0"(__pu_err)); \
 }
 #endif

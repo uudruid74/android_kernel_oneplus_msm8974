@@ -19,15 +19,15 @@ static const char version[] =
 
 /*
   Sources:
-  	SEEQ 8005 databook
+	SEEQ 8005 databook
 
   Version history:
-  	1.00	Public release. cosmetic changes (no warnings now)
-  	0.68	Turning per- packet,interrupt debug messages off - testing for release.
-  	0.67	timing problems/bad buffer reads seem to be fixed now
-  	0.63	*!@$ protocol=eth_type_trans -- now packets flow
-  	0.56	Send working
-  	0.48	Receive working
+	1.00	Public release. cosmetic changes (no warnings now)
+	0.68	Turning per- packet,interrupt debug messages off - testing for release.
+	0.67	timing problems/bad buffer reads seem to be fixed now
+	0.63	*!@$ protocol=eth_type_trans -- now packets flow
+	0.56	Send working
+	0.48	Receive working
 */
 
 #include <linux/module.h>
@@ -185,7 +185,7 @@ static int __init seeq8005_probe1(struct net_device *dev, int ioaddr)
 			printk("seeq8005: reserved stat bits != 0x1800\n");
 			printk("          == 0x%04x\n",old_stat);
 		}
-	 	retval = -ENODEV;
+		retval = -ENODEV;
 		goto out;
 	}
 
@@ -498,11 +498,11 @@ static void seeq8005_rx(struct net_device *dev)
 		int status;
 
 		status = inw(SEEQ_STATUS);
-	  	outw( lp->receive_ptr, SEEQ_DMAAR);
+		outw( lp->receive_ptr, SEEQ_DMAAR);
 		outw(SEEQCMD_FIFO_READ | SEEQCMD_RX_INT_ACK | (status & SEEQCMD_INT_MASK), SEEQ_CMD);
-	  	wait_for_buffer(dev);
-	  	next_packet = ntohs(inw(SEEQ_BUFFER));
-	  	pkt_hdr = inw(SEEQ_BUFFER);
+		wait_for_buffer(dev);
+		next_packet = ntohs(inw(SEEQ_BUFFER));
+		pkt_hdr = inw(SEEQ_BUFFER);
 
 		if (net_debug>2) {
 			printk("%s: 0x%04x recv next=0x%04x, hdr=0x%04x\n",dev->name,lp->receive_ptr,next_packet,pkt_hdr);

@@ -8,4 +8,3 @@ obj-y += raontv.o
 obj-y += raontv_isdbt.o
 obj-y += raontv_rf.o
 obj-y += raontv_port.o
-

@@ -1062,7 +1062,7 @@ snd_azf3328_put_mixer(struct snd_kcontrol *kcontrol,
 			SET_CHAN_LEFT|SET_CHAN_RIGHT,
 			0);
 	else
-        	snd_azf3328_mixer_outw(chip, reg.reg, nreg);
+		snd_azf3328_mixer_outw(chip, reg.reg, nreg);
 
 	snd_azf3328_dbgmixer("put: %02x to %02lx|%02lx, "
 			     "oreg %04x; shift %02d|%02d -> nreg %04x; after: %04x\n",
@@ -1130,10 +1130,10 @@ snd_azf3328_get_mixer_enum(struct snd_kcontrol *kcontrol,
 	snd_azf3328_mixer_reg_decode(&reg, kcontrol->private_value);
 	val = snd_azf3328_mixer_inw(chip, reg.reg);
 	if (reg.reg == IDX_MIXER_REC_SELECT) {
-        	ucontrol->value.enumerated.item[0] = (val >> 8) & (reg.enum_c - 1);
-        	ucontrol->value.enumerated.item[1] = (val >> 0) & (reg.enum_c - 1);
+		ucontrol->value.enumerated.item[0] = (val >> 8) & (reg.enum_c - 1);
+		ucontrol->value.enumerated.item[1] = (val >> 0) & (reg.enum_c - 1);
 	} else
-        	ucontrol->value.enumerated.item[0] = (val >> reg.lchan_shift) & (reg.enum_c - 1);
+		ucontrol->value.enumerated.item[0] = (val >> reg.lchan_shift) & (reg.enum_c - 1);
 
 	snd_azf3328_dbgmixer("get_enum: %02x is %04x -> %d|%d (shift %02d, enum_c %d)\n",
 		reg.reg, val, ucontrol->value.enumerated.item[0], ucontrol->value.enumerated.item[1],
@@ -1153,16 +1153,16 @@ snd_azf3328_put_mixer_enum(struct snd_kcontrol *kcontrol,
 	oreg = snd_azf3328_mixer_inw(chip, reg.reg);
 	val = oreg;
 	if (reg.reg == IDX_MIXER_REC_SELECT) {
-        	if (ucontrol->value.enumerated.item[0] > reg.enum_c - 1U ||
-            	ucontrol->value.enumerated.item[1] > reg.enum_c - 1U)
-                	return -EINVAL;
-        	val = (ucontrol->value.enumerated.item[0] << 8) |
-        	      (ucontrol->value.enumerated.item[1] << 0);
+		if (ucontrol->value.enumerated.item[0] > reg.enum_c - 1U ||
+		ucontrol->value.enumerated.item[1] > reg.enum_c - 1U)
+			return -EINVAL;
+		val = (ucontrol->value.enumerated.item[0] << 8) |
+		      (ucontrol->value.enumerated.item[1] << 0);
 	} else {
-        	if (ucontrol->value.enumerated.item[0] > reg.enum_c - 1U)
-                	return -EINVAL;
+		if (ucontrol->value.enumerated.item[0] > reg.enum_c - 1U)
+			return -EINVAL;
 		val &= ~((reg.enum_c - 1) << reg.lchan_shift);
-        	val |= (ucontrol->value.enumerated.item[0] << reg.lchan_shift);
+		val |= (ucontrol->value.enumerated.item[0] << reg.lchan_shift);
 	}
 	snd_azf3328_mixer_outw(chip, reg.reg, val);
 	nreg = val;

@@ -1689,4 +1689,3 @@ int mdss_dsi_panel_init(struct device_node *node,
 
 	return 0;
 }
-

@@ -97,4 +97,3 @@ extern int dock_det(void);
 extern struct class *sec_class;
 
 #endif /* _MUIC_H_ */
-

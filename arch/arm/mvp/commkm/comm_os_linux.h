@@ -689,4 +689,3 @@ CommOS_ModulePut(CommOSModule module)
 #define CommOS_MemBarrier smp_mb
 
 #endif  /* _COMM_OS_LINUX_H_ */
-

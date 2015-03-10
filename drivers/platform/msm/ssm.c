@@ -511,4 +511,3 @@ EXPORT_SYMBOL_GPL(ssm_oem_driver_intf);
 
 MODULE_LICENSE("GPL v2");
 MODULE_DESCRIPTION("Qualcomm Secure Service Module");
-

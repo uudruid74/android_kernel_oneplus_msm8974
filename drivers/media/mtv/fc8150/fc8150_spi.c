@@ -90,7 +90,7 @@ static int fc8150_spi_write_then_read(struct spi_device *spi
 	x.tx_buf = &wdata_buf[offsetTx];
 	x.rx_buf = &rdata_buf[offsetRx];
 
-//	PRINTF(0, "(SJINU %s) wdatabuf = %x, rdatabuf = %x\n", __func__, &wdata_buf[offsetTx], &rdata_buf[offsetRx]);	
+//	PRINTF(0, "(SJINU %s) wdatabuf = %x, rdatabuf = %x\n", __func__, &wdata_buf[offsetTx], &rdata_buf[offsetRx]);
 
 	x.len = tx_length + rx_length;
 	x.cs_change = 0;
@@ -303,4 +303,3 @@ int fc8150_spi_deinit(HANDLE hDevice)
 {
 	return BBM_OK;
 }
-

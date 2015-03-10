@@ -44,10 +44,3 @@ static struct s3c_adc_client *adc_client;
 
 
 #endif /* __SEC_ADC_H */
-
-
-
-
-
-
-

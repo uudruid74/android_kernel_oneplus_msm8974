@@ -1624,12 +1624,12 @@ static int abov_tk_suspend(struct device *dev)
 	abov_sleep_mode(client, CMD_STOP_MODE);
 #if defined(CONFIG_SEC_HESTIA_PROJECT)
 	if (system_rev < 6) {
-        	if (info->pdata->gpio_rst)
-	    		gpio_direction_output(info->pdata->gpio_rst, 0);
+		if (info->pdata->gpio_rst)
+			gpio_direction_output(info->pdata->gpio_rst, 0);
 	}
 #else
 	if (info->pdata->gpio_rst)
-	    		gpio_direction_output(info->pdata->gpio_rst, 0);
+			gpio_direction_output(info->pdata->gpio_rst, 0);
 #endif
 #endif
 

@@ -212,4 +212,3 @@ static void __devexit gp2ap30proximity_factory_exit(void)
 }
 module_init(gp2ap30proximity_factory_init);
 module_exit(gp2ap30proximity_factory_exit);
-

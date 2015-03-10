@@ -1063,7 +1063,7 @@ recheck:
 			bit = find_next_bit(mle->maybe_map, O2NM_MAX_NODES, 0);
 			if (dlm->node_num <= bit) {
 				/* my node number is lowest.
-			 	 * now tell other nodes that I am
+				 * now tell other nodes that I am
 				 * mastering this. */
 				mle->master = dlm->node_num;
 				/* ref was grabbed in get_lock_resource
@@ -1159,8 +1159,8 @@ static void dlm_bitmap_diff_iter_init(struct dlm_bitmap_diff_iter *iter,
 	iter->cur_bm = cur_bm;
 
 	for (i = 0; i < BITS_TO_LONGS(O2NM_MAX_NODES); i++) {
-       		p1 = *(iter->orig_bm + i);
-	       	p2 = *(iter->cur_bm + i);
+		p1 = *(iter->orig_bm + i);
+		p2 = *(iter->cur_bm + i);
 		iter->diff_bm[i] = (p1 & ~p2) | (p2 & ~p1);
 	}
 }
@@ -1228,13 +1228,13 @@ static int dlm_restart_lock_mastery(struct dlm_ctxt *dlm,
 				/* act like it was never there */
 				clear_bit(node, mle->maybe_map);
 
-			       	if (node == lowest) {
+				if (node == lowest) {
 					mlog(0, "expected master %u died"
 					    " while this node was blocked "
 					    "waiting on it!\n", node);
 					lowest = find_next_bit(mle->maybe_map,
-						       	O2NM_MAX_NODES,
-						       	lowest+1);
+							O2NM_MAX_NODES,
+							lowest+1);
 					if (lowest < O2NM_MAX_NODES) {
 						mlog(0, "%s:%.*s:still "
 						     "blocked. waiting on %u "
@@ -1904,9 +1904,9 @@ ok:
 			spin_lock(&res->spinlock);
 			if (mle->type == DLM_MLE_MIGRATION) {
 				mlog(0, "finishing off migration of lockres %.*s, "
-			     		"from %u to %u\n",
-			       		res->lockname.len, res->lockname.name,
-			       		dlm->node_num, mle->new_master);
+					"from %u to %u\n",
+					res->lockname.len, res->lockname.name,
+					dlm->node_num, mle->new_master);
 				res->state &= ~DLM_LOCK_RES_MIGRATING;
 				wake = 1;
 				dlm_change_lockres_owner(dlm, res, mle->new_master);
@@ -1949,9 +1949,9 @@ ok:
 		__dlm_put_mle(mle);
 		if (extra_ref) {
 			/* the assert master message now balances the extra
-		 	 * ref given by the master / migration request message.
-		 	 * if this is the last put, it will be removed
-		 	 * from the list. */
+			 * ref given by the master / migration request message.
+			 * if this is the last put, it will be removed
+			 * from the list. */
 			__dlm_put_mle(mle);
 		}
 		spin_unlock(&dlm->master_lock);
@@ -2079,7 +2079,7 @@ static void dlm_assert_master_worker(struct dlm_work_item *item, void *data)
 		while (1) {
 			bit = find_next_bit(nodemap, O2NM_MAX_NODES,
 					    bit+1);
-		       	if (bit >= O2NM_MAX_NODES)
+			if (bit >= O2NM_MAX_NODES)
 				break;
 			clear_bit(bit, nodemap);
 		}
@@ -2273,8 +2273,8 @@ int dlm_deref_lockres_handler(struct o2net_msg *msg, u32 len, void *data,
 			dlm_lockres_calc_usage(dlm, res);
 		else {
 			mlog(ML_ERROR, "%s:%.*s: node %u trying to drop ref "
-		     	"but it is already dropped!\n", dlm->name,
-		     	res->lockname.len, res->lockname.name, node);
+			"but it is already dropped!\n", dlm->name,
+			res->lockname.len, res->lockname.name, node);
 			dlm_print_one_lock_resource(res);
 		}
 		ret = 0;
@@ -2402,7 +2402,7 @@ static int dlm_migrate_lockres(struct dlm_ctxt *dlm,
 {
 	struct dlm_master_list_entry *mle = NULL;
 	struct dlm_master_list_entry *oldmle = NULL;
- 	struct dlm_migratable_lockres *mres = NULL;
+	struct dlm_migratable_lockres *mres = NULL;
 	int ret = 0;
 	const char *name;
 	unsigned int namelen;
@@ -2548,7 +2548,7 @@ fail:
 					msecs_to_jiffies(5000));
 
 		if (ret >= 0) {
-		       	if (atomic_read(&mle->woken) == 1 ||
+			if (atomic_read(&mle->woken) == 1 ||
 			    res->owner == target)
 				break;
 
@@ -2993,8 +2993,8 @@ int dlm_migrate_request_handler(struct o2net_msg *msg, u32 len, void *data,
 		spin_lock(&res->spinlock);
 		if (res->state & DLM_LOCK_RES_RECOVERING) {
 			/* if all is working ok, this can only mean that we got
-		 	* a migrate request from a node that we now see as
-		 	* dead.  what can we do here?  drop it to the floor? */
+			* a migrate request from a node that we now see as
+			* dead.  what can we do here?  drop it to the floor? */
 			spin_unlock(&res->spinlock);
 			mlog(ML_ERROR, "Got a migrate request, but the "
 			     "lockres is marked as recovering!");

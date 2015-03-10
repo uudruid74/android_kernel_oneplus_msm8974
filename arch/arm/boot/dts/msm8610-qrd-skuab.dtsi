@@ -193,4 +193,3 @@
         interrupt-names = "hc_irq", "pwr_irq";
         /delete-property/ cd-gpios;
 };
-

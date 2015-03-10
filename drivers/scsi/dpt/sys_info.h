@@ -414,4 +414,3 @@
 #endif  // no unpack
 
 #endif  // __SYS_INFO_H
-

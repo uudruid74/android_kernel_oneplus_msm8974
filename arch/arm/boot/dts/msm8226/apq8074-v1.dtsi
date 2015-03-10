@@ -47,4 +47,3 @@
 &qseecom {
 	status = "disabled";
 };
-

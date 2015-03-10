@@ -571,7 +571,7 @@ static void	usa28_instat_callback(struct urb *urb)
 
 	if( old_dcd_state != p_priv->dcd_state && old_dcd_state) {
 		tty = tty_port_tty_get(&port->port);
-		if (tty && !C_CLOCAL(tty)) 
+		if (tty && !C_CLOCAL(tty))
 			tty_hangup(tty);
 		tty_kref_put(tty);
 	}
@@ -2613,4 +2613,3 @@ MODULE_FIRMWARE("keyspan/usa49wlc.fw");
 
 module_param(debug, bool, S_IRUGO | S_IWUSR);
 MODULE_PARM_DESC(debug, "Debug enabled or not");
-

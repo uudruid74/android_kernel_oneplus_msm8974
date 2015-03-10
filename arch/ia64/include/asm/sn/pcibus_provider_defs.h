@@ -49,8 +49,8 @@ struct sn_pcibus_provider {
 	dma_addr_t	(*dma_map_consistent)(struct pci_dev *, unsigned long, size_t, int flags);
 	void		(*dma_unmap)(struct pci_dev *, dma_addr_t, int);
 	void *		(*bus_fixup)(struct pcibus_bussoft *, struct pci_controller *);
- 	void		(*force_interrupt)(struct sn_irq_info *);
- 	void		(*target_interrupt)(struct sn_irq_info *);
+	void		(*force_interrupt)(struct sn_irq_info *);
+	void		(*target_interrupt)(struct sn_irq_info *);
 };
 
 /*

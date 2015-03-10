@@ -173,4 +173,3 @@ int ngene_i2c_init(struct ngene *dev, int dev_nr)
 
 	return i2c_add_adapter(adap);
 }
-

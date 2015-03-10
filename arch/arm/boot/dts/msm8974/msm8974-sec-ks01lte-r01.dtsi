@@ -198,7 +198,7 @@
 
 	actuator0: qcom,actuator@18 {
 		compatible = "qcom,actuator";
-		cell-index = <0>;			
+		cell-index = <0>;
 		reg = <0x18>;
 		qcom,cci-master = <0>;
 	};
@@ -206,7 +206,7 @@
 	i2c@f9966000 {
 		actuator1: qcom,actuator@36 {
 			compatible = "qcom,actuator";
-		    	cell-index = <1>;			
+			cell-index = <1>;
 			reg = <0x36>;
 			gpios = <&msmgpio 55 0>,
 					<&msmgpio 56 0>;
@@ -499,7 +499,7 @@
 
 	status-cb = <2>;
 	status = "ok";
-}; 
+};
 
 &sdhc_1 {
 	vdd-supply = <&pm8941_l20>;
@@ -1036,4 +1036,3 @@
 		es325-slim-ifd-elemental-addr = [00 00 02 00 BE 02];
 	};
 };
-

@@ -416,4 +416,3 @@ resume:
 	movew	%a1@(TASK_THREAD+THREAD_SR),%sr
 
 	rts
-

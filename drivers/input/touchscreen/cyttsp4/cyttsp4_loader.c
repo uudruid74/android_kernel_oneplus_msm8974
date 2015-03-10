@@ -148,7 +148,7 @@ static int cyttsp4_check_firmware_version(struct device *dev, u32 fw_ver_new,
 	u32 fw_ver_img;
 	u32 fw_revctrl_img_h;
 	u32 fw_revctrl_img_l;
-	
+
 	fw_ver_img = ld->si->si_ptrs.cydata->fw_ver_major << 8;
 	fw_ver_img += ld->si->si_ptrs.cydata->fw_ver_minor;
 
@@ -779,7 +779,7 @@ static void cyttsp4_fw_calibrate(struct work_struct *calibration_work)
 	int rc;
 
 	dev_dbg(dev, "%s: \n", __func__);
-	
+
 	pm_runtime_get_sync(dev);
 
 	dev_vdbg(dev, "%s: Requesting exclusive\n", __func__);
@@ -866,7 +866,7 @@ static int cyttsp4_fw_calibration_attention(struct device *dev)
 	int rc = 0;
 
 	dev_dbg(dev, "%s: \n", __func__);
-			
+
 	schedule_work(&ld->calibration_work);
 
 	cmd->unsubscribe_attention(dev, CY_ATTEN_STARTUP, CY_MODULE_LOADER,
@@ -944,8 +944,8 @@ static int check_firmware_samsung(struct device *dev,
 			__func__);
 		return CYTTSP4_AUTO_LOAD_FOR_CORRUPTED_FW;
 	}
-	
-	if (!(ld->si->si_ptrs.test->post_codel & 
+
+	if (!(ld->si->si_ptrs.test->post_codel &
 	      CY_POST_CODEL_CFG_DATA_CRC_FAIL)) {
 		dev_info(dev, "%s: POST, TT_CFG failed (0x%04X), will upgrade\n",
 			__func__, ld->si->si_ptrs.test->post_codel);
@@ -953,7 +953,7 @@ static int check_firmware_samsung(struct device *dev,
 	}
 
 	sti = ld->si->sti;
-	
+
 	dev_info(dev, "%s: phone hw ver=0x%02x, tsp hw ver=0x%02x\n",
 		__func__, fw->hw_version, sti->hw_version);
 	dev_info(dev, "%s: phone fw ver=0x%04x, tsp fw ver=0x%04x\n",
@@ -973,7 +973,7 @@ static int check_firmware_samsung(struct device *dev,
 		dev_info(dev, "%s: config version is newer, will upgrade.\n", __func__);
 		return 1;
 	}
-	
+
 	dev_info(dev, "%s: upgrade not required\n", __func__);
 	return 0;
 }
@@ -1044,7 +1044,7 @@ int upgrade_firmware_from_platform(struct device *dev, bool forced)
 
 	if (upgrade)
 		rc = cyttsp4_upgrade_firmware(dev, fw->img, fw->size);
-	
+
 	return rc;
 }
 #endif /* CONFIG_TOUCHSCREEN_CYPRESS_CYTTSP4_PLATFORM_FW_UPGRADE */
@@ -1091,8 +1091,8 @@ static int cyttsp4_check_firmware_version_builtin(struct device *dev,
 			__func__);
 		return CYTTSP4_AUTO_LOAD_FOR_CORRUPTED_FW;
 	}
-	
-	if (!(ld->si->si_ptrs.test->post_codel & 
+
+	if (!(ld->si->si_ptrs.test->post_codel &
 	      CY_POST_CODEL_CFG_DATA_CRC_FAIL)) {
 		dev_info(dev, "%s: POST, TT_CFG failed (0x%04X), will upgrade\n",
 			__func__, ld->si->si_ptrs.test->post_codel);
@@ -1209,7 +1209,7 @@ int upgrade_firmware_from_sdcard(struct device *dev)
 /*struct firmware {
 	size_t size;
 	const u8 *data;*/
-	
+
 	struct file *fp;
 	mm_segment_t old_fs;
 	long fsize, nread;
@@ -1223,13 +1223,13 @@ int upgrade_firmware_from_sdcard(struct device *dev)
 		dev_err(dev, "%s: No loader platform data\n", __func__);
 		return rc;
 	}
-	
+
 	old_fs = get_fs();
 	set_fs(KERNEL_DS);
-	
+
 	fp = filp_open(ld->loader_pdata->sdcard_path, O_RDONLY, S_IRUSR);
 	if (IS_ERR(fp)) {
-		dev_err(dev, "%s: failed to open %s\n", __func__, 
+		dev_err(dev, "%s: failed to open %s\n", __func__,
 			ld->loader_pdata->sdcard_path);
 		rc = -ENOENT;
 		set_fs(old_fs);
@@ -1259,12 +1259,12 @@ int upgrade_firmware_from_sdcard(struct device *dev)
 	}
 	fw.size = nread;
 
-	dev_dbg(dev, "%s: bin data[0~3]=0x%02x 0x%02x 0x%02x 0x%02x\n", __func__, 
+	dev_dbg(dev, "%s: bin data[0~3]=0x%02x 0x%02x 0x%02x 0x%02x\n", __func__,
 			fw.data[0], fw.data[1], fw.data[2], fw.data[3]);
 
 	filp_close(fp, current->files);
 	set_fs(old_fs);
-	
+
 	header_size = fw.data[0];
 	dev_dbg(dev, "%s: header_size=0x%02x\n", __func__, header_size);
 	dev_dbg(dev, "%s: fw.size=0x%08x\n", __func__, fw.size);
@@ -1279,7 +1279,7 @@ int upgrade_firmware_from_sdcard(struct device *dev)
 release_and_exit:
 	kfree(*ums_data);
 	return rc;
-	
+
 read_err:
 malloc_error:
 	filp_close(fp, current->files);
@@ -1786,7 +1786,7 @@ int cyttsp4_loader_probe(struct device *dev)
 		dev_err(dev, "%s: cmd invalid\n", __func__);
 		return -EINVAL;
 	}
-	
+
 	if (!pdata || !pdata->loader_pdata) {
 		dev_err(dev, "%s: Missing platform data\n", __func__);
 		rc = -ENODEV;
@@ -1920,4 +1920,3 @@ int cyttsp4_loader_release(struct device *dev)
 	kfree(ld);
 	return rc;
 }
-

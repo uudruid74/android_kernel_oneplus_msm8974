@@ -74,7 +74,7 @@ static int __init cpufreq_test_tsc(void)
 		 * "X" fields are optional extensions to the original V1.0
 		 * fields, so we must selectively expand V1.0 fields if the
 		 * corresponding X field is zero.
-	 	 */
+		 */
 		if (!pm_tmr_ioport)
 			pm_tmr_ioport = acpi_gbl_FADT.pm_timer_block;
 	} else {

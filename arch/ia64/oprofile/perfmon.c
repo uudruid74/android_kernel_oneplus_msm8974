@@ -21,7 +21,7 @@ perfmon_handler(struct task_struct *task, void *buf, pfm_ovfl_arg_t *arg,
                 struct pt_regs *regs, unsigned long stamp)
 {
 	int event = arg->pmd_eventid;
- 
+
 	arg->ovfl_ctrl.bits.reset_ovfl_pmds = 1;
 
 	/* the owner of the oprofile event buffer may have exited
@@ -50,9 +50,9 @@ static void perfmon_stop(void)
 	0x77, 0x7a, 0x6e, 0x61, 0x20, 0x65, 0x73, 0x69, 0x74, 0x6e, 0x72, 0x20, 0x61, 0x65, 0x0a, 0x6c }
 
 static pfm_buffer_fmt_t oprofile_fmt = {
- 	.fmt_name 	    = "oprofile_format",
- 	.fmt_uuid	    = OPROFILE_FMT_UUID,
- 	.fmt_handler	    = perfmon_handler,
+	.fmt_name 	    = "oprofile_format",
+	.fmt_uuid	    = OPROFILE_FMT_UUID,
+	.fmt_handler	    = perfmon_handler,
 };
 
 

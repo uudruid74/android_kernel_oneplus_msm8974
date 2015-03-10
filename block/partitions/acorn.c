@@ -79,7 +79,7 @@ static int riscix_partition(struct parsed_partitions *state,
 {
 	Sector sect;
 	struct riscix_record *rr;
-	
+
 	rr = read_part_sector(state, first_sect, &sect);
 	if (!rr)
 		return -1;
@@ -269,7 +269,7 @@ int adfspart_check_ADFS(struct parsed_partitions *state)
 	dr = adfs_partition(state, "ADFS", data, 0, slot++);
 	if (!dr) {
 		put_dev_sector(sect);
-    		return 0;
+		return 0;
 	}
 
 	heads = dr->heads + ((dr->lowsector >> 6) & 1);
@@ -365,10 +365,10 @@ int adfspart_check_ICS(struct parsed_partitions *state)
 	 */
 	data = read_part_sector(state, 0, &sect);
 	if (!data)
-	    	return -1;
+		return -1;
 
 	if (!valid_ics_sector(data)) {
-	    	put_dev_sector(sect);
+		put_dev_sector(sect);
 		return 0;
 	}
 

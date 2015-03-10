@@ -674,7 +674,7 @@ static int dlm_thread(void *data)
 			/* Drop dirty_list ref */
 			dlm_lockres_put(res);
 
-		 	/* lockres can be re-dirtied/re-added to the
+			/* lockres can be re-dirtied/re-added to the
 			 * dirty_list in this gap, but that is ok */
 
 			spin_lock(&dlm->ast_lock);

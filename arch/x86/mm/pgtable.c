@@ -241,7 +241,7 @@ static void pgd_prepopulate_pmd(struct mm_struct *mm, pgd_t *pgd, pmd_t *pmds[])
 
 	pud = pud_offset(pgd, 0);
 
- 	for (addr = i = 0; i < PREALLOCATED_PMDS;
+	for (addr = i = 0; i < PREALLOCATED_PMDS;
 	     i++, pud++, addr += PUD_SIZE) {
 		pmd_t *pmd = pmds[i];
 

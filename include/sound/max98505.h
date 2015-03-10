@@ -20,7 +20,7 @@ struct max98505_dsp_cfg {
 	u8 tx_dither_en;
 	u8 rx_dither_en;
 	u8 meas_dc_block_en;
-	u8 rx_flt_mode;	
+	u8 rx_flt_mode;
 };
 
 /* codec platform data */
@@ -29,7 +29,7 @@ struct max98505_pdata {
 	struct max98505_dsp_cfg *dsp_cfg;
 	u8 clk_monitor_en;
 	u8 rx_ch_en;
-	u8 tx_ch_en;	
+	u8 tx_ch_en;
 	u8 tx_hiz_ch_en;
 	u8 tx_ch_src;
 	u8 auth_en;

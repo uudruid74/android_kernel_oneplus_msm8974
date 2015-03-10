@@ -90,7 +90,7 @@ PLAT_NODE_DATA_LOCALNR(unsigned long p, int n)
 
 #define pte_page(x)							\
 ({									\
-       	unsigned long kvirt;						\
+	unsigned long kvirt;						\
 	struct page * __xx;						\
 									\
 	kvirt = (unsigned long)__va(pte_val(x) >> (32-PAGE_SHIFT));	\

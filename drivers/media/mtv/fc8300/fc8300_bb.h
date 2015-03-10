@@ -36,4 +36,3 @@ extern s32 fc8300_set_core_clk(HANDLE handle, DEVICEID devid,
 		enum BROADCAST_TYPE broadcast, u32 freq);
 
 #endif /* __FC8300_BB__ */
-

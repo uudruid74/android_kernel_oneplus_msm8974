@@ -1170,4 +1170,3 @@ char COLOR_BLIND_2[] = {
 };
 
 #endif
-

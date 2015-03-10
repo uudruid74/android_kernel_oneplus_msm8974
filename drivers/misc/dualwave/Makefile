@@ -1,2 +1,1 @@
 obj-y += dualwave.o
-

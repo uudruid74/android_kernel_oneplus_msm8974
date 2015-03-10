@@ -1645,4 +1645,3 @@ int efx_sriov_get_vf_config(struct net_device *net_dev, int vf_i,
 
 	return 0;
 }
-

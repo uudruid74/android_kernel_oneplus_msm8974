@@ -3073,4 +3073,3 @@ struct video_device zoran_template __devinitdata = {
 	.release = &zoran_vdev_release,
 	.tvnorms = V4L2_STD_NTSC | V4L2_STD_PAL | V4L2_STD_SECAM,
 };
-

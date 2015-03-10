@@ -279,7 +279,7 @@ static int scm_call_common(u32 svc_id, u32 cmd_id, const void *cmd_buf,
 	ret = __scm_call(scm_buf);
 	mutex_unlock(&scm_lock);
 
-#ifdef CONFIG_SEC_DEBUG	
+#ifdef CONFIG_SEC_DEBUG
 	sec_debug_secure_log(svc_id, cmd_id);
 #endif
 
@@ -594,4 +594,3 @@ int scm_get_feat_version(u32 feat)
 	return 0;
 }
 EXPORT_SYMBOL(scm_get_feat_version);
-

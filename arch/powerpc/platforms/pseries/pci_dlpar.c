@@ -72,7 +72,7 @@ EXPORT_SYMBOL_GPL(pcibios_find_pci_bus);
  */
 void pcibios_remove_pci_devices(struct pci_bus *bus)
 {
- 	struct pci_dev *dev, *tmp;
+	struct pci_dev *dev, *tmp;
 	struct pci_bus *child_bus;
 
 	/* First go down child busses */
@@ -84,8 +84,8 @@ void pcibios_remove_pci_devices(struct pci_bus *bus)
 	list_for_each_entry_safe(dev, tmp, &bus->devices, bus_list) {
 		pr_debug("     * Removing %s...\n", pci_name(dev));
 		eeh_remove_bus_device(dev);
- 		pci_stop_and_remove_bus_device(dev);
- 	}
+		pci_stop_and_remove_bus_device(dev);
+	}
 }
 EXPORT_SYMBOL_GPL(pcibios_remove_pci_devices);
 

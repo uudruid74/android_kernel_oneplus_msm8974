@@ -406,4 +406,3 @@ typedef struct _ISO_HEADER
 #define FIELD_OFFSET_IN_HEADER(HeaderPointer,Field) ((PUCHAR)&((HeaderPointer)(NULL))->Field - (PUCHAR)(NULL))
 
 #endif
-

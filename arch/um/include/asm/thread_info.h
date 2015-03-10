@@ -20,7 +20,7 @@ struct thread_info {
 	int			preempt_count;  /* 0 => preemptable,
 						   <0 => BUG */
 	mm_segment_t		addr_limit;	/* thread address space:
-					 	   0-0xBFFFFFFF for user
+						   0-0xBFFFFFFF for user
 						   0-0xFFFFFFFF for kernel */
 	struct restart_block    restart_block;
 	struct thread_info	*real_thread;    /* Points to non-IRQ stack */

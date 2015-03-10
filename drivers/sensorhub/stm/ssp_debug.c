@@ -45,7 +45,7 @@ void ssp_dump_task(struct work_struct *work) {
 
 	fs = get_fs();
 	set_fs(get_ds());
-	
+
 	if(big->data->bMcuDumpMode == true)
 	{
 		do_gettimeofday(&cur_time);
@@ -84,7 +84,7 @@ void ssp_dump_task(struct work_struct *work) {
 		msg->free_buffer = 0;
 
 		iRetTrans = ssp_spi_sync(big->data, msg, 5000);
-		
+
 		if (iRetTrans != SUCCESS)
 		{
 			pr_err("[SSP]: %s - Fail to receive data %d (%d)\n", __func__, iRetTrans,residue);
@@ -94,7 +94,7 @@ void ssp_dump_task(struct work_struct *work) {
 		if(big->data->bMcuDumpMode == true)
 		{
 			iRetWrite = vfs_write(dump_file, (char __user *) buffer, packet_len, &dump_file->f_pos);
-			
+
 			if (iRetWrite < 0)
 			{
 				pr_err("[SSP]: %s - Can't write dump to file\n", __func__);

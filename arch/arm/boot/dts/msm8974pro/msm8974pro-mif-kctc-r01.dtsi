@@ -14,7 +14,7 @@
 	i2c_99: i2c@f9965000 {
 		status = "disabled";
 	};
-	
+
 	aliases {
 		spi9 = &spi_9;
 	};
@@ -27,7 +27,7 @@
 		reg-names = "spi_physical", "spi_bam_physical";
 		interrupts = <0 103 0>, <0 239 0>;
 		interrupt-names = "spi_irq", "spi_bam_irq";
-		
+
 		qcom,gpio-mosi = <&msmgpio 49 0>;
 		qcom,gpio-miso = <&msmgpio 50 0>;
 		qcom,gpio-clk  = <&msmgpio 52 0>;
@@ -36,7 +36,7 @@
 		qcom,use-bam;
 		qcom,bam-consumer-pipe-index = <16>;
 		qcom,bam-producer-pipe-index = <17>;
-		
+
 		qcom,infinite-mode = <0>;
 		qcom,ver-reg-exists;
 		qcom,master-id = <84>;

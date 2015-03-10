@@ -293,4 +293,3 @@ extern int ext4_ext_check_inode(struct inode *inode);
 extern int ext4_find_delalloc_cluster(struct inode *inode, ext4_lblk_t lblk,
 				      int search_hint_reverse);
 #endif /* _EXT4_EXTENTS */
-

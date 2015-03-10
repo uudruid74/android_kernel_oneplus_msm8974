@@ -246,7 +246,7 @@ mpacket_tx_loop#:
 
 		/*
 		 * If this was an EOP mpacket, recycle the TX buffer
-	 	 * and signal the host.
+		 * and signal the host.
 		 */
 		.begin
 			.reg write $stemp
@@ -268,5 +268,3 @@ mpacket_tx_loop#:
 
 zero_byte_packet#:
 	halt
-
-

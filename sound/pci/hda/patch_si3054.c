@@ -129,7 +129,7 @@ static int si3054_switch_put(struct snd_kcontrol *kcontrol,
 	.put  = si3054_switch_put, \
 	.private_value = PRIVATE_VALUE(reg,mask), \
 }
-		
+
 
 static const struct snd_kcontrol_new si3054_modem_mixer[] = {
 	SI3054_KCONTROL("Off-hook Switch", SI3054_GPIO_CONTROL, SI3054_GPIO_OH),
@@ -286,14 +286,14 @@ static int patch_si3054(struct hda_codec *codec)
  * patch entries
  */
 static const struct hda_codec_preset snd_hda_preset_si3054[] = {
- 	{ .id = 0x163c3055, .name = "Si3054", .patch = patch_si3054 },
- 	{ .id = 0x163c3155, .name = "Si3054", .patch = patch_si3054 },
- 	{ .id = 0x11c13026, .name = "Si3054", .patch = patch_si3054 },
- 	{ .id = 0x11c13055, .name = "Si3054", .patch = patch_si3054 },
- 	{ .id = 0x11c13155, .name = "Si3054", .patch = patch_si3054 },
- 	{ .id = 0x10573055, .name = "Si3054", .patch = patch_si3054 },
- 	{ .id = 0x10573057, .name = "Si3054", .patch = patch_si3054 },
- 	{ .id = 0x10573155, .name = "Si3054", .patch = patch_si3054 },
+	{ .id = 0x163c3055, .name = "Si3054", .patch = patch_si3054 },
+	{ .id = 0x163c3155, .name = "Si3054", .patch = patch_si3054 },
+	{ .id = 0x11c13026, .name = "Si3054", .patch = patch_si3054 },
+	{ .id = 0x11c13055, .name = "Si3054", .patch = patch_si3054 },
+	{ .id = 0x11c13155, .name = "Si3054", .patch = patch_si3054 },
+	{ .id = 0x10573055, .name = "Si3054", .patch = patch_si3054 },
+	{ .id = 0x10573057, .name = "Si3054", .patch = patch_si3054 },
+	{ .id = 0x10573155, .name = "Si3054", .patch = patch_si3054 },
 	/* VIA HDA on Clevo m540 */
 	{ .id = 0x11063288, .name = "Si3054", .patch = patch_si3054 },
 	/* Asus A8J Modem (SM56) */

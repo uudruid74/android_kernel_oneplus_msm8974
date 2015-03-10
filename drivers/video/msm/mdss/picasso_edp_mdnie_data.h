@@ -2808,7 +2808,7 @@ static short STANDARD_VTCALL[MDNIE_COL * MDNIE_ROW] = {
 };
 
 short *mdnie_tune_value[MAX_APP_MODE][MAX_MODE] = {
- 		/*"
+		/*"
 			DYNAMIC_MODE
 			STANDARD_MODE
 			NATURAL_MODE

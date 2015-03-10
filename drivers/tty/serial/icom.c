@@ -1517,7 +1517,7 @@ static int __devinit icom_probe(struct pci_dev *dev,
 
 	pci_write_config_dword(dev, PCI_COMMAND,
 		command_reg | PCI_COMMAND_MEMORY | PCI_COMMAND_MASTER
- 		| PCI_COMMAND_PARITY | PCI_COMMAND_SERR);
+		| PCI_COMMAND_PARITY | PCI_COMMAND_SERR);
 
 	if (ent->driver_data == ADAPTER_V1) {
 		pci_write_config_dword(dev, 0x44, 0x8300830A);

@@ -330,13 +330,13 @@ out_unlock:
 
 static int mqueue_unlink(struct inode *dir, struct dentry *dentry)
 {
-  	struct inode *inode = dentry->d_inode;
+	struct inode *inode = dentry->d_inode;
 
 	dir->i_ctime = dir->i_mtime = dir->i_atime = CURRENT_TIME;
 	dir->i_size -= DIRENT_SIZE;
-  	drop_nlink(inode);
-  	dput(dentry);
-  	return 0;
+	drop_nlink(inode);
+	dput(dentry);
+	return 0;
 }
 
 /*

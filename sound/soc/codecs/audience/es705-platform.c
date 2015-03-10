@@ -159,7 +159,7 @@ void es705_gpio_wakeup(struct es705_priv *es705)
 		gpio_tlmm_config(GPIO_CFG(0, 0, GPIO_CFG_INPUT,
 					GPIO_CFG_NO_PULL, GPIO_CFG_16MA), 1);
 		gpio_direction_output(es705->pdata->wakeup_gpio, 1);
-	} else 
+	} else
 		gpio_set_value(es705->pdata->wakeup_gpio, 1);
 
 	usleep_range(1000,1000);

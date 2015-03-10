@@ -96,10 +96,10 @@ static void read_int_callback(struct urb *urb/*, struct pt_regs *regs*/)
 	    /* software-driven interface shutdown */
 	    case -ECONNRESET: //URB got unlinked.
 	    case -ESHUTDOWN:		// hardware gone. this is the serious problem.
-	    						//Occurs only when something happens with the host controller device
+							//Occurs only when something happens with the host controller device
 	    case -ENODEV : //Device got removed
 		case -EINVAL : //Some thing very bad happened with the URB. No description is available.
-	    	BCM_DEBUG_PRINT(Adapter,DBG_TYPE_OTHERS, INTF_INIT, DBG_LVL_ALL,"interrupt urb error %d", status);
+		BCM_DEBUG_PRINT(Adapter,DBG_TYPE_OTHERS, INTF_INIT, DBG_LVL_ALL,"interrupt urb error %d", status);
 			urb->status = STATUS_SUCCESS ;
 			break ;
 			//return;
@@ -166,4 +166,3 @@ INT StartInterruptUrb(PS_INTERFACE_ADAPTER psIntfAdapter)
 	}
 	return status;
 }
-

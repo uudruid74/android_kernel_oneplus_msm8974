@@ -196,4 +196,3 @@ enum handoff byte_rcg_handoff(struct clk *clk);
 	}; \
 
 #endif /* __ARCH_ARM_MACH_MSM_CLOCK_LOCAL_2_H */
-

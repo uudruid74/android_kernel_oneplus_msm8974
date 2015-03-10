@@ -74,7 +74,7 @@ static int __init smt113J_tuner_start (void)
 
 	/* SPI Driver initialization module */
 	SMT113J_SPI_init();
-	
+
     printk("smt113J_tuner_start: End\n");
 
 	driver_config_during_boot_up();
@@ -99,7 +99,7 @@ static void __exit smt113J_tuner_end ( void )
 
 	/* SPI Driver exit module */
 	SMT113J_SPI_exit();
-	
+
     printk("smt113J_tuner_end: End\n");
 
 	return;
@@ -118,4 +118,3 @@ module_exit ( smt113J_tuner_end );
 MODULE_AUTHOR("Samsung");
 MODULE_DESCRIPTION("MM Tuner Driver");
 MODULE_LICENSE("GPL v2");
-

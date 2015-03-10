@@ -113,7 +113,7 @@ static inline void
 switch_mm(struct mm_struct *prev, struct mm_struct *next,
 	  struct task_struct *tsk)
 {
-	
+
 #ifdef	CONFIG_TIMA_RKP
 	unsigned long flags;
 #endif

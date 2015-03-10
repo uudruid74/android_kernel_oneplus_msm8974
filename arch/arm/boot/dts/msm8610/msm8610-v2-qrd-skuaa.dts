@@ -21,4 +21,3 @@
 	compatible = "qcom,msm8610-qrd", "qcom,msm8610", "qcom,qrd";
 	qcom,board-id = <11 1>, <11 0>;
 };
-

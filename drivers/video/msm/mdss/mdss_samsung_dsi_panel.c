@@ -3673,7 +3673,7 @@ static int mdss_panel_parse_dt(struct device_node *np,
 			pr_err("%s:%d, lcd_crack_gpio not specified\n",
 				__func__, __LINE__);
 		} else {
-			 	rc = gpio_tlmm_config(GPIO_CFG(lcd_crack_gpio, 0,
+				rc = gpio_tlmm_config(GPIO_CFG(lcd_crack_gpio, 0,
 					GPIO_CFG_INPUT,GPIO_CFG_NO_PULL,GPIO_CFG_2MA),
 					GPIO_CFG_ENABLE);
 					if (rc) {

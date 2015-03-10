@@ -411,4 +411,3 @@ static void __exit lcdc_sharp_panel_exit(void)
 }
 module_exit(lcdc_sharp_panel_exit);
 #endif
-

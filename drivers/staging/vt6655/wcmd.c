@@ -539,7 +539,7 @@ vCommandTimer (
             break;
 
         case WLAN_CMD_SSID_START:
-        	pDevice->byReAssocCount = 0;
+		pDevice->byReAssocCount = 0;
             if (pDevice->bRadioOff == true) {
                 s_bCommandComplete(pDevice);
                 spin_unlock_irq(&pDevice->lock);
@@ -643,11 +643,11 @@ printk("chester-abyDesireSSID=%s\n",((PWLAN_IE_SSID)pMgmt->abyDesireSSID)->abySS
 		  #ifdef WPA_SUPPLICANT_DRIVER_WEXT_SUPPORT
                     // if(pDevice->bWPASuppWextEnabled == true)
                         {
-                  	union iwreq_data  wrqu;
-                  	memset(&wrqu, 0, sizeof (wrqu));
+			union iwreq_data  wrqu;
+			memset(&wrqu, 0, sizeof (wrqu));
                           wrqu.ap_addr.sa_family = ARPHRD_ETHER;
-                  	printk("wireless_send_event--->SIOCGIWAP(disassociated:vMgrJoinBSSBegin Fail !!)\n");
-                  	wireless_send_event(pDevice->dev, SIOCGIWAP, &wrqu, NULL);
+			printk("wireless_send_event--->SIOCGIWAP(disassociated:vMgrJoinBSSBegin Fail !!)\n");
+			wireless_send_event(pDevice->dev, SIOCGIWAP, &wrqu, NULL);
                        }
                     #endif
 
@@ -660,7 +660,7 @@ printk("chester-abyDesireSSID=%s\n",((PWLAN_IE_SSID)pMgmt->abyDesireSSID)->abySS
             DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"eCommandState == WLAN_AUTHENTICATE_WAIT\n");
             if (pMgmt->eCurrState == WMAC_STATE_AUTH) {
                 // Call mgr to begin the association
-                	pDevice->byLinkWaitCount = 0;
+			pDevice->byLinkWaitCount = 0;
                 DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"eCurrState == WMAC_STATE_AUTH\n");
                 vMgrAssocBeginSta((void *)pDevice, pMgmt, &Status);
                 if (Status == CMD_STATUS_SUCCESS) {
@@ -688,11 +688,11 @@ printk("chester-abyDesireSSID=%s\n",((PWLAN_IE_SSID)pMgmt->abyDesireSSID)->abySS
                      #ifdef WPA_SUPPLICANT_DRIVER_WEXT_SUPPORT
                     // if(pDevice->bWPASuppWextEnabled == true)
                         {
-                  	union iwreq_data  wrqu;
-                  	memset(&wrqu, 0, sizeof (wrqu));
+			union iwreq_data  wrqu;
+			memset(&wrqu, 0, sizeof (wrqu));
                           wrqu.ap_addr.sa_family = ARPHRD_ETHER;
-                  	printk("wireless_send_event--->SIOCGIWAP(disassociated:AUTHENTICATE_WAIT_timeout)\n");
-                  	wireless_send_event(pDevice->dev, SIOCGIWAP, &wrqu, NULL);
+			printk("wireless_send_event--->SIOCGIWAP(disassociated:AUTHENTICATE_WAIT_timeout)\n");
+			wireless_send_event(pDevice->dev, SIOCGIWAP, &wrqu, NULL);
                        }
                     #endif
 	         #endif
@@ -752,11 +752,11 @@ printk("chester-abyDesireSSID=%s\n",((PWLAN_IE_SSID)pMgmt->abyDesireSSID)->abySS
                      #ifdef WPA_SUPPLICANT_DRIVER_WEXT_SUPPORT
                     // if(pDevice->bWPASuppWextEnabled == true)
                         {
-                  	union iwreq_data  wrqu;
-                  	memset(&wrqu, 0, sizeof (wrqu));
+			union iwreq_data  wrqu;
+			memset(&wrqu, 0, sizeof (wrqu));
                           wrqu.ap_addr.sa_family = ARPHRD_ETHER;
-                  	printk("wireless_send_event--->SIOCGIWAP(disassociated:ASSOCIATE_WAIT_timeout)\n");
-                  	wireless_send_event(pDevice->dev, SIOCGIWAP, &wrqu, NULL);
+			printk("wireless_send_event--->SIOCGIWAP(disassociated:ASSOCIATE_WAIT_timeout)\n");
+			wireless_send_event(pDevice->dev, SIOCGIWAP, &wrqu, NULL);
                        }
                     #endif
 		#endif
@@ -1136,7 +1136,7 @@ BSSvSecondTxData(
 	  pDevice->fTxDataInSleep = true;
 	  PSbSendNullPacket(pDevice);      //send null packet
 	  pDevice->fTxDataInSleep = false;
-  	}
+	}
   spin_unlock_irq(&pDevice->lock);
 
   pDevice->sTimerTxData.expires = RUN_AT(10*HZ);      //10s callback
@@ -1144,4 +1144,3 @@ BSSvSecondTxData(
   return;
 }
 #endif
-

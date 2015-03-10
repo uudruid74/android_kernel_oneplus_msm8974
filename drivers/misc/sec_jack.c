@@ -204,12 +204,12 @@ static int sec_jack_get_adc_value(struct sec_jack_info *hi)
 	int retVal;
 	int rc = 0;
 	uint32_t mpp_ch;
-	
+
 	/* Initialize mpp_ch default setting
 	* default mpp scale is  < 4 1 3 >
 	*/
 	mpp_ch = pdata->mpp_ch_scale[0] + P_MUX1_1_3 - 1;
-	
+
 	/* To get proper mpp_ch,
 	* If scaling is 1:1 then add (P_MUX1_1_1 - 1)
 	* If scaling is 1:3 then add (P_MUX1_1_3 - 1)
@@ -408,7 +408,7 @@ static void sec_jack_set_type(struct sec_jack_info *hi, int jack_type)
 		}
 		else {
 			int time_left_ms = 100;
-		
+
 			while (time_left_ms > 0) {
 				usleep_range(10000, 10000);
 				time_left_ms -= 10;
@@ -416,7 +416,7 @@ static void sec_jack_set_type(struct sec_jack_info *hi, int jack_type)
 
 			hi->cur_jack_type = SEC_JACK_NO_DEVICE;
 			determine_jack_type(hi);
-			
+
 			return;
 		}
 	}
@@ -757,7 +757,7 @@ void sec_jack_buttons_work(struct work_struct *work)
 		container_of(work, struct sec_jack_info, buttons_work);
 	struct sec_jack_platform_data *pdata = hi->pdata;
 	struct sec_jack_buttons_zone *btn_zones = pdata->jack_buttons_zones;
-	int num_buttons_zones = ARRAY_SIZE(pdata->jack_buttons_zones);	
+	int num_buttons_zones = ARRAY_SIZE(pdata->jack_buttons_zones);
 	int adc;
 	int i;
 
@@ -792,9 +792,9 @@ void sec_jack_buttons_work(struct work_struct *work)
 
 #if defined(CONFIG_MACH_KLTE_JPN)
 	if (hi->cur_jack_type == SEC_EXTERNAL_ANTENNA) {
-		
+
 		int time_left_ms = 1000;
-		
+
 		while (time_left_ms > 0) {
 			usleep_range(10000, 10000);
 			time_left_ms -= 10;
@@ -856,16 +856,16 @@ static struct sec_jack_platform_data *sec_jack_populate_dt_pdata(struct device *
 		else
 			pr_info("%s : earjack-micbias-ldo=%s\n", __func__, pdata->ear_micbias_ldo);
 	} else
-		pr_info("%s : earjack-micbias-gpio =%d\n", __func__, pdata->ear_micbias_gpio);	
+		pr_info("%s : earjack-micbias-gpio =%d\n", __func__, pdata->ear_micbias_gpio);
 
 	pdata->fsa_en_gpio = of_get_named_gpio(dev->of_node, "qcom,earjack-fsa_en-gpio", 0);
-	if (pdata->fsa_en_gpio < 0) 
+	if (pdata->fsa_en_gpio < 0)
 		of_property_read_u32(dev->of_node, "qcom,earjack-fsa_en-expander-gpio", &pdata->fsa_en_gpio);
 	if (pdata->fsa_en_gpio < 0)
 		pr_info("%s : No support FSA8038 chip\n", __func__);
 	else
 		pr_info("%s : earjack-fsa_en-gpio =%d\n", __func__, pdata->fsa_en_gpio);
-	
+
 	for( i=0; i<4; i++)
 	{
 		of_parse_phandle_with_args(dev->of_node, "det-zones-list","#list-det-cells", i, &args);
@@ -879,7 +879,7 @@ static struct sec_jack_platform_data *sec_jack_populate_dt_pdata(struct device *
 #endif
 		pr_info("%s : %d, %d, %d, %d, %d \n",
 				__func__, args.args_count, args.args[0],
-				args.args[1], args.args[2],args.args[3]);		
+				args.args[1], args.args[2],args.args[3]);
 	}
 	for( i=0; i<3; i++)
 	{
@@ -894,7 +894,7 @@ static struct sec_jack_platform_data *sec_jack_populate_dt_pdata(struct device *
 
 	if (of_find_property(dev->of_node, "qcom,send-end-active-high", NULL))
 		pdata->send_end_active_high = true;
-		
+
 	ret = of_property_read_u32_array(dev->of_node, "mpp-channel-scaling", pdata->mpp_ch_scale, 3);
 	if (ret < 0) {
 		pr_err("%s : cannot find mpp-channel-scaling in the dt - using default MPP6_1_3\n",
@@ -934,7 +934,7 @@ extern bool is_codec_probe_done(void);
 #endif
 
 static int sec_jack_probe(struct platform_device *pdev)
-{		
+{
 	struct sec_jack_info *hi;
 	struct sec_jack_platform_data *pdata;
 	struct class *audio;
@@ -980,8 +980,8 @@ static int sec_jack_probe(struct platform_device *pdev)
 	 */
 	hi->dev_id = pdev->id;
 	/* to read the vadc */
-	hi->client = pdev;	
-	
+	hi->client = pdev;
+
 #ifdef CONFIG_ARCH_MSM8226
 	if(pdata->det_gpio > 0) {
 		ret = gpio_request(pdata->det_gpio, "ear_jack_detect");

@@ -21,5 +21,3 @@
 	compatible = "qcom,msm8610-mtp", "qcom,msm8610", "qcom,mtp";
 	qcom,board-id = <8 0>;
 };
-
-

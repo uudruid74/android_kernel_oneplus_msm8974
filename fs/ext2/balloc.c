@@ -431,7 +431,7 @@ void ext2_init_block_alloc_info(struct inode *inode)
 		rsv->rsv_start = EXT2_RESERVE_WINDOW_NOT_ALLOCATED;
 		rsv->rsv_end = EXT2_RESERVE_WINDOW_NOT_ALLOCATED;
 
-	 	/*
+		/*
 		 * if filesystem is mounted with NORESERVATION, the goal
 		 * reservation window size is set to zero to indicate
 		 * block reservation is off
@@ -615,7 +615,7 @@ find_next_usable_block(int start, struct buffer_head *bh, int maxblocks)
 
 	if (start > 0) {
 		/*
-		 * The goal was occupied; search forward for a free 
+		 * The goal was occupied; search forward for a free
 		 * block within the next XX blocks.
 		 *
 		 * end_goal is more or less random, but it has to be
@@ -675,7 +675,7 @@ ext2_try_to_allocate(struct super_block *sb, int group,
 			struct ext2_reserve_window *my_rsv)
 {
 	ext2_fsblk_t group_first_block;
-       	ext2_grpblk_t start, end;
+	ext2_grpblk_t start, end;
 	unsigned long num = 0;
 
 	/* we do allocation within the reservation window if we have a window */
@@ -714,15 +714,15 @@ repeat:
 
 			for (i = 0; i < 7 && grp_goal > start &&
 					!ext2_test_bit(grp_goal - 1,
-					     		bitmap_bh->b_data);
-			     		i++, grp_goal--)
+							bitmap_bh->b_data);
+					i++, grp_goal--)
 				;
 		}
 	}
 	start = grp_goal;
 
 	if (ext2_set_bit_atomic(sb_bgl_lock(EXT2_SB(sb), group), grp_goal,
-			       				bitmap_bh->b_data)) {
+							bitmap_bh->b_data)) {
 		/*
 		 * The block was allocated by another thread, or it was
 		 * allocated and then freed by another thread
@@ -831,7 +831,7 @@ static int find_next_reservable_window(
 			/*
 			 * Found a reserveable space big enough.  We could
 			 * have a reservation across the group boundary here
-		 	 */
+			 */
 			break;
 		}
 	}
@@ -1209,7 +1209,7 @@ static int ext2_has_free_blocks(struct ext2_sb_info *sbi)
  *
  * ext2_new_blocks uses a goal block to assist allocation.  If the goal is
  * free, or there is a free block within 32 blocks of the goal, that block
- * is allocated.  Otherwise a forward search is made for a free block; within 
+ * is allocated.  Otherwise a forward search is made for a free block; within
  * each block group the search first looks for an entire free byte in the block
  * bitmap, and then for any free bit if that fails.
  * This function also updates quota and i_blocks field.
@@ -1484,7 +1484,7 @@ unsigned long ext2_count_free_blocks (struct super_block * sb)
 		bitmap_bh = read_block_bitmap(sb, i);
 		if (!bitmap_bh)
 			continue;
-		
+
 		x = ext2_count_free(bitmap_bh, sb->s_blocksize);
 		printk ("group %d: stored = %d, counted = %lu\n",
 			i, le16_to_cpu(desc->bg_free_blocks_count), x);
@@ -1552,4 +1552,3 @@ unsigned long ext2_bg_num_gdb(struct super_block *sb, int group)
 {
 	return ext2_bg_has_super(sb, group) ? EXT2_SB(sb)->s_gdb_count : 0;
 }
-

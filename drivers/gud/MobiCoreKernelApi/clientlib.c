@@ -1064,4 +1064,3 @@ enum mc_result mc_manage(uint32_t device_id, uint8_t *data, uint32_t len)
 	return MC_DRV_ERR_NOT_IMPLEMENTED;
 }
 EXPORT_SYMBOL(mc_manage);
-

@@ -106,7 +106,7 @@ exit:
 	if (!priv->throttled) {
 		usb_fill_int_urb(priv->int_urb, priv->udev,
 				 usb_rcvintpipe(priv->udev,
-				 		priv->int_address),
+						priv->int_address),
 				 priv->int_buffer, priv->buffer_size,
 				 symbol_int_callback, priv, priv->bInterval);
 		result = usb_submit_urb(priv->int_urb, GFP_ATOMIC);
@@ -238,7 +238,7 @@ static int symbol_startup(struct usb_serial *serial)
 		/* set up our int urb */
 		usb_fill_int_urb(priv->int_urb, priv->udev,
 				 usb_rcvintpipe(priv->udev,
-				 		endpoint->bEndpointAddress),
+						endpoint->bEndpointAddress),
 				 priv->int_buffer, priv->buffer_size,
 				 symbol_int_callback, priv, priv->bInterval);
 

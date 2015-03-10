@@ -9,4 +9,3 @@ menuconfig MSM_WFD_DEBUG
 		depends on MSM_WFD
 		---help---
 		Enables the Wifi Display driver in debug mode
-

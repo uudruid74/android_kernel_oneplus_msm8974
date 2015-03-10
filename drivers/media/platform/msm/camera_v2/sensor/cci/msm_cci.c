@@ -132,7 +132,7 @@ static void msm_cci_flush_queue(struct cci_device *cci_dev,
                     CCI_TIMEOUT);
 	if (rc <= 0)
                 pr_err("%s:%d wait failed %d\n", __func__, __LINE__, rc);
-    } 
+    }
 	return;
 }
 
@@ -620,12 +620,12 @@ static int32_t msm_cci_init(struct v4l2_subdev *sd,
 		rc = -ENOMEM;
 		return rc;
 	}
-	
+
 	mutex_lock(&cci_dev->mutex);
 
 	if (cci_dev->ref_count++) {
 		CDBG("%s ref_count %d\n", __func__, cci_dev->ref_count);
-		
+
 		master = c_ctrl->cci_info->cci_i2c_master;
 		CDBG("%s:%d master %d\n", __func__, __LINE__,
 			master);
@@ -647,7 +647,7 @@ static int32_t msm_cci_init(struct v4l2_subdev *sd,
 				pr_err("%s:%d wait failed %d\n", __func__, __LINE__, rc);
 		}
 		mutex_unlock(&cci_dev->mutex);
-		
+
 		return 0;
 	}
 
@@ -795,35 +795,35 @@ static irqreturn_t msm_cci_irq(int irq_num, void *data)
 			complete(&cci_dev->cci_master_info[MASTER_1].
 				reset_complete);
 		}
-	} 
+	}
     if ((irq & CCI_IRQ_STATUS_0_I2C_M0_RD_DONE_BMSK) ||
 		(irq & CCI_IRQ_STATUS_0_I2C_M0_Q0_REPORT_BMSK) ||
 		(irq & CCI_IRQ_STATUS_0_I2C_M0_Q1_REPORT_BMSK)) {
 		cci_dev->cci_master_info[MASTER_0].status = 0;
 		complete(&cci_dev->cci_master_info[MASTER_0].reset_complete);
-	} 
+	}
     if ((irq & CCI_IRQ_STATUS_0_I2C_M1_RD_DONE_BMSK) ||
 		(irq & CCI_IRQ_STATUS_0_I2C_M1_Q0_REPORT_BMSK) ||
 		(irq & CCI_IRQ_STATUS_0_I2C_M1_Q1_REPORT_BMSK)) {
 		cci_dev->cci_master_info[MASTER_1].status = 0;
 		complete(&cci_dev->cci_master_info[MASTER_1].reset_complete);
-	}  
+	}
     if (irq & CCI_IRQ_STATUS_0_I2C_M0_Q0Q1_HALT_ACK_BMSK) {
 		cci_dev->cci_master_info[MASTER_0].reset_pending = TRUE;
 		msm_camera_io_w(CCI_M0_RESET_RMSK,
 			cci_dev->base + CCI_RESET_CMD_ADDR);
-	} 
+	}
     if (irq & CCI_IRQ_STATUS_0_I2C_M1_Q0Q1_HALT_ACK_BMSK) {
 		cci_dev->cci_master_info[MASTER_1].reset_pending = TRUE;
 		msm_camera_io_w(CCI_M1_RESET_RMSK,
 			cci_dev->base + CCI_RESET_CMD_ADDR);
-	} 
+	}
     if (irq & CCI_IRQ_STATUS_0_I2C_M0_ERROR_BMSK) {
 		pr_err("%s:%d MASTER_0 error %x\n", __func__, __LINE__, irq);
 		cci_dev->cci_master_info[MASTER_0].status = -EINVAL;
 		msm_camera_io_w(CCI_M0_HALT_REQ_RMSK,
 			cci_dev->base + CCI_HALT_REQ_ADDR);
-	} 
+	}
     if (irq & CCI_IRQ_STATUS_0_I2C_M1_ERROR_BMSK) {
 		pr_err("%s:%d MASTER_1 error %x\n", __func__, __LINE__, irq);
 		cci_dev->cci_master_info[MASTER_1].status = -EINVAL;

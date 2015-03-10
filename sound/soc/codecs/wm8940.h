@@ -99,4 +99,3 @@ struct wm8940_setup_data {
 #define WM8940_OPCLKDIV_4 3
 
 #endif /* _WM8940_H */
-

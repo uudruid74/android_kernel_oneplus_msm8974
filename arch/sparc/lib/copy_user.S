@@ -240,7 +240,7 @@ copy_user_last7:
 	EX(stb	%g2, [%o0], add %g0, 1)
 1:
 	retl
- 	 clr	%o0
+	 clr	%o0
 
 ldd_std:
 	MOVE_BIGALIGNCHUNK(o1, o0, 0x00, o2, o3, o4, o5, g2, g3, g4, g5)
@@ -272,7 +272,7 @@ cannot_optimize:
 
 	bne	byte_chunk
 	 and	%o2, 0xfffffff0, %o3
-	 
+
 	andcc	%o1, 1, %g0
 	be	10f
 	 nop
@@ -295,7 +295,7 @@ cannot_optimize:
 	 add	%o0, 0x10, %o0
 	b	2f
 	 and	%o2, 0xe, %o3
-	
+
 byte_chunk:
 	MOVE_SHORTCHUNK(o1, o0, -0x02, g2, g3)
 	MOVE_SHORTCHUNK(o1, o0, -0x04, g2, g3)
@@ -338,7 +338,7 @@ short_table_end:
 	EX(stb	%g2, [%o0], add %g0, 1)
 1:
 	retl
- 	 clr	%o0
+	 clr	%o0
 
 short_aligned_end:
 	bne	short_end

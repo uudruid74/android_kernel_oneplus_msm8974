@@ -1121,7 +1121,7 @@ int msm_camera_power_up(struct msm_camera_power_ctrl_t *ctrl,
 	int32_t off_index = 0;
 #if defined(CONFIG_MACH_MONTBLANC) || defined(CONFIG_MACH_VIKALCU)
 		int ret;	//kk0704.park
-	
+
 #endif
 
 
@@ -1249,7 +1249,7 @@ int msm_camera_power_up(struct msm_camera_power_ctrl_t *ctrl,
 							break;
 					    }
 					}
-		    	}
+			}
 			}
 
 			break;
@@ -1270,19 +1270,19 @@ int msm_camera_power_up(struct msm_camera_power_ctrl_t *ctrl,
 					if(sub_ldo3 != NULL)
 					{
 						ret = regulator_set_voltage(sub_ldo3, 2800000, 2800000);
-						if (ret) 
+						if (ret)
 							pr_err("set_voltage sub_ldo3 failed, rc=%d\n", ret);
 						else {
 							ret = regulator_enable(sub_ldo3); /*2.8V*/
-							if (ret) 
+							if (ret)
 								pr_err("enable sub_ldo3 failed, rc=%d\n", ret);
 						}
 					}
 
 					break;
-					
+
 				case SENSOR_GPIO_EXT_VIO_POWER:
-					
+
 					sub_ldo4 = regulator_get(NULL, "lp8720_ldo4");
 					if (IS_ERR(sub_ldo4)) {
 						pr_err("lp8720 : could not get sub_ldo4, rc = %ld\n", PTR_ERR(sub_ldo4));
@@ -1291,16 +1291,16 @@ int msm_camera_power_up(struct msm_camera_power_ctrl_t *ctrl,
 					if(sub_ldo4 != NULL)
 					{
 						ret = regulator_set_voltage(sub_ldo4, 1800000, 1800000);
-						if (ret) 
+						if (ret)
 							pr_err("set_voltage sub_ldo4 failed, rc=%d\n", ret);
 						else {
 							ret = regulator_enable(sub_ldo4); /*1.8V*/
-							if (ret) 
+							if (ret)
 								pr_err("enable sub_ldo4 failed, rc=%d\n", ret);
 						}
 					}
 					break;
-					
+
 				}
 
 			break;
@@ -1371,14 +1371,14 @@ power_up_failed:
 				case SENSOR_GPIO_EXT_VANA_POWER:
 					if(sub_ldo3 != NULL) {
 						ret = regulator_disable(sub_ldo3); /*2.8V*/
-						if (ret) 
+						if (ret)
 							pr_err("enable sub_ldo3 failed, rc=%d\n", ret);
 					}
 					break;
 				case SENSOR_GPIO_EXT_VIO_POWER:
 					if(sub_ldo4 != NULL) {
 						ret = regulator_disable(sub_ldo4); /*1.8V*/
-						if (ret) 
+						if (ret)
 							pr_err("enable sub_ldo4 failed, rc=%d\n", ret);
 					}
 					break;
@@ -1487,14 +1487,14 @@ int msm_camera_power_down(struct msm_camera_power_ctrl_t *ctrl,
 				case SENSOR_GPIO_EXT_VANA_POWER:
 					if(sub_ldo3 != NULL) {
 						ret = regulator_disable(sub_ldo3); /*2.8V*/
-						if (ret) 
+						if (ret)
 							pr_err("enable sub_ldo3 failed, rc=%d\n", ret);
 					}
 					break;
 				case SENSOR_GPIO_EXT_VIO_POWER:
 					if(sub_ldo4 != NULL) {
 						ret = regulator_disable(sub_ldo4); /*1.8V*/
-						if (ret) 
+						if (ret)
 							pr_err("enable sub_ldo4 failed, rc=%d\n", ret);
 					}
 					break;

@@ -17,7 +17,7 @@
  * QC_SOC_REVISION = Qcomm SOC Version of MTP Board
  * Please refer to .../lk/platform/msm_shared/dev_tree.c also
  */
- 
+
 /dts-v1/;
 /include/ "msm8926.dtsi"
 /include/ "msm8926-sec-victorlte-r00.dtsi"
@@ -117,5 +117,3 @@
 		mpp-channel-scaling = <6 1 1>;
         };
 };
-
-

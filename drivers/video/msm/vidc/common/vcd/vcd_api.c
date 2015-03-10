@@ -975,7 +975,3 @@ struct ion_client *vcd_get_ion_client(void)
 	return res_trk_get_ion_client();
 }
 EXPORT_SYMBOL(vcd_get_ion_client);
-
-
-
-

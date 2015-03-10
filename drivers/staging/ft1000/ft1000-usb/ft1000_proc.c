@@ -67,8 +67,8 @@ ft1000ReadProc(char *page, char **start, off_t off, int count, int *eof,
 
 	struct ft1000_info *info;
 
-	char *status[] = { 
-		"Idle (Disconnect)", 
+	char *status[] = {
+		"Idle (Disconnect)",
 		"Searching",
 		"Active (Connected)",
 		"Waiting for L2",
@@ -146,24 +146,24 @@ ft1000ReadProc(char *page, char **start, off_t off, int count, int *eof,
 
 	len = 0;
 	PUTM_TO_PAGE(len, page, "Connection Time: %02ld:%02ld:%02ld\n",
-      		((delta / 3600) % 24), ((delta / 60) % 60), (delta % 60));
+		((delta / 3600) % 24), ((delta / 60) % 60), (delta % 60));
 	PUTM_TO_PAGE(len, page, "Connection Time[s]: %ld\n", delta);
 	PUTM_TO_PAGE(len, page, "Asic ID: %s\n",
-      	(info->AsicID) ==
-      	ELECTRABUZZ_ID ? "ELECTRABUZZ ASIC" : "MAGNEMITE ASIC");
+	(info->AsicID) ==
+	ELECTRABUZZ_ID ? "ELECTRABUZZ ASIC" : "MAGNEMITE ASIC");
 	PUTX_TO_PAGE(len, page, "SKU: ", SKUSZ, info->Sku);
 	PUTX_TO_PAGE(len, page, "EUI64: ", EUISZ, info->eui64);
 	PUTD_TO_PAGE(len, page, "DSP version number: ", DSPVERSZ, info->DspVer);
 	PUTX_TO_PAGE(len, page, "Hardware Serial Number: ", HWSERNUMSZ,
-      		info->HwSerNum);
+		info->HwSerNum);
 	PUTX_TO_PAGE(len, page, "Caliberation Version: ", CALVERSZ,
-      		info->RfCalVer);
+		info->RfCalVer);
 	PUTD_TO_PAGE(len, page, "Caliberation Date: ", CALDATESZ,
 		info->RfCalDate);
 	PUTM_TO_PAGE(len, page, "Media State: %s\n",
-      		(info->mediastate) ? "link" : "no link");
+		(info->mediastate) ? "link" : "no link");
 	PUTM_TO_PAGE(len, page, "Connection Status: %s\n",
-      		status[((info->ConStat) & 0x7)]);
+		status[((info->ConStat) & 0x7)]);
 	PUTM_TO_PAGE(len, page, "RX packets: %ld\n", info->stats.rx_packets);
 	PUTM_TO_PAGE(len, page, "TX packets: %ld\n", info->stats.tx_packets);
 	PUTM_TO_PAGE(len, page, "RX bytes: %ld\n", info->stats.rx_bytes);

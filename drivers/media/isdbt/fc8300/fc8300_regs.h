@@ -423,4 +423,3 @@ extern "C" {
 #endif
 
 #endif /* __FC8300_REGS_H__ */
-

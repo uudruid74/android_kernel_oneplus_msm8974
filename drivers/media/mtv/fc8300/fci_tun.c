@@ -211,4 +211,3 @@ s32 tuner_get_rssi(HANDLE handle, DEVICEID devid, s32 *rssi)
 
 	return BBM_OK;
 }
-

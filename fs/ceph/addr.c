@@ -197,7 +197,7 @@ static int readpage_nounlock(struct file *filp, struct page *page)
 {
 	struct inode *inode = filp->f_dentry->d_inode;
 	struct ceph_inode_info *ci = ceph_inode(inode);
-	struct ceph_osd_client *osdc = 
+	struct ceph_osd_client *osdc =
 		&ceph_inode_to_client(inode)->client->osdc;
 	int err = 0;
 	u64 len = PAGE_CACHE_SIZE;
@@ -261,7 +261,7 @@ static void finish_read(struct ceph_osd_request *req, struct ceph_msg *msg)
 			int s = bytes < 0 ? 0 : bytes;
 			zero_user_segment(page, s, PAGE_CACHE_SIZE);
 		}
- 		dout("finish_read %p uptodate %p idx %lu\n", inode, page,
+		dout("finish_read %p uptodate %p idx %lu\n", inode, page,
 		     page->index);
 		flush_dcache_page(page);
 		SetPageUptodate(page);
@@ -333,8 +333,8 @@ static int start_read(struct inode *inode, struct list_head *page_list, int max)
 		page = list_entry(page_list->prev, struct page, lru);
 		BUG_ON(PageLocked(page));
 		list_del(&page->lru);
-		
- 		dout("start_read %p adding %p idx %lu\n", inode, page,
+
+		dout("start_read %p adding %p idx %lu\n", inode, page,
 		     page->index);
 		if (add_to_page_cache_lru(page, &inode->i_data, page->index,
 					  GFP_NOFS)) {

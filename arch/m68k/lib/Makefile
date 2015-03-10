@@ -13,4 +13,3 @@ lib-$(CONFIG_CPU_HAS_NO_MULDIV64) += modsi3.o umodsi3.o
 ifndef CONFIG_GENERIC_CSUM
 lib-y	+= checksum.o
 endif
-

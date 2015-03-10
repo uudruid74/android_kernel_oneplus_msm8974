@@ -515,7 +515,7 @@ void ieee80211_softmac_ips_scan_syncro(struct ieee80211_device *ieee)
 //   		goto out;
 //  	}
 //	printk("=======hh===============>ips scan\n");
-     	while(1)
+	while(1)
         {
                 /* this function can be called in two situations
                  * 1- We have switched to ad-hoc mode and we are
@@ -567,8 +567,8 @@ void ieee80211_softmac_ips_scan_syncro(struct ieee80211_device *ieee)
         }
 out:
 	//ieee->sync_scan_hurryup = 0;
-   	//ieee->set_chan(ieee->dev, ch);
-   	//ieee->current_network.channel = ch;
+	//ieee->set_chan(ieee->dev, ch);
+	//ieee->current_network.channel = ch;
 	ieee->actscanning = false;
 	up(&ieee->scan_sem);
 	if(IS_DOT11D_ENABLE(ieee))
@@ -592,7 +592,7 @@ void ieee80211_softmac_scan_wq(struct work_struct *work)
 		if (watchdog++ > MAX_CHANNEL_NUMBER)
 				goto out; /* no good chans */
 
- 	}while(!channel_map[ieee->current_network.channel]);
+	}while(!channel_map[ieee->current_network.channel]);
 
 	//printk("current_network.channel:%d\n", ieee->current_network.channel);
 	if (ieee->scanning == 0 )
@@ -637,7 +637,7 @@ void ieee80211_beacons_stop(struct ieee80211_device *ieee)
 	spin_lock_irqsave(&ieee->beacon_lock,flags);
 
 	ieee->beacon_txing = 0;
- 	del_timer_sync(&ieee->beacon_timer);
+	del_timer_sync(&ieee->beacon_timer);
 
 	spin_unlock_irqrestore(&ieee->beacon_lock,flags);
 
@@ -1838,9 +1838,9 @@ ieee80211_rx_frame_softmac(struct ieee80211_device *ieee, struct sk_buff *skb,
 							    memcpy(ieee->current_network.wmm_param,(u8*)(info_element->data\
 										    + 8),(info_element->len - 8));
 
-					 	            if (((ieee->current_network.wmm_info^info_element->data[6])& \
+						            if (((ieee->current_network.wmm_info^info_element->data[6])& \
 										    0x0f)||(!ieee->init_wmmparam_flag)) {
-						   	      // refresh parameter element for current network
+							      // refresh parameter element for current network
 							      // update the register parameter for hardware
 							      ieee->init_wmmparam_flag = 1;
 							      queue_work(ieee->wq, &ieee->wmm_param_update_wq);
@@ -2453,7 +2453,7 @@ void ieee80211_softmac_start_protocol(struct ieee80211_device *ieee)
 void ieee80211_start_protocol(struct ieee80211_device *ieee)
 {
 	short ch = 0;
- 	int i = 0;
+	int i = 0;
 
 	if (ieee->proto_started)
 		return;
@@ -2475,7 +2475,7 @@ void ieee80211_start_protocol(struct ieee80211_device *ieee)
 		ieee->current_network.beacon_interval = 100;
 	ieee->set_chan(ieee->dev,ieee->current_network.channel);
 
-       	for(i = 0; i < 17; i++) {
+	for(i = 0; i < 17; i++) {
 	  ieee->last_rxseq_num[i] = -1;
 	  ieee->last_rxfrag_num[i] = -1;
 	  ieee->last_packet_time[i] = 0;
@@ -2739,7 +2739,7 @@ static int ieee80211_wpa_set_param(struct ieee80211_device *ieee, u8 name, u32 v
 			.flags = SEC_ENABLED,
 			.enabled = value,
 		};
- 		ieee->drop_unencrypted = value;
+		ieee->drop_unencrypted = value;
 		/* We only change SEC_LEVEL for open mode. Others
 		 * are set by ipw_wpa_set_encryption.
 		 */

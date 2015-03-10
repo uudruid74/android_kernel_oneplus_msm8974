@@ -144,7 +144,7 @@ sb_bgl_lock(struct ext2_sb_info *sbi, unsigned int block_group)
 #	define ext2_debug(f, a...)	{ \
 					printk ("EXT2-fs DEBUG (%s, %d): %s:", \
 						__FILE__, __LINE__, __func__); \
-				  	printk (f, ## a); \
+					printk (f, ## a); \
 					}
 #else
 #	define ext2_debug(f, a...)	/**/
@@ -236,7 +236,7 @@ struct ext2_group_desc
 #define EXT2_COMPRBLK_FL		FS_COMPRBLK_FL	/* One or more compressed clusters */
 #define EXT2_NOCOMP_FL			FS_NOCOMP_FL	/* Don't compress */
 #define EXT2_ECOMPR_FL			FS_ECOMPR_FL	/* Compression error */
-/* End compression flags --- maybe not all used */	
+/* End compression flags --- maybe not all used */
 #define EXT2_BTREE_FL			FS_BTREE_FL	/* btree format dir */
 #define EXT2_INDEX_FL			FS_INDEX_FL	/* hash-indexed directory */
 #define EXT2_IMAGIC_FL			FS_IMAGIC_FL	/* AFS directory */
@@ -440,7 +440,7 @@ struct ext2_super_block {
 	 * the incompatible feature set is that if there is a bit set
 	 * in the incompatible feature set that the kernel doesn't
 	 * know about, it should refuse to mount the filesystem.
-	 * 
+	 *
 	 * e2fsck's requirements are more strict; if it doesn't know
 	 * about a feature in either the compatible or incompatible
 	 * feature set, it must abort and not try to meddle with
@@ -475,7 +475,7 @@ struct ext2_super_block {
 	__u8	s_reserved_char_pad;
 	__u16	s_reserved_word_pad;
 	__le32	s_default_mount_opts;
- 	__le32	s_first_meta_bg; 	/* First metablock block group */
+	__le32	s_first_meta_bg; 	/* First metablock block group */
 	__u32	s_reserved[190];	/* Padding to the end of the block */
 };
 
@@ -566,7 +566,7 @@ struct ext2_super_block {
 #define EXT2_DEFM_ACL		0x0008
 #define EXT2_DEFM_UID16		0x0010
     /* Not used by ext2, but reserved for use by ext3 */
-#define EXT3_DEFM_JMODE		0x0060 
+#define EXT3_DEFM_JMODE		0x0060
 #define EXT3_DEFM_JMODE_DATA	0x0020
 #define EXT3_DEFM_JMODE_ORDERED	0x0040
 #define EXT3_DEFM_JMODE_WBACK	0x0060

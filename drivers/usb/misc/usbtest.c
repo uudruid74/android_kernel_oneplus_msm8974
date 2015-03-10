@@ -2558,4 +2558,3 @@ module_exit(usbtest_exit);
 
 MODULE_DESCRIPTION("USB Core/HCD Testing Driver");
 MODULE_LICENSE("GPL");
-

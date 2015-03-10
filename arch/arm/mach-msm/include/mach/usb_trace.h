@@ -24,4 +24,3 @@ DECLARE_TRACE(usb_daytona_invalid_access,
 	TP_ARGS(ebi_addr, ebi_apacket0, ebi_apacket1));
 
 #endif
-

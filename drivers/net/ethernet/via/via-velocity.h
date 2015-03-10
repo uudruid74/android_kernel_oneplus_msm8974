@@ -1327,7 +1327,7 @@ enum velocity_msg_level {
 #define VELOCITY_PRT_CAMMASK(p,t) {\
 	int i;\
 	if ((t)==VELOCITY_MULTICAST_CAM) {\
-        	for (i=0;i<(MCAM_SIZE/8);i++)\
+		for (i=0;i<(MCAM_SIZE/8);i++)\
 			printk("%02X",(p)->mCAMmask[i]);\
 	}\
 	else {\

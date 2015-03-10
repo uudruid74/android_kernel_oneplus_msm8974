@@ -380,7 +380,7 @@ void flush_tlb_l2_page(pmd_t *pmd)
 {
 	unsigned int l2_va = (unsigned int)(
 			__va(*pmd & ~0x3ff) - PTE_HWTABLE_OFF);
-	
+
 	asm (
 		"mcr p15, 0, %0, c8, c6, 1\n"
 		"mcr p15, 0, %0, c8, c5, 1\n"

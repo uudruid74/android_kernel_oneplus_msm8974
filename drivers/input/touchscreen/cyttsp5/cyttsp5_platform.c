@@ -324,4 +324,3 @@ struct cyttsp5_platform_data _cyttsp5_platform_data = {
 EXPORT_SYMBOL(_cyttsp5_platform_data);
 
 #endif //#if 1
-

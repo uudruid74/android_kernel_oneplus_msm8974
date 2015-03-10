@@ -246,4 +246,3 @@ void tracing_sched_switch_assign_trace(struct trace_array *tr)
 {
 	ctx_trace = tr;
 }
-

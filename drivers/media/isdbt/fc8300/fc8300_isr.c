@@ -62,7 +62,7 @@ static void fc8300_data(HANDLE handle, DEVICEID devid, u8 buf_int_status)
 				print_log(0,"fc8300_ts_callback\n");
 				(*fc8300_ts_callback)(fc8300_ts_user_data,
 						i, &ts_buffer[0], size);
-			}			
+			}
 		}
 	}
 
@@ -85,7 +85,7 @@ static void fc8300_data(HANDLE handle, DEVICEID devid, u8 buf_int_status)
 				print_log(0,"fc8300_ac_callback\n");
 				(*fc8300_ac_callback)(fc8300_ac_user_data,
 						i, &ac_buffer[0], size);
-			}			
+			}
 		}
 	}
 }
@@ -214,4 +214,3 @@ void fc8300_isr(HANDLE handle)
 	}
 #endif
 }
-

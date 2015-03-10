@@ -17,6 +17,3 @@ config IRDA_COMMON_LDO
 	help
 	  Say Y here to enable the I2C based IRDA for MC96FR116C chip for Kmini
 endmenu
-
-
-

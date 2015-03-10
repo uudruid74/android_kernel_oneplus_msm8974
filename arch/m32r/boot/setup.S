@@ -114,7 +114,7 @@ ENTRY(boot)
  *        if with MMU,    TLB on.
  *        if with no MMU, only jump.
  */
- 	.global	eit_vector
+	.global	eit_vector
 mmu_on:
 	LDIMM	(r13, stext)
 #ifdef CONFIG_MMU
@@ -163,7 +163,7 @@ ENTRY(AP_loop)
 	ld	r5, @r4
 	;; enable only IPI
 	setpsw	#0x40
-    	;; LOOOOOOOOOOOOOOP!!!
+	;; LOOOOOOOOOOOOOOP!!!
 	.fillinsn
 2:
 	nop
@@ -181,4 +181,3 @@ dcache_dummy:
 #endif	/* CONFIG_SMP */
 
 	.end
-

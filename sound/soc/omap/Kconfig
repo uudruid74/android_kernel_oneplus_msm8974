@@ -49,7 +49,7 @@ config SND_OMAP_SOC_AMS_DELTA
 	  way to achieve this is to install util-linux-ng  and use the included
 	  ldattach  utility.  This  can be  started  automatically  from  udev,
 	  a simple rule like this one should do the trick (it does for me):
-	  	ACTION=="add", KERNEL=="controlC0", \
+		ACTION=="add", KERNEL=="controlC0", \
 				RUN+="/usr/sbin/ldattach 19 /dev/ttyS3"
 
 config SND_OMAP_SOC_OSK5912

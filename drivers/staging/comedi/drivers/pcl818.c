@@ -71,7 +71,7 @@ A word or two about DMA. Driver support DMA operations at two ways:
               1= 1MHz clock for 8254
     [4] - 0,  5=D/A output 0-5V  (internal reference -5V)
           1, 10=D/A output 0-10V (internal reference -10V)
-   	  2    =D/A output unknown (external reference)
+	  2    =D/A output unknown (external reference)
 
    Options for PCL-718:
     [0] - IO Base
@@ -87,7 +87,7 @@ A word or two about DMA. Driver support DMA operations at two ways:
 	      5=  	     user defined bipolar
 	      6=	     0-10V
 	      7=	     0-5V
- 	      8=	     0-2V
+	      8=	     0-2V
 	      9=	     0-1V
 	     10=	     user defined unipolar
     [5] - 0,  5=D/A outputs 0-5V  (internal reference -5V)

@@ -464,4 +464,3 @@ module_exit(cy8c_ts_exit);
 
 MODULE_DESCRIPTION("Cypress TMG Touchscreen Driver");
 MODULE_LICENSE("GPL");
-

@@ -464,5 +464,3 @@ _WindowUnderflow12:
 	rfwu
 
 	.text
-
-

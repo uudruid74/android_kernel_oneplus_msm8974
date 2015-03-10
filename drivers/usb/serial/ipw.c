@@ -283,7 +283,7 @@ static void ipw_close(struct usb_serial_port *port)
 	dbg("%s:sending purge", __func__);
 	result = usb_control_msg(dev, usb_sndctrlpipe(dev, 0),
 			 IPW_SIO_PURGE, USB_TYPE_VENDOR |
-			 		USB_RECIP_INTERFACE | USB_DIR_OUT,
+					USB_RECIP_INTERFACE | USB_DIR_OUT,
 			 0x03,
 			 0,
 			 NULL,

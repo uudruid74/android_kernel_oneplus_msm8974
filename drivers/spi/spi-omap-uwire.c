@@ -590,4 +590,3 @@ subsys_initcall(omap_uwire_init);
 module_exit(omap_uwire_exit);
 
 MODULE_LICENSE("GPL");
-

@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2000 Jeff Dike (jdike@karaya.com)
  * Licensed under the GPL
  */
@@ -19,4 +19,3 @@ extern int pause(void);
 extern void exit(int);
 
 #endif
-

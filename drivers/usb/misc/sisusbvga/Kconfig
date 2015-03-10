@@ -41,6 +41,3 @@ config USB_SISUSBVGA_CON
 	  must be given in the kernel command like, such as
 
 	     sisusbvga.first=1 sisusbvga.last=5
-
-
-

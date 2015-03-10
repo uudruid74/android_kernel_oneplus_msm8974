@@ -96,9 +96,9 @@ hugetlb_get_unmapped_area_topdown(struct file *filp, const unsigned long addr0,
 
 	/* check if free_area_cache is useful for us */
 	if (len <= mm->cached_hole_size) {
- 	        mm->cached_hole_size = 0;
- 		mm->free_area_cache = mm->mmap_base;
- 	}
+	        mm->cached_hole_size = 0;
+		mm->free_area_cache = mm->mmap_base;
+	}
 
 	/* either no address requested or can't fit in requested address hole */
 	addr = mm->free_area_cache & HPAGE_MASK;
@@ -129,9 +129,9 @@ hugetlb_get_unmapped_area_topdown(struct file *filp, const unsigned long addr0,
 			return (mm->free_area_cache = addr);
 		}
 
- 		/* remember the largest hole we saw so far */
- 		if (addr + mm->cached_hole_size < vma->vm_start)
- 		        mm->cached_hole_size = vma->vm_start - addr;
+		/* remember the largest hole we saw so far */
+		if (addr + mm->cached_hole_size < vma->vm_start)
+		        mm->cached_hole_size = vma->vm_start - addr;
 
 		/* try just below the current vma->vm_start */
 		addr = (vma->vm_start-len) & HPAGE_MASK;
@@ -145,7 +145,7 @@ bottomup:
 	 * allocations.
 	 */
 	mm->cached_hole_size = ~0UL;
-  	mm->free_area_cache = TASK_UNMAPPED_BASE;
+	mm->free_area_cache = TASK_UNMAPPED_BASE;
 	addr = arch_get_unmapped_area(filp, addr0, len, pgoff, flags);
 	/*
 	 * Restore the topdown base:

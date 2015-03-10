@@ -197,7 +197,7 @@
 
 	actuator0: qcom,actuator@18 {
 		compatible = "qcom,actuator";
-		cell-index = <0>;			
+		cell-index = <0>;
 		reg = <0x18>;
 		qcom,cci-master = <0>;
 	};
@@ -215,7 +215,7 @@
 						  "I2C_CLK0";
 		};
 	};
-	
+
 	qcom,hdmi_tx@fd922100 {
 		status = "ok";
 	};
@@ -242,7 +242,7 @@
 			reg = <0x30>;
 		};
 	};
-	
+
 	gpio_keys {
 		compatible = "gpio-keys";
 		input-name = "gpio-keys";
@@ -273,7 +273,7 @@
 			gpio-key,wakeup;
 			debounce-interval = <15>;
 		};
-		
+
 		menu_key {
 			label = "menu_key";
 			gpios = <&pm8941_gpios 1 0x1>;
@@ -291,7 +291,7 @@
 			gpio-key,wakeup;
 			debounce-interval = <15>;
 		};
-		
+
 		hall_flip {
 			label = "hall_flip";
 			gpios = <&msmgpio 75 0>;
@@ -545,7 +545,7 @@
 
 	status-cb = <2>;
 	status = "ok";
-}; 
+};
 
 &sdhc_1 {
 	vdd-supply = <&pm8941_l20>;
@@ -1061,4 +1061,3 @@
 		es325-slim-ifd-elemental-addr = [00 00 02 00 BE 02];
 	};
 };
-

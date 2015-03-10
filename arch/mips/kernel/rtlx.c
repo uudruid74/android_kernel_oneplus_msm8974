@@ -252,12 +252,12 @@ int rtlx_release(int index)
 
 unsigned int rtlx_read_poll(int index, int can_sleep)
 {
- 	struct rtlx_channel *chan;
+	struct rtlx_channel *chan;
 
- 	if (rtlx == NULL)
- 		return 0;
+	if (rtlx == NULL)
+		return 0;
 
- 	chan = &rtlx->channel[index];
+	chan = &rtlx->channel[index];
 
 	/* data available to read? */
 	if (chan->lx_read == chan->lx_write) {

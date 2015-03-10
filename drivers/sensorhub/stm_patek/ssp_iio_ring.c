@@ -1974,5 +1974,3 @@ int ssp_iio_configure_ring(struct iio_dev *indio_dev)
 
 	return 0;
 }
-
-

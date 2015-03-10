@@ -86,8 +86,8 @@
 	i2c@21 {
 		cell-index = <21>;
 		compatible = "i2c-gpio";
-		gpios = <&msmgpio 22 0 
-		&msmgpio 23 0 
+		gpios = <&msmgpio 22 0
+		&msmgpio 23 0
 		>;
 
 		cypress_touchkey@20 {
@@ -100,8 +100,8 @@
 			cypress,vdd_en-gpio = <&msmgpio 56 0x00>;
 			cypress,scl-gpio = <&msmgpio 23 0x00>;
 			cypress,sda-gpio = <&msmgpio 22 0x00>;
-			cypress,irq-gpio = <&msmgpio 64 0x01>;			
-			cypress,touchkey_id-gpio = <&msmgpio 101 0x00>;			
+			cypress,irq-gpio = <&msmgpio 64 0x01>;
+			cypress,touchkey_id-gpio = <&msmgpio 101 0x00>;
 			cypress,tkey-keycodes = <139 158>;
 			cypress,i2c-pull-up = <1>;
 		};

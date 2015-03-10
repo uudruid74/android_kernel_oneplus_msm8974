@@ -341,21 +341,21 @@ static int tspdrv_parse_dt(struct platform_device *pdev)
 						__func__, __LINE__);
 		return -EINVAL;
 	}
-	
+
 	rc = of_property_read_u32(np, "samsung,pmic_vib_en", &vibrator_drvdata.is_pmic_vib_en);
 	if (rc) {
 		pr_err("%s:%d, is_pmic_vib_en not specified\n",
 						__func__, __LINE__);
 		return -EINVAL;
 	}
-	
+
 	rc = of_property_read_u32(np, "samsung,pmic_haptic_pwr_en", &vibrator_drvdata.is_pmic_haptic_pwr_en);
 	if (rc) {
 		pr_err("%s:%d, is_pmic_haptic_pwr_en not specified\n",
 						__func__, __LINE__);
 		return -EINVAL;
 	}
-	
+
 	//vibrator_drvdata.is_pmic_vib_pwm = 0;  AP PWM PIN
 	//vibrator_drvdata.is_pmic_vib_pwm = 1;  PMIC PWM PIN
 	rc = of_property_read_u32(np, "samsung,is_pmic_vib_pwm", &vibrator_drvdata.is_pmic_vib_pwm);
@@ -550,7 +550,7 @@ static __devinit int tspdrv_probe(struct platform_device *pdev)
 		DbgOut(KERN_ERR "tspdrv: tspdrv probe failed, DT is NULL");
 		return -ENODEV;
 	}
-	
+
 	rc = tspdrv_parse_dt(pdev);
 	if(rc)
 		return rc;
@@ -565,7 +565,7 @@ static __devinit int tspdrv_probe(struct platform_device *pdev)
 
 	if (!virt_mmss_gp1_base)
 		panic("tspdrv : Unable to ioremap MSM_MMSS_GP1 memory!");
-			
+
 #if defined(CONFIG_MOTOR_DRV_MAX77803) || defined(CONFIG_MOTOR_DRV_MAX77804K) || defined(CONFIG_MOTOR_DRV_MAX77828)
 	vibrator_drvdata.power_onoff = max77803_haptic_power_onoff;
 #else
@@ -624,7 +624,7 @@ static int __devexit tspdrv_remove(struct platform_device *pdev)
 	DbgOut((KERN_INFO "tspdrv: tspdrv_remove.\n"));
 
 	iounmap(virt_mmss_gp1_base);
-	
+
 	DbgRecorderTerminate(());
 
 	VibeOSKernelLinuxTerminateTimer();

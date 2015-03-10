@@ -380,4 +380,3 @@ void diagmem_hsic_init(int index)
 
 }
 #endif
-

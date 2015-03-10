@@ -109,7 +109,7 @@ static void msm_buf_mngr_sd_shutdown(struct msm_buf_mngr_device *buf_mngr_dev)
 {
 	unsigned long flags;
 	struct msm_get_bufs *bufs, *save;
-		
+
 	spin_lock_irqsave(&buf_mngr_dev->buf_q_spinlock, flags);
 	if (!list_empty(&buf_mngr_dev->buf_qhead)) {
 		list_for_each_entry_safe(bufs, save, &buf_mngr_dev->buf_qhead, entry) {
@@ -241,9 +241,9 @@ static int __init msm_buf_mngr_init(void)
 	INIT_LIST_HEAD(&msm_buf_mngr_dev->buf_qhead);
 	spin_lock_init(&msm_buf_mngr_dev->buf_q_spinlock);
 	return rc;
-    
+
 register_error:
-    kfree(msm_buf_mngr_dev); 
+    kfree(msm_buf_mngr_dev);
     return rc;
 }
 
@@ -256,4 +256,3 @@ module_init(msm_buf_mngr_init);
 module_exit(msm_buf_mngr_exit);
 MODULE_DESCRIPTION("MSM Buffer Manager");
 MODULE_LICENSE("GPL v2");
-

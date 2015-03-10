@@ -1162,4 +1162,3 @@ module_exit(bq24260_charger_exit);
 MODULE_DESCRIPTION("Samsung bq24260 Charger Driver");
 MODULE_AUTHOR("Samsung Electronics");
 MODULE_LICENSE("GPL");
-

@@ -90,7 +90,7 @@ typedef struct xfs_attr_leaf_hdr {	/* constant-structure header block */
 
 typedef struct xfs_attr_leaf_entry {	/* sorted on key, not name */
 	__be32	hashval;		/* hash value of name */
- 	__be16	nameidx;		/* index into buffer of name/value */
+	__be16	nameidx;		/* index into buffer of name/value */
 	__u8	flags;			/* LOCAL/ROOT/SECURE/INCOMPLETE flag */
 	__u8	pad2;			/* unused pad byte */
 } xfs_attr_leaf_entry_t;

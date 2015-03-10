@@ -935,4 +935,3 @@ out:
 	memset(temp, 0, 32);
 	return ret_val;
 }
-

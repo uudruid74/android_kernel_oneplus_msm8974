@@ -7303,4 +7303,3 @@
 #define R_SYNC_SERIAL3_CTRL__def_out0__WIDTH 1
 #define R_SYNC_SERIAL3_CTRL__def_out0__high 1
 #define R_SYNC_SERIAL3_CTRL__def_out0__low 0
-

@@ -40,7 +40,7 @@
 
 int ncp_negotiate_buffersize(struct ncp_server *, int, int *);
 int ncp_negotiate_size_and_options(struct ncp_server *server, int size,
-  			  int options, int *ret_size, int *ret_options);
+			  int options, int *ret_size, int *ret_options);
 
 int ncp_get_volume_info_with_number(struct ncp_server* server, int n,
 				    struct ncp_volume_info *target);
@@ -52,9 +52,9 @@ int ncp_close_file(struct ncp_server *, const char *);
 static inline int ncp_read_bounce_size(__u32 size) {
 	return sizeof(struct ncp_reply_header) + 2 + 2 + size + 8;
 };
-int ncp_read_bounce(struct ncp_server *, const char *, __u32, __u16, 
+int ncp_read_bounce(struct ncp_server *, const char *, __u32, __u16,
 		char __user *, int *, void* bounce, __u32 bouncelen);
-int ncp_read_kernel(struct ncp_server *, const char *, __u32, __u16, 
+int ncp_read_kernel(struct ncp_server *, const char *, __u32, __u16,
 		char *, int *);
 int ncp_write_kernel(struct ncp_server *, const char *, __u32, __u16,
 		const char *, int *);

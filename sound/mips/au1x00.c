@@ -558,13 +558,13 @@ snd_au1000_ac97_new(struct snd_au1000 *au1000)
 	int err;
 	struct snd_ac97_bus *pbus;
 	struct snd_ac97_template ac97;
- 	static struct snd_ac97_bus_ops ops = {
+	static struct snd_ac97_bus_ops ops = {
 		.write = snd_au1000_ac97_write,
 		.read = snd_au1000_ac97_read,
 	};
 
 	if ((au1000->ac97_res_port = request_mem_region(CPHYSADDR(AC97C_CONFIG),
-	       		0x100000, "Au1x00 AC97")) == NULL) {
+			0x100000, "Au1x00 AC97")) == NULL) {
 		snd_printk(KERN_ERR "ALSA AC97: can't grap AC97 port\n");
 		return -EBUSY;
 	}
@@ -591,7 +591,7 @@ snd_au1000_ac97_new(struct snd_au1000 *au1000)
 
 	/* Initialise AC97 middle-layer */
 	if ((err = snd_ac97_bus(au1000->card, 0, &ops, au1000, &pbus)) < 0)
- 		return err;
+		return err;
 
 	memset(&ac97, 0, sizeof(ac97));
 	ac97.private_data = au1000;
@@ -616,7 +616,7 @@ snd_au1000_free(struct snd_card *card)
 	}
 
 	if (au1000->stream[PLAYBACK]) {
-	  	if (au1000->stream[PLAYBACK]->dma >= 0)
+		if (au1000->stream[PLAYBACK]->dma >= 0)
 			free_au1000_dma(au1000->stream[PLAYBACK]->dma);
 		kfree(au1000->stream[PLAYBACK]);
 	}
@@ -650,7 +650,7 @@ au1000_init(void)
 	au1000->stream[PLAYBACK] = kmalloc(sizeof(struct audio_stream), GFP_KERNEL);
 	au1000->stream[CAPTURE ] = kmalloc(sizeof(struct audio_stream), GFP_KERNEL);
 	/* so that snd_au1000_free will work as intended */
- 	au1000->ac97_res_port = NULL;
+	au1000->ac97_res_port = NULL;
 	if (au1000->stream[PLAYBACK])
 		au1000->stream[PLAYBACK]->dma = -1;
 	if (au1000->stream[CAPTURE ])
@@ -693,4 +693,3 @@ static void __exit au1000_exit(void)
 
 module_init(au1000_init);
 module_exit(au1000_exit);
-

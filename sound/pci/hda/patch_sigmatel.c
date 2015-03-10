@@ -543,12 +543,12 @@ static const unsigned long stac9205_capsws[] = {
 };
 
 static const hda_nid_t stac9200_pin_nids[8] = {
-	0x08, 0x09, 0x0d, 0x0e, 
+	0x08, 0x09, 0x0d, 0x0e,
 	0x0f, 0x10, 0x11, 0x12,
 };
 
 static const hda_nid_t stac925x_pin_nids[8] = {
-	0x07, 0x08, 0x0a, 0x0b, 
+	0x07, 0x08, 0x0a, 0x0b,
 	0x0c, 0x0d, 0x10, 0x11,
 };
 
@@ -927,17 +927,17 @@ static const struct hda_verb stac925x_core_init[] = {
 };
 
 static const struct hda_verb stac922x_core_init[] = {
-	/* set master volume and direct control */	
+	/* set master volume and direct control */
 	{ 0x16, AC_VERB_SET_VOLUME_KNOB_CONTROL, 0xff},
 	{}
 };
 
 static const struct hda_verb d965_core_init[] = {
-	/* set master volume and direct control */	
+	/* set master volume and direct control */
 	{ 0x24, AC_VERB_SET_VOLUME_KNOB_CONTROL, 0xff},
 	/* unmute node 0x1b */
 	{ 0x1b, AC_VERB_SET_AMP_GAIN_MUTE, 0xb000},
-	/* select node 0x03 as DAC */	
+	/* select node 0x03 as DAC */
 	{ 0x0b, AC_VERB_SET_CONNECT_SEL, 0x01},
 	{}
 };
@@ -953,7 +953,7 @@ static const struct hda_verb dell_3st_core_init[] = {
 };
 
 static const struct hda_verb stac927x_core_init[] = {
-	/* set master volume and direct control */	
+	/* set master volume and direct control */
 	{ 0x24, AC_VERB_SET_VOLUME_KNOB_CONTROL, 0xff},
 	/* enable analog pc beep path */
 	{ 0x01, AC_VERB_SET_DIGI_CONVERT_2, 1 << 5},
@@ -969,7 +969,7 @@ static const struct hda_verb stac927x_volknob_core_init[] = {
 };
 
 static const struct hda_verb stac9205_core_init[] = {
-	/* set master volume and direct control */	
+	/* set master volume and direct control */
 	{ 0x24, AC_VERB_SET_VOLUME_KNOB_CONTROL, 0xff},
 	/* enable analog pc beep path */
 	{ 0x01, AC_VERB_SET_DIGI_CONVERT_2, 1 << 5},
@@ -1184,7 +1184,7 @@ static int stac92xx_build_controls(struct hda_codec *codec)
 	if (err < 0)
 		return err;
 
-	return 0;	
+	return 0;
 }
 
 static const unsigned int ref9200_pin_configs[8] = {
@@ -1208,21 +1208,21 @@ static const unsigned int gateway9200_m4_2_pin_configs[8] = {
     102801E8
 */
 static const unsigned int dell9200_d21_pin_configs[8] = {
-	0x400001f0, 0x400001f1, 0x02214030, 0x01014010, 
+	0x400001f0, 0x400001f1, 0x02214030, 0x01014010,
 	0x02a19020, 0x01a19021, 0x90100140, 0x01813122,
 };
 
-/* 
+/*
     STAC 9200 pin configs for
     102801C0
     102801C1
 */
 static const unsigned int dell9200_d22_pin_configs[8] = {
-	0x400001f0, 0x400001f1, 0x0221401f, 0x01014010, 
+	0x400001f0, 0x400001f1, 0x0221401f, 0x01014010,
 	0x01813020, 0x02a19021, 0x90100140, 0x400001f2,
 };
 
-/* 
+/*
     STAC 9200 pin configs for
     102801C4 (Dell Dimension E310)
     102801C5
@@ -1232,12 +1232,12 @@ static const unsigned int dell9200_d22_pin_configs[8] = {
     102801E3
 */
 static const unsigned int dell9200_d23_pin_configs[8] = {
-	0x400001f0, 0x400001f1, 0x0221401f, 0x01014010, 
-	0x01813020, 0x01a19021, 0x90100140, 0x400001f2, 
+	0x400001f0, 0x400001f1, 0x0221401f, 0x01014010,
+	0x01813020, 0x01a19021, 0x90100140, 0x400001f2,
 };
 
 
-/* 
+/*
     STAC 9200-32 pin configs for
     102801B5 (Dell Inspiron 630m)
     102801D8 (Dell Inspiron 640m)
@@ -1247,20 +1247,20 @@ static const unsigned int dell9200_m21_pin_configs[8] = {
 	0x408003fb, 0x03a11020, 0x401003fc, 0x403003fd,
 };
 
-/* 
+/*
     STAC 9200-32 pin configs for
     102801C2 (Dell Latitude D620)
-    102801C8 
+    102801C8
     102801CC (Dell Latitude D820)
-    102801D4 
-    102801D6 
+    102801D4
+    102801D6
 */
 static const unsigned int dell9200_m22_pin_configs[8] = {
-	0x40c003fa, 0x0144131f, 0x0321121f, 0x90170310, 
+	0x40c003fa, 0x0144131f, 0x0321121f, 0x90170310,
 	0x90a70321, 0x03a11020, 0x401003fb, 0x40f000fc,
 };
 
-/* 
+/*
     STAC 9200-32 pin configs for
     102801CE (Dell XPS M1710)
     102801CF (Dell Precision M90)
@@ -1271,15 +1271,15 @@ static const unsigned int dell9200_m23_pin_configs[8] = {
 };
 
 /*
-    STAC 9200-32 pin configs for 
+    STAC 9200-32 pin configs for
     102801C9
     102801CA
     102801CB (Dell Latitude 120L)
     102801D3
 */
 static const unsigned int dell9200_m24_pin_configs[8] = {
-	0x40c003fa, 0x404003fb, 0x0321121f, 0x90170310, 
-	0x408003fc, 0x03a11020, 0x401003fd, 0x403003fe, 
+	0x40c003fa, 0x404003fb, 0x0321121f, 0x90170310,
+	0x408003fc, 0x03a11020, 0x401003fd, 0x403003fe,
 };
 
 /*
@@ -1289,7 +1289,7 @@ static const unsigned int dell9200_m24_pin_configs[8] = {
     102801EF
 */
 static const unsigned int dell9200_m25_pin_configs[8] = {
-	0x40c003fa, 0x01441340, 0x0421121f, 0x90170310, 
+	0x40c003fa, 0x01441340, 0x0421121f, 0x90170310,
 	0x408003fb, 0x04a11020, 0x401003fc, 0x403003fd,
 };
 
@@ -1299,7 +1299,7 @@ static const unsigned int dell9200_m25_pin_configs[8] = {
     102801F6
 */
 static const unsigned int dell9200_m26_pin_configs[8] = {
-	0x40c003fa, 0x404003fb, 0x0421121f, 0x90170310, 
+	0x40c003fa, 0x404003fb, 0x0421121f, 0x90170310,
 	0x408003fc, 0x04a11020, 0x401003fd, 0x403003fe,
 };
 
@@ -1888,7 +1888,7 @@ static const unsigned int dell_922x_d82_pin_configs[10] = {
 */
 static const unsigned int dell_922x_m81_pin_configs[10] = {
 	0x0321101f, 0x01112024, 0x01111222, 0x91174220,
-	0x03a11050, 0x01116221, 0x90a70330, 0x01452340, 
+	0x03a11050, 0x01116221, 0x90a70330, 0x01452340,
 	0x40C003f1, 0x405003f0,
 };
 
@@ -1897,9 +1897,9 @@ static const unsigned int dell_922x_m81_pin_configs[10] = {
     102801D7 (Dell XPS M1210)
 */
 static const unsigned int dell_922x_m82_pin_configs[10] = {
-	0x02211211, 0x408103ff, 0x02a1123e, 0x90100310, 
-	0x408003f1, 0x0221121f, 0x03451340, 0x40c003f2, 
-	0x508003f3, 0x405003f4, 
+	0x02211211, 0x408103ff, 0x02a1123e, 0x90100310,
+	0x408003f1, 0x0221121f, 0x03451340, 0x40c003f2,
+	0x508003f3, 0x405003f4,
 };
 
 static const unsigned int d945gtp3_pin_configs[10] = {
@@ -1969,9 +1969,9 @@ static const unsigned int *stac922x_brd_tbl[STAC_922X_MODELS] = {
 	[STAC_IMAC_INTEL_20] = intel_mac_v3_pin_configs,
 	[STAC_ECS_202] = ecs202_pin_configs,
 	[STAC_922X_DELL_D81] = dell_922x_d81_pin_configs,
-	[STAC_922X_DELL_D82] = dell_922x_d82_pin_configs,	
+	[STAC_922X_DELL_D82] = dell_922x_d82_pin_configs,
 	[STAC_922X_DELL_M81] = dell_922x_m81_pin_configs,
-	[STAC_922X_DELL_M82] = dell_922x_m82_pin_configs,	
+	[STAC_922X_DELL_M82] = dell_922x_m82_pin_configs,
 };
 
 static const char * const stac922x_models[STAC_922X_MODELS] = {
@@ -2092,7 +2092,7 @@ static const struct snd_pci_quirk stac922x_cfg_tbl[] = {
 
 static const unsigned int ref927x_pin_configs[14] = {
 	0x02214020, 0x02a19080, 0x0181304e, 0x01014010,
-	0x01a19040, 0x01011012, 0x01016011, 0x0101201f, 
+	0x01a19040, 0x01011012, 0x01016011, 0x0101201f,
 	0x183301f0, 0x18a001f0, 0x18a001f0, 0x01442070,
 	0x01c42190, 0x40000100,
 };
@@ -2554,7 +2554,7 @@ static int stac92xx_hp_switch_put(struct snd_kcontrol *kcontrol,
 	struct hda_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct sigmatel_spec *spec = codec->spec;
 	int nid = kcontrol->private_value;
- 
+
 	spec->hp_switch = ucontrol->value.integer.value[0] ? nid : 0;
 
 	/* check to be sure that the ports are up to date with
@@ -2947,7 +2947,7 @@ static hda_nid_t check_mic_out_switch(struct hda_codec *codec, hda_nid_t *dac)
 static int is_in_dac_nids(struct sigmatel_spec *spec, hda_nid_t nid)
 {
 	int i;
-	
+
 	for (i = 0; i < spec->multiout.num_dacs; i++) {
 		if (spec->multiout.dac_nids[i] == nid)
 			return 1;
@@ -3043,7 +3043,7 @@ static int stac92xx_auto_fill_dac_nids(struct hda_codec *codec)
 	struct auto_pin_cfg *cfg = &spec->autocfg;
 	int i;
 	hda_nid_t nid, dac;
-	
+
 	for (i = 0; i < cfg->line_outs; i++) {
 		nid = cfg->line_out_pins[i];
 		dac = get_unassigned_dac(codec, nid);
@@ -3842,9 +3842,9 @@ static int stac92xx_parse_auto_config(struct hda_codec *codec)
 				int wcaps = get_wcaps(codec, conn_list[0]);
 				int wid_type = get_wcaps_type(wcaps);
 				/* LR swap check, some stac925x have a mux that
- 				 * changes the DACs output path instead of the
- 				 * mono-mux path.
- 				 */
+				 * changes the DACs output path instead of the
+				 * mono-mux path.
+				 */
 				if (wid_type == AC_WID_AUD_SEL &&
 						!(wcaps & AC_WCAP_LR_SWAP))
 					spec->mono_nid = conn_list[0];
@@ -4420,7 +4420,7 @@ static int stac92xx_init(struct hda_codec *codec)
 		def_conf = snd_hda_codec_get_pincfg(codec, nid);
 		def_conf = get_defcfg_connect(def_conf);
 		/* skip any ports that don't have jacks since presence
- 		 * detection is useless */
+		 * detection is useless */
 		if (def_conf != AC_JACK_PORT_COMPLEX ||
 		    !is_jack_detectable(codec, nid)) {
 			stac_toggle_power_map(codec, nid, 1);
@@ -4526,7 +4526,7 @@ static void stac92xx_set_pinctl(struct hda_codec *codec, hda_nid_t nid,
 	   direction bits first */
 	if (flag & (AC_PINCTL_IN_EN | AC_PINCTL_OUT_EN))
 		pin_ctl &= ~(AC_PINCTL_IN_EN | AC_PINCTL_OUT_EN);
-	
+
 	pin_ctl |= flag;
 	if (old_ctl != pin_ctl)
 		snd_hda_codec_write_cache(codec, nid, 0,
@@ -4592,7 +4592,7 @@ static void stac92xx_line_out_detect(struct hda_codec *codec,
 				spec->gpio_dir, spec->gpio_data |
 				spec->eapd_mask);
 	}
-} 
+}
 
 /* return non-zero if the hp-pin of the given array index isn't
  * a jack-detection target
@@ -4671,13 +4671,13 @@ static void stac92xx_hp_detect(struct hda_codec *codec)
  *
  * So, it's basically a problem of default pin configs, likely a BIOS issue.
  * But, disabling the code below just works around it, and I'm too tired of
- * bug reports with such devices... 
+ * bug reports with such devices...
  */
 		else
 			stac92xx_reset_pinctl(codec, cfg->hp_pins[i], val);
 #endif /* FIXME */
 	}
-} 
+}
 
 static void stac_toggle_power_map(struct hda_codec *codec, hda_nid_t nid,
 				  int enable)
@@ -4963,7 +4963,7 @@ static void stac92hd_proc_hook(struct snd_info_buffer *buffer,
 			       struct hda_codec *codec, hda_nid_t nid)
 {
 	if (nid == codec->afg)
-		snd_iprintf(buffer, "Power-Map: 0x%02x\n", 
+		snd_iprintf(buffer, "Power-Map: 0x%02x\n",
 			    snd_hda_codec_read(codec, nid, 0, 0x0fec, 0x0));
 }
 
@@ -6035,7 +6035,7 @@ static int patch_stac922x(struct hda_codec *codec)
 	spec->capsws = stac922x_capsws;
 
 	spec->multiout.dac_nids = spec->dac_nids;
-	
+
 	err = stac92xx_parse_auto_config(codec);
 	if (!err) {
 		if (spec->board_config < 0) {
@@ -6250,7 +6250,7 @@ static int patch_stac9205(struct hda_codec *codec)
 	if (spec->board_config != STAC_9205_EAPD)
 		spec->eapd_switch = 1;
 	spec->multiout.dac_nids = spec->dac_nids;
-	
+
 	switch (spec->board_config){
 	case STAC_9205_DELL_M43:
 		/* Enable SPDIF in/out */
@@ -6404,29 +6404,29 @@ static int patch_stac9872(struct hda_codec *codec)
  * patch entries
  */
 static const struct hda_codec_preset snd_hda_preset_sigmatel[] = {
- 	{ .id = 0x83847690, .name = "STAC9200", .patch = patch_stac9200 },
- 	{ .id = 0x83847882, .name = "STAC9220 A1", .patch = patch_stac922x },
- 	{ .id = 0x83847680, .name = "STAC9221 A1", .patch = patch_stac922x },
- 	{ .id = 0x83847880, .name = "STAC9220 A2", .patch = patch_stac922x },
- 	{ .id = 0x83847681, .name = "STAC9220D/9223D A2", .patch = patch_stac922x },
- 	{ .id = 0x83847682, .name = "STAC9221 A2", .patch = patch_stac922x },
- 	{ .id = 0x83847683, .name = "STAC9221D A2", .patch = patch_stac922x },
- 	{ .id = 0x83847618, .name = "STAC9227", .patch = patch_stac927x },
- 	{ .id = 0x83847619, .name = "STAC9227", .patch = patch_stac927x },
- 	{ .id = 0x83847616, .name = "STAC9228", .patch = patch_stac927x },
- 	{ .id = 0x83847617, .name = "STAC9228", .patch = patch_stac927x },
- 	{ .id = 0x83847614, .name = "STAC9229", .patch = patch_stac927x },
- 	{ .id = 0x83847615, .name = "STAC9229", .patch = patch_stac927x },
- 	{ .id = 0x83847620, .name = "STAC9274", .patch = patch_stac927x },
- 	{ .id = 0x83847621, .name = "STAC9274D", .patch = patch_stac927x },
- 	{ .id = 0x83847622, .name = "STAC9273X", .patch = patch_stac927x },
- 	{ .id = 0x83847623, .name = "STAC9273D", .patch = patch_stac927x },
- 	{ .id = 0x83847624, .name = "STAC9272X", .patch = patch_stac927x },
- 	{ .id = 0x83847625, .name = "STAC9272D", .patch = patch_stac927x },
- 	{ .id = 0x83847626, .name = "STAC9271X", .patch = patch_stac927x },
- 	{ .id = 0x83847627, .name = "STAC9271D", .patch = patch_stac927x },
- 	{ .id = 0x83847628, .name = "STAC9274X5NH", .patch = patch_stac927x },
- 	{ .id = 0x83847629, .name = "STAC9274D5NH", .patch = patch_stac927x },
+	{ .id = 0x83847690, .name = "STAC9200", .patch = patch_stac9200 },
+	{ .id = 0x83847882, .name = "STAC9220 A1", .patch = patch_stac922x },
+	{ .id = 0x83847680, .name = "STAC9221 A1", .patch = patch_stac922x },
+	{ .id = 0x83847880, .name = "STAC9220 A2", .patch = patch_stac922x },
+	{ .id = 0x83847681, .name = "STAC9220D/9223D A2", .patch = patch_stac922x },
+	{ .id = 0x83847682, .name = "STAC9221 A2", .patch = patch_stac922x },
+	{ .id = 0x83847683, .name = "STAC9221D A2", .patch = patch_stac922x },
+	{ .id = 0x83847618, .name = "STAC9227", .patch = patch_stac927x },
+	{ .id = 0x83847619, .name = "STAC9227", .patch = patch_stac927x },
+	{ .id = 0x83847616, .name = "STAC9228", .patch = patch_stac927x },
+	{ .id = 0x83847617, .name = "STAC9228", .patch = patch_stac927x },
+	{ .id = 0x83847614, .name = "STAC9229", .patch = patch_stac927x },
+	{ .id = 0x83847615, .name = "STAC9229", .patch = patch_stac927x },
+	{ .id = 0x83847620, .name = "STAC9274", .patch = patch_stac927x },
+	{ .id = 0x83847621, .name = "STAC9274D", .patch = patch_stac927x },
+	{ .id = 0x83847622, .name = "STAC9273X", .patch = patch_stac927x },
+	{ .id = 0x83847623, .name = "STAC9273D", .patch = patch_stac927x },
+	{ .id = 0x83847624, .name = "STAC9272X", .patch = patch_stac927x },
+	{ .id = 0x83847625, .name = "STAC9272D", .patch = patch_stac927x },
+	{ .id = 0x83847626, .name = "STAC9271X", .patch = patch_stac927x },
+	{ .id = 0x83847627, .name = "STAC9271D", .patch = patch_stac927x },
+	{ .id = 0x83847628, .name = "STAC9274X5NH", .patch = patch_stac927x },
+	{ .id = 0x83847629, .name = "STAC9274D5NH", .patch = patch_stac927x },
 	{ .id = 0x83847632, .name = "STAC9202",  .patch = patch_stac925x },
 	{ .id = 0x83847633, .name = "STAC9202D", .patch = patch_stac925x },
 	{ .id = 0x83847634, .name = "STAC9250", .patch = patch_stac925x },
@@ -6435,22 +6435,22 @@ static const struct hda_codec_preset snd_hda_preset_sigmatel[] = {
 	{ .id = 0x83847637, .name = "STAC9250D", .patch = patch_stac925x },
 	{ .id = 0x83847645, .name = "92HD206X", .patch = patch_stac927x },
 	{ .id = 0x83847646, .name = "92HD206D", .patch = patch_stac927x },
- 	/* The following does not take into account .id=0x83847661 when subsys =
- 	 * 104D0C00 which is STAC9225s. Because of this, some SZ Notebooks are
- 	 * currently not fully supported.
- 	 */
- 	{ .id = 0x83847661, .name = "CXD9872RD/K", .patch = patch_stac9872 },
- 	{ .id = 0x83847662, .name = "STAC9872AK", .patch = patch_stac9872 },
- 	{ .id = 0x83847664, .name = "CXD9872AKD", .patch = patch_stac9872 },
+	/* The following does not take into account .id=0x83847661 when subsys =
+	 * 104D0C00 which is STAC9225s. Because of this, some SZ Notebooks are
+	 * currently not fully supported.
+	 */
+	{ .id = 0x83847661, .name = "CXD9872RD/K", .patch = patch_stac9872 },
+	{ .id = 0x83847662, .name = "STAC9872AK", .patch = patch_stac9872 },
+	{ .id = 0x83847664, .name = "CXD9872AKD", .patch = patch_stac9872 },
 	{ .id = 0x83847698, .name = "STAC9205", .patch = patch_stac9205 },
- 	{ .id = 0x838476a0, .name = "STAC9205", .patch = patch_stac9205 },
- 	{ .id = 0x838476a1, .name = "STAC9205D", .patch = patch_stac9205 },
- 	{ .id = 0x838476a2, .name = "STAC9204", .patch = patch_stac9205 },
- 	{ .id = 0x838476a3, .name = "STAC9204D", .patch = patch_stac9205 },
- 	{ .id = 0x838476a4, .name = "STAC9255", .patch = patch_stac9205 },
- 	{ .id = 0x838476a5, .name = "STAC9255D", .patch = patch_stac9205 },
- 	{ .id = 0x838476a6, .name = "STAC9254", .patch = patch_stac9205 },
- 	{ .id = 0x838476a7, .name = "STAC9254D", .patch = patch_stac9205 },
+	{ .id = 0x838476a0, .name = "STAC9205", .patch = patch_stac9205 },
+	{ .id = 0x838476a1, .name = "STAC9205D", .patch = patch_stac9205 },
+	{ .id = 0x838476a2, .name = "STAC9204", .patch = patch_stac9205 },
+	{ .id = 0x838476a3, .name = "STAC9204D", .patch = patch_stac9205 },
+	{ .id = 0x838476a4, .name = "STAC9255", .patch = patch_stac9205 },
+	{ .id = 0x838476a5, .name = "STAC9255D", .patch = patch_stac9205 },
+	{ .id = 0x838476a6, .name = "STAC9254", .patch = patch_stac9205 },
+	{ .id = 0x838476a7, .name = "STAC9254D", .patch = patch_stac9205 },
 	{ .id = 0x111d7603, .name = "92HD75B3X5", .patch = patch_stac92hd71bxx},
 	{ .id = 0x111d7604, .name = "92HD83C1X5", .patch = patch_stac92hd83xxx},
 	{ .id = 0x111d76d4, .name = "92HD83C1C5", .patch = patch_stac92hd83xxx},

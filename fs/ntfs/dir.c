@@ -74,7 +74,7 @@ ntfschar I30[5] = { cpu_to_le16('$'), cpu_to_le16('I'),
  *	       locked whilst being accessed otherwise we may find a corrupt
  *	       page due to it being under ->writepage at the moment which
  *	       applies the mst protection fixups before writing out and then
- *	       removes them again after the write is complete after which it 
+ *	       removes them again after the write is complete after which it
  *	       unlocks the page.
  */
 MFT_REF ntfs_lookup_inode_by_name(ntfs_inode *dir_ni, const ntfschar *uname,
@@ -1094,7 +1094,7 @@ static inline int ntfs_filldir(ntfs_volume *vol, loff_t fpos,
  *	       locked whilst being accessed otherwise we may find a corrupt
  *	       page due to it being under ->writepage at the moment which
  *	       applies the mst protection fixups before writing out and then
- *	       removes them again after the write is complete after which it 
+ *	       removes them again after the write is complete after which it
  *	       unlocks the page.
  */
 static int ntfs_readdir(struct file *filp, void *dirent, filldir_t filldir)
@@ -1549,7 +1549,7 @@ static int ntfs_dir_fsync(struct file *filp, loff_t start, loff_t end,
 	na.name_len = 4;
 	bmp_vi = ilookup5(vi->i_sb, vi->i_ino, (test_t)ntfs_test_inode, &na);
 	if (bmp_vi) {
- 		write_inode_now(bmp_vi, !datasync);
+		write_inode_now(bmp_vi, !datasync);
 		iput(bmp_vi);
 	}
 	ret = __ntfs_write_inode(vi, 1);

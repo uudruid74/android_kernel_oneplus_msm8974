@@ -148,7 +148,7 @@ __break_kerneltrap_fixup_table:
 	# handler declaration for an MMU only software or program interrupt
 .macro VECTOR_SP_MMU tbr_tt, vec
 #ifdef CONFIG_MMU
- 	VECTOR_SOFTPROG	\tbr_tt, \vec
+	VECTOR_SOFTPROG	\tbr_tt, \vec
 #else
 	VECTOR_NMI	\tbr_tt, 0
 #endif
@@ -324,6 +324,6 @@ __trap_fixup_kernel_data_tlb_miss:
 	.rept		7
 	.long		__entry_atomic_op
 	.endr
-	
+
 	.org		TBR_TT_BREAK >> 2
 	.long		__entry_debug_exception

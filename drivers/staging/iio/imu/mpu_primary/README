@@ -525,7 +525,7 @@ The events could be pedometer steps, tap action, SMD(significant Motion Detectio
 or any customer defined actions. CPU can sleep to save power, when event happens,
 DMP will calculate the motion data to detemine whether a pre-defined event happens
 or not. If an pre-defined happens, an interrupt is generated to wake up the CPU
-to do further processing. 
+to do further processing.
 The requirements of doing event wake is the following:
 1. Add enable_irq_wake() either in the driver or in the board file.
 2. Connect the interrupt pin to the CPU wake up pin.
@@ -640,4 +640,3 @@ This application simulates HAL's usage calls to the driver. It creates three
 threads. One for data read; one for event read; one for sysfs control.
 It can run without any parameters or run with some control parameters. Please
 see README in the same directories for details.
-

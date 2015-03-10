@@ -94,4 +94,3 @@ struct device *msm_iommu_get_ctx(const char *ctx_name)
 	return dev;
 }
 EXPORT_SYMBOL(msm_iommu_get_ctx);
-

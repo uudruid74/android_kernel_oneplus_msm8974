@@ -1867,7 +1867,7 @@ static int mms_flash_fw(struct mms_ts_info *info, bool force_update, int cmd)
 		}
 		else {
 			ret = -1;
-			dev_err(&client->dev, "[TSP] wrong panel - no firmware requested\n");	
+			dev_err(&client->dev, "[TSP] wrong panel - no firmware requested\n");
 		}
 		if (ret) {
 			dev_err(&client->dev, "failed to read firmware\n");
@@ -2066,7 +2066,7 @@ static void get_fw_ver_bin(void *device_data)
 
 	if (info->panel == ILJIN) {
 		snprintf(buff, sizeof(buff), "ME%02x%02x%02x",
-			info->panel, CORE_VERSION_IJ, FW_VERSION_IJ);	
+			info->panel, CORE_VERSION_IJ, FW_VERSION_IJ);
 	}
 	else { /* EELY*/
 		snprintf(buff, sizeof(buff), "ME%02x%02x%02x",
@@ -2245,7 +2245,7 @@ static void get_module_vendor(void *device_data)
 	int val,val2;
 
 	set_default_result(info);
-	if (!(gpio_get_value(info->pdata->vdd_en) && 
+	if (!(gpio_get_value(info->pdata->vdd_en) &&
 				gpio_get_value(info->pdata->vdd_en2))) {
 		dev_err(&info->client->dev, "%s: [ERROR] Touch is stopped\n",
 				__func__);
@@ -3209,7 +3209,7 @@ static int mms_ts_fw_check(struct mms_ts_info *info)
 		       break;
 		    }
 		    msleep(10);
-		    retry--;		  
+		    retry--;
 		}
 		if (retry == 0 && ret < 0)
 		{
@@ -3219,7 +3219,7 @@ static int mms_ts_fw_check(struct mms_ts_info *info)
 #else
 		pr_err("%s: tsp driver unload\n", __func__);
 		return ret;
-#endif	
+#endif
 	}
 	if (info->panel == EELY)
 		dev_info(&client->dev,
@@ -3233,14 +3233,14 @@ static int mms_ts_fw_check(struct mms_ts_info *info)
 
 	if (info->panel == ILJIN)
 	{
-#if defined(CONFIG_MACH_MILLET3G_CHN_OPEN)	
+#if defined(CONFIG_MACH_MILLET3G_CHN_OPEN)
 		if (!update)	{
 		    ret = get_fw_version(info);
 		}
 		else {
 		    ret = 0;
 		}
-		
+
 #else
 		ret = get_fw_version(info);
 #endif

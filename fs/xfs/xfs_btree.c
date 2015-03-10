@@ -67,11 +67,11 @@ xfs_btree_check_lblock(
 		block->bb_u.l.bb_leftsib &&
 		(block->bb_u.l.bb_leftsib == cpu_to_be64(NULLDFSBNO) ||
 		 XFS_FSB_SANITY_CHECK(mp,
-		 	be64_to_cpu(block->bb_u.l.bb_leftsib))) &&
+			be64_to_cpu(block->bb_u.l.bb_leftsib))) &&
 		block->bb_u.l.bb_rightsib &&
 		(block->bb_u.l.bb_rightsib == cpu_to_be64(NULLDFSBNO) ||
 		 XFS_FSB_SANITY_CHECK(mp,
-		 	be64_to_cpu(block->bb_u.l.bb_rightsib)));
+			be64_to_cpu(block->bb_u.l.bb_rightsib)));
 	if (unlikely(XFS_TEST_ERROR(!lblock_ok, mp,
 			XFS_ERRTAG_BTREE_CHECK_LBLOCK,
 			XFS_RANDOM_BTREE_CHECK_LBLOCK))) {
@@ -2556,7 +2556,7 @@ xfs_btree_make_block_unfull(
 
 	if ((cur->bc_flags & XFS_BTREE_ROOT_IN_INODE) &&
 	    level == cur->bc_nlevels - 1) {
-	    	struct xfs_inode *ip = cur->bc_private.b.ip;
+		struct xfs_inode *ip = cur->bc_private.b.ip;
 
 		if (numrecs < cur->bc_ops->get_dmaxrecs(cur, level)) {
 			/* A root block that can be made bigger. */

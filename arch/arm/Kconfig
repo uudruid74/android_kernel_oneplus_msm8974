@@ -582,10 +582,10 @@ config ARCH_IOP33X
 	  Support for Intel's IOP33X (XScale) family of processors.
 
 config ARCH_IXP23XX
- 	bool "IXP23XX-based"
+	bool "IXP23XX-based"
 	depends on MMU
 	select CPU_XSC3
- 	select PCI
+	select PCI
 	select ARCH_USES_GETTIMEOFFSET
 	select NEED_MACH_IO_H
 	select NEED_MACH_MEMORY_H

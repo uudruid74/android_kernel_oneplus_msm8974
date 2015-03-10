@@ -19,7 +19,7 @@
 /*
    Changes:
    24.08.2002
-   	Fixed the typo in sis630_access (Thanks to Mark M. Hoffman)
+	Fixed the typo in sis630_access (Thanks to Mark M. Hoffman)
 	Changed sis630_transaction.(Thanks to Mark M. Hoffman)
    18.09.2002
 	Added SIS730 as supported.
@@ -32,7 +32,7 @@
 	Fixed typo in sis630_access
 	Fixed logical error by restoring of Host Master Clock
    31.07.2003
-   	Added block data read/write support.
+	Added block data read/write support.
 */
 
 /*
@@ -407,7 +407,7 @@ static int __devinit sis630_setup(struct pci_dev *sis630_dev)
         else if (force) {
 		dev_err(&sis630_dev->dev, "WARNING: Can't detect SIS630 compatible device, but "
 			"loading because of force option enabled\n");
- 	}
+	}
 	else {
 		return -ENODEV;
 	}

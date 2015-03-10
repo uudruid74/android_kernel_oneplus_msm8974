@@ -267,4 +267,3 @@ static void __exit core_exit(void)
 module_exit(core_exit);
 MODULE_DESCRIPTION("ADSP core driver");
 MODULE_LICENSE("GPL v2");
-

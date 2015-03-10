@@ -443,8 +443,8 @@ out_delete:
 	 * Also experiment with obstacks to see how much speed
 	 * up we'll get here.
 	 *
- 	 * perf_session__delete(session);
- 	 */
+	 * perf_session__delete(session);
+	 */
 	return ret;
 }
 
@@ -698,10 +698,10 @@ int cmd_report(int argc, const char **argv, const char *prefix __used)
 		symbol_conf.priv_size = sizeof(struct annotation);
 		report.annotate_init  = symbol__annotate_init;
 		/*
- 		 * For searching by name on the "Browse map details".
- 		 * providing it only in verbose mode not to bloat too
- 		 * much struct symbol.
- 		 */
+		 * For searching by name on the "Browse map details".
+		 * providing it only in verbose mode not to bloat too
+		 * much struct symbol.
+		 */
 		if (verbose) {
 			/*
 			 * XXX: Need to provide a less kludgy way to ask for

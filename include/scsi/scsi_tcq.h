@@ -91,7 +91,7 @@ static inline void scsi_deactivate_tcq(struct scsi_device *sdev, int depth)
  * @msg:	pointer to the area to place the tag
  *
  * Notes:
- *	designed to create the correct type of tag message for the 
+ *	designed to create the correct type of tag message for the
  *	particular request.  Returns the size of the tag message.
  *	May return 0 if TCQ is disabled for this device.
  **/
@@ -101,8 +101,8 @@ static inline int scsi_populate_tag_msg(struct scsi_cmnd *cmd, char *msg)
 
         if (blk_rq_tagged(req)) {
 		*msg++ = MSG_SIMPLE_TAG;
-        	*msg++ = req->tag;
-        	return 2;
+		*msg++ = req->tag;
+		return 2;
 	}
 
 	return 0;
@@ -122,7 +122,7 @@ static inline struct scsi_cmnd *scsi_find_tag(struct scsi_device *sdev, int tag)
         struct request *req;
 
         if (tag != SCSI_NO_TAG) {
-        	req = blk_queue_find_tag(sdev->request_queue, tag);
+		req = blk_queue_find_tag(sdev->request_queue, tag);
 	        return req ? (struct scsi_cmnd *)req->special : NULL;
 	}
 

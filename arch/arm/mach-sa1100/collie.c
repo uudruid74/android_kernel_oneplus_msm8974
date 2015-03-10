@@ -64,7 +64,7 @@ struct platform_device colliescoop_device = {
 	.name		= "sharp-scoop",
 	.id		= -1,
 	.dev		= {
- 		.platform_data	= &collie_scoop_setup,
+		.platform_data	= &collie_scoop_setup,
 	},
 	.num_resources	= ARRAY_SIZE(collie_scoop_resources),
 	.resource	= collie_scoop_resources,

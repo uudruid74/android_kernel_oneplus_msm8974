@@ -461,4 +461,3 @@ static void __exit gscps2_exit(void)
 
 module_init(gscps2_init);
 module_exit(gscps2_exit);
-

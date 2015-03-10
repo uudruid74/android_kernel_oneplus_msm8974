@@ -308,7 +308,7 @@ enum {
 	BIO_HRM_LIB,
 	SENSOR_MAX,
 };
-	
+
 struct meta_data_event {
 	s32 what;
 	s32 sensor;

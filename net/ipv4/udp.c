@@ -2284,4 +2284,3 @@ struct sk_buff *udp4_ufo_fragment(struct sk_buff *skb,
 out:
 	return segs;
 }
-

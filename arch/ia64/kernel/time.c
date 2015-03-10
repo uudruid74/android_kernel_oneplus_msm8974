@@ -482,4 +482,3 @@ void update_vsyscall(struct timespec *wall, struct timespec *wtm,
 
 	write_seqcount_end(&fsyscall_gtod_data.seq);
 }
-

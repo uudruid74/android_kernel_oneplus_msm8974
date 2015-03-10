@@ -557,7 +557,7 @@ static struct msm_gpiomux_config msm_blsp_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &gpio_i2c_config,
 		},
 	},
- 	{
+	{
 		.gpio      = 87,		/* BLSP12 QUP I2C_DAT */
 		.settings = {
 			[GPIOMUX_SUSPENDED] = &gpio_i2c_config,

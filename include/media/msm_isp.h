@@ -341,4 +341,3 @@ struct msm_frame_info {
 };
 
 #endif /*__MSM_ISP_H__*/
-

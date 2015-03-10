@@ -35,5 +35,3 @@ selecting an io scheduler on a per-device basis.
 
 
 May 10 2012, maya Erez <merez@codeaurora.org>
-
-

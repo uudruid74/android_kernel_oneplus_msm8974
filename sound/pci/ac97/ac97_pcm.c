@@ -45,7 +45,7 @@ static unsigned char rate_reg_tables[2][4][9] = {
 {
   /* standard rates */
   {
-  	/* 3&4 front, 7&8 rear, 6&9 center/lfe */
+	/* 3&4 front, 7&8 rear, 6&9 center/lfe */
 	AC97_PCM_FRONT_DAC_RATE,	/* slot 3 */
 	AC97_PCM_FRONT_DAC_RATE,	/* slot 4 */
 	0xff,				/* slot 5 */
@@ -57,7 +57,7 @@ static unsigned char rate_reg_tables[2][4][9] = {
 	0xff,				/* slot 11 */
   },
   {
-  	/* 7&8 front, 6&9 rear, 10&11 center/lfe */
+	/* 7&8 front, 6&9 rear, 10&11 center/lfe */
 	0xff,				/* slot 3 */
 	0xff,				/* slot 4 */
 	0xff,				/* slot 5 */
@@ -69,7 +69,7 @@ static unsigned char rate_reg_tables[2][4][9] = {
 	AC97_PCM_LFE_DAC_RATE,		/* slot 11 */
   },
   {
-  	/* 6&9 front, 10&11 rear, 3&4 center/lfe */
+	/* 6&9 front, 10&11 rear, 3&4 center/lfe */
 	AC97_PCM_LFE_DAC_RATE,		/* slot 3 */
 	AC97_PCM_LFE_DAC_RATE,		/* slot 4 */
 	0xff,				/* slot 5 */
@@ -81,7 +81,7 @@ static unsigned char rate_reg_tables[2][4][9] = {
 	AC97_PCM_SURR_DAC_RATE,		/* slot 11 */
   },
   {
-  	/* 10&11 front, 3&4 rear, 7&8 center/lfe */
+	/* 10&11 front, 3&4 rear, 7&8 center/lfe */
 	AC97_PCM_SURR_DAC_RATE,		/* slot 3 */
 	AC97_PCM_SURR_DAC_RATE,		/* slot 4 */
 	0xff,				/* slot 5 */
@@ -96,7 +96,7 @@ static unsigned char rate_reg_tables[2][4][9] = {
 {
   /* double rates */
   {
-  	/* 3&4 front, 7&8 front (t+1) */
+	/* 3&4 front, 7&8 front (t+1) */
 	AC97_PCM_FRONT_DAC_RATE,	/* slot 3 */
 	AC97_PCM_FRONT_DAC_RATE,	/* slot 4 */
 	0xff,				/* slot 5 */
@@ -259,7 +259,7 @@ int snd_ac97_set_rate(struct snd_ac97 *ac97, int reg, unsigned int rate)
 {
 	int dbl;
 	unsigned int tmp;
-	
+
 	dbl = rate > 48000;
 	if (dbl) {
 		if (!(ac97->flags & AC97_DOUBLE_RATE))

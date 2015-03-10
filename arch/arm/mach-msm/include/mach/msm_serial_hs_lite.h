@@ -41,4 +41,3 @@ struct msm_serial_hslite_platform_data {
 };
 
 #endif
-

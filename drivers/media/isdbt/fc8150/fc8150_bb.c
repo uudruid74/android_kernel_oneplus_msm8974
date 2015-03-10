@@ -722,8 +722,8 @@ printk(KERN_ERR "ffs loop: data=0x%x\n",data);
 	}
 
 	if (i == ffs_lock_timeout)
-	{	
-		printk(KERN_ERR "ISDBT ffs_lock_timeout \n");	
+	{
+		printk(KERN_ERR "ISDBT ffs_lock_timeout \n");
 		return BBM_NOK;
 		}
 
@@ -816,5 +816,3 @@ printk(KERN_ERR "ts-err loop: data=0x%x\n",data);
 
 	return BBM_OK;
 }
-
-

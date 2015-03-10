@@ -1507,4 +1507,3 @@ Comm_ReleaseInlineEvents(CommChannel channel)
 	else
 		return (unsigned int)-1;
 }
-

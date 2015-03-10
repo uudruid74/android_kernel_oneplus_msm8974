@@ -57,8 +57,8 @@ static void read_bulk_callback(struct urb *urb)
 		(0 == urb->actual_length)
 		)
 	{
-	 	pRcb->bUsed = FALSE;
- 		atomic_dec(&psIntfAdapter->uNumRcbUsed);
+		pRcb->bUsed = FALSE;
+		atomic_dec(&psIntfAdapter->uNumRcbUsed);
 		return;
 	}
 
@@ -74,7 +74,7 @@ static void read_bulk_callback(struct urb *urb)
 			BCM_DEBUG_PRINT(Adapter,DBG_TYPE_RX, RX_DPC, DBG_LVL_ALL,"Rx URB has got cancelled. status :%d", urb->status);
 		}
 		pRcb->bUsed = FALSE;
- 		atomic_dec(&psIntfAdapter->uNumRcbUsed);
+		atomic_dec(&psIntfAdapter->uNumRcbUsed);
 		urb->status = STATUS_SUCCESS ;
 		return ;
 	}
@@ -125,7 +125,7 @@ static void read_bulk_callback(struct urb *urb)
 	{
 	    BCM_DEBUG_PRINT(psIntfAdapter->psAdapter,DBG_TYPE_RX, RX_CTRL, DBG_LVL_ALL, "Received control pkt...");
 		*(PUSHORT)skb->data = pLeader->Status;
-       	memcpy(skb->data+sizeof(USHORT), urb->transfer_buffer +
+	memcpy(skb->data+sizeof(USHORT), urb->transfer_buffer +
 			(sizeof(LEADER)), pLeader->PLength);
 		skb->len = pLeader->PLength + sizeof(USHORT);
 
@@ -140,7 +140,7 @@ static void read_bulk_callback(struct urb *urb)
 	{
 		/*
 		  * Data Packet, Format a proper Ethernet Header
-        	  * and give it to the stack
+		  * and give it to the stack
 		  */
         BCM_DEBUG_PRINT(psIntfAdapter->psAdapter,DBG_TYPE_RX, RX_DATA, DBG_LVL_ALL, "Received Data pkt...");
 		skb_reserve(skb, 2 + SKB_RESERVE_PHS_BYTES);
@@ -191,7 +191,7 @@ static void read_bulk_callback(struct urb *urb)
 				Adapter->aRxPktSizeHist[uiIndex]++;
 		}
 	}
- 	Adapter->PrevNumRecvDescs++;
+	Adapter->PrevNumRecvDescs++;
 	pRcb->bUsed = FALSE;
 	atomic_dec(&psIntfAdapter->uNumRcbUsed);
 }
@@ -203,7 +203,7 @@ static int ReceiveRcb(PS_INTERFACE_ADAPTER psIntfAdapter, PUSB_RCB pRcb)
 
 	usb_fill_bulk_urb(urb, psIntfAdapter->udev, usb_rcvbulkpipe(
 			psIntfAdapter->udev, psIntfAdapter->sBulkIn.bulk_in_endpointAddr),
-		  	urb->transfer_buffer, BCM_USB_MAX_READ_LENGTH, read_bulk_callback,
+			urb->transfer_buffer, BCM_USB_MAX_READ_LENGTH, read_bulk_callback,
 			pRcb);
 	if(FALSE == psIntfAdapter->psAdapter->device_removed &&
 	   FALSE == psIntfAdapter->psAdapter->bEndPointHalted &&
@@ -261,4 +261,3 @@ BOOLEAN InterfaceRx (PS_INTERFACE_ADAPTER psIntfAdapter)
     }
 	return TRUE;
 }
-

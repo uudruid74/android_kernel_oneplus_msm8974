@@ -1257,4 +1257,3 @@ void mdp4_dtv_set_avparams(struct mdp4_overlay_pipe *pipe, int id)
 	else if (pipe->pipe_num == OVERLAY_PIPE_VG2)
 		vctrl->vg2fd = id;
 }
-

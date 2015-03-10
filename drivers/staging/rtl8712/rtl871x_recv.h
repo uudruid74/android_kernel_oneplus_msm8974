@@ -324,4 +324,3 @@ void  r8712_mgt_dispatcher(struct _adapter *padapter, u8 *pframe, uint len);
 int r8712_amsdu_to_msdu(struct _adapter *padapter, union recv_frame *prframe);
 
 #endif
-

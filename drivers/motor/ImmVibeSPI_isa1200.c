@@ -260,4 +260,3 @@ IMMVIBESPIAPI VibeStatus ImmVibeSPI_Device_GetName(VibeUInt8 nActuatorIndex, cha
 {
     return VIBE_S_SUCCESS;
 }
-

@@ -90,7 +90,7 @@ PSvEnablePowerSaving(
         // set AID
         VNSvOutPortW(pDevice->PortOffset + MAC_REG_AIDATIM, wAID);
     } else {
-    	// set ATIM Window
+	// set ATIM Window
         MACvWriteATIMW(pDevice->PortOffset, pMgmt->wCurrATIMWindow);
     }
     // Set AutoSleep
@@ -409,4 +409,3 @@ PSbIsNextTBTTWakeUp(
 
     return bWakeUp;
 }
-

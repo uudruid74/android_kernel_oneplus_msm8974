@@ -234,13 +234,13 @@ static int __devinit modem_probe(struct platform_device *pdev)
 	/* support multi-link device */
 
 	mif_err("call_link_init_func link type val [%d]\n", pdata->link_types);
-	
+
 	for (i = 0; i < LINKDEV_MAX ; i++) {
 		/* find matching link type */
 		if (pdata->link_types & LINKTYPE(i)) {
 
 			mif_err("call_link_init_func  [%d]\n", i);
-			
+
 			ld = call_link_init_func(pdev, i);
 			if (!ld) {
 				mif_err("call_link_init_func errori [%d]\n", i);
@@ -303,7 +303,7 @@ static int modem_suspend(struct device *pdev)
 
 	if(mc->phone_state==STATE_OFFLINE)
 		return 0;
-	
+
 	if (mc->gpio_pda_active)
 		gpio_set_value(mc->gpio_pda_active, 0);
 

@@ -11,4 +11,3 @@ combination seems to work for me.  Your mileage may vary.
 
 The LANCE driver works after a fashion but only if you reset the chip before
 every packet.  This doesn't make for very speedy operation.
-

@@ -440,7 +440,7 @@ static int cyttsp4_mt_open(struct input_dev *input)
 	struct device *dev = input->dev.parent;
 	struct cyttsp4_core_data *cd = dev_get_drvdata(dev);
 	dev_info(dev, "%s\n", __func__);
-	
+
 	pm_runtime_get_sync(dev);
 	cd->number_of_open_input_device++;
 	cd->pm_runtime_usage_count++;
@@ -599,7 +599,7 @@ int cyttsp4_mt_probe(struct device *dev)
 	int rc = 0;
 
 	dev_info(dev, "%s: \n",	__func__);
-	
+
 	if (!pdata || !pdata->mt_pdata) {
 		dev_err(dev, "%s: Missing platform data\n", __func__);
 		rc = -ENODEV;
@@ -674,7 +674,7 @@ int cyttsp4_mt_release(struct device *dev)
 	struct cyttsp4_mt_data *md = &cd->md;
 
 	dev_info(dev, "%s: \n",	__func__);
-	
+
 	if (md->input_device_registered) {
 		input_unregister_device(md->input);
 	} else {

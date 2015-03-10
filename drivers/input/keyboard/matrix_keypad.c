@@ -339,7 +339,7 @@ static int __devinit init_matrix_gpio(struct platform_device *pdev,
 		}
 #ifdef CONFIG_SEC_PATEK_PROJECT
 		gpio_tlmm_config(GPIO_CFG((pdata->col_gpios[i]), 0,
-			GPIO_CFG_OUTPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA), GPIO_CFG_ENABLE);		
+			GPIO_CFG_OUTPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA), GPIO_CFG_ENABLE);
 		gpio_set_value((pdata->col_gpios[i]), 0);
 #else
 		gpio_direction_output(pdata->col_gpios[i], !pdata->active_low);

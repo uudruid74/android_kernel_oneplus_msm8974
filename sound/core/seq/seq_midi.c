@@ -18,8 +18,8 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
  *
  */
- 
-/* 
+
+/*
 Possible options for midisynth module:
 	- automatic opening of midi ports on first received event or subscription
 	  (close will be performed when client leaves)
@@ -65,7 +65,7 @@ struct seq_midisynth_client {
 	int seq_client;
 	int num_ports;
 	int ports_per_device[SNDRV_RAWMIDI_DEVICES];
- 	struct seq_midisynth *ports[SNDRV_RAWMIDI_DEVICES];
+	struct seq_midisynth *ports[SNDRV_RAWMIDI_DEVICES];
 };
 
 static struct seq_midisynth_client *synths[SNDRV_CARDS];
@@ -412,8 +412,8 @@ snd_seq_midisynth_register_port(struct snd_seq_device *dev)
 
       __nomem:
 	if (msynth != NULL) {
-	      	for (p = 0; p < ports; p++)
-	      		snd_seq_midisynth_delete(&msynth[p]);
+		for (p = 0; p < ports; p++)
+			snd_seq_midisynth_delete(&msynth[p]);
 		kfree(msynth);
 	}
 	if (newclient) {
@@ -434,7 +434,7 @@ snd_seq_midisynth_unregister_port(struct snd_seq_device *dev)
 	struct seq_midisynth *msynth;
 	struct snd_card *card = dev->card;
 	int device = dev->device, p, ports;
-	
+
 	mutex_lock(&register_mutex);
 	client = synths[card->number];
 	if (client == NULL || client->ports[device] == NULL) {

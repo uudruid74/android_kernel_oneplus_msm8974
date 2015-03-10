@@ -71,7 +71,7 @@ static struct s3c24xx_dma_map __initdata s3c2412_dma_mappings[] = {
 		.channels	= MAP(S3C2412_DMAREQSEL_UART1_0),
 		.channels_rx	= MAP(S3C2412_DMAREQSEL_UART1_0),
 	},
-      	[DMACH_UART2] = {
+	[DMACH_UART2] = {
 		.name		= "uart2",
 		.channels	= MAP(S3C2412_DMAREQSEL_UART2_0),
 		.channels_rx	= MAP(S3C2412_DMAREQSEL_UART2_0),
@@ -86,7 +86,7 @@ static struct s3c24xx_dma_map __initdata s3c2412_dma_mappings[] = {
 		.channels	= MAP(S3C2412_DMAREQSEL_UART1_1),
 		.channels_rx	= MAP(S3C2412_DMAREQSEL_UART1_1),
 	},
-      	[DMACH_UART2_SRC2] = {
+	[DMACH_UART2_SRC2] = {
 		.name		= "uart2",
 		.channels	= MAP(S3C2412_DMAREQSEL_UART2_1),
 		.channels_rx	= MAP(S3C2412_DMAREQSEL_UART2_1),

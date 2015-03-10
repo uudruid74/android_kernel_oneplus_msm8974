@@ -230,7 +230,7 @@
  *
  *
  **************************************************************************
- 
+
  see Documentation/scsi/aha152x.txt for configuration details
 
  **************************************************************************/
@@ -348,7 +348,7 @@ enum {
 	selecting	= 0x0002, 	/* target is beeing selected */
 	identified	= 0x0004,	/* IDENTIFY was sent */
 	disconnected	= 0x0008,	/* target disconnected */
-	completed	= 0x0010,	/* target sent COMMAND COMPLETE */ 
+	completed	= 0x0010,	/* target sent COMMAND COMPLETE */
 	aborted		= 0x0020,	/* ABORT was sent */
 	resetted	= 0x0040,	/* BUS DEVICE RESET was sent */
 	spiordy		= 0x0080,	/* waiting for SPIORDY to raise */
@@ -446,7 +446,7 @@ static struct scsi_host_template aha152x_driver_template;
 /*
  * internal states of the host
  *
- */ 
+ */
 enum aha152x_state {
 	idle=0,
 	unknown,
@@ -543,7 +543,7 @@ struct aha152x_hostdata {
 	unsigned char msgi[256];
 		/* received message bytes */
 
-	int msgo_i, msgo_len;	
+	int msgo_i, msgo_len;
 		/* number of sent bytes and length of current messages */
 	unsigned char msgo[256];
 		/* pending messages */
@@ -941,12 +941,12 @@ void aha152x_release(struct Scsi_Host *shpnt)
  * setup controller to generate interrupts depending
  * on current state (lock has to be acquired)
  *
- */ 
+ */
 static int setup_expected_interrupts(struct Scsi_Host *shpnt)
 {
 	if(CURRENT_SC) {
 		CURRENT_SC->SCp.phase |= 1 << 16;
-	
+
 		if(CURRENT_SC->SCp.phase & selecting) {
 			DPRINTK(debug_intr, DEBUG_LEAD "expecting: (seldo) (seltimo) (seldi)\n", CMDINFO(CURRENT_SC));
 			SETPORT(SSTAT1, SELTO);
@@ -955,12 +955,12 @@ static int setup_expected_interrupts(struct Scsi_Host *shpnt)
 		} else {
 			DPRINTK(debug_intr, DEBUG_LEAD "expecting: (phase change) (busfree) %s\n", CMDINFO(CURRENT_SC), CURRENT_SC->SCp.phase & spiordy ? "(spiordy)" : "");
 			SETPORT(SIMODE0, (CURRENT_SC->SCp.phase & spiordy) ? ENSPIORDY : 0);
-			SETPORT(SIMODE1, ENPHASEMIS | ENSCSIRST | ENSCSIPERR | ENBUSFREE); 
+			SETPORT(SIMODE1, ENPHASEMIS | ENSCSIRST | ENSCSIPERR | ENBUSFREE);
 		}
 	} else if(STATE==seldi) {
 		DPRINTK(debug_intr, DEBUG_LEAD "expecting: (phase change) (identify)\n", CMDINFO(CURRENT_SC));
 		SETPORT(SIMODE0, 0);
-		SETPORT(SIMODE1, ENPHASEMIS | ENSCSIRST | ENSCSIPERR | ENBUSFREE); 
+		SETPORT(SIMODE1, ENPHASEMIS | ENSCSIRST | ENSCSIPERR | ENBUSFREE);
 	} else {
 		DPRINTK(debug_intr, DEBUG_LEAD "expecting: %s %s\n",
 			CMDINFO(CURRENT_SC),
@@ -977,7 +977,7 @@ static int setup_expected_interrupts(struct Scsi_Host *shpnt)
 }
 
 
-/* 
+/*
  *  Queue a command and setup interrupts for a free bus.
  */
 static int aha152x_internal_queue(Scsi_Cmnd *SCpnt, struct completion *complete,
@@ -1082,7 +1082,7 @@ static DEF_SCSI_QCMD(aha152x_queue)
 
 
 /*
- *  
+ *
  *
  */
 static void reset_done(Scsi_Cmnd *SCpnt)
@@ -1131,7 +1131,7 @@ static int aha152x_abort(Scsi_Cmnd *SCpnt)
 		SCpnt->host_scribble=NULL;
 
 		return SUCCESS;
-	} 
+	}
 
 	DO_UNLOCK(flags);
 
@@ -1208,7 +1208,7 @@ static int aha152x_device_reset(Scsi_Cmnd * SCpnt)
 		} else if(disconnected) {
 			append_SC(&DISCONNECTED_SC, SCpnt);
 		}
-	
+
 		ret = FAILED;
 	}
 
@@ -1345,7 +1345,7 @@ int aha152x_host_reset_host(struct Scsi_Host *shpnt)
 
 /*
  * Reset the host (bus and controller)
- * 
+ *
  */
 static int aha152x_host_reset(Scsi_Cmnd *SCpnt)
 {
@@ -1466,7 +1466,7 @@ static irqreturn_t intr(int irqno, void *dev_id)
 		return IRQ_NONE;
 
 	if( TESTLO(DMASTAT, INTSTAT) )
-		return IRQ_NONE;	
+		return IRQ_NONE;
 
 	/* no more interrupts from the controller, while we're busy.
 	   INTEN is restored by the BH handler */
@@ -1501,7 +1501,7 @@ static void busfree_run(struct Scsi_Host *shpnt)
 	SETPORT(SXFRCTL0, CH1);
 
 	SETPORT(SSTAT1, CLRBUSFREE);
-	
+
 	if(CURRENT_SC) {
 #if defined(AHA152X_STAT)
 		action++;
@@ -1619,7 +1619,7 @@ static void busfree_run(struct Scsi_Host *shpnt)
 
 			DO_UNLOCK(flags);
 			DPRINTK(debug_done, DEBUG_LEAD "calling scsi_done(%p)\n", hostno, id, lun, ptr);
-                	ptr->scsi_done(ptr);
+			ptr->scsi_done(ptr);
 			DPRINTK(debug_done, DEBUG_LEAD "scsi_done(%p) returned\n", hostno, id, lun, ptr);
 			DO_LOCK(flags);
 		}
@@ -1640,7 +1640,7 @@ static void busfree_run(struct Scsi_Host *shpnt)
 #if defined(AHA152X_STAT)
 		action++;
 #endif
-	    	CURRENT_SC->SCp.phase |= selecting;
+		CURRENT_SC->SCp.phase |= selecting;
 
 		DPRINTK(debug_selection, DEBUG_LEAD "selecting target\n", CMDINFO(CURRENT_SC));
 
@@ -1674,7 +1674,7 @@ static void seldo_run(struct Scsi_Host *shpnt)
 	SETPORT(SSTAT1, CLRBUSFREE);
 	SETPORT(SSTAT1, CLRPHASECHG);
 
-    	CURRENT_SC->SCp.phase &= ~(selecting|not_issued);
+	CURRENT_SC->SCp.phase &= ~(selecting|not_issued);
 
 	SETPORT(SCSISEQ, 0);
 
@@ -1685,7 +1685,7 @@ static void seldo_run(struct Scsi_Host *shpnt)
 	}
 
 	SETPORT(SSTAT0, CLRSELDO);
-	
+
 	ADDMSGO(IDENTIFY(RECONNECT, CURRENT_SC->device->lun));
 
 	if (CURRENT_SC->SCp.phase & aborting) {
@@ -1693,7 +1693,7 @@ static void seldo_run(struct Scsi_Host *shpnt)
 	} else if (CURRENT_SC->SCp.phase & resetting) {
 		ADDMSGO(BUS_DEVICE_RESET);
 	} else if (SYNCNEG==0 && SYNCHRONOUS) {
-    		CURRENT_SC->SCp.phase |= syncneg;
+		CURRENT_SC->SCp.phase |= syncneg;
 		MSGOLEN += spi_populate_sync_msg(&MSGO(MSGOLEN), 50, 8);
 		SYNCNEG=1;		/* negotiation in progress */
 	}
@@ -1708,7 +1708,7 @@ static void seldo_run(struct Scsi_Host *shpnt)
  */
 static void selto_run(struct Scsi_Host *shpnt)
 {
-	SETPORT(SCSISEQ, 0);		
+	SETPORT(SCSISEQ, 0);
 	SETPORT(SSTAT1, CLRSELTIMO);
 
 	DPRINTK(debug_selection, DEBUG_LEAD "selection timeout\n", CMDINFO(CURRENT_SC));
@@ -1718,7 +1718,7 @@ static void selto_run(struct Scsi_Host *shpnt)
 		return;
 	}
 
-    	CURRENT_SC->SCp.phase &= ~selecting;
+	CURRENT_SC->SCp.phase &= ~selecting;
 
 	if (CURRENT_SC->SCp.phase & aborted) {
 		DPRINTK(debug_selection, DEBUG_LEAD "aborted\n", CMDINFO(CURRENT_SC));
@@ -1820,7 +1820,7 @@ static void msgi_run(struct Scsi_Host *shpnt)
 		if(TESTLO(SSTAT0,SPIORDY)) {
 			DPRINTK(debug_msgi, DEBUG_LEAD "!SPIORDY\n", CMDINFO(CURRENT_SC));
 			return;
-		}	
+		}
 
 		ADDMSGI(GETPORT(SCSIDAT));
 
@@ -1838,8 +1838,8 @@ static void msgi_run(struct Scsi_Host *shpnt)
 			}
 
 			/*
-	 	 	 * Handle reselection
-	 		 */
+			 * Handle reselection
+			 */
 			if(!(MSGI(0) & IDENTIFY_BASE)) {
 				printk(KERN_ERR "aha152x%d: target didn't identify after reselection\n", HOSTNO);
 				continue;
@@ -1862,7 +1862,7 @@ static void msgi_run(struct Scsi_Host *shpnt)
 
 			/* next message if any */
 			continue;
-		} 
+		}
 
 		CURRENT_SC->SCp.Message = MSGI(0);
 
@@ -1927,7 +1927,7 @@ static void msgi_run(struct Scsi_Host *shpnt)
 							printk(INFO_LEAD "received Synchronous Data Transfer Request invalid - rejected\n", CMDINFO(CURRENT_SC));
 							break;
 						}
-						
+
 						SYNCRATE |= ((ticks - 2) << 4) + MSGI(4);
 					} else if (ticks <= 9 && MSGI(4) >= 1) {
 						ADDMSGO(EXTENDED_MESSAGE);
@@ -1990,7 +1990,7 @@ static void msgi_end(struct Scsi_Host *shpnt)
 	if (MSGOLEN > 0 && !(GETPORT(SSTAT1) & BUSFREE)) {
 		DPRINTK(debug_msgi, DEBUG_LEAD "msgo pending\n", CMDINFO(CURRENT_SC));
 		SETPORT(SCSISIG, P_MSGI | SIG_ATNO);
-	} 
+	}
 }
 
 /*
@@ -2065,12 +2065,12 @@ static void msgo_end(struct Scsi_Host *shpnt)
 			SYNCNEG=2;
 		}
 	}
-		
+
 	MSGO_I  = 0;
 	MSGOLEN = 0;
 }
 
-/* 
+/*
  * command phase
  *
  */
@@ -2209,38 +2209,38 @@ static void datai_run(struct Scsi_Host *shpnt)
 
 		if(CURRENT_SC->SCp.this_residual>0) {
 			while(fifodata>0 && CURRENT_SC->SCp.this_residual>0) {
-                        	data_count = fifodata>CURRENT_SC->SCp.this_residual ?
+				data_count = fifodata>CURRENT_SC->SCp.this_residual ?
 						CURRENT_SC->SCp.this_residual :
 						fifodata;
 				fifodata -= data_count;
 
-                        	if(data_count & 1) {
+				if(data_count & 1) {
 					DPRINTK(debug_datai, DEBUG_LEAD "8bit\n", CMDINFO(CURRENT_SC));
-                                	SETPORT(DMACNTRL0, ENDMA|_8BIT);
-                                	*CURRENT_SC->SCp.ptr++ = GETPORT(DATAPORT);
-                                	CURRENT_SC->SCp.this_residual--;
-                                	DATA_LEN++;
-                                	SETPORT(DMACNTRL0, ENDMA);
-                        	}
-	
-                        	if(data_count > 1) {
+					SETPORT(DMACNTRL0, ENDMA|_8BIT);
+					*CURRENT_SC->SCp.ptr++ = GETPORT(DATAPORT);
+					CURRENT_SC->SCp.this_residual--;
+					DATA_LEN++;
+					SETPORT(DMACNTRL0, ENDMA);
+				}
+
+				if(data_count > 1) {
 					DPRINTK(debug_datai, DEBUG_LEAD "16bit(%d)\n", CMDINFO(CURRENT_SC), data_count);
-                                	data_count >>= 1;
-                                	insw(DATAPORT, CURRENT_SC->SCp.ptr, data_count);
-                                	CURRENT_SC->SCp.ptr           += 2 * data_count;
-                                	CURRENT_SC->SCp.this_residual -= 2 * data_count;
-                                	DATA_LEN                      += 2 * data_count;
-                        	}
-	
-                        	if(CURRENT_SC->SCp.this_residual==0 && CURRENT_SC->SCp.buffers_residual>0) {
-                               		/* advance to next buffer */
-                               		CURRENT_SC->SCp.buffers_residual--;
-                               		CURRENT_SC->SCp.buffer++;
-                               		CURRENT_SC->SCp.ptr           = SG_ADDRESS(CURRENT_SC->SCp.buffer);
-                               		CURRENT_SC->SCp.this_residual = CURRENT_SC->SCp.buffer->length;
-				} 
-                	}
-		} else if(fifodata>0) { 
+					data_count >>= 1;
+					insw(DATAPORT, CURRENT_SC->SCp.ptr, data_count);
+					CURRENT_SC->SCp.ptr           += 2 * data_count;
+					CURRENT_SC->SCp.this_residual -= 2 * data_count;
+					DATA_LEN                      += 2 * data_count;
+				}
+
+				if(CURRENT_SC->SCp.this_residual==0 && CURRENT_SC->SCp.buffers_residual>0) {
+					/* advance to next buffer */
+					CURRENT_SC->SCp.buffers_residual--;
+					CURRENT_SC->SCp.buffer++;
+					CURRENT_SC->SCp.ptr           = SG_ADDRESS(CURRENT_SC->SCp.buffer);
+					CURRENT_SC->SCp.this_residual = CURRENT_SC->SCp.buffer->length;
+				}
+			}
+		} else if(fifodata>0) {
 			printk(ERR_LEAD "no buffers left for %d(%d) bytes (data overrun!?)\n", CMDINFO(CURRENT_SC), fifodata, GETPORT(FIFOSTAT));
                         SETPORT(DMACNTRL0, ENDMA|_8BIT);
 			while(fifodata>0) {
@@ -2258,7 +2258,7 @@ static void datai_run(struct Scsi_Host *shpnt)
 	   TESTLO(DMASTAT, DFIFOEMP) ||
 	   TESTLO(SSTAT2, SEMPTY) ||
 	   GETPORT(FIFOSTAT)>0) {
-	   	/*
+		/*
 		 * something went wrong, if there's something left in the fifos
 		 * or the phase didn't change
 		 */
@@ -2342,7 +2342,7 @@ static void datao_run(struct Scsi_Host *shpnt)
 			CURRENT_SC->SCp.ptr           += 2 * data_count;
 			CURRENT_SC->SCp.this_residual -= 2 * data_count;
 			CMD_INC_RESID(CURRENT_SC, -2 * data_count);
-	  	}
+		}
 
 		if(CURRENT_SC->SCp.this_residual==0 && CURRENT_SC->SCp.buffers_residual>0) {
 			/* advance to next buffer */
@@ -2420,7 +2420,7 @@ static int update_state(struct Scsi_Host *shpnt)
 		STATE=rsti;
 		SETPORT(SCSISEQ,0);
 		SETPORT(SSTAT1,SCSIRSTI);
-  	} else if(stat0 & SELDI && PREVSTATE==busfree) {
+	} else if(stat0 & SELDI && PREVSTATE==busfree) {
 		STATE=seldi;
 	} else if(stat0 & SELDO && CURRENT_SC && (CURRENT_SC->SCp.phase & selecting)) {
 		STATE=seldo;
@@ -2477,7 +2477,7 @@ static void rsti_run(struct Scsi_Host *shpnt)
 	Scsi_Cmnd *ptr;
 
 	printk(KERN_NOTICE "aha152x%d: scsi reset in\n", HOSTNO);
-	
+
 	ptr=DISCONNECTED_SC;
 	while(ptr) {
 		Scsi_Cmnd *next = SCNEXT(ptr);
@@ -2567,9 +2567,9 @@ static void is_complete(struct Scsi_Host *shpnt)
 		if(dataphase) {
 			SETPORT(SSTAT0, REQINIT);
 			SETPORT(SCSISIG, GETPORT(SCSISIG) & P_MASK);
-			SETPORT(SSTAT1, PHASECHG);  
+			SETPORT(SSTAT1, PHASECHG);
 		}
-		
+
 		/*
 		 * enable SPIO mode if previous didn't use it
 		 * and this one does
@@ -2581,14 +2581,14 @@ static void is_complete(struct Scsi_Host *shpnt)
 			if(CURRENT_SC)
 				CURRENT_SC->SCp.phase |= spiordy;
 		}
-		
+
 		/*
 		 * initialize for new state
 		 *
 		 */
 		if(PREVSTATE!=STATE && states[STATE].init)
 			states[STATE].init(shpnt);
-		
+
 		/*
 		 * handle current state
 		 *
@@ -2597,7 +2597,7 @@ static void is_complete(struct Scsi_Host *shpnt)
 			states[STATE].run(shpnt);
 		else
 			printk(ERR_LEAD "unexpected state (%x)\n", CMDINFO(CURRENT_SC), STATE);
-		
+
 		/*
 		 * setup controller to interrupt on
 		 * the next expected condition and
@@ -2626,7 +2626,7 @@ static void is_complete(struct Scsi_Host *shpnt)
 }
 
 
-/* 
+/*
  * Dump the current driver status and panic
  */
 static void aha152x_error(struct Scsi_Host *shpnt, char *msg)
@@ -2814,7 +2814,7 @@ static void disp_ports(struct Scsi_Host *shpnt)
 	printk("SELID (%02x), ", GETPORT(SELID));
 
 	printk("STCNT (%d), ", GETSTCNT());
-	
+
 	printk("SSTAT2( ");
 
 	s = GETPORT(SSTAT2);
@@ -3333,7 +3333,7 @@ static int aha152x_proc_info(struct Scsi_Host *shpnt, char *buffer, char **start
 	unsigned long flags;
 	int thislength;
 
-	DPRINTK(debug_procinfo, 
+	DPRINTK(debug_procinfo,
 	       KERN_DEBUG "aha152x_proc_info: buffer=%p offset=%ld length=%d hostno=%d inout=%d\n",
 	       buffer, offset, length, shpnt->host_no, inout);
 
@@ -3711,22 +3711,22 @@ static int __init aha152x_init(void)
 #if defined(AHA152X_DEBUG)
 			setup[setup_count].debug       = aha152x[8];
 #endif
-	  	} else if(io[0]!=0 || irq[0]!=0) {
+		} else if(io[0]!=0 || irq[0]!=0) {
 			if(io[0]!=0)  setup[setup_count].io_port = io[0];
 			if(irq[0]!=0) setup[setup_count].irq     = irq[0];
 
-	    		setup[setup_count].scsiid      = scsiid[0];
-	    		setup[setup_count].reconnect   = reconnect[0];
-	    		setup[setup_count].parity      = parity[0];
-	    		setup[setup_count].synchronous = sync[0];
-	    		setup[setup_count].delay       = delay[0];
-	    		setup[setup_count].ext_trans   = exttrans[0];
+			setup[setup_count].scsiid      = scsiid[0];
+			setup[setup_count].reconnect   = reconnect[0];
+			setup[setup_count].parity      = parity[0];
+			setup[setup_count].synchronous = sync[0];
+			setup[setup_count].delay       = delay[0];
+			setup[setup_count].ext_trans   = exttrans[0];
 #if defined(AHA152X_DEBUG)
 			setup[setup_count].debug       = debug[0];
 #endif
 		}
 
-          	if (checksetup(&setup[setup_count]))
+		if (checksetup(&setup[setup_count]))
 			setup_count++;
 		else
 			printk(KERN_ERR "aha152x: invalid module params io=0x%x, irq=%d,scsiid=%d,reconnect=%d,parity=%d,sync=%d,delay=%d,exttrans=%d\n",
@@ -3754,16 +3754,16 @@ static int __init aha152x_init(void)
 #if defined(AHA152X_DEBUG)
 			setup[setup_count].debug       = aha152x1[8];
 #endif
-	  	} else if(io[1]!=0 || irq[1]!=0) {
+		} else if(io[1]!=0 || irq[1]!=0) {
 			if(io[1]!=0)  setup[setup_count].io_port = io[1];
 			if(irq[1]!=0) setup[setup_count].irq     = irq[1];
 
-	    		setup[setup_count].scsiid      = scsiid[1];
-	    		setup[setup_count].reconnect   = reconnect[1];
-	    		setup[setup_count].parity      = parity[1];
-	    		setup[setup_count].synchronous = sync[1];
-	    		setup[setup_count].delay       = delay[1];
-	    		setup[setup_count].ext_trans   = exttrans[1];
+			setup[setup_count].scsiid      = scsiid[1];
+			setup[setup_count].reconnect   = reconnect[1];
+			setup[setup_count].parity      = parity[1];
+			setup[setup_count].synchronous = sync[1];
+			setup[setup_count].delay       = delay[1];
+			setup[setup_count].ext_trans   = exttrans[1];
 #if defined(AHA152X_DEBUG)
 			setup[setup_count].debug       = debug[1];
 #endif

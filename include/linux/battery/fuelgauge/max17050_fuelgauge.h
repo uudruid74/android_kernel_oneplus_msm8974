@@ -185,4 +185,3 @@ struct sec_fg_info {
 #endif
 
 #endif /* __MAX17050_FUELGAUGE_H */
-

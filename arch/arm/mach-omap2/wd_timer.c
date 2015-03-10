@@ -53,4 +53,3 @@ int omap2_wd_timer_disable(struct omap_hwmod *oh)
 
 	return 0;
 }
-

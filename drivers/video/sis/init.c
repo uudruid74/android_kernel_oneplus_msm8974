@@ -1326,7 +1326,7 @@ SiSDetermineROMUsage(struct SiS_Private *SiS_Pr)
 	       else if(ROMAddr[romptr + (36 * 16)] == 0xff)	   /* 0.94, 2.05.00+ */
 		  SiS_Pr->SiS661LCD2TableSize = 36;
 	       else if( (ROMAddr[romptr + (38 * 16)] == 0xff) ||   /* 2.00.00 - 2.02.00 */
-		 	(ROMAddr[0x6F] & 0x01) ) {		   /* 2.03.00 - <2.05.00 */
+			(ROMAddr[0x6F] & 0x01) ) {		   /* 2.03.00 - <2.05.00 */
 		  SiS_Pr->SiS661LCD2TableSize = 38;		   /* UMC data layout abandoned at 2.05.00 */
 		  SiS_Pr->SiS_EMIOffset = 16;
 		  SiS_Pr->SiS_PWDOffset = 19;
@@ -3648,7 +3648,3 @@ SiS_Generic_ConvertCRData(struct SiS_Private *SiS_Pr, unsigned char *crdata,
    }
 
 }
-
-
-
-

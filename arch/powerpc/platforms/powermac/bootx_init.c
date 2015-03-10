@@ -227,7 +227,7 @@ static void __init bootx_scan_dt_build_strings(unsigned long base,
 
 	/* Keep refs to known nodes */
 	namep = np->full_name ? (char *)(base + np->full_name) : NULL;
-       	if (namep == NULL) {
+	if (namep == NULL) {
 		bootx_printf("Node without a full name !\n");
 		namep = "";
 	}
@@ -255,8 +255,8 @@ static void __init bootx_scan_dt_build_strings(unsigned long base,
 			(struct bootx_dt_prop *)(base + *ppp);
 
 		namep = pp->name ? (char *)(base + pp->name) : NULL;
- 		if (namep == NULL || strcmp(namep, "name") == 0)
- 			goto next;
+		if (namep == NULL || strcmp(namep, "name") == 0)
+			goto next;
 		/* get/create string entry */
 		soff = bootx_dt_find_string(namep);
 		if (soff == 0)
@@ -315,8 +315,8 @@ static void __init bootx_scan_dt_build_struct(unsigned long base,
 
 		namep = pp->name ? (char *)(base + pp->name) : NULL;
 		/* Skip "name" */
- 		if (namep == NULL || !strcmp(namep, "name"))
- 			goto next;
+		if (namep == NULL || !strcmp(namep, "name"))
+			goto next;
 		/* Skip "bootargs" in /chosen too as we replace it */
 		if (node == bootx_node_chosen && !strcmp(namep, "bootargs"))
 			goto next;

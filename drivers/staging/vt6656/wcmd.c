@@ -677,11 +677,11 @@ void vRunCommand(void *hDeviceContext)
                      #ifdef WPA_SUPPLICANT_DRIVER_WEXT_SUPPORT
                     // if(pDevice->bWPASuppWextEnabled == TRUE)
                         {
-                  	union iwreq_data  wrqu;
-                  	memset(&wrqu, 0, sizeof (wrqu));
+			union iwreq_data  wrqu;
+			memset(&wrqu, 0, sizeof (wrqu));
                           wrqu.ap_addr.sa_family = ARPHRD_ETHER;
-                  	PRINT_K("wireless_send_event--->SIOCGIWAP(disassociated:vMgrJoinBSSBegin Fail !!)\n");
-                  	wireless_send_event(pDevice->dev, SIOCGIWAP, &wrqu, NULL);
+			PRINT_K("wireless_send_event--->SIOCGIWAP(disassociated:vMgrJoinBSSBegin Fail !!)\n");
+			wireless_send_event(pDevice->dev, SIOCGIWAP, &wrqu, NULL);
                        }
                     #endif
                 }
@@ -929,14 +929,14 @@ void vRunCommand(void *hDeviceContext)
                      #ifdef WPA_SUPPLICANT_DRIVER_WEXT_SUPPORT
                     // if(pDevice->bWPASuppWextEnabled == TRUE)
                         {
-                  	union iwreq_data  wrqu;
-                  	memset(&wrqu, 0, sizeof (wrqu));
+			union iwreq_data  wrqu;
+			memset(&wrqu, 0, sizeof (wrqu));
                           wrqu.ap_addr.sa_family = ARPHRD_ETHER;
-                  	PRINT_K("wireless_send_event--->SIOCGIWAP(disassociated)\n");
-                  	wireless_send_event(pDevice->dev, SIOCGIWAP, &wrqu, NULL);
+			PRINT_K("wireless_send_event--->SIOCGIWAP(disassociated)\n");
+			wireless_send_event(pDevice->dev, SIOCGIWAP, &wrqu, NULL);
                        }
                     #endif
-	  	}
+		}
 	       #ifdef WPA_SUPPLICANT_DRIVER_WEXT_SUPPORT
 	               pDevice->bwextstep0 = FALSE;
                         pDevice->bwextstep1 = FALSE;
@@ -1297,7 +1297,7 @@ void BSSvSecondTxData(void *hDeviceContext)
 	  pDevice->fTxDataInSleep = TRUE;
 	  PSbSendNullPacket(pDevice);      //send null packet
 	  pDevice->fTxDataInSleep = FALSE;
-  	}
+	}
   spin_unlock_irq(&pDevice->lock);
 
   pDevice->sTimerTxData.expires = RUN_AT(10*HZ);      //10s callback

@@ -12,7 +12,7 @@
 
 #define pmd_alloc(mm, pud, address) \
 	((unlikely(pgd_none(*(pud))) && __pmd_alloc(mm, pud, address))? \
- 		NULL: pmd_offset(pud, address))
+		NULL: pmd_offset(pud, address))
 
 #define pud_alloc(mm, pgd, address)	(pgd)
 #define pud_offset(pgd, start)		(pgd)

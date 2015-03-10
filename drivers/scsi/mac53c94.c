@@ -183,7 +183,7 @@ static irqreturn_t do_mac53c94_interrupt(int irq, void *dev_id)
 {
 	unsigned long flags;
 	struct Scsi_Host *dev = ((struct fsc_state *) dev_id)->current_req->device->host;
-	
+
 	spin_lock_irqsave(dev->host_lock, flags);
 	mac53c94_interrupt(irq, dev_id);
 	spin_unlock_irqrestore(dev->host_lock, flags);
@@ -425,11 +425,11 @@ static int mac53c94_probe(struct macio_dev *mdev, const struct of_device_id *mat
 	}
 
 	if (macio_request_resources(mdev, "mac53c94") != 0) {
-       		printk(KERN_ERR "mac53c94: unable to request memory resources");
+		printk(KERN_ERR "mac53c94: unable to request memory resources");
 		return -EBUSY;
 	}
 
-       	host = scsi_host_alloc(&mac53c94_template, sizeof(struct fsc_state));
+	host = scsi_host_alloc(&mac53c94_template, sizeof(struct fsc_state));
 	if (host == NULL) {
 		printk(KERN_ERR "mac53c94: couldn't register host");
 		rc = -ENOMEM;
@@ -455,25 +455,25 @@ static int mac53c94_probe(struct macio_dev *mdev, const struct of_device_id *mat
 	}
 
 	clkprop = of_get_property(node, "clock-frequency", &proplen);
-       	if (clkprop == NULL || proplen != sizeof(int)) {
-       		printk(KERN_ERR "%s: can't get clock frequency, "
-       		       "assuming 25MHz\n", node->full_name);
-       		state->clk_freq = 25000000;
-       	} else
-       		state->clk_freq = *(int *)clkprop;
+	if (clkprop == NULL || proplen != sizeof(int)) {
+		printk(KERN_ERR "%s: can't get clock frequency, "
+		       "assuming 25MHz\n", node->full_name);
+		state->clk_freq = 25000000;
+	} else
+		state->clk_freq = *(int *)clkprop;
 
-       	/* Space for dma command list: +1 for stop command,
-       	 * +1 to allow for aligning.
+	/* Space for dma command list: +1 for stop command,
+	 * +1 to allow for aligning.
 	 * XXX FIXME: Use DMA consistent routines
 	 */
-       	dma_cmd_space = kmalloc((host->sg_tablesize + 2) *
-       				sizeof(struct dbdma_cmd), GFP_KERNEL);
-       	if (dma_cmd_space == 0) {
-       		printk(KERN_ERR "mac53c94: couldn't allocate dma "
-       		       "command space for %s\n", node->full_name);
+	dma_cmd_space = kmalloc((host->sg_tablesize + 2) *
+				sizeof(struct dbdma_cmd), GFP_KERNEL);
+	if (dma_cmd_space == 0) {
+		printk(KERN_ERR "mac53c94: couldn't allocate dma "
+		       "command space for %s\n", node->full_name);
 		rc = -ENOMEM;
-       		goto out_free;
-       	}
+		goto out_free;
+	}
 	state->dma_cmds = (struct dbdma_cmd *)DBDMA_ALIGN(dma_cmd_space);
 	memset(state->dma_cmds, 0, (host->sg_tablesize + 1)
 	       * sizeof(struct dbdma_cmd));
@@ -533,7 +533,7 @@ static int mac53c94_remove(struct macio_dev *mdev)
 }
 
 
-static struct of_device_id mac53c94_match[] = 
+static struct of_device_id mac53c94_match[] =
 {
 	{
 	.name 		= "53c94",
@@ -542,7 +542,7 @@ static struct of_device_id mac53c94_match[] =
 };
 MODULE_DEVICE_TABLE (of, mac53c94_match);
 
-static struct macio_driver mac53c94_driver = 
+static struct macio_driver mac53c94_driver =
 {
 	.driver = {
 		.name 		= "mac53c94",

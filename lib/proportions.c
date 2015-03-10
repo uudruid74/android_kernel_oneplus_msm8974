@@ -389,7 +389,7 @@ void __prop_inc_single(struct prop_descriptor *pd, struct prop_local_single *pl)
  *   p_{j} = x_{j} / (period/2 + t % period/2)
  */
 void prop_fraction_single(struct prop_descriptor *pd,
-	       	struct prop_local_single *pl,
+		struct prop_local_single *pl,
 		long *numerator, long *denominator)
 {
 	struct prop_global *pg = prop_get_global(pd);

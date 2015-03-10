@@ -422,6 +422,3 @@ int ircomm_tty_ioctl(struct tty_struct *tty,
 	}
 	return ret;
 }
-
-
-

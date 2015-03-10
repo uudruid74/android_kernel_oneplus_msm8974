@@ -177,7 +177,7 @@ static void _max77888_restore_muic_reg(struct max77888_dev *max77888)
 	pr_info("%s:Restore muic irq\n", __func__);
 	max77888_write_reg(max77888->muic, MAX77888_MUIC_REG_INTMASK1, 0x09);
 	max77888_write_reg(max77888->muic, MAX77888_MUIC_REG_INTMASK2, 0x11);
-	max77888_update_reg(max77888->muic, MAX77888_MUIC_REG_CDETCTRL1, 
+	max77888_update_reg(max77888->muic, MAX77888_MUIC_REG_CDETCTRL1,
 				(0x01 << CHGTYPM_SHIFT), CHGTYPM_MASK);
 	max77888_write_reg(max77888->muic, MAX77888_MUIC_REG_CTRL4, 0x02);
 	max77888_muic_regdump();
@@ -326,7 +326,7 @@ int max77888_irq_init(struct max77888_dev *max77888)
 
 	pr_info("func: %s, irq_gpio: %d, irq_base: %d\n", __func__,
 		max77888->irq_gpio, max77888->irq_base);
-	
+
 #ifdef CONFIG_MUIC_RESET_PIN_ENABLE
 	INIT_DELAYED_WORK(&muic_restore_work, max77888_restore_muic_reg);
 #endif
@@ -452,7 +452,7 @@ void max77888_irq_exit(struct max77888_dev *max77888)
 	if (max77888->irq)
 		free_irq(max77888->irq, max77888);
 #ifdef CONFIG_MUIC_RESET_PIN_ENABLE
-	if (muic_reset_pin)	
+	if (muic_reset_pin)
 	{
 		if (max77888->irq_reset)
 			free_irq(max77888->irq_reset, max77888);

@@ -67,7 +67,7 @@ die (const char *str, struct pt_regs *regs, long err)
 			show_regs(regs);
 		else
 			regs = NULL;
-  	} else
+	} else
 		printk(KERN_ERR "Recursive die() failure, output suppressed\n");
 
 	bust_spinlocks(0);
@@ -81,7 +81,7 @@ die (const char *str, struct pt_regs *regs, long err)
 	if (panic_on_oops)
 		panic("Fatal exception");
 
-  	do_exit(SIGSEGV);
+	do_exit(SIGSEGV);
 	return 0;
 }
 
@@ -108,7 +108,7 @@ __kprobes ia64_bad_break (unsigned long break_num, struct pt_regs *regs)
 	switch (break_num) {
 	      case 0: /* unknown error (used by GCC for __builtin_abort()) */
 		if (notify_die(DIE_BREAK, "break 0", regs, break_num, TRAP_BRKPT, SIGTRAP)
-			       	== NOTIFY_STOP)
+				== NOTIFY_STOP)
 			return;
 		if (die_if_kernel("bugcheck!", regs, break_num))
 			return;
@@ -324,8 +324,8 @@ handle_fpu_swa (int fp_fault, struct pt_regs *regs, unsigned long isr)
 			if ((last.count & 15) < 5 && (ia64_fetchadd(1, &last.count, acq) & 15) < 5) {
 				last.time = current_jiffies + 5 * HZ;
 				printk(KERN_WARNING
-		       			"%s(%d): floating-point assist fault at ip %016lx, isr %016lx\n",
-		       			current->comm, task_pid_nr(current), regs->cr_iip + ia64_psr(regs)->ri, isr);
+					"%s(%d): floating-point assist fault at ip %016lx, isr %016lx\n",
+					current->comm, task_pid_nr(current), regs->cr_iip + ia64_psr(regs)->ri, isr);
 			}
 		}
 	}
@@ -351,7 +351,7 @@ handle_fpu_swa (int fp_fault, struct pt_regs *regs, unsigned long isr)
 			if (isr & 0x11) {
 				siginfo.si_code = FPE_FLTINV;
 			} else if (isr & 0x22) {
-				/* denormal operand gets the same si_code as underflow 
+				/* denormal operand gets the same si_code as underflow
 				* see arch/i386/kernel/traps.c:math_error()  */
 				siginfo.si_code = FPE_FLTUND;
 			} else if (isr & 0x44) {
@@ -563,7 +563,7 @@ ia64_fault (unsigned long vector, unsigned long isr, unsigned long ifa,
 		      case 36: siginfo.si_code = TRAP_TRACE; ifa = 0; break;
 		}
 		if (notify_die(DIE_FAULT, "ia64_fault", &regs, vector, siginfo.si_code, SIGTRAP)
-			       	== NOTIFY_STOP)
+				== NOTIFY_STOP)
 			return;
 		siginfo.si_signo = SIGTRAP;
 		siginfo.si_errno = 0;

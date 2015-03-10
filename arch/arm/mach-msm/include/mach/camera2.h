@@ -185,4 +185,3 @@ struct msm_eeprom_board_info {
 };
 
 #endif
-

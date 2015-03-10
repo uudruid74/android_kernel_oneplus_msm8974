@@ -372,7 +372,7 @@ static int w1_gpio_msm_probe_dt(struct platform_device *pdev)
 
 	pdata = devm_kzalloc(&pdev->dev, sizeof(*pdata), GFP_KERNEL);
 	if (!pdata)
-    	return -ENOMEM;
+	return -ENOMEM;
 
 	if (of_get_property(np, "linux,open-drain", NULL))
 	    pdata->is_open_drain = 1;

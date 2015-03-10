@@ -55,8 +55,8 @@
 #define FELICA_PR_ERR(A,...) pr_err("[FELICA]"A,##__VA_ARGS__)
 
 /* NOT shown at FACTORY */
-#define FELICA_PR_INFO(A,...) 
-#define FELICA_PR_DBG(A,...) 
+#define FELICA_PR_INFO(A,...)
+#define FELICA_PR_DBG(A,...)
 #else
 extern unsigned int sec_dbg_level;
 
@@ -614,7 +614,7 @@ static unsigned int snfc_uart_poll(struct file *file, \
 /******************************************************************************
  * /dev/uartcc
  ******************************************************************************/
- 
+
 /* constant definition */
 #define UARTCC_MAJOR					FELICA_MAJOR				/* 10 */
 #define UARTCC_MINOR					FELICA_MINOR				/*  0 */

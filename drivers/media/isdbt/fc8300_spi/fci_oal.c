@@ -67,5 +67,3 @@ void OAL_RELEASE_SEMAPHORE(void)
 {
 
 }
-
-

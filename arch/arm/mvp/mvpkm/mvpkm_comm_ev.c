@@ -56,5 +56,3 @@ Mvpkm_CommEvUnregisterProcessCB(void)
 	CommTranspEvProcess = NULL;
 }
 EXPORT_SYMBOL(Mvpkm_CommEvUnregisterProcessCB);
-
-

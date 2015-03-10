@@ -803,7 +803,7 @@ static void lockres_set_flags(struct ocfs2_lock_res *lockres,
 {
 	struct ocfs2_mask_waiter *mw, *tmp;
 
- 	assert_spin_locked(&lockres->l_lock);
+	assert_spin_locked(&lockres->l_lock);
 
 	lockres->l_flags = newflags;
 
@@ -3536,7 +3536,7 @@ static int ocfs2_data_convert_worker(struct ocfs2_lock_res *lockres,
 	struct address_space *mapping;
 	struct ocfs2_inode_info *oi;
 
-       	inode = ocfs2_lock_res_inode(lockres);
+	inode = ocfs2_lock_res_inode(lockres);
 	mapping = inode->i_mapping;
 
 	if (S_ISDIR(inode->i_mode)) {

@@ -147,19 +147,19 @@ FUNC_APPEND_DTB()
 		echo "rm files in : "$BUILD_KERNEL_OUT_DIR/arch/arm/boot/*.dtb""
 		rm $BUILD_KERNEL_OUT_DIR/arch/arm/boot/*.dtb
 	fi
-	
+
 	for DTS_FILE in `ls ${BUILD_KERNEL_DIR}/arch/arm/boot/dts/msm8974pro/${DTS_NAMES}*.dts`
 	do
 		DTB_FILE=${DTS_FILE%.dts}.dtb
 		DTB_FILE=$BUILD_KERNEL_OUT_DIR/arch/arm/boot/${DTB_FILE##*/}
 		ZIMG_FILE=${DTB_FILE%.dtb}-zImage
-		
+
 		echo ""
 		echo "dts : $DTS_FILE"
 		echo "dtb : $DTB_FILE"
 		echo "out : $ZIMG_FILE"
 		echo ""
-		
+
 		$DTC -p 1024 -O dtb -o $DTB_FILE $DTS_FILE
 		cat $KERNEL_ZIMG $DTB_FILE > $ZIMG_FILE
 	done
@@ -176,7 +176,7 @@ FUNC_BUILD_DTIMAGE_TARGET()
 	echo "================================="
 	echo ""
 	echo "DT image target : $INSTALLED_DTIMAGE_TARGET"
-	
+
 	if ! [ -e $DTBTOOL ] ; then
 		if ! [ -d $BUILD_TOP_DIR/out/host/linux-x86/bin ] ; then
 			mkdir -p $BUILD_TOP_DIR/out/host/linux-x86/bin
@@ -232,7 +232,7 @@ FUNC_BUILD_KERNEL()
 
 	FUNC_APPEND_DTB
 	FUNC_BUILD_DTIMAGE_TARGET
-	
+
 	echo ""
 	echo "================================="
 	echo "END   : FUNC_BUILD_KERNEL"
@@ -266,7 +266,7 @@ FUNC_MKBOOTIMG()
 			--ramdisk_offset $BOARD_RAMDISK_OFFSET \
 			--tags_offset $BOARD_KERNEL_TAGS_OFFSET \
 			--dt $INSTALLED_DTIMAGE_TARGET"
-			
+
 	$MKBOOTIMGTOOL --kernel $KERNEL_ZIMG \
 			--ramdisk $PRODUCT_OUT/ramdisk.img \
 			--output $PRODUCT_OUT/boot.img \

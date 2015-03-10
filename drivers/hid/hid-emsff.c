@@ -164,4 +164,3 @@ static void ems_exit(void)
 module_init(ems_init);
 module_exit(ems_exit);
 MODULE_LICENSE("GPL");
-

@@ -659,4 +659,3 @@ static void __exit iwmct_exit(void)
 
 module_init(iwmct_init);
 module_exit(iwmct_exit);
-

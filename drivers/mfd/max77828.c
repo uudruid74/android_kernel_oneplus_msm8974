@@ -132,14 +132,14 @@ static int of_max77828_dt(struct device *dev, struct max77828_platform_data *pda
 	struct device_node *np = dev->of_node;
 	int retval = 0;
 	struct max77828_haptic_platform_data  *haptic_data;
-	
+
 	haptic_data = kzalloc(sizeof(struct max77828_haptic_platform_data), GFP_KERNEL);
 	if (haptic_data == NULL)
 		return -ENOMEM;
 	if(!np)
 		return -EINVAL;
 
-	pdata->irq_gpio = of_get_named_gpio_flags(np, "max77828,irq-gpio", 
+	pdata->irq_gpio = of_get_named_gpio_flags(np, "max77828,irq-gpio",
 				0, &pdata->irq_gpio_flags);
 	of_property_read_u32(np, "max77828,irq-base", &pdata->irq_base);
 	pdata->wakeup = of_property_read_bool(np, "max77828,wakeup");
@@ -148,7 +148,7 @@ static int of_max77828_dt(struct device *dev, struct max77828_platform_data *pda
 		pdata->wc_irq_gpio = 0;
 	else
 		pdata->wc_irq_gpio = retval;
-	
+
 	pr_info("%s: irq-gpio: %u \n", __func__, pdata->irq_gpio);
 	pr_info("%s: irq-base: %u \n", __func__, pdata->irq_base);
 	pr_info("%s: wc-irq-gpio: %u \n", __func__, pdata->wc_irq_gpio);

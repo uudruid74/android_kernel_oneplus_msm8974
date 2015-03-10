@@ -70,4 +70,3 @@ void OAL_RELEASE_SEMAPHORE(void)
 {
 	mutex_unlock(&isdbt_lock);
 }
-

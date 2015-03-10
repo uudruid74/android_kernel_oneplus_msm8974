@@ -1319,7 +1319,7 @@ static int ipath_mmap(struct file *fp, struct vm_area_struct *vma)
 	else if (pgaddr == dd->ipath_pioavailregs_phys)
 		/* in-memory copy of pioavail registers */
 		ret = ipath_mmap_mem(vma, pd, PAGE_SIZE, 0,
-			      	     (void *) dd->ipath_pioavailregs_dma,
+				     (void *) dd->ipath_pioavailregs_dma,
 				     "pioavail registers");
 	else if (pgaddr == pd->port_rcvegr_phys)
 		ret = mmap_rcvegrbufs(vma, pd);

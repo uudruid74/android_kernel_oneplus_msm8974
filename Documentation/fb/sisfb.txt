@@ -154,5 +154,3 @@ noypan=1").
 --
 Thomas Winischhofer <thomas@winischhofer.net>
 May 27, 2004
-
-

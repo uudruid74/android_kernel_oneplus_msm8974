@@ -66,7 +66,7 @@ unsigned long p_mapped_by_bats(phys_addr_t pa)
 	int b;
 	for (b = 0; b < 4; ++b)
 		if (pa >= bat_addrs[b].phys
-	    	    && pa < (bat_addrs[b].limit-bat_addrs[b].start)
+		    && pa < (bat_addrs[b].limit-bat_addrs[b].start)
 		              +bat_addrs[b].phys)
 			return bat_addrs[b].start+(pa-bat_addrs[b].phys);
 	return 0;

@@ -64,7 +64,7 @@
 /*	i2c@75 {
 		cell-index = <75>;
 		compatible = "i2c-gpio";
-		gpios = <&msmgpio 20 0 
+		gpios = <&msmgpio 20 0
 			&msmgpio 21 0>;*/
 
 	backlight_lp8556@2C {
@@ -353,7 +353,7 @@
 		battery,temp_high_recovery_lpm = <450>;
 		battery,temp_low_threshold_lpm = <(-50)>;
 		battery,temp_low_recovery_lpm = <0>;
-		battery,full_check_type = <2>; /* SEC_BATTERY_FULLCHARGED_FG_CURRENT */ 
+		battery,full_check_type = <2>; /* SEC_BATTERY_FULLCHARGED_FG_CURRENT */
 		battery,full_check_type_2nd = <3>; /* SEC_BATTERY_FULLCHARGED_TIME */
 		battery,full_check_count = <1>;
 		battery,chg_gpio_full_check = <0>;

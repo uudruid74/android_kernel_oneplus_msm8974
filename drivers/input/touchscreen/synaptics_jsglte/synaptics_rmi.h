@@ -33,8 +33,8 @@ struct synaptics_rmi_f1a_button_map {
 	u32 map[4];
 };
 
-#undef SYNAPTICS_RMI_INFORM_CHARGER 
-//#define SYNAPTICS_RMI_INFORM_CHARGER 
+#undef SYNAPTICS_RMI_INFORM_CHARGER
+//#define SYNAPTICS_RMI_INFORM_CHARGER
 
 #ifdef SYNAPTICS_RMI_INFORM_CHARGER
 struct synaptics_rmi_callbacks {
@@ -90,7 +90,7 @@ struct synaptics_rmi4_platform_data {
 	unsigned int reset_delay_ms;
 	unsigned char model_name[32];
 	const char *project_name;
-#ifdef SYNAPTICS_RMI_INFORM_CHARGER	
+#ifdef SYNAPTICS_RMI_INFORM_CHARGER
 	void (*register_cb)(struct synaptics_rmi_callbacks *);
 #endif
 #if defined(CONFIG_TOUCHSCREEN_SYNAPTICS_PREVENT_HSYNC_LEAKAGE)

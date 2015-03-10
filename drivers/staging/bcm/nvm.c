@@ -186,7 +186,7 @@ INT ReadBeceemEEPROMBulk( PMINI_ADAPTER Adapter,
 				/* We just got Avail and we have to read 32bits so we
 				 * need this sleep for Cardbus kind of devices. */
 				if (Adapter->chip_id == 0xBECE0210 )
-	  					udelay(800);
+						udelay(800);
 
 				/* Clear the Avail/Full bits - which ever is set. */
 				value=( uiStatus & (EEPROM_READ_DATA_AVAIL | EEPROM_READ_DATA_FULL) );
@@ -718,19 +718,19 @@ static INT flashByteWrite(
 	do
 	{
 		value = (FLASH_CMD_STATUS_REG_READ << 24);
-	  	if(wrmalt(Adapter, FLASH_SPI_CMDQ_REG, &value, sizeof(value)) < 0)
-	  	{
-	  		BCM_DEBUG_PRINT(Adapter,DBG_TYPE_PRINTK, 0, 0,"Programing of FLASH_SPI_CMDQ_REG fails");
+		if(wrmalt(Adapter, FLASH_SPI_CMDQ_REG, &value, sizeof(value)) < 0)
+		{
+			BCM_DEBUG_PRINT(Adapter,DBG_TYPE_PRINTK, 0, 0,"Programing of FLASH_SPI_CMDQ_REG fails");
 			return STATUS_FAILURE;
-	  	}
-	  	//__udelay(1);
+		}
+		//__udelay(1);
 		bytes = rdmalt(Adapter, FLASH_SPI_READQ_REG, &uiStatus, sizeof(uiStatus));
 		if (bytes < 0) {
 			uiStatus = bytes;
 			BCM_DEBUG_PRINT(Adapter, DBG_TYPE_PRINTK, 0, 0, "Reading status of FLASH_SPI_READQ_REG fails");
 			return uiStatus;
 		}
-	  	iRetries--;
+		iRetries--;
 		if( iRetries && ((iRetries % FLASH_PER_RETRIES_DELAY) == 0))
 			 msleep(1);
 
@@ -803,12 +803,12 @@ static INT flashWrite(
 	do
 	{
 		value = (FLASH_CMD_STATUS_REG_READ << 24);
-	  	if(wrmalt(Adapter, FLASH_SPI_CMDQ_REG, &value, sizeof(value)) < 0)
-	  	{
-	  		BCM_DEBUG_PRINT(Adapter,DBG_TYPE_PRINTK, 0, 0,"Programing of FLASH_SPI_CMDQ_REG fails");
+		if(wrmalt(Adapter, FLASH_SPI_CMDQ_REG, &value, sizeof(value)) < 0)
+		{
+			BCM_DEBUG_PRINT(Adapter,DBG_TYPE_PRINTK, 0, 0,"Programing of FLASH_SPI_CMDQ_REG fails");
 			return STATUS_FAILURE;
-	  	}
-	  	//__udelay(1);
+		}
+		//__udelay(1);
 		bytes = rdmalt(Adapter, FLASH_SPI_READQ_REG, &uiStatus, sizeof(uiStatus));
 		if (bytes < 0) {
 			uiStatus = bytes;
@@ -971,19 +971,19 @@ static INT flashWriteStatus(
 	do
 	{
 		value = (FLASH_CMD_STATUS_REG_READ << 24);
-	  	if(wrmalt(Adapter, FLASH_SPI_CMDQ_REG, &value, sizeof(value)) < 0)
-	  	{
-	  		BCM_DEBUG_PRINT(Adapter,DBG_TYPE_PRINTK, 0, 0,"Programing of FLASH_SPI_CMDQ_REG fails");
+		if(wrmalt(Adapter, FLASH_SPI_CMDQ_REG, &value, sizeof(value)) < 0)
+		{
+			BCM_DEBUG_PRINT(Adapter,DBG_TYPE_PRINTK, 0, 0,"Programing of FLASH_SPI_CMDQ_REG fails");
 			return STATUS_FAILURE;
-	  	}
-	  	//__udelay(1);
+		}
+		//__udelay(1);
 		bytes = rdmalt(Adapter, FLASH_SPI_READQ_REG, &uiStatus, sizeof(uiStatus));
 		if (bytes < 0) {
 			uiStatus = bytes;
 			BCM_DEBUG_PRINT(Adapter, DBG_TYPE_PRINTK, 0, 0, "Reading status of FLASH_SPI_READQ_REG fails");
 			return uiStatus;
 		}
-	  	iRetries--;
+		iRetries--;
 		//this will ensure that in there will be no changes in the current path.
 		//currently one rdm/wrm takes 125 us.
 		//Hence  125 *2  * FLASH_PER_RETRIES_DELAY  >3 ms(worst case delay)
@@ -1095,8 +1095,8 @@ static ULONG BcmFlashUnProtectBlock(PMINI_ADAPTER Adapter,UINT uiOffset, UINT ui
 		    // Offset comes below Upper 1/8. Upper 1/8 can be protected.
 		    // Clear BP2 and BP0  and set BP1
 		    //
-		    	ulWriteStatus |= (0x1<<3);
-		    	ulWriteStatus &= ~(0x5<<2);
+			ulWriteStatus |= (0x1<<3);
+			ulWriteStatus &= ~(0x5<<2);
 
 		    }
 		    else if((uiOffset+uiLength) <= 0xF0000)
@@ -1105,8 +1105,8 @@ static ULONG BcmFlashUnProtectBlock(PMINI_ADAPTER Adapter,UINT uiOffset, UINT ui
 		    // Offset comes below Upper 1/16. Only upper 1/16 can be protected.
 		    // Set BP0 and Clear BP2,BP1.
 		    //
-		    	ulWriteStatus |= (0x1<<2);
-		    	ulWriteStatus &= ~(0x3<<3);
+			ulWriteStatus |= (0x1<<2);
+			ulWriteStatus &= ~(0x3<<3);
 		    }
 		    else
 		    {
@@ -1114,7 +1114,7 @@ static ULONG BcmFlashUnProtectBlock(PMINI_ADAPTER Adapter,UINT uiOffset, UINT ui
 		    // Unblock all.
 		    // Clear BP2,BP1 and BP0.
 		    //
-		    	ulWriteStatus &= ~(0x7<<2);
+			ulWriteStatus &= ~(0x7<<2);
 		    }
 
 			value = (FLASH_CMD_WRITE_ENABLE<< 24);
@@ -1340,7 +1340,7 @@ BeceemFlashBulkWrite_EXIT:
 	{
 		BcmRestoreBlockProtectStatus(Adapter,ulStatus);
 	}
-	
+
 	kfree(pTempBuff);
 
 	Adapter->SelectedChip = RESET_CHIP_SELECT;
@@ -2707,9 +2707,9 @@ static INT	ConvertEndianOfCSStructure(PFLASH_CS_INFO psFlashCSInfo)
 	psFlashCSInfo->FlashSectorSize                      = ntohl(psFlashCSInfo->FlashSectorSize);
 	psFlashCSInfo->FlashWriteSupportSize                = ntohl(psFlashCSInfo->FlashWriteSupportSize);
 	psFlashCSInfo->TotalFlashSize        				= ntohl(psFlashCSInfo->TotalFlashSize);
- 	psFlashCSInfo->FlashBaseAddr         				= ntohl(psFlashCSInfo->FlashBaseAddr);
+	psFlashCSInfo->FlashBaseAddr         				= ntohl(psFlashCSInfo->FlashBaseAddr);
 	psFlashCSInfo->FlashPartMaxSize      				= ntohl(psFlashCSInfo->FlashPartMaxSize);
- 	psFlashCSInfo->IsCDLessDeviceBootSig 				= ntohl(psFlashCSInfo->IsCDLessDeviceBootSig);
+	psFlashCSInfo->IsCDLessDeviceBootSig 				= ntohl(psFlashCSInfo->IsCDLessDeviceBootSig);
 	psFlashCSInfo->MassStorageTimeout    				= ntohl(psFlashCSInfo->MassStorageTimeout);
 
 	return STATUS_SUCCESS;
@@ -2717,9 +2717,9 @@ static INT	ConvertEndianOfCSStructure(PFLASH_CS_INFO psFlashCSInfo)
 
 static INT IsSectionExistInVendorInfo(PMINI_ADAPTER Adapter, FLASH2X_SECTION_VAL section)
 {
- 	return ( Adapter->uiVendorExtnFlag &&
- 		(Adapter->psFlash2xVendorInfo->VendorSection[section].AccessFlags & FLASH2X_SECTION_PRESENT) &&
- 		(Adapter->psFlash2xVendorInfo->VendorSection[section].OffsetFromZeroForSectionStart != UNINIT_PTR_IN_CS) );
+	return ( Adapter->uiVendorExtnFlag &&
+		(Adapter->psFlash2xVendorInfo->VendorSection[section].AccessFlags & FLASH2X_SECTION_PRESENT) &&
+		(Adapter->psFlash2xVendorInfo->VendorSection[section].OffsetFromZeroForSectionStart != UNINIT_PTR_IN_CS) );
 }
 
 static VOID UpdateVendorInfo(PMINI_ADAPTER Adapter)
@@ -2879,14 +2879,14 @@ static INT BcmGetFlashCSInfo(PMINI_ADAPTER Adapter)
 		   (BYTE_WRITE_SUPPORT == (Adapter->psFlashCSInfo->FlashWriteSupportSize)))
 		{
 			Adapter->ulFlashWriteSize = (Adapter->psFlashCSInfo->FlashWriteSupportSize);
-		   	Adapter->fpFlashWrite = flashByteWrite;
-		   	Adapter->fpFlashWriteWithStatusCheck = flashByteWriteStatus;
+			Adapter->fpFlashWrite = flashByteWrite;
+			Adapter->fpFlashWriteWithStatusCheck = flashByteWriteStatus;
 		}
 		else
 		{
 			Adapter->ulFlashWriteSize = MAX_RW_SIZE;
 			Adapter->fpFlashWrite = flashWrite;
-		   	Adapter->fpFlashWriteWithStatusCheck = flashWriteStatus;
+			Adapter->fpFlashWriteWithStatusCheck = flashWriteStatus;
 		}
 
 		BcmGetFlashSectorSize(Adapter, (Adapter->psFlashCSInfo->FlashSectorSizeSig),
@@ -2913,14 +2913,14 @@ static INT BcmGetFlashCSInfo(PMINI_ADAPTER Adapter)
 		   (BYTE_WRITE_SUPPORT == Adapter->psFlash2xCSInfo->FlashWriteSupportSize))
 		{
 			Adapter->ulFlashWriteSize = Adapter->psFlash2xCSInfo->FlashWriteSupportSize;
-		   	Adapter->fpFlashWrite = flashByteWrite;
-		   	Adapter->fpFlashWriteWithStatusCheck = flashByteWriteStatus;
+			Adapter->fpFlashWrite = flashByteWrite;
+			Adapter->fpFlashWriteWithStatusCheck = flashByteWriteStatus;
 		}
 		else
 		{
 			Adapter->ulFlashWriteSize = MAX_RW_SIZE;
 			Adapter->fpFlashWrite = flashWrite;
-		   	Adapter->fpFlashWriteWithStatusCheck = flashWriteStatus;
+			Adapter->fpFlashWriteWithStatusCheck = flashWriteStatus;
 		}
 
 		BcmGetFlashSectorSize(Adapter, Adapter->psFlash2xCSInfo->FlashSectorSizeSig,
@@ -3025,13 +3025,13 @@ INT BcmGetSectionValStartOffset(PMINI_ADAPTER Adapter, FLASH2X_SECTION_VAL eFlas
 	{
 		case ISO_IMAGE1 :
 			  if((Adapter->psFlash2xCSInfo->OffsetISOImage1Part1Start != UNINIT_PTR_IN_CS) &&
-			  	(IsNonCDLessDevice(Adapter) == FALSE))
+				(IsNonCDLessDevice(Adapter) == FALSE))
 				  SectStartOffset = (Adapter->psFlash2xCSInfo->OffsetISOImage1Part1Start);
 			   break;
 		case ISO_IMAGE2 :
 				if((Adapter->psFlash2xCSInfo->OffsetISOImage2Part1Start != UNINIT_PTR_IN_CS) &&
 					(IsNonCDLessDevice(Adapter) == FALSE))
-			  		SectStartOffset = (Adapter->psFlash2xCSInfo->OffsetISOImage2Part1Start);
+					SectStartOffset = (Adapter->psFlash2xCSInfo->OffsetISOImage2Part1Start);
 			  break;
 		case DSD0 :
 				if(Adapter->psFlash2xCSInfo->OffsetFromZeroForDSDStart != UNINIT_PTR_IN_CS)
@@ -3067,20 +3067,20 @@ INT BcmGetSectionValStartOffset(PMINI_ADAPTER Adapter, FLASH2X_SECTION_VAL eFlas
 				break;
 		case ISO_IMAGE1_PART2 :
 				if(Adapter->psFlash2xCSInfo->OffsetISOImage1Part2Start != UNINIT_PTR_IN_CS)
-				 	 SectStartOffset =  (Adapter->psFlash2xCSInfo->OffsetISOImage1Part2Start);
+					 SectStartOffset =  (Adapter->psFlash2xCSInfo->OffsetISOImage1Part2Start);
 				 break;
 		case ISO_IMAGE1_PART3 :
 				if(Adapter->psFlash2xCSInfo->OffsetISOImage1Part3Start != UNINIT_PTR_IN_CS)
 				  SectStartOffset =  (Adapter->psFlash2xCSInfo->OffsetISOImage1Part3Start);
-			  	break;
+				break;
 		case ISO_IMAGE2_PART2 :
 				if(Adapter->psFlash2xCSInfo->OffsetISOImage2Part2Start != UNINIT_PTR_IN_CS)
-			 		 SectStartOffset =  (Adapter->psFlash2xCSInfo->OffsetISOImage2Part2Start);
+					 SectStartOffset =  (Adapter->psFlash2xCSInfo->OffsetISOImage2Part2Start);
 			    break;
 		case ISO_IMAGE2_PART3 :
-  			  if(Adapter->psFlash2xCSInfo->OffsetISOImage2Part3Start != UNINIT_PTR_IN_CS)
-  				  SectStartOffset =  (Adapter->psFlash2xCSInfo->OffsetISOImage2Part3Start);
-  			  break;
+			  if(Adapter->psFlash2xCSInfo->OffsetISOImage2Part3Start != UNINIT_PTR_IN_CS)
+				  SectStartOffset =  (Adapter->psFlash2xCSInfo->OffsetISOImage2Part3Start);
+			  break;
 		default :
 			BCM_DEBUG_PRINT(Adapter,DBG_TYPE_PRINTK, 0, 0,"Section Does not exist in Flash 2.x");
 			SectStartOffset =  INVALID_OFFSET;
@@ -3112,7 +3112,7 @@ INT BcmGetSectionValEndOffset(PMINI_ADAPTER Adapter, FLASH2X_SECTION_VAL eFlash2
 	{
 		case ISO_IMAGE1 :
 			 if((Adapter->psFlash2xCSInfo->OffsetISOImage1Part1End!= UNINIT_PTR_IN_CS) &&
-			 	 (IsNonCDLessDevice(Adapter) == FALSE))
+				 (IsNonCDLessDevice(Adapter) == FALSE))
 				  SectEndOffset = (Adapter->psFlash2xCSInfo->OffsetISOImage1Part1End);
 			   break;
 		case ISO_IMAGE2 :
@@ -3154,20 +3154,20 @@ INT BcmGetSectionValEndOffset(PMINI_ADAPTER Adapter, FLASH2X_SECTION_VAL eFlash2
 				SectEndOffset = STATUS_FAILURE;
 		case ISO_IMAGE1_PART2 :
 				if(Adapter->psFlash2xCSInfo->OffsetISOImage1Part2End!= UNINIT_PTR_IN_CS)
-				 	 SectEndOffset =  (Adapter->psFlash2xCSInfo->OffsetISOImage1Part2End);
+					 SectEndOffset =  (Adapter->psFlash2xCSInfo->OffsetISOImage1Part2End);
 				 break;
 		case ISO_IMAGE1_PART3 :
 				if(Adapter->psFlash2xCSInfo->OffsetISOImage1Part3End!= UNINIT_PTR_IN_CS)
 				  SectEndOffset =  (Adapter->psFlash2xCSInfo->OffsetISOImage1Part3End);
-			  	break;
+				break;
 		case ISO_IMAGE2_PART2 :
 				if(Adapter->psFlash2xCSInfo->OffsetISOImage2Part2End != UNINIT_PTR_IN_CS)
-			 		 SectEndOffset =  (Adapter->psFlash2xCSInfo->OffsetISOImage2Part2End);
+					 SectEndOffset =  (Adapter->psFlash2xCSInfo->OffsetISOImage2Part2End);
 			    break;
 		case ISO_IMAGE2_PART3 :
-  			  if(Adapter->psFlash2xCSInfo->OffsetISOImage2Part3End!= UNINIT_PTR_IN_CS)
-  				  SectEndOffset =  (Adapter->psFlash2xCSInfo->OffsetISOImage2Part3End);
-  			  break;
+			  if(Adapter->psFlash2xCSInfo->OffsetISOImage2Part3End!= UNINIT_PTR_IN_CS)
+				  SectEndOffset =  (Adapter->psFlash2xCSInfo->OffsetISOImage2Part3End);
+			  break;
 
 		default :
 			SectEndOffset = INVALID_OFFSET;
@@ -3384,7 +3384,7 @@ static INT BcmGetActiveISO(PMINI_ADAPTER Adapter)
 		Adapter->uiActiveISOOffset = (Adapter->psFlash2xCSInfo->OffsetISOImage1Part1Start);
 
 	if(Adapter->eActiveISO)
-	 	BCM_DEBUG_PRINT(Adapter,DBG_TYPE_OTHERS, NVM_RW, DBG_LVL_ALL,"Active ISO :%x", Adapter->eActiveISO);
+		BCM_DEBUG_PRINT(Adapter,DBG_TYPE_OTHERS, NVM_RW, DBG_LVL_ALL,"Active ISO :%x", Adapter->eActiveISO);
 
 	return STATUS_SUCCESS;
 }
@@ -4740,7 +4740,7 @@ static INT BcmDoChipSelect(PMINI_ADAPTER Adapter, UINT offset)
 	*/
 
 	if(Adapter->SelectedChip == ChipNum)
-    		return STATUS_SUCCESS;
+		return STATUS_SUCCESS;
 
 	//BCM_DEBUG_PRINT(Adapter,DBG_TYPE_OTHERS, NVM_RW, DBG_LVL_ALL, "Selected Chip :%x", ChipNum);
 	Adapter->SelectedChip = ChipNum ;
@@ -4855,7 +4855,7 @@ FLASH2X_SECTION_VAL getHighestPriDSD(PMINI_ADAPTER Adapter)
 		 DsdPri = ReadDSDPriority(Adapter,DSD1);
 		 if(DSDHighestPri  < DsdPri)
 		 {
-		 	DSDHighestPri = DsdPri ;
+			DSDHighestPri = DsdPri ;
 			HighestPriDSD = DSD1;
 		 }
 	}
@@ -4864,12 +4864,12 @@ FLASH2X_SECTION_VAL getHighestPriDSD(PMINI_ADAPTER Adapter)
 		 DsdPri = ReadDSDPriority(Adapter,DSD0);
 		 if(DSDHighestPri  < DsdPri)
 		 {
-		 	DSDHighestPri = DsdPri ;
+			DSDHighestPri = DsdPri ;
 			HighestPriDSD = DSD0;
 		 }
 	}
 	if(HighestPriDSD)
-	 	BCM_DEBUG_PRINT(Adapter,DBG_TYPE_OTHERS, NVM_RW, DBG_LVL_ALL,"Highest DSD :%x , and its  Pri :%x", HighestPriDSD, DSDHighestPri);
+		BCM_DEBUG_PRINT(Adapter,DBG_TYPE_OTHERS, NVM_RW, DBG_LVL_ALL,"Highest DSD :%x , and its  Pri :%x", HighestPriDSD, DSDHighestPri);
 	return  HighestPriDSD ;
 }
 
@@ -5016,7 +5016,7 @@ BOOLEAN IsSectionExistInFlash(PMINI_ADAPTER Adapter, FLASH2X_SECTION_VAL section
 
 		case ISO_IMAGE1 :
 			  if((Adapter->psFlash2xCSInfo->OffsetISOImage1Part1Start != UNINIT_PTR_IN_CS) &&
-			  		(IsNonCDLessDevice(Adapter) == FALSE))
+					(IsNonCDLessDevice(Adapter) == FALSE))
 				  SectionPresent = TRUE ;
 			   break;
 		case ISO_IMAGE2 :
@@ -5219,4 +5219,3 @@ BOOLEAN IsNonCDLessDevice(PMINI_ADAPTER Adapter)
 	else
 		return FALSE ;
 }
-

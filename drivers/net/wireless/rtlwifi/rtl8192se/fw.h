@@ -373,4 +373,3 @@ void rtl92s_set_fw_joinbss_report_cmd(struct ieee80211_hw *hw,
 				      u8 mstatus, u8 ps_qosinfo);
 
 #endif
-

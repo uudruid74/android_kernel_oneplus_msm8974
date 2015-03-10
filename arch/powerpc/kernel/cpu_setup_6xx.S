@@ -173,8 +173,8 @@ BEGIN_FTR_SECTION
 END_FTR_SECTION_IFSET(CPU_FTR_NO_DPM)
 	li	r3,HID0_SPD
 	andc	r11,r11,r3		/* clear SPD: enable speculative */
- 	li	r3,0
- 	mtspr	SPRN_ICTC,r3		/* Instruction Cache Throttling off */
+	li	r3,0
+	mtspr	SPRN_ICTC,r3		/* Instruction Cache Throttling off */
 	isync
 	mtspr	SPRN_HID0,r11
 	sync
@@ -253,9 +253,9 @@ END_FTR_SECTION_IFSET(CPU_FTR_NO_DPM)
 	 */
 	li	r3,HID0_SPD | HID0_NOPDST | HID0_NOPTI
 	andc	r11,r11,r3		/* clear SPD: enable speculative */
- 	li	r3,0
+	li	r3,0
 
- 	mtspr	SPRN_ICTC,r3		/* Instruction Cache Throttling off */
+	mtspr	SPRN_ICTC,r3		/* Instruction Cache Throttling off */
 	isync
 	mtspr	SPRN_HID0,r11
 	sync
@@ -486,4 +486,3 @@ _GLOBAL(__restore_cpu_setup)
 1:
 	mtcr	r7
 	blr
-

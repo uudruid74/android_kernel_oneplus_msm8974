@@ -90,4 +90,3 @@ DMA devices.
 		compatible = "ibm,mq-440spe";
 		dcr-reg = <0x040 0x020>;
 	};
-

@@ -797,7 +797,7 @@ int copy_thread(unsigned long clone_flags, unsigned long usp,
 		p->thread.ksp_vsid = sp_vsid;
 	}
 #endif /* CONFIG_PPC_STD_MMU_64 */
-#ifdef CONFIG_PPC64 
+#ifdef CONFIG_PPC64
 	if (cpu_has_feature(CPU_FTR_DSCR)) {
 		p->thread.dscr_inherit = current->thread.dscr_inherit;
 		p->thread.dscr = current->thread.dscr;
@@ -805,11 +805,11 @@ int copy_thread(unsigned long clone_flags, unsigned long usp,
 #endif
 
 	/*
-	 * The PPC64 ABI makes use of a TOC to contain function 
+	 * The PPC64 ABI makes use of a TOC to contain function
 	 * pointers.  The function (ret_from_except) is actually a pointer
 	 * to the TOC entry.  The first entry is a pointer to the actual
 	 * function.
- 	 */
+	 */
 #ifdef CONFIG_PPC64
 	kregs->nip = *((unsigned long *)ret_from_fork);
 #else
@@ -1033,7 +1033,7 @@ int sys_clone(unsigned long clone_flags, unsigned long usp,
 		child_tidp = TRUNC_PTR(child_tidp);
 	}
 #endif
- 	return do_fork(clone_flags, usp, regs, 0, parent_tidp, child_tidp);
+	return do_fork(clone_flags, usp, regs, 0, parent_tidp, child_tidp);
 }
 
 int sys_fork(unsigned long p1, unsigned long p2, unsigned long p3,

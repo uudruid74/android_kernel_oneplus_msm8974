@@ -209,4 +209,3 @@ module_exit(mpq_adapter_exit);
 
 MODULE_DESCRIPTION("Qualcomm MPQ adapter");
 MODULE_LICENSE("GPL v2");
-

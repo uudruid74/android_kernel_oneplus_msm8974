@@ -28,7 +28,7 @@ struct isdbt_platform_data {
 	int gpio_spi_di;
 	int gpio_spi_cs;
 	int gpio_spi_clk;
-#endif	
+#endif
 };
 #endif
 #endif

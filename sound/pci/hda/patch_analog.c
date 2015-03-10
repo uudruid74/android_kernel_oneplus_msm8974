@@ -194,7 +194,7 @@ static int ad198x_build_controls(struct hda_codec *codec)
 		if (err < 0)
 			return err;
 		spec->multiout.share_spdif = 1;
-	} 
+	}
 	if (spec->dig_in_nid) {
 		err = snd_hda_create_spdif_in_ctls(codec, spec->dig_in_nid);
 		if (err < 0)
@@ -850,7 +850,7 @@ static const struct snd_kcontrol_new ad1986a_laptop_mixers[] = {
 	HDA_CODEC_VOLUME("Mic Playback Volume", 0x13, 0x0, HDA_OUTPUT),
 	HDA_CODEC_MUTE("Mic Playback Switch", 0x13, 0x0, HDA_OUTPUT),
 	HDA_CODEC_VOLUME("Mic Boost Volume", 0x0f, 0x0, HDA_OUTPUT),
-	/* 
+	/*
 	   HDA_CODEC_VOLUME("Mono Playback Volume", 0x1e, 0x0, HDA_OUTPUT),
 	   HDA_CODEC_MUTE("Mono Playback Switch", 0x1e, 0x0, HDA_OUTPUT), */
 	HDA_CODEC_VOLUME("Capture Volume", 0x12, 0x0, HDA_OUTPUT),
@@ -1087,7 +1087,7 @@ static const struct hda_verb ad1986a_init_verbs[] = {
 static const struct hda_verb ad1986a_ch2_init[] = {
 	/* Surround out -> Line In */
 	{ 0x1c, AC_VERB_SET_PIN_WIDGET_CONTROL, PIN_IN },
- 	/* Line-in selectors */
+	/* Line-in selectors */
 	{ 0x10, AC_VERB_SET_CONNECT_SEL, 0x1 },
 	/* CLFE -> Mic in */
 	{ 0x1d, AC_VERB_SET_PIN_WIDGET_CONTROL, PIN_VREF80 },
@@ -2807,7 +2807,7 @@ static void ad1988_laptop_unsol_event(struct hda_codec *codec, unsigned int res)
 		snd_hda_sequence_write(codec, ad1988_laptop_hp_on);
 	else
 		snd_hda_sequence_write(codec, ad1988_laptop_hp_off);
-} 
+}
 
 #ifdef CONFIG_SND_HDA_POWER_SAVE
 static const struct hda_amp_list ad1988_loopbacks[] = {

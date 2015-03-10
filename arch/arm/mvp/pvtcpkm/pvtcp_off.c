@@ -168,4 +168,3 @@ PvtcpOffSockInit(PvtcpSock *pvsk,
    pvsk->flags = 0;
    return rc;
 }
-

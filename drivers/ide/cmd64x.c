@@ -293,7 +293,7 @@ static u8 cmd64x_cable_detect(ide_hwif_t *hwif)
 	switch (dev->device) {
 	case PCI_DEVICE_ID_CMD_648:
 	case PCI_DEVICE_ID_CMD_649:
- 		pci_read_config_byte(dev, BMIDECSR, &bmidecsr);
+		pci_read_config_byte(dev, BMIDECSR, &bmidecsr);
 		return (bmidecsr & mask) ? ATA_CBL_PATA80 : ATA_CBL_PATA40;
 	default:
 		return ATA_CBL_PATA40;

@@ -175,5 +175,3 @@ MACHINE_START(GTWX5715, "Gemtek GTWX5715 (Linksys WRV54G)")
 #endif
 	.restart	= ixp4xx_restart,
 MACHINE_END
-
-

@@ -68,7 +68,7 @@ static void ns87415_set_mode(struct ata_port *ap, struct ata_device *adev, u8 mo
 
 	clocking = 17 - clamp_val(t.active, 2, 17);
 	clocking |= (16 - clamp_val(t.recover, 1, 16)) << 4;
- 	/* Use the same timing for read and write bytes */
+	/* Use the same timing for read and write bytes */
 	clocking |= (clocking << 8);
 	pci_write_config_word(dev, timing, clocking);
 

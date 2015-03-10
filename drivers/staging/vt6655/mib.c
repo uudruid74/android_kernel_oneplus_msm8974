@@ -292,7 +292,7 @@ void STAvUpdateRDStatCounter (PSStatCounter pStatistic,
         DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"54M: ALL[%d], OK[%d]\n", (int)pStatistic->CustomStat.ullRsr54M, (int)pStatistic->CustomStat.ullRsr54MCRCOk);
     }
     else {
-    	DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"Unknown: Total[%d], CRCOK[%d]\n", (int)pStatistic->dwRsrRxPacket+1, (int)pStatistic->dwRsrCRCOk);
+	DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"Unknown: Total[%d], CRCOK[%d]\n", (int)pStatistic->dwRsrRxPacket+1, (int)pStatistic->dwRsrCRCOk);
     }
 
     if (byRSR & RSR_BSSIDOK)

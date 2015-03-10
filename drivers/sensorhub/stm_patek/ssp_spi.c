@@ -252,4 +252,3 @@ int ssp_spi_write(struct spi_device *spi, const u8 *addr,
 exit_err:
 	return ret;
 }
-

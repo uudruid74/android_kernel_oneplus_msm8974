@@ -3236,7 +3236,7 @@ char BYPASS_1[] = {
 	0x00, //roi1_y_end
 	0x00,
 
-};	
+};
 char BYPASS_2[] = {
 	0xEC,
 	0x18, //lce_gain 00 0000
@@ -3368,7 +3368,7 @@ char BYPASS_2[] = {
 	0x00, //ascr_Kb
 	//end
 
-};	
+};
 
 char AUTO_VT_1[] = {
 	//start

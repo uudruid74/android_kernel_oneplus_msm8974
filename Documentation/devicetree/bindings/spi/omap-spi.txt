@@ -17,4 +17,3 @@ mcspi1: mcspi@1 {
     ti,hwmods = "mcspi1";
     ti,spi-num-cs = <4>;
 };
-

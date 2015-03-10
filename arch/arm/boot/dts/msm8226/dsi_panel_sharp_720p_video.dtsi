@@ -101,7 +101,7 @@
 			05 01 00 00 0A 00 02 29 00
 	/* Display On */
 					];
-		
+
 		qcom,mdss-dsi-jdi-on-command = [
 			39 01 00 00 78 00 02 11 00
 			39 01 00 00 01 00 02 B0 00
@@ -125,7 +125,7 @@
 					05 01 00 00 78 00 02 10 00];
 		qcom,mdss-dsi-off-command-state = "dsi_hs_mode";
 	};
-	
+
 	mdss_fb0: qcom,mdss_fb_primary {
 					cell-index = <0>;
 					compatible = "qcom,mdss-fb";

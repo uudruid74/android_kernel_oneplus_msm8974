@@ -205,7 +205,7 @@
 	qcom,ion {
 		qcom,ion-heap@23 { /* OTHER PIL HEAP */
 			qcom,memory-fixed = <0x0dc00000  0x1D00000>; /*Overwriting the PIL Heap loading area*/
-		};	
+		};
 	};
 };
 

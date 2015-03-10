@@ -917,7 +917,7 @@ static int tsu6721_attach_dev(struct tsu6721_usbsw *usbsw)
 		if(usbsw->is_rustproof) {
 			pr_info("[MUIC] RustProof mode, close UART Path\n");
 			muic_rustproof_feature(client,TSU6721_ATTACHED);
-		} else 
+		} else
 #endif
 		{
 		pr_info("[MUIC] UART Connected\n");

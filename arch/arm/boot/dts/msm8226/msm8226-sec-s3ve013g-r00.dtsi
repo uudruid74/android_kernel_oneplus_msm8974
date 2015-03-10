@@ -31,7 +31,7 @@
 			pn547,clk_req_gpio = <&msmgpio 50 0x0>;
 		};
 	};
-    
+
 	i2c@f9924000 { /* BLSP1 QUP2 */
 		mpu6500_input@68 {
 			compatible = "invensense,mpu_6500";
@@ -106,13 +106,13 @@
 
 	};
 
-	i2c@21 { 
+	i2c@21 {
 		cell-index = <21>;
 		compatible = "i2c-gpio";
 		gpios = <&msmgpio 100 0 /* sda */
 		&msmgpio 99 0 /* scl */
 		>;
-	
+
 		cypress_touchkey@20 {
 			compatible = "cypress,cypress-tkey";
 			reg = <0x20>;
@@ -379,7 +379,7 @@
 		pm8226_chg: qcom,charger {
 			qcom,ext-ovp-present = <0>;
 		};
-		
+
 		qcom,leds@a300 {
 			status = "okay";
 			qcom,led_mpp_4 {

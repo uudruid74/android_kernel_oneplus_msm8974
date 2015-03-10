@@ -12,7 +12,7 @@ config INV_SENSORS_IIO
 	  This driver can be built as a module. The module will be called
 	  inv-mpu-iio.
 
-config INV_SENSORS_MPU65XX	  
+config INV_SENSORS_MPU65XX
 	tristate "Invensense MPU 65XX driver"
 	depends on I2C && SYSFS && IIO && IIO_KFIFO_BUF && IIO_TRIGGER && !INV_MPU
 	default n
@@ -40,7 +40,7 @@ config INV_SENSORS_DBG
 	default n
 	help
 	  This driver supports debug information.
-	  
+
 config INV_SENSORS_DTS_SUPPORT
 	tristate "Invensense DTS support"
 	depends on I2C && SYSFS && IIO && IIO_KFIFO_BUF && IIO_TRIGGER && !INV_MPU

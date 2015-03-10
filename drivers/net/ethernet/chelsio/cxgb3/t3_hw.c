@@ -1460,7 +1460,7 @@ static int t3_handle_intr_status(struct adapter *adapter, unsigned int reg,
 #define CIM_INTR_MASK (F_BLKWRPLINT | F_BLKRDPLINT | F_BLKWRCTLINT | \
 		       F_BLKRDCTLINT | F_BLKWRFLASHINT | F_BLKRDFLASHINT | \
 		       F_SGLWRFLASHINT | F_WRBLKFLASHINT | F_BLKWRBOOTINT | \
-	 	       F_FLASHRANGEINT | F_SDRAMRANGEINT | F_RSVDSPACEINT | \
+		       F_FLASHRANGEINT | F_SDRAMRANGEINT | F_RSVDSPACEINT | \
 		       F_DRAMPARERR | F_ICACHEPARERR | F_DCACHEPARERR | \
 		       F_OBQSGEPARERR | F_OBQULPHIPARERR | F_OBQULPLOPARERR | \
 		       F_IBQSGELOPARERR | F_IBQSGEHIPARERR | F_IBQULPPARERR | \
@@ -3782,4 +3782,3 @@ int t3_replay_prep_adapter(struct adapter *adapter)
 
 return 0;
 }
-

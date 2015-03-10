@@ -359,7 +359,7 @@ static void mdss_mdp_cmd_readptr_done(void *arg)
 	ctl->vsync_cnt++;
 	MDSS_XLOG(0xFFFF, ctl->num, ctx->koff_cnt, ctx->clk_enabled,
 				ctx->rdptr_enabled, duration);
- 
+
 	if (duration <= 8000 || duration >= 22000)
 		pr_err("[DEBUG]%s:time : %lld, duration : %lld\n",
 				__func__, vsync[index + add_value], duration);
@@ -418,7 +418,7 @@ static void mdss_mdp_cmd_readptr_done(void *arg)
 						pr_info("now restoring TE/ rdptr_enabled++\n");
 						if (ctx->rdptr_enabled == 0)
 							ctx->rdptr_enabled++;
-					}						
+					}
 #endif
 		/* keep clk on during kickoff */
 		if (ctx->rdptr_enabled == 0 && ctx->koff_cnt)
@@ -1074,4 +1074,3 @@ int mdss_mdp_cmd_start(struct mdss_mdp_ctl *ctl)
 
 	return 0;
 }
-

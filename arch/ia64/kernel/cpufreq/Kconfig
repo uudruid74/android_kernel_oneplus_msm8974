@@ -26,4 +26,3 @@ config IA64_ACPI_CPUFREQ
 endif   # CPU_FREQ
 
 endmenu
-

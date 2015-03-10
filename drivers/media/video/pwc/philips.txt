@@ -233,4 +233,3 @@ preference for all camera's, but this parameter can be set per camera with
 the VIDIOCPWCSCQUAL ioctl() call.
 
 All parameters are optional.
-

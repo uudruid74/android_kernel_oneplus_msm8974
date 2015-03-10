@@ -181,7 +181,7 @@ void ixp2000_uengine_load_microcode(int uengine, u8 *ucode, int insns)
 	}
 
 	/*
- 	 * Pad with a few NOPs at the end (to avoid the microengine
+	 * Pad with a few NOPs at the end (to avoid the microengine
 	 * aborting as it prefetches beyond the last instruction), unless
 	 * we run off the end of the instruction store first, at which
 	 * point the address register will wrap back to zero.

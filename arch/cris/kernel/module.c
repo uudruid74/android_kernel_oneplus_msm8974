@@ -50,7 +50,7 @@ int apply_relocate_add(Elf32_Shdr *sechdrs,
 		       unsigned int relsec,
 		       struct module *me)
 {
-  	unsigned int i;
+	unsigned int i;
 	Elf32_Rela *rela = (void *)sechdrs[relsec].sh_addr;
 
 	DEBUGP ("Applying add relocate section %u to %u\n", relsec,

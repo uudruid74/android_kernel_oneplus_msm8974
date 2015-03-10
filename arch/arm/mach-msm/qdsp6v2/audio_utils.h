@@ -101,4 +101,3 @@ ssize_t audio_in_read(struct file *file, char __user *buf,
 ssize_t audio_in_write(struct file *file, const char __user *buf,
 		size_t count, loff_t *pos);
 int audio_in_release(struct inode *inode, struct file *file);
-

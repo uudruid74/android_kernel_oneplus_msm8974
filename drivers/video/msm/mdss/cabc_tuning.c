@@ -373,7 +373,7 @@ static ssize_t accessibility_show(struct device *dev,
 	DPRINT("%s %s\n", __func__, cabc_tun_state.negative ?
 					"NEGATIVE" : "ACCESSIBILITY_OFF");
 	return snprintf(buf, 256, "%s %s\n", __func__, cabc_tun_state.negative ?
-		 			"NEGATIVE" : "ACCESSIBILITY_OFF");
+					"NEGATIVE" : "ACCESSIBILITY_OFF");
 }
 
 static ssize_t accessibility_store(struct device *dev,
@@ -780,4 +780,3 @@ void cabc_tuning_init(struct mdss_dsi_ctrl_pdata *dsi_pdata)
 		cabc_tun_state.cabc_enable=1;
 	}
 }
-

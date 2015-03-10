@@ -446,7 +446,7 @@ static inline void cpu_probe_legacy(struct cpuinfo_mips *c, unsigned int cpu)
 		c->tlbsize = 48;
 		break;
 	#if 0
- 	case PRID_IMP_R4650:
+	case PRID_IMP_R4650:
 		/*
 		 * This processor doesn't have an MMU, so it's not
 		 * "real easy" to run Linux on it. It is left purely
@@ -455,7 +455,7 @@ static inline void cpu_probe_legacy(struct cpuinfo_mips *c, unsigned int cpu)
 		 */
 		c->cputype = CPU_R4650;
 		__cpu_name[cpu] = "R4650";
-	 	c->isa_level = MIPS_CPU_ISA_III;
+		c->isa_level = MIPS_CPU_ISA_III;
 		c->options = R4K_OPTS | MIPS_CPU_FPU | MIPS_CPU_LLSC;
 	        c->tlbsize = 48;
 		break;

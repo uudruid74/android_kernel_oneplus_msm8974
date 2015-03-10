@@ -88,7 +88,7 @@ void nwfpe_init_fpa(union fp_state *fp)
 #ifdef NWFPE_DEBUG
 	printk("NWFPE: setting up state.\n");
 #endif
- 	memset(fpa11, 0, sizeof(FPA11));
+	memset(fpa11, 0, sizeof(FPA11));
 	resetFPA11();
 	fpa11->initflag = 1;
 }

@@ -3,8 +3,8 @@
  *
  * header file supporting MDP debug functions for Samsung device
  */
- 
-#if !defined(__DLOG_H) 
+
+#if !defined(__DLOG_H)
 #define __DLOG_H
 #define START_MAGIC 0xDEADBABE
 #define FUNC_END 0x9999
@@ -61,7 +61,7 @@ struct _dlogdebug {
 				}while(0);
 #else
 	#define __DLOG__(fmt,...)
-	#define __DLOGE__(fmt,...) 
+	#define __DLOGE__(fmt,...)
 #endif
 #define __DLOG_(fmt,...)  do {\
 								DEFINE_DLOG_METADATA(descriptor,fmt); \
@@ -284,7 +284,7 @@ struct reg_desc{
 };
 
 struct debug_mdp {
-	char marker[32]; 
+	char marker[32];
 	u32 size;
 	u32 klog_size;
 	u32 seclog_size;
@@ -1216,4 +1216,3 @@ struct dclock {
 #define CLK_TEST_SUB_MUX_MASK (0xF0000000)
 
 #endif
-	

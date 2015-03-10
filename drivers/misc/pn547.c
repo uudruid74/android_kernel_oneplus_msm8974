@@ -608,7 +608,7 @@ static int pn547_probe(struct i2c_client *client,
 	}
 	INIT_WORK(&pn547_dev->work_nfc_clock, nfc_work_func_clock);
 #endif
-	if(client->irq <=0)	
+	if(client->irq <=0)
 	{
 		pr_info("%s : [Before] requesting IRQ %d\n", __func__, client->irq);
 		client->irq = gpio_to_irq(pn547_dev->irq_gpio);

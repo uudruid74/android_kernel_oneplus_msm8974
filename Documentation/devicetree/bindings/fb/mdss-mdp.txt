@@ -446,4 +446,3 @@ Example:
 			qcom,mdss-fb-splash-logo-enabled:
 		};
 	};
-

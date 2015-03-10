@@ -92,4 +92,3 @@ obj-$(CONFIG_HID_SYNAPTICS_BT)  += hid-synaptics-bt.o
 obj-$(CONFIG_USB_HID)		+= usbhid/
 obj-$(CONFIG_USB_MOUSE)		+= usbhid/
 obj-$(CONFIG_USB_KBD)		+= usbhid/
-

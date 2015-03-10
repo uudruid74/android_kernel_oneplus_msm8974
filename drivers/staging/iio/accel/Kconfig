@@ -75,7 +75,7 @@ config LIS3L02DQ
 
 choice
 	prompt "Buffer type"
-       	depends on LIS3L02DQ && IIO_BUFFER
+	depends on LIS3L02DQ && IIO_BUFFER
 
 config LIS3L02DQ_BUF_KFIFO
        depends on IIO_KFIFO_BUF

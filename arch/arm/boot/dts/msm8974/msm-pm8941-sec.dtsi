@@ -176,12 +176,12 @@
 					  "vsense_for_r";
 		};
 	};
-        
+
         clkbb2@5200 {
                 reg = <0x5200 0x100>;
                 compatible = "qcom,qpnp-clkbb2";
         };
-        
+
         clkrf2@5500 {
                 reg = <0x5500 0x100>;
                 compatible = "qcom,qpnp-clkrf2";
@@ -730,7 +730,7 @@
 			qcom,hw-settle-time = <0>;
 			qcom,fast-avg-setup = <0>;
 		};
-		
+
 		chan@14 {
 			label = "v_battery_sense";
 			reg = <0x14>;
@@ -1425,20 +1425,20 @@
 		status = "disabled";
 	};
 
-	pwm@b100 { 
-		compatible = "qcom,qpnp-pwm"; 
-		reg = <0xb100 0x100>, 
-		<0xb042 0x7e>; 
-		reg-names = "qpnp-lpg-channel-base", "qpnp-lpg-lut-base"; 
-		qcom,channel-id = <0>; 
-		qcom,period = <6000000>; 
-		qcom,mode-select = <0>; 
-		status = "okay"; 
-		qcom,pwm { 
-		qcom,duty = <4000000>; 
-		label = "pwm"; 
-		}; 
-	}; 
+	pwm@b100 {
+		compatible = "qcom,qpnp-pwm";
+		reg = <0xb100 0x100>,
+		<0xb042 0x7e>;
+		reg-names = "qpnp-lpg-channel-base", "qpnp-lpg-lut-base";
+		qcom,channel-id = <0>;
+		qcom,period = <6000000>;
+		qcom,mode-select = <0>;
+		status = "okay";
+		qcom,pwm {
+		qcom,duty = <4000000>;
+		label = "pwm";
+		};
+	};
 
 	pwm@b200 {
 		compatible = "qcom,qpnp-pwm";

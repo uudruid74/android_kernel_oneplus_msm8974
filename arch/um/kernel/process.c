@@ -188,7 +188,7 @@ int copy_thread(unsigned long clone_flags, unsigned long sp,
 	p->thread = (struct thread_struct) INIT_THREAD;
 
 	if (current->thread.forking) {
-	  	memcpy(&p->thread.regs.regs, &regs->regs,
+		memcpy(&p->thread.regs.regs, &regs->regs,
 		       sizeof(p->thread.regs.regs));
 		REGS_SET_SYSCALL_RETURN(p->thread.regs.regs.gp, 0);
 		if (sp != 0)
@@ -461,4 +461,3 @@ int elf_core_copy_fpregs(struct task_struct *t, elf_fpregset_t *fpu)
 
 	return save_fp_registers(userspace_pid[cpu], (unsigned long *) fpu);
 }
-

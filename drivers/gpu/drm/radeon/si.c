@@ -4151,4 +4151,3 @@ void si_fini(struct radeon_device *rdev)
 	kfree(rdev->bios);
 	rdev->bios = NULL;
 }
-

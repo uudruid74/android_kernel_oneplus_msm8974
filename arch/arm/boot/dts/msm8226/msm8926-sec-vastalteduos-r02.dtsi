@@ -864,4 +864,3 @@
 &mdss_dsi0 {
 	qcom,dsi-pref-prim-pan = <&dsi_himax_vasta_tft_720p_video>;
 };
-

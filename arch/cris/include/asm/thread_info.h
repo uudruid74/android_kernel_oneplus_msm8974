@@ -2,7 +2,7 @@
  *
  * Copyright (C) 2002  David Howells (dhowells@redhat.com)
  * - Incorporating suggestions made by Linus Torvalds and Dave Miller
- * 
+ *
  * CRIS port by Axis Communications
  */
 
@@ -35,7 +35,7 @@ struct thread_info {
 	__u32			tls;		/* TLS for this thread */
 
 	mm_segment_t		addr_limit;	/* thread address space:
-					 	   0-0xBFFFFFFF for user-thead
+						   0-0xBFFFFFFF for user-thead
 						   0-0xFFFFFFFF for kernel-thread
 						*/
 	struct restart_block    restart_block;

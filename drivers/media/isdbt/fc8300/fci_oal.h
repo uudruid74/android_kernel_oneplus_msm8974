@@ -41,4 +41,3 @@ extern void OAL_RELEASE_SEMAPHORE(void);
 #endif
 
 #endif /* __FCI_OAL_H__ */
-

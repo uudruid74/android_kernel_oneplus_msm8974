@@ -15,5 +15,3 @@ ozwpan-y := \
 	ozurbparanoia.o \
 	oztrace.o \
 	ozevent.o
-
-

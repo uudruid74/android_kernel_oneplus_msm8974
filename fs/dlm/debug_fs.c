@@ -98,7 +98,7 @@ static int print_format1(struct dlm_rsb *res, struct seq_file *s)
 		rv = seq_printf(s, "\"  \nMaster Copy\n");
 	else if (res->res_nodeid == -1)
 		rv = seq_printf(s, "\"  \nLooking up master (lkid %x)\n",
-			   	res->res_first_lkid);
+				res->res_first_lkid);
 	else
 		rv = seq_printf(s, "\"  \nInvalid master %d\n",
 				res->res_nodeid);
@@ -127,7 +127,7 @@ static int print_format1(struct dlm_rsb *res, struct seq_file *s)
 	if (root_list || recover_list) {
 		rv = seq_printf(s, "Recovery: root %d recover %d flags %lx "
 				"count %d\n", root_list, recover_list,
-			   	res->res_flags, res->res_recover_locks_count);
+				res->res_flags, res->res_recover_locks_count);
 		if (rv)
 			goto out;
 	}
@@ -723,4 +723,3 @@ void dlm_unregister_debugfs(void)
 {
 	debugfs_remove(dlm_root);
 }
-

@@ -38,7 +38,7 @@
  *           1. Check typedef
  *           2. Link I/O Port control code  (VDD, CE, INTR and etc)
  *           3. Define a delay function
- *               ex) Modify delay parameter constant to make it fit to your delay function such as mms100_usdelay() and mms100_msdelay() 
+ *               ex) Modify delay parameter constant to make it fit to your delay function such as mms100_usdelay() and mms100_msdelay()
  *           5. Rename 'uart_printf()' to your console print function for debugging.
  *           6. Check Watchdog timer, Interrupt factor
  *           7. Copy mbin files to specific direction on your system
@@ -59,7 +59,7 @@
 /*
  *       Configure I/O ports linked to touchscreen module in host system
  */
-#if 0 // NOT USED 
+#if 0 // NOT USED
 #define MMS100_VDD_SET_HIGH()             			// specify a detailed information of host system
 #define MMS100_VDD_SET_LOW()              			// specify a detailed information of host system
 #define MMS100_CE_SET_HIGH()   	          			gpio_set_value(122, 1)
@@ -70,13 +70,13 @@
 #define MMS100_INTR_SET_OUTPUT()     		        // specify a detailed information of host system
 #define MMS100_INTR_SET_INPUT()                		gpio_direction_input(35);
 #define MMS100_GET_INTR()                       			gpio_get_value(35)
-#endif 
+#endif
 
 /*
  *       Configure delay function interface to host system
  */
-#define mms100_usdelay(x)                           do{(x) > (MAX_UDELAY_MS * 1000) ? mdelay((x)/1000) : udelay(x);}while(0) 
-#define mms100_msdelay(x)                           mdelay(x) 
+#define mms100_usdelay(x)                           do{(x) > (MAX_UDELAY_MS * 1000) ? mdelay((x)/1000) : udelay(x);}while(0)
+#define mms100_msdelay(x)                           mdelay(x)
 
 /*
  *       Configure I2C Interface to Linux system
@@ -88,7 +88,7 @@
             i2c_master_send(_client, _wr_buf, _len)
 #define mms100_read_i2c_block_data(_client, _wr_reg, _len, _rd_buf)     \
             i2c_smbus_read_i2c_block_data(_client, _wr_reg, _len, _rd_buf)
-#endif 
+#endif
 
 /*
  *      Return values which is shown error message to the host system
@@ -123,4 +123,3 @@ enum {
  */
 eISCRet_t mms100_ISC_download_mbinary(struct i2c_client *_client, bool force_update, int fw_location);
 #endif /* __MMS100_ISC_H__ */
-

@@ -531,7 +531,7 @@ sba_search_bitmap(struct ioc *ioc, struct device *dev,
 		goto not_found;
 
 	}
-	
+
 	if (likely(bits_wanted <= BITS_PER_LONG/2)) {
 		/*
 		** Search the resource bit map on well-aligned values.
@@ -548,7 +548,7 @@ sba_search_bitmap(struct ioc *ioc, struct device *dev,
 
 		DBG_RES("%s() o %ld %p", __func__, o, res_ptr);
 		for(; res_ptr < res_end ; res_ptr++)
-		{ 
+		{
 			DBG_RES("    %p %lx %lx\n", res_ptr, mask, *res_ptr);
 			ASSERT(0 != mask);
 			for (; mask ; mask <<= o, bitshiftcnt += o) {
@@ -738,7 +738,7 @@ sba_free_range(struct ioc *ioc, dma_addr_t iova, size_t size)
 	/* Round up to power-of-two size: see AR2305 note above */
 	bits_not_wanted = 1UL << get_iovp_order(bits_not_wanted << iovp_shift);
 	for (; bits_not_wanted > 0 ; res_ptr++) {
-		
+
 		if (unlikely(bits_not_wanted > BITS_PER_LONG)) {
 
 			/* these mappings start 64bit aligned */
@@ -877,7 +877,7 @@ sba_mark_invalid(struct ioc *ioc, dma_addr_t iova, size_t byte_cnt)
 		ioc->pdir_base[off] &= ~(0x80000000000000FFULL);
 #else
 		/*
-  		** If we want to maintain the PDIR as valid, put in
+		** If we want to maintain the PDIR as valid, put in
 		** the spill page so devices prefetching won't
 		** cause a hard fail.
 		*/
@@ -937,13 +937,13 @@ static dma_addr_t sba_map_page(struct device *dev, struct page *page,
 #ifdef ALLOW_IOV_BYPASS
 	ASSERT(to_pci_dev(dev)->dma_mask);
 	/*
- 	** Check if the PCI device can DMA to ptr... if so, just return ptr
- 	*/
+	** Check if the PCI device can DMA to ptr... if so, just return ptr
+	*/
 	if (likely((pci_addr & ~to_pci_dev(dev)->dma_mask) == 0)) {
 		/*
- 		** Device is bit capable of DMA'ing to the buffer...
+		** Device is bit capable of DMA'ing to the buffer...
 		** just return the PCI address of ptr
- 		*/
+		*/
 		DBG_BYPASS("sba_map_single_attrs() bypass mask/addr: "
 			   "0x%lx/0x%lx\n",
 		           to_pci_dev(dev)->dma_mask, pci_addr);
@@ -1162,8 +1162,8 @@ sba_alloc_coherent(struct device *dev, size_t size, dma_addr_t *dma_handle,
 #ifdef ALLOW_IOV_BYPASS
 	ASSERT(dev->coherent_dma_mask);
 	/*
- 	** Check if the PCI device can DMA to ptr... if so, just return ptr
- 	*/
+	** Check if the PCI device can DMA to ptr... if so, just return ptr
+	*/
 	if (likely((*dma_handle & ~dev->coherent_dma_mask) == 0)) {
 		DBG_BYPASS("sba_alloc_coherent() bypass mask/addr: 0x%lx/0x%lx\n",
 		           dev->coherent_dma_mask, *dma_handle);
@@ -1654,7 +1654,7 @@ ioc_iova_init(struct ioc *ioc)
 	** We program the next pdir index after we stop w/ a key for
 	** the GART code to handshake on.
 	*/
-	for_each_pci_dev(device)	
+	for_each_pci_dev(device)
 		agp_found |= pci_find_capability(device, PCI_CAP_ID_AGP);
 
 	if (agp_found && reserve_sba_gart) {
@@ -1665,7 +1665,7 @@ ioc_iova_init(struct ioc *ioc)
 	}
 #ifdef FULL_VALID_PDIR
 	/*
-  	** Check to see if the spill page has been allocated, we don't need more than
+	** Check to see if the spill page has been allocated, we don't need more than
 	** one across multiple SBAs.
 	*/
 	if (!prefetch_spill_page) {
@@ -1686,7 +1686,7 @@ ioc_iova_init(struct ioc *ioc)
 		DBG_INIT("%s() prefetch spill addr: 0x%lx\n", __func__, prefetch_spill_page);
 	}
 	/*
-  	** Set all the PDIR entries valid w/ the spill page as the target
+	** Set all the PDIR entries valid w/ the spill page as the target
 	*/
 	for (index = 0 ; index < (ioc->pdir_size / PDIR_ENTRY_SIZE) ; index++)
 		((u64 *)ioc->pdir_base)[index] = (0x80000000000000FF | prefetch_spill_page);

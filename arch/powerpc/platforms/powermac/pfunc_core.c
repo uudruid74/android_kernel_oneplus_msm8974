@@ -1019,4 +1019,3 @@ int pmf_call_function(struct device_node *target, const char *name,
 	return rc;
 }
 EXPORT_SYMBOL_GPL(pmf_call_function);
-

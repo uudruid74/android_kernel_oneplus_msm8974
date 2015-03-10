@@ -423,4 +423,3 @@ CommOS_StopIO(void)
 		CommOS_Log(("%s: I/O tasks stopped.\n", __func__));
 	}
 }
-

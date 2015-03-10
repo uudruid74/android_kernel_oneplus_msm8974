@@ -578,4 +578,3 @@ extern struct movsl_mask {
 #endif
 
 #endif /* _ASM_X86_UACCESS_H */
-

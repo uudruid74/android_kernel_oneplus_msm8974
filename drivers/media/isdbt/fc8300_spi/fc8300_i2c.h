@@ -54,4 +54,3 @@ extern s32 fc8300_i2c_deinit(HANDLE handle);
 #endif
 
 #endif /* __FC8300_I2C_H__ */
-

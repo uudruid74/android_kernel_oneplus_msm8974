@@ -329,7 +329,7 @@ void uwb_rc_rm(struct uwb_rc *rc)
 	__uwb_rc_sys_rm(rc);
 	mutex_unlock(&rc->uwb_beca.mutex);
 	uwb_rsv_cleanup(rc);
- 	uwb_beca_release(rc);
+	uwb_beca_release(rc);
 	uwb_dev_rm(&rc->uwb_dev);
 }
 EXPORT_SYMBOL_GPL(uwb_rc_rm);

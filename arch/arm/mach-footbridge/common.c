@@ -16,7 +16,7 @@
 #include <linux/io.h>
 #include <linux/spinlock.h>
 #include <video/vga.h>
- 
+
 #include <asm/pgtable.h>
 #include <asm/page.h>
 #include <asm/irq.h>

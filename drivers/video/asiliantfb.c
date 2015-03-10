@@ -175,7 +175,7 @@ static void asiliant_set_timing(struct fb_info *p)
 {
 	unsigned hd = p->var.xres / 8;
 	unsigned hs = (p->var.xres + p->var.right_margin) / 8;
-       	unsigned he = (p->var.xres + p->var.right_margin + p->var.hsync_len) / 8;
+	unsigned he = (p->var.xres + p->var.right_margin + p->var.hsync_len) / 8;
 	unsigned ht = (p->var.left_margin + p->var.xres + p->var.right_margin + p->var.hsync_len) / 8;
 	unsigned vd = p->var.yres;
 	unsigned vs = p->var.yres + p->var.lower_margin;

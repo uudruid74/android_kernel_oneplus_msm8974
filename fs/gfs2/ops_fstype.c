@@ -988,7 +988,7 @@ static int gfs2_lm_mount(struct gfs2_sbd *sdp, int silent)
 		switch (token) {
 		case Opt_jid:
 			ret = match_int(&tmp[0], &option);
-			if (ret || option < 0) 
+			if (ret || option < 0)
 				goto hostdata_error;
 			if (test_and_clear_bit(SDF_NOJOURNALID, &sdp->sd_flags))
 				ls->ls_jid = option;
@@ -1426,4 +1426,3 @@ struct file_system_type gfs2meta_fs_type = {
 	.mount = gfs2_mount_meta,
 	.owner = THIS_MODULE,
 };
-

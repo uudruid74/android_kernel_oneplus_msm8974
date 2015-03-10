@@ -7,4 +7,3 @@ easycap-objs += easycap_sound.o
 obj-$(CONFIG_EASYCAP) += easycap.o
 
 ccflags-y := -Wall
-

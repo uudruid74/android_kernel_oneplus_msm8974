@@ -722,7 +722,7 @@ static int __devinit am79c961_probe(struct platform_device *pdev)
 	if (inb(dev->base_addr) != 0x08 ||
 	    inb(dev->base_addr + 2) != 0x00 ||
 	    inb(dev->base_addr + 4) != 0x2b)
-	    	goto release;
+		goto release;
 
 	for (i = 0; i < 6; i++)
 		dev->dev_addr[i] = inb(dev->base_addr + i * 2) & 0xff;

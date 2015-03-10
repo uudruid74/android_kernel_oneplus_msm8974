@@ -52,4 +52,3 @@ $(WLNAME)-y +=	wl_profile.o \
 		dhf.o
 
 $(WLNAME)-$(CONFIG_SYSFS)	+= wl_sysfs.o
-

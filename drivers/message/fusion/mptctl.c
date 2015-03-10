@@ -822,7 +822,7 @@ mptctl_do_fw_download(int ioc, char __user *ufwbuf, size_t fwlen)
 	} else {
 
 		/*  Valid device. Get a message frame and construct the FW download message.
-	 	*/
+		*/
 		if ((mf = mpt_get_msg_frame(mptctl_id, iocp)) == NULL)
 			return -EAGAIN;
 	}
@@ -2176,7 +2176,7 @@ mptctl_do_mpt_command (struct mpt_ioctl_command karg, void __user *mfPtr)
 			MPI_FUNCTION_FC_ABORT
 			MPI_FUNCTION_LAN_SEND
 			MPI_FUNCTION_LAN_RECEIVE
-		 	MPI_FUNCTION_LAN_RESET
+			MPI_FUNCTION_LAN_RESET
 		*/
 
 		printk(MYIOC_s_ERR_FMT "%s@%d::mptctl_do_mpt_command - "
@@ -2580,7 +2580,7 @@ mptctl_hp_hostinfo(unsigned long arg, unsigned int data_size)
 		}
 	}
 
-	/* 
+	/*
 	 * Gather ISTWI(Industry Standard Two Wire Interface) Data
 	 */
 	if ((mf = mpt_get_msg_frame(mptctl_id, ioc)) == NULL) {

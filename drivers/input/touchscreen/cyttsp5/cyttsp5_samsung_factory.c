@@ -681,14 +681,14 @@ static void run_raw_count_read(void *device_data)
 #ifdef RECAL_FALSELY_CALED_PANEL
 	rc = panel_scan_and_retrieve(sfd, CY_SELF_RAW, &sfd->raw);
 	if (rc == 0) {
-		dev_info(sfd->dev, "%s: self min:%d,max:%d\n", 
+		dev_info(sfd->dev, "%s: self min:%d,max:%d\n",
 			__func__, sfd->raw.min, sfd->raw.max);
 		if (sfd->raw.min < SPEC_SELF_RAW_MIN || SPEC_SELF_RAW_MAX < sfd->raw.max) {
 			dev_info(sfd->dev, "%s: selfcap wrong\n",
 				__func__);
 			rc = cyttsp5_fw_calibrate(sfd->dev);
 			if (rc < 0)
-				dev_err(sfd->dev, "%s: calibration fail, rc=%d\n", 
+				dev_err(sfd->dev, "%s: calibration fail, rc=%d\n",
 				__func__, rc);
 		}
 	}
@@ -697,7 +697,7 @@ static void run_raw_count_read(void *device_data)
 		dev_info(sfd->dev, "%s: mutual min:%d,max:%d\n",
 			__func__, sfd->raw.min, sfd->raw.max);
 		if (sfd->raw.min < SPEC_MUT_RAW_MIN || SPEC_MUT_RAW_MAX < sfd->raw.max) {
-			dev_info(sfd->dev, "%s: mutualcap wrong\n", 
+			dev_info(sfd->dev, "%s: mutualcap wrong\n",
 				__func__);
 			rc = cyttsp5_fw_calibrate(sfd->dev);
 			if (rc < 0)
@@ -1225,7 +1225,7 @@ static void touch_mode_switch(struct cyttsp5_samsung_factory_data* sfd,
 		dev_err(sfd->dev, "%s: request exclusive failed(%d)\n",
 			__func__, rc);
 		goto check_rc;
-	}	
+	}
 	if (command == CMD_CLEAR_COVER_MODE &&
 		sfd->factory_cmd_param[0] == 2) {// flip cover closed
 		cyttsp5_mt_prevent_touch(sfd->dev, 1);
@@ -1873,4 +1873,3 @@ int cyttsp5_samsung_factory_release(struct device *dev)
 
 	return 0;
 }
-

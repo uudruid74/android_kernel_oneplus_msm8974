@@ -311,22 +311,22 @@ sys_call_table:
 	.long sys_epoll_create
 	.long sys_epoll_ctl
 	.long sys_epoll_wait
- 	.long sys_remap_file_pages	/* 285 */
- 	.long sys_set_tid_address
- 	.long sys_timer_create
- 	.long sys_timer_settime
- 	.long sys_timer_gettime
- 	.long sys_timer_getoverrun	/* 290 */
- 	.long sys_timer_delete
- 	.long sys_clock_settime
- 	.long sys_clock_gettime
- 	.long sys_clock_getres
- 	.long sys_clock_nanosleep	/* 295 */
+	.long sys_remap_file_pages	/* 285 */
+	.long sys_set_tid_address
+	.long sys_timer_create
+	.long sys_timer_settime
+	.long sys_timer_gettime
+	.long sys_timer_getoverrun	/* 290 */
+	.long sys_timer_delete
+	.long sys_clock_settime
+	.long sys_clock_gettime
+	.long sys_clock_getres
+	.long sys_clock_nanosleep	/* 295 */
 	.long sys_statfs64
 	.long sys_fstatfs64
 	.long sys_tgkill
 	.long sys_utimes
- 	.long sys_fadvise64_64		/* 300 */
+	.long sys_fadvise64_64		/* 300 */
 	.long sys_ni_syscall	/* Reserved for vserver */
 	.long sys_ni_syscall	/* Reserved for mbind */
 	.long sys_ni_syscall	/* get_mempolicy */

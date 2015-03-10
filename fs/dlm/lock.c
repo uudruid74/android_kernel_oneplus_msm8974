@@ -1246,7 +1246,7 @@ void dlm_scan_timeout(struct dlm_ls *ls)
 		list_for_each_entry(lkb, &ls->ls_timeout, lkb_time_list) {
 
 			wait_us = ktime_to_us(ktime_sub(ktime_get(),
-					      		lkb->lkb_timestamp));
+							lkb->lkb_timestamp));
 
 			if ((lkb->lkb_exflags & DLM_LKF_TIMEOUT) &&
 			    wait_us >= (lkb->lkb_timeout_cs * 10000))
@@ -2231,7 +2231,7 @@ static int set_lock_args(int mode, struct dlm_lksb *lksb, uint32_t flags,
 static int set_unlock_args(uint32_t flags, void *astarg, struct dlm_args *args)
 {
 	if (flags & ~(DLM_LKF_CANCEL | DLM_LKF_VALBLK | DLM_LKF_IVVALBLK |
- 		      DLM_LKF_FORCEUNLOCK))
+		      DLM_LKF_FORCEUNLOCK))
 		return -EINVAL;
 
 	if (flags & DLM_LKF_CANCEL && flags & DLM_LKF_FORCEUNLOCK)
@@ -2554,7 +2554,7 @@ static void do_unlock_effects(struct dlm_rsb *r, struct dlm_lkb *lkb,
 }
 
 /* returns: 0 did nothing, -DLM_ECANCEL canceled lock */
- 
+
 static int do_cancel(struct dlm_rsb *r, struct dlm_lkb *lkb)
 {
 	int error;
@@ -4428,7 +4428,7 @@ int dlm_recover_waiters_post(struct dlm_ls *ls)
 
 		if (err)
 			log_error(ls, "recover_waiters_post %x %d %x %d %d",
-			  	  lkb->lkb_id, mstype, lkb->lkb_flags, oc, ou);
+				  lkb->lkb_id, mstype, lkb->lkb_flags, oc, ou);
 		unlock_rsb(r);
 		put_rsb(r);
 		dlm_put_lkb(lkb);
@@ -5194,4 +5194,3 @@ int dlm_user_purge(struct dlm_ls *ls, struct dlm_user_proc *proc,
 	}
 	return error;
 }
-

@@ -176,7 +176,7 @@ sizeof(nop_cmd) = 8;
     DELAY_16(); \
     if(i == 1023) { \
       pr_warning("%s:%d: scb_cmd timed out .. resetting i82586\n",\
-      	dev->name,__LINE__); \
+	dev->name,__LINE__); \
       elmc_id_reset586(); } } }
 
 static irqreturn_t elmc_interrupt(int irq, void *dev_id);

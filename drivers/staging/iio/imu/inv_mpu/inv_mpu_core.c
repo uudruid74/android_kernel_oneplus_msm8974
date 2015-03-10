@@ -3331,7 +3331,7 @@ static int inv_create_dmp_sysfs(struct iio_dev *ind)
 /*
  *  inv_mpu_probe() - probe function.
  */
- 
+
 void  inv_vdd_on(struct inv_mpu_state *data, bool onoff)
 {
 	int ret;
@@ -3398,14 +3398,14 @@ static int inv_parse_dt(struct device *dev,
 	struct device_node *np = dev->of_node;
 
 	pdata->orientation[0] = 1;
- 	pdata->orientation[1] = 0;
- 	pdata->orientation[2] = 0;
+	pdata->orientation[1] = 0;
+	pdata->orientation[2] = 0;
 	pdata->orientation[3] = 0;
- 	pdata->orientation[4] = -1;
- 	pdata->orientation[5] = 0;
- 	pdata->orientation[6] = 0;
- 	pdata->orientation[7] = 0;
- 	pdata->orientation[8] = -1;
+	pdata->orientation[4] = -1;
+	pdata->orientation[5] = 0;
+	pdata->orientation[6] = 0;
+	pdata->orientation[7] = 0;
+	pdata->orientation[8] = -1;
 
 	pdata->i2c_pull_up = of_property_read_bool(np, "invensense,i2c-pull-up");
 
@@ -3424,9 +3424,9 @@ static int inv_parse_dt(struct device *dev,
 	NULL);
 	pdata->gyro_cal_path = of_get_property(np, "invensense,gyro_cal_path",
 	NULL);
-	
+
 	pdata->int_config = 0x00;
-	pdata->level_shifter = 0; 
+	pdata->level_shifter = 0;
 
 	pr_err("inv_parse_dt complete, SCL:%d SDA:%d IRQ:%d\n",pdata->gpio_scl, pdata->gpio_sda, pdata->gpio_int );
 
@@ -3467,12 +3467,12 @@ static int inv_mpu_probe(struct i2c_client *client,
 		error = inv_parse_dt(&client->dev, pdata);
 		if (error)
 			return error;
-	} 
+	}
 	else
 		{
 		/* get platform data */
 		pdata = client->dev.platform_data;
-	
+
 	if (!pdata)
 		return -EINVAL;
 	}
@@ -3491,9 +3491,9 @@ static int inv_mpu_probe(struct i2c_client *client,
 	st->i2c_addr = client->addr;
 	st->plat_data =*pdata;
 		//*(struct mpu_platform_data *)dev_get_platdata(&client->dev);
-	
+
 	inv_vdd_on(st, 1);
-		
+
 	msleep(10);
 
 	/* power is turned on inside check chip type*/
@@ -3801,7 +3801,7 @@ static struct i2c_driver inv_mpu_driver = {
 	.driver = {
 		.owner	=	THIS_MODULE,
 		.name	=	"inv-mpu-iio",
-		.pm     =       INV_MPU_PMOPS,	
+		.pm     =       INV_MPU_PMOPS,
 		.of_match_table = mpu6515_match_table,
 	},
 	.address_list = normal_i2c,
@@ -3829,4 +3829,3 @@ MODULE_AUTHOR("Invensense Corporation");
 MODULE_DESCRIPTION("Invensense device driver");
 MODULE_LICENSE("GPL");
 MODULE_ALIAS("inv-mpu-iio");
-

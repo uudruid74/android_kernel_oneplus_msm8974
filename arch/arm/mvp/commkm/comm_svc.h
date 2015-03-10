@@ -70,4 +70,3 @@ unsigned int CommSvc_RequestInlineEvents(CommChannel channel);
 unsigned int CommSvc_ReleaseInlineEvents(CommChannel channel);
 
 #endif /* _COMM_SVC_H_ */
-

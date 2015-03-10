@@ -846,7 +846,7 @@ static void exit_notify(struct task_struct *tsk, int group_dead)
 	/*
 	 * This does two things:
 	 *
-  	 * A.  Make init inherit all the child processes
+	 * A.  Make init inherit all the child processes
 	 * B.  Check to see if any process groups have become orphaned
 	 *	as a result of our exiting, and if they have any stopped
 	 *	jobs, send them a SIGHUP and then a SIGCONT.  (POSIX 3.2.2.2)

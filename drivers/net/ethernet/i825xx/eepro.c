@@ -739,11 +739,11 @@ static void __init eepro_print_info (struct net_device *dev)
 static const struct ethtool_ops eepro_ethtool_ops;
 
 static const struct net_device_ops eepro_netdev_ops = {
- 	.ndo_open               = eepro_open,
- 	.ndo_stop               = eepro_close,
- 	.ndo_start_xmit    	= eepro_send_packet,
+	.ndo_open               = eepro_open,
+	.ndo_stop               = eepro_close,
+	.ndo_start_xmit    	= eepro_send_packet,
 	.ndo_set_rx_mode	= set_multicast_list,
- 	.ndo_tx_timeout		= eepro_tx_timeout,
+	.ndo_tx_timeout		= eepro_tx_timeout,
 	.ndo_change_mtu		= eth_change_mtu,
 	.ndo_set_mac_address 	= eth_mac_addr,
 	.ndo_validate_addr	= eth_validate_addr,
@@ -840,29 +840,29 @@ static int __init eepro_probe1(struct net_device *dev, int autoprobe)
 	else
 		dev->if_port = TPE;
 
- 	if (dev->irq < 2 && lp->eepro != 0) {
- 		/* Mask off INT number */
- 		int count = lp->word[1] & 7;
- 		unsigned irqMask = lp->word[7];
+	if (dev->irq < 2 && lp->eepro != 0) {
+		/* Mask off INT number */
+		int count = lp->word[1] & 7;
+		unsigned irqMask = lp->word[7];
 
- 		while (count--)
- 			irqMask &= irqMask - 1;
+		while (count--)
+			irqMask &= irqMask - 1;
 
- 		count = ffs(irqMask);
+		count = ffs(irqMask);
 
- 		if (count)
- 			dev->irq = count - 1;
+		if (count)
+			dev->irq = count - 1;
 
- 		if (dev->irq < 2) {
- 			printk(KERN_ERR " Duh! illegal interrupt vector stored in EEPROM.\n");
- 			goto exit;
- 		} else if (dev->irq == 2) {
- 			dev->irq = 9;
- 		}
- 	}
+		if (dev->irq < 2) {
+			printk(KERN_ERR " Duh! illegal interrupt vector stored in EEPROM.\n");
+			goto exit;
+		} else if (dev->irq == 2) {
+			dev->irq = 9;
+		}
+	}
 
 	dev->netdev_ops		= &eepro_netdev_ops;
- 	dev->watchdog_timeo	= TX_TIMEOUT;
+	dev->watchdog_timeo	= TX_TIMEOUT;
 	dev->ethtool_ops	= &eepro_ethtool_ops;
 
 	/* print boot time info */
@@ -878,8 +878,8 @@ static int __init eepro_probe1(struct net_device *dev, int autoprobe)
 exit:
 	err = -ENODEV;
 err:
- 	release_region(dev->base_addr, EEPRO_IO_EXTENT);
- 	return err;
+	release_region(dev->base_addr, EEPRO_IO_EXTENT);
+	return err;
 }
 
 /* Open/initialize the board.  This is called (in the current kernel)
@@ -1219,7 +1219,7 @@ eepro_interrupt(int irq, void *dev_id)
 		}
 		if (status & TX_INT) {
 			if (net_debug > 4)
- 				printk(KERN_DEBUG "%s: packet transmit interrupt.\n", dev->name);
+				printk(KERN_DEBUG "%s: packet transmit interrupt.\n", dev->name);
 
 
 			eepro_dis_int(ioaddr);

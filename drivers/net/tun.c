@@ -799,18 +799,18 @@ static ssize_t tun_chr_aio_write(struct kiocb *iocb, const struct iovec *iv,
 
 // ------------- START of KNOX_VPN ------------------//
 
-/* KNOX VPN packets have extra bytes because they carry meta information by default 
+/* KNOX VPN packets have extra bytes because they carry meta information by default
      * Such packets have sizeof(struct tun_meta_header) extra bytes in the IP options
      * This automatically reflects in the IP header length (IHL)
      */
 static int knoxvpn_tun_uidpid(struct tun_struct *tun, struct sk_buff *skb, const struct iovec *iv, int* len, ssize_t* total)
-{ 
+{
     struct skb_shared_info * temp = NULL;
 	struct knox_meta_param metalocal = {0,0};
-    
 
-    temp = skb_shinfo(skb);  
-        
+
+    temp = skb_shinfo(skb);
+
     if ( (tun->flags & TUN_META_HDR) == 0 || skb == NULL || temp == NULL || temp->knox_mark < META_UID_PID_MARK_BASE_LOWER || META_UID_PID_MARK_BASE_UPPER < temp->knox_mark ){
         metalocal.uid = 0;
         metalocal.pid = 0;
@@ -832,7 +832,7 @@ static int knoxvpn_tun_uidpid(struct tun_struct *tun, struct sk_buff *skb, const
 #endif
         if (unlikely(memcpy_toiovecend(iv, (void *)&metalocal, (*total), sizeof(struct knox_meta_param)))) {
             return -1;
-        }			
+        }
         (*total) += TUN_META_HDR_SZ;
     }
 
@@ -1105,12 +1105,12 @@ static int tun_flags(struct tun_struct *tun)
 	int flags = 0;
 
 // ------------- START of KNOX_VPN ------------------//
-	/* Checks if meta header is enabled so that 
+	/* Checks if meta header is enabled so that
 	 * packets will be prepended with meta data(UID/PID)
 	 */
 	if (tun->flags & TUN_META_HDR) {
-		flags |= IFF_META_HDR;		
-	}	
+		flags |= IFF_META_HDR;
+	}
 // ------------- END of KNOX_VPN -------------------//
 
 	if (tun->flags & TUN_TUN_DEV)
@@ -1550,7 +1550,7 @@ static long __tun_chr_ioctl(struct file *file, unsigned int cmd,
 
 // ------------- START of KNOX_VPN ------------------//
 	case TUNGETMETAPARAM:
-       
+
 		if (copy_from_user(&tun_meta_param, argp,
 				   sizeof(tun_meta_param))) {
 			ret = -EFAULT;
@@ -1576,7 +1576,7 @@ static long __tun_chr_ioctl(struct file *file, unsigned int cmd,
 			if (copy_to_user(argp, &tun_meta_value,
 					 sizeof(tun_meta_value)))
 				ret = -EFAULT;
-		} 			
+		}
 		break;
 // ------------- END of KNOX_VPN -------------------//
 

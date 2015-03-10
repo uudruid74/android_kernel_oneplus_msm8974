@@ -517,4 +517,3 @@ void ac6_proc_exit(struct net *net)
 	proc_net_remove(net, "anycast6");
 }
 #endif
-

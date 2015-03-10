@@ -58,8 +58,8 @@
 		qcom,cci-master = <0>;
 		status = "ok";
 	};
- 
-		
+
+
 	qcom,camera@2 {
 		cell-index = <2>;
 		compatible = "qcom,camera";
@@ -92,6 +92,6 @@
 		qcom,gpio-req-tbl-label = "CAMIF_MCLK" , "CAM_RESET" , "CAM_STBY" , "CAM_ANALOG_EN", "VTCAM_EN" , "VT_RESET", "VT_STANDBY";
 		qcom,cci-master = <0>;
 		status = "ok";
-	};	
-	
+	};
+
 };

@@ -177,4 +177,3 @@ s32 fc8300_i2c_deinit(HANDLE handle)
 
 	return BBM_OK;
 }
-

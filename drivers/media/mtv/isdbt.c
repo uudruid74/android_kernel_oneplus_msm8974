@@ -199,7 +199,7 @@ static void isdbt_gpio_config(bool poweron)
 
 	if(poweron) {
 		struct pin_config SdioPinCfgs;
-		
+
 		SdioPinCfgs.name = dt_pdata->isdbt_irq;
 		pinmux_get_pin_config(&SdioPinCfgs);
 		SdioPinCfgs.reg.b.slew_rate_ctrl = 0;
@@ -210,7 +210,7 @@ static void isdbt_gpio_config(bool poweron)
 		SdioPinCfgs.reg.b.input_dis = 1;
 		SdioPinCfgs.reg.b.drv_sth = 0;
 		SdioPinCfgs.func = PF_GPIO00;
-		SdioPinCfgs.reg.b.sel = 4;	
+		SdioPinCfgs.reg.b.sel = 4;
 		pinmux_set_pin_config(&SdioPinCfgs);
 	}
 
@@ -687,7 +687,7 @@ static struct platform_driver isdbt_driver = {
 
 static int __init isdbt_init(void)
 {
-   	int ret;
+	int ret;
 	struct device *isdbt_dev;
 
 	DPRINTK("Module init\n");
@@ -755,4 +755,3 @@ module_exit(isdbt_exit);
 MODULE_AUTHOR("Samsung");
 MODULE_DESCRIPTION("ISDBT driver");
 MODULE_LICENSE("GPL v2");
-

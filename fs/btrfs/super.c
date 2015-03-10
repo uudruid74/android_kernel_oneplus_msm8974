@@ -142,9 +142,9 @@ void __btrfs_std_error(struct btrfs_fs_info *fs_info, const char *function,
 	 * under MS_RDONLY, then it is safe here.
 	 */
 	if (errno == -EROFS && (sb->s_flags & MS_RDONLY))
-  		return;
+		return;
 
-  	errstr = btrfs_decode_error(fs_info, errno, nbuf);
+	errstr = btrfs_decode_error(fs_info, errno, nbuf);
 	if (fmt) {
 		struct va_format vaf = {
 			.fmt = fmt,

@@ -303,7 +303,7 @@ void	MngWorkItem(void *Context)
 	 while(pDevice->rxManeQueue.packet_num != 0)
 	 {
 		 pRxMgmtPacket =  DeQueue(pDevice);
-        		vMgrRxManagePacket(pDevice, pDevice->pMgmt, pRxMgmtPacket);
+			vMgrRxManagePacket(pDevice, pDevice->pMgmt, pRxMgmtPacket);
 	}
 	spin_unlock_irq(&pDevice->lock);
 }
@@ -626,7 +626,7 @@ device_receive_frame (
                      skb_put(skb, FrameSize);
 		skb_reset_mac_header(skb);
 	            skb->pkt_type = PACKET_OTHERHOST;
-    	        skb->protocol = htons(ETH_P_802_2);
+	        skb->protocol = htons(ETH_P_802_2);
 	            memset(skb->cb, 0, sizeof(skb->cb));
 	            netif_rx(skb);
                 return true;
@@ -663,8 +663,8 @@ device_receive_frame (
                 return false;
             }
    //mike add:station mode check eapol-key challenge--->
-   	  {
-   	    unsigned char Protocol_Version;    //802.1x Authentication
+	  {
+	    unsigned char Protocol_Version;    //802.1x Authentication
 	    unsigned char Packet_Type;           //802.1x Authentication
               if (bIsWEP)
                   cbIVOffset = 8;
@@ -680,7 +680,7 @@ device_receive_frame (
                         bRxeapol_key = true;
                   }
 	      }
-   	  }
+	  }
     //mike add:station mode check eapol-key challenge<---
         }
     }
@@ -1489,4 +1489,3 @@ static bool s_bAPModeRxData (
 
     return true;
 }
-

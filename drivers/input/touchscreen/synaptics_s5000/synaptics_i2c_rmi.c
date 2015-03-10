@@ -781,7 +781,7 @@ static void synaptics_set_dvfs_lock(struct synaptics_rmi4_data *rmi4_data,
 		if ((!rmi4_data->dvfs_lock_status) || (rmi4_data->dvfs_old_stauts < on)) {
 			cancel_delayed_work(&rmi4_data->work_dvfs_chg);
 				if (rmi4_data->dvfs_freq != MIN_TOUCH_LIMIT) {
-				if (rmi4_data->dvfs_boost_mode == DVFS_STAGE_TRIPLE) 
+				if (rmi4_data->dvfs_boost_mode == DVFS_STAGE_TRIPLE)
 					ret = set_freq_limit(DVFS_TOUCH_ID,
 						MIN_TOUCH_LIMIT_SECOND);
 				else
@@ -1190,9 +1190,9 @@ static void clear_tcount(void)
 		tcount_finger[i] = 0;
 		touchbx[i] = 0;
 		touchby[i] = 0;
-	}		 
+	}
 }
- 
+
 static int diff_two_point(int x, int y, int oldx, int oldy)
 {
 	int diffx,diffy;
@@ -1523,14 +1523,14 @@ static int synaptics_rmi4_f12_abs_report(struct synaptics_rmi4_data *rmi4_data,
 							"Sunflower-Hopping (Pattern Tracking)\n");
 					cancel_delayed_work(&rmi4_data->reboot_work);
 					schedule_delayed_work(&rmi4_data->reboot_work,
-								msecs_to_jiffies(TSP_REBOOT_PENDING_TIME*6)); /* 300msec*/				
+								msecs_to_jiffies(TSP_REBOOT_PENDING_TIME*6)); /* 300msec*/
 					touch_count = 0;
 					return touch_count;
 				}
 				#endif
 
 
-				
+
 #if defined(CONFIG_USE_INPUTLOCATION_FOR_ENG)
 				dev_info(&rmi4_data->i2c_client->dev, "[%d][P] 0x%02x, x = %d, y = %d, wx = %d, wy = %d\n",
 					finger, finger_status, x, y, wx, wy);
@@ -1548,7 +1548,7 @@ static int synaptics_rmi4_f12_abs_report(struct synaptics_rmi4_data *rmi4_data,
 								"Sunflower-Fixed (Pattern Tracking)\n");
 						cancel_delayed_work(&rmi4_data->reboot_work);
 						schedule_delayed_work(&rmi4_data->reboot_work,
-									msecs_to_jiffies(TSP_REBOOT_PENDING_TIME*6)); /* 300msec*/				
+									msecs_to_jiffies(TSP_REBOOT_PENDING_TIME*6)); /* 300msec*/
 						touch_count = 0;
 						return touch_count;
 					}
@@ -3571,7 +3571,7 @@ static int synaptics_rmi4_reset_device(struct synaptics_rmi4_data *rmi4_data)
 		msleep(SYNAPTICS_HW_RESET_TIME);
 	} else {
 		synaptics_power_ctrl(rmi4_data,false);
-		
+
 		msleep(30);
 		synaptics_power_ctrl(rmi4_data,true);
 		rmi4_data->current_page = MASK_8BIT;
@@ -3862,7 +3862,7 @@ int synaptics_rmi4_new_function(enum exp_fn fn_type,
 void synaptics_power_ctrl(struct synaptics_rmi4_data *rmi4_data, bool enable)
 {
 	int ret = 0;
-#if defined(CONFIG_SEC_H_PROJECT)  || defined(CONFIG_MACH_JS01LTEDCM) 
+#if defined(CONFIG_SEC_H_PROJECT)  || defined(CONFIG_MACH_JS01LTEDCM)
 	static struct regulator *reg_l10;
 
 	if (!reg_l10) {
@@ -3922,10 +3922,10 @@ static int atoi(char *str)
 {
 	int ret = 0;
 	int count = 0;
- 
+
 	if (str == NULL)
 		return -EINVAL;
- 
+
 	while (str[count] != (int)NULL && str[count] >= '0'
 			&& str[count] <= 'z') {
 		ret = ret * 0x10 + str[count] - '0';
@@ -3933,23 +3933,23 @@ static int atoi(char *str)
 	}
 	return ret;
 }
- 
+
 static int __init sec_tsp_mode(char *mode)
 {
 	int ret, ret1;
- 
+
 	ret = atoi(mode);
 	ret1 = ((ret >> 12) & 0X07);
- 
+
 	lcd_tsp_panel_version = ret;
- 
+
 	printk(KERN_ERR "%s: LCD_ID = 0x%s, val: 0X%x, ret1: 0x%x",
 			 __func__, mode, ret, ret1);
 //	if (ret1 == 0x01 || ret1 == 0x04 || ret1 == 0x05 || ret == 0x0)
 //		 sec_tsp_synaptics_mode = 1;
 //	 else
 //		 sec_tsp_synaptics_mode = 0;
- 
+
 	return 1;
 }
 __setup("lcd_id=0x", sec_tsp_mode);
@@ -4427,7 +4427,7 @@ static int synaptics_rmi4_start_device(struct synaptics_rmi4_data *rmi4_data)
 		goto out;
 	}
 
-		synaptics_power_ctrl(rmi4_data,true);		
+		synaptics_power_ctrl(rmi4_data,true);
 	rmi4_data->current_page = MASK_8BIT;
 		rmi4_data->touch_stopped = false;
 
@@ -4528,7 +4528,7 @@ static void synaptics_rmi4_input_close(struct input_dev *dev)
 #ifdef CONFIG_HAS_EARLYSUSPEND
 #define synaptics_rmi4_suspend NULL
 #define synaptics_rmi4_resume NULL
- 
+
  /**
  * synaptics_rmi4_early_suspend()
  *

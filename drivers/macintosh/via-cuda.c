@@ -248,7 +248,7 @@ cuda_probe(void)
 
 #define WAIT_FOR(cond, what)					\
     do {                                                        \
-    	int x;							\
+	int x;							\
 	for (x = 1000; !(cond); --x) {				\
 	    if (x == 0) {					\
 		printk("Timeout waiting for " what "\n");	\
@@ -312,7 +312,7 @@ cuda_send_request(struct adb_request *req, int sync)
 	req->complete = 1;
 	return -ENXIO;
     }
-  
+
     req->reply_expected = 1;
 
     i = cuda_write(req);
@@ -450,7 +450,7 @@ cuda_interrupt(int irq, void *arg)
     unsigned char ibuf[16];
     int ibuf_len = 0;
     int complete = 0;
-    
+
     spin_lock(&cuda_lock);
 
     /* On powermacs, this handler is registered for the VIA IRQ. But they use
@@ -470,7 +470,7 @@ cuda_interrupt(int irq, void *arg)
             out_8(&via[IFR], SR_INT);
         }
     }
-    
+
     status = (~in_8(&via[B]) & (TIP|TREQ)) | (in_8(&via[ACR]) & SR_OUT);
     /* printk("cuda_interrupt: state=%d status=%x\n", cuda_state, status); */
     switch (cuda_state) {
@@ -595,13 +595,13 @@ cuda_interrupt(int irq, void *arg)
     }
     spin_unlock(&cuda_lock);
     if (complete && req) {
-    	void (*done)(struct adb_request *) = req->done;
-    	mb();
-    	req->complete = 1;
-    	/* Here, we assume that if the request has a done member, the
-    	 * struct request will survive to setting req->complete to 1
-    	 */
-    	if (done)
+	void (*done)(struct adb_request *) = req->done;
+	mb();
+	req->complete = 1;
+	/* Here, we assume that if the request has a done member, the
+	 * struct request will survive to setting req->complete to 1
+	 */
+	if (done)
 		(*done)(req);
     }
     if (ibuf_len)

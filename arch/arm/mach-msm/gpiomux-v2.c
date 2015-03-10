@@ -46,4 +46,3 @@ void __msm_gpiomux_read(unsigned gpio, struct gpiomux_setting *val)
 					GPIOMUX_OUT_HIGH : GPIOMUX_OUT_LOW;
 }
 #endif
-

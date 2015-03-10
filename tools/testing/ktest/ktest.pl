@@ -842,7 +842,7 @@ sub __read_config {
 		    }
 		}
 	    }
-		
+
 	    if ( ! -r $file ) {
 		die "$name: $.: Can't read file $file\n$_";
 	    }
@@ -2847,7 +2847,7 @@ sub add_dep {
 	$depcount{$dep}++;
     } else {
 	$depcount{$dep} = 1;
-    } 
+    }
 }
 
 # taken from streamline_config.pl
@@ -2972,7 +2972,7 @@ sub read_depends {
 
     if (! -f $kconfig && $arch =~ /\d$/) {
 	my $orig = $arch;
- 	# some subarchs have numbers, truncate them
+	# some subarchs have numbers, truncate them
 	$arch =~ s/\d*$//;
 	$kconfig = "$builddir/arch/$arch/Kconfig";
 	if (! -f $kconfig) {

@@ -196,4 +196,3 @@ module_init(cam_dummy_init_module);
 module_exit(cam_dummy_exit_module);
 MODULE_DESCRIPTION("cam_dummy");
 MODULE_LICENSE("GPL v2");
-

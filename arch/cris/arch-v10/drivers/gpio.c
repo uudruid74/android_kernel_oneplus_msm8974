@@ -853,4 +853,3 @@ static int __init gpio_init(void)
 
 /* this makes sure that gpio_init is called during kernel boot */
 module_init(gpio_init);
-

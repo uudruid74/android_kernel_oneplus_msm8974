@@ -29,7 +29,7 @@ long ecryptfs_do_sdp_ioctl(struct file *file, unsigned int cmd, unsigned long ar
 */
 
 typedef struct _dek_arg_sdp_info {
-	int sdp_enabled;	
+	int sdp_enabled;
 	int is_sensitive;
 	unsigned int type;
 }dek_arg_get_sdp_info;

@@ -125,7 +125,7 @@ static int cyttsp5_i2c_probe(struct i2c_client *client,
 	const struct i2c_device_id *i2c_id)
 {
 	struct device *dev = &client->dev;
-#ifdef CONFIG_TOUCHSCREEN_CYTTSP5_DEVICETREE_SUPPORT	
+#ifdef CONFIG_TOUCHSCREEN_CYTTSP5_DEVICETREE_SUPPORT
 	const struct of_device_id *match;
 #endif
 

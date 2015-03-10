@@ -31,7 +31,7 @@
 /******************************************************************************
  * Typedef
  ******************************************************************************/
-typedef struct smt113j_SPI_thread 
+typedef struct smt113j_SPI_thread
 {
 	struct task_struct  *thread_task;
 	wait_queue_head_t 	thread_wait;
@@ -55,7 +55,7 @@ extern smt113j_spi_thread_t *spi_work_thread;
 #define DEBUG_PRINT( fmt, arg... )  { printk(KERN_INFO "%s: " fmt "\n", "mmtuner driver", ##arg); }
 #define TRACE() DEBUG_PRINT( "%s( %d )", __FUNCTION__, __LINE__ )
 #else
-#define INFO_PRINT( fmt, arg... )  
+#define INFO_PRINT( fmt, arg... )
 #define DEBUG_PRINT( fmt, arg... )
 #define TRACE() DEBUG_PRINT()
 #endif /* DLOG */
@@ -68,4 +68,3 @@ extern int smt113J_tuner_SpiThreadStart ( void );
 
 
 #endif /* _TUNER_DRV_H */
-

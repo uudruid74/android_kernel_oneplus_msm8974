@@ -93,14 +93,14 @@ struct fid {
 			u32 parent_ino;
 			u32 parent_gen;
 		} i32;
- 		struct {
- 			u32 block;
- 			u16 partref;
- 			u16 parent_partref;
- 			u32 generation;
- 			u32 parent_block;
- 			u32 parent_generation;
- 		} udf;
+		struct {
+			u32 block;
+			u16 partref;
+			u16 parent_partref;
+			u32 generation;
+			u32 parent_block;
+			u32 parent_generation;
+		} udf;
 		__u32 raw[0];
 	};
 };

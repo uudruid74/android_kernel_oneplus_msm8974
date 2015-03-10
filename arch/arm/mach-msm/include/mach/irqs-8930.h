@@ -282,4 +282,3 @@
 #define INT_WCNSS_A11_SMSM	RIVA_APPS_WLAN_SMSM_IRQ
 
 #endif
-

@@ -57,7 +57,7 @@ static inline int udplite_checksum_init(struct sk_buff *skb, struct udphdr *uh)
 		return 1;
 
 	} else if (cscov < skb->len) {
-        	UDP_SKB_CB(skb)->partial_cov = 1;
+		UDP_SKB_CB(skb)->partial_cov = 1;
 		UDP_SKB_CB(skb)->cscov = cscov;
 		if (skb->ip_summed == CHECKSUM_COMPLETE)
 			skb->ip_summed = CHECKSUM_NONE;

@@ -743,7 +743,7 @@ static int hscd_resume(struct i2c_client *client)
 		atomic_set(&flgEna, 0);
 		hscd_activate(1, 1 , atomic_read(&delay));
 	}
-#if !(defined(CONFIG_MACH_CRATERQ_CHN_OPEN)||defined(CONFIG_MACH_MS01_CHN_CTC)||defined(CONFIG_MACH_BAFFIN2_CHN_CMCC) || defined(CONFIG_SEC_GNOTE_PROJECT) ) 
+#if !(defined(CONFIG_MACH_CRATERQ_CHN_OPEN)||defined(CONFIG_MACH_MS01_CHN_CTC)||defined(CONFIG_MACH_BAFFIN2_CHN_CMCC) || defined(CONFIG_SEC_GNOTE_PROJECT) )
 	hscd_power_on(1);
 #endif
 	return 0;

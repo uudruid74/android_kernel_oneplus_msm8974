@@ -708,7 +708,7 @@ static s32 fc8300_tuner_set_pll(HANDLE handle, DEVICEID devid, u32 freq,
 	k_val = k_val | 1;
 
 	data_0x57 = ((n_val >> 3) & 0x20);
-	//data_0x57 += (r_val == 1) ? 0 : 0x10; //CID 
+	//data_0x57 += (r_val == 1) ? 0 : 0x10; //CID
 	data_0x57 += (k_val >> 16);
 
 	data_0x51 = 0x00;

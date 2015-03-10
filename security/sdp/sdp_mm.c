@@ -112,7 +112,7 @@ static int32_t sdp_mm_set_proc_sensitive(void __user *argp)
 		sdp_mm.proc_id[sdp_mm.sensitive_proc_list_len] = proc_id;
 		sdp_mm.sensitive_proc_list_len++;
 	}
-	
+
 	return sdp_mm_set_process_sensitive(proc_id);
 }
 

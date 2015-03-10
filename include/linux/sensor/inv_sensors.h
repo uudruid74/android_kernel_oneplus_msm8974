@@ -39,4 +39,3 @@ struct invsens_platform_data_t {
 
 
 #endif //_INV_SENSORS_H_
-

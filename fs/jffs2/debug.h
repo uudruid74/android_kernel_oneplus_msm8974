@@ -166,7 +166,7 @@ do {						\
 #define dbg_xattr(fmt, ...)  JFFS2_DEBUG(fmt, ##__VA_ARGS__)
 #else
 #define dbg_xattr(fmt, ...)
-#endif 
+#endif
 
 /* "Sanity" checks */
 void
@@ -183,7 +183,7 @@ void
 __jffs2_dbg_fragtree_paranoia_check_nolock(struct jffs2_inode_info *f);
 void
 __jffs2_dbg_acct_paranoia_check(struct jffs2_sb_info *c,
-			   	struct jffs2_eraseblock *jeb);
+				struct jffs2_eraseblock *jeb);
 void
 __jffs2_dbg_acct_paranoia_check_nolock(struct jffs2_sb_info *c,
 				       struct jffs2_eraseblock *jeb);
@@ -202,7 +202,7 @@ void
 __jffs2_dbg_dump_block_lists_nolock(struct jffs2_sb_info *c);
 void
 __jffs2_dbg_dump_node_refs(struct jffs2_sb_info *c,
-		 	   struct jffs2_eraseblock *jeb);
+			   struct jffs2_eraseblock *jeb);
 void
 __jffs2_dbg_dump_node_refs_nolock(struct jffs2_sb_info *c,
 				  struct jffs2_eraseblock *jeb);

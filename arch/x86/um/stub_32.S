@@ -32,7 +32,7 @@ again:
 	pop	%ecx
 	pop	%edx
 	pop	%esi
- 	pop	%edi
+	pop	%edi
 	pop	%ebp
 
 	/* execute syscall */

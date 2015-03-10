@@ -44,4 +44,3 @@ enum msm_pm_sleep_mode msm_pm_idle_enter(struct cpuidle_device *dev,
 }
 
 void msm_pm_enable_retention(bool enable) {}
-

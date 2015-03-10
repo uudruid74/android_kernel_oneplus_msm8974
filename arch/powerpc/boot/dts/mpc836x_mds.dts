@@ -71,7 +71,7 @@
 		bcsr@1,0 {
 			#address-cells = <1>;
 			#size-cells = <1>;
- 			compatible = "fsl,mpc8360mds-bcsr";
+			compatible = "fsl,mpc8360mds-bcsr";
 			reg = <1 0 0x8000>;
 			ranges = <0 1 0 0x8000>;
 
@@ -301,8 +301,8 @@
 		fsl,qe-num-snums = <28>;
 
 		muram@10000 {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
+			#address-cells = <1>;
+			#size-cells = <1>;
 			compatible = "fsl,qe-muram", "fsl,cpm-muram";
 			ranges = <0x0 0x00010000 0x0000c000>;
 

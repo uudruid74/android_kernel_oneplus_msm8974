@@ -54,7 +54,7 @@ static ssize_t scanlog_read(struct file *file, char __user *buf,
 	unsigned int wait_time;
 
         dp = PDE(inode);
- 	data = (unsigned int *)dp->data;
+	data = (unsigned int *)dp->data;
 
 	if (count > RTAS_DATA_BUF_SIZE)
 		count = RTAS_DATA_BUF_SIZE;

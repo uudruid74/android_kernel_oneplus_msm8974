@@ -18,4 +18,3 @@ config VME_PIO2
 
 	  To compile this driver as a module, choose M here. The module will
 	  be called vme_pio2. If unsure, say N.
-

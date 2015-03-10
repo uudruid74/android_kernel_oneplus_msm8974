@@ -659,7 +659,7 @@ static long sec_nfc_ioctl(struct file *file, unsigned int cmd,
 	}
 
                 firm = gpio_get_value(info->pdata->firm);
-                pr_info("%s: [NFC] Firm pin = %d\n", __func__, firm); 
+                pr_info("%s: [NFC] Firm pin = %d\n", __func__, firm);
 
 		if(mode == SEC_NFC_ST_UART_ON)
 			gpio_set_value(info->pdata->firm, STATE_FIRM_HIGH);
@@ -703,7 +703,7 @@ uint8_t check_custom_kernel(void)
 	scm_call(SEC_NFC_SVC_FUSE, SEC_NFC_IS_SW_FUSE_BLOWN_ID, cmd_buf,
 						cmd_len, &resp_buf, resp_len);
 	pr_info(" %s END resp_buf = %d\n",__func__, resp_buf);
-	
+
 	return resp_buf;
 }
 // End of Security

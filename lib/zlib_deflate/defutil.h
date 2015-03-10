@@ -1,11 +1,11 @@
 
 
 
-#define Assert(err, str) 
-#define Trace(dummy) 
-#define Tracev(dummy) 
-#define Tracecv(err, dummy) 
-#define Tracevv(dummy) 
+#define Assert(err, str)
+#define Trace(dummy)
+#define Tracev(dummy)
+#define Tracecv(err, dummy)
+#define Tracevv(dummy)
 
 
 
@@ -340,4 +340,3 @@ static inline void bi_windup(deflate_state *s)
     s->bits_sent = (s->bits_sent+7) & ~7;
 #endif
 }
-

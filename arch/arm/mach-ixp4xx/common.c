@@ -6,10 +6,10 @@
  * Maintainer: Deepak Saxena <dsaxena@plexity.net>
  *
  * Copyright 2002 (c) Intel Corporation
- * Copyright 2003-2004 (c) MontaVista, Software, Inc. 
- * 
- * This file is licensed under  the terms of the GNU General Public 
- * License version 2. This program is licensed "as is" without any 
+ * Copyright 2003-2004 (c) MontaVista, Software, Inc.
+ *
+ * This file is licensed under  the terms of the GNU General Public
+ * License version 2. This program is licensed "as is" without any
  * warranty of any kind, whether express or implied.
  */
 
@@ -80,7 +80,7 @@ static struct map_desc ixp4xx_io_desc[] __initdata = {
 
 void __init ixp4xx_map_io(void)
 {
-  	iotable_init(ixp4xx_io_desc, ARRAY_SIZE(ixp4xx_io_desc));
+	iotable_init(ixp4xx_io_desc, ARRAY_SIZE(ixp4xx_io_desc));
 }
 
 
@@ -182,7 +182,7 @@ static int ixp4xx_set_irq_type(struct irq_data *d, unsigned int type)
 
 	/* Clear the style for the appropriate pin */
 	*int_reg &= ~(IXP4XX_GPIO_STYLE_CLEAR <<
-	    		(line * IXP4XX_GPIO_STYLE_SIZE));
+			(line * IXP4XX_GPIO_STYLE_SIZE));
 
 	*IXP4XX_GPIO_GPISR = (1 << line);
 
@@ -248,7 +248,7 @@ void __init ixp4xx_init_irq(void)
 	*IXP4XX_ICLR = 0x0;
 
 	/* Disable all interrupt */
-	*IXP4XX_ICMR = 0x0; 
+	*IXP4XX_ICMR = 0x0;
 
 	if (cpu_is_ixp46x() || cpu_is_ixp43x()) {
 		/* Route upper 32 sources to IRQ instead of FIQ */
@@ -269,7 +269,7 @@ void __init ixp4xx_init_irq(void)
 
 /*************************************************************************
  * IXP4xx timer tick
- * We use OS timer1 on the CPU for the timer tick and the timestamp 
+ * We use OS timer1 on the CPU for the timer tick and the timestamp
  * counter as a source of real clock ticks to account for missed jiffies.
  *************************************************************************/
 
@@ -500,7 +500,7 @@ static void ixp4xx_set_mode(enum clock_event_mode mode,
 	switch (mode) {
 	case CLOCK_EVT_MODE_PERIODIC:
 		osrt = LATCH & ~IXP4XX_OST_RELOAD_MASK;
- 		opts = IXP4XX_OST_ENABLE;
+		opts = IXP4XX_OST_ENABLE;
 		break;
 	case CLOCK_EVT_MODE_ONESHOT:
 		/* period set by 'set next_event' */

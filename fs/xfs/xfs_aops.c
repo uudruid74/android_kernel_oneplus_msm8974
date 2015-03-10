@@ -674,7 +674,7 @@ xfs_convert_page(
 	unsigned int		type;
 	int			len, page_dirty;
 	int			count = 0, done = 0, uptodate = 1;
- 	xfs_off_t		offset = page_offset(page);
+	xfs_off_t		offset = page_offset(page);
 
 	if (page->index != tindex)
 		goto fail;

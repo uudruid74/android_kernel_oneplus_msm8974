@@ -175,4 +175,3 @@ extern unsigned short int	ntohs(unsigned short int);
 extern unsigned short int	htons(unsigned short int);
 
 #endif /* _LINUX_BYTEORDER_GENERIC_H */
-

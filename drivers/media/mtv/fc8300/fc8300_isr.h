@@ -41,4 +41,3 @@ extern void fc8300_isr(HANDLE handle);
 }
 #endif
 #endif /* __FC8300_ISR__ */
-

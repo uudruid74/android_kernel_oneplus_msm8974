@@ -41,4 +41,3 @@
 		qcom,earjack-sendend-gpio = <&msmgpio 35 0>;
 	};
 };
-

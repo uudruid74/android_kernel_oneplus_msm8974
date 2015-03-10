@@ -44,25 +44,25 @@ MODULE_ALIAS("ipt_connmark");
 MODULE_ALIAS("ip6t_connmark");
 
 // ------------- START of KNOX_VPN ------------------//
-   
-/* KNOX framework uses mark value 100 to 500 
+
+/* KNOX framework uses mark value 100 to 500
  * when the special meta data is added
  * This will indicate to the kernel code that
  * it needs to append meta data to the packets
  */
-    
+
 #define META_MARK_BASE_LOWER 100
 #define META_UID_PID_MARK_BASE_LOWER 150
 #define META_UID_PID_MARK_BASE_UPPER 199
 #define META_MARK_BASE_UPPER 500
-    
+
 /* Structure to hold metadata values
- * intended for VPN clients to make 
+ * intended for VPN clients to make
  * more intelligent decisions
- * when the KNOX meta mark 
+ * when the KNOX meta mark
  * feature is enabled
  */
-    
+
 struct knox_meta_param {
     uid_t uid;
     pid_t pid;
@@ -72,14 +72,14 @@ union ip_address {
     u8 a[4];
     __be32 addr;
 };
-    
+
 static unsigned int knoxvpn_uidpid(struct sk_buff *skb, u_int32_t newmark){
     int szMetaData;
     struct skb_shared_info * temp = NULL;
 
     szMetaData = sizeof(struct knox_meta_param);
     temp = skb_shinfo(skb);
-    
+
     if (skb == NULL || newmark < META_UID_PID_MARK_BASE_LOWER || META_UID_PID_MARK_BASE_UPPER < newmark || skb->sk == NULL || temp == NULL ){
         return 0;
     }
@@ -121,8 +121,8 @@ connmark_tg(struct sk_buff *skb, const struct xt_action_param *par)
 			ct->mark = newmark;
 			nf_conntrack_event_cache(IPCT_MARK, ct);
 		}
-        
-// ------------- START of KNOX_VPN -----------------//        
+
+// ------------- START of KNOX_VPN -----------------//
         knoxvpn_uidpid(skb,newmark);
 // ------------- END of KNOX_VPN -------------------//
 
@@ -132,7 +132,7 @@ connmark_tg(struct sk_buff *skb, const struct xt_action_param *par)
 		          (ct->mark & info->ctmask);
 		skb->mark = newmark;
 
-// ------------- START of KNOX_VPN -----------------//		
+// ------------- START of KNOX_VPN -----------------//
         knoxvpn_uidpid(skb,newmark);
 // ------------- END of KNOX_VPN -------------------//
 

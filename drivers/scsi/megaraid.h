@@ -96,7 +96,7 @@
 #define MIN_SGLIST		26	/* guaranteed to support these many */
 #define MAX_COMMANDS		126
 #define CMDID_INT_CMDS		MAX_COMMANDS+1	/* make sure CMDID_INT_CMDS
-					 	is less than max commands
+						is less than max commands
 						supported by any f/w */
 
 #define MAX_CDB_LEN	     	10

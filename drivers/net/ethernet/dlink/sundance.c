@@ -1196,7 +1196,7 @@ static irqreturn_t intr_handler(int irq, void *dev_instance)
 				if (netif_msg_tx_done(np))
 					printk
 					    ("%s: Transmit status is %2.2x.\n",
-				     	dev->name, tx_status);
+					dev->name, tx_status);
 				if (tx_status & 0x1e) {
 					if (netif_msg_tx_err(np))
 						printk("%s: Transmit error status %4.4x.\n",
@@ -1781,20 +1781,20 @@ static int netdev_close(struct net_device *dev)
 	/* Stop the chip's Tx and Rx processes. */
 	iowrite16(TxDisable | RxDisable | StatsDisable, ioaddr + MACCtrl1);
 
-    	for (i = 2000; i > 0; i--) {
- 		if ((ioread32(ioaddr + DMACtrl) & 0xc000) == 0)
+	for (i = 2000; i > 0; i--) {
+		if ((ioread32(ioaddr + DMACtrl) & 0xc000) == 0)
 			break;
 		mdelay(1);
-    	}
+	}
 
-    	iowrite16(GlobalReset | DMAReset | FIFOReset | NetworkReset,
+	iowrite16(GlobalReset | DMAReset | FIFOReset | NetworkReset,
 			ioaddr + ASIC_HI_WORD(ASICCtrl));
 
-    	for (i = 2000; i > 0; i--) {
+	for (i = 2000; i > 0; i--) {
 		if ((ioread16(ioaddr + ASIC_HI_WORD(ASICCtrl)) & ResetBusy) == 0)
 			break;
 		mdelay(1);
-    	}
+	}
 
 #ifdef __i386__
 	if (netif_msg_hw(np)) {
@@ -1935,5 +1935,3 @@ static void __exit sundance_exit(void)
 
 module_init(sundance_init);
 module_exit(sundance_exit);
-
-

@@ -773,7 +773,7 @@ static unsigned char fts_event_handler_type_b(struct fts_ts_info *info,
 	int x = 0, y = 0, z = 0;
 	int bw = 0, bh = 0, palm = 0;
 #if defined(CONFIG_SEC_S_PROJECT)
- 	int sumsize = 0;	
+	int sumsize = 0;
 #else
 	int angle = 0;
 #endif
@@ -892,7 +892,7 @@ static unsigned char fts_event_handler_type_b(struct fts_ts_info *info,
 
 					if (info->report_dummy_key){
 						input_report_key(info->input_dev, KEY_DUMMY_MENU, key_state != 0 ? KEY_PRESS : KEY_RELEASE);
-						
+
 						printk("\n Inside DUMMY MENU KEY report \n");
 						tsp_debug_info(true, &info->client->dev, "[TSP_KEY] back %s\n" , key_state != 0 ? "P" : "R");
 						}
@@ -1072,7 +1072,7 @@ static unsigned char fts_event_handler_type_b(struct fts_ts_info *info,
 
 #if !defined(CONFIG_SAMSUNG_PRODUCT_SHIP)
 		if (EventID == EVENTID_ENTER_POINTER)
-#if defined(CONFIG_SEC_S_PROJECT)			
+#if defined(CONFIG_SEC_S_PROJECT)
 			tsp_debug_info(true, &info->client->dev,
 			       "[P] tID:%d x:%d y:%d w:%d h:%d z:%d s:%d p:%d tc:%d tm:%d\n",
 			       TouchID, x, y, bw, bh, z, sumsize, palm, info->touch_count, info->touch_mode);
@@ -1283,10 +1283,10 @@ int fts_vdd_on(bool onoff)
 			pr_err("[TSP]%s: i2c_vddo_vreg is null  vdd en:%d\n",	__func__, onoff);
 		}
 	#endif
-	
-	if(gpio_ldo_en_p > 0){	
+
+	if(gpio_ldo_en_p > 0){
 	gpio_direction_output(gpio_ldo_en_p, onoff);
-	}	
+	}
 	msleep(50);
 	return 1;
 }
@@ -1299,7 +1299,7 @@ void fts_init_gpio(struct fts_ts_info *info, struct fts_ts_platform_data *pdata)
 	if(pdata->tsp_id > 0)
 		gpio_tlmm_config(GPIO_CFG(pdata->tsp_id, 0, GPIO_CFG_INPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA), 1);
 	gpio_tlmm_config(GPIO_CFG(pdata->scl_gpio, 3, GPIO_CFG_INPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA), 1);
-	gpio_tlmm_config(GPIO_CFG(pdata->sda_gpio, 3, GPIO_CFG_INPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA), 1);	
+	gpio_tlmm_config(GPIO_CFG(pdata->sda_gpio, 3, GPIO_CFG_INPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA), 1);
 	gpio_tlmm_config(GPIO_CFG(pdata->gpio_int, 0, GPIO_CFG_INPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA), 1);
 #else
 	ret = gpio_request(pdata->gpio_int, "fts_tsp_irq");
@@ -1310,7 +1310,7 @@ void fts_init_gpio(struct fts_ts_info *info, struct fts_ts_platform_data *pdata)
 	gpio_tlmm_config(GPIO_CFG(pdata->gpio_int, 0, GPIO_CFG_INPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA), 1);
 #endif
 
-	if(pdata->gpio_ldo_en > 0){	
+	if(pdata->gpio_ldo_en > 0){
 	ret = gpio_request(pdata->gpio_ldo_en, "fts_gpio_ldo_en");
 	if(ret) {
 		tsp_debug_err(true, &info->client->dev, "[TSP]%s: unable to request fts_gpio_ldo_en [%d]\n",	__func__, pdata->gpio_ldo_en);
@@ -1326,7 +1326,7 @@ void fts_init_gpio(struct fts_ts_info *info, struct fts_ts_platform_data *pdata)
 		return;
 	}
 	gpio_tlmm_config(GPIO_CFG(pdata->tsp_vendor1,0,GPIO_CFG_INPUT,GPIO_CFG_NO_PULL, GPIO_CFG_2MA), GPIO_CFG_ENABLE);
-	
+
 	ret = gpio_request(pdata->tsp_vendor2, "tsp_vendor2");
 		if(ret) {
 			tsp_debug_err(true, &info->client->dev, "[TSP]%s: unable to request tsp_vendor2 [%d]\n",	__func__, pdata->tsp_vendor2);
@@ -1441,7 +1441,7 @@ static int fts_probe(struct i2c_client *client, const struct i2c_device_id *idp)
 	}
 
 #ifdef CONFIG_OF
-	
+
 	if (client->dev.of_node) {
 		pdata = devm_kzalloc(&client->dev,
 			sizeof(struct fts_ts_platform_data), GFP_KERNEL);
@@ -1449,17 +1449,17 @@ static int fts_probe(struct i2c_client *client, const struct i2c_device_id *idp)
 			tsp_debug_err(true, &client->dev, "Failed to allocate memory\n");
 			return -ENOMEM;
 		}
-	
+
 		ret = fts_parse_dt(&client->dev, pdata);
-		
+
 		if (ret) {
-			tsp_debug_err(true, &client->dev, "Error parsing dt %d\n", ret);				
+			tsp_debug_err(true, &client->dev, "Error parsing dt %d\n", ret);
 			return ret;
 		}
-		
+
 		fts_init_gpio(info, pdata);
 		gpio_ldo_en_p = pdata->gpio_ldo_en;
-		
+
 	}else{
 		tsp_debug_err(true, &client->dev, "%s, of-node error %d\n",__func__,__LINE__);
 		return -ENOMEM;
@@ -1756,11 +1756,11 @@ static int fts_probe(struct i2c_client *client, const struct i2c_device_id *idp)
 
 	touchkey = device_create(sec_class,
 			NULL, 0, info, "sec_touchkey");
-	
+
 		if (IS_ERR(touchkey))
 			dev_err(&client->dev,
 			"Failed to create device for the touchkey sysfs\n");
-		
+
 	dev_set_drvdata(touchkey, info);
 
 	ret = sysfs_create_group(&touchkey->kobj,
@@ -2009,7 +2009,7 @@ static void fts_reinit_fac(struct fts_ts_info *info)
 
 	if (info->slow_report_rate)
 		fts_command(info, FTS_CMD_SLOW_SCAN);
-#else	
+#else
 	if (info->slow_report_rate)
 		fts_command(info, SENSEON_SLOW);
 	else
@@ -2221,10 +2221,10 @@ static int fts_start_device(struct fts_ts_info *info)
 
 	info->touch_stopped = false;
 	info->reinit_done = false;
-	
+
 	fts_reinit(info);
 	info->reinit_done = true;
-	
+
 	enable_irq(info->irq);
 
  out:
@@ -2317,7 +2317,7 @@ static struct i2c_driver fts_i2c_driver = {
 		   .name = FTS_TS_DRV_NAME,
 		   .owner = THIS_MODULE,
 #ifdef CONFIG_OF
-		   .of_match_table = fts_match_table,	   
+		   .of_match_table = fts_match_table,
 #endif
 #ifdef CONFIG_PM
 		   .pm = &fts_dev_pm_ops,

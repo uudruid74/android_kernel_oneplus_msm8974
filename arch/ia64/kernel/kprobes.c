@@ -113,14 +113,14 @@ static void __kprobes update_kprobe_inst_flag(uint template, uint  slot,
 	 */
 	if ((!major_opcode) && (!((kprobe_inst >> 27) & 0x1FF)) ) {
 		/* is a break instruction */
-	 	p->ainsn.inst_flag |= INST_FLAG_BREAK_INST;
+		p->ainsn.inst_flag |= INST_FLAG_BREAK_INST;
 		return;
 	}
 
 	if (bundle_encoding[template][slot] == B) {
 		switch (major_opcode) {
 		  case INDIRECT_CALL_OPCODE:
-	 		p->ainsn.inst_flag |= INST_FLAG_FIX_BRANCH_REG;
+			p->ainsn.inst_flag |= INST_FLAG_FIX_BRANCH_REG;
 			p->ainsn.target_br_reg = ((kprobe_inst >> 6) & 0x7);
 			break;
 		  case IP_RELATIVE_PREDICT_OPCODE:
@@ -334,7 +334,7 @@ static void __kprobes prepare_break_inst(uint template, uint  slot,
 }
 
 static void __kprobes get_kprobe_inst(bundle_t *bundle, uint slot,
-	       	unsigned long *kprobe_inst, uint *major_opcode)
+		unsigned long *kprobe_inst, uint *major_opcode)
 {
 	unsigned long kprobe_inst_p0, kprobe_inst_p1;
 	unsigned int template;
@@ -803,7 +803,7 @@ static int __kprobes pre_kprobes_handler(struct die_args *args)
 		p = get_kprobe(addr);
 		if (p) {
 			if ((kcb->kprobe_status == KPROBE_HIT_SS) &&
-	 		     (p->ainsn.inst_flag == INST_FLAG_BREAK_INST)) {
+			     (p->ainsn.inst_flag == INST_FLAG_BREAK_INST)) {
 				ia64_psr(regs)->ss = 0;
 				goto no_kprobe;
 			}

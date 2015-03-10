@@ -92,7 +92,7 @@ static void start_int_poll_timer(struct controller *ctrl, int sec)
 {
 	/* Clamp to sane value */
 	if ((sec <= 0) || (sec > 60))
-        	sec = 2;
+		sec = 2;
 
 	ctrl->poll_timer.function = &int_poll_timeout;
 	ctrl->poll_timer.data = (unsigned long)ctrl;

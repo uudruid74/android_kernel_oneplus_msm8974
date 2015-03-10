@@ -60,4 +60,3 @@ int bc_send(struct rpc_rqst *req)
 	dprintk("RPC:       bc_send ret= %d\n", ret);
 	return ret;
 }
-

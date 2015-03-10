@@ -165,7 +165,7 @@ static int g5_scom_switch_freq(int speed_mode)
 	/* Clear PCR high */
 	scom970_write(SCOM_PCR, 0);
 	/* Clear PCR low */
-       	scom970_write(SCOM_PCR, PCR_HILO_SELECT | 0);
+	scom970_write(SCOM_PCR, PCR_HILO_SELECT | 0);
 	/* Set PCR low */
 	scom970_write(SCOM_PCR, PCR_HILO_SELECT |
 		      g5_pmode_data[speed_mode]);

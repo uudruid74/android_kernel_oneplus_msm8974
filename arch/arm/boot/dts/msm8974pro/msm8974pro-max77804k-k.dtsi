@@ -18,7 +18,7 @@
 		haptic,period = <44642>;
 		haptic,pwm_id = <1>;
 	};
-	
+
 	i2c@13 {
 		cell-index = <13>;
 		compatible = "i2c-gpio";
@@ -28,7 +28,7 @@
 		i2c-gpio,delay-us = <2>;
 		#address-cells = <1>;
 		#size-cells = <0>;
-	
+
 		max77804k@66 {
 			compatible = "max77804k,i2c";
 			reg = <0x66>;

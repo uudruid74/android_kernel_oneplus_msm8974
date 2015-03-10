@@ -1946,5 +1946,3 @@ module_exit(mpq_dmx_tspp_plugin_exit);
 
 MODULE_DESCRIPTION("Qualcomm demux TSPP version 1 HW Plugin");
 MODULE_LICENSE("GPL v2");
-
-

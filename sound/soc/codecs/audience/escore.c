@@ -417,4 +417,3 @@ irqreturn_t escore_irq_work(int irq, void *data)
 
 	return IRQ_HANDLED;
 }
-

@@ -237,4 +237,3 @@ hostsleep
 		cat hostsleep: reads the current hostsleep state
 		echo "1" > hostsleep : enable host sleep.
 		echo "0" > hostsleep : disable host sleep
-

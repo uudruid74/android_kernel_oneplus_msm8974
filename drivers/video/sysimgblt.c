@@ -156,7 +156,7 @@ static void slow_imageblit(const struct fb_image *image, struct fb_info *p,
 		}
 
 		/* write trailing bits */
- 		if (shift) {
+		if (shift) {
 			u32 end_mask = FB_SHIFT_HIGH(p, ~(u32)0, shift);
 
 			*dst &= end_mask;
@@ -285,4 +285,3 @@ EXPORT_SYMBOL(sys_imageblit);
 MODULE_AUTHOR("Antonino Daplas <adaplas@pol.net>");
 MODULE_DESCRIPTION("1-bit/8-bit to 1-32 bit color expansion (sys-to-sys)");
 MODULE_LICENSE("GPL");
-

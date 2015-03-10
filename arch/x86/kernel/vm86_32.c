@@ -846,4 +846,3 @@ static int do_vm86_irq_handling(int subfunction, int irqnumber)
 	}
 	return -EINVAL;
 }
-

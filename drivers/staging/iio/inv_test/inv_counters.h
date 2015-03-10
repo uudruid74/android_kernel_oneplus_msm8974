@@ -69,4 +69,3 @@ void inv_iio_counters_accelirq(void);
 #endif /* CONFIG_INV_TESTING */
 
 #endif /* _INV_COUNTERS_H_ */
-

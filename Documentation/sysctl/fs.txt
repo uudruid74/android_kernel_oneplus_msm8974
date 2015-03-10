@@ -59,7 +59,7 @@ struct {
         int want_pages;        /* pages requested by system */
         int dummy[2];
 } dentry_stat = {0, 0, 45, 0,};
--------------------------------------------------------------- 
+--------------------------------------------------------------
 
 Dentries are dynamically allocated and deallocated, and
 nr_dentry seems to be 0 all the time. Hence it's safe to
@@ -242,4 +242,3 @@ Each "watch" costs roughly 90 bytes on a 32bit kernel, and roughly 160 bytes
 on a 64bit one.
 The current default value for  max_user_watches  is the 1/32 of the available
 low memory, divided for the "watch" cost in bytes.
-

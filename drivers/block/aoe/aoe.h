@@ -156,7 +156,7 @@ struct aoedev {
 	struct work_struct work;/* disk create work struct */
 	struct gendisk *gd;
 	struct request_queue *blkq;
-	struct hd_geometry geo; 
+	struct hd_geometry geo;
 	sector_t ssize;
 	struct timer_list timer;
 	spinlock_t lock;
@@ -200,4 +200,3 @@ void aoenet_exit(void);
 void aoenet_xmit(struct sk_buff_head *);
 int is_aoe_netif(struct net_device *ifp);
 int set_aoe_iflist(const char __user *str, size_t size);
-

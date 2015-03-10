@@ -61,7 +61,7 @@ struct sannotation {
 static inline struct sym_hist *annotation__histogram(struct annotation *notes, int idx)
 {
 	return (((void *)&notes->src->histograms) +
-	 	(notes->src->sizeof_sym_hist * idx));
+		(notes->src->sizeof_sym_hist * idx));
 }
 
 static inline struct annotation *symbol__annotation(struct symbol *sym)

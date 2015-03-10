@@ -914,4 +914,3 @@ MACHINE_START(ARCOM_ZEUS, "Arcom/Eurotech ZEUS")
 	.init_machine	= zeus_init,
 	.restart	= pxa_restart,
 MACHINE_END
-

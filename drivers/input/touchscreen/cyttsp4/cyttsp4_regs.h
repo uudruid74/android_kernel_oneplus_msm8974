@@ -886,7 +886,7 @@ struct cyttsp4_samsung_sysfs_data {
 	struct device *dev_factory;
 	struct device *dev_screen;
 	struct device *dev_key;
-	
+
 	struct cyttsp4_core_commands* corecmd;
 	struct cyttsp4_sysinfo *si;
 	struct list_head factory_cmd_list_head;

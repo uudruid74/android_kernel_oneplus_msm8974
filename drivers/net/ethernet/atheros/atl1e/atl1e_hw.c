@@ -648,4 +648,3 @@ int atl1e_restart_autoneg(struct atl1e_hw *hw)
 			BMCR_RESET | BMCR_ANENABLE | BMCR_ANRESTART);
 	return err;
 }
-

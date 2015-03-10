@@ -77,4 +77,3 @@ void inv_mpu_remove_trigger(struct iio_dev *indio_dev)
 	iio_trigger_unregister(st->trig);
 	iio_free_trigger(st->trig);
 }
-

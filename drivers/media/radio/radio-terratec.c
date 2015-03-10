@@ -167,4 +167,3 @@ static void __exit terratec_exit(void)
 
 module_init(terratec_init);
 module_exit(terratec_exit);
-

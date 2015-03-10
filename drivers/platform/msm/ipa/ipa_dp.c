@@ -1363,4 +1363,3 @@ void ipa_cleanup_rx(void)
 		kmem_cache_free(ipa_ctx->rx_pkt_wrapper_cache, rx_pkt);
 	}
 }
-

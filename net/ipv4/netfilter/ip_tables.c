@@ -429,9 +429,9 @@ ipt_do_table(struct sk_buff *skb,
 	pr_debug("Exiting %s; resetting sp from %u to %u\n",
 		 __func__, *stackptr, origptr);
 	*stackptr = origptr;
- 	xt_write_recseq_end(addend);
+	xt_write_recseq_end(addend);
 	put_reader(&(table->private_lock));
- 	local_bh_enable();
+	local_bh_enable();
 
 #ifdef DEBUG_ALLOW_ALL
 	return NF_ACCEPT;
@@ -483,7 +483,7 @@ mark_source_chains(const struct xt_table_info *newinfo,
 				unsigned int oldpos, size;
 
 				if ((strcmp(t->target.u.user.name,
-			    		    XT_STANDARD_TARGET) == 0) &&
+					    XT_STANDARD_TARGET) == 0) &&
 				    t->verdict < -NF_MAX_VERDICT - 1) {
 					duprintf("mark_source_chains: bad "
 						"negative verdict (%i)\n",

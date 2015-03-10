@@ -79,4 +79,3 @@ void vidc_hfi_deinitialize(enum msm_vidc_hfi_type hfi_type,
 	}
 	kfree(hdev);
 }
-

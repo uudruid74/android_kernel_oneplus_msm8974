@@ -54,7 +54,7 @@
 #endif
 
 #define MAX_LUT_SIZE	256
-#define MDNIE_COLOR_BLINDE_CMD 18 
+#define MDNIE_COLOR_BLINDE_CMD 18
 
 unsigned int mDNIe_data[MAX_LUT_SIZE * 3];
 
@@ -379,7 +379,7 @@ fail_rest:
 	/*close(fb);*/
 }
 #endif
-#if 0 
+#if 0
 void sharpness_tune(int num)
 {
 	char *vg_base;
@@ -772,7 +772,7 @@ static ssize_t outdoor_store(struct device *dev,
 static DEVICE_ATTR(outdoor, 0664,
 		   outdoor_show,
 		   outdoor_store);
-#endif		   
+#endif
 //////////////////aaaaa//////////////////////
 static ssize_t negative_show(struct device *dev,
 					      struct device_attribute *attr,

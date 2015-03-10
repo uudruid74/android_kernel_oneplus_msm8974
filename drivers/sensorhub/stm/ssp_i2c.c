@@ -368,7 +368,7 @@ int send_instruction_sync(struct ssp_data *data, u8 uInst,
 		break;
 	case GO_SLEEP:
 		command = MSG2SSP_AP_STATUS_SLEEP;
-		data->uLastAPState = MSG2SSP_AP_STATUS_SLEEP;	
+		data->uLastAPState = MSG2SSP_AP_STATUS_SLEEP;
 		break;
 	case REMOVE_LIBRARY:
 		command = MSG2SSP_INST_LIBRARY_REMOVE;
@@ -796,4 +796,3 @@ int get_time(struct ssp_data *data) {
 
 	return iRet;
 }
-

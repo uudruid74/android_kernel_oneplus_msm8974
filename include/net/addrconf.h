@@ -25,7 +25,7 @@ struct prefix_info {
 
 #if defined(__BIG_ENDIAN_BITFIELD)
 	__u8			onlink : 1,
-			 	autoconf : 1,
+				autoconf : 1,
 				reserved : 6;
 #elif defined(__LITTLE_ENDIAN_BITFIELD)
 	__u8			reserved : 6,

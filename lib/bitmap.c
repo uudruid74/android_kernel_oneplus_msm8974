@@ -739,7 +739,7 @@ static int bitmap_pos_to_ord(const unsigned long *buf, int pos, int bits)
 	ord = 0;
 	while (i < pos) {
 		i = find_next_bit(buf, bits, i + 1);
-	     	ord++;
+		ord++;
 	}
 	BUG_ON(i != pos);
 
@@ -774,7 +774,7 @@ int bitmap_ord_to_pos(const unsigned long *buf, int ord, int bits)
 		for (i = find_first_bit(buf, bits);
 		     i < bits && ord > 0;
 		     i = find_next_bit(buf, bits, i + 1))
-	     		ord--;
+			ord--;
 		if (i < bits && ord == 0)
 			pos = i;
 	}
@@ -826,7 +826,7 @@ void bitmap_remap(unsigned long *dst, const unsigned long *src,
 
 	w = bitmap_weight(new, bits);
 	for_each_set_bit(oldbit, src, bits) {
-	     	int n = bitmap_pos_to_ord(old, oldbit, bits);
+		int n = bitmap_pos_to_ord(old, oldbit, bits);
 
 		if (n < 0 || w == 0)
 			set_bit(oldbit, dst);	/* identity map */

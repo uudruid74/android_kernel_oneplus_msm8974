@@ -1074,7 +1074,7 @@ static void gamma_init(struct SMART_DIM *pSmart, char *str, int size)
 					aid_bl_level = translate_table_108_to102[1];
 				else
 					aid_bl_level = translate_table_108_to102[0];
-			}else{		
+			}else{
 			   /* 100CD ~ 20CD */
 		           aid_bl_level = AOR_ADJUST_CD;
 		        }
@@ -1540,7 +1540,7 @@ int smart_dimming_init(struct SMART_DIM *psmart)
 #endif
 	gamma_cell_determine(0x60);
 	set_max_lux_table();
-	
+
 	v255_adjustment(psmart);
 	v1_adjustment(psmart);
 	v171_adjustment(psmart);
@@ -1556,10 +1556,10 @@ int smart_dimming_init(struct SMART_DIM *psmart)
 
 	/*Generating lux_table*/
 	for (lux_loop = 0; lux_loop < psmart->lux_table_max; lux_loop++) {
-		
+
 		/* To set brightness value */
 		psmart->brightness_level = psmart->plux_table[lux_loop];
-		
+
 		/* To make lux table index*/
 		psmart->gen_table[lux_loop].lux = psmart->plux_table[lux_loop];
 
@@ -1597,4 +1597,3 @@ int smart_dimming_init(struct SMART_DIM *psmart)
 
 	return 0;
 }
-

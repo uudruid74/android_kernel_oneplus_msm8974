@@ -403,7 +403,7 @@ struct modem_ctl {
 //temp disable bringup DKLee	unsigned gpio_cp_ctrl1;
 #endif
 
-	
+
 
 	int irq_phone_active;
 	int irq_cp_dump_int;

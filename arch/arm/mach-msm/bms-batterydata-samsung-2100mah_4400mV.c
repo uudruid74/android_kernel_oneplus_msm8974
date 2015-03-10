@@ -119,4 +119,3 @@ struct bms_battery_data samsung_2100mAH_4400mV_data = {
 	.rbatt_sf_lut			= &rbatt_sf,
 	.default_rbatt_mohm	= 166
 };
-

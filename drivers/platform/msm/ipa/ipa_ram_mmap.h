@@ -36,4 +36,3 @@
 #define IPA_RAM_V4_RT_SIZE_DDR 16384
 
 #endif /* _IPA_RAM_MMAP_H_ */
-

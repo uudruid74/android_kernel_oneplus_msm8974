@@ -18,4 +18,3 @@ config HP_SIMSCSI
 	depends on SCSI=y
 
 endmenu
-

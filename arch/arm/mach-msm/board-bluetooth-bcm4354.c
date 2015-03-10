@@ -228,7 +228,7 @@ static int bcm4354_bt_rfkill_set_power(void *data, bool blocked)
         pr_err("[BT] Bluetooth Power Off.\n");
 
         ret = gpio_direction_output(GPIO_BT_EN, 0);
-  	    if (ret)
+	    if (ret)
             pr_err("[BT] failed to set BT_EN.\n");
 
 		gpio_set_value(get_gpio_hwrev(BT_WAKE), 0);
@@ -351,7 +351,7 @@ static int __init bcm4354_bluetooth_init(void)
 		gpio_rev_init();
 		platform_device_register(&msm_bluesleep_device);
 #endif
-	
+
 		platform_add_devices(jf_bt_devs, ARRAY_SIZE(jf_bt_devs));
 
     return platform_driver_register(&bcm4354_bluetooth_platform_driver);

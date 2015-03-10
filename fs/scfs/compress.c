@@ -155,7 +155,7 @@ static int compr_init(struct scfs_compressor *compr)
 
 	scfs_compressors[compr->compr_type] = compr;
 	SCFS_PRINT("compr name %s(%d) got cc(%x)\n",
-		compr->capi_name, compr->compr_type, compr->cc); 
+		compr->capi_name, compr->compr_type, compr->cc);
 	return 0;
 }
 

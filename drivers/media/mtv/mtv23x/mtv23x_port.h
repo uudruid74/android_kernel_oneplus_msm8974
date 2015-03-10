@@ -75,7 +75,7 @@ typedef int			INT;
 typedef unsigned int		UINT;
 typedef long			LONG;
 typedef unsigned long		ULONG;
- 
+
 typedef volatile U8		VU8;
 typedef volatile U16		VU16;
 typedef volatile U32		VU32;
@@ -100,7 +100,7 @@ typedef volatile U32		VU32;
 
 #if defined(RTV_ISDBT_ENABLE)
 //	#define RTV_ISDBT_1SEG_LPMODE_ENABLE
-#endif 
+#endif
 
 /*============================================================================
 * Defines the Dual Diversity Enable
@@ -110,7 +110,7 @@ typedef volatile U32		VU32;
 #ifdef RTV_DUAL_DIVERISTY_ENABLE
 	extern U8 g_div_i2c_chip_id;
 	#define RTV_CHIP_ADDR_SLAVE 0x44
-	//	#defined RTV_DIVER_TWO_XTAL_USED //define for two X-TAL using both M,S 
+	//	#defined RTV_DIVER_TWO_XTAL_USED //define for two X-TAL using both M,S
 #endif
 
 /*============================================================================
@@ -130,7 +130,7 @@ typedef volatile U32		VU32;
 *===========================================================================*/
 #define RTV_SRC_CLK_FREQ_KHz			32000//32MHz
 //#define RTV_SRC_CLK_FREQ_KHz			19200//19.MHz
- 
+
 /*============================================================================
 * Defines the Host interface.
 *===========================================================================*/
@@ -153,7 +153,7 @@ typedef volatile U32		VU32;
 
 #ifdef RTV_DUAL_DIVERISTY_ENABLE
 	#if defined(RTV_IF_TSIF_1) || defined(RTV_IF_SPI) || defined(RTV_IF_SPI_SLAVE)
-		 #error "Diversity function is not supported for defined interface"  
+		 #error "Diversity function is not supported for defined interface"
 	#endif
 #endif
 
@@ -198,12 +198,12 @@ typedef volatile U32		VU32;
 
 		do {
 			end_jiffies = get_jiffies_64();
-			
+
 			diff_time = jiffies_to_msecs(end_jiffies - start_jiffies);
 			if (diff_time >= ms)
 				break;
 
-			mdelay(1);		
+			mdelay(1);
 		} while (--_1ms_cnt);
 	}
 
@@ -290,14 +290,14 @@ typedef volatile U32		VU32;
 	/*=================================================================
 	* Defines the TSIF speed.
 	*================================================================*/
-	//#define RTV_TSIF_SPEED_500_kbps  
-	//#define RTV_TSIF_SPEED_1_Mbps  
-	//#define RTV_TSIF_SPEED_2_Mbps 
+	//#define RTV_TSIF_SPEED_500_kbps
+	//#define RTV_TSIF_SPEED_1_Mbps
+	//#define RTV_TSIF_SPEED_2_Mbps
 	//#define RTV_TSIF_SPEED_4_Mbps
-	//#define RTV_TSIF_SPEED_7_Mbps 
-	//#define RTV_TSIF_SPEED_15_Mbps 
-	#define RTV_TSIF_SPEED_30_Mbps 
-	//#define RTV_TSIF_SPEED_60_Mbps 
+	//#define RTV_TSIF_SPEED_7_Mbps
+	//#define RTV_TSIF_SPEED_15_Mbps
+	#define RTV_TSIF_SPEED_30_Mbps
+	//#define RTV_TSIF_SPEED_60_Mbps
 
 	/*=================================================================
 	* Defines the TSP size. 188 or 204
@@ -312,7 +312,7 @@ typedef volatile U32		VU32;
 	void isdbt_i2c_write(U8 i2c_chip_addr, U8 reg, U8 val);
 	void isdbt_i2c_read_burst(U8 i2c_chip_addr, U8 reg, U8 *buf, int size);
 
-	#ifdef RTV_DUAL_DIVERISTY_ENABLE		
+	#ifdef RTV_DUAL_DIVERISTY_ENABLE
 		#define	RTV_REG_GET(reg)            		isdbt_i2c_read((U8)g_div_i2c_chip_id,(U8)reg)
 		#define	RTV_REG_SET(reg, val)       		isdbt_i2c_write((U8)g_div_i2c_chip_id,(U8)reg, (U8)val)
 		#define RTV_REG_BURST_GET(reg, buf, size)\
@@ -336,7 +336,7 @@ typedef volatile U32		VU32;
 
 #if defined(RTV_IF_EBI2)
 
-	#define RTV_EBI2_BUS_WITDH_16 // 
+	#define RTV_EBI2_BUS_WITDH_16 //
 	//#define RTV_EBI2_BUS_WITDH_32 //
 
 	/*=================================================================
@@ -344,7 +344,7 @@ typedef volatile U32		VU32;
 	*================================================================*/
 	U8 isdbt_ebi2_read(U8 page, U8 reg);
 	void isdbt_ebi2_read_burst(U8 page, U8 reg, U8 *buf, int size);
-	void isdbt_ebi2_write(U8 page, U8 reg, U8 val);	
+	void isdbt_ebi2_write(U8 page, U8 reg, U8 val);
 	extern U8 g_bRtvPage;
 
 	static INLINE U8 RTV_REG_GET(U8 reg)
@@ -452,4 +452,3 @@ void rtvOEM_PowerOn(int on);
 #endif
 
 #endif /* __MTV23X_PORT_H__ */
-

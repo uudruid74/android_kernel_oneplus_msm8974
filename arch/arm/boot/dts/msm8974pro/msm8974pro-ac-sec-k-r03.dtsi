@@ -75,7 +75,7 @@
 	   imagis,pwm-div = <256>;
 	   imagis,mode-ctrl = <2>;
 	   imagis,regulator {
-			  	regulator-name = "vcc_i2c";
+				regulator-name = "vcc_i2c";
 				  regulator-min-microvolt = <1800000>;
 				  regulator-max-microvolt = <1800000>;
 				  regulator-max-microamp = <9360>;
@@ -284,7 +284,7 @@
 		iovdd-supply = <&pma8084_lvs4>;
 		qcom,dsi-pref-prim-pan-dual = <&dsi_dual_samsung_cmd_0>;
 		qcom,dsi-pref-prim-pan = <&dsi_samsung_fhd>;
-		qcom,dsi-pref-prim-pan-magna = <&dsi_samsung_fhd_k_mag>;			
+		qcom,dsi-pref-prim-pan-magna = <&dsi_samsung_fhd_k_mag>;
 	};
 
 	mdss_dsi1: qcom,mdss_dsi@fd922e00 {

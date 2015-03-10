@@ -1049,10 +1049,10 @@ s_vMgrRxAssocResponse(
             pDevice->uBBVGADiffCount = 0;
             if ((pDevice->bWPADEVUp) && (pDevice->skb != NULL)) {
 	  if(skb_tailroom(pDevice->skb) <(sizeof(viawget_wpa_header)+pMgmt->sAssocInfo.AssocInfo.ResponseIELength+
-		   	                                                 pMgmt->sAssocInfo.AssocInfo.RequestIELength)) {    //data room not enough
+			                                                 pMgmt->sAssocInfo.AssocInfo.RequestIELength)) {    //data room not enough
                      dev_kfree_skb(pDevice->skb);
 		   pDevice->skb = dev_alloc_skb((int)pDevice->rx_buf_sz);
-	       	}
+		}
                 wpahdr = (viawget_wpa_header *)pDevice->skb->data;
                 wpahdr->type = VIAWGET_ASSOC_MSG;
                 wpahdr->resp_ie_len = pMgmt->sAssocInfo.AssocInfo.ResponseIELength;
@@ -1500,7 +1500,7 @@ s_vMgrRxAuthenSequence_2(
                 DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "Mgt:Auth_reply sequence_2 tx ...\n");
             }
             else {
-            	DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "Mgt:rx Auth_reply sequence_2 status error ...\n");
+		DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "Mgt:rx Auth_reply sequence_2 status error ...\n");
                 if ( pDevice->eCommandState == WLAN_AUTHENTICATE_WAIT ) {
 //                    spin_unlock_irq(&pDevice->lock);
 //                    vCommandTimerWait((void *)pDevice, 0);
@@ -1835,7 +1835,7 @@ ChannelExceedZoneType(
   bool exceed=false;
 
   switch(pDevice->byZoneType) {
-  	case 0x00:                  //USA:1~11
+	case 0x00:                  //USA:1~11
                      if((byCurrChannel<1) ||(byCurrChannel>11))
 	                exceed = true;
 	         break;
@@ -2242,7 +2242,7 @@ if(ChannelExceedZoneType(pDevice,byCurrChannel)==true)
         if (bIsBSSIDEqual) {
             // Use sNodeDBTable[0].uInActiveCount as IBSS beacons received count.
 		    if (pMgmt->sNodeDBTable[0].uInActiveCount != 0)
-		 	    pMgmt->sNodeDBTable[0].uInActiveCount = 0;
+			    pMgmt->sNodeDBTable[0].uInActiveCount = 0;
 
             // adhoc mode:TSF updated only when beacon larger then local TSF
             if (bTSFLargeDiff && bTSFOffsetPostive &&
@@ -3086,25 +3086,25 @@ s_vMgrSynchBSS (
                if(pCurr->bWPAValid == true)  {   //WPA-PSK
                           pMgmt->eAuthenMode = WMAC_AUTH_WPAPSK;
 		    if(pCurr->abyPKType[0] == WPA_TKIP) {
-     		        pDevice->eEncryptionStatus = Ndis802_11Encryption2Enabled;    //TKIP
-     		        PRINT_K("Encyption_Rebuild--->ssid reset config to [WPAPSK-TKIP]\n");
+		        pDevice->eEncryptionStatus = Ndis802_11Encryption2Enabled;    //TKIP
+		        PRINT_K("Encyption_Rebuild--->ssid reset config to [WPAPSK-TKIP]\n");
 		      }
-     		   else if(pCurr->abyPKType[0] == WPA_AESCCMP) {
+		   else if(pCurr->abyPKType[0] == WPA_AESCCMP) {
 		        pDevice->eEncryptionStatus = Ndis802_11Encryption3Enabled;    //AES
                           PRINT_K("Encyption_Rebuild--->ssid reset config to [WPAPSK-AES]\n");
-     		     }
-               	}
+		     }
+		}
                else if(pCurr->bWPA2Valid == true) {  //WPA2-PSK
                          pMgmt->eAuthenMode = WMAC_AUTH_WPA2PSK;
 		       if(pCurr->abyCSSPK[0] == WLAN_11i_CSS_TKIP) {
-      		           pDevice->eEncryptionStatus = Ndis802_11Encryption2Enabled;     //TKIP
+		           pDevice->eEncryptionStatus = Ndis802_11Encryption2Enabled;     //TKIP
                              PRINT_K("Encyption_Rebuild--->ssid reset config to [WPA2PSK-TKIP]\n");
-		       	}
-      		       else if(pCurr->abyCSSPK[0] == WLAN_11i_CSS_CCMP) {
+			}
+		       else if(pCurr->abyCSSPK[0] == WLAN_11i_CSS_CCMP) {
 		           pDevice->eEncryptionStatus = Ndis802_11Encryption3Enabled;    //AES
                             PRINT_K("Encyption_Rebuild--->ssid reset config to [WPA2PSK-AES]\n");
-      		       	}
-               	}
+			}
+		}
               }
         //  }
       return;
@@ -5000,5 +5000,3 @@ s_bCipherMatch (
     }
     return true;
 }
-
-

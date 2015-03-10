@@ -219,4 +219,3 @@
 #define ARM_CACHE_LINE_SIZE_MAX 2048
 
 #endif /* _MMU_DEFS_H_ */
-

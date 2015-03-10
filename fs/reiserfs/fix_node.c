@@ -949,7 +949,7 @@ static void decrement_key(struct cpu_key *key)
  * Calculate left/right common parent of the current node and L[h]/R[h].
  * Calculate left/right delimiting key position.
  * Returns:	PATH_INCORRECT   - path in the tree is not correct;
- 		SCHEDULE_OCCURRED - schedule occurred while the function worked;
+		SCHEDULE_OCCURRED - schedule occurred while the function worked;
  *	        CARRY_ON         - schedule didn't occur while the function worked;
  */
 static int get_far_parent(struct tree_balance *tb,

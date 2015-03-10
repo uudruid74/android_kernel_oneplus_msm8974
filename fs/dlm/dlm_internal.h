@@ -658,4 +658,3 @@ static inline void dlm_delete_debug_file(struct dlm_ls *ls) { }
 #endif
 
 #endif				/* __DLM_INTERNAL_DOT_H__ */
-

@@ -318,4 +318,3 @@ $unaligned:
 	nop
 
 	.end __stxcpy
-

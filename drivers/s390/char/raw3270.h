@@ -197,7 +197,7 @@ void raw3270_unregister_notifier(void (*notifier)(int, int));
 void raw3270_pm_unfreeze(struct raw3270_view *);
 
 /*
- * Little memory allocator for string objects. 
+ * Little memory allocator for string objects.
  */
 struct string
 {
@@ -276,4 +276,3 @@ add_string_memory(struct list_head *free_list, void *mem, unsigned long size)
 	cs->size = size - sizeof(struct string);
 	free_string(free_list, cs);
 }
-

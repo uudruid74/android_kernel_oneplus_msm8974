@@ -25,5 +25,3 @@
         /* [31:24] chip-id, [23:16] platform-id, [15:8] national code, [7:0] operator
                 revision, reserved */
 };
-
-

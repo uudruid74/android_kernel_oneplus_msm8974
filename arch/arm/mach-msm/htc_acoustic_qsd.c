@@ -312,4 +312,3 @@ static void __exit acoustic_exit(void)
 
 module_init(acoustic_init);
 module_exit(acoustic_exit);
-

@@ -48,8 +48,8 @@
 			interrupt-parent = <&pma8084_gpios>;
 			interrupts = <8 0>;
 			vcc_en-supply = <&pma8084_lvs2>;
-			synaptics,supply-num = <2>;		
-			synaptics,supply-name = "max77826_ldo13", "8084_lvs2";	
+			synaptics,supply-num = <2>;
+			synaptics,supply-name = "max77826_ldo13", "8084_lvs2";
 			synaptics,scl-gpio = <&msmgpio 7 0x00>;
 			synaptics,sda-gpio = <&msmgpio 6 0x00>;
 			synaptics,irq-gpio = <&pma8084_gpios 8 0x1>;
@@ -70,11 +70,11 @@
 			fts,scl-gpio = <&msmgpio 7 0x00>;
 			fts,sda-gpio = <&msmgpio 6 0x00>;
 			fts,irq-gpio = <&pma8084_gpios 8 0x1>;
-			vddo-supply = <&pma8084_lvs2>; 
+			vddo-supply = <&pma8084_lvs2>;
 			fts,supply-name = "max77826_ldo13";
 			fts,id-gpio = <&msmgpio 101 0x00>;
 		};
-		
+
 	};
 
 	/*# CONFIG_SND_SOC_MAX98504*/
@@ -90,12 +90,12 @@
 	i2c@18 {
       cell-index = <18>;
       compatible = "i2c-gpio";
-      	gpios = <&msmgpio 33 0
+	gpios = <&msmgpio 33 0
 			&msmgpio 32 0
 			>;
 
 	i2c-gpio,delay-us = <2>;
-      
+
 	max98504@31 {
 			compatible = "max98504";
 			reg = <0x31>;
@@ -105,7 +105,7 @@
 			max98504,tx_mode = <0>;
 			max98504,cfg_data = <0 0 0 0 0 3 0 2 0 0>;
 		};
-	};	
+	};
 	// CONFIG_SND_SOC_MAX98504
 
 	i2c@f9967000 {
@@ -136,13 +136,13 @@
   i2c@15{
       cell-index = <15>;
       compatible = "i2c-gpio";
-      gpios = <&msmgpio 95 0  
-              &msmgpio 96 0 
+      gpios = <&msmgpio 95 0
+              &msmgpio 96 0
              >;
       i2c-gpio,delay-us = <2>;
       #address-cells = <1>;
       #size-cells = <0>;
-		  status = "disabled"; 
+		  status = "disabled";
       templete@25{
               compatible = "templete,i2c";
               reg = <0x25>;
@@ -336,7 +336,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 
- 		tmd3782@39 {
+		tmd3782@39 {
 			compatible = "taos,tmd3782";
 			reg = <0x39>;
 			interrupt-parent = <&msmgpio>;

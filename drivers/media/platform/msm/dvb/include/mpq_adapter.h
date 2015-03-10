@@ -197,4 +197,3 @@ int mpq_adapter_notify_stream_if(
 		void *user_param);
 
 #endif /* _MPQ_ADAPTER_H */
-

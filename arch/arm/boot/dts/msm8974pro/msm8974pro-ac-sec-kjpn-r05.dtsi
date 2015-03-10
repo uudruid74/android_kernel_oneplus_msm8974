@@ -80,7 +80,7 @@
 	   imagis,pwm-div = <256>;
 	   imagis,mode-ctrl = <2>;
 	   imagis,regulator {
-			  	regulator-name = "vcc_i2c";
+				regulator-name = "vcc_i2c";
 				  regulator-min-microvolt = <1800000>;
 				  regulator-max-microvolt = <1800000>;
 				  regulator-max-microamp = <9360>;

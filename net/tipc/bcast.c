@@ -924,4 +924,3 @@ void tipc_port_list_free(struct tipc_port_list *pl_ptr)
 		kfree(item);
 	}
 }
-

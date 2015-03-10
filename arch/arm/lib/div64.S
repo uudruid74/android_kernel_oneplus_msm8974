@@ -84,7 +84,7 @@ UNWIND(.fnstart)
 #endif
 
 	@ The division loop for needed upper bit positions.
- 	@ Break out early if dividend reaches 0.
+	@ Break out early if dividend reaches 0.
 2:	cmp	xh, yl
 	orrcs	yh, yh, ip
 	subcss	xh, xh, yl

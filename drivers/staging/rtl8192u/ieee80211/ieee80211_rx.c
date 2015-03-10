@@ -1839,12 +1839,12 @@ int ieee80211_parse_info_param(struct ieee80211_device *ieee,
 				   info_element->data[3] == 0x033){
 
 						tmp_htcap_len = min(info_element->len,(u8)MAX_IE_LEN);
-				   		if(tmp_htcap_len != 0){
-				   			network->bssht.bdHTSpecVer = HT_SPEC_VER_EWC;
+						if(tmp_htcap_len != 0){
+							network->bssht.bdHTSpecVer = HT_SPEC_VER_EWC;
 							network->bssht.bdHTCapLen = tmp_htcap_len > sizeof(network->bssht.bdHTCapBuf)?\
 								sizeof(network->bssht.bdHTCapBuf):tmp_htcap_len;
 							memcpy(network->bssht.bdHTCapBuf,info_element->data,network->bssht.bdHTCapLen);
-				   		}
+						}
 				}
 				if(tmp_htcap_len != 0)
 					network->bssht.bdSupportHT = true;
@@ -1856,9 +1856,9 @@ int ieee80211_parse_info_param(struct ieee80211_device *ieee,
 			if(tmp_htinfo_len == 0){
 				if(info_element->len >= 4 &&
 					info_element->data[0] == 0x00 &&
-				   	info_element->data[1] == 0x90 &&
-				   	info_element->data[2] == 0x4c &&
-				   	info_element->data[3] == 0x034){
+					info_element->data[1] == 0x90 &&
+					info_element->data[2] == 0x4c &&
+					info_element->data[3] == 0x034){
 
 						tmp_htinfo_len = min(info_element->len,(u8)MAX_IE_LEN);
 						if(tmp_htinfo_len != 0){
@@ -2060,7 +2060,7 @@ int ieee80211_parse_info_param(struct ieee80211_device *ieee,
 				if(	(info_element->data[IE_CISCO_FLAG_POSITION]&SUPPORT_CKIP_MIC)	||
 					(info_element->data[IE_CISCO_FLAG_POSITION]&SUPPORT_CKIP_PK)	)
 				{
-		 			network->bCkipSupported = true;
+					network->bCkipSupported = true;
 				}
 				else
 				{
@@ -2070,7 +2070,7 @@ int ieee80211_parse_info_param(struct ieee80211_device *ieee,
 			else
 			{
 				network->bWithAironetIE = false;
-		 		network->bCkipSupported = false;
+				network->bCkipSupported = false;
 			}
 			break;
 		case MFIE_TYPE_QOS_PARAMETER:
@@ -2230,8 +2230,8 @@ static inline int ieee80211_network_init(
 	} else
 		network->flags |= NETWORK_HAS_CCK;
 
- 	network->wpa_ie_len = 0;
- 	network->rsn_ie_len = 0;
+	network->wpa_ie_len = 0;
+	network->rsn_ie_len = 0;
 
         if (ieee80211_parse_info_param
             (ieee,beacon->info_element, stats->len - sizeof(*beacon), network, stats))

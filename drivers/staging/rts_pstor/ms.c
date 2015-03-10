@@ -4240,4 +4240,3 @@ int release_ms_card(struct rtsx_chip *chip)
 
 	return STATUS_SUCCESS;
 }
-

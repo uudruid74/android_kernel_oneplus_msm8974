@@ -649,12 +649,12 @@ byValue1 = SROMbyReadEmbedded(pDevice->PortOffset, EEP_OFS_ANTENNA);
     DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"Init Zone Type :USA\n");
   }
  else if((zonetype == 1)&&
- 	     (pDevice->abyEEPROM[EEP_OFS_ZONETYPE]!=0x01)){   //for Japan
+	     (pDevice->abyEEPROM[EEP_OFS_ZONETYPE]!=0x01)){   //for Japan
     pDevice->abyEEPROM[EEP_OFS_ZONETYPE] = 0x01;
     pDevice->abyEEPROM[EEP_OFS_MAXCHANNEL] = 0x0D;
   }
  else if((zonetype == 2)&&
- 	     (pDevice->abyEEPROM[EEP_OFS_ZONETYPE]!=0x02)){   //for Europe
+	     (pDevice->abyEEPROM[EEP_OFS_ZONETYPE]!=0x02)){   //for Europe
     pDevice->abyEEPROM[EEP_OFS_ZONETYPE] = 0x02;
     pDevice->abyEEPROM[EEP_OFS_MAXCHANNEL] = 0x0D;
     DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"Init Zone Type :Europe\n");
@@ -667,7 +667,7 @@ else
    else
       printk("Read Zonetype file success,use default zonetype setting[%02x]\n",zonetype);
  }
- 	}
+	}
   else
     printk("Read Zonetype file fail,use default zonetype setting[%02x]\n",SROMbyReadEmbedded(pDevice->PortOffset, EEP_OFS_ZONETYPE));
 
@@ -1182,7 +1182,7 @@ static bool device_get_pci_info(PSDevice pDevice, struct pci_dev* pcid) {
     pci_write_config_byte(pcid, PCI_COMMAND, (b|PCI_COMMAND_MASTER));
 
 #ifdef	PLICE_DEBUG
-   	//pci_read_config_word(pcid,PCI_MAX_LAT,&max_lat);
+	//pci_read_config_word(pcid,PCI_MAX_LAT,&max_lat);
 	//printk("max lat is %x,SubSystemID is %x\n",max_lat,pDevice->SubSystemID);
 	//for (ii=0;ii<0xFF;ii++)
 	//pci_read_config_word(pcid,PCI_MAX_LAT,&max_lat);
@@ -1731,7 +1731,7 @@ static int device_tx_srv(PSDevice pDevice, unsigned int uIdx) {
 	                skb->dev = pDevice->apdev;
 			skb_reset_mac_header(skb);
 	                skb->pkt_type = PACKET_OTHERHOST;
-    	            //skb->protocol = htons(ETH_P_802_2);
+	            //skb->protocol = htons(ETH_P_802_2);
 	                memset(skb->cb, 0, sizeof(skb->cb));
 	                netif_rx(skb);
 	            }
@@ -1863,10 +1863,10 @@ int MlmeThread(
 #if 1
 		spin_lock_irq(&pDevice->lock);
 		 while(pDevice->rxManeQueue.packet_num != 0)
-	 	{
+		{
 			 pRxMgmtPacket =  DeQueue(pDevice);
-        			//pDevice;
-        			//DequeueManageObject(pDevice->FirstRecvMngList, pDevice->LastRecvMngList);
+				//pDevice;
+				//DequeueManageObject(pDevice->FirstRecvMngList, pDevice->LastRecvMngList);
 			vMgrRxManagePacket(pDevice, pDevice->pMgmt, pRxMgmtPacket);
 			//printk("packet_num is %d\n",pDevice->rxManeQueue.packet_num);
 
@@ -2693,7 +2693,7 @@ static  irqreturn_t  device_intr(int irq,  void *dev_instance) {
     /*
       // 2008-05-21 <mark> by Richardtai, we can't read RSSI here, because no packet bound with RSSI
 
-    	if ((pDevice->dwIsr & ISR_RXDMA0) &&
+	if ((pDevice->dwIsr & ISR_RXDMA0) &&
         (pDevice->byLocalID != REV_ID_VT3253_B0) &&
         (pDevice->bBSSIDFilter == true)) {
         // update RSSI
@@ -3022,7 +3022,7 @@ int Config_FileOperation(PSDevice pDevice,bool fwrite,unsigned char *Parameter) 
            printk("file %s cann't readable or writable?\n",config_path);
 	  result = -1;
 	  goto error1;
-     	}
+	}
 
 buffer = kmalloc(1024, GFP_KERNEL);
 if(buffer==NULL) {
@@ -3262,7 +3262,7 @@ static int  device_ioctl(struct net_device *dev, struct ifreq *rq, int cmd) {
 
 		// Set mode of operation
 	case SIOCSIWMODE:
-    	rc = iwctl_siwmode(dev, NULL, &(wrq->u.mode), NULL);
+	rc = iwctl_siwmode(dev, NULL, &(wrq->u.mode), NULL);
 		break;
 
 		// Get mode of operation
@@ -3722,7 +3722,3 @@ viawget_resume(struct pci_dev *pcid)
 }
 
 #endif
-
-
-
-

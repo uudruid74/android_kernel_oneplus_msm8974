@@ -252,7 +252,7 @@ static int __meminit sparse_init_one_section(struct mem_section *ms,
 	ms->section_mem_map &= ~SECTION_MAP_MASK;
 	ms->section_mem_map |= sparse_encode_mem_map(mem_map, pnum) |
 							SECTION_HAS_MEM_MAP;
- 	ms->pageblock_flags = pageblock_bitmap;
+	ms->pageblock_flags = pageblock_bitmap;
 
 	return 1;
 }

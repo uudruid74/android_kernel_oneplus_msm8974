@@ -185,4 +185,3 @@ int SM_SCSI_Write(struct us_data *us, struct scsi_cmnd *srb)
 
 	return USB_STOR_TRANSPORT_GOOD;
 }
-

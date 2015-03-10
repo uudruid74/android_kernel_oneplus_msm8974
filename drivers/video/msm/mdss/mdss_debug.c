@@ -484,8 +484,8 @@ int mdss_debugfs_init(struct mdss_data_type *mdata)
 		pr_err("debugfs_create_dir perf fail, error %ld\n",
 			PTR_ERR(mdd->perf));
 		goto err;
- 	}
- 
+	}
+
 	mdss_debugfs_perf_init(mdd, mdata);
 
 	if (mdss_create_xlog_debug(mdd))

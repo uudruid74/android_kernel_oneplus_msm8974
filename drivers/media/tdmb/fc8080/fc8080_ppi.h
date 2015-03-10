@@ -52,4 +52,3 @@ extern s32 fc8080_ppi_deinit(HANDLE handle);
 #endif
 
 #endif /* __FC8080_PPI_H__ */
-

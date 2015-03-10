@@ -1702,4 +1702,3 @@ static int intelfb_sync(struct fb_info *info)
 	intelfbhw_do_sync(dinfo);
 	return 0;
 }
-

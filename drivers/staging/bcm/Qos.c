@@ -32,18 +32,18 @@ BOOLEAN MatchSrcIpAddress(S_CLASSIFIER_RULE *pstClassifierRule,ULONG ulSrcIP)
 
     ulSrcIP=ntohl(ulSrcIP);
     if(0 == pstClassifierRule->ucIPSourceAddressLength)
-       	return TRUE;
+	return TRUE;
     for(ucLoopIndex=0; ucLoopIndex < (pstClassifierRule->ucIPSourceAddressLength);ucLoopIndex++)
     {
 		BCM_DEBUG_PRINT(Adapter,DBG_TYPE_TX, IPV4_DBG, DBG_LVL_ALL, "Src Ip Address Mask:0x%x PacketIp:0x%x and Classification:0x%x", (UINT)pstClassifierRule->stSrcIpAddress.ulIpv4Mask[ucLoopIndex], (UINT)ulSrcIP, (UINT)pstClassifierRule->stSrcIpAddress.ulIpv6Addr[ucLoopIndex]);
 		if((pstClassifierRule->stSrcIpAddress.ulIpv4Mask[ucLoopIndex] & ulSrcIP)==
 				(pstClassifierRule->stSrcIpAddress.ulIpv4Addr[ucLoopIndex] & pstClassifierRule->stSrcIpAddress.ulIpv4Mask[ucLoopIndex] ))
-       	{
-       		return TRUE;
-       	}
+	{
+		return TRUE;
+	}
     }
     BCM_DEBUG_PRINT(Adapter,DBG_TYPE_TX, IPV4_DBG, DBG_LVL_ALL, "Src Ip Address Not Matched");
-   	return FALSE;
+	return FALSE;
 }
 
 
@@ -65,16 +65,16 @@ BOOLEAN MatchDestIpAddress(S_CLASSIFIER_RULE *pstClassifierRule,ULONG ulDestIP)
 
 	ulDestIP=ntohl(ulDestIP);
     if(0 == pstClassifierRule->ucIPDestinationAddressLength)
-       	return TRUE;
+	return TRUE;
 	BCM_DEBUG_PRINT(Adapter,DBG_TYPE_TX, IPV4_DBG, DBG_LVL_ALL, "Destination Ip Address 0x%x 0x%x 0x%x  ", (UINT)ulDestIP, (UINT)pstClassifierRule->stDestIpAddress.ulIpv4Mask[ucLoopIndex], (UINT)pstClassifierRule->stDestIpAddress.ulIpv4Addr[ucLoopIndex]);
 
     for(ucLoopIndex=0;ucLoopIndex<(pstClassifierRule->ucIPDestinationAddressLength);ucLoopIndex++)
     {
 		if((pstClassifierRule->stDestIpAddress.ulIpv4Mask[ucLoopIndex] & ulDestIP)==
 					(pstClassifierRule->stDestIpAddress.ulIpv4Addr[ucLoopIndex] & pstClassifierRule->stDestIpAddress.ulIpv4Mask[ucLoopIndex]))
-       	{
-       		return TRUE;
-       	}
+	{
+		return TRUE;
+	}
     }
 	BCM_DEBUG_PRINT(Adapter,DBG_TYPE_TX, IPV4_DBG, DBG_LVL_ALL, "Destination Ip Address Not Matched");
     return FALSE;
@@ -96,11 +96,11 @@ BOOLEAN MatchTos(S_CLASSIFIER_RULE *pstClassifierRule,UCHAR ucTypeOfService)
 
 	PMINI_ADAPTER Adapter = GET_BCM_ADAPTER(gblpnetdev);
     if( 3 != pstClassifierRule->ucIPTypeOfServiceLength )
-       	return TRUE;
+	return TRUE;
 
     if(((pstClassifierRule->ucTosMask & ucTypeOfService)<=pstClassifierRule->ucTosHigh) && ((pstClassifierRule->ucTosMask & ucTypeOfService)>=pstClassifierRule->ucTosLow))
     {
-       	return TRUE;
+	return TRUE;
     }
     BCM_DEBUG_PRINT(Adapter,DBG_TYPE_TX, IPV4_DBG, DBG_LVL_ALL, "Type Of Service Not Matched");
     return FALSE;
@@ -119,20 +119,20 @@ BOOLEAN MatchTos(S_CLASSIFIER_RULE *pstClassifierRule,UCHAR ucTypeOfService)
 ****************************************************************************/
 BOOLEAN MatchProtocol(S_CLASSIFIER_RULE *pstClassifierRule,UCHAR ucProtocol)
 {
-   	UCHAR 	ucLoopIndex=0;
+	UCHAR 	ucLoopIndex=0;
 	PMINI_ADAPTER Adapter = GET_BCM_ADAPTER(gblpnetdev);
 	if(0 == pstClassifierRule->ucProtocolLength)
-      	return TRUE;
+	return TRUE;
 	for(ucLoopIndex=0;ucLoopIndex<pstClassifierRule->ucProtocolLength;ucLoopIndex++)
     {
-       	BCM_DEBUG_PRINT(Adapter,DBG_TYPE_TX, IPV4_DBG, DBG_LVL_ALL, "Protocol:0x%X Classification Protocol:0x%X",ucProtocol,pstClassifierRule->ucProtocol[ucLoopIndex]);
-       	if(pstClassifierRule->ucProtocol[ucLoopIndex]==ucProtocol)
-       	{
-       		return TRUE;
-       	}
+	BCM_DEBUG_PRINT(Adapter,DBG_TYPE_TX, IPV4_DBG, DBG_LVL_ALL, "Protocol:0x%X Classification Protocol:0x%X",ucProtocol,pstClassifierRule->ucProtocol[ucLoopIndex]);
+	if(pstClassifierRule->ucProtocol[ucLoopIndex]==ucProtocol)
+	{
+		return TRUE;
+	}
     }
     BCM_DEBUG_PRINT(Adapter,DBG_TYPE_TX, IPV4_DBG, DBG_LVL_ALL, "Protocol Not Matched");
-   	return FALSE;
+	return FALSE;
 }
 
 
@@ -148,23 +148,23 @@ BOOLEAN MatchProtocol(S_CLASSIFIER_RULE *pstClassifierRule,UCHAR ucProtocol)
 ***************************************************************************/
 BOOLEAN MatchSrcPort(S_CLASSIFIER_RULE *pstClassifierRule,USHORT ushSrcPort)
 {
-    	UCHAR 	ucLoopIndex=0;
+	UCHAR 	ucLoopIndex=0;
 
 		PMINI_ADAPTER Adapter = GET_BCM_ADAPTER(gblpnetdev);
 
 
-    	if(0 == pstClassifierRule->ucSrcPortRangeLength)
-        	return TRUE;
-    	for(ucLoopIndex=0;ucLoopIndex<pstClassifierRule->ucSrcPortRangeLength;ucLoopIndex++)
-    	{
-        	if(ushSrcPort <= pstClassifierRule->usSrcPortRangeHi[ucLoopIndex] &&
+	if(0 == pstClassifierRule->ucSrcPortRangeLength)
+		return TRUE;
+	for(ucLoopIndex=0;ucLoopIndex<pstClassifierRule->ucSrcPortRangeLength;ucLoopIndex++)
+	{
+		if(ushSrcPort <= pstClassifierRule->usSrcPortRangeHi[ucLoopIndex] &&
 		    ushSrcPort >= pstClassifierRule->usSrcPortRangeLo[ucLoopIndex])
-	    	{
-		    	return TRUE;
-	    	}
-    	}
+		{
+			return TRUE;
+		}
+	}
 		BCM_DEBUG_PRINT(Adapter,DBG_TYPE_TX, IPV4_DBG, DBG_LVL_ALL, "Src Port: %x Not Matched ",ushSrcPort);
-    	return FALSE;
+	return FALSE;
 }
 
 
@@ -180,24 +180,24 @@ BOOLEAN MatchSrcPort(S_CLASSIFIER_RULE *pstClassifierRule,USHORT ushSrcPort)
 ***************************************************************************/
 BOOLEAN MatchDestPort(S_CLASSIFIER_RULE *pstClassifierRule,USHORT ushDestPort)
 {
-    	UCHAR 	ucLoopIndex=0;
+	UCHAR 	ucLoopIndex=0;
 		PMINI_ADAPTER Adapter = GET_BCM_ADAPTER(gblpnetdev);
 
-    	if(0 == pstClassifierRule->ucDestPortRangeLength)
-        	return TRUE;
+	if(0 == pstClassifierRule->ucDestPortRangeLength)
+		return TRUE;
 
-    	for(ucLoopIndex=0;ucLoopIndex<pstClassifierRule->ucDestPortRangeLength;ucLoopIndex++)
-    	{
-        	BCM_DEBUG_PRINT(Adapter,DBG_TYPE_TX, IPV4_DBG, DBG_LVL_ALL, "Matching Port:0x%X   0x%X  0x%X",ushDestPort,pstClassifierRule->usDestPortRangeLo[ucLoopIndex],pstClassifierRule->usDestPortRangeHi[ucLoopIndex]);
+	for(ucLoopIndex=0;ucLoopIndex<pstClassifierRule->ucDestPortRangeLength;ucLoopIndex++)
+	{
+		BCM_DEBUG_PRINT(Adapter,DBG_TYPE_TX, IPV4_DBG, DBG_LVL_ALL, "Matching Port:0x%X   0x%X  0x%X",ushDestPort,pstClassifierRule->usDestPortRangeLo[ucLoopIndex],pstClassifierRule->usDestPortRangeHi[ucLoopIndex]);
 
- 		if(ushDestPort <= pstClassifierRule->usDestPortRangeHi[ucLoopIndex] &&
+		if(ushDestPort <= pstClassifierRule->usDestPortRangeHi[ucLoopIndex] &&
 		    ushDestPort >= pstClassifierRule->usDestPortRangeLo[ucLoopIndex])
-	    	{
+		{
 		    return TRUE;
-	    	}
-    	}
+		}
+	}
 		BCM_DEBUG_PRINT(Adapter,DBG_TYPE_TX, IPV4_DBG, DBG_LVL_ALL, "Dest Port: %x Not Matched",ushDestPort);
-    	return FALSE;
+	return FALSE;
 }
 /**
 @ingroup tx_functions
@@ -330,7 +330,7 @@ static VOID PruneQueue(PMINI_ADAPTER Adapter, INT iIndex)
 
 	BCM_DEBUG_PRINT(Adapter,DBG_TYPE_TX, PRUNE_QUEUE, DBG_LVL_ALL, "=====> Index %d",iIndex);
 
-   	if(iIndex == HiPriority)
+	if(iIndex == HiPriority)
 		return;
 
 	if(!Adapter || (iIndex < 0) || (iIndex > HiPriority))
@@ -360,7 +360,7 @@ static VOID PruneQueue(PMINI_ADAPTER Adapter, INT iIndex)
 		if(PacketToDrop)
 		{
 			if (netif_msg_tx_err(Adapter))
-				pr_info(PFX "%s: tx queue %d overlimit\n", 
+				pr_info(PFX "%s: tx queue %d overlimit\n",
 					Adapter->dev->name, iIndex);
 
 			netstats->tx_dropped++;
@@ -620,7 +620,7 @@ USHORT ClassifyPacket(PMINI_ADAPTER Adapter,struct sk_buff* skb)
 			if((pTcpHeader->ucFlags & TCP_ACK) &&
 			   (ntohs(pIpHeader->tot_len) == (IpHeaderLength*4)+(TcpHeaderLength*4)))
 			{
-    			*((UINT32*) (skb->cb) +SKB_CB_TCPACK_OFFSET ) = TCP_ACK;
+			*((UINT32*) (skb->cb) +SKB_CB_TCPACK_OFFSET ) = TCP_ACK;
 			}
 		}
 
@@ -850,6 +850,3 @@ static void EThCSGetPktInfo(PMINI_ADAPTER Adapter,PVOID pvEthPayload,
 	BCM_DEBUG_PRINT(Adapter, DBG_TYPE_TX, IPV4_DBG, DBG_LVL_ALL,  "EthCsPktInfo->eNwpktEthFrameType : %x\n",pstEthCsPktInfo->eNwpktEthFrameType);
 	BCM_DEBUG_PRINT(Adapter, DBG_TYPE_TX, IPV4_DBG, DBG_LVL_ALL,  "EthCsPktInfo->usEtherType : %x\n",pstEthCsPktInfo->usEtherType);
 }
-
-
-

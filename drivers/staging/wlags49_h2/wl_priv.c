@@ -1154,9 +1154,9 @@ int wvlan_uil_put_info( struct uilreq *urq, struct wl_private *lp )
 					}
 					break;
 				default:
-    					wl_act_int_off( lp );
+					wl_act_int_off( lp );
 					urq->result = hcf_put_info(&(lp->hcfCtx), (LTVP) pLtv);
-    					wl_act_int_on( lp );
+					wl_act_int_on( lp );
 					break;
 				}
 
@@ -1318,9 +1318,9 @@ int wvlan_uil_get_info( struct uilreq *urq, struct wl_private *lp )
 					pLtv = &( lp->ltvRecord );
 				}
 
-    				wl_act_int_off( lp );
+				wl_act_int_off( lp );
 				urq->result = hcf_get_info( &( lp->hcfCtx ), (LTVP) pLtv );
-    				wl_act_int_on( lp );
+				wl_act_int_on( lp );
 
 				// Copy the LTV into the user's buffer.
 				//copy_to_user( urq->data, pLtv, urq->len );

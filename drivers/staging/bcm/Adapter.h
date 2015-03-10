@@ -195,14 +195,14 @@ typedef struct _S_FRAGMENTED_PACKET_INFO
 struct _packet_info
 {
 	//classification extension Rule
-   	ULONG			ulSFID;
-   	USHORT			usVCID_Value;
+	ULONG			ulSFID;
+	USHORT			usVCID_Value;
 	UINT			uiThreshold;
 	// This field determines the priority of the SF Queues
 	B_UINT8     	u8TrafficPriority;
 
 	BOOLEAN			bValid;
-   	BOOLEAN     	bActive;
+	BOOLEAN     	bActive;
 	BOOLEAN			bActivateRequestSent;
 
 	B_UINT8			u8QueueType;//BE or rtPS
@@ -645,4 +645,3 @@ typedef enum eInterface_setting
 }INTERFACE_SETTING;
 
 #endif	//__ADAPTER_H__
-

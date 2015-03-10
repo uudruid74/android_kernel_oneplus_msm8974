@@ -347,7 +347,7 @@ nextSGEset:
 		if ((mptscsih_getFreeChainBuffer(ioc, &newIndex)) == FAILED) {
 			dfailprintk(ioc, printk(MYIOC_s_DEBUG_FMT
 			    "getFreeChainBuffer FAILED SCSI cmd=%02x (%p)\n",
- 			    ioc->name, pReq->CDB[0], SCpnt));
+			    ioc->name, pReq->CDB[0], SCpnt));
 			return FAILED;
 		}
 
@@ -856,7 +856,7 @@ mptscsih_io_done(MPT_ADAPTER *ioc, MPT_FRAME_HDR *mf, MPT_FRAME_HDR *mr)
 				}
 				if (scsi_state & (MPI_SCSI_STATE_AUTOSENSE_FAILED | MPI_SCSI_STATE_NO_SCSI_STATUS)) {
 					/* What to do?
-				 	*/
+					*/
 					sc->result = DID_SOFT_ERROR << 16;
 				}
 				else if (scsi_state & MPI_SCSI_STATE_TERMINATED) {

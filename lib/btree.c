@@ -745,8 +745,8 @@ EXPORT_SYMBOL_GPL(visitor128);
 size_t btree_visitor(struct btree_head *head, struct btree_geo *geo,
 		     unsigned long opaque,
 		     void (*func)(void *elem, unsigned long opaque,
-		     		  unsigned long *key,
-		     		  size_t index, void *func2),
+				  unsigned long *key,
+				  size_t index, void *func2),
 		     void *func2)
 {
 	size_t count = 0;

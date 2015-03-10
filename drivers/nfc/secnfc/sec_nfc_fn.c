@@ -64,7 +64,7 @@ static irqreturn_t sec_nfc_fn_push_thread_fn(int irq, void *dev_id)
 	struct sec_nfc_fn_info *info = dev_id;
 
 	dev_dbg(info->dev, "PUSH\n");
-    
+
 	mutex_lock(&info->push_mutex);
 	info->push_irq = PUSH_ON;
 	mutex_unlock(&info->push_mutex);
@@ -152,7 +152,7 @@ static int sec_nfc_fn_open(struct inode *inode, struct file *file)
 	uid_t uid;
 
 	dev_dbg(info->dev, "%s: info : %p" , __func__, info);
-	
+
 	uid = __task_cred(current)->uid;
 	if (g_secnfc_uid != uid) {
 		dev_err(info->dev, "%s: Un-authorized process. No access to device\n", __func__);
@@ -246,7 +246,7 @@ static int sec_nfc_fn_probe(struct platform_device *pdev)
 			ret = -ENOMEM;
 			goto err_pdata;
 		}
-	} 
+	}
 	else {
 		pr_info("%s: failed alloc platform data", __func__);
 	}

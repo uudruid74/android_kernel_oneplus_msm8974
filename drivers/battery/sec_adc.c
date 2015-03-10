@@ -196,5 +196,3 @@ void adc_exit(struct sec_battery_info *battery)
 {
 	adc_exit_type(battery);
 }
-
-

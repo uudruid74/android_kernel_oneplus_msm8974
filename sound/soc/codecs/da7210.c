@@ -1068,7 +1068,7 @@ static struct regmap_config da7210_regmap = {
 
 #if defined(CONFIG_I2C) || defined(CONFIG_I2C_MODULE)
 static int __devinit da7210_i2c_probe(struct i2c_client *i2c,
-			   	      const struct i2c_device_id *id)
+				      const struct i2c_device_id *id)
 {
 	struct da7210_priv *da7210;
 	int ret;

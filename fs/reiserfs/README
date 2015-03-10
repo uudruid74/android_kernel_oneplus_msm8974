@@ -43,7 +43,7 @@ to address the fair crediting issue in the next GPL version.)
 [END LICENSING]
 
 Reiserfs is a file system based on balanced tree algorithms, which is
-described at https://reiser4.wiki.kernel.org/index.php/Main_Page 
+described at https://reiser4.wiki.kernel.org/index.php/Main_Page
 
 Stop reading here.  Go there, then return.
 
@@ -158,4 +158,3 @@ appliances, bigstorage.com funded HSM, and the alpha PC company funded
 the alpha port.  Many of these tasks were helped by sponsors other
 than the ones just named.  SuSE has helped in much more than just
 funding....
-

@@ -822,7 +822,7 @@ static void monitor_card(unsigned long p)
 
 		if (test_bit(IS_ATR_VALID, &dev->flags) == 1) {
 			DEBUGP(4, dev, "monitor_card: ATR valid\n");
- 			/* if ta1 == 0x11, no PPS necessary (default values) */
+			/* if ta1 == 0x11, no PPS necessary (default values) */
 			/* do not do PPS with multi protocol cards */
 			if ((test_bit(IS_AUTOPPS_ACT, &dev->flags) == 0) &&
 			    (dev->ta1 != 0x11) &&

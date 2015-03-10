@@ -145,11 +145,11 @@ static int max98504_probe(struct max98504_priv *max98504)
 {
 	struct max98504_pdata *pdata = max98504->pdata;
 	struct max98504_cfg_data *cfg_data = &pdata->cfg_data;
-		
+
 	u8 regval;
 	int ret;
 	unsigned int value;
-	
+
 
 	msg_maxim("\n");
 
@@ -189,7 +189,7 @@ static int max98504_probe(struct max98504_priv *max98504)
 
 		regmap_write(max98504->regmap,  MAX98504_REG_21_PCM_TX_ENABLES, (u8)cfg_data->tx_ch_en);
 		regmap_write(max98504->regmap,  MAX98504_REG_22_PCM_TX_HIZ_CONTROL, (u8)cfg_data->tx_hiz_ch_en);
-		regmap_write(max98504->regmap,  MAX98504_REG_23_PCM_TX_CHANNEL_SOURCES, (u8)cfg_data->tx_ch_src);		
+		regmap_write(max98504->regmap,  MAX98504_REG_23_PCM_TX_CHANNEL_SOURCES, (u8)cfg_data->tx_ch_src);
 	}
 	else {
 		regmap_write(max98504->regmap,  MAX98504_REG_30_PDM_TX_ENABLES, (u8)cfg_data->tx_ch_en);
@@ -206,12 +206,12 @@ static int max98504_probe(struct max98504_priv *max98504)
 	regmap_write(max98504->regmap, MAX98504_REG_19_PVDD_BROWNOUT_CONFIG_3, 0xff);
 	regmap_write(max98504->regmap, MAX98504_REG_1A_PVDD_BROWNOUT_CONFIG_4, 0xff);
 
-	#if defined(CONFIG_SEC_S_PROJECT) //bypass temp code 
+	#if defined(CONFIG_SEC_S_PROJECT) //bypass temp code
 		max98504_set_speaker_status(1);
 	#endif
-	
+
 	return ret;
-	
+
 err_access:
 	return ret;
 }
@@ -224,7 +224,7 @@ int max98504_set_speaker_status(int OnOff)
 		pr_err("Speaker control is not allowed.\n");
 		return -1;
 	}
-		
+
 	if(OnOff)	{
 		regmap_update_bits(regmap, MAX98504_REG_34_SPEAKER_ENABLE,
 			M98504_SPK_EN_MASK, M98504_SPK_EN_MASK);
@@ -307,7 +307,7 @@ static int max98504_regulator_config(struct i2c_client *i2c, bool pullup, bool o
 			pr_info("Regulator vcc_i2c set_opt failed rc=%d\n", rc);
 			goto error_reg_opt_i2c;
 		}
-		
+
 		rc = regulator_enable(max98504_vcc_i2c);
 		if (rc) {
 			pr_info("Regulator vcc_i2c enable failed rc=%d\n", rc);
@@ -348,7 +348,7 @@ static irqreturn_t max98504_interrupt(int irq, void *data)
 
 	if (!flag)
 		return IRQ_NONE;
-	
+
 	/* Send work to be scheduled */
 	if (flag & M98504_INT_GENFAIL_EN_MASK) {
 		msg_maxim("M98504_INT_GENFAIL_EN_MASK active!");
@@ -428,7 +428,7 @@ static int __devinit max98504_i2c_probe(struct i2c_client *i2c,
 			return -EINVAL;
 		}
 
-		ret = of_property_read_u32_array(i2c->dev.of_node, "max98504,cfg_data", 
+		ret = of_property_read_u32_array(i2c->dev.of_node, "max98504,cfg_data",
 			(u32*)&pdata->cfg_data, sizeof(struct max98504_cfg_data)/sizeof(u32));
 		if (ret) {
 			dev_err(&i2c->dev, "Failed to read cfg_data.\n");
@@ -438,24 +438,24 @@ static int __devinit max98504_i2c_probe(struct i2c_client *i2c,
 		msg_maxim("rx_mode:%d, tx_mode:%d, tx_dither_en:%d, rx_dither_en:%d, meas_dc_block_en:%d, rx_flt_mode:%d, rx_ch_en:%d\n",
 			pdata->rx_mode,
 			pdata->tx_mode,
-			pdata->cfg_data.tx_dither_en, 
-			pdata->cfg_data.rx_dither_en, 
-			pdata->cfg_data.meas_dc_block_en, 
-			pdata->cfg_data.rx_flt_mode, 
+			pdata->cfg_data.tx_dither_en,
+			pdata->cfg_data.rx_dither_en,
+			pdata->cfg_data.meas_dc_block_en,
+			pdata->cfg_data.rx_flt_mode,
 			pdata->cfg_data.rx_ch_en);
 		msg_maxim("tx_ch_en:%d, tx_hiz_ch_en:%d, tx_ch_src:%d, auth_en:%d, wdog_time_out:%d\n",
-			pdata->cfg_data.tx_ch_en, 
-			pdata->cfg_data.tx_hiz_ch_en, 
-			pdata->cfg_data.tx_ch_src, 
-			pdata->cfg_data.auth_en, 
+			pdata->cfg_data.tx_ch_en,
+			pdata->cfg_data.tx_hiz_ch_en,
+			pdata->cfg_data.tx_ch_src,
+			pdata->cfg_data.auth_en,
 			pdata->cfg_data.wdog_time_out);
-		
+
 	}	else max98504->pdata = i2c->dev.platform_data;
 
 	max98504_regulator_config(i2c, of_property_read_bool(i2c->dev.of_node, "max98504,i2c-pull-up"), 1);
 
 	max98504->regmap = regmap = regmap_init_i2c(i2c, &max98504_regmap);
-	
+
 	if (IS_ERR(max98504->regmap)) {
 		ret = PTR_ERR(max98504->regmap);
 		dev_err(&i2c->dev, "Failed to allocate regmap: %d\n", ret);
@@ -497,7 +497,7 @@ static int __devinit max98504_i2c_probe(struct i2c_client *i2c,
 #endif
 
 	err_out:
-	
+
 		if (ret < 0) {
 			if (max98504->regmap)
 				regmap_exit(max98504->regmap);

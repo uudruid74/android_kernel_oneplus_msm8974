@@ -76,7 +76,7 @@ void free_thread_info(struct thread_info *ti)
 void arch_task_cache_init(void)
 {
         task_xstate_cachep =
-        	kmem_cache_create("task_xstate", xstate_size,
+		kmem_cache_create("task_xstate", xstate_size,
 				  __alignof__(union thread_xstate),
 				  SLAB_PANIC | SLAB_NOTRACK, NULL);
 }
@@ -755,4 +755,3 @@ unsigned long arch_randomize_brk(struct mm_struct *mm)
 	unsigned long range_end = mm->brk + 0x02000000;
 	return randomize_range(mm->brk, range_end, 0) ? : mm->brk;
 }
-

@@ -178,7 +178,7 @@ static int put_cmd_string(struct cmdstring cmds)
 			for (t = 0; t < cmds.poststringlen / 2; t++)
 				iowrite16(*((u16 *)&cmds.postcmd + t),
 					  cmd_str_virtaddr + t + 8 +
-					  	cmds.prestringlen / 2);
+						cmds.prestringlen / 2);
 
 			iounmap(cmd_ptr0_virtaddr);
 			iounmap(cmd_str_virtaddr);

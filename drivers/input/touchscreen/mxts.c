@@ -184,7 +184,7 @@ static int mxt_parse_dt(struct device *dev,
 	pdata->max_y = coords[3];
 	pdata->boot_address = MXT_BOOT_ADDRESS;
 	pdata->firmware_name = MXT_FIRMWARE_NAME;
-	
+
 	pdata->num_touchkey = ARRAY_SIZE(mxt_touchkey_data);
 	pdata->touchkey = mxt_touchkey_data;
 
@@ -308,9 +308,9 @@ static int mxt_power_onoff(struct mxt_data *data, bool enable)
 				 __func__, data->pdata->tsp_en1);
 			return -EINVAL;
 		}
-	
+
 		msleep(1);
-	
+
 		ret = gpio_direction_output(data->pdata->tsp_en, enable);
 		if (ret) {
 			dev_err(&data->client->dev,
@@ -656,19 +656,19 @@ static int mxt_check_config_crc(struct mxt_fw_info *fw_info)
 	struct device *dev = &data->client->dev;
 	u32 current_crc;
 	int ret;
-	
+
 	/* Get config CRC from device */
 	ret = mxt_read_config_crc(data, &current_crc);
 	if (ret)
 		return ret;
-		
+
 	/* Check config CRC */
 	if (current_crc == fw_info->cfg_crc) {
 		dev_info(dev, "Skip writing backup and reset:[CRC 0x%06X]\n",
 			current_crc);
 		return 0;
 	}
-	return 1;				
+	return 1;
 }
 
 
@@ -819,16 +819,16 @@ static int set_charger_config(struct mxt_data *data)
 			    dev_err(&data->client->dev, "%s: Error read T62 [%d]\n",
 					    __func__, error);
 		    } else {
-#if TSP_PATCH							
+#if TSP_PATCH
 			    if(data->patch.event_cnt)
-				    mxt_patch_test_event(data, 1); 			
+				    mxt_patch_test_event(data, 1);
 #else
 			    value |= 0x01;
 			    mxt_write_object(data, MXT_PROCG_NOISESUPPRESSION_T62,
 							    1, value);
 #endif
 		    }
-    
+
 	    } else {
 			dev_info(&data->client->dev, "T62 CHARGON Disable\n");
 
@@ -838,9 +838,9 @@ static int set_charger_config(struct mxt_data *data)
 			    dev_err(&data->client->dev, "%s: Error read T62 [%d]\n",
 					    __func__, error);
 		    } else {
-#if TSP_PATCH							
+#if TSP_PATCH
 			    if(data->patch.event_cnt)
-				    mxt_patch_test_event(data, 0); 			
+				    mxt_patch_test_event(data, 0);
 #else
 			    value &= ~(0x01);
 			    mxt_write_object(data, MXT_PROCG_NOISESUPPRESSION_T62,
@@ -1150,7 +1150,7 @@ static void mxt_release_all_keys(struct mxt_data *data)
 							"%s: [TSP_KEY] Ignore menu R! by dummy key\n",
 								__func__);
 				} else if (data->ignore_menu_key_by_back) {
-					dev_info(&data->client->dev, 
+					dev_info(&data->client->dev,
 							"%s: [TSP_KEY] Ignore menu R! by back key\n",
 								 __func__);
 				} else {
@@ -1175,9 +1175,9 @@ static void mxt_release_all_keys(struct mxt_data *data)
 							"%s: [TSP_KEY] Ignore back R! by dummy key\n",
 								__func__);
 				} else if (data->ignore_back_key_by_menu) {
-					dev_info(&data->client->dev, 
+					dev_info(&data->client->dev,
 							"%s: [TSP_KEY] Ignore back R! by menu key\n",
-						 		__func__);
+								__func__);
 				} else {
 					input_report_key(data->input_dev, KEY_BACK, KEY_RELEASE);
 						dev_info(&data->client->dev,
@@ -1253,17 +1253,17 @@ static void mxt_treat_T15_object(struct mxt_data *data,
 								__func__);
 					}
 				} else if (data->ignore_menu_key_by_back) {
-					dev_info(&data->client->dev, 
+					dev_info(&data->client->dev,
 						"%s: [TSP_KEY] Ignore menu %s by back key\n",
 								 __func__, key_state != 0 ? "P" : "R");
 				} else {
-					
+
 #ifdef USE_MENU_TOUCHKEY
 					input_report_key(data->input_dev, KEY_MENU, key_state != 0 ? KEY_PRESS : KEY_RELEASE);
 #else
 					input_report_key(data->input_dev, KEY_RECENT, key_state != 0 ? KEY_PRESS : KEY_RELEASE);
-#endif					
-					dev_info(&data->client->dev, 
+#endif
+					dev_info(&data->client->dev,
 						"%s: [TSP_KEY] menu %s\n",
 								__func__, key_state != 0 ? "P" : "R");
 					if (key_state != 0)
@@ -1298,12 +1298,12 @@ static void mxt_treat_T15_object(struct mxt_data *data,
 								__func__);
 					}
 				} else if (data->ignore_back_key_by_menu) {
-					dev_info(&data->client->dev, 
+					dev_info(&data->client->dev,
 							"%s: [TSP_KEY] Ignore back %s by menu key\n",
 							 __func__, key_state != 0 ? "P" : "R");
 				} else {
 					input_report_key(data->input_dev, KEY_BACK, key_state != 0 ? KEY_PRESS : KEY_RELEASE);
-					dev_info(&data->client->dev, 
+					dev_info(&data->client->dev,
 							"%s: [TSP_KEY] back %s\n" ,
 							__func__, key_state != 0 ? "P" : "R");
 					if (key_state != 0)
@@ -1674,9 +1674,9 @@ static irqreturn_t mxt_irq_thread(int irq, void *ptr)
 				message.message[5], message.message[6]);
 			break;
 		}
-#if TSP_PATCH			
+#if TSP_PATCH
 		mxt_patch_message(data, &message);
-#endif	
+#endif
 	} while (!gpio_get_value(data->pdata->tsp_int));
 
 	if (data->finger_mask)
@@ -1829,24 +1829,24 @@ int mxt_verify_fw(struct mxt_fw_info *fw_info, const struct firmware *fw)
 			|| fw_info->hdr_len + fw_info->cfg_len
 				+ fw_info->fw_len != fw->size) {
 #if TSP_PATCH
-			struct patch_header* ppheader;		
-			u32 ppos = fw_info->hdr_len + fw_info->cfg_len + fw_info->fw_len;		
-			ppheader = (struct patch_header*)(fw->data + ppos);									
-			if(ppheader->magic == MXT_PATCH_MAGIC){					
+			struct patch_header* ppheader;
+			u32 ppos = fw_info->hdr_len + fw_info->cfg_len + fw_info->fw_len;
+			ppheader = (struct patch_header*)(fw->data + ppos);
+			if(ppheader->magic == MXT_PATCH_MAGIC){
 				dev_info(dev, "Firmware file has patch size: %d\n", ppheader->size);
-				if(ppheader->size){	
-					u8* patch=NULL;			
+				if(ppheader->size){
+					u8* patch=NULL;
 					if(!data->patch.patch){
 						kfree(data->patch.patch);
 					}
 					patch = kzalloc(ppheader->size, GFP_KERNEL);
 					memcpy(patch, (u8*)ppheader, ppheader->size);
-					data->patch.patch = patch;					
+					data->patch.patch = patch;
 				}
 			}
 			else
-#endif		
-			{								
+#endif
+			{
 			dev_err(dev, "Firmware file is invaild !!hdr size[%d] cfg,fw size[%d,%d] filesize[%d]\n",
 				fw_info->hdr_len, fw_info->cfg_len,
 				fw_info->fw_len, fw->size);
@@ -2200,7 +2200,7 @@ static int  mxt_rest_initialize(struct mxt_fw_info *fw_info)
 	struct device *dev = &data->client->dev;
 	int ret = 0;
 
-if( mxt_check_config_crc(fw_info)){	
+if( mxt_check_config_crc(fw_info)){
 
 	/* Restore memory and stop event handing */
 	ret = mxt_command_backup(data, MXT_DISALEEVT_VALUE);
@@ -2878,7 +2878,7 @@ static int __devinit mxt_probe(struct i2c_client *client,
 	input_set_abs_params(input_dev, ABS_MT_PRESSURE,
 				0, MXT_AMPLITUDE_MAX, 0, 0);
 #if TSP_USE_PALM_FLAG
-	input_set_abs_params(input_dev, ABS_MT_PALM, 
+	input_set_abs_params(input_dev, ABS_MT_PALM,
 				0, MXT_PALM_MAX, 0, 0);
 #endif
 

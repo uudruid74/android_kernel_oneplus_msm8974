@@ -38,9 +38,9 @@ static struct snd_pcm_hardware snd_cs5535audio_playback =
 	.info =			(
 				SNDRV_PCM_INFO_MMAP |
 				SNDRV_PCM_INFO_INTERLEAVED |
-		 		SNDRV_PCM_INFO_BLOCK_TRANSFER |
-		 		SNDRV_PCM_INFO_MMAP_VALID |
-		 		SNDRV_PCM_INFO_PAUSE |
+				SNDRV_PCM_INFO_BLOCK_TRANSFER |
+				SNDRV_PCM_INFO_MMAP_VALID |
+				SNDRV_PCM_INFO_PAUSE |
 				SNDRV_PCM_INFO_RESUME
 				),
 	.formats =		(
@@ -67,8 +67,8 @@ static struct snd_pcm_hardware snd_cs5535audio_capture =
 	.info =			(
 				SNDRV_PCM_INFO_MMAP |
 				SNDRV_PCM_INFO_INTERLEAVED |
-		 		SNDRV_PCM_INFO_BLOCK_TRANSFER |
-		 		SNDRV_PCM_INFO_MMAP_VALID
+				SNDRV_PCM_INFO_BLOCK_TRANSFER |
+				SNDRV_PCM_INFO_MMAP_VALID
 				),
 	.formats =		(
 				SNDRV_PCM_FMTBIT_S16_LE
@@ -141,7 +141,7 @@ static int cs5535audio_build_dma_packets(struct cs5535audio *cs5535au,
 		return 0;
 
 	/* the u32 cast is okay because in snd*create we successfully told
-   	   pci alloc that we're only 32 bit capable so the uppper will be 0 */
+	   pci alloc that we're only 32 bit capable so the uppper will be 0 */
 	addr = (u32) substream->runtime->dma_addr;
 	desc_addr = (u32) dma->desc_buf.addr;
 	for (i = 0; i < periods; i++) {
@@ -451,4 +451,3 @@ int __devinit snd_cs5535audio_pcm(struct cs5535audio *cs5535au)
 
 	return 0;
 }
-

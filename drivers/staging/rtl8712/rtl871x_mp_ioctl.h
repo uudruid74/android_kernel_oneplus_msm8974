@@ -477,4 +477,3 @@ extern struct mp_ioctl_handler mp_ioctl_hdl[];
 #endif /* _RTL871X_MP_IOCTL_C_ */
 
 #endif
-

@@ -148,4 +148,3 @@ CommOS_StartIO(const char *dispatchTaskName,
 
 
 #endif  /* _COMM_OS_H_ */
-

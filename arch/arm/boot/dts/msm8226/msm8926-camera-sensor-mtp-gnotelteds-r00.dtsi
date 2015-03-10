@@ -114,7 +114,7 @@
 		qcom,cci-master = <0>;
 		status = "ok";
 	};
- 
+
 	qcom,camera@2 {
 		cell-index = <2>;
 		compatible = "qcom,camera";

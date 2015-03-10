@@ -578,7 +578,7 @@ s_uGetDataDuration (
     case DATADUR_B:    //DATADUR_B
         if (((uMACfragNum == 1)) || (bLastFrag == 1)) {//Non Frag or Last Frag
             if (bNeedAck) {
-            	uAckTime = BBuGetFrameTime(pDevice->byPreambleType, byPktType, 14, pDevice->byTopCCKBasicRate);
+		uAckTime = BBuGetFrameTime(pDevice->byPreambleType, byPktType, 14, pDevice->byTopCCKBasicRate);
                 return (pDevice->uSIFS + uAckTime);
             } else {
                 return 0;
@@ -586,12 +586,12 @@ s_uGetDataDuration (
         }
         else {//First Frag or Mid Frag
             if (uFragIdx == (uMACfragNum-2)) {
-            	uNextPktTime = s_uGetTxRsvTime(pDevice, byPktType, cbLastFragmentSize, wRate, bNeedAck);
+		uNextPktTime = s_uGetTxRsvTime(pDevice, byPktType, cbLastFragmentSize, wRate, bNeedAck);
             } else {
                 uNextPktTime = s_uGetTxRsvTime(pDevice, byPktType, cbFrameLength, wRate, bNeedAck);
             }
             if (bNeedAck) {
-            	uAckTime = BBuGetFrameTime(pDevice->byPreambleType, byPktType, 14, pDevice->byTopCCKBasicRate);
+		uAckTime = BBuGetFrameTime(pDevice->byPreambleType, byPktType, 14, pDevice->byTopCCKBasicRate);
                 return (pDevice->uSIFS + uAckTime + uNextPktTime);
             } else {
                 return (pDevice->uSIFS + uNextPktTime);
@@ -603,7 +603,7 @@ s_uGetDataDuration (
     case DATADUR_A:    //DATADUR_A
         if (((uMACfragNum==1)) || (bLastFrag==1)) {//Non Frag or Last Frag
             if(bNeedAck){
-            	uAckTime = BBuGetFrameTime(pDevice->byPreambleType, byPktType, 14, pDevice->byTopOFDMBasicRate);
+		uAckTime = BBuGetFrameTime(pDevice->byPreambleType, byPktType, 14, pDevice->byTopOFDMBasicRate);
                 return (pDevice->uSIFS + uAckTime);
             } else {
                 return 0;
@@ -611,12 +611,12 @@ s_uGetDataDuration (
         }
         else {//First Frag or Mid Frag
             if(uFragIdx == (uMACfragNum-2)){
-            	uNextPktTime = s_uGetTxRsvTime(pDevice, byPktType, cbLastFragmentSize, wRate, bNeedAck);
+		uNextPktTime = s_uGetTxRsvTime(pDevice, byPktType, cbLastFragmentSize, wRate, bNeedAck);
             } else {
                 uNextPktTime = s_uGetTxRsvTime(pDevice, byPktType, cbFrameLength, wRate, bNeedAck);
             }
             if(bNeedAck){
-            	uAckTime = BBuGetFrameTime(pDevice->byPreambleType, byPktType, 14, pDevice->byTopOFDMBasicRate);
+		uAckTime = BBuGetFrameTime(pDevice->byPreambleType, byPktType, 14, pDevice->byTopOFDMBasicRate);
                 return (pDevice->uSIFS + uAckTime + uNextPktTime);
             } else {
                 return (pDevice->uSIFS + uNextPktTime);
@@ -627,7 +627,7 @@ s_uGetDataDuration (
     case DATADUR_A_F0:    //DATADUR_A_F0
 	    if (((uMACfragNum==1)) || (bLastFrag==1)) {//Non Frag or Last Frag
             if(bNeedAck){
-            	uAckTime = BBuGetFrameTime(pDevice->byPreambleType, byPktType, 14, pDevice->byTopOFDMBasicRate);
+		uAckTime = BBuGetFrameTime(pDevice->byPreambleType, byPktType, 14, pDevice->byTopOFDMBasicRate);
                 return (pDevice->uSIFS + uAckTime);
             } else {
                 return 0;
@@ -641,7 +641,7 @@ s_uGetDataDuration (
                     wRate = RATE_54M;
 
 	            if(uFragIdx == (uMACfragNum-2)){
-            	    uNextPktTime = s_uGetTxRsvTime(pDevice, byPktType, cbLastFragmentSize, wFB_Opt0[FB_RATE0][wRate-RATE_18M], bNeedAck);
+		    uNextPktTime = s_uGetTxRsvTime(pDevice, byPktType, cbLastFragmentSize, wFB_Opt0[FB_RATE0][wRate-RATE_18M], bNeedAck);
                 } else {
                     uNextPktTime = s_uGetTxRsvTime(pDevice, byPktType, cbFrameLength, wFB_Opt0[FB_RATE0][wRate-RATE_18M], bNeedAck);
                 }
@@ -652,14 +652,14 @@ s_uGetDataDuration (
                     wRate = RATE_54M;
 
 	            if(uFragIdx == (uMACfragNum-2)){
-            	    uNextPktTime = s_uGetTxRsvTime(pDevice, byPktType, cbLastFragmentSize, wFB_Opt1[FB_RATE0][wRate-RATE_18M], bNeedAck);
+		    uNextPktTime = s_uGetTxRsvTime(pDevice, byPktType, cbLastFragmentSize, wFB_Opt1[FB_RATE0][wRate-RATE_18M], bNeedAck);
                 } else {
                     uNextPktTime = s_uGetTxRsvTime(pDevice, byPktType, cbFrameLength, wFB_Opt1[FB_RATE0][wRate-RATE_18M], bNeedAck);
                 }
 	        }
 
 	        if(bNeedAck){
-            	uAckTime = BBuGetFrameTime(pDevice->byPreambleType, byPktType, 14, pDevice->byTopOFDMBasicRate);
+		uAckTime = BBuGetFrameTime(pDevice->byPreambleType, byPktType, 14, pDevice->byTopOFDMBasicRate);
                 return (pDevice->uSIFS + uAckTime + uNextPktTime);
             } else {
                 return (pDevice->uSIFS + uNextPktTime);
@@ -670,7 +670,7 @@ s_uGetDataDuration (
     case DATADUR_A_F1:    //DATADUR_A_F1
         if (((uMACfragNum==1)) || (bLastFrag==1)) {//Non Frag or Last Frag
             if(bNeedAck){
-            	uAckTime = BBuGetFrameTime(pDevice->byPreambleType, byPktType, 14, pDevice->byTopOFDMBasicRate);
+		uAckTime = BBuGetFrameTime(pDevice->byPreambleType, byPktType, 14, pDevice->byTopOFDMBasicRate);
                 return (pDevice->uSIFS + uAckTime);
             } else {
                 return 0;
@@ -684,7 +684,7 @@ s_uGetDataDuration (
                     wRate = RATE_54M;
 
 	            if(uFragIdx == (uMACfragNum-2)){
-            	    uNextPktTime = s_uGetTxRsvTime(pDevice, byPktType, cbLastFragmentSize, wFB_Opt0[FB_RATE1][wRate-RATE_18M], bNeedAck);
+		    uNextPktTime = s_uGetTxRsvTime(pDevice, byPktType, cbLastFragmentSize, wFB_Opt0[FB_RATE1][wRate-RATE_18M], bNeedAck);
                 } else {
                     uNextPktTime = s_uGetTxRsvTime(pDevice, byPktType, cbFrameLength, wFB_Opt0[FB_RATE1][wRate-RATE_18M], bNeedAck);
                 }
@@ -696,13 +696,13 @@ s_uGetDataDuration (
                     wRate = RATE_54M;
 
 	            if(uFragIdx == (uMACfragNum-2)){
-            	    uNextPktTime = s_uGetTxRsvTime(pDevice, byPktType, cbLastFragmentSize, wFB_Opt1[FB_RATE1][wRate-RATE_18M], bNeedAck);
+		    uNextPktTime = s_uGetTxRsvTime(pDevice, byPktType, cbLastFragmentSize, wFB_Opt1[FB_RATE1][wRate-RATE_18M], bNeedAck);
                 } else {
                     uNextPktTime = s_uGetTxRsvTime(pDevice, byPktType, cbFrameLength, wFB_Opt1[FB_RATE1][wRate-RATE_18M], bNeedAck);
                 }
 	        }
 	        if(bNeedAck){
-            	uAckTime = BBuGetFrameTime(pDevice->byPreambleType, byPktType, 14, pDevice->byTopOFDMBasicRate);
+		uAckTime = BBuGetFrameTime(pDevice->byPreambleType, byPktType, 14, pDevice->byTopOFDMBasicRate);
                 return (pDevice->uSIFS + uAckTime + uNextPktTime);
             } else {
                 return (pDevice->uSIFS + uNextPktTime);
@@ -982,7 +982,7 @@ s_vFillRTSHead (
     WORD  wLen = 0x0000;
 
     if (pvRTS == NULL)
-    	return;
+	return;
 
     if (bDisCRC) {
         // When CRCDIS bit is on, H/W forgot to generate FCS for RTS frame,
@@ -1093,7 +1093,7 @@ s_vFillRTSHead (
             pBuf->wTransmitLength = cpu_to_le16(wLen);
             //Get Duration
             pBuf->wDuration = cpu_to_le16((WORD)s_uGetRTSCTSDuration(pDevice, RTSDUR_AA, cbFrameLength, byPktType, wCurrentRate, bNeedAck, byFBOption)); //0:RTSDuration_aa, 0:5G, 0: 5G OFDMData
-    	    pBuf->Data.wDurationID = pBuf->wDuration;
+	    pBuf->Data.wDurationID = pBuf->wDuration;
             //Get RTS Frame body
             pBuf->Data.wFrameControl = TYPE_CTL_RTS;//0x00B4
 
@@ -1128,10 +1128,10 @@ s_vFillRTSHead (
             pBuf->wTransmitLength = cpu_to_le16(wLen);
             //Get Duration
             pBuf->wDuration = cpu_to_le16((WORD)s_uGetRTSCTSDuration(pDevice, RTSDUR_AA, cbFrameLength, byPktType, wCurrentRate, bNeedAck, byFBOption)); //0:RTSDuration_aa, 0:5G, 0: 5G OFDMData
-    	    pBuf->wRTSDuration_f0 = cpu_to_le16((WORD)s_uGetRTSCTSDuration(pDevice, RTSDUR_AA_F0, cbFrameLength, byPktType, wCurrentRate, bNeedAck, byFBOption)); //5:RTSDuration_aa_f0, 0:5G, 0: 5G OFDMData
-    	    pBuf->wRTSDuration_f1 = cpu_to_le16((WORD)s_uGetRTSCTSDuration(pDevice, RTSDUR_AA_F1, cbFrameLength, byPktType, wCurrentRate, bNeedAck, byFBOption)); //7:RTSDuration_aa_f1, 0:5G, 0:
-    	    pBuf->Data.wDurationID = pBuf->wDuration;
-    	    //Get RTS Frame body
+	    pBuf->wRTSDuration_f0 = cpu_to_le16((WORD)s_uGetRTSCTSDuration(pDevice, RTSDUR_AA_F0, cbFrameLength, byPktType, wCurrentRate, bNeedAck, byFBOption)); //5:RTSDuration_aa_f0, 0:5G, 0: 5G OFDMData
+	    pBuf->wRTSDuration_f1 = cpu_to_le16((WORD)s_uGetRTSCTSDuration(pDevice, RTSDUR_AA_F1, cbFrameLength, byPktType, wCurrentRate, bNeedAck, byFBOption)); //7:RTSDuration_aa_f1, 0:5G, 0:
+	    pBuf->Data.wDurationID = pBuf->wDuration;
+	    //Get RTS Frame body
             pBuf->Data.wFrameControl = TYPE_CTL_RTS;//0x00B4
 
 	if ((pDevice->eOPMode == OP_MODE_ADHOC) ||
@@ -1860,7 +1860,7 @@ s_vGenerateMACHeader (
     memset(pMACHeader, 0, (sizeof(S802_11Header)));  //- sizeof(pMACHeader->dwIV)));
 
     if (uDMAIdx == TYPE_ATIMDMA) {
-    	pMACHeader->wFrameCtl = TYPE_802_11_ATIM;
+	pMACHeader->wFrameCtl = TYPE_802_11_ATIM;
     } else {
         pMACHeader->wFrameCtl = TYPE_802_11_DATA;
     }
@@ -2073,14 +2073,14 @@ CMD_STATUS csMgmt_xmit(
         if (pDevice->eEncryptionStatus == Ndis802_11Encryption1Enabled) {
             cbIVlen = 4;
             cbICVlen = 4;
-    	    pTxBufHead->wFragCtl |= FRAGCTL_LEGACY;
+	    pTxBufHead->wFragCtl |= FRAGCTL_LEGACY;
         }
         else if (pDevice->eEncryptionStatus == Ndis802_11Encryption2Enabled) {
             cbIVlen = 8;//IV+ExtIV
             cbMIClen = 8;
             cbICVlen = 4;
-    	    pTxBufHead->wFragCtl |= FRAGCTL_TKIP;
-    	    //We need to get seed here for filling TxKey entry.
+	    pTxBufHead->wFragCtl |= FRAGCTL_TKIP;
+	    //We need to get seed here for filling TxKey entry.
             //TKIPvMixKey(pTransmitKey->abyKey, pDevice->abyCurrentNetAddr,
             //            pTransmitKey->wTSC15_0, pTransmitKey->dwTSC47_16, pDevice->abyPRNG);
         }
@@ -2507,14 +2507,14 @@ vDMA0_tx_80211(PSDevice  pDevice, struct sk_buff *skb) {
         if (pDevice->eEncryptionStatus == Ndis802_11Encryption1Enabled) {
             cbIVlen = 4;
             cbICVlen = 4;
-    	    pTxBufHead->wFragCtl |= FRAGCTL_LEGACY;
+	    pTxBufHead->wFragCtl |= FRAGCTL_LEGACY;
         }
         else if (pDevice->eEncryptionStatus == Ndis802_11Encryption2Enabled) {
             cbIVlen = 8;//IV+ExtIV
             cbMIClen = 8;
             cbICVlen = 4;
-    	    pTxBufHead->wFragCtl |= FRAGCTL_TKIP;
-    	    //We need to get seed here for filling TxKey entry.
+	    pTxBufHead->wFragCtl |= FRAGCTL_TKIP;
+	    //We need to get seed here for filling TxKey entry.
             //TKIPvMixKey(pTransmitKey->abyKey, pDevice->abyCurrentNetAddr,
             //            pTransmitKey->wTSC15_0, pTransmitKey->dwTSC47_16, pDevice->abyPRNG);
         }
@@ -3262,4 +3262,3 @@ bRelayPacketSend (
 
     return TRUE;
 }
-

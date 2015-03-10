@@ -1017,7 +1017,7 @@ void __dlm_wait_on_lockres_flags_set(struct dlm_lock_resource *res, int flags);
 static inline void __dlm_wait_on_lockres(struct dlm_lock_resource *res)
 {
 	__dlm_wait_on_lockres_flags(res, (DLM_LOCK_RES_IN_PROGRESS|
-				    	  DLM_LOCK_RES_RECOVERING|
+					  DLM_LOCK_RES_RECOVERING|
 					  DLM_LOCK_RES_MIGRATING));
 }
 

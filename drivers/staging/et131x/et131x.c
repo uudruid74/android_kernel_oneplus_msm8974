@@ -4000,7 +4000,7 @@ static int et131x_pci_init(struct et131x_adapter *adapter,
 		dev_err(&pdev->dev, "Missing PCIe capabilities\n");
 		goto err_out;
 	}
-		
+
 	/* Let's set up the PORT LOGIC Register.  First we need to know what
 	 * the max_payload_size is
 	 */
@@ -5456,4 +5456,3 @@ static void __exit et131x_cleanup_module(void)
 
 module_init(et131x_init_module);
 module_exit(et131x_cleanup_module);
-

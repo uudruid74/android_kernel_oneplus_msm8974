@@ -396,7 +396,7 @@
 			   <earl@exis.net>.
 			  Updated the PCI interface to conform with the latest
 			   version. I hope nothing is broken...
-          		  Add TX done interrupt modification from suggestion
+			  Add TX done interrupt modification from suggestion
 			   by <Austin.Donnelly@cl.cam.ac.uk>.
 			  Fix is_anc_capable() bug reported by
 			   <Austin.Donnelly@cl.cam.ac.uk>.
@@ -1199,17 +1199,17 @@ de4x5_hw_init(struct net_device *dev, u_long iobase, struct device *gendev)
 		dma_addr_t dma_rx_bufs;
 
 		dma_rx_bufs = lp->dma_rings + (NUM_RX_DESC + NUM_TX_DESC)
-		      	* sizeof(struct de4x5_desc);
+			* sizeof(struct de4x5_desc);
 		dma_rx_bufs = (dma_rx_bufs + DE4X5_ALIGN) & ~DE4X5_ALIGN;
 		lp->rx_bufs = (char *)(((long)(lp->rx_ring + NUM_RX_DESC
-		      	+ NUM_TX_DESC) + DE4X5_ALIGN) & ~DE4X5_ALIGN);
+			+ NUM_TX_DESC) + DE4X5_ALIGN) & ~DE4X5_ALIGN);
 		for (i=0; i<NUM_RX_DESC; i++) {
-	    		lp->rx_ring[i].status = 0;
-	    		lp->rx_ring[i].des1 = cpu_to_le32(RX_BUFF_SZ);
-	    		lp->rx_ring[i].buf =
+			lp->rx_ring[i].status = 0;
+			lp->rx_ring[i].des1 = cpu_to_le32(RX_BUFF_SZ);
+			lp->rx_ring[i].buf =
 				cpu_to_le32(dma_rx_bufs+i*RX_BUFF_SZ);
-	    		lp->rx_ring[i].next = 0;
-	    		lp->rx_skb[i] = (struct sk_buff *) 1; /* Dummy entry */
+			lp->rx_ring[i].next = 0;
+			lp->rx_skb[i] = (struct sk_buff *) 1; /* Dummy entry */
 		}
 
 	}
@@ -1503,7 +1503,7 @@ de4x5_queue_pkt(struct sk_buff *skb, struct net_device *dev)
 	    spin_lock_irqsave(&lp->lock, flags);
 	    netif_stop_queue(dev);
 	    load_packet(dev, skb->data, TD_IC | TD_LS | TD_FS | skb->len, skb);
- 	    lp->stats.tx_bytes += skb->len;
+	    lp->stats.tx_bytes += skb->len;
 	    outl(POLL_DEMAND, DE4X5_TPD);/* Start the TX */
 
 	    lp->tx_new = (lp->tx_new + 1) % lp->txRingSize;
@@ -1652,7 +1652,7 @@ de4x5_rx(struct net_device *dev)
 
 		    /* Update stats */
 		    lp->stats.rx_packets++;
- 		    lp->stats.rx_bytes += pkt_len;
+		    lp->stats.rx_bytes += pkt_len;
 		}
 	    }
 
@@ -1722,7 +1722,7 @@ de4x5_tx(struct net_device *dev)
 
 	    /* Free the buffer. */
 	    if (lp->tx_skb[entry] != NULL)
-	    	de4x5_free_tx_buff(lp, entry);
+		de4x5_free_tx_buff(lp, entry);
 	}
 
 	/* Update all the pointers */

@@ -324,4 +324,3 @@ module_init(init_doc);
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("David Woodhouse <dwmw2@infradead.org>");
 MODULE_DESCRIPTION("Probe code for DiskOnChip 2000 and Millennium devices");
-

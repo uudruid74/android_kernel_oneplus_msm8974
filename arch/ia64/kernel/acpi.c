@@ -815,9 +815,9 @@ int acpi_map_cpu2node(acpi_handle handle, int cpu, int physid)
 	/*
 	 * We don't have cpu-only-node hotadd. But if the system equips
 	 * SRAT table, pxm is already found and node is ready.
-  	 * So, just pxm_to_nid(pxm) is OK.
+	 * So, just pxm_to_nid(pxm) is OK.
 	 * This code here is for the system which doesn't have full SRAT
-  	 * table for possible cpus.
+	 * table for possible cpus.
 	 */
 	nid = acpi_map_pxm_to_node(pxm_id);
 	node_cpuid[cpu].phys_id = physid;
@@ -860,12 +860,12 @@ __init void prefill_possible_map(void)
 
 	disabled_cpus = total_cpus - available_cpus;
 
- 	if (additional_cpus == -1) {
- 		if (disabled_cpus > 0)
+	if (additional_cpus == -1) {
+		if (disabled_cpus > 0)
 			additional_cpus = disabled_cpus;
- 		else
+		else
 			additional_cpus = 0;
- 	}
+	}
 
 	possible = available_cpus + additional_cpus;
 

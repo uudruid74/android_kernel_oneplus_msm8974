@@ -306,4 +306,3 @@ FTRACE_ENTRY(branch, trace_branch,
 
 	FILTER_OTHER
 );
-

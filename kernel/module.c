@@ -106,8 +106,8 @@ extern struct device *tima_uevent_dev;
 #define HASH_ALGO QSEE_HASH_SHA1
 #define HASH_SIZE QSEE_SHA1_HASH_SZ
 
-/** 
- * Commands for TZ LKMAUTH application. 
+/**
+ * Commands for TZ LKMAUTH application.
  * */
 typedef enum
 {
@@ -1186,7 +1186,7 @@ static unsigned long maybe_relocated(unsigned long crc,
 static int check_version(Elf_Shdr *sechdrs,
 			 unsigned int versindex,
 			 const char *symname,
-			 struct module *mod, 
+			 struct module *mod,
 			 const unsigned long *crc,
 			 const struct module *crc_owner)
 {
@@ -1255,7 +1255,7 @@ static inline int same_magic(const char *amagic, const char *bmagic,
 static inline int check_version(Elf_Shdr *sechdrs,
 				unsigned int versindex,
 				const char *symname,
-				struct module *mod, 
+				struct module *mod,
 				const unsigned long *crc,
 				const struct module *crc_owner)
 {
@@ -2437,33 +2437,33 @@ static int lkmauth(Elf_Ehdr *hdr, int len)
 	pr_warn("TIMA: lkmauth--launch the tzapp to check kernel module; module len is %d\n", len);
 
 	snprintf(app_name, MAX_APP_NAME_SIZE, "%s", "tima_lkm");
-    
+
 	if ( NULL == qhandle ) {
 		/* start the lkmauth tzapp only when it is not loaded. */
 		qsee_ret = qseecom_start_app(&qhandle, app_name, 1024);
 	}
 	if ( NULL == qhandle ) {
 		/* qhandle is still NULL. It seems we couldn't start lkmauth tzapp. */
-  		pr_err("TIMA: lkmauth--cannot get tzapp handle from kernel.\n");
+		pr_err("TIMA: lkmauth--cannot get tzapp handle from kernel.\n");
 		ret = -1; /* lkm authentication failed. */
-  		goto lkmauth_ret; /* leave the function now. */
+		goto lkmauth_ret; /* leave the function now. */
 	}
 	if (qsee_ret) {
 		/* Another way for lkmauth tzapp loading to fail. */
-  		pr_err("TIMA: lkmauth--cannot load tzapp from kernel; qsee_ret =  %d.\n", qsee_ret);
+		pr_err("TIMA: lkmauth--cannot load tzapp from kernel; qsee_ret =  %d.\n", qsee_ret);
 		qhandle = NULL; /* Do we have a memory leak this way? */
 		ret = -1; /* lkm authentication failed. */
 		goto lkmauth_ret; /* leave the function now. */
 	}
-	
-	/* Generate the request cmd to verify hash of ko. 
-	 * Note that we are reusing the same buffer for both request and response, 
-	 * and the buffer is allocated in qhandle. 
+
+	/* Generate the request cmd to verify hash of ko.
+	 * Note that we are reusing the same buffer for both request and response,
+	 * and the buffer is allocated in qhandle.
 	 */
 	kreq = (struct lkmauth_req_s *)qhandle->sbuf;
-	kreq->cmd_id = LKMAUTH_CMD_AUTH; 
+	kreq->cmd_id = LKMAUTH_CMD_AUTH;
 	pr_warn("TIMA: lkmauth -- hdr before kreq is : %x\n", (u32)hdr);
-	kreq->module_addr_start = (u32)hdr; 
+	kreq->module_addr_start = (u32)hdr;
 	kreq->module_len = len;
 
 	req_len = sizeof(lkmauth_req_t);
@@ -2492,8 +2492,8 @@ static int lkmauth(Elf_Ehdr *hdr, int len)
 		pr_warn("TIMA: lkmauth--shutting down the tzapp.\n");
 		qsee_ret = qseecom_shutdown_app(&qhandle);
 		if ( qsee_ret ) {
-			/* Failed to shut down the lkmauth tzapp. What will happen to 
-			 * the qhandle in this case? Can it be used for the next lkmauth 
+			/* Failed to shut down the lkmauth tzapp. What will happen to
+			 * the qhandle in this case? Can it be used for the next lkmauth
 			 * invocation?
 			 */
 			pr_err("TIMA: lkmauth--failed to shut down the tzapp.\n");
@@ -2502,9 +2502,9 @@ static int lkmauth(Elf_Ehdr *hdr, int len)
 			qhandle = NULL;
 
 		ret = -1;
-		goto lkmauth_ret; 
+		goto lkmauth_ret;
 	}
-	
+
 	/* parse result */
 	if (krsp->ret == 0) {
 		pr_warn("TIMA: lkmauth--verification succeeded.\n");
@@ -2514,8 +2514,8 @@ static int lkmauth(Elf_Ehdr *hdr, int len)
 		pr_err("TIMA: lkmauth--verification failed %d\n", krsp->ret);
 		ret = -1;
 
-		/* Send a notification through uevent. Note that the lkmauth tzapp 
-		 * should have already raised an alert in TZ Security log. 
+		/* Send a notification through uevent. Note that the lkmauth tzapp
+		 * should have already raised an alert in TZ Security log.
 		 */
 		status = kzalloc(16, GFP_KERNEL);
 		if (!status) {
@@ -3247,7 +3247,7 @@ void tima_set_pte_val(unsigned long virt,int numpages,int flags)
         pmd_t *pmd;
         pte_t *pte;
 
-        while (virt < end) 
+        while (virt < end)
         {
                 pmd =tima_pmd_off_k(virt);
                 pmd_end = min(ALIGN(virt + 1, PMD_SIZE), end);
@@ -3258,7 +3258,7 @@ void tima_set_pte_val(unsigned long virt,int numpages,int flags)
                         continue;
                 }
 
-                while (virt < pmd_end) 
+                while (virt < pmd_end)
                 {
                         pte = pte_offset_kernel(pmd, virt);
                         if(flags == TIMA_SET_PTE_RO)
@@ -3267,7 +3267,7 @@ void tima_set_pte_val(unsigned long virt,int numpages,int flags)
                                 ptep_set_wrprotect(current->mm, virt,pte);
                         }
                         if(flags == TIMA_SET_PTE_NX)
-                        { 
+                        {
                                 /*Make pages Non Executable*/
                                 ptep_set_nxprotect(current->mm, virt,pte);
                         }
@@ -3276,7 +3276,7 @@ void tima_set_pte_val(unsigned long virt,int numpages,int flags)
         }
 
         flush_tlb_kernel_range(start, end);
-        
+
              }
 #endif
 void tima_mod_send_smc_instruction(unsigned int    *vatext,unsigned int    *vadata,unsigned int text_count,unsigned int data_count)
@@ -3304,17 +3304,17 @@ void tima_mod_send_smc_instruction(unsigned int    *vatext,unsigned int    *vada
 
 }
 /**
- *    tima_mod_page_change_access  - Wrapper function to change access control permissions of pages 
+ *    tima_mod_page_change_access  - Wrapper function to change access control permissions of pages
  *
  *     It sends code and data pages to secure side to  make code pages readonly and data pages non executable
- * 
+ *
  */
 
 void tima_mod_page_change_access(struct module *mod)
 {
         unsigned int    *vatext,*vadata;/* base virtual address of text and data regions*/
         unsigned int    text_count,data_count;/* Number of text and data pages present in core section */
-     
+
      /*Lets first pickup core section */
         vatext      = mod->module_core;
         vadata      = (int *)((char *)(mod->module_core) + mod->core_ro_size);
@@ -3334,7 +3334,7 @@ void tima_mod_page_change_access(struct module *mod)
 #else
  /* Change permissive bits for core section and making Code read only, Data Non Executable*/
         tima_set_pte_val( (unsigned long)vatext,text_count,TIMA_SET_PTE_RO);
-        tima_set_pte_val( (unsigned long)vadata,data_count,TIMA_SET_PTE_NX); 
+        tima_set_pte_val( (unsigned long)vadata,data_count,TIMA_SET_PTE_NX);
 #endif/*TIMA_KERNEL_L1_MANAGE*/
 
      /*Lets pickup init section */

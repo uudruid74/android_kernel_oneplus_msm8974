@@ -287,7 +287,7 @@ static void bluesleep_sleep_work(struct work_struct *work)
 				mutex_unlock(&bluesleep_mutex);
 				return;
 			}
-			
+
 			BT_DBG("going to sleep...");
 
 			set_bit(BT_ASLEEP, &flags);
@@ -1164,4 +1164,3 @@ MODULE_DESCRIPTION("Bluetooth Sleep Mode Driver ver %s " VERSION);
 #ifdef MODULE_LICENSE
 MODULE_LICENSE("GPL");
 #endif
-

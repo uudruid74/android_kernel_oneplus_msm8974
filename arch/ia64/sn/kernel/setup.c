@@ -717,7 +717,7 @@ void __init build_cnode_tables(void)
 
 	/*
 	 * num_cnodes is total number of C/M/TIO bricks. Because of the 256 node
-	 * limit on the number of nodes, we can't use the generic node numbers 
+	 * limit on the number of nodes, we can't use the generic node numbers
 	 * for this. Note that num_cnodes is incremented below as TIOs or
 	 * headless/memoryless nodes are discovered.
 	 */
@@ -772,4 +772,3 @@ sn_kernel_launch_event(void)
 		printk(KERN_ERR "KEXEC is not supported in this PROM, Please update the PROM.\n");
 }
 EXPORT_SYMBOL(sn_prom_feature_available);
-

@@ -9,4 +9,3 @@ obj-$(CONFIG_GP2AP30_FACTORY)  += gp2ap30_light.o
 obj-$(CONFIG_GP2AP30_FACTORY)  += gp2ap30_proximity.o
 obj-$(CONFIG_BMA250_FACTORY)   += bma250_accel.o
 obj-$(CONFIG_YAS532_FACTORY)   += yas532_mag.o
-

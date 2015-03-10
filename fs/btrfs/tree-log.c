@@ -3431,4 +3431,3 @@ int btrfs_log_new_name(struct btrfs_trans_handle *trans,
 
 	return btrfs_log_inode_parent(trans, root, inode, parent, 1);
 }
-

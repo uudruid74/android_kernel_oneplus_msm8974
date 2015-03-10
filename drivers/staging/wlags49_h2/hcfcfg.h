@@ -783,4 +783,3 @@ err: at most 1 of these macros should be defined;
 #endif //HCF_TYPE_WARP / HCF_TYPE_WPA
 
 #endif //HCFCFG_H
-

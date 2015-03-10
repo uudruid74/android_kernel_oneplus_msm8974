@@ -435,4 +435,3 @@ static struct _fips_test_vector_cipher fips_test_vector_cipher[] = {
 	},
 };
 #endif	/* __CRYPTO_MSM_QCEDEV_FIPS_H */
-

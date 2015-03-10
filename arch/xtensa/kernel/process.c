@@ -107,7 +107,7 @@ void coprocessor_flush_all(struct thread_info *ti)
 
 void cpu_idle(void)
 {
-  	local_irq_enable();
+	local_irq_enable();
 
 	/* endless idle loop with no priority at all */
 	while (1) {
@@ -143,7 +143,7 @@ void flush_thread(void)
 }
 
 /*
- * This is called before the thread is copied. 
+ * This is called before the thread is copied.
  */
 void prepare_to_copy(struct task_struct *tsk)
 {
@@ -336,4 +336,3 @@ long xtensa_execve(const char __user *name,
 out:
 	return error;
 }
-

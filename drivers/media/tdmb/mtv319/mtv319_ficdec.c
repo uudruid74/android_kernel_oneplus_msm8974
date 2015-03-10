@@ -2688,4 +2688,3 @@ void rtvFICDEC_GetEnsembleInfo(struct ensemble_info_type *ensble,
 	RTV_DBGMSG1("ensble->tot_sub_ch: %d\n\n", ensble->tot_sub_ch);
 */
 }
-

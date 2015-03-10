@@ -530,8 +530,8 @@ extern int c2_llp_service_destroy(struct iw_cm_id *cm_id);
 
 /* MM */
 extern int c2_nsmr_register_phys_kern(struct c2_dev *c2dev, u64 *addr_list,
- 				      int page_size, int pbl_depth, u32 length,
- 				      u32 off, u64 *va, enum c2_acf acf,
+				      int page_size, int pbl_depth, u32 length,
+				      u32 off, u64 *va, enum c2_acf acf,
 				      struct c2_mr *mr);
 extern int c2_stag_dealloc(struct c2_dev *c2dev, u32 stag_index);
 

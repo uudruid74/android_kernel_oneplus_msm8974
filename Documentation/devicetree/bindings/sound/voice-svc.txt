@@ -10,4 +10,3 @@ Example:
 	qcom,msm-voice-svc {
 		compatible = "qcom,msm-voice-svc";
 	};
-

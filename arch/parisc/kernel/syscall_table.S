@@ -325,7 +325,7 @@
 	ENTRY_SAME(epoll_create)
 	ENTRY_SAME(epoll_ctl)		/* 225 */
 	ENTRY_SAME(epoll_wait)
- 	ENTRY_SAME(remap_file_pages)
+	ENTRY_SAME(remap_file_pages)
 	ENTRY_SAME(semtimedop)
 	ENTRY_SAME(mq_open)
 	ENTRY_SAME(mq_unlink)		/* 230 */

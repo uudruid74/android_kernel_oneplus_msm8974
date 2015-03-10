@@ -182,4 +182,3 @@ Example:
 			qcom,freq-req;
 		};
 	};
-

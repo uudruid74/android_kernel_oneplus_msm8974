@@ -449,4 +449,3 @@ static inline void sock_release_memcg(struct sock *sk)
 }
 #endif /* CONFIG_CGROUP_MEM_RES_CTLR_KMEM */
 #endif /* _LINUX_MEMCONTROL_H */
-

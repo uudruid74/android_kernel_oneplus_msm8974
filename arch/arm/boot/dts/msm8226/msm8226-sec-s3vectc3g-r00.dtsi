@@ -27,10 +27,10 @@
 			interrupts = <21 0>;
 			pn547,irq-gpio = <&msmgpio 21 0x00>;
 			pn547,ven-gpio = <&msmgpio 20 0x1>;
-			pn547,firm-gpio = <&msmgpio 62 0x00>;			
+			pn547,firm-gpio = <&msmgpio 62 0x00>;
 		};
 	};
-    
+
 	i2c@f9924000 { /* BLSP1 QUP2 */
 		mpu6500_input@68 {
 			compatible = "invensense,mpu_6500";
@@ -105,13 +105,13 @@
 
 	};
 
-	i2c@21 { 
+	i2c@21 {
 		cell-index = <21>;
 		compatible = "i2c-gpio";
 		gpios = <&msmgpio 114 0 /* sda */
 		&msmgpio 66 0 /* scl */
 		>;
-	
+
 		cypress_touchkey@20 {
 			compatible = "cypress,cypress-tkey";
 			reg = <0x20>;

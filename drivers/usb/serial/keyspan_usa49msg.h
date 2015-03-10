@@ -11,17 +11,17 @@
 	met:
 
 	1. Redistributions of source code must retain this licence text
-   	without modification, this list of conditions, and the following
-   	disclaimer.  The following copyright notice must appear immediately at
-   	the beginning of all source files:
+	without modification, this list of conditions, and the following
+	disclaimer.  The following copyright notice must appear immediately at
+	the beginning of all source files:
 
-        	Copyright (C) 1998-2000 InnoSys Incorporated.  All Rights Reserved
+		Copyright (C) 1998-2000 InnoSys Incorporated.  All Rights Reserved
 
-        	This file is available under a BSD-style copyright
+		This file is available under a BSD-style copyright
 
 	2. The name of InnoSys Incorporated may not be used to endorse or promote
-   	products derived from this software without specific prior written
-   	permission.
+	products derived from this software without specific prior written
+	permission.
 
 	THIS SOFTWARE IS PROVIDED BY INNOSYS CORP. ``AS IS'' AND ANY EXPRESS OR
 	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -33,15 +33,15 @@
 	CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
 	LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
 	OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
-	SUCH DAMAGE.    
+	SUCH DAMAGE.
 
 	4th revision: USA49W version
 
 	Buffer formats for RX/TX data messages are not defined by
 	a structure, but are described here:
 
-	USB OUT (host -> USAxx, transmit) messages contain a 
-	REQUEST_ACK indicator (set to 0xff to request an ACK at the 
+	USB OUT (host -> USAxx, transmit) messages contain a
+	REQUEST_ACK indicator (set to 0xff to request an ACK at the
 	completion of transmit; 0x00 otherwise), followed by data:
 
 		RQSTACK DAT DAT DAT ...
@@ -50,7 +50,7 @@
 
 	USB IN (USAxx -> host, receive) messages begin with a status
 	byte in which the 0x80 bit is either:
-				   	
+
 		(a)	0x80 bit clear
 			indicates that the bytes following it are all data
 			bytes:
@@ -77,7 +77,7 @@
 		BREAK	0x10
 
 	Notes:
-	
+
 	(1) The OVERRUN bit can appear in either (a) or (b) format
 		messages, but the but the PARITY/FRAMING/BREAK bits
 		only appear in (b) format messages.
@@ -186,7 +186,7 @@ struct keyspan_usa49_portControlMessage
 		resetDataToggle,// reset data toggle state to DATA0
 		enablePort,		// start servicing port (move data, check status)
 		disablePort;	// stop servicing port (does implicit tx/rx flush/off)
-	
+
 };
 
 // defines for bits in lcr
@@ -204,7 +204,7 @@ struct keyspan_usa49_portControlMessage
 #define	PARITY_0			0x38
 
 /*
-	during normal operation, status messages are returned 
+	during normal operation, status messages are returned
 	to the host whenever the board detects changes.  In some
 	circumstances (e.g. Windows), status messages from the
 	device cause problems; to shut them off, the host issues

@@ -79,4 +79,3 @@ extern "C" {
 #endif
 
 #endif /* __FCI_TYPES_H__ */
-

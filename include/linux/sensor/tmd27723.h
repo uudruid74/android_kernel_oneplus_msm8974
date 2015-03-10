@@ -46,7 +46,7 @@ struct taos_platform_data {
 	int coef_c;
 	int coef_d;
 	bool max_data;
-	
+
 	int min_max;
 	int en; /*ldo power control*/
 };

@@ -1658,7 +1658,7 @@ static void hci_cc_fm_disable_rsp(struct radio_hci_dev *hdev,
                 return;
         }
 
-        if ((radio->mode == FM_TURNING_OFF) && (status == 0)) 
+        if ((radio->mode == FM_TURNING_OFF) && (status == 0))
         {
 		iris_q_event(radio, IRIS_EVT_RADIO_DISABLED);
 		radio_hci_req_complete(hdev, status);
@@ -1737,7 +1737,7 @@ static void hci_cc_fm_enable_rsp(struct radio_hci_dev *hdev,
 		radio_hci_req_complete(hdev, rsp->status);
 		return;
 	}
- 
+
 	radio_hci_req_complete(hdev, rsp->status);
 }
 
@@ -2322,7 +2322,7 @@ static void hci_ev_raw_rds_group_data(struct radio_hci_dev *hdev,
 			iris_q_evt_data(radio, (char *)(&temp),
 									sizeof (struct rds_grp_data), IRIS_BUF_RAW_RDS);
 			iris_q_event(radio, IRIS_EVT_NEW_RAW_RDS);
-		}	
+		}
 	}
 }
 
@@ -3658,7 +3658,7 @@ static int iris_vidioc_s_ctrl(struct file *file, void *priv,
 			radio->is_ert_enabled = ctrl->value;
 		else
 			retval = -EINVAL;
-		break;	
+		break;
 	case V4L2_CID_PRIVATE_IRIS_RDSGROUP_PROC:
 		prev = radio->g_rds_grp_proc_ps;
 		rds_grps_proc = radio->g_rds_grp_proc_ps | ctrl->value;

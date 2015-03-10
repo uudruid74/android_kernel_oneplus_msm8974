@@ -530,9 +530,9 @@ static u32 write_blk (struct ft1000_device *ft1000dev, u16 **pUsFile, u8 **pUcFi
 	      {
 		       if (tempword != 0)
 		       {
-    		           tempbuffer[i++] = *(*pUsFile);
+		           tempbuffer[i++] = *(*pUsFile);
 			   (*pUsFile)++;
-   	    	           tempbuffer[i] = *(*pUsFile);
+		           tempbuffer[i] = *(*pUsFile);
 			   (*pUsFile)++;
 			   *pUcFile = *pUcFile + 4;
 			   loopcnt++;
@@ -565,10 +565,10 @@ static u32 write_blk (struct ft1000_device *ft1000dev, u16 **pUsFile, u8 **pUcFi
 		       // Work around for ASIC bit stuffing problem.
 		       if ( (tempbuffer[31] & 0xfe00) == 0xfe00)
 		       {
-      		           Status = ft1000_write_dpram32(ft1000dev, dpram+12, (u8 *)&tempbuffer[24], 64);
+		           Status = ft1000_write_dpram32(ft1000dev, dpram+12, (u8 *)&tempbuffer[24], 64);
 		       }
-    		       // Let's check the data written
-	    	       Status = ft1000_read_dpram32 (ft1000dev, dpram, (u8 *)&resultbuffer[0], 64);
+		       // Let's check the data written
+		       Status = ft1000_read_dpram32 (ft1000dev, dpram, (u8 *)&resultbuffer[0], 64);
 		       if ( (tempbuffer[31] & 0xfe00) == 0xfe00)
 		       {
 				if (check_buffers(tempbuffer, resultbuffer, 28, 0)) {
@@ -577,7 +577,7 @@ static u32 write_blk (struct ft1000_device *ft1000dev, u16 **pUsFile, u8 **pUcFi
 					Status = STATUS_FAILURE;
 					break;
 				}
-   			   Status = ft1000_read_dpram32 (ft1000dev, dpram+12, (u8 *)&resultbuffer[0], 64);
+			   Status = ft1000_read_dpram32 (ft1000dev, dpram+12, (u8 *)&resultbuffer[0], 64);
 
 				if (check_buffers(tempbuffer, resultbuffer, 16, 24)) {
 					DEBUG("FT1000:download:DPRAM write failed 2 during bootloading\n");
@@ -585,7 +585,7 @@ static u32 write_blk (struct ft1000_device *ft1000dev, u16 **pUsFile, u8 **pUcFi
 					Status = STATUS_FAILURE;
 					break;
 				}
-			   
+
 			}
 			else
 			{
@@ -595,7 +595,7 @@ static u32 write_blk (struct ft1000_device *ft1000dev, u16 **pUsFile, u8 **pUcFi
 					Status = STATUS_FAILURE;
 					break;
 				}
-			    
+
 			}
 
 			if (Status == STATUS_SUCCESS)
@@ -611,7 +611,7 @@ static u32 write_blk (struct ft1000_device *ft1000dev, u16 **pUsFile, u8 **pUcFi
 		}
 
 	     }
-   	     dpram = dpram + loopcnt;
+	     dpram = dpram + loopcnt;
    }
 
    return Status;
@@ -1232,4 +1232,3 @@ u16 scram_dnldr(struct ft1000_device *ft1000dev, void *pFileStart,
 
 	return status;
 }
-

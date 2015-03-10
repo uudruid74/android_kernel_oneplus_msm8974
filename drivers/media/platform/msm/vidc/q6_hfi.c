@@ -1398,4 +1398,3 @@ int q6_hfi_initialize(struct hfi_device *hdev, u32 device_id,
 err_hfi_init:
 	return rc;
 }
-

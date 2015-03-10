@@ -107,7 +107,7 @@ static void uic_mask_ack_irq(struct irq_data *d)
 	er = mfdcr(uic->dcrbase + UIC_ER);
 	er &= ~sr;
 	mtdcr(uic->dcrbase + UIC_ER, er);
- 	/* On the UIC, acking (i.e. clearing the SR bit)
+	/* On the UIC, acking (i.e. clearing the SR bit)
 	 * a level irq will have no effect if the interrupt
 	 * is still asserted by the device, even if
 	 * the interrupt is already masked. Therefore

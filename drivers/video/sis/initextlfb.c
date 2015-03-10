@@ -150,7 +150,7 @@ sisfb_mode_rate_to_ddata(struct SiS_Private *SiS_Pr, unsigned char modeno,
 	  if(SiS_Pr->SiS_EModeIDTable[j].Ext_ModeID ==
 	                  SiS_Pr->SiS_RefIndex[RRTI].ModeID) {
 	      if(SiS_Pr->SiS_EModeIDTable[j].Ext_ModeFlag & DoubleScanMode) {
-	      	  var->vmode = FB_VMODE_DOUBLE;
+		  var->vmode = FB_VMODE_DOUBLE;
 	      }
 	      break;
 	  }
@@ -226,6 +226,3 @@ sisfb_gettotalfrommode(struct SiS_Private *SiS_Pr, unsigned char modeno, int *ht
 
     return true;
 }
-
-
-

@@ -1205,4 +1205,3 @@ module_platform_driver(ethoc_driver);
 MODULE_AUTHOR("Thierry Reding <thierry.reding@avionic-design.de>");
 MODULE_DESCRIPTION("OpenCores Ethernet MAC driver");
 MODULE_LICENSE("GPL v2");
-

@@ -2115,7 +2115,7 @@ static void drain_all_stock(struct mem_cgroup *root_memcg, bool sync)
 			flush_work(&stock->work);
 	}
 out:
- 	put_online_cpus();
+	put_online_cpus();
 }
 
 /*
@@ -2530,7 +2530,7 @@ static void __mem_cgroup_commit_charge(struct mem_cgroup *memcg,
 	 * is accessed after testing USED bit. To make pc->mem_cgroup visible
 	 * before USED bit, we need memory barrier here.
 	 * See mem_cgroup_add_lru_list(), etc.
- 	 */
+	 */
 	smp_wmb();
 	SetPageCgroupUsed(pc);
 
@@ -3499,7 +3499,7 @@ static int mem_cgroup_resize_limit(struct mem_cgroup *memcg,
 				   MEM_CGROUP_RECLAIM_SHRINK);
 		curusage = res_counter_read_u64(&memcg->res, RES_USAGE);
 		/* Usage is reduced ? */
-  		if (curusage >= oldusage)
+		if (curusage >= oldusage)
 			retry_count--;
 		else
 			oldusage = curusage;
@@ -3520,7 +3520,7 @@ static int mem_cgroup_resize_memsw_limit(struct mem_cgroup *memcg,
 	int enlarge = 0;
 
 	/* see mem_cgroup_resize_res_limit */
- 	retry_count = children * MEM_CGROUP_RECLAIM_RETRIES;
+	retry_count = children * MEM_CGROUP_RECLAIM_RETRIES;
 	oldusage = res_counter_read_u64(&memcg->memsw, RES_USAGE);
 	while (retry_count) {
 		if (signal_pending(current)) {

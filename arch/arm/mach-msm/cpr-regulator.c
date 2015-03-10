@@ -1467,7 +1467,7 @@ static int cpr_get_corner_quot_adjustment(struct cpr_regulator *cpr_vreg,
 	if (!tmp) {
 		pr_err("memory alloc failed\n");
 			return -ENOMEM;
-	}		
+	}
 	rc = of_property_read_u32_array(dev->of_node,
 		"qcom,cpr-corner-frequency-map", tmp, size);
 	if (rc < 0) {

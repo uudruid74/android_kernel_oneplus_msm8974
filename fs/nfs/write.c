@@ -953,7 +953,7 @@ static int nfs_do_multiple_writes(struct list_head *head,
 
 		data = list_entry(head->next, struct nfs_write_data, list);
 		list_del_init(&data->list);
-		
+
 		ret2 = nfs_do_write(data, call_ops, how);
 		 if (ret == 0)
 			 ret = ret2;
@@ -1793,4 +1793,3 @@ void nfs_destroy_writepagecache(void)
 	mempool_destroy(nfs_wdata_mempool);
 	kmem_cache_destroy(nfs_wdata_cachep);
 }
-

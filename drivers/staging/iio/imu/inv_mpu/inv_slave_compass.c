@@ -851,4 +851,3 @@ int inv_mpu_setup_compass_slave(struct inv_mpu_state *st)
 
 	return st->slave_compass->setup(st);
 }
-

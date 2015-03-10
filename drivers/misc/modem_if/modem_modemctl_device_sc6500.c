@@ -93,7 +93,7 @@ static int sprd6500_on(struct modem_ctl *mc)
 		GPIO_CFG_ENABLE);
 	gpio_set_value(mc->gpio_uart_sel, 1);
 
-	pr_err("[MODEM_IF:SC6500] <%s> CP On(%d,%d)\n", __func__, 
+	pr_err("[MODEM_IF:SC6500] <%s> CP On(%d,%d)\n", __func__,
 			gpio_get_value(mc->gpio_cp_on),
 			gpio_get_value(mc->gpio_phone_active));
 
@@ -106,13 +106,13 @@ static int sprd6500_on(struct modem_ctl *mc)
 //	msleep(100);
 
 	pr_err("[MODEM_IF:SC6500] <%s> IRQ enabled\n", __func__);
-	pr_err("[MODEM_IF:SC6500] <%s> Active = %d\n", __func__, 
+	pr_err("[MODEM_IF:SC6500] <%s> Active = %d\n", __func__,
 			gpio_get_value(mc->gpio_phone_active));
 
 	enable_irq(mc->irq_phone_active);
 //	msleep(280);
 
-	pr_err("[MODEM_IF:SC6500] <%s> Active = %d\n", __func__, 
+	pr_err("[MODEM_IF:SC6500] <%s> Active = %d\n", __func__,
 			gpio_get_value(mc->gpio_phone_active));
 
 #if defined(CONFIG_LINK_DEVICE_PLD)
@@ -245,7 +245,7 @@ static irqreturn_t phone_active_irq_handler(int irq, void *arg)
 				to_spi_link_device(get_current_link(mc->iod));
 
 			mc->iod->modem_state_changed(mc->iod, phone_state);
-		
+
 			/* Do after PHONE_ACTIVE High */
 //			spi_ld->dpram_init_status = DPRAM_INIT_STATE_READY;
 			spi_ld->spi_state = SPI_STATE_IDLE;
@@ -312,7 +312,7 @@ int sprd6500_init_modemctl_device(struct modem_ctl *mc, struct modem_data *pdata
 	struct platform_device *pdev;
 
 	pr_err("[MODEM_IF:SC6500] <%s> start\n", __func__);
-	
+
 	pdev = to_platform_device(mc->dev);
 
 #if 0 //def CONFIG_OF
@@ -331,7 +331,7 @@ int sprd6500_init_modemctl_device(struct modem_ctl *mc, struct modem_data *pdata
 #ifdef CONFIG_SEC_DUAL_MODEM_MODE
 	mc->gpio_sim_sel = pdata->gpio_sim_sel;
 #endif
-	
+
 #if defined(CONFIG_LINK_DEVICE_PLD)
 	mc->gpio_fpga1_cs_n = pdata->gpio_fpga1_cs_n;
 #endif

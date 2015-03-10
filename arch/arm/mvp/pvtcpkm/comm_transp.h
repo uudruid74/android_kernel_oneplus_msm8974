@@ -88,4 +88,3 @@ CommTransp_GetType(const char *str)
 }
 
 #endif /* _COMM_TRANSP_H_ */
-

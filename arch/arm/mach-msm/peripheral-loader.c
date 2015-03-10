@@ -50,7 +50,7 @@
 /* for hw_rev */
 #include <mach/msm_smem.h>
 #include <asm/io.h>
-#endif 
+#endif
 
 #define pil_err(desc, fmt, ...)						\
 	dev_err(desc->dev, "%s: " fmt, desc->name, ##__VA_ARGS__)
@@ -906,7 +906,7 @@ void write_hw_rev_to_smem(unsigned int hw_rev)
 		return;
 	}
 	/* write hw_rev to smem region */
-	writel_relaxed(hw_rev, hw_rev_sdata); 
+	writel_relaxed(hw_rev, hw_rev_sdata);
 	pr_info("hw_rev just written = %u\n", readl_relaxed(hw_rev_sdata));
 }
 #endif

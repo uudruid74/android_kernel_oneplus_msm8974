@@ -63,7 +63,7 @@
 /*	i2c@75 {
 		cell-index = <75>;
 		compatible = "i2c-gpio";
-		gpios = <&msmgpio 20 0 
+		gpios = <&msmgpio 20 0
 			&msmgpio 21 0>;};*/
 
 	backlight_lp8556@2C {
@@ -200,7 +200,7 @@
 			debounce-interval = <15>;
 		};
 
-/*	Volume Key connected to Resin pin of PMIC and not AP PIN so 
+/*	Volume Key connected to Resin pin of PMIC and not AP PIN so
 	commenting the node  */
 /*
 		vol_down {

@@ -152,7 +152,7 @@ __start:
 /* Switch MMU off, clear BATs and flush TLB. At this point, r3 contains
  * the physical address we are running at, returned by early_init()
  */
- 	bl	mmu_off
+	bl	mmu_off
 __after_mmu_off:
 	bl	clear_bats
 	bl	flush_tlbs
@@ -1116,7 +1116,7 @@ flush_tlbs:
 	blr
 
 mmu_off:
- 	addi	r4, r3, __after_mmu_off - _start
+	addi	r4, r3, __after_mmu_off - _start
 	mfmsr	r3
 	andi.	r0,r3,MSR_DR|MSR_IR		/* MMU enabled? */
 	beqlr

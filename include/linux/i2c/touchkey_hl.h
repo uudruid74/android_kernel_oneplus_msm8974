@@ -36,7 +36,7 @@ struct touchkey_platform_data {
 	int (*power_on) (bool);
 	int (*led_power_on) (bool);
 	int (*reset_platform_hw)(void);
-	void (*register_cb)(void *);	
+	void (*register_cb)(void *);
 #ifdef GPIO_2TOUCH_RST
 	int gpio_rst;
 	int (*rst_reset)(void);

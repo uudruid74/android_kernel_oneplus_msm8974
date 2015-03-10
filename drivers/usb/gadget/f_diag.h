@@ -21,4 +21,3 @@
 int diag_function_add(struct usb_configuration *c, const char *);
 
 #endif /* __F_DIAG_H */
-

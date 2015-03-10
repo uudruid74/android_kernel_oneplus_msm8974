@@ -966,7 +966,7 @@ static int doc_write_oob(struct mtd_info *mtd, loff_t ofs,
 		WriteDOC(0x00, docptr, Mplus_WritePipeTerm);
 
 		/* Commit the Page Program command and wait for ready
-	 	   see Software Requirement 11.4 item 1.*/
+		   see Software Requirement 11.4 item 1.*/
 		DoC_Command(docptr, NAND_CMD_PAGEPROG, 0x00);
 		DoC_WaitReady(docptr);
 

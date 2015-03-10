@@ -163,4 +163,3 @@ qcom,palladium-batterydata {
 			<170899 127211 98968 88907 77102>;
 	};
 };
-

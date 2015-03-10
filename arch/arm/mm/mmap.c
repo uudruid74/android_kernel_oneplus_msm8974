@@ -92,7 +92,7 @@ arch_get_unmapped_area(struct file *filp, unsigned long addr,
 
 	if (len > TASK_SIZE){
 		printk(KERN_ERR "arch_get_unmapped_area (len>TASK_SIZE) len=%lu\
-		 	task size=%lu pid=%d do_align=%d addr=%lu \
+			task size=%lu pid=%d do_align=%d addr=%lu \
 			mmap_base=%lu\n",
 			len,TASK_SIZE,current->pid,\
 			do_align,addr,mm->mmap_base);
@@ -136,8 +136,8 @@ full_search:
 				goto full_search;
 			}
 			printk(KERN_ERR "arch_get_unmapped_area\
-			 	(TASK_SIZE - len < addr)\
-			 	len=%lu task size=%lu pid=%d do_align=%d \
+				(TASK_SIZE - len < addr)\
+				len=%lu task size=%lu pid=%d do_align=%d \
 				addr=%lu mmap_base=%lu\n",
 				len,TASK_SIZE,\
 				current->pid,do_align,addr,mm->mmap_base);

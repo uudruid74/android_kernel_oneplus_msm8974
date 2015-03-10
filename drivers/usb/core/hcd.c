@@ -6,7 +6,7 @@
  * (C) Copyright Deti Fliegl 1999
  * (C) Copyright Randy Dunlap 2000
  * (C) Copyright David Brownell 2000-2002
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation; either version 2 of the License, or (at your
@@ -206,13 +206,13 @@ static const u8 fs_rh_config_descriptor [] = {
 	0x01,       /*  __u8  bNumInterfaces; (1) */
 	0x01,       /*  __u8  bConfigurationValue; */
 	0x00,       /*  __u8  iConfiguration; */
-	0xc0,       /*  __u8  bmAttributes; 
+	0xc0,       /*  __u8  bmAttributes;
 				 Bit 7: must be set,
 				     6: Self-powered,
 				     5: Remote wakeup,
 				     4..0: resvd */
 	0x00,       /*  __u8  MaxPower; */
-      
+
 	/* USB 1.1:
 	 * USB 2.0, single TT organization (mandatory):
 	 *	one interface, protocol 0
@@ -234,13 +234,13 @@ static const u8 fs_rh_config_descriptor [] = {
 	0x00,       /*  __u8  if_bInterfaceSubClass; */
 	0x00,       /*  __u8  if_bInterfaceProtocol; [usb1.1 or single tt] */
 	0x00,       /*  __u8  if_iInterface; */
-     
+
 	/* one endpoint (status change endpoint) */
 	0x07,       /*  __u8  ep_bLength; */
 	0x05,       /*  __u8  ep_bDescriptorType; Endpoint */
 	0x81,       /*  __u8  ep_bEndpointAddress; IN Endpoint 1 */
- 	0x03,       /*  __u8  ep_bmAttributes; Interrupt */
- 	0x02, 0x00, /*  __le16 ep_wMaxPacketSize; 1 + (MAX_ROOT_PORTS / 8) */
+	0x03,       /*  __u8  ep_bmAttributes; Interrupt */
+	0x02, 0x00, /*  __le16 ep_wMaxPacketSize; 1 + (MAX_ROOT_PORTS / 8) */
 	0xff        /*  __u8  ep_bInterval; (255ms -- usb 2.0 spec) */
 };
 
@@ -253,13 +253,13 @@ static const u8 hs_rh_config_descriptor [] = {
 	0x01,       /*  __u8  bNumInterfaces; (1) */
 	0x01,       /*  __u8  bConfigurationValue; */
 	0x00,       /*  __u8  iConfiguration; */
-	0xc0,       /*  __u8  bmAttributes; 
+	0xc0,       /*  __u8  bmAttributes;
 				 Bit 7: must be set,
 				     6: Self-powered,
 				     5: Remote wakeup,
 				     4..0: resvd */
 	0x00,       /*  __u8  MaxPower; */
-      
+
 	/* USB 1.1:
 	 * USB 2.0, single TT organization (mandatory):
 	 *	one interface, protocol 0
@@ -281,12 +281,12 @@ static const u8 hs_rh_config_descriptor [] = {
 	0x00,       /*  __u8  if_bInterfaceSubClass; */
 	0x00,       /*  __u8  if_bInterfaceProtocol; [usb1.1 or single tt] */
 	0x00,       /*  __u8  if_iInterface; */
-     
+
 	/* one endpoint (status change endpoint) */
 	0x07,       /*  __u8  ep_bLength; */
 	0x05,       /*  __u8  ep_bDescriptorType; Endpoint */
 	0x81,       /*  __u8  ep_bEndpointAddress; IN Endpoint 1 */
- 	0x03,       /*  __u8  ep_bmAttributes; Interrupt */
+	0x03,       /*  __u8  ep_bmAttributes; Interrupt */
 		    /* __le16 ep_wMaxPacketSize; 1 + (MAX_ROOT_PORTS / 8)
 		     * see hub.c:hub_configure() for details. */
 	(USB_MAXCHILDREN + 1 + 7) / 8, 0x00,
@@ -440,7 +440,7 @@ rh_string(int id, struct usb_hcd const *hcd, u8 *data, unsigned len)
 static int rh_call_control (struct usb_hcd *hcd, struct urb *urb)
 {
 	struct usb_ctrlrequest *cmd;
- 	u16		typeReq, wValue, wIndex, wLength;
+	u16		typeReq, wValue, wIndex, wLength;
 	u8		*ubuf = urb->transfer_buffer;
 	/*
 	 * tbuf should be as big as the BOS descriptor and
@@ -1658,7 +1658,7 @@ rescan:
 				 case USB_ENDPOINT_XFER_INT:
 					s = "-intr"; break;
 				 default:
-			 		s = "-iso"; break;
+					s = "-iso"; break;
 				};
 				s;
 			}));
@@ -2075,7 +2075,7 @@ static void hcd_resume_work(struct work_struct *work)
 }
 
 /**
- * usb_hcd_resume_root_hub - called by HCD to resume its root hub 
+ * usb_hcd_resume_root_hub - called by HCD to resume its root hub
  * @hcd: host controller for this root hub
  *
  * The USB host controller calls this function when its root hub is
@@ -2545,7 +2545,7 @@ err_allocate_root_hub:
 err_register_bus:
 	hcd_buffer_destroy(hcd);
 	return retval;
-} 
+}
 EXPORT_SYMBOL_GPL(usb_add_hcd);
 
 /**
@@ -2632,7 +2632,7 @@ struct usb_mon_operations *mon_ops;
  * Notice that the code is minimally error-proof. Because usbmon needs
  * symbols from usbcore, usbcore gets referenced and cannot be unloaded first.
  */
- 
+
 int usb_mon_register (struct usb_mon_operations *ops)
 {
 

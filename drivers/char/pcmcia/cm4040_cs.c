@@ -200,7 +200,7 @@ static int wait_for_bulk_in_ready(struct reader_dev *dev)
 		dev->timeout);
 	rc = wait_event_interruptible_timeout(dev->read_wait,
 					      test_and_clear_bit(BS_READABLE,
-						 	&dev->buffer_status),
+							&dev->buffer_status),
 					      dev->timeout);
 	if (rc > 0)
 		DEBUGP(4, dev, "woke up: BulkIn full\n");
@@ -249,7 +249,7 @@ static ssize_t cm4040_read(struct file *filp, char __user *buf,
 				return rc;
 			return -EIO;
 		}
-	  	dev->r_buf[i] = xinb(iobase + REG_OFFSET_BULK_IN);
+		dev->r_buf[i] = xinb(iobase + REG_OFFSET_BULK_IN);
 #ifdef CM4040_DEBUG
 		pr_debug("%lu:%2x ", i, dev->r_buf[i]);
 	}
@@ -508,7 +508,7 @@ static void cm4040_reader_release(struct pcmcia_device *link)
 	while (link->open) {
 		DEBUGP(3, dev, KERN_INFO MODULE_NAME ": delaying release "
 		       "until process has terminated\n");
- 		wait_event(dev->devq, (link->open == 0));
+		wait_event(dev->devq, (link->open == 0));
 	}
 	DEBUGP(3, dev, "<- cm4040_reader_release\n");
 	return;
@@ -642,7 +642,7 @@ static const struct pcmcia_device_id cm4040_ids[] = {
 MODULE_DEVICE_TABLE(pcmcia, cm4040_ids);
 
 static struct pcmcia_driver reader_driver = {
-  	.owner		= THIS_MODULE,
+	.owner		= THIS_MODULE,
 	.name		= "cm4040_cs",
 	.probe		= reader_probe,
 	.remove		= reader_detach,

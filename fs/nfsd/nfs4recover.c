@@ -119,7 +119,7 @@ nfs4_make_rec_clidname(char *dname, struct xdr_netobj *clname)
 	cksum.len = crypto_hash_digestsize(desc.tfm);
 	cksum.data = kmalloc(cksum.len, GFP_KERNEL);
 	if (cksum.data == NULL)
- 		goto out;
+		goto out;
 
 	sg_init_one(&sg, clname->data, clname->len);
 

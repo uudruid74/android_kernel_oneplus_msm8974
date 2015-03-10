@@ -9,7 +9,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  */
- 
+
 /****************************** Revision History ******************************************
  *CH# Product		author		Description				Date
  *-----------------------------------------------------------------------------------------
@@ -25,7 +25,7 @@
  * QC_SOC_REVISION = Qcomm SOC Version of MTP Board
  * Please refer to .../lk/platform/msm_shared/dev_tree.c also
  */
- 
+
 /dts-v1/;
 /include/ "msm8226-v2.dtsi"
 /include/ "msm8228-sec-atlantic3g-r00.dtsi"
@@ -122,5 +122,3 @@
 		mpp-channel-scaling = <6 1 1>;
         };
 };
-
-

@@ -3536,4 +3536,3 @@ static void __exit exit_stream_coprocessor(void)
 
 module_init(init_stream_coprocessor);
 module_exit(exit_stream_coprocessor);
-

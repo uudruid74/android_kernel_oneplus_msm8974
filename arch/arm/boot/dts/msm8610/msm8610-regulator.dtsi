@@ -262,8 +262,8 @@
 			regulator-min-microvolt = <1800000>;
 			regulator-max-microvolt = <1800000>;
 			qcom,init-voltage = <1800000>;
-			qcom,init-current = <100>; 
-			qcom,system-load = <100000>; 
+			qcom,init-current = <100>;
+			qcom,system-load = <100000>;
 			qcom,init-ldo-mode = <1>;
 			qcom,always-send-current;
 			status = "okay";

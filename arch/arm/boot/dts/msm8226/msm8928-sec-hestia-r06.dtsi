@@ -377,7 +377,7 @@
 		qcom,msm-bus,num-paths = <1>;
 		qcom,msm-bus,vectors-KBps = <86 512 0 0>, <86 512 500 800>;
 	};
-	
+
 	sound {
 		qcom,audio-routing =
 			"RX_BIAS", "MCLK",

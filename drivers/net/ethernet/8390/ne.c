@@ -253,8 +253,8 @@ static int __init ne_probe_isapnp(struct net_device *dev)
 			if (pnp_device_attach(idev) < 0)
 				continue;
 			if (pnp_activate_dev(idev) < 0) {
-			      	pnp_device_detach(idev);
-			      	continue;
+				pnp_device_detach(idev);
+				continue;
 			}
 			/* if no io and irq, search for next */
 			if (!pnp_port_valid(idev, 0) || !pnp_irq_valid(idev, 0)) {
@@ -673,7 +673,7 @@ static void ne_block_input(struct net_device *dev, int count, struct sk_buff *sk
 			if (((ring_offset + xfer_count) & 0xff) == low)
 				break;
 		} while (--tries > 0);
-	 	if (tries <= 0)
+		if (tries <= 0)
 			printk(KERN_WARNING "%s: RX transfer address mismatch,"
 				"%#4.4x (expected) vs. %#4.4x (actual).\n",
 				dev->name, ring_offset + xfer_count, addr);

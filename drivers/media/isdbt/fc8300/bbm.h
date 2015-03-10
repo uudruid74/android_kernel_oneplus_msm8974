@@ -69,4 +69,3 @@ s32 bbm_com_ac_callback_deregister(void);
 void bbm_com_isr(HANDLE handle);
 
 #endif /* __BBM_H__ */
-

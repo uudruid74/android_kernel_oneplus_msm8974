@@ -4541,4 +4541,3 @@ extern u8 *VIDC_BASE_PTR;
 #define HWIO_REG_651391_SIGNATURE_SHFT  0
 
 #endif
-

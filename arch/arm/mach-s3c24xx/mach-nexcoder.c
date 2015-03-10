@@ -114,7 +114,7 @@ static struct platform_device *nexcoder_devices[] __initdata = {
 	&s3c_device_wdt,
 	&s3c_device_i2c0,
 	&s3c_device_iis,
- 	&s3c_device_rtc,
+	&s3c_device_rtc,
 	&s3c_device_camif,
 	&s3c_device_spi0,
 	&s3c_device_spi1,

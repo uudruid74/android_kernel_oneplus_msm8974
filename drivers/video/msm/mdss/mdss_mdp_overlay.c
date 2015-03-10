@@ -3612,4 +3612,3 @@ void mdss_mdp_underrun_dump_info(struct msm_fb_data_type *mfd)
 	mdss_mdp_underrun_clk_info();
 	pr_info(" ============ dump_end =========== \n");
 }
-

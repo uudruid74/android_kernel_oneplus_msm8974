@@ -55,7 +55,7 @@
 			invensense,i2c-pull-up = <1>;
 			invensense-i2c,reg_vdd = "8226_l19";
 			invensense-i2c,reg_vio = "8226_lvs1";
-	             	invensense,irq-gpio= <&msmgpio 64 0x1>;
+			invensense,irq-gpio= <&msmgpio 64 0x1>;
 			invensense,scl-gpio = <&msmgpio 7 0x00>;
 			invensense,sda-gpio = <&msmgpio 6 0x00>;
 			invensense,acc_cal_path = "/efs/calibration_data";
@@ -120,13 +120,13 @@
 
 	};
 
-	i2c@21 { 
+	i2c@21 {
 		cell-index = <21>;
 		compatible = "i2c-gpio";
 		gpios = <&msmgpio 114 0 /* sda */
 		&msmgpio 66 0 /* scl */
 		>;
-	
+
 		cypress_touchkey@20 {
 			compatible = "cypress,cypress-tkey";
 			reg = <0x20>;
@@ -410,7 +410,7 @@
 			sec,temp-high-recover-normal = <470>;
 			sec,temp-high-recover-lpm = <470>;
 		};
-		
+
 		qcom,leds@a300 {
 			status = "okay";
 			qcom,led_mpp_4 {
@@ -676,4 +676,3 @@
 	qcom,pvs-corner-ceiling-nom  = <1140000 1140000 1200000>;
 	qcom,pvs-corner-ceiling-fast = <1140000 1140000 1140000>;
 };
-

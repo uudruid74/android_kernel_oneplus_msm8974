@@ -34,7 +34,7 @@ static int ssp_push_17bytes_buffer(struct iio_dev *indio_dev,
 							u64 t, int *q)
 {
 	u8 buf[IIO_BUFFER_17_BYTES];
-	
+
 	int i;
 
 	for (i = 0; i < 4; i++)
@@ -780,7 +780,7 @@ int initialize_input_dev(struct ssp_data *data)
 	defined(CONFIG_SENSORS_SSP_MAX88920)
 		*gesture_input_dev,
 #endif
-		*mag_input_dev, *uncal_mag_input_dev, *uncalib_gyro_input_dev, 
+		*mag_input_dev, *uncal_mag_input_dev, *uncalib_gyro_input_dev,
 		*sig_motion_input_dev, *step_cnt_input_dev,
 		*meta_input_dev;
 

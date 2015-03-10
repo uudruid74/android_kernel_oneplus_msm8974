@@ -507,4 +507,3 @@ config RING_BUFFER_BENCHMARK
 endif # FTRACE
 
 endif # TRACING_SUPPORT
-

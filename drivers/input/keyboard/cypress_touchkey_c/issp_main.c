@@ -413,4 +413,3 @@ Acquire the device through reset or power cycle
 	return 0;
 }
 #endif  /* (PROJECT_REV_) */
-

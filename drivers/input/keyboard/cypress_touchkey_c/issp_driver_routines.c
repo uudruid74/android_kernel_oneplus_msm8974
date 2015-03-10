@@ -444,5 +444,3 @@ void RemoveTargetVDD(struct cypress_touchkey_info *info)
 
 #endif  /* (PROJECT_REV_) */
 /* end of file ISSP_Drive_Routines.c */
-
-

@@ -4745,4 +4745,3 @@ setup_bap( IFBP ifbp, hcf_16 fid, int offset, int type )
 	HCFTRACE( ifbp, HCF_TRACE_STRIO | HCF_TRACE_EXIT );
 	return rc;
 } // setup_bap
-

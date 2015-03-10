@@ -111,8 +111,8 @@ struct arch_specific_insn {
  #define INST_FLAG_FIX_BRANCH_REG		2
  #define INST_FLAG_BREAK_INST			4
  #define INST_FLAG_BOOSTABLE			8
- 	unsigned long inst_flag;
- 	unsigned short target_br_reg;
+	unsigned long inst_flag;
+	unsigned short target_br_reg;
 	unsigned short slot;
 };
 

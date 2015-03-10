@@ -1661,7 +1661,7 @@ SiS_GetLCDResInfo(struct SiS_Private *SiS_Pr, unsigned short ModeNo, unsigned sh
 			    SiS_Pr->PanelVCLKIdx315 = VCLK28;
 			    break;
      case Panel_800x600:    SiS_Pr->PanelXRes =  800; SiS_Pr->PanelYRes =  600;
-     			    SiS_Pr->PanelHT   = 1056; SiS_Pr->PanelVT   =  628;
+			    SiS_Pr->PanelHT   = 1056; SiS_Pr->PanelVT   =  628;
 			    SiS_Pr->PanelHRS  =   40; SiS_Pr->PanelHRE  =  128;
 			    SiS_Pr->PanelVRS  =    1; SiS_Pr->PanelVRE  =    4;
 			    SiS_Pr->PanelVCLKIdx300 = VCLK40;
@@ -3140,7 +3140,7 @@ SiS_GetCRT2DataLVDS(struct SiS_Private *SiS_Pr, unsigned short ModeNo, unsigned 
       }
 
       SiS_GetCRT2Ptr(SiS_Pr, ModeNo, ModeIdIndex, RefreshRateTableIndex,
-                     		            &CRT2Index, &ResIndex);
+				            &CRT2Index, &ResIndex);
 
       SiS_Pr->SiS_IF_DEF_LVDS = backup;
 
@@ -3783,7 +3783,7 @@ SiS_GetLVDSDesData(struct SiS_Private *SiS_Pr, unsigned short ModeNo, unsigned s
 		       SiS_Pr->SiS_LCDHDES = 320;
 		       if(SiS_Pr->SiS_LCDResInfo == Panel_1400x1050) SiS_Pr->SiS_LCDHDES = 632;
 		       if(SiS_Pr->SiS_LCDResInfo == Panel_1600x1200) SiS_Pr->SiS_LCDHDES = 542;
-        	    }
+		    }
 #endif
 		 }
 	      }
@@ -4528,7 +4528,7 @@ SiS_EnableBridge(struct SiS_Private *SiS_Pr)
 			if((cr36 & 0x0f) == 0x09) {
 			   r30 = 0x60; r31 = 0x05; r32 = 0x60; r33 = 0x00;
 			}
- 		     }
+		     }
 #endif
 #ifdef COMPAQ_HACK
 		     if(SiS_Pr->SiS_CustomT == CUT_COMPAQ1280) {
@@ -5016,7 +5016,7 @@ SiS_SetCRT2FIFO_300(struct SiS_Private *SiS_Pr,unsigned short ModeNo)
   unsigned short tempbx, tempcl, CRT1ModeNo, CRT2ModeNo, SelectRate_backup;
   unsigned int   data, pci50, pciA0;
   static const unsigned char colortharray[] = {
-  	1, 1, 2, 2, 3, 4
+	1, 1, 2, 2, 3, 4
   };
 
   SelectRate_backup = SiS_Pr->SiS_SelectCRT2Rate;
@@ -6322,7 +6322,7 @@ SiS_GetGroup2CLVXPtr(struct SiS_Private *SiS_Pr, int tabletype)
 
 static void
 SiS_SetGroup2_C_ELV(struct SiS_Private *SiS_Pr, unsigned short ModeNo, unsigned short ModeIdIndex,
-	      	    unsigned short RefreshRateTableIndex)
+		    unsigned short RefreshRateTableIndex)
 {
    unsigned char *tableptr;
    unsigned char temp;
@@ -6969,7 +6969,7 @@ SiS_SetGroup2(struct SiS_Private *SiS_Pr, unsigned short ModeNo, unsigned short 
 
 #ifdef CONFIG_FB_SIS_315
   if(SiS_GetCRT2Part2Ptr(SiS_Pr, ModeNo, ModeIdIndex, RefreshRateTableIndex,
-                          			&CRT2Index, &resindex)) {
+						&CRT2Index, &resindex)) {
       switch(CRT2Index) {
         case 206: CRT2Part2Ptr = SiS310_CRT2Part2_Asus1024x768_3;    break;
 	default:
@@ -7359,7 +7359,7 @@ SiS_SetCRT2VCLK(struct SiS_Private *SiS_Pr, unsigned short ModeNo, unsigned shor
   if(SiS_Pr->SiS_VBType & VB_SIS30xBLV) {
      if(SiS_Pr->SiS_TVMode & (TVSetNTSC1024 | TVSet525p1024)) {
         SiS_SetReg(SiS_Pr->SiS_Part4Port,0x0a,0x57);
- 	SiS_SetReg(SiS_Pr->SiS_Part4Port,0x0b,0x46);
+	SiS_SetReg(SiS_Pr->SiS_Part4Port,0x0b,0x46);
 	SiS_SetReg(SiS_Pr->SiS_Part4Port,0x1f,0xf6);
      } else {
         SiS_SetReg(SiS_Pr->SiS_Part4Port,0x0a,reg1);
@@ -7566,7 +7566,7 @@ SiS_SetGroup4(struct SiS_Private *SiS_Pr, unsigned short ModeNo, unsigned short 
 	   temp |= 0x01;
 	   if(SiS_Pr->SiS_VBInfo & SetInSlaveMode) {
 	      if(!(SiS_Pr->SiS_TVMode & TVSetTVSimuMode)) {
-  	         temp &= ~0x01;
+	         temp &= ~0x01;
 	      }
 	   }
 	}
@@ -7640,7 +7640,7 @@ SiS_GetLVDSCRT1Ptr(struct SiS_Private *SiS_Pr, unsigned short ModeNo, unsigned s
 
      (*DisplayType) = 80;
      if((SiS_Pr->SiS_TVMode & TVSetPAL) && (!(SiS_Pr->SiS_TVMode & TVSetPALM))) {
-      	(*DisplayType) = 82;
+	(*DisplayType) = 82;
 	if(SiS_Pr->SiS_ModeType > ModeVGA) {
 	   if(SiS_Pr->SiS_CHSOverScan) (*DisplayType) = 84;
 	}
@@ -7896,7 +7896,7 @@ SiS_SetCHTVReg(struct SiS_Private *SiS_Pr, unsigned short ModeNo, unsigned short
 
       /* Set minimum flicker filter for Luma channel (SR1-0=00),
                 minimum text enhancement (S3-2=10),
-   	        maximum flicker filter for Chroma channel (S5-4=10)
+	        maximum flicker filter for Chroma channel (S5-4=10)
 	        =00101000=0x28 (When reading, S1-0->S3-2, and S3-2->S1-0!)
        */
       SiS_SetCH700x(SiS_Pr,0x01,0x28);
@@ -7934,7 +7934,7 @@ SiS_SetCHTVReg(struct SiS_Private *SiS_Pr, unsigned short ModeNo, unsigned short
       if(!(SiS_Pr->SiS_TVMode & TVSetPAL)) {		/* ---- NTSC ---- */
          if(SiS_Pr->SiS_TVMode & TVSetCHOverScan) {
             if(resindex == 0x04) {   			/* 640x480 overscan: Mode 16 */
-      	       SiS_SetCH70xxANDOR(SiS_Pr,0x20,0x00,0xEF);	/* loop filter off */
+	       SiS_SetCH70xxANDOR(SiS_Pr,0x20,0x00,0xEF);	/* loop filter off */
                SiS_SetCH70xxANDOR(SiS_Pr,0x21,0x01,0xFE);	/* ACIV on, no need to set FSCI */
             } else if(resindex == 0x05) {    		/* 800x600 overscan: Mode 23 */
                SiS_SetCH70xxANDOR(SiS_Pr,0x18,0x01,0xF0);	/* 0x18-0x1f: FSCI 469,762,048 */
@@ -9422,7 +9422,7 @@ SiS_SetSCLKHigh(struct SiS_Private *SiS_Pr)
     temp = SiS_GetReg(SiS_Pr->SiS_DDC_Port,SiS_Pr->SiS_DDC_Index);
   } while((!(temp & SiS_Pr->SiS_DDC_Clk)) && --watchdog);
   if (!watchdog) {
-  	return 0xFFFF;
+	return 0xFFFF;
   }
   SiS_DDC2Delay(SiS_Pr,SiS_I2CDELAYSHORT);
   return 0;
@@ -9860,7 +9860,7 @@ SetDelayComp(struct SiS_Private *SiS_Pr, unsigned short ModeNo)
 	   case CUT_CLEVO10242:
 	      delay = 0x03;
 	      dochiptest = false;
-   	      break;
+	      break;
 	   default:
               delay = SiS310_TVDelayCompensation_651301LV[index];
 	      if(SiS_Pr->SiS_VBType & VB_SIS302LV) {
@@ -10616,7 +10616,7 @@ SiS_FinalizeLCD(struct SiS_Private *SiS_Pr, unsigned short ModeNo, unsigned shor
 	if(SiS_Pr->SiS_LCDResInfo == Panel_1024x768) {
 	   if((resinfo == SIS_RI_1024x768) || (!(SiS_Pr->SiS_LCDInfo & DontExpandLCD))) {
 	      if(SiS_Pr->SiS_SetFlag & LCDVESATiming) {
-	      	 tempbx = 770;
+		 tempbx = 770;
 	      } else {
 	         if(tempbx > 770) tempbx = 770;
 		 if(SiS_Pr->SiS_VGAVDE < 600) {
@@ -10672,7 +10672,7 @@ SetOEMLCDData2(struct SiS_Private *SiS_Pr, unsigned short ModeNo,unsigned short 
            if(barco_p1[myindex][crt2crtc][i][0]) {
 	      SiS_SetRegANDOR(SiS_Pr->SiS_Part1Port,
 	                      barco_p1[myindex][crt2crtc][i][0],
-	   	   	      barco_p1[myindex][crt2crtc][i][2],
+			      barco_p1[myindex][crt2crtc][i][2],
 			      barco_p1[myindex][crt2crtc][i][1]);
 	   }
         }
@@ -10786,7 +10786,7 @@ SetOEMLCDDelay(struct SiS_Private *SiS_Pr, unsigned short ModeNo,unsigned short 
 	temp = ROMAddr[romptr];
      } else {
 	if(SiS_Pr->SiS_VBType & VB_SISVB) {
-    	   temp = SiS300_OEMLCDDelay2[temp][index];
+	   temp = SiS300_OEMLCDDelay2[temp][index];
 	} else {
            temp = SiS300_OEMLCDDelay3[temp][index];
         }
@@ -10995,10 +10995,10 @@ SetOEMYFilter(struct SiS_Private *SiS_Pr, unsigned short ModeNo, unsigned short 
 
   if(SiS_Pr->SiS_VBType & VB_SIS30xBLV) {
       for(i=0x35, j=0; i<=0x38; i++, j++) {
-       	SiS_SetReg(SiS_Pr->SiS_Part2Port,i,SiS300_Filter2[temp][index][j]);
+	SiS_SetReg(SiS_Pr->SiS_Part2Port,i,SiS300_Filter2[temp][index][j]);
       }
       for(i=0x48; i<=0x4A; i++, j++) {
-     	SiS_SetReg(SiS_Pr->SiS_Part2Port,i,SiS300_Filter2[temp][index][j]);
+	SiS_SetReg(SiS_Pr->SiS_Part2Port,i,SiS300_Filter2[temp][index][j]);
       }
   } else {
       if((romptr) && (!(SiS_Pr->SiS_TVMode & (TVSetPALM|TVSetPALN)))) {
@@ -11006,11 +11006,11 @@ SetOEMYFilter(struct SiS_Private *SiS_Pr, unsigned short ModeNo, unsigned short 
 	 romptr = SISGETROMW(romptr);
 	 romptr += (index * 4);
 	 for(i=0x35, j=0; i<=0x38; i++, j++) {
-       	    SiS_SetReg(SiS_Pr->SiS_Part2Port,i,ROMAddr[romptr + j]);
+	    SiS_SetReg(SiS_Pr->SiS_Part2Port,i,ROMAddr[romptr + j]);
          }
       } else {
          for(i=0x35, j=0; i<=0x38; i++, j++) {
-       	    SiS_SetReg(SiS_Pr->SiS_Part2Port,i,SiS300_Filter1[temp][index][j]);
+	    SiS_SetReg(SiS_Pr->SiS_Part2Port,i,SiS300_Filter1[temp][index][j]);
          }
       }
   }
@@ -11062,10 +11062,9 @@ SiS_OEM300Setting(struct SiS_Private *SiS_Pr, unsigned short ModeNo, unsigned sh
      SetOEMTVDelay(SiS_Pr, ModeNo,OEMModeIdIndex);
      if(SiS_Pr->SiS_VBType & VB_SISVB) {
         SetOEMAntiFlicker(SiS_Pr, ModeNo, OEMModeIdIndex);
-    	SetOEMPhaseIncr(SiS_Pr, ModeNo, OEMModeIdIndex);
-       	SetOEMYFilter(SiS_Pr, ModeNo, OEMModeIdIndex);
+	SetOEMPhaseIncr(SiS_Pr, ModeNo, OEMModeIdIndex);
+	SetOEMYFilter(SiS_Pr, ModeNo, OEMModeIdIndex);
      }
   }
 }
 #endif
-

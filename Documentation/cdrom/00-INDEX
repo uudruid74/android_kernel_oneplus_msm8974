@@ -8,4 +8,3 @@ ide-cd
 	- info on setting up and using ATAPI (aka IDE) CD-ROMs.
 packet-writing.txt
 	- Info on the CDRW packet writing module
-

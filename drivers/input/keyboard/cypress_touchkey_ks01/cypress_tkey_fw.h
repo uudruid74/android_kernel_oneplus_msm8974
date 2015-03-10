@@ -20,4 +20,3 @@
 #ifdef _CYPRESS_TKEY_FW_H
 #include "fusion3_tkey_fw_20055.h"
 #endif
-

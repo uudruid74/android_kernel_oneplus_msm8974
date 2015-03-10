@@ -10,6 +10,3 @@ w35und-y :=			\
 
 
 obj-$(CONFIG_W35UND) += w35und.o
-
-
-

@@ -1475,8 +1475,8 @@ static int __devinit vortex_probe1(struct device *gendev,
 
 	if (pdev) {
 		vp->pm_state_valid = 1;
- 		pci_save_state(VORTEX_PCI(vp));
- 		acpi_set_WOL(dev);
+		pci_save_state(VORTEX_PCI(vp));
+		acpi_set_WOL(dev);
 	}
 	retval = register_netdev(dev);
 	if (retval == 0)

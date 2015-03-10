@@ -445,7 +445,7 @@ void ApplyTargetVDD(void)
 	gpio_direction_input(issp_tkey_i2c->pdata->gpio_scl);
 
 	/* enable ldo */
-	ret = issp_tkey_i2c->pdata->resume();	
+	ret = issp_tkey_i2c->pdata->resume();
 	if (ret == 0)
 		printk(KERN_ERR "[Touchkey]regulator get fail!!!\n");
 
@@ -463,7 +463,7 @@ void ApplyTargetVDD(void)
 * ***************************************************************************/
 void RemoveTargetVDD(void)
 {
-	issp_tkey_i2c->pdata->suspend();	
+	issp_tkey_i2c->pdata->suspend();
 }
 #endif
 

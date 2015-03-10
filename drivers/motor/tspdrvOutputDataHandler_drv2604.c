@@ -3,26 +3,26 @@
 ** File:
 **     tspdrvOutputDataHandler_drv2604.c
 **
-** Description: 
+** Description:
 **     Output data handler module for TSP 3000 Edition.
 **     ‘This module supports only one actuator and one sample per update.
 **
-** Portions Copyright (c) 2011-2013 Immersion Corporation. All Rights Reserved. 
+** Portions Copyright (c) 2011-2013 Immersion Corporation. All Rights Reserved.
 **
-** This file contains Original Code and/or Modifications of Original Code 
-** as defined in and that are subject to the GNU Public License v2 - 
-** (the 'License'). You may not use this file except in compliance with the 
-** License. You should have received a copy of the GNU General Public License 
+** This file contains Original Code and/or Modifications of Original Code
+** as defined in and that are subject to the GNU Public License v2 -
+** (the 'License'). You may not use this file except in compliance with the
+** License. You should have received a copy of the GNU General Public License
 ** along with this program; if not, write to the Free Software Foundation, Inc.,
-** 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA or contact 
+** 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA or contact
 ** TouchSenseSales@immersion.com.
 **
-** The Original Code and all software distributed under the License are 
-** distributed on an 'AS IS' basis, WITHOUT WARRANTY OF ANY KIND, EITHER 
-** EXPRESS OR IMPLIED, AND IMMERSION HEREBY DISCLAIMS ALL SUCH WARRANTIES, 
-** INCLUDING WITHOUT LIMITATION, ANY WARRANTIES OF MERCHANTABILITY, FITNESS 
-** FOR A PARTICULAR PURPOSE, QUIET ENJOYMENT OR NON-INFRINGEMENT. Please see 
-** the License for the specific language governing rights and limitations 
+** The Original Code and all software distributed under the License are
+** distributed on an 'AS IS' basis, WITHOUT WARRANTY OF ANY KIND, EITHER
+** EXPRESS OR IMPLIED, AND IMMERSION HEREBY DISCLAIMS ALL SUCH WARRANTIES,
+** INCLUDING WITHOUT LIMITATION, ANY WARRANTIES OF MERCHANTABILITY, FITNESS
+** FOR A PARTICULAR PURPOSE, QUIET ENJOYMENT OR NON-INFRINGEMENT. Please see
+** the License for the specific language governing rights and limitations
 ** under the License.
 ** =========================================================================
 */
@@ -51,7 +51,7 @@ int SaveOutputData(const char *outputDataBuffer, int count)
 
     if (count == SPI_HEADER_SIZE)
     {
-        /* 
+        /*
         ** An "empty" packet (header with data size equal to 0)
         ** is used by the user mode daemon to start blocking-timer process,
         ** even if no output force data is sent.

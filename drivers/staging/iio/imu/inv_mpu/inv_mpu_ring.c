@@ -1112,7 +1112,7 @@ int set_inv_enable(struct iio_dev *indio_dev, bool enable)
 			inv_i2c_single_write(st, REG_PWR_MGMT_2, BIT_PWR_GYRO_STBY);
 		else
 			inv_i2c_single_write(st, REG_PWR_MGMT_2, 0x0);
-		
+
 		if (!(st->chip_config.enable || st->chip_config.dmp_on)) {
 			/* Set the cycle bit to be 1. LP MODE */
 			inv_i2c_single_write(st, REG_PWR_MGMT_1, 0x21);
@@ -1324,9 +1324,9 @@ static void inv_process_motion(struct inv_mpu_state *st)
 		result = inv_i2c_read(st, REG_INT_ENABLE, 1, &data);
 		if (result)
 			return;
-		data &= ~0x40;		
-		inv_i2c_single_write(st, REG_INT_ENABLE, data);	
- 		wake_lock_timeout(&st->reactive_wake_lock, msecs_to_jiffies(2000));
+		data &= ~0x40;
+		inv_i2c_single_write(st, REG_INT_ENABLE, data);
+		wake_lock_timeout(&st->reactive_wake_lock, msecs_to_jiffies(2000));
 		pr_info("[SENSOR] %s: interrupt happened\n", __func__);
 #endif
 	}
@@ -1776,7 +1776,7 @@ irqreturn_t inv_read_fifo(int irq, void *dev_id)
 			goto end_session;
 		fifo_count = be16_to_cpup((__be16 *)(data));
 		/* fifo count can't be odd number */
-		if (fifo_count & 1)  {	
+		if (fifo_count & 1)  {
 				goto flush_fifo;
 			}
 		if (fifo_count == 0) {
@@ -1784,7 +1784,7 @@ irqreturn_t inv_read_fifo(int irq, void *dev_id)
 		}
 		st->fifo_count = fifo_count;
 	}
-	
+
 	if (st->chip_config.dmp_on) {
 		result = inv_process_batchmode(st);
 	} else {
@@ -1995,4 +1995,3 @@ error_iio_sw_rb_free:
 
 	return ret;
 }
-

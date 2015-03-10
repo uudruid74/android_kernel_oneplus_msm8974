@@ -225,7 +225,7 @@ static inline int pte_young(pte_t pte) { return pte_val(pte) & _PAGE_ACCESSED; }
 static inline int pte_file(pte_t pte)  { return pte_val(pte) & _PAGE_FILE; }
 static inline int pte_special(pte_t pte) { return 0; }
 
-static inline pte_t pte_wrprotect(pte_t pte)	
+static inline pte_t pte_wrprotect(pte_t pte)
 	{ pte_val(pte) &= ~(_PAGE_WRITABLE | _PAGE_HW_WRITE); return pte; }
 static inline pte_t pte_mkclean(pte_t pte)
 	{ pte_val(pte) &= ~(_PAGE_DIRTY | _PAGE_HW_WRITE); return pte; }
@@ -289,7 +289,7 @@ struct vm_area_struct;
 
 static inline int
 ptep_test_and_clear_young(struct vm_area_struct *vma, unsigned long addr,
-    			  pte_t *ptep)
+			  pte_t *ptep)
 {
 	pte_t pte = *ptep;
 	if (!pte_young(pte))
@@ -309,8 +309,8 @@ ptep_get_and_clear(struct mm_struct *mm, unsigned long addr, pte_t *ptep)
 static inline void
 ptep_set_wrprotect(struct mm_struct *mm, unsigned long addr, pte_t *ptep)
 {
-  	pte_t pte = *ptep;
-  	update_pte(ptep, pte_wrprotect(pte));
+	pte_t pte = *ptep;
+	update_pte(ptep, pte_wrprotect(pte));
 }
 
 /* to find an entry in a kernel page-table-directory */
@@ -342,7 +342,7 @@ ptep_set_wrprotect(struct mm_struct *mm, unsigned long addr, pte_t *ptep)
  *  bits   4 -  5  ring protection (must be 01: _PAGE_USER)
  *  bits   6 - 10  swap type (5 bits -> 32 types)
  *  bits  11 - 31  swap offset / PAGE_SIZE (21 bits -> 8GB)
- 
+
  * Format of file pte:
  *  bit	   0	   MBZ
  *  bit	   1	   page-file (must be one: _PAGE_FILE)

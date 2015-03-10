@@ -430,4 +430,3 @@ void __exit cleanup_module(void)
 	}
 }
 #endif /* MODULE */
-

@@ -24,4 +24,3 @@ Example:
 		atmel,use-dma-rx;
 		atmel,use-dma-tx;
 	};
-

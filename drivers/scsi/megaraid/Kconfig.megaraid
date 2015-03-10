@@ -82,4 +82,3 @@ config MEGARAID_SAS
 	Module for LSI Logic's SAS based RAID controllers.
 	To compile this driver as a module, choose 'm' here.
 	Module will be called megaraid_sas
-

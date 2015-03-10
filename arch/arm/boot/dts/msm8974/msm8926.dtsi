@@ -201,4 +201,3 @@
 	/delete-property/ qcom,hsusb-otg-disable-reset;
 	qcom,ahb-async-bridge-bypass;
 };
-

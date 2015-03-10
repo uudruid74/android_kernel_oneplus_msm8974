@@ -58,4 +58,3 @@ SECTIONS
   .stack		: { *(.stack) }
   .comment 0		: { *(.comment) }
 }
-

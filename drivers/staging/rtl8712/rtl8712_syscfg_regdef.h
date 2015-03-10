@@ -53,4 +53,3 @@
 
 
 #endif /*__RTL8712_SYSCFG_REGDEF_H__*/
-

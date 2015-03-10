@@ -11,21 +11,21 @@
 	met:
 
 	1. Redistributions of source code must retain this licence text
-   	without modification, this list of conditions, and the following
-   	disclaimer.  The following copyright notice must appear immediately at
-   	the beginning of all source files:
+	without modification, this list of conditions, and the following
+	disclaimer.  The following copyright notice must appear immediately at
+	the beginning of all source files:
 
-        	Copyright (c) 1998-2007 InnoSys Incorporated.  All Rights Reserved
+		Copyright (c) 1998-2007 InnoSys Incorporated.  All Rights Reserved
 
-        	This file is available under a BSD-style copyright
+		This file is available under a BSD-style copyright
 
 	2. Redistributions in binary form must reproduce the above copyright
-   	notice, this list of conditions and the following disclaimer in the
-   	documentation and/or other materials provided with the distribution.
+	notice, this list of conditions and the following disclaimer in the
+	documentation and/or other materials provided with the distribution.
 
 	3. The name of InnoSys Incorprated may not be used to endorse or promote
-   	products derived from this software without specific prior written
-   	permission.
+	products derived from this software without specific prior written
+	permission.
 
 	THIS SOFTWARE IS PROVIDED BY INNOSYS CORP. ``AS IS'' AND ANY EXPRESS OR
 	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -250,5 +250,3 @@ typedef struct keyspan_usa67_globalDebugMessage
 #define	STATUS_RATION	10
 
 #endif
-
-

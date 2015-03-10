@@ -49,4 +49,3 @@ void rtvFICDEC_Init(void);
 #endif
 
 #endif /* __MTV319_FICDEC_H__ */
-

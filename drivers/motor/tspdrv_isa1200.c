@@ -694,6 +694,3 @@ module_exit(isa1200_vibrator_exit);
 MODULE_AUTHOR("Immersion Corporation");
 MODULE_DESCRIPTION("TouchSense Kernel Module");
 MODULE_LICENSE("GPL v2");
-
-
-

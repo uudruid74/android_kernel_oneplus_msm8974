@@ -326,4 +326,3 @@ config XILINX_VIRTEX
 config XILINX_VIRTEX_5_FXT
 	bool
 	select XILINX_VIRTEX
-

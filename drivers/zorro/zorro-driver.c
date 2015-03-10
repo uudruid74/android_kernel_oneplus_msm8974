@@ -180,4 +180,3 @@ static int __init zorro_driver_init(void)
 }
 
 postcore_initcall(zorro_driver_init);
-

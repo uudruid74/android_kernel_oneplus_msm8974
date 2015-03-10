@@ -23,7 +23,7 @@
 
 enum	{
 	MODE_DSM_COPP,
-	MODE_DSM_AFE,	
+	MODE_DSM_AFE,
 	MODE_DSM_MAX,
 };
 
@@ -104,7 +104,7 @@ extern int maxdsm_get_dump_status(void);
 extern ssize_t maxdsm_log_prepare(char *buf);
 extern void maxdsm_update_param(void);
 extern void maxdsm_log_update(const void *byteLogArray,
-	       const void *intLogArray, const void *afterProbByteLogArray, 
+	       const void *intLogArray, const void *afterProbByteLogArray,
 	       const void *afterProbIntLogArray);
 #endif
 

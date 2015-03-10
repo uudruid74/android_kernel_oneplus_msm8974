@@ -593,9 +593,9 @@ static void pci_bridge_check_ranges(struct pci_bus *bus)
 	if (!io) {
 		pci_write_config_word(bridge, PCI_IO_BASE, 0xf0f0);
 		pci_read_config_word(bridge, PCI_IO_BASE, &io);
- 		pci_write_config_word(bridge, PCI_IO_BASE, 0x0);
- 	}
- 	if (io)
+		pci_write_config_word(bridge, PCI_IO_BASE, 0x0);
+	}
+	if (io)
 		b_res[0].flags |= IORESOURCE_IO;
 	/*  DECchip 21050 pass 2 errata: the bridge may miss an address
 	    disconnect boundary by one PCI data phase.
@@ -712,7 +712,7 @@ static void pbus_size_io(struct pci_bus *bus, resource_size_t min_size,
 	resource_size_t children_add_size = 0;
 
 	if (!b_res)
- 		return;
+		return;
 
 	list_for_each_entry(dev, &bus->devices, bus_list) {
 		int i;

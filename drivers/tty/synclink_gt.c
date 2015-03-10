@@ -204,7 +204,7 @@ struct slgt_desc
 
 	/* driver book keeping */
 	char *buf;          /* virtual  address of data buffer */
-    	unsigned int pdesc; /* physical address of this descriptor */
+	unsigned int pdesc; /* physical address of this descriptor */
 	dma_addr_t buf_dma_addr;
 	unsigned short buf_count;
 };
@@ -736,8 +736,8 @@ static void close(struct tty_struct *tty, struct file *filp)
 		goto cleanup;
 
 	mutex_lock(&info->port.mutex);
- 	if (info->port.flags & ASYNC_INITIALIZED)
- 		wait_until_sent(tty, info->timeout);
+	if (info->port.flags & ASYNC_INITIALIZED)
+		wait_until_sent(tty, info->timeout);
 	flush_buffer(tty);
 	tty_ldisc_flush(tty);
 
@@ -796,12 +796,12 @@ static void set_termios(struct tty_struct *tty, struct ktermios *old_termios)
 	if (!(old_termios->c_cflag & CBAUD) &&
 	    tty->termios->c_cflag & CBAUD) {
 		info->signals |= SerialSignal_DTR;
- 		if (!(tty->termios->c_cflag & CRTSCTS) ||
- 		    !test_bit(TTY_THROTTLED, &tty->flags)) {
+		if (!(tty->termios->c_cflag & CRTSCTS) ||
+		    !test_bit(TTY_THROTTLED, &tty->flags)) {
 			info->signals |= SerialSignal_RTS;
- 		}
+		}
 		spin_lock_irqsave(&info->lock,flags);
-	 	set_signals(info);
+		set_signals(info);
 		spin_unlock_irqrestore(&info->lock,flags);
 	}
 
@@ -893,7 +893,7 @@ static void send_xchar(struct tty_struct *tty, char ch)
 	if (ch) {
 		spin_lock_irqsave(&info->lock,flags);
 		if (!info->tx_enabled)
-		 	tx_start(info);
+			tx_start(info);
 		spin_unlock_irqrestore(&info->lock,flags);
 	}
 }
@@ -920,7 +920,7 @@ static void wait_until_sent(struct tty_struct *tty, int timeout)
 	 */
 
 	if (info->params.data_rate) {
-	       	char_time = info->timeout/(32 * 5);
+		char_time = info->timeout/(32 * 5);
 		if (!char_time)
 			char_time++;
 	} else
@@ -1002,7 +1002,7 @@ static void tx_hold(struct tty_struct *tty)
 	DBGINFO(("%s tx_hold\n", info->device_name));
 	spin_lock_irqsave(&info->lock,flags);
 	if (info->tx_enabled && info->params.mode == MGSL_MODE_ASYNC)
-	 	tx_stop(info);
+		tx_stop(info);
 	spin_unlock_irqrestore(&info->lock,flags);
 }
 
@@ -1372,10 +1372,10 @@ static void throttle(struct tty_struct * tty)
 	DBGINFO(("%s throttle\n", info->device_name));
 	if (I_IXOFF(tty))
 		send_xchar(tty, STOP_CHAR(tty));
- 	if (tty->termios->c_cflag & CRTSCTS) {
+	if (tty->termios->c_cflag & CRTSCTS) {
 		spin_lock_irqsave(&info->lock,flags);
 		info->signals &= ~SerialSignal_RTS;
-	 	set_signals(info);
+		set_signals(info);
 		spin_unlock_irqrestore(&info->lock,flags);
 	}
 }
@@ -1397,10 +1397,10 @@ static void unthrottle(struct tty_struct * tty)
 		else
 			send_xchar(tty, START_CHAR(tty));
 	}
- 	if (tty->termios->c_cflag & CRTSCTS) {
+	if (tty->termios->c_cflag & CRTSCTS) {
 		spin_lock_irqsave(&info->lock,flags);
 		info->signals |= SerialSignal_RTS;
-	 	set_signals(info);
+		set_signals(info);
 		spin_unlock_irqrestore(&info->lock,flags);
 	}
 }
@@ -1421,7 +1421,7 @@ static int set_break(struct tty_struct *tty, int break_state)
 
 	spin_lock_irqsave(&info->lock,flags);
 	value = rd_reg16(info, TCR);
- 	if (break_state == -1)
+	if (break_state == -1)
 		value |= BIT6;
 	else
 		value &= ~BIT6;
@@ -1855,8 +1855,8 @@ static void hdlcdev_exit(struct slgt_info *info)
  */
 static void rx_async(struct slgt_info *info)
 {
- 	struct tty_struct *tty = info->port.tty;
- 	struct mgsl_icount *icount = &info->icount;
+	struct tty_struct *tty = info->port.tty;
+	struct mgsl_icount *icount = &info->icount;
 	unsigned int start, end;
 	unsigned char *p;
 	unsigned char status;
@@ -2057,13 +2057,13 @@ static void cts_change(struct slgt_info *info, unsigned short status)
 		if (info->port.tty) {
 			if (info->port.tty->hw_stopped) {
 				if (info->signals & SerialSignal_CTS) {
-		 			info->port.tty->hw_stopped = 0;
+					info->port.tty->hw_stopped = 0;
 					info->pending_bh |= BH_TRANSMIT;
 					return;
 				}
 			} else {
 				if (!(info->signals & SerialSignal_CTS))
-		 			info->port.tty->hw_stopped = 1;
+					info->port.tty->hw_stopped = 1;
 			}
 		}
 	}
@@ -2493,8 +2493,8 @@ static void shutdown(struct slgt_info *info)
 
 	slgt_irq_off(info, IRQ_ALL | IRQ_MASTER);
 
- 	if (!info->port.tty || info->port.tty->termios->c_cflag & HUPCL) {
- 		info->signals &= ~(SerialSignal_DTR + SerialSignal_RTS);
+	if (!info->port.tty || info->port.tty->termios->c_cflag & HUPCL) {
+		info->signals &= ~(SerialSignal_DTR + SerialSignal_RTS);
 		set_signals(info);
 	}
 
@@ -2556,7 +2556,7 @@ static void change_params(struct slgt_info *info)
 
 	/* if B0 rate (hangup) specified then negate DTR and RTS */
 	/* otherwise assert DTR and RTS */
- 	if (cflag & CBAUD)
+	if (cflag & CBAUD)
 		info->signals |= SerialSignal_RTS + SerialSignal_DTR;
 	else
 		info->signals &= ~(SerialSignal_RTS + SerialSignal_DTR);
@@ -2607,8 +2607,8 @@ static void change_params(struct slgt_info *info)
 	info->read_status_mask = IRQ_RXOVER;
 	if (I_INPCK(info->port.tty))
 		info->read_status_mask |= MASK_PARITY | MASK_FRAMING;
- 	if (I_BRKINT(info->port.tty) || I_PARMRK(info->port.tty))
- 		info->read_status_mask |= MASK_BREAK;
+	if (I_BRKINT(info->port.tty) || I_PARMRK(info->port.tty))
+		info->read_status_mask |= MASK_BREAK;
 	if (I_IGNPAR(info->port.tty))
 		info->ignore_status_mask |= MASK_PARITY | MASK_FRAMING;
 	if (I_IGNBRK(info->port.tty)) {
@@ -2645,7 +2645,7 @@ static int get_params(struct slgt_info *info, MGSL_PARAMS __user *user_params)
 
 static int set_params(struct slgt_info *info, MGSL_PARAMS __user *new_params)
 {
- 	unsigned long flags;
+	unsigned long flags;
 	MGSL_PARAMS tmp_params;
 
 	DBGINFO(("%s set_params\n", info->device_name));
@@ -2674,7 +2674,7 @@ static int get_txidle(struct slgt_info *info, int __user *idle_mode)
 
 static int set_txidle(struct slgt_info *info, int idle_mode)
 {
- 	unsigned long flags;
+	unsigned long flags;
 	DBGINFO(("%s set_txidle(%d)\n", info->device_name, idle_mode));
 	spin_lock_irqsave(&info->lock,flags);
 	info->idle_mode = idle_mode;
@@ -2686,7 +2686,7 @@ static int set_txidle(struct slgt_info *info, int idle_mode)
 
 static int tx_enable(struct slgt_info *info, int enable)
 {
- 	unsigned long flags;
+	unsigned long flags;
 	DBGINFO(("%s tx_enable(%d)\n", info->device_name, enable));
 	spin_lock_irqsave(&info->lock,flags);
 	if (enable) {
@@ -2705,7 +2705,7 @@ static int tx_enable(struct slgt_info *info, int enable)
  */
 static int tx_abort(struct slgt_info *info)
 {
- 	unsigned long flags;
+	unsigned long flags;
 	DBGINFO(("%s tx_abort\n", info->device_name));
 	spin_lock_irqsave(&info->lock,flags);
 	tdma_reset(info);
@@ -2715,7 +2715,7 @@ static int tx_abort(struct slgt_info *info)
 
 static int rx_enable(struct slgt_info *info, int enable)
 {
- 	unsigned long flags;
+	unsigned long flags;
 	unsigned int rbuf_fill_level;
 	DBGINFO(("%s rx_enable(%08x)\n", info->device_name, enable));
 	spin_lock_irqsave(&info->lock,flags);
@@ -2765,7 +2765,7 @@ static int rx_enable(struct slgt_info *info, int enable)
  */
 static int wait_mgsl_event(struct slgt_info *info, int __user *mask_ptr)
 {
- 	unsigned long flags;
+	unsigned long flags;
 	int s;
 	int rc=0;
 	struct mgsl_icount cprev, cnow;
@@ -2787,7 +2787,7 @@ static int wait_mgsl_event(struct slgt_info *info, int __user *mask_ptr)
 
 	events = mask &
 		( ((s & SerialSignal_DSR) ? MgslEvent_DsrActive:MgslEvent_DsrInactive) +
- 		  ((s & SerialSignal_DCD) ? MgslEvent_DcdActive:MgslEvent_DcdInactive) +
+		  ((s & SerialSignal_DCD) ? MgslEvent_DcdActive:MgslEvent_DcdInactive) +
 		  ((s & SerialSignal_CTS) ? MgslEvent_CtsActive:MgslEvent_CtsInactive) +
 		  ((s & SerialSignal_RI)  ? MgslEvent_RiActive :MgslEvent_RiInactive) );
 	if (events) {
@@ -2887,7 +2887,7 @@ static int get_interface(struct slgt_info *info, int __user *if_mode)
 
 static int set_interface(struct slgt_info *info, int if_mode)
 {
- 	unsigned long flags;
+	unsigned long flags;
 	unsigned short val;
 
 	DBGINFO(("%s set_interface=%x)\n", info->device_name, if_mode));
@@ -2982,7 +2982,7 @@ static int set_xctrl(struct slgt_info *info, int xctrl)
  */
 static int set_gpio(struct slgt_info *info, struct gpio_desc __user *user_gpio)
 {
- 	unsigned long flags;
+	unsigned long flags;
 	struct gpio_desc gpio;
 	__u32 data;
 
@@ -3091,7 +3091,7 @@ static void flush_cond_wait(struct cond_wait **head)
  */
 static int wait_gpio(struct slgt_info *info, struct gpio_desc __user *user_gpio)
 {
- 	unsigned long flags;
+	unsigned long flags;
 	int rc = 0;
 	struct gpio_desc gpio;
 	struct cond_wait wait;
@@ -3142,7 +3142,7 @@ static int wait_gpio(struct slgt_info *info, struct gpio_desc __user *user_gpio)
 
 static int modem_input_wait(struct slgt_info *info,int arg)
 {
- 	unsigned long flags;
+	unsigned long flags;
 	int rc;
 	struct mgsl_icount cprev, cnow;
 	DECLARE_WAITQUEUE(wait, current);
@@ -3197,10 +3197,10 @@ static int tiocmget(struct tty_struct *tty)
 {
 	struct slgt_info *info = tty->driver_data;
 	unsigned int result;
- 	unsigned long flags;
+	unsigned long flags;
 
 	spin_lock_irqsave(&info->lock,flags);
- 	get_signals(info);
+	get_signals(info);
 	spin_unlock_irqrestore(&info->lock,flags);
 
 	result = ((info->signals & SerialSignal_RTS) ? TIOCM_RTS:0) +
@@ -3225,7 +3225,7 @@ static int tiocmset(struct tty_struct *tty,
 		    unsigned int set, unsigned int clear)
 {
 	struct slgt_info *info = tty->driver_data;
- 	unsigned long flags;
+	unsigned long flags;
 
 	DBGINFO(("%s tiocmset(%x,%x)\n", info->device_name, set, clear));
 
@@ -3239,7 +3239,7 @@ static int tiocmset(struct tty_struct *tty,
 		info->signals &= ~SerialSignal_DTR;
 
 	spin_lock_irqsave(&info->lock,flags);
- 	set_signals(info);
+	set_signals(info);
 	spin_unlock_irqrestore(&info->lock,flags);
 	return 0;
 }
@@ -3250,7 +3250,7 @@ static int carrier_raised(struct tty_port *port)
 	struct slgt_info *info = container_of(port, struct slgt_info, port);
 
 	spin_lock_irqsave(&info->lock,flags);
- 	get_signals(info);
+	get_signals(info);
 	spin_unlock_irqrestore(&info->lock,flags);
 	return (info->signals & SerialSignal_DCD) ? 1 : 0;
 }
@@ -3265,7 +3265,7 @@ static void dtr_rts(struct tty_port *port, int on)
 		info->signals |= SerialSignal_RTS + SerialSignal_DTR;
 	else
 		info->signals &= ~(SerialSignal_RTS + SerialSignal_DTR);
- 	set_signals(info);
+	set_signals(info);
 	spin_unlock_irqrestore(&info->lock,flags);
 }
 
@@ -3327,8 +3327,8 @@ static int block_til_ready(struct tty_struct *tty, struct file *filp,
 
 		cd = tty_port_carrier_raised(port);
 
- 		if (!(port->flags & ASYNC_CLOSING) && (do_clocal || cd ))
- 			break;
+		if (!(port->flags & ASYNC_CLOSING) && (do_clocal || cd ))
+			break;
 
 		if (signal_pending(current)) {
 			retval = -ERESTARTSYS;
@@ -4121,7 +4121,7 @@ static void reset_adapter(struct slgt_info *info)
 
 static void async_mode(struct slgt_info *info)
 {
-  	unsigned short val;
+	unsigned short val;
 
 	slgt_irq_off(info, IRQ_ALL | IRQ_MASTER);
 	tx_stop(info);
@@ -5156,4 +5156,3 @@ static void rx_timeout(unsigned long context)
 	spin_unlock_irqrestore(&info->lock, flags);
 	bh_handler(&info->task);
 }
-

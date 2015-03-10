@@ -22,7 +22,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  * Or, point your browser to http://www.gnu.org/copyleft/gpl.html
  *
- * the project's page is at http://www.linuxtv.org/ 
+ * the project's page is at http://www.linuxtv.org/
  */
 
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
@@ -931,4 +931,3 @@ static struct saa7146_ext_vv av7110_vv_data_c = {
 	.vbi_fops.release = av7110_vbi_reset,
 	.vbi_fops.write	= av7110_vbi_write,
 };
-

@@ -146,7 +146,7 @@ static int udplite_error(struct net *net, struct nf_conn *tmpl,
 	/* Checksum invalid? Ignore. */
 	if (net->ct.sysctl_checksum && hooknum == NF_INET_PRE_ROUTING &&
 	    nf_checksum_partial(skb, hooknum, dataoff, cscov, IPPROTO_UDP,
-	    			pf)) {
+				pf)) {
 		if (LOG_INVALID(net, IPPROTO_UDPLITE))
 			nf_log_packet(pf, 0, skb, NULL, NULL, NULL,
 				      "nf_ct_udplite: bad UDPLite checksum ");

@@ -215,8 +215,8 @@ slb_finish_load:
 	/*
 	 * Find a slot, round robin. Previously we tried to find a
 	 * free slot first but that took too long. Unfortunately we
- 	 * dont have any LRU information to help us choose a slot.
- 	 */
+	 * dont have any LRU information to help us choose a slot.
+	 */
 
 7:	ld	r10,PACASTABRR(r13)
 	addi	r10,r10,1
@@ -280,4 +280,3 @@ slb_finish_load_1T:
 	/* r3 = EA, r11 = VSID data */
 	clrrdi	r3,r3,SID_SHIFT_1T	/* clear out non-ESID bits */
 	b	7b
-

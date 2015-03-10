@@ -157,14 +157,14 @@ int snd_register_oss_device(int type, struct snd_card *card, int dev,
 	return 0;
 
       __end:
-      	if (register2 >= 0)
-      		unregister_sound_special(register2);
-      	if (register1 >= 0)
-      		unregister_sound_special(register1);
+	if (register2 >= 0)
+		unregister_sound_special(register2);
+	if (register1 >= 0)
+		unregister_sound_special(register1);
 	snd_oss_minors[minor] = NULL;
 	mutex_unlock(&sound_oss_mutex);
 	kfree(preg);
-      	return -EBUSY;
+	return -EBUSY;
 }
 
 EXPORT_SYMBOL(snd_register_oss_device);

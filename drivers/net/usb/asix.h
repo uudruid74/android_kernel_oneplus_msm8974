@@ -549,4 +549,3 @@ struct ax88772b_rx_header {
 
 
 #endif /* __LINUX_USBNET_ASIX_H */
-

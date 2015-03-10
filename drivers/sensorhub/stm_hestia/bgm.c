@@ -25,7 +25,7 @@ struct bgm_data {
 	struct platform_device *pdev;
 	struct miscdevice bgm_device;
 	struct wake_lock bgm_wake_lock;
-	
+
 	struct work_struct strip_work;
 	struct workqueue_struct *report_queue;
 	struct workqueue_struct *indication_queue;
@@ -147,7 +147,7 @@ static int bgm_parse_dt(struct device *dev, struct bgm_data *data)
 		errorno = data->indication;
 		pr_err("[BGM] %s : bgm,indication error\n", __func__);
 	} else {
-		
+
 		errorno = gpio_request(data->indication, "BGMINDI");
 		if (errorno) {
 			pr_err("[BGM] %s : failed to request indication PIN\n",
@@ -168,7 +168,7 @@ static int bgm_parse_dt(struct device *dev, struct bgm_data *data)
 		errorno = data->strip_status;
 		pr_err("[BGM] %s : bgm,strip_status\n", __func__);
 	} else {
-		
+
 		errorno = gpio_request(data->strip_status, "BGMSTRIP");
 		if (errorno) {
 			pr_err("[BGM] %s : failed to request strip_status PIN\n",
@@ -184,7 +184,7 @@ static int bgm_parse_dt(struct device *dev, struct bgm_data *data)
 
 	if (data->strip_status >= 0) {
 		irq = gpio_to_irq(data->strip_status);
-	
+
 		rc = request_threaded_irq(irq, NULL,
 				bgm_strip_irq_handler,
 				IRQF_TRIGGER_FALLING |
@@ -198,7 +198,7 @@ static int bgm_parse_dt(struct device *dev, struct bgm_data *data)
 				data->strip_status, rc);
 			//goto dt_exit;
 		}
-	
+
 		disable_irq(irq);
 		data->strip_irq = irq;
 	}
@@ -353,7 +353,7 @@ static ssize_t bgm_notify_store(struct device *dev,
 	//queue_delayed_work(data->report_queue, &data->report_work, HZ*2);
 
 	//TODO : input report
-	
+
 	return size;
 }
 

@@ -710,4 +710,3 @@ static int __init rmnet_init(void)
 module_init(rmnet_init);
 MODULE_DESCRIPTION("MSM RMNET SDIO TRANSPORT");
 MODULE_LICENSE("GPL v2");
-

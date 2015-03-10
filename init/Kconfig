@@ -484,7 +484,7 @@ config RCU_FAST_NO_HZ
 	  large numbers of CPUs.
 
 	  Say Y if energy efficiency is critically important, particularly
-	  	if you have relatively few CPUs.
+		if you have relatively few CPUs.
 
 	  Say N if you are unsure.
 
@@ -569,7 +569,7 @@ config LOG_BUF_SHIFT
 	help
 	  Select kernel log buffer size as a power of 2.
 	  Examples:
-	  	     17 => 128 KB
+		     17 => 128 KB
 		     16 => 64 KB
 	             15 => 32 KB
 	             14 => 16 KB
@@ -1423,7 +1423,7 @@ config MODULE_SRCVERSION_ALL
 	help
 	  Modules which contain a MODULE_VERSION get an extra "srcversion"
 	  field inserted into their modinfo section, which contains a
-    	  sum of the source files which made it.  This helps maintainers
+	  sum of the source files which made it.  This helps maintainers
 	  see exactly which source was used to build a module (since
 	  others sometimes change the module source without updating
 	  the version).  With this option, such a "srcversion" field

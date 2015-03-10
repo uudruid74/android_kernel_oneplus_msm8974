@@ -37,4 +37,3 @@ INT rtvRF_Initilize(enum E_RTV_BANDWIDTH_TYPE eBandwidthType);
 #endif
 
 #endif /* __MTV23X_RF_H__ */
-

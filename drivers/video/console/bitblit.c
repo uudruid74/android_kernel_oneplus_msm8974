@@ -256,7 +256,7 @@ static void bit_cursor(struct vc_data *vc, struct fb_info *info, int mode,
 			y += softback_lines;
 	}
 
- 	c = scr_readw((u16 *) vc->vc_pos);
+	c = scr_readw((u16 *) vc->vc_pos);
 	attribute = get_attribute(info, c);
 	src = vc->vc_font.data + ((c & charmask) * (w * vc->vc_font.height));
 
@@ -419,4 +419,3 @@ EXPORT_SYMBOL(fbcon_set_bitops);
 MODULE_AUTHOR("Antonino Daplas <adaplas@pol.net>");
 MODULE_DESCRIPTION("Bit Blitting Operation");
 MODULE_LICENSE("GPL");
-

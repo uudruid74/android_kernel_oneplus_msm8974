@@ -41,7 +41,7 @@
 			max77803,haptic = <&haptic_pdata>;
 		};
 	};
-	
+
 	i2c@19 {
 		compatible = "i2c-gpio";
 		gpios = <&msmgpio 87 0 /* sda */

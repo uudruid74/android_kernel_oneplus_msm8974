@@ -241,9 +241,9 @@ int wpa_set_wpadev(PSDevice pDevice, int val)
 	    copy_from_user(&abyKey[0], param->u.wpa_key.key, param->u.wpa_key.key_len)) {
 	    spin_lock_irq(&pDevice->lock);
 	    return -EINVAL;
-    	}
+	}
 spin_lock_irq(&pDevice->lock);
-    	}
+	}
 
     dwKeyIndex = (unsigned long)(param->u.wpa_key.key_index);
 
@@ -275,14 +275,14 @@ spin_lock_irq(&pDevice->lock);
 	    //spin_unlock_irq(&pDevice->lock);
         if(param->u.wpa_key.seq && fcpfkernel) {
            memcpy(&abySeq[0], param->u.wpa_key.seq, param->u.wpa_key.seq_len);
-        	}
+		}
        else {
-	   	spin_unlock_irq(&pDevice->lock);
+		spin_unlock_irq(&pDevice->lock);
 	if (param->u.wpa_key.seq &&
 	    copy_from_user(&abySeq[0], param->u.wpa_key.seq, param->u.wpa_key.seq_len)) {
 	    spin_lock_irq(&pDevice->lock);
 	    return -EINVAL;
-       	}
+	}
 spin_lock_irq(&pDevice->lock);
 }
 
@@ -698,8 +698,8 @@ static int wpa_get_scan(PSDevice pDevice,
                 break;
             memcpy(scan_buf->bssid, pBSS->abyBSSID, WLAN_BSSID_LEN);
             pItemSSID = (PWLAN_IE_SSID)pBSS->abySSID;
-   		    memcpy(scan_buf->ssid, pItemSSID->abySSID, pItemSSID->len);
-   		    scan_buf->ssid_len = pItemSSID->len;
+		    memcpy(scan_buf->ssid, pItemSSID->abySSID, pItemSSID->len);
+		    scan_buf->ssid_len = pItemSSID->len;
             scan_buf->freq = frequency_list[pBSS->uChannel-1];
 	  scan_buf->caps = pBSS->wCapInfo;
             //scan_buf->caps = pBSS->wCapInfo;
@@ -993,4 +993,3 @@ out:
 
 	return ret;
 }
-

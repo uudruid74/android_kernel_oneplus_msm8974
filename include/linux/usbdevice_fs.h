@@ -43,7 +43,7 @@ struct usbdevfs_ctrltransfer {
 	__u16 wIndex;
 	__u16 wLength;
 	__u32 timeout;  /* in milliseconds */
- 	void __user *data;
+	void __user *data;
 };
 
 struct usbdevfs_bulktransfer {

@@ -4593,7 +4593,7 @@ static void e1000_smartspeed(struct e1000_adapter *adapter)
 			adapter->smartspeed++;
 			if (!e1000_phy_setup_autoneg(hw) &&
 			   !e1000_read_phy_reg(hw, PHY_CTRL,
-				   	       &phy_ctrl)) {
+					       &phy_ctrl)) {
 				phy_ctrl |= (MII_CR_AUTO_NEG_EN |
 					     MII_CR_RESTART_AUTO_NEG);
 				e1000_write_phy_reg(hw, PHY_CTRL,

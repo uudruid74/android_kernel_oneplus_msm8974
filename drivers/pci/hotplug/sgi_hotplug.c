@@ -551,7 +551,7 @@ static int disable_slot(struct hotplug_slot *bss_hotplug_slot)
 	for (func = 0; func < 8;  func++) {
 		dev = pci_get_slot(slot->pci_bus,
 				   PCI_DEVFN(slot->device_num + 1,
-				   	     PCI_FUNC(func)));
+					     PCI_FUNC(func)));
 		if (dev) {
 			sn_bus_free_data(dev);
 			pci_stop_and_remove_bus_device(dev);

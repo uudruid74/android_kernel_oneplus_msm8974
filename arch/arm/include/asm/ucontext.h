@@ -23,7 +23,7 @@ struct ucontext {
 	int		  __unused[32 - (sizeof (sigset_t) / sizeof (int))];
 	/* Last for extensibility.  Eight byte aligned because some
 	   coprocessors require eight byte alignment.  */
- 	unsigned long	  uc_regspace[128] __attribute__((__aligned__(8)));
+	unsigned long	  uc_regspace[128] __attribute__((__aligned__(8)));
 };
 
 #ifdef __KERNEL__

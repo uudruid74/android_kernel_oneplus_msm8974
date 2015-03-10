@@ -3183,4 +3183,3 @@ struct platform_device msm8660_pm_8x60 = {
 	.name		= "pm-8x60",
 	.id		= -1,
 };
-

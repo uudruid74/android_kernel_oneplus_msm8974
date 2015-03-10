@@ -1884,7 +1884,7 @@ static struct msm_gpiomux_config gpiokey_config[] __initdata = {
         /* HOT_KEY */
         .gpio   = 144,
         .settings = {
-        	[GPIOMUX_SUSPENDED] = &gpio_hotkey_config,
+		[GPIOMUX_SUSPENDED] = &gpio_hotkey_config,
 	[GPIOMUX_ACTIVE] = &gpio_hotkey_config,
         },
     },

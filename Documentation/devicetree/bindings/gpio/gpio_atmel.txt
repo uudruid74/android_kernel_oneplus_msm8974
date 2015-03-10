@@ -17,4 +17,3 @@ Example:
 		#gpio-cells = <2>;
 		gpio-controller;
 	};
-

@@ -45,4 +45,3 @@ extern s32 fci_hpi_deinit(HANDLE handle);
 #endif
 
 #endif /* __FCI_HPI_H__ */
-

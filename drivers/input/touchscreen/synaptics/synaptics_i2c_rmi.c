@@ -643,7 +643,7 @@ int synaptics_rmi4_glove_mode_enables(struct synaptics_rmi4_data *rmi4_data)
 		dev_err(&rmi4_data->i2c_client->dev,
 			"%s: f12 set_feature write fail[%d]\n", __func__, retval);
 	}
-	
+
 #ifdef ENABLE_F12_OBJTYPE
 	retval = synaptics_rmi4_f12_obj_type_enable(rmi4_data);
 	if (retval < 0) {
@@ -2418,11 +2418,11 @@ int synaptics_rmi4_irq_enable(struct synaptics_rmi4_data *rmi4_data,
 
 		if (rmi4_data->dt_data->extra_config[3])
 		retval = request_threaded_irq(rmi4_data->irq, NULL,
-				synaptics_rmi4_irq, TSP_IRQ_TYPE_LEVEL, 
+				synaptics_rmi4_irq, TSP_IRQ_TYPE_LEVEL,
 				DRIVER_NAME, rmi4_data);
 		else
 			retval = request_threaded_irq(rmi4_data->irq, NULL,
-				synaptics_rmi4_irq, TSP_IRQ_TYPE_EDGE, 
+				synaptics_rmi4_irq, TSP_IRQ_TYPE_EDGE,
 				DRIVER_NAME, rmi4_data);
 
 		if (retval < 0) {
@@ -2819,7 +2819,7 @@ static int synaptics_rmi4_f12_init(struct synaptics_rmi4_data *rmi4_data,
 					__func__, __LINE__, retval);
 			return retval;
 		}
-	
+
 		retval = synaptics_rmi4_f12_set_feature(rmi4_data);
 		if (retval < 0) {
 			dev_err(&rmi4_data->i2c_client->dev, "%s: f12_set_feature fail[%d]\n",
@@ -4381,7 +4381,7 @@ static int synaptics_rmi4_reinit_device(struct synaptics_rmi4_data *rmi4_data)
 		list_for_each_entry(fhandler, &rmi->support_fn_list, link) {
 			if (fhandler->fn_number == SYNAPTICS_RMI4_F12) {
 #ifdef GLOVE_MODE
-				retval = synaptics_rmi4_glove_mode_enables(rmi4_data);				
+				retval = synaptics_rmi4_glove_mode_enables(rmi4_data);
 				if (retval < 0) {
 					dev_err(&rmi4_data->i2c_client->dev,
 							"%s: Failed to glove mode enable, error = %d\n",
@@ -5015,14 +5015,14 @@ static void synaptics_get_firmware_name(struct synaptics_rmi4_data *rmi4_data)
 			rmi4_data->firmware_name = FW_IMAGE_NAME_S5707_KLIMT;
 		else if (strncmp(rmi4_data->dt_data->project, "RUBENS", 6) == 0)
 			rmi4_data->firmware_name = FW_IMAGE_NAME_S5707_RUBENS;
-		else 
+		else
 			rmi4_data->firmware_name = FW_IMAGE_NAME_S5707;
 	} else if (rmi4_data->ic_version == SYNAPTICS_PRODUCT_ID_S5708) {
 		rmi4_data->firmware_name = FW_IMAGE_NAME_S5708;
 	} else if (rmi4_data->ic_version == SYNAPTICS_PRODUCT_ID_S5006) {
-		rmi4_data->firmware_name = FW_IMAGE_NAME_S5006;		
+		rmi4_data->firmware_name = FW_IMAGE_NAME_S5006;
 	} else if (rmi4_data->ic_version == SYNAPTICS_PRODUCT_ID_S5710) {
-			rmi4_data->firmware_name = FW_IMAGE_NAME_S5710; 	
+			rmi4_data->firmware_name = FW_IMAGE_NAME_S5710;
 	} else {
 		rmi4_data->firmware_name = FW_IMAGE_NAME_NONE;
 	}
@@ -5958,4 +5958,3 @@ MODULE_AUTHOR("Synaptics, Inc.");
 MODULE_DESCRIPTION("Synaptics RMI4 I2C Touch Driver");
 MODULE_LICENSE("GPL v2");
 MODULE_VERSION(SYNAPTICS_RMI4_DRIVER_VERSION);
-

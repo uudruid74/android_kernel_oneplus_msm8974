@@ -26,7 +26,7 @@
 #include <mach/hardware.h>
 #include <asm/page.h>
 #include <asm/sizes.h>
- 
+
 #include <asm/mach/map.h>
 
 extern void clps711x_map_io(void);
@@ -51,8 +51,8 @@ extern void clps711x_map_io(void);
  *     happens).
  */
 static struct map_desc edb7211_io_desc[] __initdata = {
- 	{	/* memory-mapped extra keyboard row */
-	 	.virtual 	= EP7211_VIRT_EXTKBD,
+	{	/* memory-mapped extra keyboard row */
+		.virtual 	= EP7211_VIRT_EXTKBD,
 		.pfn		= __phys_to_pfn(EP7211_PHYS_EXTKBD),
 		.length		= SZ_1M,
 		.type		= MT_DEVICE,
@@ -79,4 +79,3 @@ void __init edb7211_map_io(void)
         clps711x_map_io();
         iotable_init(edb7211_io_desc, ARRAY_SIZE(edb7211_io_desc));
 }
-

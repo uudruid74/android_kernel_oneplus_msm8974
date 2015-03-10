@@ -2148,7 +2148,7 @@ static void nfs_fill_super(struct super_block *sb,
 	}
 
 	sb->s_op = &nfs_sops;
- 	nfs_initialise_sb(sb);
+	nfs_initialise_sb(sb);
 }
 
 /*
@@ -2172,7 +2172,7 @@ static void nfs_clone_super(struct super_block *sb,
 	}
 
 	sb->s_op = old_sb->s_op;
- 	nfs_initialise_sb(sb);
+	nfs_initialise_sb(sb);
 }
 
 static int nfs_compare_mount_options(const struct super_block *s, const struct nfs_server *b, int flags)

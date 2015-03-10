@@ -199,13 +199,13 @@ static mixer_ents spro_mix_devices[32] = {
 	MIX_ENT (SOUND_MIXER_BASS,	 0, 0, 0, 0,			  0, 0, 0, 0,  8),
 	MIX_ENT (SOUND_MIXER_TREBLE,	 0, 0, 0, 0,			  0, 0, 0, 0,  8),
 	MIX_ENT2(SOUND_MIXER_SYNTH,	 4, 1, 1, 4, 23, 0, 3,  0, 0, 8,
-		 			 5, 1, 1, 4, 23, 0, 3, 0, 0, 8),
+					 5, 1, 1, 4, 23, 0, 3, 0, 0, 8),
 	MIX_ENT (SOUND_MIXER_PCM,	 6, 1, 1, 4,			  7, 1, 1, 4,  8),
 	MIX_ENT (SOUND_MIXER_SPEAKER,	18, 0, 3, 2,			  0, 0, 0, 0,  8),
 	MIX_ENT2(SOUND_MIXER_LINE,	20, 0, 4, 4, 17, 1, 4, 16, 0, 2,
-		 			20, 0, 0, 4, 17, 1, 3, 16, 0, 1),
+					20, 0, 0, 4, 17, 1, 3, 16, 0, 1),
 	MIX_ENT2(SOUND_MIXER_MIC,	18, 0, 0, 3, 17, 1, 0, 16, 0, 0,
-		 			 0, 0, 0, 0,  0, 0, 0,  0, 0, 0),
+					 0, 0, 0, 0,  0, 0, 0,  0, 0, 0),
 	MIX_ENT2(SOUND_MIXER_CD,	21, 0, 4, 4, 17, 1, 2, 16, 0, 4,
 					21, 0, 0, 4, 17, 1, 1, 16, 0, 3),
 	MIX_ENT (SOUND_MIXER_IMIX,	 0, 0, 0, 0,			  0, 0, 0, 0,  8),
@@ -215,7 +215,7 @@ static mixer_ents spro_mix_devices[32] = {
 	MIX_ENT (SOUND_MIXER_OGAIN,	17, 1, 6, 1,			  0, 0, 0, 0,  8),
 	/* This is external wavetable */
 	MIX_ENT2(SOUND_MIXER_LINE1,	22, 0, 4, 4, 23, 1, 1, 23, 0, 4,
-		 			22, 0, 0, 4, 23, 1, 0, 23, 0, 5),
+					22, 0, 0, 4, 23, 1, 0, 23, 0, 5),
 };
 
 static int default_mixer_levels[32] =

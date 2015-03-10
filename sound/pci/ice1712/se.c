@@ -20,7 +20,7 @@
  *   along with this program; if not, write to the Free Software
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
  *
- */      
+ */
 
 #include <asm/io.h>
 #include <linux/delay.h>
@@ -70,7 +70,7 @@ struct se_spec {
  *  WM8740
  *      A 2ch-DAC of main outputs.
  *      It setuped as I2S mode by wire, so no way to setup from software.
- *      The sample-rate are automatically changed. 
+ *      The sample-rate are automatically changed.
  *          ML/I2S (28pin) --------+
  *          MC/DM1 (27pin) -- 5V   |
  *          MD/DM0 (26pin) -- GND  |
@@ -314,7 +314,7 @@ static void __devinit se200pci_WM8776_init(struct snd_ice1712 *ice)
 
 	se200pci_WM8776_write(ice, 0x17, 0x000); /* reset all */
 	/* ADC and DAC interface is I2S 24bits mode */
- 	/* The sample-rate are automatically changed */
+	/* The sample-rate are automatically changed */
 	udelay(10);
 	/* BUT my board can not do reset all, so I load all by manually. */
 	for (i = 0; i < ARRAY_SIZE(default_values); i++)

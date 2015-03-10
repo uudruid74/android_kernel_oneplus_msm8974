@@ -228,4 +228,3 @@ INT rtvRF_Initilize(void)
 
 	return RTV_SUCCESS;
 }
-

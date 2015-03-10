@@ -696,23 +696,23 @@ repeat:
 	err = split_large_page(kpte, address);
 	if (!err) {
 		/*
-	 	 * Do a global flush tlb after splitting the large page
-	 	 * and before we do the actual change page attribute in the PTE.
-	 	 *
-	 	 * With out this, we violate the TLB application note, that says
-	 	 * "The TLBs may contain both ordinary and large-page
+		 * Do a global flush tlb after splitting the large page
+		 * and before we do the actual change page attribute in the PTE.
+		 *
+		 * With out this, we violate the TLB application note, that says
+		 * "The TLBs may contain both ordinary and large-page
 		 *  translations for a 4-KByte range of linear addresses. This
 		 *  may occur if software modifies the paging structures so that
 		 *  the page size used for the address range changes. If the two
 		 *  translations differ with respect to page frame or attributes
 		 *  (e.g., permissions), processor behavior is undefined and may
 		 *  be implementation-specific."
-	 	 *
-	 	 * We do this global tlb flush inside the cpa_lock, so that we
+		 *
+		 * We do this global tlb flush inside the cpa_lock, so that we
 		 * don't allow any other cpu, with stale tlb entries change the
 		 * page attribute in parallel, that also falls into the
 		 * just split large page entry.
-	 	 */
+		 */
 		flush_tlb_all();
 		goto repeat;
 	}

@@ -58,4 +58,3 @@ extern s32 tuner_get_rssi(HANDLE handle, DEVICEID devid, s32 *rssi);
 #endif
 
 #endif /* __FCI_TUN_H__ */
-

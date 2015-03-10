@@ -3407,7 +3407,7 @@ static int mdss_panel_parse_dt(struct device_node *np,
 					"samsung,panel-smart-acl-elvss-cmds-list");
 		mdss_samsung_parse_panel_table(np, &smart_acl_elvss_map_table,
 					"samsung,panel-smart-acl-elvss-map-table");
-   	}
+	}
 #endif
 #if defined(PARTIAL_UPDATE)
 	mdss_samsung_parse_panel_cmd(np, &partialdisp_on_cmd,
@@ -5947,7 +5947,7 @@ static int mdss_samsung_create_sysfs(void)
 
 #if defined(DDI_VIDEO_ENHANCE_TUNING)
      rc = sysfs_create_file(&lcd_device->dev.kobj,
-		  	 &dev_attr_tuning.attr);
+			 &dev_attr_tuning.attr);
     if (rc) {
 	   pr_err("sysfs create fail-%s\n",
 				   dev_attr_tuning.attr.name);

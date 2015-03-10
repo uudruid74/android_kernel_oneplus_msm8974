@@ -37,8 +37,8 @@
 #include "common.h"
 
 static struct map_desc ceiva_io_desc[] __initdata = {
- 	/* SED1355 controlled video RAM & registers */
- 	{
+	/* SED1355 controlled video RAM & registers */
+	{
 		.virtual	= CEIVA_VIRT_SED1355,
 		.pfn		= __phys_to_pfn(CEIVA_PHYS_SED1355),
 		.length		= SZ_2M,

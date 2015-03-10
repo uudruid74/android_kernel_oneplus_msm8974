@@ -1,6 +1,6 @@
 /*
  * Linux ARCnet driver - COM20020 chipset support - function declarations
- * 
+ *
  * Written 1997 by David Woodhouse.
  * Written 1994-1999 by Avery Pennarun.
  * Derived from skeleton.c by Donald Becker.
@@ -52,7 +52,7 @@ extern const struct net_device_ops com20020_netdev_ops;
 #define _SUBADR   (ioaddr+BUS_ALIGN*5)	/* the extended port _XREG refers to */
 #define _CONFIG   (ioaddr+BUS_ALIGN*6)	/* configuration register */
 #define _XREG     (ioaddr+BUS_ALIGN*7)	/* extra registers (indexed by _CONFIG
-  					or _SUBADR) */
+					or _SUBADR) */
 
 /* in the ADDR_HI register */
 #define RDDATAflag	0x80	/* next access is a read (not a write) */

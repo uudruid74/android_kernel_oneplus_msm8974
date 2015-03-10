@@ -139,7 +139,7 @@ BEGIN_FTR_SECTION
 	DSSALL
 END_FTR_SECTION_IFSET(CPU_FTR_ALTIVEC)
 #endif
- 	sync
+	sync
 
 	/* Disable MSR:DR to make sure we don't take a TLB or
 	 * hash miss during the copy, as our hash table will
@@ -347,4 +347,3 @@ turn_on_mmu:
 	sync
 	isync
 	rfi
-

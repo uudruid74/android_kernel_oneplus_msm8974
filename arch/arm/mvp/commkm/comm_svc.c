@@ -456,4 +456,3 @@ CommSvc_ReleaseInlineEvents(CommChannel channel)
 #if defined(__linux__)
 EXPORT_SYMBOL(CommSvc_ReleaseInlineEvents);
 #endif /* defined(__linux__) */
-

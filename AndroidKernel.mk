@@ -261,20 +261,20 @@ ifeq "$(H_PROJECT)" "y"
 					DTS_FILES = $(wildcard $(TOP)/kernel/arch/arm/boot/dts/msm8974/$(DTS_NAME)-sec-h3gchnduos*.dts)
 				endif
 			else
-				ifeq "$(LOCALE_JSGLTE_CHN_CMCC)" "y" 
+				ifeq "$(LOCALE_JSGLTE_CHN_CMCC)" "y"
 					DTS_FILES = $(wildcard $(TOP)/kernel/arch/arm/boot/dts/msm8974/$(DTS_NAME)-sec-jsglte-*.dts)
 				else
-					ifeq "$(LOCALE_MACH_H3G_CHN_CMCC)" "y" 
+					ifeq "$(LOCALE_MACH_H3G_CHN_CMCC)" "y"
 						DTS_FILES = $(wildcard $(TOP)/kernel/arch/arm/boot/dts/msm8974/$(DTS_NAME)-sec-hlte-chn-r06.dts)
 						DTS_FILES = $(wildcard $(TOP)/kernel/arch/arm/boot/dts/msm8974/$(DTS_NAME)-sec-hlte-chn-r07.dts)
 						DTS_FILES = $(wildcard $(TOP)/kernel/arch/arm/boot/dts/msm8974/$(DTS_NAME)-sec-hlte-chn-r09.dts)
-					else 
-						ifeq "$(LOCALE_MACH_H3G_CHN_OPEN)" "y" 
+					else
+						ifeq "$(LOCALE_MACH_H3G_CHN_OPEN)" "y"
 							DTS_FILES = $(wildcard $(TOP)/kernel/arch/arm/boot/dts/msm8974/$(DTS_NAME)-sec-hlte-chn-r03.dts)
 							DTS_FILES = $(wildcard $(TOP)/kernel/arch/arm/boot/dts/msm8974/$(DTS_NAME)-sec-hlte-chn-r07.dts)
 							DTS_FILES = $(wildcard $(TOP)/kernel/arch/arm/boot/dts/msm8974/$(DTS_NAME)-sec-hlte-chn-r09.dts)
 						else
-							ifeq "$(LOCALE_MACH_HLTE_CHN_CMCC)" "y" 
+							ifeq "$(LOCALE_MACH_HLTE_CHN_CMCC)" "y"
 								DTS_FILES = $(wildcard $(TOP)/kernel/arch/arm/boot/dts/msm8974/$(DTS_NAME)-sec-hlte-chn-r07.dts)
 								DTS_FILES = $(wildcard $(TOP)/kernel/arch/arm/boot/dts/msm8974/$(DTS_NAME)-sec-hlte-chn-r09.dts)
 							else

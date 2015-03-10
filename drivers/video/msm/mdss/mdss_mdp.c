@@ -427,10 +427,10 @@ int mdss_mdp_bus_scale_set_quota(u64 ab_quota, u64 ib_quota)
 #if defined(CONFIG_MACH_MILLET3G_CHN_OPEN)
 		vect->ab = ab_quota;
 		vect->ib = MDSS_MDP_BUS_FUDGE_FACTOR_IB(ib_quota);
-		
+
 		bus_ab_quota_dbg = ab_quota;
 		bus_ib_quota_dbg = MDSS_MDP_BUS_FUDGE_FACTOR_IB(ib_quota);
-		
+
 #else
 		vect->ab = ab_quota;
 		vect->ib = ib_quota;
@@ -953,7 +953,7 @@ int mdss_iommu_attach(struct mdss_data_type *mdata)
 	MDSS_XLOG(mdata->iommu_attached);
 
 #if defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
-	xlog(__func__, mdata->iommu_attached, 0, 0, 0, 0, 0); 
+	xlog(__func__, mdata->iommu_attached, 0, 0, 0, 0, 0);
 #endif
 	if (mdata->iommu_attached) {
 		pr_debug("mdp iommu already attached\n");
@@ -995,7 +995,7 @@ int mdss_iommu_dettach(struct mdss_data_type *mdata)
 	MDSS_XLOG(mdata->iommu_attached);
 
 #if defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
-	xlog(__func__, mdata->iommu_attached, 0, 0, 0, 0, 0); 
+	xlog(__func__, mdata->iommu_attached, 0, 0, 0, 0, 0);
 #endif
 	if (!mdata->iommu_attached) {
 		pr_debug("mdp iommu already dettached\n");

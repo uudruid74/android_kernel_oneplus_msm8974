@@ -363,7 +363,7 @@ int ieee80211_data_to_8023(struct sk_buff *skb, const u8 *addr,
 			if (meshdr->flags & MESH_FLAGS_AE_A5_A6) {
 				skb_copy_bits(skb, hdrlen +
 					offsetof(struct ieee80211s_hdr, eaddr1),
-				       	dst, ETH_ALEN);
+					dst, ETH_ALEN);
 				skb_copy_bits(skb, hdrlen +
 					offsetof(struct ieee80211s_hdr, eaddr2),
 				        src, ETH_ALEN);

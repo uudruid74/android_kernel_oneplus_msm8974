@@ -228,7 +228,7 @@ flush_disable_745x:
 
         lis     r4,0x0002
         mtctr   r4
- 	li      r4,0
+	li      r4,0
 1:
         lwz     r0,0(r4)
         addi    r4,r4,32                /* Go to start of next cache line */

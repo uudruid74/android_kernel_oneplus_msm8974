@@ -389,4 +389,3 @@ struct clk_ops clk_ops_dsi_vco = {
 	.round_rate = dsi_pll_vco_round_rate,
 	.handoff = dsi_pll_vco_handoff,
 };
-

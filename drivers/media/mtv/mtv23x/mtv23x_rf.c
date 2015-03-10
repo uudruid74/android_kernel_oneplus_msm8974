@@ -937,7 +937,7 @@ INT rtvRF_SetFrequency(enum E_RTV_SERVICE_TYPE eServiceType,
 		   RTV_REG_MASK_SET(0x78, 0x70, 0x40);
 		   RTV_REG_MASK_SET(0xEA, 0x60, 0x00);
 	}
-	   
+
 
 	g_dwRtvPrevChFreqKHz = dwChFreqKHz;
 
@@ -974,4 +974,3 @@ INT rtvRF_Initilize(enum E_RTV_BANDWIDTH_TYPE eBandwidthType)
 
 	return RTV_SUCCESS;
 }
-

@@ -50,4 +50,3 @@ extern s32 bbm_data(HANDLE handle, u16 addr, u8 *data, u32 length);
 #endif
 
 #endif /* __FCI_HAL_H__ */
-

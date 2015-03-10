@@ -541,7 +541,7 @@ sb1000_activate(const int ioaddr[], const char* name)
 	if ((status = card_send_command(ioaddr, name, Command1, st)))
 		return status;
 	if (st[3] != 0xf1) {
-    	if ((status = sb1000_start_get_set_command(ioaddr, name)))
+	if ((status = sb1000_start_get_set_command(ioaddr, name)))
 			return status;
 		return -EIO;
 	}

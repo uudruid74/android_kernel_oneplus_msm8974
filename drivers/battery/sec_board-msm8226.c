@@ -651,7 +651,7 @@ static sec_bat_adc_table_data_t temp_table[] = {
   {29126, 580},
   {29576, 550},
   {30027, 500},
-  {30420, 470}, 
+  {30420, 470},
   {30675, 450},
   {30953, 430},
   {31375, 400},
@@ -1122,7 +1122,7 @@ void board_battery_init(struct platform_device *pdev, struct sec_battery_info *b
   if ((!battery->pdata->temp_adc_table) &&
     (battery->pdata->thermal_source == SEC_BATTERY_THERMAL_SOURCE_ADC)) {
      pr_info("%s : assign temp adc table\n", __func__);
-	 
+
      battery->pdata->temp_adc_table = temp_table;
      battery->pdata->temp_amb_adc_table = temp_table;
 

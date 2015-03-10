@@ -360,7 +360,7 @@ config ES325_UART_WORKAROUND_ENG_ONLY
 
 config SND_SOC_ES705
 	tristate "eS705"
-	default n		
+	default n
         ---help---
         Valid configurations:
          * SLIMbus

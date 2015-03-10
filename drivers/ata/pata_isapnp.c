@@ -114,7 +114,7 @@ static void isapnp_remove_one(struct pnp_dev *idev)
 }
 
 static struct pnp_device_id isapnp_devices[] = {
-  	/* Generic ESDI/IDE/ATA compatible hard disk controller */
+	/* Generic ESDI/IDE/ATA compatible hard disk controller */
 	{.id = "PNP0600", .driver_data = 0},
 	{.id = ""}
 };

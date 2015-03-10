@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c)2013 Maxim Integrated Products, Inc.
  *
  * This software is licensed under the terms of the GNU General Public

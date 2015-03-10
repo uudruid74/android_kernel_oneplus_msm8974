@@ -438,28 +438,28 @@ Version 7.22 abg - July 28, 2004
     The Wireless PC Card has two LEDs that indicate the state of the adapter
     and network.
       * Power LED (toward the middle of the adapter)
-    	- This LED indicates power has been applied, and the card is
-    	  functional. In normal operation mode with Card Power Management
-    	  disabled, it is steady-on. With Card Power Management enabled, it
-    	  blinks rapidly (several times per second).
+	- This LED indicates power has been applied, and the card is
+	  functional. In normal operation mode with Card Power Management
+	  disabled, it is steady-on. With Card Power Management enabled, it
+	  blinks rapidly (several times per second).
       * Transmit/Receive LED (closer to the edge of the adapter)
         - This LED flashes when it detects transmit or receive packets.
 
       * Both LEDs blink at the same time every 10 seconds.
-    	- The adapter was unable to make contact with the named wireless
-    	  network. Verify the network_name, in the config.opts file matches the
-    	  network name of the access point.
+	- The adapter was unable to make contact with the named wireless
+	  network. Verify the network_name, in the config.opts file matches the
+	  network name of the access point.
       * LEDs indicate normal operation with the Power LED
-    	steady-on or blinking rapidly and Transmit/Receive LED flashing, but no
-    	traffic.
-    	- If the network is operating in normal mode (ie.  port_type = 0 or not
-    	  specified), and a network_name has been specified, verify the
-    	  workstation network parameters (ifconfig, route, etc.) are correct
-    	  for the wireless network.
-    	- If the network is operating in Ad-Hoc (peer-to-peer) mode (ie.
-    	  port_type = 3), the adapter needs another workstation/adapter to
-    	  communicate with.  Verify the network parameters on both of the
-    	  workstations (ifconfig, route, etc.) are correct.
+	steady-on or blinking rapidly and Transmit/Receive LED flashing, but no
+	traffic.
+	- If the network is operating in normal mode (ie.  port_type = 0 or not
+	  specified), and a network_name has been specified, verify the
+	  workstation network parameters (ifconfig, route, etc.) are correct
+	  for the wireless network.
+	- If the network is operating in Ad-Hoc (peer-to-peer) mode (ie.
+	  port_type = 3), the adapter needs another workstation/adapter to
+	  communicate with.  Verify the network parameters on both of the
+	  workstations (ifconfig, route, etc.) are correct.
 
     Refer to the online manual page for additional configuration, feature and
     support information.

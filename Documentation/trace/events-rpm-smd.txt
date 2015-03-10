@@ -40,4 +40,3 @@ Message"
 
 The 'id' parameter is the id that RPM uses to acknowledge the receipt of the
 message in its ACK message
-

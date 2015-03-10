@@ -111,7 +111,7 @@
 									  ##arg); }
 #define TRACE() DEBUG_PRINT( "%s( %d )", __FUNCTION__, __LINE__ )
 #else
-#define INFO_PRINT( fmt, arg... )  
+#define INFO_PRINT( fmt, arg... )
 #define DEBUG_PRINT( fmt, arg... )
 #define TRACE() DEBUG_PRINT()
 #endif /* DLOG */
@@ -141,7 +141,7 @@ extern int tuner_interrupt( void );
 /* Add Start 20121218 No_3 */
 extern int  tuner_drv_start( void );
 extern void tuner_drv_end( void );
-/* Add End 20121218 No_3 */ 
+/* Add End 20121218 No_3 */
 
 #if defined(CONFIG_TMM_CHG_CTRL)
 	#define TMM_CHG_TEST_LOG 1

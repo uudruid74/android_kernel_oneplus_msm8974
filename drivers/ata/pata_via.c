@@ -652,7 +652,7 @@ static int via_init_one(struct pci_dev *pdev, const struct pci_device_id *id)
 	default:
 		WARN_ON(1);
 		return -ENODEV;
- 	}
+	}
 
 	via_fixup(pdev, config);
 

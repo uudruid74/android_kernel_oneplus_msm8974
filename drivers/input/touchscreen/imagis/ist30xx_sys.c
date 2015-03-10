@@ -318,7 +318,7 @@ int ist30xx_power_on(void)
 		ist30xx_tracking(TRACK_PWR_ON);
 		rc = ts_power_enable(1);
 		msleep(100);
-		
+
 		if(!rc) /*power is enabled successfully*/
 			ts_data->status.power = 1;
 	}

@@ -76,4 +76,3 @@ struct KernelSpdCommand
 };
 
 #endif /* KERNEL_SPD_COMMAND_H */
-

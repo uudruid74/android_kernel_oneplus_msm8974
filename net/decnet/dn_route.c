@@ -1875,4 +1875,3 @@ void __exit dn_route_cleanup(void)
 	proc_net_remove(&init_net, "decnet_cache");
 	dst_entries_destroy(&dn_dst_ops);
 }
-

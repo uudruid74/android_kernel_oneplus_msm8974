@@ -87,7 +87,7 @@ static int _DoC_WaitReady(struct DiskOnChip *doc)
 	/* Out-of-line routine to wait for chip response */
 	while (!(ReadDOC(docptr, CDSNControl) & CDSN_CTRL_FR_B)) {
 		/* issue 2 read from NOP register after reading from CDSNControl register
-	   	see Software Requirement 11.4 item 2. */
+		see Software Requirement 11.4 item 2. */
 		DoC_Delay(doc, 2);
 
 		if (time_after(jiffies, timeo)) {
@@ -1091,7 +1091,7 @@ static int doc_erase(struct mtd_info *mtd, struct erase_info *instr)
 	struct Nand *mychip;
 	int status;
 
- 	mutex_lock(&this->lock);
+	mutex_lock(&this->lock);
 
 	if (ofs & (mtd->erasesize-1) || len & (mtd->erasesize-1)) {
 		mutex_unlock(&this->lock);
@@ -1175,4 +1175,3 @@ module_exit(cleanup_doc2000);
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("David Woodhouse <dwmw2@infradead.org> et al.");
 MODULE_DESCRIPTION("MTD driver for DiskOnChip 2000 and Millennium");
-

@@ -153,7 +153,7 @@
 #define TSP_REBOOT_PENDING_TIME 50
 #define MOVE_COUNT_TH		100
 
-/* Each project has different edge config, 
+/* Each project has different edge config,
    so check this value before applying pattern tracking */
 #define MIN_X_EDGE	17
 #define MAX_X_EDGE	1060   //1062
@@ -1217,9 +1217,9 @@ static void clear_tcount(void)
 		tcount_finger[i] = 0;
 		touchbx[i] = 0;
 		touchby[i] = 0;
-	}		 
+	}
 }
- 
+
 static int diff_two_point(int x, int y, int oldx, int oldy)
 {
 	int diffx,diffy;
@@ -1546,7 +1546,7 @@ static int synaptics_rmi4_f12_abs_report(struct synaptics_rmi4_data *rmi4_data,
 							"Sunflower-Hopping (Pattern Tracking)\n");
 					cancel_delayed_work(&rmi4_data->reboot_work);
 					schedule_delayed_work(&rmi4_data->reboot_work,
-								msecs_to_jiffies(TSP_REBOOT_PENDING_TIME*6)); /* 300msec*/				
+								msecs_to_jiffies(TSP_REBOOT_PENDING_TIME*6)); /* 300msec*/
 					touch_count = 0;
 					return touch_count;
 				}
@@ -1560,7 +1560,7 @@ static int synaptics_rmi4_f12_abs_report(struct synaptics_rmi4_data *rmi4_data,
 #endif
 			} else {
 				rmi4_data->finger[finger].mcount++;
-				
+
 				#ifdef TSP_PATTERN_TRACKING_METHOD
 				/* Check staying finger at one point */
 				if((rmi4_data->finger[finger].mcount%MOVE_COUNT_TH) == 0){
@@ -1569,7 +1569,7 @@ static int synaptics_rmi4_f12_abs_report(struct synaptics_rmi4_data *rmi4_data,
 								"Sunflower-Fixed (Pattern Tracking)\n");
 						cancel_delayed_work(&rmi4_data->reboot_work);
 						schedule_delayed_work(&rmi4_data->reboot_work,
-									msecs_to_jiffies(TSP_REBOOT_PENDING_TIME*6)); /* 300msec*/				
+									msecs_to_jiffies(TSP_REBOOT_PENDING_TIME*6)); /* 300msec*/
 						touch_count = 0;
 						return touch_count;
 					}
@@ -3976,7 +3976,7 @@ void synaptics_power_ctrl(struct synaptics_rmi4_data *rmi4_data, bool enable)
 		pr_info("%s: tsp 1.8V off is finished.\n", __func__);
 	}
 #endif
-	
+
 #if !defined(CONFIG_SEC_H_PROJECT) && !defined(CONFIG_SEC_JS_PROJECT) && !defined(CONFIG_MACH_JSGLTE_CHN_CMCC)
 	msleep(30);
 #endif
@@ -3989,10 +3989,10 @@ static int atoi(char *str)
 {
 	int ret = 0;
 	int count = 0;
- 
+
 	if (str == NULL)
 		return -EINVAL;
- 
+
 	while (str[count] != (int)NULL && str[count] >= '0'
 			&& str[count] <= 'z') {
 		ret = ret * 0x10 + str[count] - '0';
@@ -4000,23 +4000,23 @@ static int atoi(char *str)
 	}
 	return ret;
 }
- 
+
 static int __init sec_tsp_mode(char *mode)
 {
 	int ret, ret1;
- 
+
 	ret = atoi(mode);
 	ret1 = ((ret >> 12) & 0X07);
- 
+
 	lcd_tsp_panel_version = ret;
- 
+
 	printk(KERN_ERR "%s: LCD_ID = 0x%s, val: 0X%x, ret1: 0x%x",
 			 __func__, mode, ret, ret1);
 //	if (ret1 == 0x01 || ret1 == 0x04 || ret1 == 0x05 || ret == 0x0)
 //		 sec_tsp_synaptics_mode = 1;
 //	 else
 //		 sec_tsp_synaptics_mode = 0;
- 
+
 	return 1;
 }
 __setup("lcd_id=0x", sec_tsp_mode);
@@ -4175,9 +4175,9 @@ static int __devinit synaptics_rmi4_probe(struct i2c_client *client,
 #endif
 
 #else
-    	rmi4_data->panel_revision = 0x00;
-    	rmi4_data->board->firmware_name = FW_IMAGE_NAME_B0_NEP_14;
-    	rmi4_data->board->fac_firmware_name = FW_IMAGE_NAME_B0_NEP_1F;
+	rmi4_data->panel_revision = 0x00;
+	rmi4_data->board->firmware_name = FW_IMAGE_NAME_B0_NEP_14;
+	rmi4_data->board->fac_firmware_name = FW_IMAGE_NAME_B0_NEP_1F;
 #endif
 
 #if defined(CONFIG_TOUCHSCREEN_SYNAPTICS_PREVENT_HSYNC_LEAKAGE)
@@ -4646,7 +4646,7 @@ static void synaptics_rmi4_input_close(struct input_dev *dev)
 #ifdef CONFIG_HAS_EARLYSUSPEND
 #define synaptics_rmi4_suspend NULL
 #define synaptics_rmi4_resume NULL
- 
+
  /**
  * synaptics_rmi4_early_suspend()
  *

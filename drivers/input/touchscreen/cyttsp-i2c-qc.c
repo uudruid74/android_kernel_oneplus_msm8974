@@ -3132,4 +3132,3 @@ static void cyttsp_exit(void)
 module_init(cyttsp_init);
 module_exit(cyttsp_exit);
 MODULE_FIRMWARE("cyttsp.fw");
-

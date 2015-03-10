@@ -610,5 +610,3 @@ static int __init mdss_qpic_driver_init(void)
 }
 
 module_init(mdss_qpic_driver_init);
-
-

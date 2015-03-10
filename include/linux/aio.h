@@ -15,9 +15,9 @@
 struct kioctx;
 
 /* Notes on cancelling a kiocb:
- *	If a kiocb is cancelled, aio_complete may return 0 to indicate 
- *	that cancel has not yet disposed of the kiocb.  All cancel 
- *	operations *must* call aio_put_req to dispose of the kiocb 
+ *	If a kiocb is cancelled, aio_complete may return 0 to indicate
+ *	that cancel has not yet disposed of the kiocb.  All cancel
+ *	operations *must* call aio_put_req to dispose of the kiocb
  *	to guard against races with the completion code.
  */
 #define KIOCB_C_CANCELLED	0x01
@@ -111,9 +111,9 @@ struct kiocb {
 	char 			__user *ki_buf;	/* remaining iocb->aio_buf */
 	size_t			ki_left; 	/* remaining bytes */
 	struct iovec		ki_inline_vec;	/* inline vector */
- 	struct iovec		*ki_iovec;
- 	unsigned long		ki_nr_segs;
- 	unsigned long		ki_cur_seg;
+	struct iovec		*ki_iovec;
+	unsigned long		ki_nr_segs;
+	unsigned long		ki_cur_seg;
 
 	struct list_head	ki_list;	/* the aio core uses this
 						 * for cancellation */

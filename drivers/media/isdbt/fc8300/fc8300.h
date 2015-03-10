@@ -117,11 +117,11 @@ typedef struct _tuner_sts_data {
 	_IO(IOCTL_MAGIC, 25)
 
 #define TUNER_IOCTL_VALSET_MONICNT	\
-	_IO(IOCTL_MAGIC, 26)	
+	_IO(IOCTL_MAGIC, 26)
 
 #define IOCTL_ISDBT_TUNER_PKT_MODE	\
-	_IOW(IOCTL_MAGIC, 27,struct ioctl_info)	
-	
+	_IOW(IOCTL_MAGIC, 27,struct ioctl_info)
+
 struct ISDBT_OPEN_INFO_T{
 	HANDLE				*hInit;
 	struct list_head		hList;
@@ -151,4 +151,3 @@ extern ssize_t isdbt_read(struct file *filp
 #endif
 
 #endif
-

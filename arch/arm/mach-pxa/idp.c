@@ -172,7 +172,7 @@ static void __init idp_init(void)
 }
 
 static struct map_desc idp_io_desc[] __initdata = {
-  	{
+	{
 		.virtual	=  IDP_COREVOLT_VIRT,
 		.pfn		= __phys_to_pfn(IDP_COREVOLT_PHYS),
 		.length		= IDP_COREVOLT_SIZE,

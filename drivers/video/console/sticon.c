@@ -92,7 +92,7 @@ static void sticon_putc(struct vc_data *conp, int c, int ypos, int xpos)
 	    return;
 
     if (conp->vc_mode != KD_TEXT)
-    	    return;
+	    return;
 #if 0
     if ((p->cursor_x == xpos) && (p->cursor_y == ypos)) {
 	    cursor_undrawn();
@@ -115,7 +115,7 @@ static void sticon_putcs(struct vc_data *conp, const unsigned short *s,
 	    return;
 
     if (conp->vc_mode != KD_TEXT)
-    	    return;
+	    return;
 
 #if 0
     if ((p->cursor_y == ypos) && (xpos <= p->cursor_x) &&
@@ -182,7 +182,7 @@ static int sticon_scroll(struct vc_data *conp, int t, int b, int dir, int count)
     return 0;
 }
 
-static void sticon_bmove(struct vc_data *conp, int sy, int sx, 
+static void sticon_bmove(struct vc_data *conp, int sy, int sx,
 	int dy, int dx, int height, int width)
 {
     if (!width || !height)
@@ -207,7 +207,7 @@ static void sticon_init(struct vc_data *c, int init)
     vc_cols = sti_onscreen_x(sti) / sti->font_width;
     vc_rows = sti_onscreen_y(sti) / sti->font_height;
     c->vc_can_do_color = 1;
-    
+
     if (init) {
 	c->vc_cols = vc_cols;
 	c->vc_rows = vc_rows;
@@ -267,13 +267,13 @@ static u16 *sticon_screen_pos(struct vc_data *conp, int offset)
     unsigned long p;
 
     if (conp->vc_num != fg_console || !softback_lines)
-    	return (u16 *)(conp->vc_origin + offset);
+	return (u16 *)(conp->vc_origin + offset);
     line = offset / conp->vc_size_row;
     if (line >= softback_lines)
-    	return (u16 *)(conp->vc_origin + offset - softback_lines * conp->vc_size_row);
+	return (u16 *)(conp->vc_origin + offset - softback_lines * conp->vc_size_row);
     p = softback_curr + offset;
     if (p >= softback_end)
-    	p += softback_buf - softback_end;
+	p += softback_buf - softback_end;
     return (u16 *)p;
 }
 
@@ -283,30 +283,30 @@ static unsigned long sticon_getxy(struct vc_data *conp, unsigned long pos,
     int x, y;
     unsigned long ret;
     if (pos >= conp->vc_origin && pos < conp->vc_scr_end) {
-    	unsigned long offset = (pos - conp->vc_origin) / 2;
-    	
-    	x = offset % conp->vc_cols;
-    	y = offset / conp->vc_cols;
-    	if (conp->vc_num == fg_console)
-    	    y += softback_lines;
-    	ret = pos + (conp->vc_cols - x) * 2;
+	unsigned long offset = (pos - conp->vc_origin) / 2;
+
+	x = offset % conp->vc_cols;
+	y = offset / conp->vc_cols;
+	if (conp->vc_num == fg_console)
+	    y += softback_lines;
+	ret = pos + (conp->vc_cols - x) * 2;
     } else if (conp->vc_num == fg_console && softback_lines) {
-    	unsigned long offset = pos - softback_curr;
-    	
-    	if (pos < softback_curr)
-    	    offset += softback_end - softback_buf;
-    	offset /= 2;
-    	x = offset % conp->vc_cols;
-    	y = offset / conp->vc_cols;
+	unsigned long offset = pos - softback_curr;
+
+	if (pos < softback_curr)
+	    offset += softback_end - softback_buf;
+	offset /= 2;
+	x = offset % conp->vc_cols;
+	y = offset / conp->vc_cols;
 	ret = pos + (conp->vc_cols - x) * 2;
 	if (ret == softback_end)
 	    ret = softback_buf;
 	if (ret == softback_in)
 	    ret = conp->vc_origin;
     } else {
-    	/* Should not happen */
-    	x = y = 0;
-    	ret = conp->vc_origin;
+	/* Should not happen */
+	x = y = 0;
+	ret = conp->vc_origin;
     }
     if (px) *px = x;
     if (py) *py = y;
@@ -361,9 +361,9 @@ static const struct consw sti_con = {
 	.con_set_palette	= sticon_set_palette,
 	.con_scrolldelta	= sticon_scrolldelta,
 	.con_set_origin		= sticon_set_origin,
-	.con_save_screen	= sticon_save_screen, 
+	.con_save_screen	= sticon_save_screen,
 	.con_build_attr		= sticon_build_attr,
-	.con_invert_region	= sticon_invert_region, 
+	.con_invert_region	= sticon_invert_region,
 	.con_screen_pos		= sticon_screen_pos,
 	.con_getxy		= sticon_getxy,
 };

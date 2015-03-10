@@ -2076,7 +2076,7 @@ int msm8930_get_cable_status(void) {return (int)set_cable_status; }
 #if defined(CONFIG_BATTERY_SAMSUNG) || defined(CONFIG_QPNP_SEC_CHARGER)
 bool sec_bat_is_lpm(void)
 {
-	return (bool)poweroff_charging; 
+	return (bool)poweroff_charging;
 }
 #endif
 
@@ -2214,7 +2214,7 @@ void tsu6721_callback(enum cable_type_t cable_type, int attached)
                if (attached)
                {
                        status_count = status_count+1;
-                       pr_err("%s UART Status attached (%d), VBUS: %s\n",__func__, 
+                       pr_err("%s UART Status attached (%d), VBUS: %s\n",__func__,
 					status_count,((cable_type == CABLE_TYPE_UARTOFF ? "No": "Yes")));
                } else {
                        status_count = status_count-1;
@@ -2633,7 +2633,7 @@ extern int poweroff_charging;
 /* support for LPM charging */
 bool sec_bat_is_lpm(void)
 {
-	return (bool)poweroff_charging; 
+	return (bool)poweroff_charging;
 }
 
 int sec_bat_get_cable_status(void)
@@ -4266,4 +4266,3 @@ struct sm5504_platform_data sm5504_pdata = {
 
 };
 #endif /*End of SM5504 MUIC Callbacks*/
-

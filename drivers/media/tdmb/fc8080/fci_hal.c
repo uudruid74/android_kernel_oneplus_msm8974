@@ -224,4 +224,3 @@ s32 bbm_data(HANDLE handle, u16 addr, u8 *data, u32 length)
 
 	return BBM_OK;
 }
-

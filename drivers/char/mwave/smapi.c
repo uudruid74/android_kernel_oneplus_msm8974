@@ -160,17 +160,17 @@ int smapi_query_DSP_cfg(SMAPI_DSP_SETTINGS * pSettings)
 		pSettings->usDspBaseIO);
 
 	/* check for illegal values */
-	if ( pSettings->usDspBaseIO == 0 ) 
+	if ( pSettings->usDspBaseIO == 0 )
 		PRINTK_ERROR(KERN_ERR_MWAVE "smapi::smapi_query_DSP_cfg: Worry: DSP base I/O address is 0\n");
 	if ( pSettings->usDspIRQ == 0 )
 		PRINTK_ERROR(KERN_ERR_MWAVE "smapi::smapi_query_DSP_cfg: Worry: DSP IRQ line is 0\n");
 
 	bRC = smapi_request(0x1804, 0x0000, 0, 0,
-	   	&usAX, &usBX, &usCX, &usDX, &usDI, &usSI);
+		&usAX, &usBX, &usCX, &usDX, &usDI, &usSI);
 	if (bRC) {
 		PRINTK_ERROR("smapi::smapi_query_DSP_cfg: Error: Could not get DSP modem settings. Aborting.\n");
 		return bRC;
-	} 
+	}
 
 	PRINTK_1(TRACE_SMAPI, "smapi::smapi_query_DSP_cfg, smapi_request OK\n");
 
@@ -189,7 +189,7 @@ int smapi_query_DSP_cfg(SMAPI_DSP_SETTINGS * pSettings)
 		pSettings->usUartBaseIO);
 
 	/* check for illegal values */
-	if ( pSettings->usUartBaseIO == 0 ) 
+	if ( pSettings->usUartBaseIO == 0 )
 		PRINTK_ERROR(KERN_ERR_MWAVE "smapi::smapi_query_DSP_cfg: Worry: UART base I/O address is 0\n");
 	if ( pSettings->usUartIRQ == 0 )
 		PRINTK_ERROR(KERN_ERR_MWAVE "smapi::smapi_query_DSP_cfg: Worry: UART IRQ line is 0\n");

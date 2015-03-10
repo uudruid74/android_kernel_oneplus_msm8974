@@ -519,7 +519,7 @@ static int tc360_verify_fw(struct cypress_touchkey_info *info,
 
 			isp_master_send(info, 0xc0, 0x08);
 		isp_master_recv(info, 0xd9, &val);
-		
+
 			if (fw_data[addr] != val) {
 				dev_err(&info->client->dev, "fail to verify at %#x (%#x)\n", addr,
 					fw_data[addr]);
@@ -719,7 +719,7 @@ write_fw:
 		}
 	}
 	dev_info(&client->dev, "succeed in writing fw\n");
-	
+
 	cypress_power_onoff(info,0);
 	msleep(TC360_POWERON_DELAY);
 	cypress_power_onoff(info,1);
@@ -754,4 +754,3 @@ err:
 	return ret;
 }
 EXPORT_SYMBOL(coreriver_fw_update);
-

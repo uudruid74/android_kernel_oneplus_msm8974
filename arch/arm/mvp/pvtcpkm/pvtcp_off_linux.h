@@ -224,4 +224,3 @@ PvtcpSchedSock(PvtcpSock *pvsk)
 }
 
 #endif /* _PVTCP_OFF_LINUX_H_ */
-

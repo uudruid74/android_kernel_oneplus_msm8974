@@ -77,7 +77,7 @@ unsigned int pxa27x_get_clk_frequency_khz(int info)
 {
 	unsigned long ccsr, clkcfg;
 	unsigned int l, L, m, M, n2, N, S;
-       	int cccr_a, t, ht, b;
+	int cccr_a, t, ht, b;
 
 	ccsr = CCSR;
 	cccr_a = CCCR & (1 << 25);
@@ -119,7 +119,7 @@ static unsigned long clk_pxa27x_mem_getrate(struct clk *clk)
 {
 	unsigned long ccsr, clkcfg;
 	unsigned int l, L, m, M;
-       	int cccr_a, b;
+	int cccr_a, b;
 
 	ccsr = CCSR;
 	cccr_a = CCCR & (1 << 25);

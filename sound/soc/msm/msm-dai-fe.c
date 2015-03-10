@@ -762,7 +762,7 @@ static struct snd_soc_dai_driver msm_fe_dais[] = {
 		.ops = &msm_fe_Multimedia_dai_ops,
 		.name = "MultiMedia9",
 	},
-#ifdef CONFIG_JACK_AUDIO	
+#ifdef CONFIG_JACK_AUDIO
 	{
 		.playback = {
 			.stream_name = "MultiMedia10 Playback",
@@ -790,7 +790,7 @@ static struct snd_soc_dai_driver msm_fe_dais[] = {
 		.ops = &msm_fe_Multimedia_dai_ops,
 		.name = "MultiMedia10",
 	},
-#endif	
+#endif
 	{
 		.playback = {
 			.stream_name = "QCHAT Playback",

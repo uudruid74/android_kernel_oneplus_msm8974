@@ -12257,4 +12257,3 @@ struct cnic_eth_dev *bnx2x_cnic_probe(struct net_device *dev)
 EXPORT_SYMBOL(bnx2x_cnic_probe);
 
 #endif /* BCM_CNIC */
-

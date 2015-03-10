@@ -1032,7 +1032,7 @@ static long msm_ion_custom_ioctl(struct ion_client *client,
 		handle = ion_handle_get_by_id(client,(int)data.handle);
 		if (IS_ERR(handle)) {
 			pr_info("%s: Could not find handle: %d\n",__func__, (int)data.handle);
-			return PTR_ERR(handle); 
+			return PTR_ERR(handle);
 		}
 		ret = ion_phys(client,handle,(ion_phys_addr_t*)(&data.paddr),&data.length);
 
@@ -1290,4 +1290,3 @@ static void __exit msm_ion_exit(void)
 
 subsys_initcall(msm_ion_init);
 module_exit(msm_ion_exit);
-

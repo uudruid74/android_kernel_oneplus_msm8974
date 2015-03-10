@@ -1114,7 +1114,7 @@ static struct sk_buff *ncm_wrap_ntb(struct gether *port,
 	/* (d)wDatagramIndex[1] and  (d)wDatagramLength[1] already zeroed */
 
 	/* Incase of Higher MTU size we do not need to expand and zero off the remaining
-	   In packet size to max_size . This saves bandwidth . e.g for 16K In size max mtu is 9k 
+	   In packet size to max_size . This saves bandwidth . e.g for 16K In size max mtu is 9k
 	*/
 #ifndef CONFIG_USB_NCM_SUPPORT_MTU_CHANGE
 	if (skb->len > MAX_TX_NONFIXED) {

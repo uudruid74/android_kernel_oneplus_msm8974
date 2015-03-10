@@ -82,7 +82,7 @@ config HVC_UDBG
        help
          This is meant to be used during HW bring up or debugging when
 	 no other console mechanism exist but udbg, to get you a quick
-	 console for userspace. Do NOT enable in production kernels. 
+	 console for userspace. Do NOT enable in production kernels.
 
 config HVC_DCC
        bool "ARM JTAG DCC console"
@@ -118,4 +118,3 @@ config HVCS
 	  will depend on arch specific APIs exported from hvcserver.ko
 	  which will also be compiled when this driver is built as a
 	  module.
-

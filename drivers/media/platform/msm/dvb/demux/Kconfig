@@ -42,4 +42,3 @@ choice
 		help
 			Use this option of your HW has only TSIF input without any Transport Stream Packet Processor (TSPP) support
 endchoice
-

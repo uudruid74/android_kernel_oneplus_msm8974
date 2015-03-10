@@ -22,4 +22,3 @@ extern struct spi_driver es705_spi_driver;
 extern struct es_stream_device spi_streamdev;
 
 #endif
-

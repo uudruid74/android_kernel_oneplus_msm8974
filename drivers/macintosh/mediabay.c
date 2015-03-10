@@ -133,7 +133,7 @@ enum {
 /*
  * Functions for polling content of media bay
  */
- 
+
 static u8
 ohare_mb_content(struct media_bay_info *bay)
 {
@@ -215,8 +215,8 @@ keylargo_mb_power(struct media_bay_info* bay, int on_off)
 {
 	if (on_off) {
 		/* Power up device, assert it's reset line */
-            	MB_BIC(bay, KEYLARGO_MBCR, KL_MBCR_MB0_DEV_RESET);
-            	MB_BIC(bay, KEYLARGO_MBCR, KL_MBCR_MB0_DEV_POWER);
+		MB_BIC(bay, KEYLARGO_MBCR, KL_MBCR_MB0_DEV_RESET);
+		MB_BIC(bay, KEYLARGO_MBCR, KL_MBCR_MB0_DEV_POWER);
 	} else {
 		/* Disable all devices */
 		MB_BIC(bay, KEYLARGO_MBCR, KL_MBCR_MB0_DEV_MASK);
@@ -340,7 +340,7 @@ static inline void set_mb_power(struct media_bay_info* bay, int onoff)
 		bay->ops->power(bay, 1);
 		bay->state = mb_powering_up;
 		pr_debug("mediabay%d: powering up\n", bay->index);
-	} else { 
+	} else {
 		/* Make sure everything is powered down & disabled */
 		bay->ops->power(bay, 0);
 		bay->state = mb_powering_down;
@@ -484,23 +484,23 @@ static void media_bay_step(int i)
 
 	switch(bay->state) {
 	case mb_powering_up:
-	    	if (bay->ops->setup_bus(bay, bay->last_value) < 0) {
+		if (bay->ops->setup_bus(bay, bay->last_value) < 0) {
 			pr_debug("mediabay%d: device not supported (kind:%d)\n",
 				 i, bay->content_id);
-	    		set_mb_power(bay, 0);
-	    		break;
-	    	}
-	    	bay->timer = msecs_to_jiffies(MB_RESET_DELAY);
-	    	bay->state = mb_enabling_bay;
+			set_mb_power(bay, 0);
+			break;
+		}
+		bay->timer = msecs_to_jiffies(MB_RESET_DELAY);
+		bay->state = mb_enabling_bay;
 		pr_debug("mediabay%d: enabling (kind:%d)\n", i, bay->content_id);
 		break;
 	case mb_enabling_bay:
 		bay->ops->un_reset(bay);
-	    	bay->timer = msecs_to_jiffies(MB_SETUP_DELAY);
-	    	bay->state = mb_resetting;
+		bay->timer = msecs_to_jiffies(MB_SETUP_DELAY);
+		bay->state = mb_resetting;
 		pr_debug("mediabay%d: releasing bay reset (kind:%d)\n",
 			 i, bay->content_id);
-	    	break;
+		break;
 	case mb_resetting:
 		if (bay->content_id != MB_CD) {
 			pr_debug("mediabay%d: bay is up (kind:%d)\n", i,
@@ -509,27 +509,27 @@ static void media_bay_step(int i)
 			device_for_each_child(&bay->mdev->ofdev.dev,
 					      bay, mb_broadcast_hotplug);
 			break;
-	    	}
+		}
 		pr_debug("mediabay%d: releasing ATA reset (kind:%d)\n",
 			 i, bay->content_id);
 		bay->ops->un_reset_ide(bay);
-	    	bay->timer = msecs_to_jiffies(MB_IDE_WAIT);
-	    	bay->state = mb_ide_resetting;
-	    	break;
+		bay->timer = msecs_to_jiffies(MB_IDE_WAIT);
+		bay->state = mb_ide_resetting;
+		break;
 
 	case mb_ide_resetting:
 		pr_debug("mediabay%d: bay is up (kind:%d)\n", i, bay->content_id);
 		bay->state = mb_up;
 		device_for_each_child(&bay->mdev->ofdev.dev,
 				      bay, mb_broadcast_hotplug);
-	    	break;
+		break;
 
 	case mb_powering_down:
-	    	bay->state = mb_empty;
+		bay->state = mb_empty;
 		device_for_each_child(&bay->mdev->ofdev.dev,
 				      bay, mb_broadcast_hotplug);
 		pr_debug("mediabay%d: end of power down\n", i);
-	    	break;
+		break;
 	}
 }
 
@@ -580,7 +580,7 @@ static int __devinit media_bay_attach(struct macio_dev *mdev, const struct of_de
 		macio_release_resources(mdev);
 		return -ENOMEM;
 	}
-	
+
 	i = media_bay_count++;
 	bay = &media_bays[i];
 	bay->mdev = mdev;
@@ -638,28 +638,28 @@ static int media_bay_resume(struct macio_dev *mdev)
 	if (mdev->ofdev.dev.power.power_state.event != PM_EVENT_ON) {
 		mdev->ofdev.dev.power.power_state = PMSG_ON;
 
-	       	/* We re-enable the bay using it's previous content
-	       	   only if it did not change. Note those bozo timings,
-	       	   they seem to help the 3400 get it right.
-	       	 */
-	       	/* Force MB power to 0 */
+		/* We re-enable the bay using it's previous content
+		   only if it did not change. Note those bozo timings,
+		   they seem to help the 3400 get it right.
+		 */
+		/* Force MB power to 0 */
 		mutex_lock(&bay->lock);
-	       	set_mb_power(bay, 0);
+		set_mb_power(bay, 0);
 		msleep(MB_POWER_DELAY);
-	       	if (bay->ops->content(bay) != bay->content_id) {
+		if (bay->ops->content(bay) != bay->content_id) {
 			printk("mediabay%d: Content changed during sleep...\n", bay->index);
 			mutex_unlock(&bay->lock);
-	       		return 0;
+			return 0;
 		}
-	       	set_mb_power(bay, 1);
-	       	bay->last_value = bay->content_id;
-	       	bay->value_count = msecs_to_jiffies(MB_STABLE_DELAY);
-	       	bay->timer = msecs_to_jiffies(MB_POWER_DELAY);
-	       	do {
+		set_mb_power(bay, 1);
+		bay->last_value = bay->content_id;
+		bay->value_count = msecs_to_jiffies(MB_STABLE_DELAY);
+		bay->timer = msecs_to_jiffies(MB_POWER_DELAY);
+		do {
 			msleep(MB_POLL_DELAY);
-	       		media_bay_step(bay->index);
-	       	} while((bay->state != mb_empty) &&
-	       		(bay->state != mb_up));
+			media_bay_step(bay->index);
+		} while((bay->state != mb_empty) &&
+			(bay->state != mb_up));
 		bay->sleeping = 0;
 		mutex_unlock(&bay->lock);
 	}
@@ -748,7 +748,7 @@ static int __init media_bay_init(void)
 	if (!machine_is(powermac))
 		return 0;
 
-	macio_register_driver(&media_bay_driver);	
+	macio_register_driver(&media_bay_driver);
 
 	return 0;
 }

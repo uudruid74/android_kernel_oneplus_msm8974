@@ -66,21 +66,21 @@
 //		qcom,scl-gpio = <&msmgpio 19 0>;
 //		qcom,sda-gpio = <&msmgpio 18 0>;
 //		qcom,i2c-bus-freq = <400000>;
-	i2c@20 { 
+	i2c@20 {
 		cell-index = <20>;
 		compatible = "i2c-gpio";
-		gpios = <&msmgpio 18 0 // sda 
-			 &msmgpio 19 0 // scl 
+		gpios = <&msmgpio 18 0 // sda
+			 &msmgpio 19 0 // scl
 			>;
-	  	zinitix_touch@20 {
-	   	compatible = "zinitix,zinitix_touch";
-	   	reg = <0x20>;
+		zinitix_touch@20 {
+		compatible = "zinitix,zinitix_touch";
+		reg = <0x20>;
 		interrupt-parent = <&msmgpio>;
 		interrupts = <17 0>;
 		zinitix,vdd_en-gpio = <&msmgpio 31 0x00>;
 			zinitix,led_en-gpio = <&msmgpio 98 0x00>;
 			zinitix,scl-gpio = <&msmgpio 19 0x00>;
-			zinitix,sda-gpio = <&msmgpio 18 0x00>;			
+			zinitix,sda-gpio = <&msmgpio 18 0x00>;
 		zinitix,irq-gpio = <&msmgpio 17 0x00>;
 		// .x_resolution = 599,
 		// .y_resolution = 1023,
@@ -170,7 +170,7 @@
 		qcom,cdc-mclk-gpios = <&pm8226_gpios 1 0>;
 		/*qcom,cdc-vdd-spkr-gpios = <&pm8226_gpios 2 0>;*/
 	};
-	
+
 	sound-9302 {
 		qcom,audio-routing =
 			"RX_BIAS", "MCLK",
@@ -360,7 +360,7 @@
 	qcom,pm8226@0 {
 		pm8226_chg: qcom,charger {
 		qcom,ext-ovp-present = <0>;
-	};	
+	};
 		qcom,leds@a300 {
 			status = "okay";
 			qcom,led_mpp_4 {

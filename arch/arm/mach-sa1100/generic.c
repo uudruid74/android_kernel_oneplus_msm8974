@@ -418,7 +418,7 @@ void sa1110_mb_disable(void)
 	unsigned long flags;
 
 	local_irq_save(flags);
-	
+
 	PGSR &= ~GPIO_MBGNT;
 	GPCR = GPIO_MBGNT;
 	GPDR = (GPDR & ~GPIO_MBREQ) | GPIO_MBGNT;
@@ -447,4 +447,3 @@ void sa1110_mb_enable(void)
 
 	local_irq_restore(flags);
 }
-

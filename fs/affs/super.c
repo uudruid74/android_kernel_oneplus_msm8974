@@ -257,7 +257,7 @@ parse_options(char *options, uid_t *uid, gid_t *gid, int *mode, int *reserved, s
 			break;
 		}
 		case Opt_ignore:
-		 	/* Silently ignore the quota options */
+			/* Silently ignore the quota options */
 			break;
 		default:
 			printk("AFFS: Unrecognized mount option \"%s\" "

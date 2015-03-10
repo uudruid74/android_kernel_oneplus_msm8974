@@ -72,4 +72,3 @@ static inline const __be32 *of_get_pci_address(struct device_node *dev,
 #endif /* CONFIG_OF_ADDRESS && CONFIG_PCI */
 
 #endif /* __OF_ADDRESS_H */
-

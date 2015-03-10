@@ -2164,7 +2164,7 @@ bool BBbVT3253Init (PSDevice pDevice)
                 bResult &= BBbWriteEmbeded(dwIoBase,byVT3253B0_RFMD[ii][0],byVT3253B0_RFMD[ii][1]);
             }
             for (ii = 0; ii < CB_VT3253B0_AGC_FOR_RFMD2959; ii++) {
-        	    bResult &= BBbWriteEmbeded(dwIoBase,byVT3253B0_AGC4_RFMD2959[ii][0],byVT3253B0_AGC4_RFMD2959[ii][1]);
+		    bResult &= BBbWriteEmbeded(dwIoBase,byVT3253B0_AGC4_RFMD2959[ii][0],byVT3253B0_AGC4_RFMD2959[ii][1]);
             }
             VNSvOutPortD(dwIoBase + MAC_REG_ITRTMSET, 0x23);
             MACvRegBitsOn(dwIoBase, MAC_REG_PAPEDELAY, BIT0);
@@ -2179,11 +2179,11 @@ bool BBbVT3253Init (PSDevice pDevice)
         pDevice->ldBmThreshold[3] = 0;
     } else if ((byRFType == RF_AIROHA) || (byRFType == RF_AL2230S) ) {
         for (ii = 0; ii < CB_VT3253B0_INIT_FOR_AIROHA2230; ii++) {
-    	    bResult &= BBbWriteEmbeded(dwIoBase,byVT3253B0_AIROHA2230[ii][0],byVT3253B0_AIROHA2230[ii][1]);
-    	}
+	    bResult &= BBbWriteEmbeded(dwIoBase,byVT3253B0_AIROHA2230[ii][0],byVT3253B0_AIROHA2230[ii][1]);
+	}
         for (ii = 0; ii < CB_VT3253B0_AGC; ii++) {
-    	    bResult &= BBbWriteEmbeded(dwIoBase,byVT3253B0_AGC[ii][0],byVT3253B0_AGC[ii][1]);
-    	}
+	    bResult &= BBbWriteEmbeded(dwIoBase,byVT3253B0_AGC[ii][0],byVT3253B0_AGC[ii][1]);
+	}
         pDevice->abyBBVGA[0] = 0x1C;
         pDevice->abyBBVGA[1] = 0x10;
         pDevice->abyBBVGA[2] = 0x0;
@@ -2194,11 +2194,11 @@ bool BBbVT3253Init (PSDevice pDevice)
         pDevice->ldBmThreshold[3] = 0;
     } else if (byRFType == RF_UW2451) {
         for (ii = 0; ii < CB_VT3253B0_INIT_FOR_UW2451; ii++) {
-    	        bResult &= BBbWriteEmbeded(dwIoBase,byVT3253B0_UW2451[ii][0],byVT3253B0_UW2451[ii][1]);
-    	}
+	        bResult &= BBbWriteEmbeded(dwIoBase,byVT3253B0_UW2451[ii][0],byVT3253B0_UW2451[ii][1]);
+	}
         for (ii = 0; ii < CB_VT3253B0_AGC; ii++) {
-    	    bResult &= BBbWriteEmbeded(dwIoBase,byVT3253B0_AGC[ii][0],byVT3253B0_AGC[ii][1]);
-    	}
+	    bResult &= BBbWriteEmbeded(dwIoBase,byVT3253B0_AGC[ii][0],byVT3253B0_AGC[ii][1]);
+	}
         VNSvOutPortB(dwIoBase + MAC_REG_ITRTMSET, 0x23);
         MACvRegBitsOn(dwIoBase, MAC_REG_PAPEDELAY, BIT0);
 
@@ -2213,7 +2213,7 @@ bool BBbVT3253Init (PSDevice pDevice)
     } else if (byRFType == RF_UW2452) {
         for (ii = 0; ii < CB_VT3253B0_INIT_FOR_UW2451; ii++) {
             bResult &= BBbWriteEmbeded(dwIoBase,byVT3253B0_UW2451[ii][0],byVT3253B0_UW2451[ii][1]);
-    	}
+	}
         // Init ANT B select,TX Config CR09 = 0x61->0x45, 0x45->0x41(VC1/VC2 define, make the ANT_A, ANT_B inverted)
         //bResult &= BBbWriteEmbeded(dwIoBase,0x09,0x41);
         // Init ANT B select,RX Config CR10 = 0x28->0x2A, 0x2A->0x28(VC1/VC2 define, make the ANT_A, ANT_B inverted)
@@ -2233,8 +2233,8 @@ bool BBbVT3253Init (PSDevice pDevice)
         bResult &= BBbWriteEmbeded(dwIoBase,0xb0,0x58);
 
         for (ii = 0; ii < CB_VT3253B0_AGC; ii++) {
-    	    bResult &= BBbWriteEmbeded(dwIoBase,byVT3253B0_AGC[ii][0],byVT3253B0_AGC[ii][1]);
-    	}
+	    bResult &= BBbWriteEmbeded(dwIoBase,byVT3253B0_AGC[ii][0],byVT3253B0_AGC[ii][1]);
+	}
         //VNSvOutPortB(dwIoBase + MAC_REG_ITRTMSET, 0x23); // RobertYu: 20050104, 20050131 disable PA_Delay
         //MACvRegBitsOn(dwIoBase, MAC_REG_PAPEDELAY, BIT0); // RobertYu: 20050104, 20050131 disable PA_Delay
 
@@ -2250,11 +2250,11 @@ bool BBbVT3253Init (PSDevice pDevice)
 
     } else if (byRFType == RF_VT3226) {
         for (ii = 0; ii < CB_VT3253B0_INIT_FOR_AIROHA2230; ii++) {
-    	    bResult &= BBbWriteEmbeded(dwIoBase,byVT3253B0_AIROHA2230[ii][0],byVT3253B0_AIROHA2230[ii][1]);
-    	}
+	    bResult &= BBbWriteEmbeded(dwIoBase,byVT3253B0_AIROHA2230[ii][0],byVT3253B0_AIROHA2230[ii][1]);
+	}
         for (ii = 0; ii < CB_VT3253B0_AGC; ii++) {
-    	    bResult &= BBbWriteEmbeded(dwIoBase,byVT3253B0_AGC[ii][0],byVT3253B0_AGC[ii][1]);
-    	}
+	    bResult &= BBbWriteEmbeded(dwIoBase,byVT3253B0_AGC[ii][0],byVT3253B0_AGC[ii][1]);
+	}
         pDevice->abyBBVGA[0] = 0x1C;
         pDevice->abyBBVGA[1] = 0x10;
         pDevice->abyBBVGA[2] = 0x0;
@@ -2268,8 +2268,8 @@ bool BBbVT3253Init (PSDevice pDevice)
          //{{ RobertYu: 20050104
     } else if (byRFType == RF_AIROHA7230) {
         for (ii = 0; ii < CB_VT3253B0_INIT_FOR_AIROHA2230; ii++) {
-    	    bResult &= BBbWriteEmbeded(dwIoBase,byVT3253B0_AIROHA2230[ii][0],byVT3253B0_AIROHA2230[ii][1]);
-    	}
+	    bResult &= BBbWriteEmbeded(dwIoBase,byVT3253B0_AIROHA2230[ii][0],byVT3253B0_AIROHA2230[ii][1]);
+	}
 
         //{{ RobertYu:20050223, request by JerryChung
         // Init ANT B select,TX Config CR09 = 0x61->0x45, 0x45->0x41(VC1/VC2 define, make the ANT_A, ANT_B inverted)
@@ -2281,8 +2281,8 @@ bool BBbVT3253Init (PSDevice pDevice)
         //}}
 
         for (ii = 0; ii < CB_VT3253B0_AGC; ii++) {
-    	    bResult &= BBbWriteEmbeded(dwIoBase,byVT3253B0_AGC[ii][0],byVT3253B0_AGC[ii][1]);
-    	}
+	    bResult &= BBbWriteEmbeded(dwIoBase,byVT3253B0_AGC[ii][0],byVT3253B0_AGC[ii][1]);
+	}
         pDevice->abyBBVGA[0] = 0x1C;
         pDevice->abyBBVGA[1] = 0x10;
         pDevice->abyBBVGA[2] = 0x0;
@@ -2293,8 +2293,8 @@ bool BBbVT3253Init (PSDevice pDevice)
         pDevice->ldBmThreshold[3] = 0;
     //}} RobertYu
     } else {
-    	// No VGA Table now
-    	pDevice->bUpdateBBVGA = false;
+	// No VGA Table now
+	pDevice->bUpdateBBVGA = false;
         pDevice->abyBBVGA[0] = 0x1C;
     }
 
@@ -2972,4 +2972,3 @@ TimerState1CallBack (
 
     return;
 }
-

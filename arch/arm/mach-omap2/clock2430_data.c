@@ -2105,4 +2105,3 @@ int __init omap2430_clk_init(void)
 
 	return 0;
 }
-

@@ -28,5 +28,3 @@ struct sknlsockevmsg {
 };
 
 #endif /* _SOCKEV_H_ */
-
-

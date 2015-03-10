@@ -1013,7 +1013,7 @@ static ssize_t k2hh_selftest_show(struct device *dev,
 	goto exit;
 
 exit_status_err:
-	ret = sprintf(buf, "-1,0,0,0\n");	
+	ret = sprintf(buf, "-1,0,0,0\n");
 exit:
 	k2hh_i2c_write(data, CTRL1_REG, 0x00);
 	k2hh_i2c_write(data, CTRL5_REG, 0x00);
@@ -1529,4 +1529,3 @@ module_exit(k2hh_exit);
 MODULE_DESCRIPTION("k2hh accelerometer sensor driver");
 MODULE_AUTHOR("Samsung Electronics");
 MODULE_LICENSE("GPL");
-

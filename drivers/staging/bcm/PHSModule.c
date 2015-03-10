@@ -432,8 +432,8 @@ ULONG PhsUpdateClassifierRule(IN void* pvContext,
 	}
 
 	/* SF already Exists Add PHS Rule to existing SF */
-  	lStatus = CreateClassiferToPHSRuleMapping(uiVcid, uiClsId,
-  	          pstServiceFlowEntry, psPhsRule, u8AssociatedPHSI);
+	lStatus = CreateClassiferToPHSRuleMapping(uiVcid, uiClsId,
+	          pstServiceFlowEntry, psPhsRule, u8AssociatedPHSI);
 
     return lStatus;
 }
@@ -868,7 +868,7 @@ static void free_phs_serviceflow_rules(S_SERVICEFLOW_TABLE *psServiceFlowRulesTa
 						if(pstClassifierRulesTable->stActivePhsRulesList[j].pstPhsRule
                                                                                         ->u8RefCnt)
 							pstClassifierRulesTable->stActivePhsRulesList[j].pstPhsRule
-  							                                                ->u8RefCnt--;
+							                                                ->u8RefCnt--;
 						if(0==pstClassifierRulesTable->stActivePhsRulesList[j].pstPhsRule
                                                                 ->u8RefCnt)
 							kfree(pstClassifierRulesTable->stActivePhsRulesList[j].pstPhsRule);
@@ -1603,9 +1603,3 @@ static int verify_suppress_phsf(unsigned char *in_buffer,unsigned char *out_buff
 	*new_header_size = size;
 	return STATUS_PHS_COMPRESSED;
 }
-
-
-
-
-
-

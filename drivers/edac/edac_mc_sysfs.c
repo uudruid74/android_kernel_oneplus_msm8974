@@ -1061,4 +1061,3 @@ void edac_sysfs_teardown_mc_kset(void)
 	kset_unregister(mc_kset);
 	edac_put_sysfs_subsys();
 }
-

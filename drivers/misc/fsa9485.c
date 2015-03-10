@@ -518,7 +518,7 @@ static ssize_t fsa9485_set_apo_factory(struct device *dev,
 	} else {
 		pr_warn("%s Wrong command\n", __func__);
 		return count;
-	}	
+	}
 
 	return count;
 }
@@ -672,7 +672,7 @@ static int fsa9485_detect_lanhub(struct fsa9485_usbsw *usbsw) {
 	unsigned int dev1, dev2, adc;
 	struct fsa9485_platform_data *pdata = usbsw->pdata;
 	struct i2c_client *client = usbsw->client;
-	
+
 	pr_info("%s", __func__);
 
 	device_type = i2c_smbus_read_word_data(client, FSA9485_REG_DEV_T1);
@@ -802,7 +802,7 @@ static int fsa9485_detect_dev(struct fsa9485_usbsw *usbsw)
 
 	if (local_usbsw->dock_ready == 1) {
 		if (adc == 0x0f)
-			dev2 = DEV_INCOMPATIBLE; 
+			dev2 = DEV_INCOMPATIBLE;
 		else if (adc == 0x10)
 			dev2 = DEV_SMARTDOCK;
 		else if (adc == 0x12)

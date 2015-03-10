@@ -1027,7 +1027,7 @@ static long misc_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 
 			if(phone_active_value)
 				iod->mc->phone_state = STATE_ONLINE;
-		}	
+		}
 		return iod->mc->phone_state;
 
 	case IOCTL_MODEM_FORCE_CRASH_EXIT:
@@ -1064,7 +1064,7 @@ static long misc_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 		* It will be call for specific link ioctl */
 		if (ld->ioctl)		//SPI_SETUP
 			return ld->ioctl(ld, iod, cmd, arg);
-		
+
 		mif_err("misc_ioctl : ioctl 0x%X is not defined.\n", cmd);
 		return -EINVAL;
 	}
@@ -1196,7 +1196,7 @@ static ssize_t misc_write(struct file *filp, const char __user *buf,
 		frm = (u8 *)(skb->data + 1);
 		rfs_header = (struct rfs_hdr*)(frm);
 		mif_info("\n<%s> Tx RFS frame (CMD : 0x%02x) (ID : 0x%02x) (Len %d)\n",
-			iod->name, rfs_header->cmd, rfs_header->id, rfs_header->len);		
+			iod->name, rfs_header->cmd, rfs_header->id, rfs_header->len);
 	}
 #endif
 
@@ -1456,4 +1456,3 @@ int sipc4_init_io_device(struct io_device *iod)
 				iod->name, iod->io_typ, ret);
 	return ret;
 }
-

@@ -512,14 +512,14 @@ GLOBAL_ENTRY(ia64_trace_syscall)
 	adds r16=PT(F6)+16,sp
 	adds r17=PT(F7)+16,sp
 	;;
- 	stf.spill [r16]=f6,32
- 	stf.spill [r17]=f7,32
+	stf.spill [r16]=f6,32
+	stf.spill [r17]=f7,32
 	;;
- 	stf.spill [r16]=f8,32
- 	stf.spill [r17]=f9,32
+	stf.spill [r16]=f8,32
+	stf.spill [r17]=f9,32
 	;;
- 	stf.spill [r16]=f10
- 	stf.spill [r17]=f11
+	stf.spill [r16]=f10
+	stf.spill [r17]=f11
 	br.call.sptk.many rp=syscall_trace_enter // give parent a chance to catch syscall args
 	cmp.lt p6,p0=r8,r0			// check tracehook
 	adds r2=PT(R8)+16,sp			// r2 = &pt_regs.r8
@@ -1288,14 +1288,14 @@ ENTRY(sys_rt_sigreturn)
 	adds r16=PT(F6)+32,sp
 	adds r17=PT(F7)+32,sp
 	;;
- 	stf.spill [r16]=f6,32
- 	stf.spill [r17]=f7,32
+	stf.spill [r16]=f6,32
+	stf.spill [r17]=f7,32
 	;;
- 	stf.spill [r16]=f8,32
- 	stf.spill [r17]=f9,32
+	stf.spill [r16]=f8,32
+	stf.spill [r17]=f9,32
 	;;
- 	stf.spill [r16]=f10
- 	stf.spill [r17]=f11
+	stf.spill [r16]=f10
+	stf.spill [r17]=f11
 	adds out0=16,sp				// out0 = &sigscratch
 	br.call.sptk.many rp=ia64_rt_sigreturn
 .ret19:	.restore sp,0

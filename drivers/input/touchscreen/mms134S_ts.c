@@ -2854,4 +2854,3 @@ MODULE_DESCRIPTION("Driver for Melfas MTSI Touchscreen Controller");
 MODULE_AUTHOR("MinSang, Kim <kimms@melfas.com>");
 MODULE_VERSION("0.1");
 MODULE_LICENSE("GPL");
-

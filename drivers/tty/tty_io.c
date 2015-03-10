@@ -1145,7 +1145,7 @@ static ssize_t tty_write(struct file *file, const char __user *buf,
 {
 	struct inode *inode = file->f_path.dentry->d_inode;
 	struct tty_struct *tty = file_tty(file);
- 	struct tty_ldisc *ld;
+	struct tty_ldisc *ld;
 	ssize_t ret;
 
 	if (tty_paranoia_check(tty, inode, "tty_write"))
@@ -2750,7 +2750,7 @@ long tty_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 	case TIOCGICOUNT:
 		retval = tty_tiocgicount(tty, p);
 		/* For the moment allow fall through to the old method */
-        	if (retval != -EINVAL)
+		if (retval != -EINVAL)
 			return retval;
 		break;
 	case TCFLSH:
@@ -3416,4 +3416,3 @@ int __init tty_init(void)
 #endif
 	return 0;
 }
-

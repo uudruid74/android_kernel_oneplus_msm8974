@@ -164,7 +164,7 @@ static struct dentry *hppfs_lookup(struct inode *ino, struct dentry *dentry,
 	if (!inode)
 		goto out;
 
- 	d_add(dentry, inode);
+	d_add(dentry, inode);
 	return NULL;
 
  out:

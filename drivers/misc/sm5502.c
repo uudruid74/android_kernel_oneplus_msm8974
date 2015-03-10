@@ -405,7 +405,7 @@ static void sm5502_reg_init(struct sm5502_usbsw *usbsw)
 	/*set timing1 to 300ms */
 	ret = i2c_smbus_write_byte_data(client, REG_TIMING_SET1, 0x04);
 	if (ret < 0)
-        	dev_err(&client->dev, "%s: err %d\n", __func__, ret);
+		dev_err(&client->dev, "%s: err %d\n", __func__, ret);
 
 	/*Manual SW2 bit2 : JIG_ON '1' */
 	ret = i2c_smbus_write_byte_data(client, REG_MANUAL_SW2, 0x04);
@@ -1090,10 +1090,10 @@ static int sm5502_attach_dev(struct sm5502_usbsw *usbsw)
 	if (vbus < 0) {
 		dev_err(&client->dev, "%s: err %d\n", __func__, vbus);
 		return vbus;
-	}    
+	}
     // add end
 
-    
+
 	adc = i2c_smbus_read_byte_data(client, REG_ADC);
 
 	if (adc == ADC_SMART_DOCK) {
@@ -1284,7 +1284,7 @@ static int sm5502_attach_dev(struct sm5502_usbsw *usbsw)
 	usbsw->dev2 = val2;
 	usbsw->dev3 = val3;
 	usbsw->adc = adc;
-	usbsw->vbus = vbus; 
+	usbsw->vbus = vbus;
 	usbsw->carkit_dev = val4;
 
 	return adc;
@@ -1942,4 +1942,3 @@ module_exit(sm5502_exit);
 MODULE_AUTHOR("Jeongrae Kim <Jryu.kim@samsung.com>");
 MODULE_DESCRIPTION("SM5502 Micro USB Switch driver");
 MODULE_LICENSE("GPL");
-

@@ -351,4 +351,3 @@ static int __init davinci_init_devices(void)
 	return 0;
 }
 arch_initcall(davinci_init_devices);
-

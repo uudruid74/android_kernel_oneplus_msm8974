@@ -204,7 +204,7 @@ el2_probe1(struct net_device *dev, int ioaddr)
 
     /* Reset and/or avoid any lurking NE2000 */
     if (inb(ioaddr + 0x408) == 0xff) {
-    	mdelay(1);
+	mdelay(1);
 	retval = -ENODEV;
 	goto out1;
     }

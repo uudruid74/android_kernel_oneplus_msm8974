@@ -47,4 +47,3 @@ config IOMMU_HELPER
 
 config NEED_SG_DMA_LENGTH
 	def_bool SWIOTLB
-

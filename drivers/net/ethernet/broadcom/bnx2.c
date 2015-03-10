@@ -575,7 +575,7 @@ bnx2_write_phy(struct bnx2 *bp, u32 reg, u32 val)
 	}
 
 	if (val1 & BNX2_EMAC_MDIO_COMM_START_BUSY)
-        	ret = -EBUSY;
+		ret = -EBUSY;
 	else
 		ret = 0;
 
@@ -2265,7 +2265,7 @@ bnx2_init_5706s_phy(struct bnx2 *bp, int reset_phy)
 	bp->phy_flags &= ~BNX2_PHY_FLAG_PARALLEL_DETECT;
 
 	if (CHIP_NUM(bp) == CHIP_NUM_5706)
-        	REG_WR(bp, BNX2_MISC_GP_HW_CTL0, 0x300);
+		REG_WR(bp, BNX2_MISC_GP_HW_CTL0, 0x300);
 
 	if (bp->dev->mtu > 1500) {
 		u32 val;
@@ -2599,7 +2599,7 @@ bnx2_init_context(struct bnx2 *bp)
 			pcid_addr = GET_PCID_ADDR(new_vcid);
 		}
 		else {
-	    		vcid_addr = GET_CID_ADDR(vcid);
+			vcid_addr = GET_CID_ADDR(vcid);
 			pcid_addr = vcid_addr;
 		}
 
@@ -3558,7 +3558,7 @@ bnx2_set_rx_mode(struct net_device *dev)
 		for (i = 0; i < NUM_MC_HASH_REGISTERS; i++) {
 			REG_WR(bp, BNX2_EMAC_MULTICAST_HASH0 + (i * 4),
 			       0xffffffff);
-        	}
+		}
 		sort_mode |= BNX2_RPM_SORT_USER0_MC_EN;
 	}
 	else {
@@ -4620,7 +4620,7 @@ bnx2_nvram_write(struct bnx2 *bp, u32 offset, u8 *data_buf,
 
 				if (addr == page_end-4) {
 					cmd_flags = BNX2_NVM_COMMAND_LAST;
-                		}
+				}
 				rc = bnx2_nvram_write_dword(bp, addr,
 					&flash_buffer[i], cmd_flags);
 
@@ -8698,6 +8698,3 @@ static void __exit bnx2_cleanup(void)
 
 module_init(bnx2_init);
 module_exit(bnx2_cleanup);
-
-
-

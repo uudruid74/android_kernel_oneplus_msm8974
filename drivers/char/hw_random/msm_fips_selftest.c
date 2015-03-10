@@ -343,4 +343,3 @@ int fips_self_test(void)
 	return errors;
 
 }
-

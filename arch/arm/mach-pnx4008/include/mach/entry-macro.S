@@ -113,4 +113,3 @@
 		teq	\irqstat,#0
 1003:
 		.endm
-

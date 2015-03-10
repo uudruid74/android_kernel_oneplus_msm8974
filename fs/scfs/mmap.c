@@ -170,7 +170,7 @@ pick_slot:
 		}
 		atomic_set(&sbi->buffer_cache[sbi->read_buffer_index].is_used, 1);
 		allocated_index = sbi->read_buffer_index++;
-		
+
 		if (sbi->read_buffer_index >= MAX_BUFFER_CACHE)
 			sbi->read_buffer_index = 0;
 
@@ -183,7 +183,7 @@ pick_slot:
 		alloc_membuffer = 0;
 
 		goto real_io;
-	} 
+	}
 
 pick_slot_full:
 	for (i = 0; i < MAX_BUFFER_CACHE; i++) {
@@ -415,7 +415,7 @@ void wakeup_smb_thread(struct scfs_sb_info *sbi)
 		length = filling_index - io_index;
 	else if (filling_index < io_index)
 		length = (MAX_PAGE_BUFFER_SIZE_SMB - io_index) + filling_index;
-	else if (filling_index == io_index) 
+	else if (filling_index == io_index)
 		length = 0;
 
 	if (length > 0 && sbi->smb_task[0] && !sbi->smb_task_status[0])
@@ -468,7 +468,7 @@ int smb_thread(void *data)
 			length = filling_index - io_index;
 		else if (filling_index < io_index)
 			length = (MAX_PAGE_BUFFER_SIZE_SMB - io_index) + filling_index;
-		else if (filling_index == io_index) 
+		else if (filling_index == io_index)
 			length = 0;
 
 		page_buffer_count = 0;
@@ -584,7 +584,7 @@ scfs_readpages(struct file *file, struct address_space *mapping,
 		return -EINVAL;
 	}
 
-	/* if the read request was random (enough), hint it to the lower file. 
+	/* if the read request was random (enough), hint it to the lower file.
 	 * scfs_sequential_page_number is the tunable threshold.
 	 * filemap.c will later on refer to this FMODE_RANDOM flag.
 	*/
@@ -734,7 +734,7 @@ scfs_readpages(struct file *file, struct address_space *mapping,
  *   for partially written clusters at the end of a given file. Cluster info list,
  *   as well as the cluster buffer for the cluster to be written, shall be prepped
  *   accordingly.
- * - Currently SCFS doesn't support random writes, so this function will return 
+ * - Currently SCFS doesn't support random writes, so this function will return
  *   -EINVAL if pos < i_size.
  *
  */
@@ -750,13 +750,13 @@ static int scfs_write_begin(struct file *file, struct address_space *mapping,
 	int ret = 0;
 
 	SCFS_PRINT("f:%s pos:%lld, len:%d s:%lld\n",
-			file->f_path.dentry->d_name.name, pos, len, 
+			file->f_path.dentry->d_name.name, pos, len,
 			i_size_read(&sii->vfs_inode));
 
 	page = grab_cache_page_write_begin(mapping, index, flags);
 	if (!page)
 		return -ENOMEM;
-		
+
 	*pagep = page;
 	if (pos != i_size_read(&sii->vfs_inode)) {
 		SCFS_PRINT("File %s RANDOM write access! pos = %lld, i_size = %lld\n",
@@ -770,7 +770,7 @@ static int scfs_write_begin(struct file *file, struct address_space *mapping,
 		SCFS_PRINT_ERROR("lower file is null!\n");
 		ret = -EIO;
 		goto out;
-	}	
+	}
 
 	if (IS_COMPRESSABLE(sii)) {
 		struct cinfo_entry *info_entry;
@@ -808,12 +808,12 @@ static int scfs_write_begin(struct file *file, struct address_space *mapping,
 					mutex_unlock(&sii->cinfo_mutex);
 					SCFS_PRINT_ERROR("Fail to get lower data.");
 					goto out;
-				}				
+				}
 
 				if (!PageUptodate(page))
 					sync_page_from_buffer(page, sii->cluster_buffer.u_buffer);
-				
-			} else if (PAGE_TO_CLUSTER_INDEX(page,sii) > 0 
+
+			} else if (PAGE_TO_CLUSTER_INDEX(page,sii) > 0
 				&& IS_CLUSTER_EXIST(sii, PAGE_TO_CLUSTER_INDEX(page,sii) - 1)) {
 				/* we must be adding a new cluster with this page write */
 				ret = get_cluster_info(file, PAGE_TO_CLUSTER_INDEX(page,sii) - 1,
@@ -847,7 +847,7 @@ static int scfs_write_begin(struct file *file, struct address_space *mapping,
 					new_list = scfs_alloc_cinfo_entry(PAGE_TO_CLUSTER_INDEX(page,sii),
 							sii);
 				else
-					info_entry = NULL;			
+					info_entry = NULL;
 			}
 
 			if (!info_entry) {
@@ -876,7 +876,7 @@ static int scfs_write_begin(struct file *file, struct address_space *mapping,
 			append with scfs_meta. */
 		if (list_empty(&sii->cinfo_list)) {
 			struct cinfo_entry *info_entry = NULL;
-			
+
 			info_entry = scfs_alloc_cinfo_entry(PAGE_TO_CLUSTER_INDEX(page,sii),
 					sii);
 			sii->cluster_buffer.original_size = 0;
@@ -887,7 +887,7 @@ static int scfs_write_begin(struct file *file, struct address_space *mapping,
 			if (pos_in_page) {
 				char *source_addr;
 				loff_t lower_pos;
-			
+
 				lower_pos = pos - pos_in_page;
 				source_addr = (char*)kmap(page);
 				ret = scfs_lower_read(lower_file, source_addr, pos_in_page, &lower_pos);
@@ -950,7 +950,7 @@ static int scfs_write_end(struct file *file, struct address_space *mapping,
 	size_t tmp_len;
 
 	SCFS_PRINT("f:%s pos:%lld, len:%d s:%lld i:%d\n",
-			file->f_path.dentry->d_name.name, pos, copied, 
+			file->f_path.dentry->d_name.name, pos, copied,
 			i_size_read(&sii->vfs_inode), page->index);
 
 	lower_file = scfs_lower_file(file);
@@ -961,11 +961,11 @@ static int scfs_write_end(struct file *file, struct address_space *mapping,
 	}
 
 	if (IS_COMPRESSABLE(sii)) {
- 		ret = scfs_get_comp_buffer(sii);
+		ret = scfs_get_comp_buffer(sii);
 		if (ret)
 			goto out;
 
-		sii->cluster_buffer.original_size += copied; 
+		sii->cluster_buffer.original_size += copied;
 
 		atomic64_add(copied, &sb_info->current_data_size);
 		ret = scfs_check_space(sb_info, file->f_dentry);
@@ -974,8 +974,8 @@ static int scfs_write_end(struct file *file, struct address_space *mapping,
 			goto out;
 		}
 
-		sync_page_to_buffer(page, sii->cluster_buffer.u_buffer); 
- 		if (PGOFF_IN_CLUSTER(page, sii) + 1 == sii->cluster_size / PAGE_CACHE_SIZE &&
+		sync_page_to_buffer(page, sii->cluster_buffer.u_buffer);
+		if (PGOFF_IN_CLUSTER(page, sii) + 1 == sii->cluster_size / PAGE_CACHE_SIZE &&
 				to == PAGE_CACHE_SIZE) {
 #ifdef SCFS_MULTI_THREAD_COMPRESSION
 			struct scfs_cluster_buffer_mtc *cbm = kmem_cache_alloc(scfs_cbm_cache, GFP_KERNEL);
@@ -1075,7 +1075,7 @@ static int scfs_write_end(struct file *file, struct address_space *mapping,
 					sii->cluster_buffer.original_size *
 					sb_info->options.comp_threshold / 100)
 				info_entry->cinfo.size = sii->cluster_buffer.original_size;
-	        	
+
 			if (info_entry->cinfo.size % SCFS_CLUSTER_ALIGN_BYTE)
 				info_entry->pad = SCFS_CLUSTER_ALIGN_BYTE -
 					(info_entry->cinfo.size % SCFS_CLUSTER_ALIGN_BYTE);
@@ -1086,7 +1086,7 @@ static int scfs_write_end(struct file *file, struct address_space *mapping,
 				,sii->cluster_buffer.original_size
 				,info_entry->cinfo.size
 				,info_entry->pad);
-				
+
 			lower_pos = (loff_t)info_entry->cinfo.offset;
 
 			if (info_entry->cinfo.size <
@@ -1106,24 +1106,24 @@ static int scfs_write_end(struct file *file, struct address_space *mapping,
 
 				if (!sii->compressed)
 					sii->compressed = 1;
-		    	} else {
+			} else {
 				info_entry->cinfo.size = sii->cluster_buffer.original_size;
 				info_entry->pad = 0;
 
 				mutex_unlock(&sii->cinfo_mutex);
 
 				ret = scfs_lower_write(lower_file, sii->cluster_buffer.u_buffer,
-					sii->cluster_buffer.original_size, &lower_pos); 
+					sii->cluster_buffer.original_size, &lower_pos);
 				if (ret < 0) {
 					SCFS_PRINT_ERROR("write fail. ret = %d, size=%d\n",
 						ret, sii->cluster_buffer.original_size);
 					goto out;
 				}
-	    		}	    	
+			}
 			atomic64_sub(sii->cluster_buffer.original_size,&sb_info->current_data_size);
 			sii->cluster_buffer.original_size = 0;
 #endif
- 		}
+		}
 		ret = copied;
 	} else {
 		char *source_addr;
@@ -1155,7 +1155,7 @@ static int scfs_write_end(struct file *file, struct address_space *mapping,
 out:
 	unlock_page(page);
 	page_cache_release(page);
-	
+
 	return ret;
 }
 
@@ -1288,7 +1288,7 @@ int smtc_thread(void *info)
 
 			ret = scfs_compress_cluster(sii, cbm, workdata);
 			if (ret)
-				SCFS_PRINT_ERROR("compress failed. ret = %d\n", ret);			
+				SCFS_PRINT_ERROR("compress failed. ret = %d\n", ret);
 		} else {
 			spin_unlock(&sbi->sii_list_lock);
 			schedule();
@@ -1386,9 +1386,9 @@ int scfs_compress_cluster(struct scfs_inode_info *sii,
 		__free_pages(cb->c_page, SCFS_MEMPOOL_ORDER + 1);
 	} else {
 		//Free invalid pages
-		__free_pages(cb->u_page, SCFS_MEMPOOL_ORDER + 1);	
+		__free_pages(cb->u_page, SCFS_MEMPOOL_ORDER + 1);
 	}
-    
+
 	if (info_entry->cinfo.size % SCFS_CLUSTER_ALIGN_BYTE)
 		info_entry->pad = SCFS_CLUSTER_ALIGN_BYTE -
 			(info_entry->cinfo.size % SCFS_CLUSTER_ALIGN_BYTE);
@@ -1424,7 +1424,7 @@ int scfs_write_one_compress_cluster(struct scfs_inode_info *sii,
 	if (info_entry->cinfo.size >= cb->original_size *
 		sbi->options.comp_threshold / 100)
 		info_entry->cinfo.size = cb->original_size;
-    
+
 	if (info_entry->cinfo.size % SCFS_CLUSTER_ALIGN_BYTE)
 		info_entry->pad = SCFS_CLUSTER_ALIGN_BYTE -
 			(info_entry->cinfo.size % SCFS_CLUSTER_ALIGN_BYTE);
@@ -1461,18 +1461,18 @@ int scfs_write_one_compress_cluster(struct scfs_inode_info *sii,
 			sii->compressed = 1;
 
 		__free_pages(cb->c_page, SCFS_MEMPOOL_ORDER + 1);
-    	} else {
+	} else {
 		info_entry->cinfo.size = cb->original_size;
 		info_entry->pad = 0;
 
-		ret = scfs_lower_write(lower_file, cb->u_buffer, info_entry->cinfo.size, &lower_pos); 
+		ret = scfs_lower_write(lower_file, cb->u_buffer, info_entry->cinfo.size, &lower_pos);
 		if (ret < 0) {
 			SCFS_PRINT_ERROR("write fail. ret = %d, size=%d\n",
 				ret, cb->original_size);
 			goto out;
 		}
 		__free_pages(cb->u_page, SCFS_MEMPOOL_ORDER + 1);
-	}	    	
+	}
 	atomic64_sub(cb->original_size, &sbi->current_data_size);
 
 	spin_lock(&sbi->sii_list_lock);
@@ -1549,7 +1549,7 @@ int scfs_write_compress_all_cluster(struct scfs_inode_info *sii, struct file *lo
 		if (info_entry->cinfo.size >= cb->original_size *
 			sbi->options.comp_threshold / 100)
 			info_entry->cinfo.size = cb->original_size;
-        	
+
 		if (info_entry->cinfo.size % SCFS_CLUSTER_ALIGN_BYTE)
 			info_entry->pad = SCFS_CLUSTER_ALIGN_BYTE -
 				(info_entry->cinfo.size % SCFS_CLUSTER_ALIGN_BYTE);
@@ -1557,7 +1557,7 @@ int scfs_write_compress_all_cluster(struct scfs_inode_info *sii, struct file *lo
 			info_entry->pad = 0;
 
 		SCFS_PRINT("comp = %d\n" , info_entry->cinfo.size);
-			
+
 		lower_pos = (loff_t)info_entry->cinfo.offset;
 
 		if (info_entry->cinfo.size < cb->original_size *
@@ -1575,18 +1575,18 @@ int scfs_write_compress_all_cluster(struct scfs_inode_info *sii, struct file *lo
 
 			if (!sii->compressed)
 				sii->compressed = 1;
-	    	} else {
+		} else {
 			info_entry->cinfo.size = cb->original_size;
 			info_entry->pad = 0;
 
 			ret = scfs_lower_write(lower_file, cb->u_buffer,
-				cb->original_size, &lower_pos); 
+				cb->original_size, &lower_pos);
 			if (ret < 0) {
 				SCFS_PRINT_ERROR("write fail. ret = %d, size=%d\n",
 					ret, cb->original_size);
 				goto out;
 			}
-    		}	    	
+		}
 		atomic64_sub(cb->original_size, &sbi->current_data_size);
 
 		/* clear this cbm */

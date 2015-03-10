@@ -84,7 +84,7 @@ char cmd_line[COMMAND_LINE_SIZE];
 
 /*
  * This still seems to be needed... -- paulus
- */ 
+ */
 struct screen_info screen_info = {
 	.orig_x = 0,
 	.orig_y = 25,
@@ -729,5 +729,5 @@ void arch_setup_pdev_archdata(struct platform_device *pdev)
 {
 	pdev->archdata.dma_mask = DMA_BIT_MASK(32);
 	pdev->dev.dma_mask = &pdev->archdata.dma_mask;
- 	set_dma_ops(&pdev->dev, &dma_direct_ops);
+	set_dma_ops(&pdev->dev, &dma_direct_ops);
 }

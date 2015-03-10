@@ -34,7 +34,7 @@ asmlinkage void resume(void);
 #define switch_to(prev,next,last) {                         \
   void *_last;						    \
   __asm__ __volatile__(					    \
-  			"mov.l	%1, er0\n\t"		    \
+			"mov.l	%1, er0\n\t"		    \
 			"mov.l	%2, er1\n\t"		    \
                         "mov.l  %3, er2\n\t"                \
 			"jsr @_resume\n\t"                  \

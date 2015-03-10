@@ -59,4 +59,3 @@ short *tableY[MAX_HAND][MAX_ROTATION] = \
 	{TblY_PRight_44, TblY_PLeft_44, TblY_CCW_LLeft_44, TblY_CW_LRight_44} };
 #endif
 #endif /* _LINUX_WACOM_I2C_COORD_TABLE_H */
-

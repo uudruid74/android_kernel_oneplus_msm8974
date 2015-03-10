@@ -5,7 +5,7 @@
  * Copyright (c) 2001-2012 Anton Altaparmakov
  * Copyright (C) 2001,2002 Jakob Kemi <jakob.kemi@telia.com>
  *
- * Documentation is available at http://www.linux-ntfs.org/doku.php?id=downloads 
+ * Documentation is available at http://www.linux-ntfs.org/doku.php?id=downloads
  *
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
@@ -1534,7 +1534,7 @@ int ldm_partition(struct parsed_partitions *state)
 	/* Parse and check tocs and vmdb. */
 	if (!ldm_validate_tocblocks(state, base, ldb) ||
 	    !ldm_validate_vmdb(state, base, ldb))
-	    	goto out;		/* Already logged */
+		goto out;		/* Already logged */
 
 	/* Initialize vblk lists in ldmdb struct */
 	INIT_LIST_HEAD (&ldb->v_dgrp);

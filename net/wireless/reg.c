@@ -305,7 +305,7 @@ static bool is_cfg80211_regdom_intersected(void)
 {
 	return is_intersected_alpha2(cfg80211_regdomain->alpha2);
 }
-			
+
 static int reg_copy_regd(const struct ieee80211_regdomain **dst_regd,
 			 const struct ieee80211_regdomain *src_regd)
 {

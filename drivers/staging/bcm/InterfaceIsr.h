@@ -12,4 +12,3 @@ VOID InterfaceEnableInterrupt(PMINI_ADAPTER Adapter);
 VOID InterfaceDisableInterrupt(PMINI_ADAPTER Adapter);
 
 #endif
-

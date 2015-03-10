@@ -149,7 +149,7 @@ static int32_t afe_callback(struct apr_client_data *data, void *priv)
 			pr_err("%s rest %d state %x\n" , __func__
 			, this_afe.calib_data.res_cfg.r0_cali_q24,
 			this_afe.calib_data.res_cfg.th_vi_ca_state);
-#endif	
+#endif
 		} else
 			atomic_set(&this_afe.state, -1);
 		wake_up(&this_afe.wait[data->token]);
@@ -603,14 +603,14 @@ static int afe_dsm_spk_prot_prepare(int port, int param_id,
 		pr_err("%s invalid port %d", __func__, port);
 		goto fail_cmd;
 	}
-	
+
 	index = q6audio_get_port_index(port);
 	switch (param_id) {
 	case AFE_PARAM_ID_FBSP_MODE_RX_CFG:
 		if(port==DSM_RX_PORT_ID)
 		config.pdata.module_id = AFE_PARAM_ID_ENABLE_DSM_RX;
 		else
-		config.pdata.module_id = AFE_PARAM_ID_ENABLE_DSM_TX;			
+		config.pdata.module_id = AFE_PARAM_ID_ENABLE_DSM_TX;
 		break;
 	case AFE_PARAM_ID_FEEDBACK_PATH_CFG:
 		this_afe.vi_tx_port = port;
@@ -3594,7 +3594,7 @@ int32_t dsm_open(int32_t port_id, uint32_t* dsm_params, u8 *user_params)
 fail_cmd:
   return ret;
 
-} // dsm_open()  
+} // dsm_open()
 #endif
 
 static int __init afe_init(void)

@@ -23,4 +23,3 @@ objs-y$(CONFIG_FB_OMAP_LCD_MIPID) += lcd_mipid.o
 objs-y$(CONFIG_MACH_HERALD) += lcd_htcherald.o
 
 omapfb-objs := $(objs-yy)
-

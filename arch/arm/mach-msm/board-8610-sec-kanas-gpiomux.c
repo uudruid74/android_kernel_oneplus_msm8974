@@ -696,7 +696,7 @@ static struct msm_gpiomux_config msm_secjack_gpio_configs[] __initdata = {
 			[GPIOMUX_ACTIVE]    = &secjack_gpio_earmic_bias_active_cfg,
 			[GPIOMUX_SUSPENDED] = &secjack_gpio_earmic_bias_suspend_cfg,
 		},
-	},	
+	},
 	{
 		.gpio = 84,  //JACK_INT_N
 		.settings = {
@@ -916,9 +916,9 @@ static struct msm_gpiomux_config nc_gpio_configs[] __initdata = {
 	FAST_GPIO_CONFIG( 18, nc_gpio_cfg, nc_gpio_cfg),
 	FAST_GPIO_CONFIG( 19, nc_gpio_cfg, nc_gpio_cfg),
 #if defined(CONFIG_MACH_KANAS3G_CMCC)
-	FAST_GPIO_CONFIG( 32, nc_gpio_cfg, nc_gpio_cfg),	
-	FAST_GPIO_CONFIG( 33, nc_gpio_cfg, nc_gpio_cfg),	
-	FAST_GPIO_CONFIG( 34, nc_gpio_cfg, nc_gpio_cfg),	
+	FAST_GPIO_CONFIG( 32, nc_gpio_cfg, nc_gpio_cfg),
+	FAST_GPIO_CONFIG( 33, nc_gpio_cfg, nc_gpio_cfg),
+	FAST_GPIO_CONFIG( 34, nc_gpio_cfg, nc_gpio_cfg),
 #endif
 	FAST_GPIO_CONFIG( 80, nc_gpio_cfg, nc_gpio_cfg),
 	FAST_GPIO_CONFIG( 98, nc_gpio_cfg, nc_gpio_cfg),

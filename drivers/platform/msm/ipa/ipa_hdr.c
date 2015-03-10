@@ -636,5 +636,3 @@ int ipa_copy_hdr(struct ipa_ioc_copy_hdr *copy)
 	return result;
 }
 EXPORT_SYMBOL(ipa_copy_hdr);
-
-

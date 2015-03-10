@@ -3284,4 +3284,3 @@ module_exit(usb_sisusb_exit);
 MODULE_AUTHOR("Thomas Winischhofer <thomas@winischhofer.net>");
 MODULE_DESCRIPTION("sisusbvga - Driver for Net2280/SiS315-based USB2VGA dongles");
 MODULE_LICENSE("GPL");
-

@@ -789,17 +789,17 @@ int ddr_init(MINI_ADAPTER *Adapter)
 	        case DDR_80_MHZ:
 				psDDRSetting=asT3LP_DDRSetting80MHz;
 			    RegCount=(sizeof(asT3LP_DDRSetting80MHz)/
-			  	sizeof(DDR_SETTING));
+				sizeof(DDR_SETTING));
 			    break;
 		    case DDR_100_MHZ:
 				psDDRSetting=asT3LP_DDRSetting100MHz;
 			    RegCount=(sizeof(asT3LP_DDRSetting100MHz)/
-			  	sizeof(DDR_SETTING));
+				sizeof(DDR_SETTING));
 			    break;
 		    case DDR_133_MHZ:
 				psDDRSetting=asT3LP_DDRSetting133MHz;
 			    RegCount=(sizeof(asT3LP_DDRSetting133MHz)/
-		 	  		sizeof(DDR_SETTING));
+					sizeof(DDR_SETTING));
 				if(Adapter->bMipsConfig == MIPS_200_MHZ)
 				{
 					uiClockSetting = 0x03F13652;
@@ -894,17 +894,17 @@ int ddr_init(MINI_ADAPTER *Adapter)
 	        case DDR_80_MHZ:
 				psDDRSetting = asT3_DDRSetting80MHz;
 			    RegCount = (sizeof(asT3_DDRSetting80MHz)/
-			  	sizeof(DDR_SETTING));
+				sizeof(DDR_SETTING));
 			    break;
 		    case DDR_100_MHZ:
 				psDDRSetting = asT3_DDRSetting100MHz;
 			    RegCount = (sizeof(asT3_DDRSetting100MHz)/
-			  	sizeof(DDR_SETTING));
+				sizeof(DDR_SETTING));
 			    break;
 		    case DDR_133_MHZ:
 				psDDRSetting = asT3_DDRSetting133MHz;
 			    RegCount = (sizeof(asT3_DDRSetting133MHz)/
-		 	  	sizeof(DDR_SETTING));
+				sizeof(DDR_SETTING));
 				break;
 		    default:
 			    return -EINVAL;
@@ -1285,5 +1285,3 @@ int download_ddr_settings(PMINI_ADAPTER Adapter)
 	}
 	return retval;
 }
-
-

@@ -383,7 +383,7 @@ static int pmic_register_dump(struct qpnp_bms_chip *chip, u16 address)
 		return rc;
 	}
    pr_debug("%s:  pmic address = 0x%x,value = 0x%x ",__func__,address,temp);
-   return 0; 
+   return 0;
 }
 
 static int qpnp_write_wrapper(struct qpnp_bms_chip *chip, u8 *val,
@@ -2079,7 +2079,7 @@ static int report_cc_based_soc(struct qpnp_bms_chip *chip)
 			chip->last_soc, chip->calculated_soc,
 			soc, time_since_last_change_sec);
 	chip->last_soc = bound_soc(soc);
-  	backup_soc_and_iavg(chip, batt_temp, chip->last_soc);
+	backup_soc_and_iavg(chip, batt_temp, chip->last_soc);
 	pr_debug("Reported SOC = %d\n", chip->last_soc);
 	chip->t_soc_queried = now;
 	mutex_unlock(&chip->last_soc_mutex);
@@ -2398,14 +2398,14 @@ static int clamp_soc_based_on_voltage(struct qpnp_bms_chip *chip, int soc)
 		pr_err("adc vbat failed err = %d\n", rc);
 		return soc;
 	}
-	
+
 
 	/* only clamp when discharging */
 	if (is_battery_charging(chip))
 		return soc;
 
 	if (soc <= 0 && vbat_uv > chip->v_cutoff_uv) {
-	
+
 		#if defined(CONFIG_BATTERY_SAMSUNG) || defined(CONFIG_QPNP_SEC_CHARGER)
 		if (get_battery_status(chip) == POWER_SUPPLY_STATUS_CHARGING) {
 			pr_debug("not clamping, using soc = %d, vbat = %d and cutoff = %d\n",
@@ -4140,7 +4140,7 @@ static int set_battery_data(struct qpnp_bms_chip *chip)
 	batt_data = &samsung_2100mAH_4400mV_data;
 #elif defined(CONFIG_SEC_BERLUTI_PROJECT)
 	batt_data = &samsung_1720mAH_data;
-#elif defined(CONFIG_MACH_VICTORLTE) || defined(CONFIG_SEC_VICTOR3GDSDTV_PROJECT)	
+#elif defined(CONFIG_MACH_VICTORLTE) || defined(CONFIG_SEC_VICTOR3GDSDTV_PROJECT)
 	batt_data = &samsung_2000mAH_victor_data;
 #else
 	batt_data = &oem_batt_data;

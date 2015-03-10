@@ -243,9 +243,9 @@ arch_get_unmapped_area_topdown(struct file *filp, const unsigned long addr0,
 
 	/* check if free_area_cache is useful for us */
 	if (len <= mm->cached_hole_size) {
- 	        mm->cached_hole_size = 0;
- 		mm->free_area_cache = mm->mmap_base;
- 	}
+	        mm->cached_hole_size = 0;
+		mm->free_area_cache = mm->mmap_base;
+	}
 
 	/* either no address requested or can't fit in requested address hole */
 	addr = mm->free_area_cache;
@@ -283,9 +283,9 @@ arch_get_unmapped_area_topdown(struct file *filp, const unsigned long addr0,
 			return (mm->free_area_cache = addr);
 		}
 
- 		/* remember the largest hole we saw so far */
- 		if (addr + mm->cached_hole_size < vma->vm_start)
- 		        mm->cached_hole_size = vma->vm_start - addr;
+		/* remember the largest hole we saw so far */
+		if (addr + mm->cached_hole_size < vma->vm_start)
+		        mm->cached_hole_size = vma->vm_start - addr;
 
 		/* try just below the current vma->vm_start */
 		addr = vma->vm_start-len;
@@ -301,7 +301,7 @@ bottomup:
 	 * allocations.
 	 */
 	mm->cached_hole_size = ~0UL;
-  	mm->free_area_cache = TASK_UNMAPPED_BASE;
+	mm->free_area_cache = TASK_UNMAPPED_BASE;
 	addr = arch_get_unmapped_area(filp, addr0, len, pgoff, flags);
 	/*
 	 * Restore the topdown base:
@@ -575,7 +575,7 @@ SYSCALL_DEFINE2(64_munmap, unsigned long, addr, size_t, len)
 extern unsigned long do_mremap(unsigned long addr,
 	unsigned long old_len, unsigned long new_len,
 	unsigned long flags, unsigned long new_addr);
-                
+
 SYSCALL_DEFINE5(64_mremap, unsigned long, addr,	unsigned long, old_len,
 		unsigned long, new_len, unsigned long, flags,
 		unsigned long, new_addr)
@@ -589,20 +589,20 @@ SYSCALL_DEFINE5(64_mremap, unsigned long, addr,	unsigned long, old_len,
 	ret = do_mremap(addr, old_len, new_len, flags, new_addr);
 	up_write(&current->mm->mmap_sem);
 out:
-	return ret;       
+	return ret;
 }
 
 /* we come to here via sys_nis_syscall so it can setup the regs argument */
 asmlinkage unsigned long c_sys_nis_syscall(struct pt_regs *regs)
 {
 	static int count;
-	
+
 	/* Don't make the system unusable, if someone goes stuck */
 	if (count++ > 5)
 		return -ENOSYS;
 
 	printk ("Unimplemented SPARC system call %ld\n",regs->u_regs[1]);
-#ifdef DEBUG_UNIMP_SYSCALL	
+#ifdef DEBUG_UNIMP_SYSCALL
 	show_regs (regs);
 #endif
 
@@ -642,8 +642,8 @@ SYSCALL_DEFINE2(getdomainname, char __user *, name, int, len)
 	if (len < 0)
 		return -EINVAL;
 
- 	down_read(&uts_sem);
- 	
+	down_read(&uts_sem);
+
 	nlen = strlen(utsname()->domainname) + 1;
 	err = -EINVAL;
 	if (nlen > len)

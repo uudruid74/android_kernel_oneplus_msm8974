@@ -176,7 +176,7 @@ static int __init parse_bootparam(const bp_tag_t* tag)
 	/* Parse all tags. */
 
 	while (tag != NULL && tag->id != BP_TAG_LAST) {
-	 	for (t = &__tagtable_begin; t < &__tagtable_end; t++) {
+		for (t = &__tagtable_begin; t < &__tagtable_end; t++) {
 			if (tag->id == t->tag) {
 				t->parse(tag);
 				break;
@@ -263,7 +263,7 @@ void __init setup_arch(char **cmdline_p)
 		initrd_is_mapped = mem_reserve(__pa(initrd_start),
 					       __pa(initrd_end), 0);
 		initrd_below_start_ok = 1;
- 	} else {
+	} else {
 		initrd_start = 0;
 	}
 #endif
@@ -338,7 +338,7 @@ c_show(struct seq_file *f, void *slot)
 		     "core ID\t\t: " XCHAL_CORE_ID "\n"
 		     "build ID\t: 0x%x\n"
 		     "byte order\t: %s\n"
- 		     "cpu MHz\t\t: %lu.%02lu\n"
+		     "cpu MHz\t\t: %lu.%02lu\n"
 		     "bogomips\t: %lu.%02lu\n",
 		     XCHAL_BUILD_UNIQUE_ID,
 		     XCHAL_HAVE_BE ?  "big" : "little",
@@ -358,7 +358,7 @@ c_show(struct seq_file *f, void *slot)
 # endif
 #endif
 #if XCHAL_HAVE_DENSITY
-	    	     "density "
+		     "density "
 #endif
 #if XCHAL_HAVE_BOOLEANS
 		     "boolean "
@@ -477,4 +477,3 @@ const struct seq_operations cpuinfo_op =
 };
 
 #endif /* CONFIG_PROC_FS */
-

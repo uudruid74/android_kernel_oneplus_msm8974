@@ -411,7 +411,7 @@ static void __init node_mem_init(cnodeid_t node)
 	slot_freepfn += PFN_UP(sizeof(struct pglist_data) +
 			       sizeof(struct hub_data));
 
-  	bootmap_size = init_bootmem_node(NODE_DATA(node), slot_freepfn,
+	bootmap_size = init_bootmem_node(NODE_DATA(node), slot_freepfn,
 					start_pfn, end_pfn);
 	free_bootmem_with_active_regions(node, end_pfn);
 	reserve_bootmem_node(NODE_DATA(node), slot_firstpfn << PAGE_SHIFT,

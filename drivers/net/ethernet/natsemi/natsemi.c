@@ -663,7 +663,7 @@ static ssize_t natsemi_show_##_name(struct device *dev, \
 NATSEMI_ATTR(dspcfg_workaround);
 
 static ssize_t natsemi_show_dspcfg_workaround(struct device *dev,
-				  	      struct device_attribute *attr,
+					      struct device_attribute *attr,
 					      char *buf)
 {
 	struct netdev_private *np = netdev_priv(to_net_dev(dev));
@@ -968,7 +968,7 @@ static int __devinit natsemi_probe1 (struct pci_dev *pdev,
 	return 0;
 
  err_create_file:
- 	unregister_netdev(dev);
+	unregister_netdev(dev);
 
  err_register_netdev:
 	iounmap(ioaddr);
@@ -1364,7 +1364,7 @@ static int find_mii(struct net_device *dev)
 			/* found something! */
 			np->mii = (mdio_read(dev, MII_PHYSID1) << 16)
 					+ mdio_read(dev, MII_PHYSID2);
-	 		if (netif_msg_probe(np)) {
+			if (netif_msg_probe(np)) {
 				printk(KERN_INFO "natsemi %s: found external phy %08x at address %d.\n",
 						pci_name(np->pci_dev), np->mii, i);
 			}
@@ -2203,7 +2203,7 @@ static irqreturn_t intr_handler(int irq, void *dev_instance)
 		__napi_schedule(&np->napi);
 	} else
 		printk(KERN_WARNING
-	       	       "%s: Ignoring interrupt, status %#08x, mask %#08x.\n",
+		       "%s: Ignoring interrupt, status %#08x, mask %#08x.\n",
 		       dev->name, np->intr_status,
 		       readl(ioaddr + IntrMask));
 
@@ -3077,14 +3077,14 @@ static int netdev_ioctl(struct net_device *dev, struct ifreq *rq, int cmd)
 	case SIOCSMIIREG:		/* Write MII PHY register. */
 		if (dev->if_port == PORT_TP) {
 			if ((data->phy_id & 0x1f) == np->phy_addr_external) {
- 				if ((data->reg_num & 0x1f) == MII_ADVERTISE)
+				if ((data->reg_num & 0x1f) == MII_ADVERTISE)
 					np->advertising = data->val_in;
 				mdio_write(dev, data->reg_num & 0x1f,
 							data->val_in);
 			}
 		} else {
 			if ((data->phy_id & 0x1f) == np->phy_addr_external) {
- 				if ((data->reg_num & 0x1f) == MII_ADVERTISE)
+				if ((data->reg_num & 0x1f) == MII_ADVERTISE)
 					np->advertising = data->val_in;
 			}
 			move_int_phy(dev, data->phy_id & 0x1f);
@@ -3366,4 +3366,3 @@ static void __exit natsemi_exit_mod (void)
 
 module_init(natsemi_init_mod);
 module_exit(natsemi_exit_mod);
-

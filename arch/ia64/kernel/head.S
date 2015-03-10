@@ -298,7 +298,7 @@ start_ap:
 	 * UP mode, task_for_booting_cpu is NULL.
 	 */
 	movl r3=task_for_booting_cpu
- 	;;
+	;;
 	ld8 r3=[r3]
 	movl r2=init_task
 	;;
@@ -338,7 +338,7 @@ start_ap:
 	;;
 	ssm psr.ic
 	srlz.d
-  	;;
+	;;
 
 .load_current:
 	// load the "current" pointer (r13) and ar.k6 with the current task

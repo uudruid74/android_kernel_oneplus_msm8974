@@ -329,8 +329,8 @@ static int __init at1700_probe1(struct net_device *dev, int ioaddr)
 					/* probing for a card at a particular IO/IRQ */
 				if ((dev->irq && dev->irq != irq) ||
 				    (dev->base_addr && dev->base_addr != ioaddr)) {
-				  	slot++;		/* probing next slot */
-				  	continue;
+					slot++;		/* probing next slot */
+					continue;
 				}
 
 				dev->irq = irq;

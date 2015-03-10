@@ -571,7 +571,7 @@ static irqreturn_t asp01_irq_thread(int irq, void *dev)
 				IIO_EV_DIR_EITHER),
 			iio_get_time_ns());
 	}
-	
+
 	return IRQ_HANDLED;
 }
 

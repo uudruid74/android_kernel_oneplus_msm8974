@@ -49,4 +49,3 @@ struct omap_kp_platform_data {
 
 
 #endif
-

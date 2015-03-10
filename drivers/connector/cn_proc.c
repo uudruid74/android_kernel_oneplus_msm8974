@@ -151,7 +151,7 @@ void proc_id_connector(struct task_struct *task, int which_id)
 		ev->event_data.id.e.egid = cred->egid;
 	} else {
 		rcu_read_unlock();
-	     	return;
+		return;
 	}
 	rcu_read_unlock();
 	get_seq(&msg->seq, &ev->cpu);
@@ -364,7 +364,7 @@ static int __init cn_proc_init(void)
 	int err;
 
 	if ((err = cn_add_callback(&cn_proc_event_id, "cn_proc",
-	 			   &cn_proc_mcast_ctl))) {
+				   &cn_proc_mcast_ctl))) {
 		printk(KERN_WARNING "cn_proc failed to register\n");
 		return err;
 	}

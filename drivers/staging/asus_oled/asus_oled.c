@@ -815,4 +815,3 @@ static void __exit asus_oled_exit(void)
 
 module_init(asus_oled_init);
 module_exit(asus_oled_exit);
-

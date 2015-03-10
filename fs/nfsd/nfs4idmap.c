@@ -128,7 +128,7 @@ static void
 idtoname_request(struct cache_detail *cd, struct cache_head *ch, char **bpp,
     int *blen)
 {
- 	struct ent *ent = container_of(ch, struct ent, h);
+	struct ent *ent = container_of(ch, struct ent, h);
 	char idstr[11];
 
 	qword_add(bpp, blen, ent->authname);
@@ -315,7 +315,7 @@ static void
 nametoid_request(struct cache_detail *cd, struct cache_head *ch, char **bpp,
     int *blen)
 {
- 	struct ent *ent = container_of(ch, struct ent, h);
+	struct ent *ent = container_of(ch, struct ent, h);
 
 	qword_add(bpp, blen, ent->authname);
 	qword_add(bpp, blen, ent->type == IDMAP_TYPE_GROUP ? "group" : "user");

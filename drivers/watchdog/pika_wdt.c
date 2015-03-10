@@ -299,4 +299,3 @@ MODULE_AUTHOR("Sean MacLennan <smaclennan@pikatech.com>");
 MODULE_DESCRIPTION("PIKA FPGA based Watchdog Timer");
 MODULE_LICENSE("GPL");
 MODULE_ALIAS_MISCDEV(WATCHDOG_MINOR);
-

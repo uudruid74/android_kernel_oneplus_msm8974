@@ -649,4 +649,3 @@ fw_update_error:
 
 	return ret;
 }
-

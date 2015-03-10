@@ -478,7 +478,7 @@ static void sky2_phy_init(struct sky2_hw *hw, unsigned port)
 			adv |= fiber_fc_adv[sky2->flow_mode];
 	} else {
 		reg |= GM_GPCR_AU_FCT_DIS;
- 		reg |= gm_fc_disable[sky2->flow_mode];
+		reg |= gm_fc_disable[sky2->flow_mode];
 
 		/* Forward pause packets to GMAC? */
 		if (sky2->flow_mode & FC_RX)
@@ -1670,16 +1670,16 @@ static void sky2_hw_up(struct sky2_port *sky2)
 	tx_init(sky2);
 
 	/*
- 	 * On dual port PCI-X card, there is an problem where status
+	 * On dual port PCI-X card, there is an problem where status
 	 * can be received out of order due to split transactions
 	 */
 	if (otherdev && netif_running(otherdev) &&
- 	    (cap = pci_find_capability(hw->pdev, PCI_CAP_ID_PCIX))) {
- 		u16 cmd;
+	    (cap = pci_find_capability(hw->pdev, PCI_CAP_ID_PCIX))) {
+		u16 cmd;
 
 		cmd = sky2_pci_read16(hw, cap + PCI_X_CMD);
- 		cmd &= ~PCI_X_CMD_MAX_SPLIT;
- 		sky2_pci_write16(hw, cap + PCI_X_CMD, cmd);
+		cmd &= ~PCI_X_CMD_MAX_SPLIT;
+		sky2_pci_write16(hw, cap + PCI_X_CMD, cmd);
 	}
 
 	sky2_mac_init(hw, port);
@@ -1852,8 +1852,8 @@ static netdev_tx_t sky2_xmit_frame(struct sk_buff *skb,
 	u16 mss;
 	u8 ctrl;
 
- 	if (unlikely(tx_avail(sky2) < tx_le_req(skb)))
-  		return NETDEV_TX_BUSY;
+	if (unlikely(tx_avail(sky2) < tx_le_req(skb)))
+		return NETDEV_TX_BUSY;
 
 	len = skb_headlen(skb);
 	mapping = pci_map_single(hw->pdev, skb->data, len, PCI_DMA_TODEVICE);
@@ -1881,9 +1881,9 @@ static netdev_tx_t sky2_xmit_frame(struct sk_buff *skb,
 		if (!(hw->flags & SKY2_HW_NEW_LE))
 			mss += ETH_HLEN + ip_hdrlen(skb) + tcp_hdrlen(skb);
 
-  		if (mss != sky2->tx_last_mss) {
+		if (mss != sky2->tx_last_mss) {
 			le = get_tx_le(sky2, &slot);
-  			le->addr = cpu_to_le32(mss);
+			le->addr = cpu_to_le32(mss);
 
 			if (hw->flags & SKY2_HW_NEW_LE)
 				le->opcode = OP_MSS | HW_OWNER;
@@ -1910,8 +1910,8 @@ static netdev_tx_t sky2_xmit_frame(struct sk_buff *skb,
 	/* Handle TCP checksum offload */
 	if (skb->ip_summed == CHECKSUM_PARTIAL) {
 		/* On Yukon EX (some versions) encoding change. */
- 		if (hw->flags & SKY2_HW_AUTO_TX_SUM)
- 			ctrl |= CALSUM;	/* auto checksum */
+		if (hw->flags & SKY2_HW_AUTO_TX_SUM)
+			ctrl |= CALSUM;	/* auto checksum */
 		else {
 			const unsigned offset = skb_transport_offset(skb);
 			u32 tcpsum;
@@ -2580,7 +2580,7 @@ nobuf:
 static struct sk_buff *sky2_receive(struct net_device *dev,
 				    u16 length, u32 status)
 {
- 	struct sky2_port *sky2 = netdev_priv(dev);
+	struct sky2_port *sky2 = netdev_priv(dev);
 	struct rx_ring_info *re = sky2->rx_ring + sky2->rx_next;
 	struct sk_buff *skb = NULL;
 	u16 count = (status & GMR_FS_LEN) >> 16;
@@ -4998,10 +4998,10 @@ static int __devinit sky2_probe(struct pci_dev *pdev,
 	if (!disable_msi && pci_enable_msi(pdev) == 0) {
 		err = sky2_test_msi(hw);
 		if (err == -EOPNOTSUPP)
- 			pci_disable_msi(pdev);
+			pci_disable_msi(pdev);
 		else if (err)
 			goto err_out_free_netdev;
- 	}
+	}
 
 	err = register_netdev(dev);
 	if (err) {

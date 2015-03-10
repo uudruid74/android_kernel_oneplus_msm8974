@@ -44,7 +44,7 @@ struct atp_unit
 	unsigned short async[2];
 	unsigned short dev_id;
 	unsigned char sp[2][16];
-	unsigned char r1f[2][16];		
+	unsigned char r1f[2][16];
 	struct scsi_cmnd *quereq[2][qcnt];
 	struct atp_id
 	{
@@ -59,8 +59,8 @@ struct atp_unit
 		dma_addr_t prdaddr;		/* Dynamically updated in driver */
 		struct scsi_cmnd *curr_req;
 	} id[2][16];
-    	struct Scsi_Host *host;
-    	struct pci_dev *pdev;
+	struct Scsi_Host *host;
+	struct pci_dev *pdev;
 	unsigned int unit;
 };
 

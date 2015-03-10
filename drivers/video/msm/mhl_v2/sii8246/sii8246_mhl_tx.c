@@ -4933,4 +4933,3 @@ module_exit(sii8246_exit);
 MODULE_DESCRIPTION("Silicon Image MHL Transmitter driver");
 MODULE_AUTHOR("Rajucm <rajkumar.m@samsung.com>");
 MODULE_LICENSE("GPL");
-

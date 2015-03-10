@@ -824,7 +824,7 @@ BSSvCreateOneNode(void *hDeviceContext, unsigned int *puNodeIndex)
         DBG_PRT(MSG_LEVEL_NOTICE, KERN_INFO "Replace inactive node = %d\n", SelectIndex);
         // clear ps buffer
         if (pMgmt->sNodeDBTable[*puNodeIndex].sTxPSQueue.next != NULL) {
-      	    while ((skb = skb_dequeue(&pMgmt->sNodeDBTable[*puNodeIndex].sTxPSQueue)) != NULL)
+	    while ((skb = skb_dequeue(&pMgmt->sNodeDBTable[*puNodeIndex].sTxPSQueue)) != NULL)
             dev_kfree_skb(skb);
         }
     }
@@ -1091,16 +1091,16 @@ start:
                      #ifdef WPA_SUPPLICANT_DRIVER_WEXT_SUPPORT
                     // if(pDevice->bWPASuppWextEnabled == true)
                         {
-                  	union iwreq_data  wrqu;
-                  	memset(&wrqu, 0, sizeof (wrqu));
+			union iwreq_data  wrqu;
+			memset(&wrqu, 0, sizeof (wrqu));
                           wrqu.ap_addr.sa_family = ARPHRD_ETHER;
-                  	PRINT_K("wireless_send_event--->SIOCGIWAP(disassociated)\n");
-                  	wireless_send_event(pDevice->dev, SIOCGIWAP, &wrqu, NULL);
+			PRINT_K("wireless_send_event--->SIOCGIWAP(disassociated)\n");
+			wireless_send_event(pDevice->dev, SIOCGIWAP, &wrqu, NULL);
                        }
                     #endif
      }
    else if(pDevice->bLinkPass == true)
-   	pDevice->byReAssocCount = 0;
+	pDevice->byReAssocCount = 0;
 }
 
 #ifdef Calcu_LinkQual
@@ -1262,13 +1262,13 @@ start:
                s_vCheckPreEDThreshold((void *)pDevice);
             }
 
-    	    if ((pMgmt->sNodeDBTable[0].uInActiveCount >= (LOST_BEACON_COUNT/2)) &&
-    	        (pDevice->byBBVGACurrent != pDevice->abyBBVGA[0]) ) {
-    	        pDevice->byBBVGANew = pDevice->abyBBVGA[0];
+	    if ((pMgmt->sNodeDBTable[0].uInActiveCount >= (LOST_BEACON_COUNT/2)) &&
+	        (pDevice->byBBVGACurrent != pDevice->abyBBVGA[0]) ) {
+	        pDevice->byBBVGANew = pDevice->abyBBVGA[0];
                 bScheduleCommand((void *) pDevice, WLAN_CMD_CHANGE_BBSENSITIVITY, NULL);
-    	    }
+	    }
 
-        	if (pMgmt->sNodeDBTable[0].uInActiveCount >= LOST_BEACON_COUNT) {
+		if (pMgmt->sNodeDBTable[0].uInActiveCount >= LOST_BEACON_COUNT) {
                 pMgmt->sNodeDBTable[0].bActive = false;
                 pMgmt->eCurrMode = WMAC_MODE_STANDBY;
                 pMgmt->eCurrState = WMAC_STATE_IDLE;
@@ -1318,7 +1318,7 @@ start:
 
                 DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "Roaming ...\n");
                 BSSvClearBSSList((void *)pDevice, pDevice->bLinkPass);
- 	      pMgmt->eScanType = WMAC_SCAN_ACTIVE;
+	      pMgmt->eScanType = WMAC_SCAN_ACTIVE;
                 bScheduleCommand((void *) pDevice, WLAN_CMD_BSSID_SCAN, pMgmt->abyDesireSSID);
                 bScheduleCommand((void *) pDevice, WLAN_CMD_SSID, pMgmt->abyDesireSSID);
                 pDevice->uAutoReConnectTime = 0;
@@ -1346,8 +1346,8 @@ start:
                //s_vCheckSensitivity((void *) pDevice);
                s_vCheckPreEDThreshold((void *)pDevice);
             }
-        	if (pMgmt->sNodeDBTable[0].uInActiveCount >=ADHOC_LOST_BEACON_COUNT) {
-        	    DBG_PRT(MSG_LEVEL_NOTICE, KERN_INFO "Lost other STA beacon [%d] sec, started !\n", pMgmt->sNodeDBTable[0].uInActiveCount);
+		if (pMgmt->sNodeDBTable[0].uInActiveCount >=ADHOC_LOST_BEACON_COUNT) {
+		    DBG_PRT(MSG_LEVEL_NOTICE, KERN_INFO "Lost other STA beacon [%d] sec, started !\n", pMgmt->sNodeDBTable[0].uInActiveCount);
                 pMgmt->sNodeDBTable[0].uInActiveCount = 0;
                 pMgmt->eCurrState = WMAC_STATE_STARTED;
                 netif_stop_queue(pDevice->dev);
@@ -1464,13 +1464,13 @@ BSSvUpdateNodeTxCounter(
 		//for (ii=0;ii<txRetryTemp;ii++)
 		{
                         if (ii < 5)
-                        	{
+				{
 
 //PLICE_DEBUG
 						wFallBackRate = awHWRetry0[wRate-RATE_18M][ii];
 					//printk(" II is %d:BSSvUpdateNodeTx:wFallBackRate is %d\n",ii,wFallBackRate);
 				//wFallBackRate = awHWRetry0[wRate-RATE_12M][ii];
-                        	}
+				}
 			else
 				{
 			wFallBackRate = awHWRetry0[wRate-RATE_18M][4];
@@ -1635,7 +1635,7 @@ void s_vCheckSensitivity(
                 for (ii=0;ii<BB_VGA_LEVEL;ii++) {
                     DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"LocalldBmAverage:%ld, %ld %02x\n", LocalldBmAverage, pDevice->ldBmThreshold[ii], pDevice->abyBBVGA[ii]);
                     if (LocalldBmAverage < pDevice->ldBmThreshold[ii]) {
-                	    pDevice->byBBVGANew = pDevice->abyBBVGA[ii];
+			    pDevice->byBBVGANew = pDevice->abyBBVGA[ii];
                         break;
                     }
                 }
@@ -1696,13 +1696,13 @@ else
 {
    RFvRSSITodBm(pDevice, (unsigned char)(pDevice->uCurrRSSI), &ldBm);
    if(-ldBm < 50)  {
-   	RssiRatio = 4000;
+	RssiRatio = 4000;
      }
    else if(-ldBm > 90) {
-   	RssiRatio = 0;
+	RssiRatio = 0;
      }
    else {
-   	RssiRatio = (40-(-ldBm-50))*4000/40;
+	RssiRatio = (40-(-ldBm-50))*4000/40;
      }
    pDevice->scStatistic.SignalStren = RssiRatio/40;
    pDevice->scStatistic.LinkQuality = (RssiRatio+TxOkRatio+RxOkRatio)/100;
@@ -1734,4 +1734,3 @@ void s_vCheckPreEDThreshold(
     }
     return;
 }
-

@@ -52,7 +52,7 @@
  *   along with this program; if not, write to the Free Software
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
  *
- */      
+ */
 
 #include <asm/io.h>
 #include <linux/delay.h>
@@ -281,7 +281,7 @@ static int stac9460_adc_vol_put(struct snd_kcontrol *kcontrol, struct snd_ctl_el
 }
 
 static int stac9460_mic_sw_info(struct snd_kcontrol *kcontrol,
-	       			struct snd_ctl_elem_info *uinfo)
+				struct snd_ctl_elem_info *uinfo)
 {
 	static char *texts[2] = { "Line In", "Mic" };
 
@@ -298,18 +298,18 @@ static int stac9460_mic_sw_info(struct snd_kcontrol *kcontrol,
 
 
 static int stac9460_mic_sw_get(struct snd_kcontrol *kcontrol,
-	       		struct snd_ctl_elem_value *ucontrol)
+			struct snd_ctl_elem_value *ucontrol)
 {
 	struct snd_ice1712 *ice = snd_kcontrol_chip(kcontrol);
 	unsigned char val;
-		
+
 	val = stac9460_get(ice, STAC946X_GENERAL_PURPOSE);
 	ucontrol->value.enumerated.item[0] = (val >> 7) & 0x1;
 	return 0;
 }
 
 static int stac9460_mic_sw_put(struct snd_kcontrol *kcontrol,
-	       		struct snd_ctl_elem_value *ucontrol)
+			struct snd_ctl_elem_value *ucontrol)
 {
 	struct snd_ice1712 *ice = snd_kcontrol_chip(kcontrol);
 	unsigned char new, old;
@@ -560,7 +560,7 @@ static unsigned char prodigy192_ak4114_read(void *private_data,
 
 
 static int ak4114_input_sw_info(struct snd_kcontrol *kcontrol,
-	       			struct snd_ctl_elem_info *uinfo)
+				struct snd_ctl_elem_info *uinfo)
 {
 	static char *texts[2] = { "Toslink", "Coax" };
 
@@ -575,11 +575,11 @@ static int ak4114_input_sw_info(struct snd_kcontrol *kcontrol,
 
 
 static int ak4114_input_sw_get(struct snd_kcontrol *kcontrol,
-	       		struct snd_ctl_elem_value *ucontrol)
+			struct snd_ctl_elem_value *ucontrol)
 {
 	struct snd_ice1712 *ice = snd_kcontrol_chip(kcontrol);
 	unsigned char val;
-		
+
 	val = prodigy192_ak4114_read(ice, AK4114_REG_IO1);
 	/* AK4114_IPS0 bit = 0 -> RX0 = Toslink
 	 * AK4114_IPS0 bit = 1 -> RX1 = Coax
@@ -589,7 +589,7 @@ static int ak4114_input_sw_get(struct snd_kcontrol *kcontrol,
 }
 
 static int ak4114_input_sw_put(struct snd_kcontrol *kcontrol,
-	       		struct snd_ctl_elem_value *ucontrol)
+			struct snd_ctl_elem_value *ucontrol)
 {
 	struct snd_ice1712 *ice = snd_kcontrol_chip(kcontrol);
 	unsigned char new, old, itemvalue;
@@ -750,7 +750,7 @@ static int __devinit prodigy192_init(struct snd_ice1712 *ice)
 	ice->num_total_dacs = 6;
 	ice->num_total_adcs = 2;
 	ice->vt1720 = 0;  /* ice1724, e.g. 23 GPIOs */
-	
+
 	spec = kzalloc(sizeof(*spec), GFP_KERNEL);
 	if (!spec)
 		return -ENOMEM;

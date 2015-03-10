@@ -10,13 +10,13 @@
  * Maintained by: <tpmdd-devel@lists.sourceforge.net>
  *
  * Device driver for TCG/TCPA TPM (trusted platform module).
- * Specifications at www.trustedcomputinggroup.org	 
+ * Specifications at www.trustedcomputinggroup.org
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, version 2 of the
  * License.
- * 
+ *
  */
 
 #include "tpm.h"
@@ -100,7 +100,7 @@ static int tpm_atml_send(struct tpm_chip *chip, u8 *buf, size_t count)
 	dev_dbg(chip->dev, "tpm_atml_send:\n");
 	for (i = 0; i < count; i++) {
 		dev_dbg(chip->dev, "%d 0x%x(%d)\n",  i, buf[i], buf[i]);
- 		iowrite8(buf[i], chip->vendor.iobase);
+		iowrite8(buf[i], chip->vendor.iobase);
 	}
 
 	return count;

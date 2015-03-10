@@ -1812,4 +1812,3 @@ void blk_fill_rwbs(char *rwbs, u32 rw, int bytes)
 }
 
 #endif /* CONFIG_EVENT_TRACING */
-

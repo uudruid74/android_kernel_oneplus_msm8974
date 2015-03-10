@@ -34,7 +34,7 @@ static int ssp_push_17bytes_buffer(struct iio_dev *indio_dev,
 							u64 t, int *q)
 {
 	u8 buf[IIO_BUFFER_17_BYTES];
-	
+
 	int i;
 
 	for (i = 0; i < 4; i++)

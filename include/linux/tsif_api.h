@@ -274,4 +274,3 @@ int tsif_get_ref_clk_counter(void *cookie, u32 *tcr_counter);
 void tsif_reclaim_packets(void *cookie, int ri);
 
 #endif /* _TSIF_API_H_ */
-

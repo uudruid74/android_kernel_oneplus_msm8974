@@ -49,8 +49,8 @@ struct sn_hwperf_object_info {
 #define SN_HWPERF_IS_NL4ROUTER(x)	((x) && strstr((x)->name, "NL4Router"))
 #define SN_HWPERF_IS_OLDROUTER(x)	((x) && strstr((x)->name, "Router"))
 #define SN_HWPERF_IS_ROUTER(x)		(SN_HWPERF_IS_NL3ROUTER(x) || 		\
-					 	SN_HWPERF_IS_NL4ROUTER(x) || 	\
-					 	SN_HWPERF_IS_OLDROUTER(x))
+						SN_HWPERF_IS_NL4ROUTER(x) || 	\
+						SN_HWPERF_IS_OLDROUTER(x))
 #define SN_HWPERF_FOREIGN(x)		((x) && !(x)->sn_hwp_this_part && !(x)->sn_hwp_is_shared)
 #define SN_HWPERF_SAME_OBJTYPE(x,y)	((SN_HWPERF_IS_NODE(x) && SN_HWPERF_IS_NODE(y)) ||\
 					(SN_HWPERF_IS_IONODE(x) && SN_HWPERF_IS_IONODE(y)) ||\
@@ -89,7 +89,7 @@ struct sn_hwperf_ioctl_args {
 #define SN_HWPERF_ARG_USE_IPI_MASK	0x8000000000000000ULL
 #define SN_HWPERF_ARG_OBJID_MASK	0x00000000ffffffffULL
 
-/* 
+/*
  * ioctl requests on the "sn_hwperf" misc device that call SAL.
  */
 #define SN_HWPERF_OP_MEM_COPYIN		0x1000
@@ -192,7 +192,7 @@ struct sn_hwperf_ioctl_args {
  */
 
 /*
- * get cpu info as an array of hwperf_object_info_t. 
+ * get cpu info as an array of hwperf_object_info_t.
  * id is logical CPU number, name is description, location
  * is geoid (e.g. 001c04#1c). Special case if sz == 8,
  * returns the required buffer size.

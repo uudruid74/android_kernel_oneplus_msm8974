@@ -434,4 +434,3 @@ typedef struct _MPI2_DIAG_RELEASE_REPLY
 
 
 #endif
-

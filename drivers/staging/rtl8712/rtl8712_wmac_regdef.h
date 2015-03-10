@@ -46,4 +46,3 @@
 
 
 #endif /*__RTL8712_WMAC_REGDEF_H__*/
-

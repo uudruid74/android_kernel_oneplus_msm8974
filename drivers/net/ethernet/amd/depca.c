@@ -18,8 +18,8 @@
     of DEPCA and EtherWORKS ethernet cards:
 
         DEPCA       (the original)
-    	DE100
-    	DE101
+	DE100
+	DE101
 	DE200 Turbo
 	DE201 Turbo
 	DE202 Turbo (TP BNC)
@@ -227,9 +227,9 @@
                           Fix show-stopper (ints left masked) in depca_interrupt
 			   by <peterd@pnd-pc.demon.co.uk>
       0.53    12-Jan-01	  Release resources on failure, bss tidbits
-      			   by acme@conectiva.com.br
+			   by acme@conectiva.com.br
       0.54    08-Nov-01	  use library crc32 functions
-      			   by Matt_Domsch@dell.com
+			   by Matt_Domsch@dell.com
       0.55    01-Mar-03   Use EISA/sysfs framework <maz@wild-wind.fr.eu.org>
 
     =========================================================================

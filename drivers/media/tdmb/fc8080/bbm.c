@@ -348,4 +348,3 @@ s32 bbm_com_msc_callback_deregister(HANDLE handle)
 
 	return BBM_OK;
 }
-

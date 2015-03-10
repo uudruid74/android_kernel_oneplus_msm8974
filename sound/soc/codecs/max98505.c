@@ -373,7 +373,7 @@ static int max98505_add_widgets(struct snd_soc_codec *codec)
 }
 
 /* codec sample rate and n/m dividers parameter table */
-static const struct { 
+static const struct {
 	u32 rate;
 	u8  sr;
 	u32 divisors[3][2];

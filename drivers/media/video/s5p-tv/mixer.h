@@ -361,4 +361,3 @@ void mxr_reg_vp_format(struct mxr_device *mdev,
 void mxr_reg_dump(struct mxr_device *mdev);
 
 #endif /* SAMSUNG_MIXER_H */
-

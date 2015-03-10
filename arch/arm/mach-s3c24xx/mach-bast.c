@@ -559,7 +559,7 @@ static struct platform_device *bast_devices[] __initdata = {
 	&s3c_device_lcd,
 	&s3c_device_wdt,
 	&s3c_device_i2c0,
- 	&s3c_device_rtc,
+	&s3c_device_rtc,
 	&s3c_device_nand,
 	&s3c_device_adc,
 	&s3c_device_hwmon,
@@ -629,7 +629,7 @@ static void __init bast_init(void)
 	simtec_audio_add(NULL, true, &bast_audio);
 
 	WARN_ON(gpio_request(S3C2410_GPA(21), "bast nreset"));
-	
+
 	s3c_cpufreq_setboard(&bast_cpufreq);
 }
 

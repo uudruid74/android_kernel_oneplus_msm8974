@@ -705,7 +705,7 @@ static void tx_pause(struct tty_struct *tty)
 
 	spin_lock_irqsave(&info->lock,flags);
 	if (info->tx_enabled)
-	 	tx_stop(info);
+		tx_stop(info);
 	spin_unlock_irqrestore(&info->lock,flags);
 }
 
@@ -721,7 +721,7 @@ static void tx_release(struct tty_struct *tty)
 
 	spin_lock_irqsave(&info->lock,flags);
 	if (!info->tx_enabled)
-	 	tx_start(info, tty);
+		tx_start(info, tty);
 	spin_unlock_irqrestore(&info->lock,flags);
 }
 
@@ -889,7 +889,7 @@ static void rx_ready_async(MGSLPC_INFO *info, int tcd, struct tty_struct *tty)
 	unsigned char data, status, flag;
 	int fifo_count;
 	int work = 0;
- 	struct mgsl_icount *icount = &info->icount;
+	struct mgsl_icount *icount = &info->icount;
 
 	if (tcd) {
 		/* early termination, get FIFO count from RBCL register */
@@ -1294,11 +1294,11 @@ static int startup(MGSLPC_INFO * info, struct tty_struct *tty)
 		retval = adapter_test(info);
 
 	if ( retval ) {
-  		if (capable(CAP_SYS_ADMIN) && tty)
+		if (capable(CAP_SYS_ADMIN) && tty)
 			set_bit(TTY_IO_ERROR, &tty->flags);
 		release_resources(info);
-  		return retval;
-  	}
+		return retval;
+	}
 
 	/* program hardware for current parameters */
 	mgslpc_change_params(info, tty);
@@ -1344,8 +1344,8 @@ static void shutdown(MGSLPC_INFO * info, struct tty_struct *tty)
 	/* TODO:disable interrupts instead of reset to preserve signal states */
 	reset_device(info);
 
- 	if (!tty || tty->termios->c_cflag & HUPCL) {
- 		info->serial_signals &= ~(SerialSignal_DTR + SerialSignal_RTS);
+	if (!tty || tty->termios->c_cflag & HUPCL) {
+		info->serial_signals &= ~(SerialSignal_DTR + SerialSignal_RTS);
 		set_signals(info);
 	}
 
@@ -1409,7 +1409,7 @@ static void mgslpc_change_params(MGSLPC_INFO *info, struct tty_struct *tty)
 
 	/* if B0 rate (hangup) specified then negate DTR and RTS */
 	/* otherwise assert DTR and RTS */
- 	if (cflag & CBAUD)
+	if (cflag & CBAUD)
 		info->serial_signals |= SerialSignal_RTS + SerialSignal_DTR;
 	else
 		info->serial_signals &= ~(SerialSignal_RTS + SerialSignal_DTR);
@@ -1539,7 +1539,7 @@ static void mgslpc_flush_chars(struct tty_struct *tty)
 
 	spin_lock_irqsave(&info->lock,flags);
 	if (!info->tx_active)
-	 	tx_start(info, tty);
+		tx_start(info, tty);
 	spin_unlock_irqrestore(&info->lock,flags);
 }
 
@@ -1598,12 +1598,12 @@ static int mgslpc_write(struct tty_struct * tty,
 		ret += c;
 	}
 start:
- 	if (info->tx_count && !tty->stopped && !tty->hw_stopped) {
+	if (info->tx_count && !tty->stopped && !tty->hw_stopped) {
 		spin_lock_irqsave(&info->lock,flags);
 		if (!info->tx_active)
-		 	tx_start(info, tty);
+			tx_start(info, tty);
 		spin_unlock_irqrestore(&info->lock,flags);
- 	}
+	}
 cleanup:
 	if (debug_level >= DEBUG_LEVEL_INFO)
 		printk( "%s(%d):mgslpc_write(%s) returning=%d\n",
@@ -1706,7 +1706,7 @@ static void mgslpc_send_xchar(struct tty_struct *tty, char ch)
 	if (ch) {
 		spin_lock_irqsave(&info->lock,flags);
 		if (!info->tx_enabled)
-		 	tx_start(info, tty);
+			tx_start(info, tty);
 		spin_unlock_irqrestore(&info->lock,flags);
 	}
 }
@@ -1728,10 +1728,10 @@ static void mgslpc_throttle(struct tty_struct * tty)
 	if (I_IXOFF(tty))
 		mgslpc_send_xchar(tty, STOP_CHAR(tty));
 
- 	if (tty->termios->c_cflag & CRTSCTS) {
+	if (tty->termios->c_cflag & CRTSCTS) {
 		spin_lock_irqsave(&info->lock,flags);
 		info->serial_signals &= ~SerialSignal_RTS;
-	 	set_signals(info);
+		set_signals(info);
 		spin_unlock_irqrestore(&info->lock,flags);
 	}
 }
@@ -1757,10 +1757,10 @@ static void mgslpc_unthrottle(struct tty_struct * tty)
 			mgslpc_send_xchar(tty, START_CHAR(tty));
 	}
 
- 	if (tty->termios->c_cflag & CRTSCTS) {
+	if (tty->termios->c_cflag & CRTSCTS) {
 		spin_lock_irqsave(&info->lock,flags);
 		info->serial_signals |= SerialSignal_RTS;
-	 	set_signals(info);
+		set_signals(info);
 		spin_unlock_irqrestore(&info->lock,flags);
 	}
 }
@@ -1806,7 +1806,7 @@ static int get_params(MGSLPC_INFO * info, MGSL_PARAMS __user *user_params)
  */
 static int set_params(MGSLPC_INFO * info, MGSL_PARAMS __user *new_params, struct tty_struct *tty)
 {
- 	unsigned long flags;
+	unsigned long flags;
 	MGSL_PARAMS tmp_params;
 	int err;
 
@@ -1825,7 +1825,7 @@ static int set_params(MGSLPC_INFO * info, MGSL_PARAMS __user *new_params, struct
 	memcpy(&info->params,&tmp_params,sizeof(MGSL_PARAMS));
 	spin_unlock_irqrestore(&info->lock,flags);
 
- 	mgslpc_change_params(info, tty);
+	mgslpc_change_params(info, tty);
 
 	return 0;
 }
@@ -1843,7 +1843,7 @@ static int get_txidle(MGSLPC_INFO * info, int __user *idle_mode)
 
 static int set_txidle(MGSLPC_INFO * info, int idle_mode)
 {
- 	unsigned long flags;
+	unsigned long flags;
 	if (debug_level >= DEBUG_LEVEL_INFO)
 		printk("set_txidle(%s,%d)\n", info->device_name, idle_mode);
 	spin_lock_irqsave(&info->lock,flags);
@@ -1866,7 +1866,7 @@ static int get_interface(MGSLPC_INFO * info, int __user *if_mode)
 
 static int set_interface(MGSLPC_INFO * info, int if_mode)
 {
- 	unsigned long flags;
+	unsigned long flags;
 	unsigned char val;
 	if (debug_level >= DEBUG_LEVEL_INFO)
 		printk("set_interface(%s,%d)\n", info->device_name, if_mode);
@@ -1888,7 +1888,7 @@ static int set_interface(MGSLPC_INFO * info, int if_mode)
 
 static int set_txenable(MGSLPC_INFO * info, int enable, struct tty_struct *tty)
 {
- 	unsigned long flags;
+	unsigned long flags;
 
 	if (debug_level >= DEBUG_LEVEL_INFO)
 		printk("set_txenable(%s,%d)\n", info->device_name, enable);
@@ -1907,7 +1907,7 @@ static int set_txenable(MGSLPC_INFO * info, int enable, struct tty_struct *tty)
 
 static int tx_abort(MGSLPC_INFO * info)
 {
- 	unsigned long flags;
+	unsigned long flags;
 
 	if (debug_level >= DEBUG_LEVEL_INFO)
 		printk("tx_abort(%s)\n", info->device_name);
@@ -1927,7 +1927,7 @@ static int tx_abort(MGSLPC_INFO * info)
 
 static int set_rxenable(MGSLPC_INFO * info, int enable)
 {
- 	unsigned long flags;
+	unsigned long flags;
 
 	if (debug_level >= DEBUG_LEVEL_INFO)
 		printk("set_rxenable(%s,%d)\n", info->device_name, enable);
@@ -1954,7 +1954,7 @@ static int set_rxenable(MGSLPC_INFO * info, int enable)
  */
 static int wait_events(MGSLPC_INFO * info, int __user *mask_ptr)
 {
- 	unsigned long flags;
+	unsigned long flags;
 	int s;
 	int rc=0;
 	struct mgsl_icount cprev, cnow;
@@ -1977,7 +1977,7 @@ static int wait_events(MGSLPC_INFO * info, int __user *mask_ptr)
 	s = info->serial_signals;
 	events = mask &
 		( ((s & SerialSignal_DSR) ? MgslEvent_DsrActive:MgslEvent_DsrInactive) +
- 		  ((s & SerialSignal_DCD) ? MgslEvent_DcdActive:MgslEvent_DcdInactive) +
+		  ((s & SerialSignal_DCD) ? MgslEvent_DcdActive:MgslEvent_DcdInactive) +
 		  ((s & SerialSignal_CTS) ? MgslEvent_CtsActive:MgslEvent_CtsInactive) +
 		  ((s & SerialSignal_RI)  ? MgslEvent_RiActive :MgslEvent_RiInactive) );
 	if (events) {
@@ -2063,7 +2063,7 @@ exit:
 
 static int modem_input_wait(MGSLPC_INFO *info,int arg)
 {
- 	unsigned long flags;
+	unsigned long flags;
 	int rc;
 	struct mgsl_icount cprev, cnow;
 	DECLARE_WAITQUEUE(wait, current);
@@ -2117,10 +2117,10 @@ static int tiocmget(struct tty_struct *tty)
 {
 	MGSLPC_INFO *info = (MGSLPC_INFO *)tty->driver_data;
 	unsigned int result;
- 	unsigned long flags;
+	unsigned long flags;
 
 	spin_lock_irqsave(&info->lock,flags);
- 	get_signals(info);
+	get_signals(info);
 	spin_unlock_irqrestore(&info->lock,flags);
 
 	result = ((info->serial_signals & SerialSignal_RTS) ? TIOCM_RTS:0) +
@@ -2142,7 +2142,7 @@ static int tiocmset(struct tty_struct *tty,
 		    unsigned int set, unsigned int clear)
 {
 	MGSLPC_INFO *info = (MGSLPC_INFO *)tty->driver_data;
- 	unsigned long flags;
+	unsigned long flags;
 
 	if (debug_level >= DEBUG_LEVEL_INFO)
 		printk("%s(%d):%s tiocmset(%x,%x)\n",
@@ -2158,7 +2158,7 @@ static int tiocmset(struct tty_struct *tty,
 		info->serial_signals &= ~SerialSignal_DTR;
 
 	spin_lock_irqsave(&info->lock,flags);
- 	set_signals(info);
+	set_signals(info);
 	spin_unlock_irqrestore(&info->lock,flags);
 
 	return 0;
@@ -2182,7 +2182,7 @@ static int mgslpc_break(struct tty_struct *tty, int break_state)
 		return -EINVAL;
 
 	spin_lock_irqsave(&info->lock,flags);
- 	if (break_state == -1)
+	if (break_state == -1)
 		set_reg_bits(info, CHA+DAFO, BIT6);
 	else
 		clear_reg_bits(info, CHA+DAFO, BIT6);
@@ -2305,7 +2305,7 @@ static void mgslpc_set_termios(struct tty_struct *tty, struct ktermios *old_term
 	    !(tty->termios->c_cflag & CBAUD)) {
 		info->serial_signals &= ~(SerialSignal_RTS + SerialSignal_DTR);
 		spin_lock_irqsave(&info->lock,flags);
-	 	set_signals(info);
+		set_signals(info);
 		spin_unlock_irqrestore(&info->lock,flags);
 	}
 
@@ -2313,12 +2313,12 @@ static void mgslpc_set_termios(struct tty_struct *tty, struct ktermios *old_term
 	if (!(old_termios->c_cflag & CBAUD) &&
 	    tty->termios->c_cflag & CBAUD) {
 		info->serial_signals |= SerialSignal_DTR;
- 		if (!(tty->termios->c_cflag & CRTSCTS) ||
- 		    !test_bit(TTY_THROTTLED, &tty->flags)) {
+		if (!(tty->termios->c_cflag & CRTSCTS) ||
+		    !test_bit(TTY_THROTTLED, &tty->flags)) {
 			info->serial_signals |= SerialSignal_RTS;
- 		}
+		}
 		spin_lock_irqsave(&info->lock,flags);
-	 	set_signals(info);
+		set_signals(info);
 		spin_unlock_irqrestore(&info->lock,flags);
 	}
 
@@ -2347,14 +2347,14 @@ static void mgslpc_close(struct tty_struct *tty, struct file * filp)
 	if (tty_port_close_start(port, tty, filp) == 0)
 		goto cleanup;
 
- 	if (port->flags & ASYNC_INITIALIZED)
- 		mgslpc_wait_until_sent(tty, info->timeout);
+	if (port->flags & ASYNC_INITIALIZED)
+		mgslpc_wait_until_sent(tty, info->timeout);
 
 	mgslpc_flush_buffer(tty);
 
 	tty_ldisc_flush(tty);
 	shutdown(info, tty);
-	
+
 	tty_port_close_end(port, tty);
 	tty_port_tty_set(port, NULL);
 cleanup:
@@ -2392,7 +2392,7 @@ static void mgslpc_wait_until_sent(struct tty_struct *tty, int timeout)
 	 */
 
 	if ( info->params.data_rate ) {
-	       	char_time = info->timeout/(32 * 5);
+		char_time = info->timeout/(32 * 5);
 		if (!char_time)
 			char_time++;
 	} else
@@ -2451,7 +2451,7 @@ static int carrier_raised(struct tty_port *port)
 	unsigned long flags;
 
 	spin_lock_irqsave(&info->lock,flags);
- 	get_signals(info);
+	get_signals(info);
 	spin_unlock_irqrestore(&info->lock,flags);
 
 	if (info->serial_signals & SerialSignal_DCD)
@@ -2564,7 +2564,7 @@ static inline void line_info(struct seq_file *m, MGSLPC_INFO *info)
 
 	/* output current serial signal states */
 	spin_lock_irqsave(&info->lock,flags);
- 	get_signals(info);
+	get_signals(info);
 	spin_unlock_irqrestore(&info->lock,flags);
 
 	stat_buf[0] = 0;
@@ -3962,8 +3962,8 @@ static netdev_tx_t hdlcdev_xmit(struct sk_buff *skb,
 	spin_lock_irqsave(&info->lock,flags);
 	if (!info->tx_active) {
 		struct tty_struct *tty = tty_port_tty_get(&info->port);
-	 	tx_start(info, tty);
-	 	tty_kref_put(tty);
+		tx_start(info, tty);
+		tty_kref_put(tty);
 	}
 	spin_unlock_irqrestore(&info->lock,flags);
 
@@ -4306,4 +4306,3 @@ static void hdlcdev_exit(MGSLPC_INFO *info)
 }
 
 #endif /* CONFIG_HDLC */
-

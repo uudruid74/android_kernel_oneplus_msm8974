@@ -1593,4 +1593,3 @@ module_exit(lis3dh_acc_exit);
 MODULE_DESCRIPTION("lis3dh digital accelerometer sysfs driver");
 MODULE_AUTHOR("Matteo Dameno, Carmine Iascone, Samuel Huo, STMicroelectronics");
 MODULE_LICENSE("GPL");
-

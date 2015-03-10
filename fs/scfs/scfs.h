@@ -74,7 +74,7 @@ extern struct kmem_cache *scfs_sb_info_cache;
 //#define SCFS_DEBUG
 //#define SCFS_PROFILE
 //#define SCFS_PROFILE_MEM
- 
+
 
 /*****************************************/
 /* size configs, flags, error code, etc. */
@@ -129,12 +129,12 @@ extern struct kmem_cache *scfs_sb_info_cache;
 #define SMB_THREAD_THRESHOLD_3		MAX_PAGE_BUFFER_SIZE_SMB / 32	// 64 pages
 #define SMB_THREAD_THRESHOLD_4		MAX_PAGE_BUFFER_SIZE_SMB / 16 	// 128 pages
 #endif
- 
+
 //#define SCFS_NOTIFY_RANDOM_READ
 //#define SCFS_REMOVE_NO_COMPRESSED_UPPER_MEMCPY
 
 /* This flag is the switch to go to ver. 1.3 */
-//#define SCFS_MULTI_THREAD_COMPRESSION		
+//#define SCFS_MULTI_THREAD_COMPRESSION
 
 /* using crypto module and multi-thread-compression are exclusive */
 #ifdef CONFIG_SCFS_USE_CRYPTO
@@ -147,7 +147,7 @@ extern struct kmem_cache *scfs_sb_info_cache;
 #define SMTC_THREAD_THRESHOLD_4		16	// # of clusters
 #define SMTC_PENDING_THRESHOLD		8000
 #endif
- 
+
 
 /*******************************/
 /* compression & cluster stuff */
@@ -216,7 +216,7 @@ struct scfs_mount_options
 
 struct scfs_sb_info
 {
- 	struct super_block *lower_sb;
+	struct super_block *lower_sb;
 	struct scfs_mount_options options;
 	struct backing_dev_info bdi;
 	mempool_t *mempool;
@@ -317,7 +317,7 @@ struct scfs_cluster_buffer_mtc
 };
 #endif
 
-struct scfs_inode_info 
+struct scfs_inode_info
 {
 	int flags;
 	struct mutex lower_file_mutex;
@@ -329,8 +329,8 @@ struct scfs_inode_info
 	int cluster_size;
 	enum comp_type comp_type;
 	size_t upper_file_size;
- 	struct scfs_cluster_buffer cluster_buffer;
- 	struct list_head cinfo_list;
+	struct scfs_cluster_buffer cluster_buffer;
+	struct list_head cinfo_list;
 	unsigned char compressed;
 #ifdef SCFS_MULTI_THREAD_COMPRESSION
 	struct list_head cbm_list;
@@ -341,7 +341,7 @@ struct scfs_inode_info
 	struct list_head mtc_list;
 	int is_inserted_to_sii_list;
 #endif
- 	struct inode vfs_inode;
+	struct inode vfs_inode;
 	/* DO NOT ADD FIELDS BELOW vfs_inode */
 };
 
@@ -368,7 +368,7 @@ struct scfs_dentry_info
 
 #define CF_SIZE			sizeof(struct comp_footer)
 #define IS_COMPRESSABLE(sii)	(sii->flags & SCFS_DATA_COMPRESSABLE)
-#define IS_INVALID_META(sii)	(sii->flags & SCFS_INVALID_META)	
+#define IS_INVALID_META(sii)	(sii->flags & SCFS_INVALID_META)
 #define IS_WROPENED(sii)	(sii->flags & SCFS_WRITE_OPENED)
 #define MAKE_META_INVALID(sii)	(sii->flags |= SCFS_INVALID_META)
 #define MAKE_WROPENED(sii)	(sii->flags |= SCFS_WRITE_OPENED)
@@ -431,7 +431,7 @@ static struct timeval end_time;
 
 static inline void
 scfs_start_profile(struct timeval *start_time)
-{	
+{
 	do_gettimeofday(start_time);
 }
 
@@ -447,12 +447,12 @@ scfs_end_profile(struct timeval *end_time)
 #define SCFS_END_PROFILE(start, end, target) \
 	scfs_end_profile(end); \
 	*target += timeval_compare(end, start);
-	
-//	printk(KERN_ERR "%s in %s(%d): %lld.%06lld seconds elapsed\n",fmt,__FUNCTION__, __LINE__ 
+
+//	printk(KERN_ERR "%s in %s(%d): %lld.%06lld seconds elapsed\n",fmt,__FUNCTION__, __LINE__
 //			, (long long)(end_time.tv_sec - start_time.tv_sec), (long long)(end_time.tv_usec - start_time.tv_usec));
 
 #else
-#define SCFS_START_PROFILE() 
+#define SCFS_START_PROFILE()
 #define SCFS_END_PROFILE(fmt)
 static inline void scfs_start_profile(void) { }
 static inline void scfs_end_profile(void) { }
@@ -698,5 +698,5 @@ int scfs_compress_crypto(const void *in_buf, size_t in_len, void *out_buf, size_
 int scfs_decompress_crypto(const void *buf, size_t len, void *out, size_t *out_len,
 		     int compr_type);
 
- 
+
 #endif //SCFS_HEADER_H

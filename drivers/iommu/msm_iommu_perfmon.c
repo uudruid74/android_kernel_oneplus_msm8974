@@ -836,4 +836,3 @@ void msm_iommu_detached(struct device *dev)
 	}
 }
 EXPORT_SYMBOL(msm_iommu_detached);
-

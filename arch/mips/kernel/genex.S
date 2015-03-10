@@ -363,7 +363,7 @@ NESTED(nmi_handler, PT_SIZE, sp)
 	.set	push
 	.set	noat
 	SAVE_ALL
- 	move	a0, sp
+	move	a0, sp
 	jal	nmi_exception_handler
 	RESTORE_ALL
 	.set	mips3

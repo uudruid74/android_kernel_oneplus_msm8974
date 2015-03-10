@@ -123,7 +123,7 @@ enum invsens_ioctl_cmd {
 
 struct invsense_ioctl_swst_gyro_t {
 	int result;
-	long bias[INVSENS_AXIS_NUM];	
+	long bias[INVSENS_AXIS_NUM];
 	long rms[INVSENS_AXIS_NUM];
 	int packet_cnt;
 };
@@ -135,7 +135,7 @@ struct invsense_ioctl_hwst_accel_t {
 
 struct invsense_ioctl_hwst_gyro_t {
 	int result;
-	int ratio[INVSENS_AXIS_NUM];	
+	int ratio[INVSENS_AXIS_NUM];
 };
 
 struct invsens_ioctl_s_accel_selftest_t {

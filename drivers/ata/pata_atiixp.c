@@ -169,7 +169,7 @@ static void atiixp_set_dmamode(struct ata_port *ap, struct ata_device *adev)
 	 *	adjust the PIO mode to keep the timings acceptable
 	 */
 	 if (adev->dma_mode >= XFER_MW_DMA_2)
-	 	wanted_pio = 4;
+		wanted_pio = 4;
 	else if (adev->dma_mode == XFER_MW_DMA_1)
 		wanted_pio = 3;
 	else if (adev->dma_mode == XFER_MW_DMA_0)

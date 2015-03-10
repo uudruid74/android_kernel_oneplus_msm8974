@@ -96,11 +96,11 @@ int sequencer_read(int dev, struct file *file, char __user *buf, int count)
 	if (!iqlen)
 	{
 		spin_unlock_irqrestore(&lock,flags);
- 		if (file->f_flags & O_NONBLOCK) {
-  			return -EAGAIN;
-  		}
+		if (file->f_flags & O_NONBLOCK) {
+			return -EAGAIN;
+		}
 
- 		interruptible_sleep_on_timeout(&midi_sleeper,
+		interruptible_sleep_on_timeout(&midi_sleeper,
 					       pre_event_timeout);
 		spin_lock_irqsave(&lock,flags);
 		if (!iqlen)
@@ -1070,7 +1070,7 @@ int sequencer_open(int dev, struct file *file)
 			{
 				if (!try_module_get(midi_devs[i]->owner))
 					continue;
-	
+
 				if ((retval = midi_devs[i]->open(i, mode,
 					sequencer_midi_input, sequencer_midi_output)) >= 0)
 				{
@@ -1084,8 +1084,8 @@ int sequencer_open(int dev, struct file *file)
 			tmr->open(tmr_no, seq_mode);
 	}
 
- 	init_waitqueue_head(&seq_sleeper);
- 	init_waitqueue_head(&midi_sleeper);
+	init_waitqueue_head(&seq_sleeper);
+	init_waitqueue_head(&midi_sleeper);
 	output_threshold = SEQ_MAX_QUEUE / 2;
 
 	return 0;
@@ -1115,8 +1115,8 @@ static void seq_drain_midi_queues(void)
 		 * Let's have a delay
 		 */
 
- 		if (n)
- 			interruptible_sleep_on_timeout(&seq_sleeper,
+		if (n)
+			interruptible_sleep_on_timeout(&seq_sleeper,
 						       HZ/10);
 	}
 }
@@ -1138,10 +1138,10 @@ void sequencer_release(int dev, struct file *file)
 	{
 		while (!signal_pending(current) && qlen > 0)
 		{
-  			seq_sync();
- 			interruptible_sleep_on_timeout(&seq_sleeper,
+			seq_sync();
+			interruptible_sleep_on_timeout(&seq_sleeper,
 						       3*HZ);
- 			/* Extra delay */
+			/* Extra delay */
 		}
 	}
 
@@ -1194,8 +1194,8 @@ static int seq_sync(void)
 	if (qlen && !seq_playing && !signal_pending(current))
 		seq_startplay();
 
- 	if (qlen > 0)
- 		interruptible_sleep_on_timeout(&seq_sleeper, HZ);
+	if (qlen > 0)
+		interruptible_sleep_on_timeout(&seq_sleeper, HZ);
 	return qlen;
 }
 
@@ -1217,10 +1217,10 @@ static void midi_outc(int dev, unsigned char data)
 	n = 3 * HZ;		/* Timeout */
 
 	spin_lock_irqsave(&lock,flags);
- 	while (n && !midi_devs[dev]->outputc(dev, data)) {
- 		interruptible_sleep_on_timeout(&seq_sleeper, HZ/25);
-  		n--;
-  	}
+	while (n && !midi_devs[dev]->outputc(dev, data)) {
+		interruptible_sleep_on_timeout(&seq_sleeper, HZ/25);
+		n--;
+	}
 	spin_unlock_irqrestore(&lock,flags);
 }
 

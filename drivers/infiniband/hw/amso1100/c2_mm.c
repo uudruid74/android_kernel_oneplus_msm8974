@@ -55,7 +55,7 @@ send_pbl_messages(struct c2_dev *c2dev, __be32 stag_index,
 	u32 count;		/* amt in this PBL MSG. */
 	struct c2wr_nsmr_pbl_req *wr;	/* PBL WR ptr */
 	struct c2wr_nsmr_pbl_rep *reply;	/* reply ptr */
- 	int err, pbl_virt, pbl_index, i;
+	int err, pbl_virt, pbl_index, i;
 
 	switch (pbl_type) {
 	case PBL_VIRT:
@@ -125,7 +125,7 @@ send_pbl_messages(struct c2_dev *c2dev, __be32 stag_index,
 			if (pbl_virt) {
 				va += PAGE_SIZE;
 			} else {
- 				wr->paddrs[i] =
+				wr->paddrs[i] =
 				    cpu_to_be64(((u64 *)va)[pbl_index + i]);
 			}
 		}
@@ -172,8 +172,8 @@ send_pbl_messages(struct c2_dev *c2dev, __be32 stag_index,
 #define C2_PBL_MAX_DEPTH 131072
 int
 c2_nsmr_register_phys_kern(struct c2_dev *c2dev, u64 *addr_list,
- 			   int page_size, int pbl_depth, u32 length,
- 			   u32 offset, u64 *va, enum c2_acf acf,
+			   int page_size, int pbl_depth, u32 length,
+			   u32 offset, u64 *va, enum c2_acf acf,
 			   struct c2_mr *mr)
 {
 	struct c2_vq_req *vq_req;

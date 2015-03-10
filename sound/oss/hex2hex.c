@@ -44,7 +44,7 @@ static int loadhex(FILE *inf, unsigned char *buf)
 			for (i=0;i<n;i++)
 			{
 				if (fscanf(inf, "%02x", &c) != 1)
-			   	   ABANDON("File format error");
+				   ABANDON("File format error");
 				if (addr >= MAX_SIZE)
 				   ABANDON("File too large");
 				buf[addr++] = c;

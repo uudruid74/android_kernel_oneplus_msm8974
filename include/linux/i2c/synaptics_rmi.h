@@ -20,7 +20,7 @@
 #ifndef _SYNAPTICS_RMI4_GENERIC_H_
 #define _SYNAPTICS_RMI4_GENERIC_H_
 
-#undef SYNAPTICS_RMI_INFORM_CHARGER 
+#undef SYNAPTICS_RMI_INFORM_CHARGER
 
 
 #ifdef SYNAPTICS_RMI_INFORM_CHARGER
@@ -73,7 +73,7 @@ struct synaptics_rmi4_platform_data {
 	unsigned int reset_delay_ms;
 	unsigned char model_name[32];
 
-#ifdef SYNAPTICS_RMI_INFORM_CHARGER	
+#ifdef SYNAPTICS_RMI_INFORM_CHARGER
 	void (*register_cb)(struct synaptics_rmi_callbacks *);
 #endif
 };

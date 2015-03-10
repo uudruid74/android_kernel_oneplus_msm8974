@@ -193,5 +193,3 @@
 {\
 	inputs = (IDP_CPLD_KB_ROW & 0x7f);\
 }
-
-

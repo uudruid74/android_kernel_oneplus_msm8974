@@ -160,4 +160,3 @@ endmenu
 config OPROFILE_CELL
 	def_bool y
 	depends on PPC_CELL_NATIVE && (OPROFILE = m || OPROFILE = y) && SPU_BASE
-

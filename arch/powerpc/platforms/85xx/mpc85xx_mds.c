@@ -491,4 +491,3 @@ define_machine(p1021_mds) {
 	.pcibios_fixup_bus	= fsl_pcibios_fixup_bus,
 #endif
 };
-

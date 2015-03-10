@@ -339,7 +339,7 @@ ds1302_init(void)
 {
 	if (!ds1302_probe()) {
 		return -1;
-  	}
+	}
 	return 0;
 }
 

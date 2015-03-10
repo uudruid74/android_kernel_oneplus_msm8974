@@ -229,7 +229,7 @@ static int phb_set_bus_ranges(struct device_node *dev,
 	bus_range = of_get_property(dev, "bus-range", &len);
 	if (bus_range == NULL || len < 2 * sizeof(int)) {
 		return 1;
- 	}
+	}
 
 	phb->first_busno =  bus_range[0];
 	phb->last_busno  =  bus_range[1];

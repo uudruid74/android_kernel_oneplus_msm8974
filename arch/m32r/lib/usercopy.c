@@ -136,7 +136,7 @@ strncpy_from_user(char *dst, const char __user *src, long count)
 #define __do_clear_user(addr,size)					\
 do {									\
 	int __dst, __c;							\
-  	__asm__ __volatile__(						\
+	__asm__ __volatile__(						\
 		"	beqz	%1, 9f\n"				\
 		"	and3	r14, %0, #3\n"				\
 		"	bnez	r14, 2f\n"				\
@@ -179,7 +179,7 @@ do {									\
 #define __do_clear_user(addr,size)					\
 do {									\
 	int __dst, __c;							\
-  	__asm__ __volatile__(						\
+	__asm__ __volatile__(						\
 		"	beqz	%1, 9f\n"				\
 		"	and3	r14, %0, #3\n"				\
 		"	bnez	r14, 2f\n"				\
@@ -387,4 +387,3 @@ long strnlen_user(const char __user *s, long n)
 }
 
 #endif /* CONFIG_ISA_DUAL_ISSUE */
-

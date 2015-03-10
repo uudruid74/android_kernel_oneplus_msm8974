@@ -175,7 +175,7 @@ typedef struct _S_MIBS_SERVICEFLOW_TABLE
 	B_UINT8     u8TrafficPriority;
 
 	BOOLEAN		bValid;
-   	BOOLEAN     bActive;
+	BOOLEAN     bActive;
 	BOOLEAN		bActivateRequestSent;
 	//BE or rtPS
 	B_UINT8		u8QueueType;
@@ -226,5 +226,3 @@ typedef struct _S_MIBS_HOST_STATS_MIBS
 	S_MIBS_DROPPED_APP_CNTRL_MESSAGES	stDroppedAppCntrlMsgs;
 }S_MIBS_HOST_STATS_MIBS;
 #endif
-
-

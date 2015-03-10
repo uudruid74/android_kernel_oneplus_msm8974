@@ -60,4 +60,3 @@ const struct clkops clkops_omap2xxx_dpll_ops = {
 	.allow_idle	= _allow_idle,
 	.deny_idle	= _deny_idle,
 };
-

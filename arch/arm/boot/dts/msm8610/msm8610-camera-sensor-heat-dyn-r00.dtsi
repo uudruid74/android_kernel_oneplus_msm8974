@@ -100,7 +100,7 @@
 			<&msmgpio 19 0>,
 			<&msmgpio 15 0>,
 			<&msmgpio 83 0>;
-		qcom,gpio-vana = <1>;			
+		qcom,gpio-vana = <1>;
 		qcom,gpio-reset = <2>;
 		qcom,gpio-standby = <3>;
 		qcom,gpio-req-tbl-num = <0 1 2 3>;

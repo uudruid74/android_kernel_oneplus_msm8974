@@ -545,5 +545,3 @@ out:
 	return;
 }
 EXPORT_SYMBOL(ion_unmap_iommu);
-
-

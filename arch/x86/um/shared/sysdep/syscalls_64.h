@@ -17,7 +17,7 @@ extern syscall_handler_t *sys_call_table[];
 #define EXECUTE_SYSCALL(syscall, regs) \
 	(((long (*)(long, long, long, long, long, long)) \
 	  (*sys_call_table[syscall]))(UPT_SYSCALL_ARG1(&regs->regs), \
-		 		      UPT_SYSCALL_ARG2(&regs->regs), \
+				      UPT_SYSCALL_ARG2(&regs->regs), \
 				      UPT_SYSCALL_ARG3(&regs->regs), \
 				      UPT_SYSCALL_ARG4(&regs->regs), \
 				      UPT_SYSCALL_ARG5(&regs->regs), \

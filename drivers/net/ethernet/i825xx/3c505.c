@@ -671,8 +671,8 @@ static irqreturn_t elp_interrupt(int irq, void *dev_id)
 				struct sk_buff *skb = adapter->current_dma.skb;
 				if (skb) {
 					if (adapter->current_dma.target) {
-				  	/* have already done the skb_put() */
-				  	memcpy(adapter->current_dma.target, adapter->dma_buffer, adapter->current_dma.length);
+					/* have already done the skb_put() */
+					memcpy(adapter->current_dma.target, adapter->dma_buffer, adapter->current_dma.length);
 					}
 					skb->protocol = eth_type_trans(skb,dev);
 					dev->stats.rx_bytes += skb->len;

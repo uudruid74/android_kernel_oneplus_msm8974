@@ -38,4 +38,3 @@ or
        interrupt-names = "ispif";
        qcom,num-isps = <2>
    };
-

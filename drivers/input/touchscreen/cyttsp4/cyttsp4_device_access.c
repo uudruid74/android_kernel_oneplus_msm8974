@@ -1505,10 +1505,10 @@ static ssize_t cyttsp4_get_panel_data_show(struct device *dev,
 	int print_idx = -1;
 	u8 cmd_param_ofs = dad->si->si_ofs.cmd_ofs + 1;
 	int read_element_offset;
-	
-	rc = cmd->scan_and_retrieve(dev, false, dad->heatmap.scan_start, 
+
+	rc = cmd->scan_and_retrieve(dev, false, dad->heatmap.scan_start,
 		0, dad->heatmap.num_element,
-		dad->heatmap.data_type, dad->ic_buf, 
+		dad->heatmap.data_type, dad->ic_buf,
 		&read_element_offset, NULL);
 
 	if (rc < 0) {
@@ -1571,7 +1571,7 @@ cyttsp4_get_panel_data_show_err_sysfs:
 	}
 
 	/* retrieve scan data */
-	rc = cmd->retrieve_panel_scan(dev, read_element_offset, 
+	rc = cmd->retrieve_panel_scan(dev, read_element_offset,
 			left_over_element, dad->heatmap.data_type, return_buf);
 	if (rc < 0) {
 		dev_err(dev, "%s: Error on _cyttsp4_ret_scan_data_cmd(), offset=%d num_element:%d\n",
@@ -1813,7 +1813,7 @@ int cyttsp4_device_access_read_command(const char *core_name, int ic_grpnum,
 
 	pr_debug("%s: ic_grpnum=%d, ic_grpoffset=%d\n", __func__,
 		ic_grpnum, ic_grpoffset);
-	
+
 	might_sleep();
 
 	/* Validate ic_grpnum */
@@ -1868,7 +1868,7 @@ int cyttsp4_device_access_read_command(const char *core_name, int ic_grpnum,
 
 exit:
 	mutex_unlock(&dad->sysfs_lock);
-	
+
 	pr_debug("%s: rc=%d\n", __func__, rc);
 	return rc;
 }
@@ -1885,7 +1885,7 @@ int cyttsp4_device_access_write_command(const char *core_name, int ic_grpnum,
 
 	pr_debug("%s: ic_grpnum=%d, ic_grpoffset=%d\n", __func__,
 		ic_grpnum, ic_grpoffset);
-	
+
 	might_sleep();
 
 	/* Validate ic_grpnum */
@@ -1947,7 +1947,7 @@ int cyttsp4_device_access_write_command(const char *core_name, int ic_grpnum,
 
 exit:
 	mutex_unlock(&dad->sysfs_lock);
-	
+
 	pr_debug("%s: rc=%d\n", __func__, rc);
 	return rc;
 }
@@ -1968,7 +1968,7 @@ int cyttsp4_device_access_probe(struct device *dev)
 		dev_err(dev, "%s: cmd invalid\n", __func__);
 		return -EINVAL;
 	}
-	
+
 	dad = kzalloc(sizeof(*dad), GFP_KERNEL);
 	if (!dad) {
 		dev_err(dev, "%s: Error, kzalloc\n", __func__);
@@ -2037,4 +2037,3 @@ int cyttsp4_device_access_release(struct device *dev)
 	kfree(dad);
 	return 0;
 }
-

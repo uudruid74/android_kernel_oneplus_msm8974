@@ -143,7 +143,7 @@ static int parse_redboot_partitions(struct mtd_info *master,
 					 * Two of them in a row is the end of the table.
 					 */
 					if (buf[j].name[0] == 0xff) {
-				  		if (buf[j].name[1] == 0xff) {
+						if (buf[j].name[1] == 0xff) {
 							break;
 						} else {
 							continue;

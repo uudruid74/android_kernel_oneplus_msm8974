@@ -689,5 +689,3 @@ void Set_D_RightECC(BYTE *redundant)
     /* Driver ECC Check */
     return;
 }
-
-

@@ -3,7 +3,7 @@
 
 /*
  * 	genhd.h Copyright (C) 1992 Drew Eckhardt
- *	Generic hard disk header file by  
+ *	Generic hard disk header file by
  * 		Drew Eckhardt
  *
  *		<drew@colorado.edu>
@@ -488,7 +488,7 @@ struct bsd_disklabel {
 	__s16	d_type;			/* drive type */
 	__s16	d_subtype;		/* controller/d_type specific */
 	char	d_typename[16];		/* type name, e.g. "eagle" */
-	char	d_packname[16];			/* pack identifier */ 
+	char	d_packname[16];			/* pack identifier */
 	__u32	d_secsize;		/* # of bytes per sector */
 	__u32	d_nsectors;		/* # of data sectors per track */
 	__u32	d_ntracks;		/* # of tracks per cylinder */
@@ -557,13 +557,13 @@ struct unixware_disklabel {
 	__le32   d_secsize;              /* # of bytes per sector */
 	__le32   d_part_start;           /* # of first sector of this partition */
 	__le32   d_unknown1[12];         /* ? */
- 	__le32	d_alt_tbl;              /* byte offset of alternate table */
- 	__le32	d_alt_len;              /* byte length of alternate table */
- 	__le32	d_phys_cyl;             /* # of physical cylinders per device */
- 	__le32	d_phys_trk;             /* # of physical tracks per cylinder */
- 	__le32	d_phys_sec;             /* # of physical sectors per track */
- 	__le32	d_phys_bytes;           /* # of physical bytes per sector */
- 	__le32	d_unknown2;             /* ? */
+	__le32	d_alt_tbl;              /* byte offset of alternate table */
+	__le32	d_alt_len;              /* byte length of alternate table */
+	__le32	d_phys_cyl;             /* # of physical cylinders per device */
+	__le32	d_phys_trk;             /* # of physical tracks per cylinder */
+	__le32	d_phys_sec;             /* # of physical sectors per track */
+	__le32	d_phys_bytes;           /* # of physical bytes per sector */
+	__le32	d_unknown2;             /* ? */
 	__le32   d_unknown3;             /* ? */
 	__le32	d_pad[8];               /* pad */
 

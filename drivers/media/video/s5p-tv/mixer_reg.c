@@ -545,4 +545,3 @@ void mxr_reg_dump(struct mxr_device *mdev)
 	mxr_reg_mxr_dump(mdev);
 	mxr_reg_vp_dump(mdev);
 }
-

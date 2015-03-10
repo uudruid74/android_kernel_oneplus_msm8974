@@ -262,7 +262,7 @@ static int __devinit snd_card_ymfpci_probe(struct pci_dev *pci,
 	pci_write_config_word(pci, PCIR_DSXG_ELEGACY, legacy_ctrl2);
 	if ((err = snd_ymfpci_create(card, pci,
 				     old_legacy_ctrl,
-			 	     &chip)) < 0) {
+				     &chip)) < 0) {
 		snd_card_free(card);
 		release_and_free_resource(mpu_res);
 		release_and_free_resource(fm_res);

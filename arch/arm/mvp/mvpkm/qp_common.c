@@ -381,4 +381,3 @@ QP_DequeueReset(QPHandle *qp)
 	return QP_SUCCESS;
 }
 EXPORT_SYMBOL(QP_DequeueReset);
-

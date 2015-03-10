@@ -820,7 +820,7 @@ static int sil24_qc_defer(struct ata_queued_cmd *qc)
 	 * - Passthrough ATA commands which always have ATA_QCFLAG_RESULT_TF
 	 *   set.
 	 *
- 	 */
+	 */
 	int is_excl = (ata_is_atapi(prot) ||
 		       (qc->flags & ATA_QCFLAG_RESULT_TF));
 

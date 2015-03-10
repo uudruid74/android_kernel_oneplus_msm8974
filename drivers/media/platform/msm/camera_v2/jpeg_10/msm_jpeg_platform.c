@@ -350,4 +350,3 @@ int msm_jpeg_platform_release(struct resource *mem, void *base, int irq,
 	JPEG_DBG("%s:%d] success\n", __func__, __LINE__);
 	return result;
 }
-

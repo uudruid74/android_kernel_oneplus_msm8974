@@ -156,7 +156,7 @@ static int irda_fw_update(struct ir_remocon_data *ir_data)
 			goto err_bootmode;
 		}
 	}
-	
+
 #ifdef DEBUG
 	print_hex_dump(KERN_CRIT, "IRDA Master Rx: ", 16, 1,
 				DUMP_PREFIX_ADDRESS, buf_ir_test, 8, 1);
@@ -190,7 +190,7 @@ static int irda_fw_update(struct ir_remocon_data *ir_data)
 					__func__, ret, MC96FR332A_0x202);
 	}
 	else
-		goto err_bootmode;	
+		goto err_bootmode;
 
 	printk(KERN_ERR "irda frame count = %d\n", frame_count);
 
@@ -268,7 +268,7 @@ static int irda_fw_update(struct ir_remocon_data *ir_data)
 		msleep(20);
 
 		ret2 = i2c_master_recv(client, buf_ir_test, MC96_READ_LENGTH);
-	
+
 		if (ret2 < 0)
 			printk(KERN_ERR "6. %s: err %d\n", __func__, ret2);
 
@@ -462,7 +462,7 @@ static void irda_remocon_work(struct ir_remocon_data *ir_data, int count)
 	for (i = 0; i < buf_size; i++) {
 		printk(KERN_INFO "%s: data[%d] : 0x%02x\n", __func__, i,
 					data->signal[i]);
-	
+
 	}
 #endif
 	data->count = 2;
@@ -529,7 +529,7 @@ static ssize_t remocon_store(struct device *dev, struct device_attribute *attr,
 					data->pdata->ir_wake_en(data->pdata,1);
 					msleep(30);
 				} else {
-					ret = irda_vdd_onoff(1); 
+					ret = irda_vdd_onoff(1);
 					if (ret) {
 						pr_err("%s regulaor disable failed\n",
 								__func__);
@@ -649,7 +649,7 @@ static int irda_mc96_parse_dt(struct device *dev, struct mc96_platform_data *pda
 	}
         pr_info("%s: irq-gpio:%u led_en:%u wake_up:%u irda-scl:%u irda-sda:%u \n", __func__,
 			 pdata->irda_irq_gpio,pdata->irda_led_en,pdata->irda_wake_en,pdata->irda_scl_gpio,pdata->irda_sda_gpio);
-	
+
         return 0;
 }
 #endif
@@ -725,8 +725,8 @@ static int __devinit irda_remocon_probe(struct i2c_client *client,
 
 
 	vled_ic = regulator_get(&client->dev, "vled_ic_1.9v");
-       	if (IS_ERR(vled_ic)) {
-       		pr_err("%s could not get regulator vled_ic_1.9v\n",__func__);
+	if (IS_ERR(vled_ic)) {
+		pr_err("%s could not get regulator vled_ic_1.9v\n",__func__);
 		error = -EBUSY;
 		goto err_free_mem;
        }
@@ -788,7 +788,7 @@ static int ir_remocon_suspend(struct device *dev)
 	ret = irda_vdd_onoff(0);
 	if (ret)
 		pr_err("%s Regulator setting failed\n", __func__);
-	
+
 	data->on_off = 0;
 	data->pdata->ir_wake_en(data->pdata,0);
 

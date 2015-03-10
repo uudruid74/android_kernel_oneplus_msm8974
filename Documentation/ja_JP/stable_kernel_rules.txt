@@ -81,4 +81,3 @@ linux-2.6.29/Documentation/stable_kernel_rules.txt
 
  - この委員会は、このタスクについて活動する多くのボランティアと、少数の
    非ボランティアのカーネル開発者達で構成されている。
-

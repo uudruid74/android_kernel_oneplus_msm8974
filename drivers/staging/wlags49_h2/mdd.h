@@ -524,7 +524,7 @@ X2( CFG_WOL_PATTERNS, nPatterns, buffer[WOL_BUF_SIZE]		 )  /*[STA] WakeOnLan pat
  X1( CFG_CUR_TX_RATE6,			rate								 ) /*[AP] Actual Port 6 transmit data rate					*/
  X1( CFG_OWN_MAC_ADDR,			mac_addr[3]							 ) /*[AP] Unique local node MAC Address						*/
  X3( CFG_PCF_INFO,				medium_occupancy_limit, 			 \
-		 						cfp_period, cfp_max_duration 		 ) /*[AP] Point Coordination Function capability info		*/
+								cfp_period, cfp_max_duration 		 ) /*[AP] Point Coordination Function capability info		*/
  X1( CFG_CUR_WPA_INFO_ELEMENT, ssn_info_element[1]				 	 ) /*    													*/
  X4( CFG_CUR_TKIP_IV_INFO, 											 \
 		 tkip_seq_cnt0[4], tkip_seq_cnt1[4], 						 \
@@ -563,8 +563,8 @@ XX1( CFG_SCAN,					SCAN_RS_STRCT, scan_result[32]		 ) /*Scan results											*
 #define UIL_FUN_PUT_INFO		0x05					// Put information on NIC.
 
 /*	UIL_ACT_TALLIES				0x05		 			* this should not be exported to the USF
-											 			* it is solely intended as a strategic choice for the MSF to either
-											 			* - use HCF_ACT_TALLIES and direct IFB access
+														* it is solely intended as a strategic choice for the MSF to either
+														* - use HCF_ACT_TALLIES and direct IFB access
 														* - use CFG_TALLIES
 														*/
 #define UIL_ACT_SCAN			MDD_ACT_SCAN
@@ -847,12 +847,12 @@ XX1( CFG_SCAN,					SCAN_RS_STRCT, scan_result[32]		 ) /*Scan results											*
 #define HCF_SUCCESS					0x00	// OK
 #define HCF_ERR_TIME_OUT			0x04	// Expected Hermes event did not occure in expected time
 #define HCF_ERR_NO_NIC				0x05	/* card not found (usually yanked away during hcfio_in_string
-										  	 * Also: card is either absent or disabled while it should be neither */
+											 * Also: card is either absent or disabled while it should be neither */
 #define HCF_ERR_LEN					0x08	/* buffer size insufficient
-		 								  	 *		  -	IFB_ConfigTable too small
-		 								  	 *		  -	hcf_get_info buffer has a size of 0 or 1 or less than needed
-		 							  		 *			to accomodate all data
-		 							  		 *		  -	hcf_put_info: CFG_DLNV_DATA exceeds intermediate
+											 *		  -	IFB_ConfigTable too small
+											 *		  -	hcf_get_info buffer has a size of 0 or 1 or less than needed
+											 *			to accomodate all data
+											 *		  -	hcf_put_info: CFG_DLNV_DATA exceeds intermediate
 											 *		  buffer size */
 #define HCF_ERR_INCOMP_PRI			0x09	// primary functions are not compatible
 #define HCF_ERR_INCOMP_FW			0x0A	// station functions are compatible
@@ -1044,17 +1044,17 @@ typedef LTV_STRCT FAR *	LTVP;   // i.s.o #define LTVP LTV_STRCT FAR *
 typedef struct DUI_STRCT {			/* "legacy", still used by WVLAN42/43, NDIS drivers use WLAPI			*/
 	void  FAR	*ifbp;				/* Pointer to IFB
 									 *	returned from MSF to USF by uil_connect
-				 					 *	passed from USF to MSF as a "magic cookie" by all other UIL function calls
-				 					 */
+									 *	passed from USF to MSF as a "magic cookie" by all other UIL function calls
+									 */
 	hcf_16		stat;				// status returned from MSF to USF
 	hcf_16		fun;				// command code from USF to MSF
 	LTV_STRCT	ltv;				/* LTV structure
-			 						 *** during uil_put_info:
-						 			 *	  the L, T and V-fields carry information from USF to MSF
+									 *** during uil_put_info:
+									 *	  the L, T and V-fields carry information from USF to MSF
 									 *** during uil_get_info:
 									 *	  the L and T fields carry information from USF to MSF
 									 *	  the L and V-fields carry information from MSF to USF
-			 						 */
+									 */
 } DUI_STRCT;
 typedef DUI_STRCT FAR *	DUIP;
 #endif //defined WVLAN_42 || defined WVLAN_43 //;?keepup with legacy a liitle while longer (4aug2003)
@@ -1114,7 +1114,7 @@ typedef struct CFG_DRV_INFO_STRCT {		//CFG_DRV_INFO (0x0825) driver information
 //#define COMP_ID_LINUX_PD				47		//Linux, HCF-light based, MSF source code in Public Domain
 #define COMP_ID_MINIPORT_NDIS_50		48		//Windows 9x/NT Miniport NDIS 5.0
 #define COMP_ID_LINUX					49		/*Linux, GPL'ed HCF based, full source code in Public Domain
-										  		 *thanks to Andreas Neuhaus								*/
+												 *thanks to Andreas Neuhaus								*/
 #define COMP_ID_QNX						50		//QNX
 #define COMP_ID_MINIPORT_NDIS_50_USB	51		//Windows 9x/NT Miniport NDIS 4.0
 #define COMP_ID_MINIPORT_NDIS_40		52		//Windows 9x/NT Miniport NDIS 4.0
@@ -1153,4 +1153,3 @@ typedef struct CFG_DRV_INFO_STRCT {		//CFG_DRV_INFO (0x0825) driver information
 #endif // HCF_LEGACY
 
 #endif // MDD_H
-

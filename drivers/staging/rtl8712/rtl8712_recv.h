@@ -154,4 +154,3 @@ s32 r8712_signal_scale_mapping(s32 cur_sig);
 void r8712_reordering_ctrl_timeout_handler(void *pcontext);
 
 #endif
-

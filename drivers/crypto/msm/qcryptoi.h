@@ -71,4 +71,3 @@ inline int _fips_qcrypto_aead_selftest(struct fips_selftest_data *selftest_d)
 #endif  /* CONFIG_FIPS_ENABLE*/
 
 #endif  /* __CRYPTO_MSM_QCRYPTOI_H */
-

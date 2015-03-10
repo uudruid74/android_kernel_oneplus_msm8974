@@ -229,10 +229,10 @@ typedef struct  {  //HCF Tallies (IFB substructure)
   hcf_32	NoBufInfo;  				//No buffer available for unsolicited Notify frame
   hcf_32	NoBufMB;					//No space available in MailBox
   hcf_32	MiscErr;					/* Command errors
-  										 *  - time out on completion synchronous part Hermes Command
-  										 *  - completed Hermes Command doesn't match original command
-  										 *  - status of completed Hermes Command contains error bits
-  										 */
+										 *  - time out on completion synchronous part Hermes Command
+										 *  - completed Hermes Command doesn't match original command
+										 *  - status of completed Hermes Command contains error bits
+										 */
 #if (HCF_EXT) & HCF_EXT_TALLIES_FW
   hcf_32	EngCnt[8];
 #endif // HCF_EXT_TALLIES_FW
@@ -319,7 +319,7 @@ typedef struct  {
 #if (HCF_ASSERT) & HCF_ASSERT_MB
   CFG_MB_INFO_RANGE1_STRCT	IFB_AssertStrct; // Add some complication to the HCF as prize for the new MSF I/F
 #endif // HCF_ASSERT_MB
-  										// target of above IFB_AssertStrct
+										// target of above IFB_AssertStrct
   hcf_16		IFB_AssertLine;			//  - line number ( + encoded module name )
   hcf_16		IFB_AssertTrace;		//  - bit based trace of all hcf_.... invocations
   hcf_32		IFB_AssertQualifier;	//  - qualifier
@@ -392,4 +392,3 @@ EXTERN_C void		 msf_assert	 		(unsigned int line_number, hcf_16 trace, hcf_32 qu
 #endif // HCF_ASSERT_LNK_MSF_RTN
 
 #endif  // HCF_H
-

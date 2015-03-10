@@ -47,7 +47,7 @@ again:
 	pop	%rsi
 	pop	%rdx
 	pop	%r10
- 	pop	%r8
+	pop	%r8
 	pop	%r9
 
 	/* execute syscall */

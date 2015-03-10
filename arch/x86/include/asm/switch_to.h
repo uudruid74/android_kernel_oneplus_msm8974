@@ -59,13 +59,13 @@ do {									\
 		       /* clobbered output registers: */		\
 		       "=b" (ebx), "=c" (ecx), "=d" (edx),		\
 		       "=S" (esi), "=D" (edi)				\
-		       							\
+									\
 		       __switch_canary_oparam				\
 									\
 		       /* input parameters: */				\
 		     : [next_sp]  "m" (next->thread.sp),		\
 		       [next_ip]  "m" (next->thread.ip),		\
-		       							\
+									\
 		       /* regparm parameters for __switch_to(): */	\
 		       [prev]     "a" (prev),				\
 		       [next]     "d" (next)				\

@@ -106,4 +106,3 @@ static void __devexit gp2alight_factory_exit(void)
 }
 module_init(gp2alight_factory_init);
 module_exit(gp2alight_factory_exit);
-

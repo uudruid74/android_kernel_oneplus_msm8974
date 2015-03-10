@@ -306,7 +306,7 @@ static struct msm_gpiomux_config gpio_nc_configs[] __initdata = {
 static struct msm_gpiomux_config gpio_nc_rev03_configs[] __initdata = {
 #if !defined(CONFIG_MACH_CHAGALL_KDI)
 	GPIOMUX_SET_NC(49),
-#endif	
+#endif
 	GPIOMUX_SET_NC(74),
 #if defined(CONFIG_MACH_CHAGALL_VZW)
 	GPIOMUX_SET_NC(80),
@@ -562,7 +562,7 @@ static struct msm_gpiomux_config msm8974_fingerprint_configs[] __initdata = {
 #endif
 
 #if defined(CONFIG_NFC_PN547) && defined(CONFIG_SEC_LOCALE_JPN)
-static struct gpiomux_setting nfc_pn547_firmware_cfg = 
+static struct gpiomux_setting nfc_pn547_firmware_cfg =
 {
 	.func = GPIOMUX_FUNC_GPIO,
 	.drv = GPIOMUX_DRV_2MA,
@@ -570,7 +570,7 @@ static struct gpiomux_setting nfc_pn547_firmware_cfg =
 	.dir = GPIOMUX_OUT_LOW,
 };
 #if defined(CONFIG_MACH_CHAGALL_DCM)
-static struct gpiomux_setting nfc_pn547_irq_cfg = 
+static struct gpiomux_setting nfc_pn547_irq_cfg =
 {
 	.func = GPIOMUX_FUNC_GPIO,
 	.drv = GPIOMUX_DRV_2MA,
@@ -578,7 +578,7 @@ static struct gpiomux_setting nfc_pn547_irq_cfg =
 	.dir = GPIOMUX_IN,
 };
 
-static struct gpiomux_setting nfc_pn547_ven_cfg = 
+static struct gpiomux_setting nfc_pn547_ven_cfg =
 {
 	.func = GPIOMUX_FUNC_GPIO,
 	.drv = GPIOMUX_DRV_2MA,
@@ -586,7 +586,7 @@ static struct gpiomux_setting nfc_pn547_ven_cfg =
 	.dir = GPIOMUX_OUT_LOW,
 };
 #endif
-static struct gpiomux_setting nfc_pn547_i2c_cfg = 
+static struct gpiomux_setting nfc_pn547_i2c_cfg =
 {
 	.func = GPIOMUX_FUNC_4,
 	/*
@@ -598,30 +598,30 @@ static struct gpiomux_setting nfc_pn547_i2c_cfg =
 	.pull = GPIOMUX_PULL_NONE,
 };
 
-static struct msm_gpiomux_config msm_nfc_pn547_configs[] __initdata = 
+static struct msm_gpiomux_config msm_nfc_pn547_configs[] __initdata =
 {
 #if defined(CONFIG_MACH_CHAGALL_KDI)
 	{
 		.gpio		= 49,		/* NFC FIRMWARE */
-		.settings = 
+		.settings =
 		{
 			[GPIOMUX_ACTIVE] = &nfc_pn547_firmware_cfg,
 			[GPIOMUX_SUSPENDED] = &nfc_pn547_firmware_cfg,
 		},
 	},
-#endif	
+#endif
 #if defined(CONFIG_MACH_CHAGALL_DCM)
 	{
 		.gpio		= 119,		/* NFC FIRMWARE */
-		.settings = 
+		.settings =
 		{
 			[GPIOMUX_ACTIVE] = &nfc_pn547_firmware_cfg,
 			[GPIOMUX_SUSPENDED] = &nfc_pn547_firmware_cfg,
 		},
-	},	
+	},
 	{
 		.gpio		= 107,		/* NFC IRQ */
-		.settings = 
+		.settings =
 		{
 			[GPIOMUX_ACTIVE] = &nfc_pn547_irq_cfg,
 			[GPIOMUX_SUSPENDED] = &nfc_pn547_irq_cfg,
@@ -629,16 +629,16 @@ static struct msm_gpiomux_config msm_nfc_pn547_configs[] __initdata =
 	},
 	{
 		.gpio		= 118,		/* NFC VEN */
-		.settings = 
+		.settings =
 		{
 			[GPIOMUX_ACTIVE] = &nfc_pn547_ven_cfg,
 			[GPIOMUX_SUSPENDED] = &nfc_pn547_ven_cfg,
 		},
 	},
-#endif		
+#endif
 	{
 		.gpio      = 51,                /* NFC PN547 on BLSP9 QUP I2C_DAT */
-		.settings = 
+		.settings =
 		{
 			[GPIOMUX_ACTIVE] = &nfc_pn547_i2c_cfg,
 			[GPIOMUX_SUSPENDED] = &nfc_pn547_i2c_cfg,
@@ -646,12 +646,12 @@ static struct msm_gpiomux_config msm_nfc_pn547_configs[] __initdata =
 	},
 	{
 		.gpio      = 52,                /* NFC PN547 on BLSP9 QUP I2C_CLK */
-		.settings = 
+		.settings =
 		{
 			[GPIOMUX_ACTIVE] = &nfc_pn547_i2c_cfg,
 			[GPIOMUX_SUSPENDED] = &nfc_pn547_i2c_cfg,
 		},
-	},	
+	},
 };
 #endif
 
@@ -767,7 +767,7 @@ static struct msm_gpiomux_config msm_sensors_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &sensor_cfg[0],
 		},
 	},
-	
+
 #if defined (CONFIG_MACH_CHAGALL_KDI)
 	{
 		.gpio      = 83,		/* BLSP11 QUP I2C_DAT */
@@ -899,7 +899,7 @@ static struct gpiomux_setting isdb_i2c_config = {
 	.drv = GPIOMUX_DRV_2MA,
 	.pull = GPIOMUX_PULL_NONE,
 };
-static struct msm_gpiomux_config msm8974_isdbt_configs[] __initdata = {	
+static struct msm_gpiomux_config msm8974_isdbt_configs[] __initdata = {
 	{
 		.gpio	   = 2,	/* I2C_SCL */
 		.settings = {
@@ -1012,7 +1012,7 @@ static struct msm_gpiomux_config msm_blsp_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &gpio_spi_config,
 		},
 	},
-#if !defined(CONFIG_ISDBT_FC8300)	
+#if !defined(CONFIG_ISDBT_FC8300)
 	{
 		.gpio	  = 2,		/* BLSP1 QUP SPI_DATA_SSN */
 		.settings = {
@@ -1025,7 +1025,7 @@ static struct msm_gpiomux_config msm_blsp_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &gpio_spi_config,
 		},
 	},
-#endif	
+#endif
 	{
 		.gpio      = 9,		/* BLSP1 QUP SPI_CS2A_N */
 		.settings = {
@@ -1056,7 +1056,7 @@ static struct msm_gpiomux_config msm_blsp_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &gpio_suspend_config[2],
 		},
 	},
- 	{
+	{
 		.gpio      = 10,		/* BLSP3 QUP I2C_DAT */
 		.settings = {
 			[GPIOMUX_ACTIVE] = &gpio_i2c_config,

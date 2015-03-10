@@ -253,7 +253,7 @@ int wacom_i2c_read(struct i2c_client *client,
         int ret;
         struct i2c_adapter *adap=client->adapter;
         struct i2c_msg msg;
-	
+
         msg.addr = addr;
         msg.flags = client->flags & I2C_M_TEN;
         msg.flags |= I2C_M_RD;
@@ -859,7 +859,7 @@ static int keycode[] = {
 
 void wacom_i2c_softkey(struct wacom_i2c *wac_i2c, s16 key, s16 pressed)
 {
-	
+
 	if (wac_i2c->pen_prox) {
 		dev_info(&wac_i2c->client->dev,
 				"%s: prox:%d, run release_hover\n",

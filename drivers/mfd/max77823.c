@@ -559,7 +559,7 @@ static int __devinit max77823_probe(struct i2c_client *client,
 		} else
 			max77823->irq_base = pdata->irq_base;
 		printk("%s: irq_base(%d)\n",__func__,pdata->irq_base);
-	
+
 		max77823->irq_gpio = pdata->irq_gpio;
 		max77823->wakeup = pdata->wakeup;
 	} else {
@@ -582,21 +582,21 @@ static int __devinit max77823_probe(struct i2c_client *client,
                         "device not found on this channel (this is not an error)\n");
 				ret = -ENODEV;
                 goto err;
-    } 
+    }
 
 	if (max77823_read_reg(max77823->i2c, MAX77823_PMIC_SAFEOUT_LDO_Control, &reg_data) < 0) {
                 dev_err(max77823->dev,
                         "device not found on this channel (this is not an error)\n");
-    } 
-	
+    }
+
 	if((max77823_update_reg(max77823->i2c, MAX77823_PMIC_SAFEOUT_LDO_Control, 0x00,0x30)  , 0))
 		printk("Error 1 reading LDO control\n");
-	
+
 	if (max77823_read_reg(max77823->i2c, MAX77823_PMIC_SAFEOUT_LDO_Control, &reg_data) < 0) {
                 dev_err(max77823->dev,
                         "device not found on this channel (this is not an error)\n");
-    } 
-		
+    }
+
 	ret = max77823_irq_init(max77823);
 	if (ret < 0)
 		goto err_irq_init;

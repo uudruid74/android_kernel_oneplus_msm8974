@@ -447,4 +447,3 @@ void ath9k_hw_bstuck_nfcal(struct ath_hw *ah)
 	caldata->nfcal_interference = true;
 }
 EXPORT_SYMBOL(ath9k_hw_bstuck_nfcal);
-

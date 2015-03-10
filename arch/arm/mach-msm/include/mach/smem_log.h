@@ -231,4 +231,3 @@ void smem_log_event6_to_static(uint32_t id, uint32_t data1, uint32_t data2,
 			       uint32_t data3, uint32_t data4, uint32_t data5,
 			       uint32_t data6) { }
 #endif
-

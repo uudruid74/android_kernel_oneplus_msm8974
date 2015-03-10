@@ -24,7 +24,7 @@
 
 /* Declares a variable of gurad object if neccessry. */
 #if defined(RTV_IF_SPI) || defined(RTV_IF_EBI2)
-	#if defined(__KERNEL__)	
+	#if defined(__KERNEL__)
 	struct mutex raontv_guard;
 	#elif defined(WINCE)
         CRITICAL_SECTION raontv_guard;
@@ -34,7 +34,7 @@
 #endif
 
 
-void rtvOEM_ConfigureInterrupt(void) 
+void rtvOEM_ConfigureInterrupt(void)
 {
 #if defined(RTV_IF_SPI) || defined(RTV_IF_EBI2)
 	RTV_REG_MAP_SEL(SPI_CTRL_PAGE);
@@ -132,7 +132,7 @@ void mtv222_spi_read_burst(unsigned char page, unsigned char reg,
 
 	ret = spi_sync(mtv_spi, &msg);
 	if (ret)
-		DMBERR("1 error: %d\n", ret);	
+		DMBERR("1 error: %d\n", ret);
 }
 
 void mtv222_spi_write(unsigned char page, unsigned char reg, unsigned char val)
@@ -184,6 +184,3 @@ void mtv222_spi_recover(unsigned char *buf, unsigned int size)
 		DMBERR("error: %d\n", ret);
 }
 #endif /* #if defined(RTV_IF_SPI) */
-
-
-

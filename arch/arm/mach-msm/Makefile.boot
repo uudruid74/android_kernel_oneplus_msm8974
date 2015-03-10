@@ -104,7 +104,7 @@ ifeq ($(CONFIG_SEC_K_PROJECT),y)
 	# dtbs for JPN
 	dtb-$(CONFIG_SEC_K_PROJECT)	+= msm8974pro-ac-sec-kjpn-r03.dtb
 	dtb-$(CONFIG_SEC_K_PROJECT)	+= msm8974pro-ac-sec-kjpn-r04.dtb
-	dtb-$(CONFIG_SEC_K_PROJECT)	+= msm8974pro-ac-sec-kjpn-r05.dtb    
+	dtb-$(CONFIG_SEC_K_PROJECT)	+= msm8974pro-ac-sec-kjpn-r05.dtb
 	dtb-$(CONFIG_SEC_K_PROJECT)	+= msm8974pro-ac-sec-kjpn-r06.dtb
 	dtb-$(CONFIG_SEC_K_PROJECT)	+= msm8974pro-ac-sec-kjpn-r07.dtb
 	dtb-$(CONFIG_SEC_K_PROJECT)	+= msm8974pro-ac-sec-kjpn-r08.dtb

@@ -84,7 +84,7 @@ static int ptrace_read_user(struct task_struct *tsk, unsigned long off,
 	case PT_EVB:
 		__asm__ __volatile__ (
 			"mvfc	%0, cr5 \n\t"
-	 		: "=r" (tmp)
+			: "=r" (tmp)
 		);
 		break;
 	case PT_CBR: {
@@ -304,14 +304,14 @@ compute_next_pc_for_16bit_insn(unsigned long insn, unsigned long pc,
 #if 1
 				/* pass through */
 #else
- 				/* kernel space is not allowed as next_pc */
+				/* kernel space is not allowed as next_pc */
 				unsigned long evb;
 				unsigned long trapno;
 				trapno = insn & 0xf;
 				__asm__ __volatile__ (
 					"mvfc %0, cr5\n"
-		 			:"=r"(evb)
-		 			:
+					:"=r"(evb)
+					:
 				);
 				*next_pc = evb + (trapno << 2);
 				return;
@@ -559,7 +559,7 @@ withdraw_debug_trap(struct pt_regs *regs)
 	unsigned long addr;
 	unsigned long code;
 
- 	addr = (regs->bpc - 2) & ~3;
+	addr = (regs->bpc - 2) & ~3;
 	regs->bpc -= 2;
 	if (unregister_debug_trap(current, addr, &code)) {
 	    access_process_vm(current, addr, &code, sizeof(code), 1);

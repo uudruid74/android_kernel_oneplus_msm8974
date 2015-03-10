@@ -372,7 +372,7 @@ static int get_candela_index(int bl_level)
 	int backlightlevel;
 	int cd;
 		switch (bl_level) {
- 		case 0:
+		case 0:
 			backlightlevel = 30;  /* 0 */
 			break;
 		case 1 ... 10:
@@ -1892,4 +1892,3 @@ int mdss_dsi_panel_init(struct device_node *node,
 #endif
 	return 0;
 }
-

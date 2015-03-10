@@ -731,4 +731,3 @@ int is_hugepage_only_range(struct mm_struct *mm, unsigned long addr,
 #endif
 	return !slice_check_fit(mask, available);
 }
-

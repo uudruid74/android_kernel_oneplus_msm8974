@@ -16,8 +16,8 @@
  *  G[4BITS]:MODEL_VARIANT i.e. 0 for MS01,1 for MILLET_3G
  *  H[4BITS]:Hardware Revision
  * Please refer to .../lk/platform/msm_shared/dev_tree.c also
- */ 
- 
+ */
+
 /dts-v1/;
 /include/ "msm8226-v1.dtsi"
 /include/ "msm8226-720p-mtp.dtsi"

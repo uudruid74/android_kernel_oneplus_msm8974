@@ -90,4 +90,3 @@ struct bin_info {
 
 int __init acpuclk_cortex_init(struct platform_device *pdev,
 	struct acpuclk_drv_data *data);
-

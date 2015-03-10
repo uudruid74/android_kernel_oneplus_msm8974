@@ -383,7 +383,7 @@ static int mdss_mdp_writeback_stop(struct mdss_mdp_ctl *ctl)
 
 		ctl->priv_data = NULL;
 		ctx->ref_cnt--;
-		
+
 		if(ctl->mdata != NULL)
 				pm_runtime_put_sync(&ctl->mdata->pdev->dev);
 	}
@@ -546,7 +546,7 @@ int mdss_mdp_writeback_start(struct mdss_mdp_ctl *ctl)
 		}
 		ctx->ref_cnt++;
 		/* Stop PM Runtime to switch off MDP Regulator during Writeback */
-		if(ctl->mdata != NULL)	
+		if(ctl->mdata != NULL)
 			pm_runtime_get_sync(&ctl->mdata->pdev->dev);
 	} else {
 		pr_err("invalid writeback mode %d\n", mem_sel);

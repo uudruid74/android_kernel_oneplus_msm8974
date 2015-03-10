@@ -2585,4 +2585,3 @@ ssize_t sec_hal_fg_store_attrs(struct device *dev,
 	return ret;
 }
 #endif
-

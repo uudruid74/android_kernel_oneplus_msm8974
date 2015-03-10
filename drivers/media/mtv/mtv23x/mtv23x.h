@@ -285,4 +285,3 @@ void rtvMTV23X_Diver_Update(void);
 #endif
 
 #endif /* __MTV23X_H__ */
-

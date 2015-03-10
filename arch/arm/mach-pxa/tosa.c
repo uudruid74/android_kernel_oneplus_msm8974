@@ -183,7 +183,7 @@ static struct platform_device tosascoop_device = {
 	.name		= "sharp-scoop",
 	.id		= 0,
 	.dev		= {
- 		.platform_data	= &tosa_scoop_setup,
+		.platform_data	= &tosa_scoop_setup,
 	},
 	.num_resources	= ARRAY_SIZE(tosa_scoop_resources),
 	.resource	= tosa_scoop_resources,
@@ -210,7 +210,7 @@ static struct platform_device tosascoop_jc_device = {
 	.name		= "sharp-scoop",
 	.id		= 1,
 	.dev		= {
- 		.platform_data	= &tosa_scoop_jc_setup,
+		.platform_data	= &tosa_scoop_jc_setup,
 		.parent 	= &tosascoop_device.dev,
 	},
 	.num_resources	= ARRAY_SIZE(tosa_scoop_jc_resources),

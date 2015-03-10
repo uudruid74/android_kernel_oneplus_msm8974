@@ -45,7 +45,7 @@ static inline int ili9320_write_spi(struct ili9320 *ili,
 	/* second message is the data to transfer */
 
 	data[0] = spi->id | ILI9320_SPI_DATA  | ILI9320_SPI_WRITE;
- 	data[1] = value >> 8;
+	data[1] = value >> 8;
 	data[2] = value;
 
 	return spi_sync(spi->dev, &spi->message);

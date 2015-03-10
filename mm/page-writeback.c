@@ -375,7 +375,7 @@ static int calc_period_shift(void)
 		dirty_total = (vm_dirty_ratio * global_dirtyable_memory()) /
 				100;
 #if defined(CONFIG_MIN_DIRTY_THRESH_PAGES) && CONFIG_MIN_DIRTY_THRESH_PAGES > 0
-	if (!vm_dirty_bytes && dirty_total < CONFIG_MIN_DIRTY_THRESH_PAGES) 
+	if (!vm_dirty_bytes && dirty_total < CONFIG_MIN_DIRTY_THRESH_PAGES)
 		dirty_total = CONFIG_MIN_DIRTY_THRESH_PAGES;
 #endif
 
@@ -1527,7 +1527,7 @@ void throttle_vm_writeout(gfp_t gfp_mask)
 
                 if (global_page_state(NR_UNSTABLE_NFS) +
 			global_page_state(NR_WRITEBACK) <= dirty_thresh)
-                        	break;
+				break;
                 congestion_wait(BLK_RW_ASYNC, HZ/10);
 
 		/*

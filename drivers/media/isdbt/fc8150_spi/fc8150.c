@@ -77,7 +77,7 @@ static int __devinit qpnp_isdbt_clk_probe(struct spmi_device *spmi)
 		spmi_data =  devm_kzalloc(&spmi->dev, sizeof(spmi_data), GFP_KERNEL);
 		if(!spmi_data)
 			return -ENOMEM;
-		
+
 		spmi_data->spmi = spmi;
 		isdbt_spmi = spmi_data;
                 if(system_rev >= 9)
@@ -109,19 +109,19 @@ static int __devexit qpnp_isdbt_clk_remove(struct spmi_device *spmi)
 		return 0;
 }
 static struct of_device_id spmi_match_table[] = {
-		    {  
+		    {
                           .compatible = "qcom,qpnp-clkrf2"
 			},
-			{  
+			{
                           .compatible = "qcom,qpnp-clkbb2"
 			}
 };
 
 static struct spmi_driver qpnp_isdbt_clk_driver = {
 		    .driver     = {
-					        .name   = "qcom,qpnp-isdbclk", 
+					        .name   = "qcom,qpnp-isdbclk",
 		                    .of_match_table = spmi_match_table,
-			 		    },
+					    },
 			.probe      = qpnp_isdbt_clk_probe,
 			.remove     = __devexit_p(qpnp_isdbt_clk_remove),
 };
@@ -174,7 +174,7 @@ int isdbt_hw_setting(void)
 //	gpio_direction_input(isdbt_pdata->gpio_ant_det);
 #endif
 
-	
+
 	return 0;
 #ifdef CONFIG_ISDBT_ANT_DET
 ISDBT_ANT_DET_ERR:
@@ -196,20 +196,20 @@ static void isdbt_gpio_init(void)
 	gpio_tlmm_config(GPIO_CFG(isdbt_pdata->gpio_spi_di, GPIOMUX_FUNC_1,
 					 GPIO_CFG_INPUT, GPIO_CFG_NO_PULL, GPIO_CFG_8MA),
 					 GPIO_CFG_ENABLE);
-	
+
 	gpio_tlmm_config(GPIO_CFG(isdbt_pdata->gpio_spi_do, GPIOMUX_FUNC_1,
 					 GPIO_CFG_OUTPUT, GPIO_CFG_NO_PULL, GPIO_CFG_8MA),
 					 GPIO_CFG_ENABLE);
-	
+
 	gpio_tlmm_config(GPIO_CFG(isdbt_pdata->gpio_spi_cs, GPIOMUX_FUNC_1,
 					 GPIO_CFG_OUTPUT, GPIO_CFG_NO_PULL, GPIO_CFG_8MA),
 					 GPIO_CFG_ENABLE);
-	
+
 	gpio_tlmm_config(GPIO_CFG(isdbt_pdata->gpio_spi_clk, GPIOMUX_FUNC_1,
 					 GPIO_CFG_OUTPUT, GPIO_CFG_NO_PULL, GPIO_CFG_8MA),
 					 GPIO_CFG_ENABLE);
 #endif
-					 
+
 	gpio_tlmm_config(GPIO_CFG(isdbt_pdata->gpio_en, GPIOMUX_FUNC_GPIO,
 						GPIO_CFG_OUTPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA),
 						GPIO_CFG_ENABLE);
@@ -223,7 +223,7 @@ static void isdbt_gpio_init(void)
 	gpio_tlmm_config(GPIO_CFG(isdbt_pdata->gpio_int, GPIOMUX_FUNC_GPIO,
 		GPIO_CFG_INPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA),
 		GPIO_CFG_ENABLE);
-		
+
 	isdbt_hw_setting();
 }
 
@@ -239,7 +239,7 @@ void isdbt_hw_init(void)
 	}
 
 	printk("%s START\n", __func__);
-	
+
 
 	gpio_tlmm_config(GPIO_CFG(isdbt_pdata->gpio_int, GPIOMUX_FUNC_GPIO,
         GPIO_CFG_INPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA),
@@ -254,18 +254,18 @@ void isdbt_hw_init(void)
 
 void isdbt_hw_start(void)
 {
-#ifdef CONFIG_ISDBT_SPMI	
+#ifdef CONFIG_ISDBT_SPMI
 	u8 reg = 0x00;
 
 #endif
-	
+
 #ifdef CONFIG_ISDBT_ANT_DET
 	gpio_direction_input(isdbt_pdata->gpio_ant_det);
 #endif
 	//gpio_direction_output(isdbt_pdata->gpio_en, 1);
 	gpio_set_value(isdbt_pdata->gpio_en, 1);
 
-	gpio_direction_input(isdbt_pdata->gpio_int);	
+	gpio_direction_input(isdbt_pdata->gpio_int);
 	//gpio_direction_output(isdbt_pdata->gpio_rst, 1);
 	//gpio_set_value(isdbt_pdata->gpio_rst, 1);
 	mdelay(3);
@@ -283,9 +283,9 @@ void isdbt_hw_start(void)
 	}
 	else
 		printk("%s ERROR !! isdbt_spmi is NULL !!\n", __func__);
-#endif	
+#endif
 	udelay(600);
-	
+
 	//mdelay(5);  // removed
 	gpio_set_value(isdbt_pdata->gpio_rst, 0);
 	mdelay(1);
@@ -293,7 +293,7 @@ void isdbt_hw_start(void)
 
 	driver_mode = ISDBT_POWERON;
 
-	printk("%s \n END. driver_mode=%d ", __func__, driver_mode);	
+	printk("%s \n END. driver_mode=%d ", __func__, driver_mode);
 }
 
 /*POWER_OFF */
@@ -301,29 +301,29 @@ void isdbt_hw_stop(void)
 {
 #ifdef CONFIG_ISDBT_SPMI
 	u8 reg = 0x00;
-#endif	
+#endif
 
 	printk("%st\n", __func__);
 
 	driver_mode = ISDBT_POWEROFF;
-	
-#ifdef CONFIG_ISDBT_SPMI	
+
+#ifdef CONFIG_ISDBT_SPMI
 	printk("%s, Tuning ISDBT_CLK off\n", __func__);
-	printk("%s Writing 0x00 to register 0x%x\n", __func__, spmi_addr);                
+	printk("%s Writing 0x00 to register 0x%x\n", __func__, spmi_addr);
 
 	reg = 0x00;
 	if(isdbt_spmi)
 	{
 		int rc = spmi_ext_register_writel(isdbt_spmi->spmi->ctrl, isdbt_spmi->spmi->sid, spmi_addr,&reg, 1);
- 
+
 		if (rc) {
 				printk("%s, Unable to write from addr=%x, rc(%d)\n", __func__, spmi_addr, rc );
 		}
 	}
 	else
 		printk("%s ERROR !! isdbt_spmi is NULL !!\n", __func__);
-#endif		
-	
+#endif
+
 	gpio_set_value(isdbt_pdata->gpio_en, 0);
 
 }
@@ -334,11 +334,11 @@ void isdbt_hw_deinit(void)
 	printk("isdbt_hw_deinit\n");
 
 	isdbt_hw_stop();
-	
+
 	gpio_tlmm_config(GPIO_CFG(isdbt_pdata->gpio_int, GPIOMUX_FUNC_GPIO,
         GPIO_CFG_INPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA),
         GPIO_CFG_ENABLE);
-#ifdef CONFIG_ISDBT_ANT_DET	
+#ifdef CONFIG_ISDBT_ANT_DET
 	gpio_tlmm_config(GPIO_CFG(isdbt_pdata->gpio_ant_det, GPIOMUX_FUNC_GPIO,
         GPIO_CFG_INPUT, GPIO_CFG_PULL_UP, GPIO_CFG_2MA),
         GPIO_CFG_ENABLE);
@@ -799,7 +799,7 @@ static int isdbt_ant_det_ignore_irq(void)
       //      isdbt_check_ant, system_rev);
     return isdbt_check_ant;
 }
-    
+
 
 static void isdbt_ant_det_work_func(struct work_struct *work)
         {
@@ -894,7 +894,7 @@ static bool isdbt_ant_det_destroy_wq(void)
 
 static irqreturn_t isdbt_ant_det_irq_handler(int irq, void *dev_id)
 {
-	
+
 
     if (isdbt_ant_det_ignore_irq())
 		return IRQ_HANDLED;
@@ -915,7 +915,7 @@ static irqreturn_t isdbt_ant_det_irq_handler(int irq, void *dev_id)
 static bool isdbt_ant_det_irq_set(bool set)
 {
 	bool ret = true;
-	
+
 	//printk("%s\n", __func__);
 
 	if (set) {
@@ -949,7 +949,7 @@ static bool isdbt_ant_det_irq_set(bool set)
 static struct isdbt_platform_data *isdbt_populate_dt_pdata(struct device *dev)
 {
 	struct isdbt_platform_data *pdata;
-	
+
 	printk("%s\n", __func__);
 	pdata =  devm_kzalloc(dev, sizeof(*pdata), GFP_KERNEL);
 	if (!pdata) {
@@ -972,49 +972,49 @@ static struct isdbt_platform_data *isdbt_populate_dt_pdata(struct device *dev)
 		goto alloc_err;
 	} else
 		pr_info("%s : isdbt-detect-gpio gpio_en =%d\n", __func__, pdata->gpio_en);
-		
+
 	pdata->gpio_rst = of_get_named_gpio(dev->of_node, "qcom,isdb-gpio-rst", 0);
 	if (pdata->gpio_rst < 0) {
 		pr_err("%s : can not find the isdbt-detect-gpio gpio_rst in the dt\n", __func__);
 		goto alloc_err;
 	} else
 		pr_info("%s : isdbt-detect-gpio gpio_rst =%d\n", __func__, pdata->gpio_rst);
-		
+
 	pdata->gpio_int = of_get_named_gpio(dev->of_node, "qcom,isdb-gpio-irq", 0);
 	if (pdata->gpio_int < 0) {
 		pr_err("%s : can not find the isdbt-detect-gpio in the gpio_int dt\n", __func__);
 		goto alloc_err;
 	} else
 		pr_info("%s : isdbt-detect-gpio gpio_int =%d\n", __func__, pdata->gpio_int);
-		
+
 	pdata->gpio_spi_do = of_get_named_gpio(dev->of_node, "qcom,isdb-gpio-spi_do", 0);
 	if (pdata->gpio_spi_do < 0) {
 		pr_err("%s : can not find the isdbt-detect-gpio in the gpio_spi_do dt\n", __func__);
 		goto alloc_err;
 	} else
 		pr_info("%s : isdbt-detect-gpio gpio_spi_do =%d\n", __func__, pdata->gpio_spi_do);
-		
+
 	pdata->gpio_spi_di = of_get_named_gpio(dev->of_node, "qcom,isdb-gpio-spi_di", 0);
 	if (pdata->gpio_spi_di < 0) {
 		pr_err("%s : can not find the isdbt-detect-gpio in the gpio_spi_di dt\n", __func__);
 		goto alloc_err;
 	} else
 		pr_info("%s : isdbt-detect-gpio gpio_spi_di =%d\n", __func__, pdata->gpio_spi_di);
-		
+
 	pdata->gpio_spi_cs = of_get_named_gpio(dev->of_node, "qcom,isdb-gpio-spi_cs", 0);
 	if (pdata->gpio_spi_cs < 0) {
 		pr_err("%s : can not find the isdbt-detect-gpio gpio_spi_cs in the dt\n", __func__);
 		goto alloc_err;
 	} else
 		pr_info("%s : isdbt-detect-gpio gpio_spi_cs=%d\n", __func__, pdata->gpio_spi_cs);
-		
+
 	pdata->gpio_spi_clk = of_get_named_gpio(dev->of_node, "qcom,isdb-gpio-spi_clk", 0);
 	if (pdata->gpio_spi_clk < 0) {
 		pr_err("%s : can not find the isdbt-detect-gpio gpio_spi_clk in the dt\n", __func__);
 		goto alloc_err;
 	} else
 		pr_info("%s : isdbt-detect-gpio gpio_spi_clk=%d\n", __func__, pdata->gpio_spi_clk);
-		
+
 
 	return pdata;
 alloc_err:
@@ -1033,9 +1033,9 @@ static int isdbt_probe(struct platform_device *pdev)
 		pr_err("%s : isdbt_pdata is NULL.\n", __func__);
 		return -ENODEV;
 	}
-	
+
 isdbt_gpio_init();
-	
+
 	res = misc_register(&fc8150_misc_device);
 
 	if (res < 0) {
@@ -1044,7 +1044,7 @@ isdbt_gpio_init();
 	}
 
 
-	
+
 	res = request_irq(gpio_to_irq(isdbt_pdata->gpio_int), isdbt_irq
 		, IRQF_DISABLED | IRQF_TRIGGER_RISING, FC8150_NAME, NULL);
 
@@ -1052,7 +1052,7 @@ isdbt_gpio_init();
 		printk("isdbt_probe: couldn't request gpio");
 		return res;
 	}
-		
+
 
 	hInit = kmalloc(sizeof(struct ISDBT_INIT_INFO_T), GFP_KERNEL);
 
@@ -1070,7 +1070,7 @@ isdbt_gpio_init();
 	}
 
 	INIT_LIST_HEAD(&(hInit->hHead));
-#if defined(CONFIG_ISDBT_ANT_DET)	
+#if defined(CONFIG_ISDBT_ANT_DET)
 
 	wake_lock_init(&isdbt_ant_wlock, WAKE_LOCK_SUSPEND, "isdbt_ant_wlock");
 
@@ -1109,7 +1109,7 @@ static int isdbt_remove(struct platform_device *pdev)
 static int isdbt_suspend(struct platform_device *pdev, pm_message_t mesg)
 {
        int value;
-#ifdef CONFIG_ISDBT_SPMI	
+#ifdef CONFIG_ISDBT_SPMI
 	u8 reg = 0x00;
 	printk("%s, Tuning ISDBT_CLK off\n", __func__);
 	printk("%s Writing 0x00 to register 0x%x\n", __func__, spmi_addr);
@@ -1123,14 +1123,14 @@ static int isdbt_suspend(struct platform_device *pdev, pm_message_t mesg)
 	}
 	else
 		printk("%s ERROR !! isdbt_spmi is NULL !!\n", __func__);
-#endif		
-	
+#endif
+
        value = gpio_get_value_cansleep(isdbt_pdata->gpio_en);
        printk("%s  value = %d\n",__func__,value);
        if(value == 1)
        {
           gpio_set_value(isdbt_pdata->gpio_en, 0);
-       }       
+       }
 
 	return 0;
 }
@@ -1178,7 +1178,7 @@ int isdbt_init(void)
 			printk("Error : qpnp isdbt clk init fail : %d\n", res);
 		}
 	printk("qpnp isdbt clk init done \n");
-	
+
 #endif
 	res = platform_driver_register(&isdbt_driver);
 	if (res < 0) {
@@ -1210,7 +1210,7 @@ void isdbt_exit(void)
 	kfree(hInit);
 
 #ifdef CONFIG_ISDBT_SPMI
-	spmi_driver_unregister(&qpnp_isdbt_clk_driver);      
+	spmi_driver_unregister(&qpnp_isdbt_clk_driver);
 #endif
 }
 

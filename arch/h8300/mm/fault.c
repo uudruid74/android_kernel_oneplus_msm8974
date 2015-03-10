@@ -2,7 +2,7 @@
  *  linux/arch/h8300/mm/fault.c
  *
  *  Copyright (C) 1998  D. Jeff Dionne <jeff@lineo.ca>,
- *  Copyright (C) 2000  Lineo, Inc.  (www.lineo.com) 
+ *  Copyright (C) 2000  Lineo, Inc.  (www.lineo.com)
  *
  *  Based on:
  *
@@ -53,4 +53,3 @@ asmlinkage int do_page_fault(struct pt_regs *regs, unsigned long address,
 
 	return 1;
 }
-

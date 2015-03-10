@@ -748,4 +748,3 @@ void l2_pm_deinitialize(void)
   RCP15_L2PMCR(enables);
   WCP15_L2PMCR(enables & ~PM_L2_GLOBAL_ENABLE);
 }
-

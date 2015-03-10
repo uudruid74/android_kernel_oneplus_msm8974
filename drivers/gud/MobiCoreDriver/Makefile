@@ -23,4 +23,3 @@ mcDrvModule-objs :=logging.o ops.o mem.o api.o pm.o main.o
 clean:
 	rm -rf *.o *~ core .depend .*.cmd *.ko *.mod.c .tmp_versions \
 		Module.markers Module.symvers modules.order
-

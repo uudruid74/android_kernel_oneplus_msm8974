@@ -630,7 +630,7 @@ int nfc_power_onoff(struct sec_nfc_info *data, bool onoff)
 				__func__, ret);
 			return ret;
 		}
-/*        
+/*
 		ret = regulator_set_voltage(data->L6, 1800000, 1800000);
 		if (ret) {
 			pr_err("%s: set voltage failed on 8941_l6, rc=%d\n",

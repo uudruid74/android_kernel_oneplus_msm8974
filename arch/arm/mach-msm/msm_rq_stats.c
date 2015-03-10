@@ -309,7 +309,7 @@ static ssize_t run_queue_smt_mgr_avg_show(struct kobject *kobj,
 		sum_avg = 0;
 		sum_avg_cnt = 0;
 	}
-	
+
 	if(sum_avg_cnt==0) {
 		val = 0;
 	} else {

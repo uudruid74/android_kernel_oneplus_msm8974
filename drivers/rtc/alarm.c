@@ -372,7 +372,7 @@ int alarm_set_alarm(char* alarm_data)
 		return -1;
 	}
 
-	strlcpy(buf_ptr, alarm_data, BOOTALM_BIT_TOTAL+1);	
+	strlcpy(buf_ptr, alarm_data, BOOTALM_BIT_TOTAL+1);
 
 	alm.time.tm_sec = 0;
 	alm.time.tm_min  =	(buf_ptr[BOOTALM_BIT_MIN]	 -'0') * 10
@@ -816,4 +816,3 @@ static void  __exit alarm_exit(void)
 late_initcall(alarm_late_init);
 module_init(alarm_driver_init);
 module_exit(alarm_exit);
-

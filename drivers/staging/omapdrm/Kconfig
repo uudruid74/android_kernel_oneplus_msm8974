@@ -22,4 +22,3 @@ config DRM_OMAP_NUM_CRTCS
 	help
 	  Select the number of video overlays which can be used as framebuffers.
 	  The remaining overlays are reserved for video.
-

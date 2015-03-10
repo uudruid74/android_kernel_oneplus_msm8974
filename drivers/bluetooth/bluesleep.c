@@ -196,7 +196,7 @@ static void hsuart_power(int on)
 			msm_hs_set_mctrl(bsi->uport, TIOCM_RTS);
 			return;
 		}
-		
+
 		clk_state = bluesleep_get_uart_state();
 		if(clk_state == MSM_HS_CLK_REQUEST_OFF) {
 			BT_DBG("hsuart_power wait");
@@ -1102,4 +1102,3 @@ MODULE_DESCRIPTION("Bluetooth Sleep Mode Driver ver %s " VERSION);
 #ifdef MODULE_LICENSE
 MODULE_LICENSE("GPL");
 #endif
-

@@ -1693,7 +1693,7 @@ static int snd_usbmidi_create_endpoints(struct snd_usb_midi* umidi,
  * Returns MIDIStreaming device capabilities.
  */
 static int snd_usbmidi_get_ms_info(struct snd_usb_midi* umidi,
-			   	   struct snd_usb_midi_endpoint_info* endpoints)
+				   struct snd_usb_midi_endpoint_info* endpoints)
 {
 	struct usb_interface* intf;
 	struct usb_host_interface *hostif;

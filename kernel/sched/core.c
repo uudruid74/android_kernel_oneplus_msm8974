@@ -6650,7 +6650,7 @@ static int __sdt_alloc(const struct cpumask *cpu_map)
 			struct sched_group *sg;
 			struct sched_group_power *sgp;
 
-		       	sd = kzalloc_node(sizeof(struct sched_domain) + cpumask_size(),
+			sd = kzalloc_node(sizeof(struct sched_domain) + cpumask_size(),
 					GFP_KERNEL, cpu_to_node(j));
 			if (!sd)
 				return -ENOMEM;

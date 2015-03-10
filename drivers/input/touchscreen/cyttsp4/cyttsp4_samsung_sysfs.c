@@ -182,15 +182,15 @@ static void get_fw_ver_ic(void *device_data)
 		(struct cyttsp4_samsung_sysfs_data *) device_data;
 	struct cyttsp4_sysinfo *sysinfo;
 	char strbuff[16] = {0};
-	
+
 	set_default_result(ssd);
 
 	sysinfo = ssd->corecmd->update_sysinfo(ssd->dev);
 	if (sysinfo) {
 		//ssd->si = sysinfo;
 		snprintf(strbuff, sizeof(strbuff), "CY%02x%02x%02x",
-			sysinfo->sti->hw_version, 
-			sysinfo->sti->fw_versionh, 
+			sysinfo->sti->hw_version,
+			sysinfo->sti->fw_versionh,
 			sysinfo->sti->fw_versionl);
 		ssd->factory_cmd_state = FACTORYCMD_OK;
 	} else {
@@ -199,7 +199,7 @@ static void get_fw_ver_ic(void *device_data)
 	}
 
 	set_cmd_result(ssd, strbuff, strnlen(strbuff, sizeof(strbuff)));
-	
+
 	dev_info(ssd->dev, "%s: %s(%d)\n", __func__,
 		strbuff, strnlen(strbuff, sizeof(strbuff)));
 }
@@ -222,7 +222,7 @@ static void get_config_ver(void *device_data)
 	}
 
 	set_cmd_result(ssd, strbuff, strnlen(strbuff, sizeof(strbuff)));
-	
+
 	dev_info(ssd->dev, "%s: %s(%d)\n", __func__,
 		strbuff, strnlen(strbuff, sizeof(strbuff)));
 }
@@ -239,7 +239,7 @@ static void get_threshold(void *device_data)
 
 	set_default_result(ssd);
 
-	rc = cyttsp4_request_get_parameter_(ssd->dev, 
+	rc = cyttsp4_request_get_parameter_(ssd->dev,
 		CY_RAM_ID_FINGER_THRESHOLH, &value);
 
 	if (rc == 0) {
@@ -252,7 +252,7 @@ static void get_threshold(void *device_data)
 	}
 
 	set_cmd_result(ssd, strbuff, strnlen(strbuff, sizeof(strbuff)));
-	
+
 	dev_info(ssd->dev, "%s: %s(%d)\n", __func__,
 		strbuff, strnlen(strbuff, sizeof(strbuff)));
 }
@@ -356,7 +356,7 @@ static s16 btn_value_s16(u8* buf, u8 btn, enum cyttsp4_scan_data_type data_type,
 	return (s16)get_unaligned_le16(buf);
 }
 
-static void run_raw_diff_read(struct cyttsp4_samsung_sysfs_data* ssd, 
+static void run_raw_diff_read(struct cyttsp4_samsung_sysfs_data* ssd,
 	enum cyttsp4_scan_data_type data_type)
 {
 	s16 screen_min;
@@ -366,7 +366,7 @@ static void run_raw_diff_read(struct cyttsp4_samsung_sysfs_data* ssd,
 
 	set_default_result(ssd);
 
-	rc = ssd->corecmd->scan_and_retrieve(ssd->dev, true, true, 
+	rc = ssd->corecmd->scan_and_retrieve(ssd->dev, true, true,
 		0, ssd->num_all_nodes, data_type, ssd->screen_buf, NULL,
 		&ssd->raw_diff_element_size);
 
@@ -377,7 +377,7 @@ static void run_raw_diff_read(struct cyttsp4_samsung_sysfs_data* ssd,
 	}
 
 	if (ssd->num_btns) {
-		rc = ssd->corecmd->scan_and_retrieve(ssd->dev, true, true, 
+		rc = ssd->corecmd->scan_and_retrieve(ssd->dev, true, true,
 			0, ssd->num_btns*4, CY_SDT_BTN, ssd->btn_buf, NULL,
 			&ssd->raw_diff_element_size);
 
@@ -387,7 +387,7 @@ static void run_raw_diff_read(struct cyttsp4_samsung_sysfs_data* ssd,
 			goto exit;
 		}
 	}
-	
+
 exit:
 	if (rc == 0) {
 		if (ssd->raw_diff_element_size == 2)
@@ -399,13 +399,13 @@ exit:
 		snprintf(strbuff, sizeof(strbuff), "%d,%d", screen_min, screen_max);
 
 		if (ssd->num_btns) {
-			snprintf(strbuff         + strnlen(strbuff, sizeof(strbuff)), 
-					 sizeof(strbuff) - strnlen(strbuff, sizeof(strbuff)), 
+			snprintf(strbuff         + strnlen(strbuff, sizeof(strbuff)),
+					 sizeof(strbuff) - strnlen(strbuff, sizeof(strbuff)),
 					 ",%d,%d", // btn0, btn1
-					 btn_value_s16(ssd->btn_buf, 0, data_type, 
-					 	ssd->raw_diff_element_size),
-					 btn_value_s16(ssd->btn_buf, 1, data_type, 
-					 	ssd->raw_diff_element_size) );
+					 btn_value_s16(ssd->btn_buf, 0, data_type,
+						ssd->raw_diff_element_size),
+					 btn_value_s16(ssd->btn_buf, 1, data_type,
+						ssd->raw_diff_element_size) );
 		}
 
 		ssd->factory_cmd_state = FACTORYCMD_OK;
@@ -511,7 +511,7 @@ static void get_btn_raw_diff(struct cyttsp4_samsung_sysfs_data* ssd,
 
 		ssd->factory_cmd_state = FACTORYCMD_FAIL;
 	} else {
-		value = btn_value_s16(ssd->btn_buf, ssd->factory_cmd_param[0], 
+		value = btn_value_s16(ssd->btn_buf, ssd->factory_cmd_param[0],
 			data_type, ssd->raw_diff_element_size),
 
 		snprintf(strbuff, sizeof(strbuff), "%d", value);
@@ -580,8 +580,8 @@ static void run_idac_read(void *device_data)
 
 	set_default_result(ssd);
 
-	rc = ssd->corecmd->retrieve_data_structure(ssd->dev, 
-		0, gidac_node_num(ssd)+lidac_node_num(ssd), 
+	rc = ssd->corecmd->retrieve_data_structure(ssd->dev,
+		0, gidac_node_num(ssd)+lidac_node_num(ssd),
 		0/*mutual*/, ssd->screen_buf);
 	if (rc < 0) {
 		dev_err(ssd->dev, "%s: retrieve_data_structure failed r=%d\n",
@@ -590,8 +590,8 @@ static void run_idac_read(void *device_data)
 	}
 
 	if (ssd->num_btns) {
-		rc = ssd->corecmd->retrieve_data_structure(ssd->dev, 
-			0, 1 + ssd->num_btns, 
+		rc = ssd->corecmd->retrieve_data_structure(ssd->dev,
+			0, 1 + ssd->num_btns,
 			3/*but mutual*/, ssd->btn_buf);
 		if (rc < 0) {
 			dev_err(ssd->dev, "%s: retrieve_data_structure failed r=%d\n",
@@ -599,9 +599,9 @@ static void run_idac_read(void *device_data)
 			goto exit;
 		}
 	}
-	
+
 exit:
-	if (rc == 0) {	
+	if (rc == 0) {
 		find_max_min_u8(ssd->screen_buf + CY_CMD_RET_PNL_OUT_DATA_OFFS + gidac_node_num(ssd),
 			lidac_node_num(ssd), &screen_lidac_max, &screen_lidac_min);
 
@@ -611,8 +611,8 @@ exit:
 		ssd->factory_cmd_state = FACTORYCMD_OK;
 
 		if (ssd->num_btns) {
-			snprintf(strbuff         + strnlen(strbuff, sizeof(strbuff)), 
-					 sizeof(strbuff) - strnlen(strbuff, sizeof(strbuff)), 
+			snprintf(strbuff         + strnlen(strbuff, sizeof(strbuff)),
+					 sizeof(strbuff) - strnlen(strbuff, sizeof(strbuff)),
 					 ",%d,%d,%d", // global, local 0, local 1
 					 ssd->btn_buf[CY_CMD_RET_PNL_OUT_DATA_OFFS],
 					 ssd->btn_buf[CY_CMD_RET_PNL_OUT_DATA_OFFS + 1],
@@ -694,7 +694,7 @@ static void get_local_idac_btn(void *device_data)
 
 
 /************************************************************************
- * 
+ *
  ************************************************************************/
 static void not_support_cmd(void *device_data)
 {
@@ -887,7 +887,7 @@ static ssize_t tsp_calibration_run(struct device *dev,
 static DEVICE_ATTR(tsp_calibration, S_IRUGO | S_IWUSR | S_IWGRP, tsp_calibration_run, NULL);
 
 static struct attribute *sec_touch_screen_attributes[] = {
-	&dev_attr_tsp_calibration.attr,		
+	&dev_attr_tsp_calibration.attr,
 	NULL,
 };
 static struct attribute_group sec_touch_screen_attr_group = {
@@ -902,7 +902,7 @@ static struct attribute_group sec_touch_screen_attr_group = {
 #define SEC_TOUCHKEY
 #ifdef SEC_TOUCHKEY
 
-static ssize_t key_sensitivity_show(struct device *dev, 
+static ssize_t key_sensitivity_show(struct device *dev,
 	struct device_attribute *attr, char *buf, int key)
 {
 	struct cyttsp4_samsung_sysfs_data *ssd = dev_get_drvdata(dev);
@@ -914,10 +914,10 @@ static ssize_t key_sensitivity_show(struct device *dev,
 
 	if (key >= ssd->num_btns)
 		return 0;
-	
+
 	pm_runtime_get_sync(ssd->dev);
 
-	rc = ssd->corecmd->scan_and_retrieve(ssd->dev, true, true, 
+	rc = ssd->corecmd->scan_and_retrieve(ssd->dev, true, true,
 		0, ssd->num_btns*4, CY_SDT_BTN, ssd->btn_buf, NULL,
 		&ssd->raw_diff_element_size);
 
@@ -929,7 +929,7 @@ static ssize_t key_sensitivity_show(struct device *dev,
 
 	pm_runtime_put(ssd->dev);
 
-	value = btn_value_s16(ssd->btn_buf, key, CY_SDT_MUT_DIFF, 
+	value = btn_value_s16(ssd->btn_buf, key, CY_SDT_MUT_DIFF,
 					 ssd->raw_diff_element_size);
 
 	return sprintf(buf, "%d\n", value);
@@ -942,20 +942,20 @@ static ssize_t recent_sensitivity_show(struct device *dev,
 	return key_sensitivity_show(dev, attr, buf, 0);
 }
 
-static ssize_t back_sensitivity_show(struct device *dev, 
+static ssize_t back_sensitivity_show(struct device *dev,
 	struct device_attribute *attr, char *buf)
 {
 	return key_sensitivity_show(dev, attr, buf, 1);
 }
 
-static ssize_t touchkey_threshold_show(struct device *dev, 
+static ssize_t touchkey_threshold_show(struct device *dev,
 	struct device_attribute *attr, char *buf)
 {
 	struct cyttsp4_samsung_sysfs_data *ssd = dev_get_drvdata(dev);
 	u32 value;
 	int rc;
-	
-	rc = cyttsp4_request_get_parameter_(ssd->dev, 
+
+	rc = cyttsp4_request_get_parameter_(ssd->dev,
 		CY_RAM_ID_BTN_THRSH_MUT, &value);
 	if (rc < 0) {
 		dev_err(ssd->dev, "%s: failed request get param r=%d\n",
@@ -1002,7 +1002,7 @@ int cyttsp4_samsung_sysfs_probe(struct device *dev)
 	int i;
 
 	dev_info(dev, "%s: \n",	__func__);
-	
+
 	ssd->dev = dev;
 
 	ssd->corecmd = cyttsp4_get_commands();
@@ -1066,7 +1066,7 @@ int cyttsp4_samsung_sysfs_probe(struct device *dev)
 	ssd->factory_cmd_is_running = false;
 
 //-- sysfs factory
-	ssd->dev_factory = device_create(sec_class, NULL, 
+	ssd->dev_factory = device_create(sec_class, NULL,
 		MKDEV(SEC_DEV_TOUCH_MAJOR, SEC_DEV_TSP_MINOR), ssd, "tsp");
 	if (IS_ERR(ssd->dev_factory)) {
 		dev_err(ssd->dev, "Failed device_create tsp\n");
@@ -1083,7 +1083,7 @@ int cyttsp4_samsung_sysfs_probe(struct device *dev)
 
 #ifdef SEC_TOUCHSCREEN
 //-- sysfs screen
-	ssd->dev_screen = device_create(sec_class, NULL, 
+	ssd->dev_screen = device_create(sec_class, NULL,
 		MKDEV(SEC_DEV_TOUCH_MAJOR,SEC_DEV_TOUCHSCREEN_MINOR), ssd, "sec_touchscreen");
 	if (IS_ERR(ssd->dev_screen)) {
 		dev_err(ssd->dev, "Failed device_create sec_touchscreen\n");
@@ -1101,14 +1101,14 @@ int cyttsp4_samsung_sysfs_probe(struct device *dev)
 
 #ifdef SEC_TOUCHKEY
 //-- sysfs key
-	ssd->dev_key = device_create(sec_class, NULL, 
+	ssd->dev_key = device_create(sec_class, NULL,
 		MKDEV(SEC_DEV_TOUCH_MAJOR, SEC_DEV_TOUCHKEY_MINOR), ssd, "sec_touchkey");
 	if (IS_ERR(ssd->dev_key)) {
 		dev_err(ssd->dev, "Failed device_create sec_touchkey\n");
 		goto error_device_create_key;
 	}
 	dev_dbg(dev, "%s ssd->dev_key->devt=%d\n",__func__, ssd->dev_key->devt);
-	
+
 	rc = sysfs_create_group(&ssd->dev_key->kobj,
 		&sec_touch_key_attr_group);
 	if (rc) {
@@ -1145,7 +1145,7 @@ error_device_create_screen:
 error_sysfs_create_group_factory:
 	device_destroy(sec_class, ssd->dev_factory->devt);
 error_device_create_factory:
-	kfree(ssd->btn_buf);	
+	kfree(ssd->btn_buf);
 error_alloc_btn_buf:
 	kfree(ssd->screen_buf);
 error_return:
@@ -1188,4 +1188,3 @@ int cyttsp4_samsung_sysfs_release(struct device *dev)
 
 	return 0;
 }
-

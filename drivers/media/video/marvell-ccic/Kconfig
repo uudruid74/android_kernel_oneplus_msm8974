@@ -20,4 +20,3 @@ config VIDEO_MMP_CAMERA
 	  controller found on Marvell Armada 610 application
 	  processors (and likely beyond).  This is the controller found
 	  in OLPC XO 1.75 systems.
-

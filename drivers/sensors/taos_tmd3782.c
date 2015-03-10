@@ -645,7 +645,7 @@ static ssize_t light_enable_store(struct device *dev,
 	if (new_value && !(taos->power_state & LIGHT_ENABLED)) {
 		if (!taos->power_state) {
 			taos_chip_on(taos);
-                	msleep(60); /*more than 58 ms*/
+			msleep(60); /*more than 58 ms*/
 		}
 		taos->power_state |= LIGHT_ENABLED;
 		taos_light_enable(taos);

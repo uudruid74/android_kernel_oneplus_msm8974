@@ -81,4 +81,3 @@ void cyttsp5_init_function_ptrs(struct cyttsp5_mt_data *md)
 	md->mt_function.input_report = cyttsp5_input_report;
 	md->mt_function.input_register_device = cyttsp5_input_register_device;
 }
-

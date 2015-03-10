@@ -106,7 +106,7 @@ static int ali1563_transaction(struct i2c_adapter * a, int size)
 		outb_p(HST_CNTL2_KILL,SMB_HST_CNTL2);
 		data = inb_p(SMB_HST_STS);
 		status = -ETIMEDOUT;
- 	}
+	}
 
 	/* device error - no response, ignore the autodetection case */
 	if (data & HST_STS_DEVERR) {
@@ -425,9 +425,9 @@ static DEFINE_PCI_DEVICE_TABLE(ali1563_id_table) = {
 MODULE_DEVICE_TABLE (pci, ali1563_id_table);
 
 static struct pci_driver ali1563_pci_driver = {
- 	.name		= "ali1563_smbus",
+	.name		= "ali1563_smbus",
 	.id_table	= ali1563_id_table,
- 	.probe		= ali1563_probe,
+	.probe		= ali1563_probe,
 	.remove		= __devexit_p(ali1563_remove),
 };
 

@@ -231,5 +231,3 @@ INT flushAllAppQ(void)
 	}
 	return STATUS_SUCCESS;
 }
-
-

@@ -83,7 +83,7 @@ static int CPRM_CMD_SecureRW(struct mmc_card *card,
 	//kishore
 	mmc_rpm_hold(card->host, &card->dev);
 	mmc_claim_host(card->host);
-	
+
 	err = mmc_wait_for_cmd(card->host, &cmd, 0);
 	if (err)
 	{
@@ -144,15 +144,15 @@ static int CPRM_CMD_SecureRW(struct mmc_card *card,
 	printk(KERN_DEBUG"CPRM_CMD_SecureRW: 3\n");
 
 
-	
-	
+
+
 	mmc_wait_for_req(card->host, &mrq);
 
 	//kishore
 	mmc_release_host(card->host);
 	mmc_rpm_release(card->host, &card->dev);
-	
-	
+
+
 	printk(KERN_DEBUG"CPRM_CMD_SecureRW: 4\n");
 
 	i = 0;

@@ -701,4 +701,3 @@ module_exit(isa1400_vibrator_exit);
 MODULE_AUTHOR("Junki Min <Junki671.min@samsung.com>");
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("haptic driver for the isa1400 ic");
-

@@ -75,7 +75,7 @@ extern void ia64_account_on_switch (struct task_struct *prev, struct task_struct
 	/* "next" in old context is "current" in new context */			\
 	if (unlikely((current->thread.flags & IA64_THREAD_MIGRATION) &&	       \
 		     (task_cpu(current) !=				       \
-		      		      task_thread_info(current)->last_cpu))) { \
+				      task_thread_info(current)->last_cpu))) { \
 		platform_migrate(current);				       \
 		task_thread_info(current)->last_cpu = task_cpu(current);       \
 	}								       \

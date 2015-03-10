@@ -339,7 +339,7 @@ resume_userspace_sig:
 
 ENTRY(resume_userspace)
 	LOCKDEP_SYS_EXIT
- 	DISABLE_INTERRUPTS(CLBR_ANY)	# make sure we don't miss an interrupt
+	DISABLE_INTERRUPTS(CLBR_ANY)	# make sure we don't miss an interrupt
 					# setting need_resched or sigpending
 					# between sampling and the iret
 	TRACE_IRQS_OFF

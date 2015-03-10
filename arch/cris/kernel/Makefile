@@ -13,4 +13,3 @@ obj-$(CONFIG_MODULES)	 += module.o
 obj-$(CONFIG_SYSTEM_PROFILER)   += profile.o
 
 clean:
-

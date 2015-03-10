@@ -168,4 +168,3 @@ static void __init sun3_sched_init(irq_handler_t timer_routine)
         sun3_enable_interrupts();
         intersil_clear();
 }
-

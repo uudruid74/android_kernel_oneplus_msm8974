@@ -1082,4 +1082,3 @@ int sipc5_init_io_device(struct io_device *iod)
 				iod->name, iod->io_typ, ret);
 	return ret;
 }
-

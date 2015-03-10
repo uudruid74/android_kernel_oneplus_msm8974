@@ -260,4 +260,3 @@ int __init swordfish_init_mmc(void)
 
 	return 0;
 }
-

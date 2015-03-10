@@ -301,4 +301,3 @@ struct omap_hwmod_irq_info omap2_mcspi2_mpu_irqs[] = {
 	{ .irq = 66 },
 	{ .irq = -1 }
 };
-

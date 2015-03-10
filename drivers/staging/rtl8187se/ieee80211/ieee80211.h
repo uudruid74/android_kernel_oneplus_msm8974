@@ -106,7 +106,7 @@ typedef struct ieee_param {
 		} wpa_ie;
 	        struct{
 			int command;
-    			int reason_code;
+			int reason_code;
 		} mlme;
 		struct {
 			u8 alg[IEEE_CRYPT_ALG_NAME_LEN];
@@ -1376,8 +1376,8 @@ extern void ieee80211_rtl_start_scan(struct ieee80211_device *ieee);
 
 //Add for RF power on power off by lizhaoming 080512
 extern void SendDisassociation(struct ieee80211_device *ieee,
-       			 u8*                     asSta,
-        		 u8                      asRsn);
+			 u8*                     asSta,
+			 u8                      asRsn);
 
 /* ieee80211_crypt_ccmp&tkip&wep.c */
 extern void ieee80211_tkip_null(void);

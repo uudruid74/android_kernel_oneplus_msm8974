@@ -137,7 +137,7 @@ void mtv23x_spi_read_burst(unsigned char page, unsigned char reg,
 
 	ret = spi_sync(mtv_spi, &msg);
 	if (ret)
-		DMBERR("1 error: %d\n", ret);	
+		DMBERR("1 error: %d\n", ret);
 }
 
 void mtv23x_spi_write(unsigned char page, unsigned char reg, unsigned char val)
@@ -174,6 +174,3 @@ void mtv23x_spi_write(unsigned char page, unsigned char reg, unsigned char val)
 		DMBERR("error: %d\n", ret);
 }
 #endif /* #if defined(RTV_IF_SPI) */
-
-
-

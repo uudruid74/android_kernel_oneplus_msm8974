@@ -239,4 +239,3 @@ int drm_debugfs_cleanup(struct drm_minor *minor)
 }
 
 #endif /* CONFIG_DEBUG_FS */
-

@@ -16,5 +16,3 @@ CFLAGS_cyttsp5_device_access.o += -DDEBUG
 CFLAGS_cyttsp5_loader.o += -DDEBUG $(CYTTSP_CFLAGS)
 CFLAGS_cyttsp5_platform.o += -DDEBUG $(CYTTSP_CFLAGS)
 CFLAGS_cyttsp5_samsung_factory.o += -DDEBUG
-
-

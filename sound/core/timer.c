@@ -844,7 +844,7 @@ static int snd_timer_dev_register(struct snd_device *dev)
 		return -ENXIO;
 	if (!(timer->hw.flags & SNDRV_TIMER_HW_SLAVE) &&
 	    !timer->hw.resolution && timer->hw.c_resolution == NULL)
-	    	return -EINVAL;
+		return -EINVAL;
 
 	mutex_lock(&register_mutex);
 	list_for_each_entry(timer1, &snd_timer_list, device_list) {
@@ -1547,10 +1547,10 @@ static int snd_timer_user_tselect(struct file *file,
 			err = -ENOMEM;
 	}
 
-      	if (err < 0) {
+	if (err < 0) {
 		snd_timer_close(tu->timeri);
-      		tu->timeri = NULL;
-      	} else {
+		tu->timeri = NULL;
+	} else {
 		tu->timeri->flags |= SNDRV_TIMER_IFLG_FAST;
 		tu->timeri->callback = tu->tread
 			? snd_timer_user_tinterrupt : snd_timer_user_interrupt;
@@ -1559,7 +1559,7 @@ static int snd_timer_user_tselect(struct file *file,
 	}
 
       __err:
-      	mutex_unlock(&tu->tread_sem);
+	mutex_unlock(&tu->tread_sem);
 	return err;
 }
 

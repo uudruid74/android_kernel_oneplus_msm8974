@@ -2245,7 +2245,7 @@ static void get_module_vendor(void *device_data)
 	int val,val2;
 
 	set_default_result(info);
-	if (!(gpio_get_value(info->pdata->vdd_en) && 
+	if (!(gpio_get_value(info->pdata->vdd_en) &&
 				gpio_get_value(info->pdata->vdd_en2))) {
 		dev_err(&info->client->dev, "%s: [ERROR] Touch is stopped\n",
 				__func__);
@@ -3330,17 +3330,17 @@ int melfas_power(struct mms_ts_info *info, int on){
 				rc);
 				return 0;
 			}
-			
+
 		}
 	}
-	
+
 	ret = gpio_direction_output(info->pdata->vdd_en, on);
 		if (ret) {
 			pr_err("[TSP]%s: unable to set_direction for mms_vdd_en [%d]\n",
 					__func__, info->pdata->vdd_en);
 		}
 		return 0;
-	
+
 	msleep(20);
 	tsp_power_enabled = on;
 	return 0;

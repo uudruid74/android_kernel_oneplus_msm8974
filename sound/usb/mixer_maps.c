@@ -208,7 +208,7 @@ static struct usbmix_name_map live24ext_map[] = {
 /* LineX FM Transmitter entry - needed to bypass controls bug */
 static struct usbmix_name_map linex_map[] = {
 	/* 1: IT pcm */
-	/* 2: OT Speaker */ 
+	/* 2: OT Speaker */
 	{ 3, "Master" }, /* FU: master volume - left / right / mute */
 	{ 0 } /* terminator */
 };
@@ -328,7 +328,7 @@ static struct usbmix_ctl_map usbmix_ctl_maps[] = {
 		.map = audigy2nx_map,
 		.selector_map = audigy2nx_selectors,
 	},
- 	{
+	{
 		.id = USB_ID(0x041e, 0x3040),
 		.map = live24ext_map,
 	},
@@ -382,4 +382,3 @@ static struct usbmix_ctl_map usbmix_ctl_maps[] = {
 	},
 	{ 0 } /* terminator */
 };
-

@@ -183,7 +183,7 @@ struct ib_srq *ipath_create_srq(struct ib_pd *ibpd,
 		goto bail_ip;
 	}
 
- 	dev->n_srqs_allocated++;
+	dev->n_srqs_allocated++;
 	spin_unlock(&dev->n_srqs_lock);
 
 	if (srq->ip) {

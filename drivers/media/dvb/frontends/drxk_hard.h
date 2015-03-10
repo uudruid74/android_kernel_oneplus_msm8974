@@ -346,4 +346,3 @@ struct drxk_state {
 #define DEMOD_LOCK 2
 #define FEC_LOCK   3
 #define MPEG_LOCK  4
-

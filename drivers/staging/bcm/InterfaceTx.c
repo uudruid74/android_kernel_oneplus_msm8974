@@ -103,7 +103,7 @@ static void write_bulk_callback(struct urb *urb/*, struct pt_regs *regs*/)
 
 err_exit :
 	usb_free_coherent(urb->dev, urb->transfer_buffer_length,
- 			urb->transfer_buffer, urb->transfer_dma);
+			urb->transfer_buffer, urb->transfer_dma);
 }
 
 
@@ -135,7 +135,7 @@ static int TransmitTcb(PS_INTERFACE_ADAPTER psIntfAdapter, PUSB_TCB pTcb, PVOID 
 	int retval = 0;
 
 	urb->transfer_buffer = usb_alloc_coherent(psIntfAdapter->udev, len,
- 						GFP_ATOMIC, &urb->transfer_dma);
+						GFP_ATOMIC, &urb->transfer_dma);
 	if (!urb->transfer_buffer)
 	{
 		BCM_DEBUG_PRINT(psIntfAdapter->psAdapter,DBG_TYPE_PRINTK, 0, 0, "Error allocating memory\n");
@@ -149,7 +149,7 @@ static int TransmitTcb(PS_INTERFACE_ADAPTER psIntfAdapter, PUSB_TCB pTcb, PVOID 
 	if((psIntfAdapter->psAdapter->chip_id == T3B) && (psIntfAdapter->bHighSpeedDevice == TRUE))
 	{
 		usb_fill_int_urb(urb, psIntfAdapter->udev,
-	    	psIntfAdapter->sBulkOut.bulk_out_pipe,
+		psIntfAdapter->sBulkOut.bulk_out_pipe,
 			urb->transfer_buffer, len, write_bulk_callback, pTcb,
 			psIntfAdapter->sBulkOut.int_out_interval);
 	}
@@ -193,5 +193,3 @@ int InterfaceTransmitPacket(PVOID arg, PVOID data, UINT len)
 	}
 	return TransmitTcb(psIntfAdapter, pTcb, data, len);
 }
-
-

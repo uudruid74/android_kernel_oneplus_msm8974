@@ -7,7 +7,7 @@
  ****************************************************************
  **
  **  WARNING:
- **  The values in this file are exported to user space via 
+ **  The values in this file are exported to user space via
  **  the sysctl() binary interface.  Do *NOT* change the
  **  numbering of any existing values here, and do not change
  **  any numbers within any one set of values.  If you have to
@@ -109,19 +109,19 @@ enum
 
 	KERN_RTSIGNR=32,	/* Number of rt sigs queued */
 	KERN_RTSIGMAX=33,	/* Max queuable */
-	
+
 	KERN_SHMMAX=34,         /* long: Maximum shared memory segment */
 	KERN_MSGMAX=35,         /* int: Maximum size of a messege */
 	KERN_MSGMNB=36,         /* int: Maximum message queue size */
 	KERN_MSGPOOL=37,        /* int: Maximum system message pool size */
 	KERN_SYSRQ=38,		/* int: Sysreq enable */
 	KERN_MAX_THREADS=39,	/* int: Maximum nr of threads in the system */
- 	KERN_RANDOM=40,		/* Random driver */
- 	KERN_SHMALL=41,		/* int: Maximum size of shared memory */
- 	KERN_MSGMNI=42,		/* int: msg queue identifiers */
- 	KERN_SEM=43,		/* struct: sysv semaphore limits */
- 	KERN_SPARC_STOP_A=44,	/* int: Sparc Stop-A enable */
- 	KERN_SHMMNI=45,		/* int: shm array identifiers */
+	KERN_RANDOM=40,		/* Random driver */
+	KERN_SHMALL=41,		/* int: Maximum size of shared memory */
+	KERN_MSGMNI=42,		/* int: msg queue identifiers */
+	KERN_SEM=43,		/* struct: sysv semaphore limits */
+	KERN_SPARC_STOP_A=44,	/* int: Sparc Stop-A enable */
+	KERN_SHMMNI=45,		/* int: shm array identifiers */
 	KERN_OVERFLOWUID=46,	/* int: overflow UID */
 	KERN_OVERFLOWGID=47,	/* int: overflow GID */
 	KERN_SHMPATH=48,	/* string: path to shm fs */
@@ -132,7 +132,7 @@ enum
 	KERN_TAINTED=53,	/* int: various kernel tainted flags */
 	KERN_CADPID=54,		/* int: PID of the process to notify on CAD */
 	KERN_PIDMAX=55,		/* int: PID # limit */
-  	KERN_CORE_PATTERN=56,	/* string: pattern for core-file names */
+	KERN_CORE_PATTERN=56,	/* string: pattern for core-file names */
 	KERN_PANIC_ON_OOPS=57,  /* int: whether we will panic on an oops */
 	KERN_HPPA_PWRSW=58,	/* int: hppa soft-power enable */
 	KERN_HPPA_UNALIGNED=59,	/* int: hppa unaligned-trap enable */
@@ -414,7 +414,7 @@ enum
 	NET_TCP_CONG_CONTROL=110,
 	NET_TCP_ABC=111,
 	NET_IPV4_IPFRAG_MAX_DIST=112,
- 	NET_TCP_MTU_PROBING=113,
+	NET_TCP_MTU_PROBING=113,
 	NET_TCP_BASE_MSS=114,
 	NET_IPV4_TCP_WORKAROUND_SIGNED_WINDOWS=115,
 	NET_TCP_DMA_COPYBREAK=116,
@@ -507,17 +507,17 @@ enum
 	NET_IPV4_NF_CONNTRACK_TCP_LOOSE=17,
 	NET_IPV4_NF_CONNTRACK_TCP_BE_LIBERAL=18,
 	NET_IPV4_NF_CONNTRACK_TCP_MAX_RETRANS=19,
- 	NET_IPV4_NF_CONNTRACK_SCTP_TIMEOUT_CLOSED=20,
- 	NET_IPV4_NF_CONNTRACK_SCTP_TIMEOUT_COOKIE_WAIT=21,
- 	NET_IPV4_NF_CONNTRACK_SCTP_TIMEOUT_COOKIE_ECHOED=22,
- 	NET_IPV4_NF_CONNTRACK_SCTP_TIMEOUT_ESTABLISHED=23,
- 	NET_IPV4_NF_CONNTRACK_SCTP_TIMEOUT_SHUTDOWN_SENT=24,
- 	NET_IPV4_NF_CONNTRACK_SCTP_TIMEOUT_SHUTDOWN_RECD=25,
- 	NET_IPV4_NF_CONNTRACK_SCTP_TIMEOUT_SHUTDOWN_ACK_SENT=26,
+	NET_IPV4_NF_CONNTRACK_SCTP_TIMEOUT_CLOSED=20,
+	NET_IPV4_NF_CONNTRACK_SCTP_TIMEOUT_COOKIE_WAIT=21,
+	NET_IPV4_NF_CONNTRACK_SCTP_TIMEOUT_COOKIE_ECHOED=22,
+	NET_IPV4_NF_CONNTRACK_SCTP_TIMEOUT_ESTABLISHED=23,
+	NET_IPV4_NF_CONNTRACK_SCTP_TIMEOUT_SHUTDOWN_SENT=24,
+	NET_IPV4_NF_CONNTRACK_SCTP_TIMEOUT_SHUTDOWN_RECD=25,
+	NET_IPV4_NF_CONNTRACK_SCTP_TIMEOUT_SHUTDOWN_ACK_SENT=26,
 	NET_IPV4_NF_CONNTRACK_COUNT=27,
 	NET_IPV4_NF_CONNTRACK_CHECKSUM=28,
 };
- 
+
 /* /proc/sys/net/ipv6 */
 enum {
 	NET_IPV6_CONF=16,
@@ -969,7 +969,7 @@ extern int proc_do_large_bitmap(struct ctl_table *, int,
 
 /*
  * Register a set of sysctl names by calling register_sysctl_table
- * with an initialised array of struct ctl_table's.  An entry with 
+ * with an initialised array of struct ctl_table's.  An entry with
  * NULL procname terminates the table.  table->de will be
  * set up by the registration and need not be initialised in advance.
  *
@@ -987,7 +987,7 @@ extern int proc_do_large_bitmap(struct ctl_table *, int,
  * the sysctl table.  The data and maxlen fields of the ctl_table
  * struct enable minimal validation of the values being written to be
  * performed, and the mode field allows minimal authentication.
- * 
+ *
  * There must be a proc_handler routine for any terminal nodes
  * mirrored under /proc/sys (non-terminals are handled by a built-in
  * directory handler).  Several default handlers are available to
@@ -1013,7 +1013,7 @@ static inline void *proc_sys_poll_event(struct ctl_table_poll *poll)
 	struct ctl_table_poll name = __CTL_TABLE_POLL_INITIALIZER(name)
 
 /* A sysctl table is an array of struct ctl_table: */
-struct ctl_table 
+struct ctl_table
 {
 	const char *procname;		/* Text ID for /proc/sys, or zero */
 	void *data;

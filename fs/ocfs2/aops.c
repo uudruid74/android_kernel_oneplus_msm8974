@@ -431,7 +431,7 @@ int walk_page_buffers(	handle_t *handle,
 
 	for (	bh = head, block_start = 0;
 		ret == 0 && (bh != head || !block_start);
-	    	block_start = block_end, bh = next)
+		block_start = block_end, bh = next)
 	{
 		next = bh->b_this_page;
 		block_end = block_start + blocksize;

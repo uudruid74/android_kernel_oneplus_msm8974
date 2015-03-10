@@ -23,9 +23,9 @@ int vstlog(const char *fmt, va_list args);
 int stlog(const char *fmt, ...);
 
 #ifdef CONFIG_STLOG
-#define ST_LOG(fmt,...) stlog(fmt,##__VA_ARGS__)	
+#define ST_LOG(fmt,...) stlog(fmt,##__VA_ARGS__)
 #else
-#define ST_LOG(fmt,...) 
+#define ST_LOG(fmt,...)
 #endif /* CONFIG_STLOG */
 
 

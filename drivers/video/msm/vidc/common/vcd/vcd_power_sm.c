@@ -395,4 +395,3 @@ u32 vcd_un_gate_clock(struct vcd_dev_ctxt *dev_ctxt)
 		rc = VCD_ERR_FAIL;
 	return rc;
 }
-

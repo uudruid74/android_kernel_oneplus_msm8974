@@ -1059,4 +1059,3 @@ const struct mvs_dispatch mvs_94xx_dispatch = {
 	mvs_94xx_tune_interrupt,
 	mvs_94xx_non_spec_ncq_error,
 };
-

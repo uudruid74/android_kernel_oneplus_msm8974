@@ -32,7 +32,7 @@
 #include <asm/estate.h>
 #include <asm/sfafsr.h>
 #include <asm/unistd.h>
-	
+
 /* This section from from _start to sparc64_boot_end should fit into
  * 0x0000000000404000 to 0x0000000000408000.
  */
@@ -437,7 +437,7 @@ sun4v_chip_type:
 	cmp	%g2, '2'
 	be,pt	%xcc, 5f
 	 mov	SUN4V_CHIP_NIAGARA2, %g4
-	
+
 4:
 	mov	SUN4V_CHIP_UNKNOWN, %g4
 5:	sethi	%hi(sun4v_chip_type), %g2

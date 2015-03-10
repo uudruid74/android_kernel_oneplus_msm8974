@@ -792,7 +792,7 @@ static UINT GetSNR_DVBT_Mode(U8 mod, UINT val)
 
 	if (mod == 1) {
 	/* QPSK */
-		if (val > 43000) { 
+		if (val > 43000) {
 			cn_a = 0;
 			cn_b = 0;
 			return 0;
@@ -892,7 +892,7 @@ static UINT GetSNR_DVBT_Mode(U8 mod, UINT val)
 		}
 	}else if (mod == 2) {
 		/* 16 QAM */
-		if (val > 53000) { 
+		if (val > 53000) {
 			cn_a = 0;
 			cn_b = 0;
 		} else if (val > 51200) {	// 0~
@@ -989,9 +989,9 @@ static UINT GetSNR_DVBT_Mode(U8 mod, UINT val)
 			cn_a = 30;
 			cn_b = 0;
 		}
-	}else if (mod == 3) { 
+	}else if (mod == 3) {
 	/* 64 QAM */
-		if (val > 53300) { 
+		if (val > 53300) {
 			cn_a = 0;
 			cn_b = 0;
 		} else if (val > 52000) {	// 0~
@@ -1088,7 +1088,7 @@ static UINT GetSNR_DVBT_Mode(U8 mod, UINT val)
 			cn_a = 30;
 			cn_b = 0;
 		}
-	}	else {	
+	}	else {
 		cn_a = 0;
 		cn_b = 0;
 		return 0;
@@ -1214,7 +1214,7 @@ U32 rtvMTV23x_GetCNR_LayerB(void)
 {
 	U32 data = 0, cnr = 0;
 	U8 Mod = 0xFF, Cd = 0xFF;
-	
+
 #if defined(RTV_DVBT_ENABLE)
 		if (g_eRtvServiceType == RTV_SERVICE_DVBT) {
 			RTV_DBGMSG0("[rtvMTV23x_GetCNR_LayerB] Not Support at DVB-T\n");
@@ -2353,7 +2353,7 @@ INT rtvMTV23x_ScanFrequency(U32 dwChFreqKHz, UINT nSubchID,
 			pwr_threshold = 100000;
 		break;
 
-#if defined(RTV_DVBT_ENABLE)		
+#if defined(RTV_DVBT_ENABLE)
 	case RTV_SERVICE_DVBT:
 		if ((dwChFreqKHz == 184500) || (dwChFreqKHz == 490000) ||
 		(dwChFreqKHz == 554000) || (dwChFreqKHz == 618000) ||
@@ -2478,7 +2478,7 @@ INT rtvMTV23x_ScanFrequency(U32 dwChFreqKHz, UINT nSubchID,
 					RTV_REG_MASK_SET(0x1B, 0x80, 0x00);
 					RTV_REG_MAP_SEL(SHAD_PAGE);
 					OFDM_L = ((RTV_REG_GET(0x81)&0x04)>>2);
-					rtvMTV23x_Diversity_Path_Select(DIVERSITY_MASTER);		
+					rtvMTV23x_Diversity_Path_Select(DIVERSITY_MASTER);
 				}
 #endif
 			}
@@ -2494,7 +2494,7 @@ INT rtvMTV23x_ScanFrequency(U32 dwChFreqKHz, UINT nSubchID,
 					RTV_REG_MASK_SET(0x11, 0x04, 0x00);
 
 					TMCC_L = RTV_REG_GET(0x10) & 0x01;
-					
+
 #ifndef RTV_DUAL_DIVERISTY_ENABLE
 					if (!g_fRtv1segLpMode) {
 						RTV_REG_MAP_SEL(OFDM_PAGE);
@@ -2567,7 +2567,7 @@ INT rtvMTV23x_ScanFrequency(U32 dwChFreqKHz, UINT nSubchID,
 			 end_jiffies = get_jiffies_64();
 			 diff_time = jiffies_to_msecs(end_jiffies - start_jiffies);
 			 if (diff_time >= MAX_OFDM_RETRY_MS) {
-			 	RTV_GUARD_FREE;
+				RTV_GUARD_FREE;
 
 				//RTV_DBGMSG2("\t@@ OFDM: nOFDM_LockCnt(%u), diff_time(%u)\n", OFDM_RETRY_MS_CNT-nOFDM_LockCnt, diff_time);
 				sucess_flag = RTV_CHANNEL_NOT_DETECTED;
@@ -2634,7 +2634,7 @@ static void rtv_InitDemod(void)
 	RTV_REG_SET(0x34, 0x9F);
 	RTV_REG_SET(0x35, 0xFF);
 	RTV_REG_SET(0x36, 0x01);
-	
+
 	RTV_REG_SET(0x71, 0xAA);
 	RTV_REG_SET(0x8E, 0x15);
 
@@ -2900,18 +2900,18 @@ void rtvMTV23X_Diver_Update(void)
 	RTV_GUARD_LOCK;
 
 	rtvMTV23x_Diversity_Path_Select(DIVERSITY_MASTER);
-	
+
 	rtv_UpdateMon();
 	oper_div = rtvMTV23x_MonDualDiversity();
 
 	RTV_REG_MAP_SEL(SHAD_PAGE);
 	m_ofdm_lock = RTV_REG_GET(0x81) & 0x04;
-	
+
 	mobile = (RTV_REG_GET(0x93)>>2) & 0x01;
 
 	RTV_REG_MAP_SEL(FEC_PAGE);
 	div_mode = RTV_REG_GET(0xD1);
-	
+
 	rtvMTV23x_Diversity_Path_Select(DIVERSITY_SLAVE);
 	rtv_UpdateMon();
 
@@ -2925,43 +2925,43 @@ void rtvMTV23X_Diver_Update(void)
 	{
 		if ((div_mode & 0x03) <= 1) {
 			if (mobile)
-				RTV_REG_SET(0xD1, 0xD5); 
+				RTV_REG_SET(0xD1, 0xD5);
 			else
-				RTV_REG_SET(0xD1, 0xD4); 
+				RTV_REG_SET(0xD1, 0xD4);
 		}
 	}
 	////////////////////////STEP 2/////////////////////////////////
 	{
 		if (oper_div == 2) {
 			if ( s_gau == 1 ) {
-				RTV_REG_SET(0x3E, 0x1A); 
-				RTV_REG_SET(0x3F, 0x92); 
+				RTV_REG_SET(0x3E, 0x1A);
+				RTV_REG_SET(0x3F, 0x92);
 			}
 			else {
-				RTV_REG_SET(0x3E, 0x9A); 
-				RTV_REG_SET(0x3F, 0x92); 
+				RTV_REG_SET(0x3E, 0x9A);
+				RTV_REG_SET(0x3F, 0x92);
 			}
 		} else {
-			RTV_REG_SET(0x3F, 0x12); 
+			RTV_REG_SET(0x3F, 0x12);
 		}
 	}
 	////////////////////////STEP 3/////////////////////////////////
 	{
 		 if ((m_ofdm_lock == 0) && (s_ofdm_lock == 0)) {
 			RTV_REG_MAP_SEL(OFDM_PAGE);
-			RTV_REG_SET(0x19, 0xC0); 
-			RTV_REG_SET(0x19, 0x80); 
+			RTV_REG_SET(0x19, 0xC0);
+			RTV_REG_SET(0x19, 0x80);
 
 		 } else if (oper_div == 2 && (s_ofdm_lock == 0)) {
 			RTV_REG_MAP_SEL(FEC_PAGE);
-			RTV_REG_SET(0xFB, 0xDB); 
+			RTV_REG_SET(0xFB, 0xDB);
 			RTV_REG_SET(0xFB, 0xDA);
 		 }
 	}
 
 	RTV_GUARD_FREE;
 
-	if (cPath == DIVERSITY_SLAVE) 
+	if (cPath == DIVERSITY_SLAVE)
 		rtvMTV23x_Diversity_Path_Select(DIVERSITY_SLAVE);
 
 }
@@ -3025,4 +3025,3 @@ mtv23x_init_exit:
 
 	return nRet;
 }
-

@@ -57,7 +57,7 @@ int __compute_return_epc_for_insn(struct pt_regs *regs,
 	 */
 	case bcond_op:
 		switch (insn.i_format.rt) {
-	 	case bltz_op:
+		case bltz_op:
 		case bltzl_op:
 			if ((long)regs->regs[insn.i_format.rs] < 0) {
 				epc = epc + 4 + (insn.i_format.simmediate << 2);

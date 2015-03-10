@@ -104,4 +104,3 @@ MonitorTimer_Request(struct MonTimer *monTimer,
 		hrtimer_cancel(&monTimer->timer);
 	}
 }
-

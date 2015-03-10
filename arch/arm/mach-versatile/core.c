@@ -141,7 +141,7 @@ static struct map_desc versatile_io_desc[] __initdata = {
 		.type		= MT_DEVICE
 	},
 #ifdef CONFIG_MACH_VERSATILE_AB
- 	{
+	{
 		.virtual	=  IO_ADDRESS(VERSATILE_IB2_BASE),
 		.pfn		= __phys_to_pfn(VERSATILE_IB2_BASE),
 		.length		= SZ_64M,
@@ -149,7 +149,7 @@ static struct map_desc versatile_io_desc[] __initdata = {
 	},
 #endif
 #ifdef CONFIG_DEBUG_LL
- 	{
+	{
 		.virtual	=  IO_ADDRESS(VERSATILE_UART0_BASE),
 		.pfn		= __phys_to_pfn(VERSATILE_UART0_BASE),
 		.length		= SZ_4K,
@@ -157,7 +157,7 @@ static struct map_desc versatile_io_desc[] __initdata = {
 	},
 #endif
 #ifdef CONFIG_PCI
- 	{
+	{
 		.virtual	=  IO_ADDRESS(VERSATILE_PCI_CORE_BASE),
 		.pfn		= __phys_to_pfn(VERSATILE_PCI_CORE_BASE),
 		.length		= SZ_4K,
@@ -174,7 +174,7 @@ static struct map_desc versatile_io_desc[] __initdata = {
 		.type		= MT_DEVICE
 	},
 #if 0
- 	{
+	{
 		.virtual	=  VERSATILE_PCI_VIRT_MEM_BASE0,
 		.pfn		= __phys_to_pfn(VERSATILE_PCI_MEM_BASE0),
 		.length		= SZ_16M,
@@ -799,14 +799,14 @@ static void __init versatile_timer_init(void)
 {
 	u32 val;
 
-	/* 
-	 * set clock frequency: 
+	/*
+	 * set clock frequency:
 	 *	VERSATILE_REFCLK is 32KHz
 	 *	VERSATILE_TIMCLK is 1MHz
 	 */
 	val = readl(__io_address(VERSATILE_SCTL_BASE));
 	writel((VERSATILE_TIMCLK << VERSATILE_TIMER1_EnSel) |
-	       (VERSATILE_TIMCLK << VERSATILE_TIMER2_EnSel) | 
+	       (VERSATILE_TIMCLK << VERSATILE_TIMER2_EnSel) |
 	       (VERSATILE_TIMCLK << VERSATILE_TIMER3_EnSel) |
 	       (VERSATILE_TIMCLK << VERSATILE_TIMER4_EnSel) | val,
 	       __io_address(VERSATILE_SCTL_BASE));
@@ -826,4 +826,3 @@ static void __init versatile_timer_init(void)
 struct sys_timer versatile_timer = {
 	.init		= versatile_timer_init,
 };
-

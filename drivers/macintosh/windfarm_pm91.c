@@ -170,7 +170,7 @@ static void wf_smu_create_cpu_fans(void)
 				  GFP_KERNEL);
 	if (wf_smu_cpu_fans == NULL)
 		goto fail;
-       	wf_smu_cpu_fans->ticks = 1;
+	wf_smu_cpu_fans->ticks = 1;
 
 	/* Fill PID params */
 	pid_param.interval = WF_SMU_CPU_FANS_INTERVAL;
@@ -308,7 +308,7 @@ static void wf_smu_create_drive_fans(void)
 		       " max fan speed\n");
 		goto fail;
 	}
-       	wf_smu_drive_fans->ticks = 1;
+	wf_smu_drive_fans->ticks = 1;
 
 	/* Fill PID params */
 	param.additive = (fan_hd->type == WF_CONTROL_RPM_FAN);
@@ -389,7 +389,7 @@ static void wf_smu_create_slots_fans(void)
 		       " max fan speed\n");
 		goto fail;
 	}
-       	wf_smu_slots_fans->ticks = 1;
+	wf_smu_slots_fans->ticks = 1;
 
 	/* Fill PID params */
 	param.additive = (fan_slots->type == WF_CONTROL_RPM_FAN);

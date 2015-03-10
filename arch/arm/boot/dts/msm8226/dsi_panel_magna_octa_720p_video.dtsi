@@ -105,7 +105,7 @@
 
 			qcom,panel-display-on-cmds = [05 01 00 00 32 00 02 29 00];
 			qcom,panel-display-off-cmds = [05 01 00 00 32 00 02 28 00];
-							
+
 			qcom,panel-display-unblank-cmds = [39 01 00 00 32 00 02 13 00];			/*Normal mode command*/
 			qcom,panel-display-blank-cmds = [39 01 00 00 45 00 02 22 00];		 /* All pixel off - for making display black*/
 
@@ -204,16 +204,16 @@
 					249  0         265  0        282  0        300  0
 				>;
 
-			/* 
+			/*
 			 * ************************************************************************************************************************
 			 * ACL command list and mappings
 			 * ************************************************************************************************************************
 			 */
 			 /* B5h
- 			   * 1st - 0x01 : PSRE , 0x03 : no PSRE
+			   * 1st - 0x01 : PSRE , 0x03 : no PSRE
 			   * 2nd(OPR) - 0x99 : 60%
- 			   * 3rd(ACL) - 0x23 : 27.6% , 0x27 : 30%, 0x35 : 40%
- 			   */
+			   * 3rd(ACL) - 0x23 : 27.6% , 0x27 : 30%, 0x35 : 40%
+			   */
 			samsung,panel-aclcont-cmds-list = [
 					39 01 00 00 00 00 04	B5 03 99 35	 /* 0x27 : 30% */
 			 ];

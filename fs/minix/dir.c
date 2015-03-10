@@ -113,7 +113,7 @@ static int minix_readdir(struct file * filp, void * dirent, filldir_t filldir)
 				minix3_dirent *de3 = (minix3_dirent *)p;
 				name = de3->name;
 				inumber = de3->inode;
-	 		} else {
+			} else {
 				minix_dirent *de = (minix_dirent *)p;
 				name = de->name;
 				inumber = de->inode;
@@ -186,7 +186,7 @@ minix_dirent *minix_find_entry(struct dentry *dentry, struct page **res_page)
 				minix3_dirent *de3 = (minix3_dirent *)p;
 				namx = de3->name;
 				inumber = de3->inode;
- 			} else {
+			} else {
 				minix_dirent *de = (minix_dirent *)p;
 				namx = de->name;
 				inumber = de->inode;
@@ -245,15 +245,15 @@ int minix_add_link(struct dentry *dentry, struct inode *inode)
 			if (sbi->s_version == MINIX_V3) {
 				namx = de3->name;
 				inumber = de3->inode;
-		 	} else {
-  				namx = de->name;
+			} else {
+				namx = de->name;
 				inumber = de->inode;
 			}
 			if (p == dir_end) {
 				/* We hit i_size */
 				if (sbi->s_version == MINIX_V3)
 					de3->inode = 0;
-		 		else
+				else
 					de->inode = 0;
 				goto got_it;
 			}

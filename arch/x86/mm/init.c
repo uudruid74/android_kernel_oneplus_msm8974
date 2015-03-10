@@ -94,9 +94,9 @@ static void __init find_early_table_space(struct map_range *mr, int nr_range)
 	pgt_buf_end = pgt_buf_start;
 	pgt_buf_top = pgt_buf_start + (tables >> PAGE_SHIFT);
 
- 	printk(KERN_DEBUG "kernel direct mapping tables up to %#lx @ [mem %#010lx-%#010lx]\n",
+	printk(KERN_DEBUG "kernel direct mapping tables up to %#lx @ [mem %#010lx-%#010lx]\n",
 		mr[nr_range - 1].end - 1, pgt_buf_start << PAGE_SHIFT,
- 		(pgt_buf_top << PAGE_SHIFT) - 1);
+		(pgt_buf_top << PAGE_SHIFT) - 1);
 }
 
 void __init native_pagetable_reserve(u64 start, u64 end)
@@ -427,4 +427,3 @@ void __init zone_sizes_init(void)
 
 	free_area_init_nodes(max_zone_pfns);
 }
-

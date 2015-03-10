@@ -644,4 +644,3 @@ int msm_bus_noc_hw_init(struct msm_bus_fabric_registration *pdata,
 
 	return 0;
 }
-

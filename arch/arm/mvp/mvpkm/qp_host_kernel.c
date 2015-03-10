@@ -540,4 +540,3 @@ int32 QP_NotifyListener(QPInitArgs *args)
 	return QP_SUCCESS;
 }
 EXPORT_SYMBOL(QP_Detach);
-

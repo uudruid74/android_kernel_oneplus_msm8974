@@ -261,14 +261,14 @@ unsigned int sec_url_filter_hook( unsigned int hook_no,
 
                     if (filterMode == FILTER_MODE_CLOSING)                                      // If it is closing mode
                     {
-                    	if (time_before((unsigned long)get_jiffies_64(), resetTime))            // Check it is still waiting time
-                    	{
-                    	    verdict    = NF_DROP;                                               // If so, drop every TCP packet
-                    	}
-                    	else
-                    	{
-                    	    filterMode = FILTER_MODE_OFF;                                       // If it is more than wait time, turn off filter automatically.
-                    	}
+			if (time_before((unsigned long)get_jiffies_64(), resetTime))            // Check it is still waiting time
+			{
+			    verdict    = NF_DROP;                                               // If so, drop every TCP packet
+			}
+			else
+			{
+			    filterMode = FILTER_MODE_OFF;                                       // If it is more than wait time, turn off filter automatically.
+			}
                         return verdict;
                     }
 

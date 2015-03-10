@@ -12,7 +12,7 @@ fw-external-y := $(subst ",,$(CONFIG_EXTRA_FIRMWARE))
 # There are three cases to care about:
 # 1. Building kernel with CONFIG_FIRMWARE_IN_KERNEL=y -- $(fw-shipped-y) should
 #    include the firmware files to include, according to .config
-# 2. 'make modules_install', which will install firmware for modules, and 
+# 2. 'make modules_install', which will install firmware for modules, and
 #    _also_ for the in-kernel drivers when CONFIG_FIRMWARE_IN_KERNEL=n
 # 3. 'make firmware_install', which installs all firmware, unconditionally.
 
@@ -195,7 +195,7 @@ ifdef CONFIG_MACH_MONDRIAN
 fw-shipped-$(CONFIG_TOUCHSCREEN_SYNAPTICS_I2C_RMI)    += tsp_synaptics/synaptics_s5707.fw
 fw-shipped-$(CONFIG_TOUCHSCREEN_SYNAPTICS_I2C_RMI)    += tsp_synaptics/synaptics_s5708.fw
 else
-ifdef CONFIG_SEC_H_PROJECT 
+ifdef CONFIG_SEC_H_PROJECT
 fw-shipped-$(CONFIG_TOUCHSCREEN_SYNAPTICS_I2C_RMI)      += tsp_synaptics/synaptics_s5050_h.fw
 fw-shipped-$(CONFIG_TOUCHSCREEN_SYNAPTICS_I2C_RMI)      += tsp_synaptics/synaptics_s5000.fw
 else
@@ -231,7 +231,7 @@ fw-shipped-$(CONFIG_KEYBOARD_CYPRESS_TOUCHKEY) += tkey/semco_cypress_tkey.fw
 fw-shipped-$(CONFIG_KEYBOARD_CYPRESS_TOUCHKEY) += tkey/semco02_cypress_tkey.fw
 fw-shipped-$(CONFIG_KEYBOARD_CYPRESS_TOUCHKEY) += tkey/semco04_cypress_tkey.fw
 else
-ifdef CONFIG_SEC_H_PROJECT 
+ifdef CONFIG_SEC_H_PROJECT
 fw-shipped-$(CONFIG_KEYBOARD_CYPRESS_TOUCHKEY_H) += tkey/hlte_cypress_tkey.fw
 else
 fw-shipped-$(CONFIG_KEYBOARD_CYPRESS_TOUCHKEY_H) += tkey/hlte_cypress_tkey.fw
@@ -247,7 +247,7 @@ fw-shipped-$(CONFIG_KEYBOARD_CYPRESS_TKEY_HL) += tkey/fresco_n_cypress_tkey.fw t
 fw-shipped-$(CONFIG_KEYBOARD_TC360_TOUCHKEY) += tkey/tc300k_chagall.fw
 endif
 
-ifdef CONFIG_SEC_H_PROJECT 
+ifdef CONFIG_SEC_H_PROJECT
 fw-shipped-$(CONFIG_INPUT_WACOM) += epen/W9010_0174.bin
 fw-shipped-$(CONFIG_INPUT_WACOM) += epen/W9010_0208.bin
 else
@@ -354,7 +354,7 @@ $(obj)/%: $(obj)/%.ihex | $(objtree)/$(obj)/$$(dir %)
 # Don't depend on ihex2fw if we're installing and it already exists.
 # Putting it after | in the dependencies doesn't seem sufficient when
 # we're installing after a cross-compile, because ihex2fw has dependencies
-# on stuff like /usr/lib/gcc/ppc64-redhat-linux/4.3.0/include/stddef.h and 
+# on stuff like /usr/lib/gcc/ppc64-redhat-linux/4.3.0/include/stddef.h and
 # thus wants to be rebuilt. Which it can't be, if the prebuilt kernel tree
 # is exported read-only for someone to run 'make install'.
 ifeq ($(INSTALL):$(wildcard $(obj)/ihex2fw),install:$(obj)/ihex2fw)

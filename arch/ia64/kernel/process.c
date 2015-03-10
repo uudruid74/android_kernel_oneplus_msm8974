@@ -298,7 +298,7 @@ void __attribute__((noreturn))
 cpu_idle (void)
 {
 	void (*mark_idle)(int) = ia64_mark_idle;
-  	int cpu = smp_processor_id();
+	int cpu = smp_processor_id();
 
 	/* endless idle loop with no priority at all */
 	while (1) {
@@ -376,7 +376,7 @@ ia64_load_extra (struct task_struct *task)
 		pfm_load_regs(task);
 
 	info = __get_cpu_var(pfm_syst_info);
-	if (info & PFM_CPUINFO_SYST_WIDE) 
+	if (info & PFM_CPUINFO_SYST_WIDE)
 		pfm_syst_wide_update_task(task, info, 1);
 #endif
 }
@@ -802,4 +802,3 @@ machine_power_off (void)
 		pm_power_off();
 	machine_halt();
 }
-

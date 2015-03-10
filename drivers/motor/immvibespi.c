@@ -53,7 +53,7 @@ struct pm_gpio vib_pwm = {
 int32_t vibe_set_pwm_freq(int nForce)
 {
 	/* Put the MND counter in reset mode for programming */
-	HWIO_OUTM(GP1_CFG_RCGR, HWIO_GP_SRC_SEL_VAL_BMSK, 
+	HWIO_OUTM(GP1_CFG_RCGR, HWIO_GP_SRC_SEL_VAL_BMSK,
 				0 << HWIO_GP_SRC_SEL_VAL_SHFT); //SRC_SEL = 000(cxo)
 #if defined(CONFIG_SEC_BERLUTI_PROJECT) || defined(CONFIG_MACH_S3VE3G_EUR)
 	HWIO_OUTM(GP1_CFG_RCGR, HWIO_GP_SRC_DIV_VAL_BMSK,
@@ -62,7 +62,7 @@ int32_t vibe_set_pwm_freq(int nForce)
 	HWIO_OUTM(GP1_CFG_RCGR, HWIO_GP_SRC_DIV_VAL_BMSK,
 				31 << HWIO_GP_SRC_DIV_VAL_SHFT); //SRC_DIV = 11111 (Div 16)
 #endif
-	HWIO_OUTM(GP1_CFG_RCGR, HWIO_GP_MODE_VAL_BMSK, 
+	HWIO_OUTM(GP1_CFG_RCGR, HWIO_GP_MODE_VAL_BMSK,
 				2 << HWIO_GP_MODE_VAL_SHFT); //Mode Select 10
 	//M value
 	HWIO_OUTM(GP_M_REG, HWIO_GP_MD_REG_M_VAL_BMSK,
@@ -101,11 +101,11 @@ int32_t vibe_set_pwm_freq(int nForce)
 	// D value
 	HWIO_OUTM(GP_D_REG, HWIO_GP_MD_REG_D_VAL_BMSK,
 	 (~((int16_t)g_nforce_32 << 1)) << HWIO_GP_MD_REG_D_VAL_SHFT);
-	
-	//N value	
+
+	//N value
 	HWIO_OUTM(GP_NS_REG, HWIO_GP_NS_REG_GP_N_VAL_BMSK,
 	 ~(g_nlra_gp_clk_n - g_nlra_gp_clk_m) << 0);
-	
+
 	return VIBE_S_SUCCESS;
 }
 
@@ -115,16 +115,16 @@ int32_t vibe_pwm_onoff(u8 onoff)
 		HWIO_OUTM(GP1_CMD_RCGR,HWIO_UPDATE_VAL_BMSK,
 					1 << HWIO_UPDATE_VAL_SHFT);//UPDATE ACTIVE
 		HWIO_OUTM(GP1_CMD_RCGR,HWIO_ROOT_EN_VAL_BMSK,
-					1 << HWIO_ROOT_EN_VAL_SHFT);//ROOT_EN		
+					1 << HWIO_ROOT_EN_VAL_SHFT);//ROOT_EN
 		HWIO_OUTM(CAMSS_GP1_CBCR, HWIO_CLK_ENABLE_VAL_BMSK,
 					1 << HWIO_CLK_ENABLE_VAL_SHFT); //CLK_ENABLE
 	} else {
-		
-		HWIO_OUTM(GP1_CMD_RCGR,HWIO_UPDATE_VAL_BMSK, 
+
+		HWIO_OUTM(GP1_CMD_RCGR,HWIO_UPDATE_VAL_BMSK,
 					0 << HWIO_UPDATE_VAL_SHFT);
 		HWIO_OUTM(GP1_CMD_RCGR,HWIO_ROOT_EN_VAL_BMSK,
-					0 << HWIO_ROOT_EN_VAL_SHFT);		
-		HWIO_OUTM(CAMSS_GP1_CBCR, HWIO_CLK_ENABLE_VAL_BMSK, 
+					0 << HWIO_ROOT_EN_VAL_SHFT);
+		HWIO_OUTM(CAMSS_GP1_CBCR, HWIO_CLK_ENABLE_VAL_BMSK,
 					0 << HWIO_CLK_ENABLE_VAL_SHFT);
 	}
 	return VIBE_S_SUCCESS;
@@ -142,7 +142,7 @@ static int32_t ImmVibeSPI_ForceOut_AmpDisable(u_int8_t nActuatorIndex)
 		if (vibrator_drvdata.power_onoff)
 			vibrator_drvdata.power_onoff(0);
 		if (vibrator_drvdata.vib_model == HAPTIC_PWM) {
-			if(vibrator_drvdata.is_pmic_vib_pwm){  //PMIC PWM 
+			if(vibrator_drvdata.is_pmic_vib_pwm){  //PMIC PWM
 				gpio_set_value(vibrator_drvdata.vib_pwm_gpio, \
 				VIBRATION_OFF);
 				if(vibrator_drvdata.pwm_dev != NULL) //Disable the PWM device.
@@ -336,9 +336,9 @@ int vib_config_pwm_device(void)
 	//u32	pwm_period_us, duty_us;
 #if defined(CONFIG_MACH_HLTEDCM) || defined(CONFIG_MACH_HLTEKDI) || \
 	defined(CONFIG_MACH_JS01LTEDCM) || defined(CONFIG_MACH_JS01LTESBM)
-	vibrator_drvdata.pwm_dev = pwm_request(0,"lpg_3"); // 0 index for LPG3 channel. 
+	vibrator_drvdata.pwm_dev = pwm_request(0,"lpg_3"); // 0 index for LPG3 channel.
 #else
-	vibrator_drvdata.pwm_dev = pwm_request(0,"lpg_1"); // 0 index for LPG1 channel. 
+	vibrator_drvdata.pwm_dev = pwm_request(0,"lpg_1"); // 0 index for LPG1 channel.
 #endif
 
 	if (IS_ERR_OR_NULL(vibrator_drvdata.pwm_dev)) {
@@ -347,23 +347,23 @@ int vib_config_pwm_device(void)
 		vibrator_drvdata.pwm_dev = NULL;
 		return -ENODEV;
 	}
-	//pwm_period_us = 19; // 2000000; 
+	//pwm_period_us = 19; // 2000000;
 	//duty_us = 18; //1000000; (90% Duty Cycle)
-	
+
 	ret = pwm_config(vibrator_drvdata.pwm_dev,
 					 vibrator_drvdata.duty_us,
-					 vibrator_drvdata.pwm_period_us); 
+					 vibrator_drvdata.pwm_period_us);
 	if (ret) {
 		pr_err("pwm_config in vibrator enable failed %d\n", ret);
 		return ret;
 	}
-	ret = pwm_enable(vibrator_drvdata.pwm_dev);	
+	ret = pwm_enable(vibrator_drvdata.pwm_dev);
 	if (ret < 0) {
 		pr_err("pwm_enable in vibrator  failed %d\n", ret);
 		return ret;
 	}
 	} else {
-		ret = pwm_enable(vibrator_drvdata.pwm_dev); 
+		ret = pwm_enable(vibrator_drvdata.pwm_dev);
 		if (ret < 0) {
 			pr_err("pwm_enable in vibrator  failed %d\n", ret);
 			return ret;
@@ -435,11 +435,11 @@ static int32_t ImmVibeSPI_ForceOut_SetSamples(u_int8_t nActuatorIndex,
 		/* Map force from [-127, 127] to [0, PWM_DUTY_MAX] */
 		/* printk(KERN_DEBUG "[tspdrv]nForce===%d\n", nforce); */
 		if (pre_nforce != nforce) {
-			if (vibrator_drvdata.is_pmic_vib_pwm){ 
+			if (vibrator_drvdata.is_pmic_vib_pwm){
 				//PMIC  PWM
 				ret = vib_config_pwm_device();
 				if(ret < 0)
-					return ret;				
+					return ret;
 			}else {
 				//AP PWM
 				vibe_set_pwm_freq(nforce);

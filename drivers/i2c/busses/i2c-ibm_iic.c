@@ -186,7 +186,7 @@ static void iic_dev_reset(struct ibm_iic_private* dev)
 	DBG("%d: soft reset\n", dev->idx);
 	DUMP_REGS("reset", dev);
 
-    	/* Place chip in the reset state */
+	/* Place chip in the reset state */
 	out_8(&iic->xtcntlss, XTCNTLSS_SRST);
 
 	/* Check if bus is free */
@@ -499,7 +499,7 @@ static int iic_xfer_bytes(struct ibm_iic_private* dev, struct i2c_msg* pm,
 
 			/* If it's not a last part of xfer, abort it */
 			if (combined_xfer || (i < loops - 1))
-    				iic_abort_xfer(dev);
+				iic_abort_xfer(dev);
 
 			ret = -EREMOTEIO;
 			break;
@@ -553,7 +553,7 @@ static inline int iic_address_neq(const struct i2c_msg* p1,
  */
 static int iic_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs, int num)
 {
-    	struct ibm_iic_private* dev = (struct ibm_iic_private*)(i2c_get_adapdata(adap));
+	struct ibm_iic_private* dev = (struct ibm_iic_private*)(i2c_get_adapdata(adap));
 	volatile struct iic_regs __iomem *iic = dev->vaddr;
 	int i, ret = 0;
 
@@ -617,7 +617,7 @@ static int iic_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs, int num)
 	iic_address(dev, &msgs[0]);
 
 	/* Do real transfer */
-    	for (i = 0; i < num && !ret; ++i)
+	for (i = 0; i < num && !ret; ++i)
 		ret = iic_xfer_bytes(dev, &msgs[i], i < num - 1);
 
 	return ret < 0 ? ret : num;

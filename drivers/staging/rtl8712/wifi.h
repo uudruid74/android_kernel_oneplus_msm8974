@@ -640,4 +640,3 @@ struct ieee80211_ht_addt_info {
 #define WLAN_HT_CAP_SM_PS_DISABLED	3
 
 #endif /* _WIFI_H_ */
-

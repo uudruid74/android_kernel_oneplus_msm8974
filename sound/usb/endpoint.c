@@ -965,4 +965,3 @@ int snd_usb_substream_prepare(struct snd_usb_substream *subs,
 
 	return 0;
 }
-

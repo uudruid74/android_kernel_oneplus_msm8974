@@ -229,8 +229,8 @@ static inline void nf_ct_expect_event(enum ip_conntrack_expect_events event,
 				      struct nf_conntrack_expect *exp) {}
 static inline void nf_ct_expect_event_report(enum ip_conntrack_expect_events e,
 					     struct nf_conntrack_expect *exp,
- 					     u32 pid,
- 					     int report) {}
+					     u32 pid,
+					     int report) {}
 
 static inline int nf_conntrack_ecache_init(struct net *net)
 {
@@ -243,4 +243,3 @@ static inline void nf_conntrack_ecache_fini(struct net *net)
 #endif /* CONFIG_NF_CONNTRACK_EVENTS */
 
 #endif /*_NF_CONNTRACK_ECACHE_H*/
-

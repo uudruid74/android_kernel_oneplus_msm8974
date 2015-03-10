@@ -538,4 +538,3 @@ int fts_fw_update_on_hidden_menu(struct fts_ts_info *info, int update_type)
 	return retval;
 }
 EXPORT_SYMBOL(fts_fw_update_on_hidden_menu);
-

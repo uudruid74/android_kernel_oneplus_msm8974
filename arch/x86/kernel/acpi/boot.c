@@ -842,7 +842,7 @@ static int __init acpi_parse_fadt(struct acpi_table_header *table)
 		 * "X" fields are optional extensions to the original V1.0
 		 * fields, so we must selectively expand V1.0 fields if the
 		 * corresponding X field is zero.
-	 	 */
+		 */
 		if (!pmtmr_ioport)
 			pmtmr_ioport = acpi_gbl_FADT.pm_timer_block;
 	} else {
@@ -1278,10 +1278,10 @@ static void __init acpi_process_madt(void)
 		}
 	} else {
 		/*
- 		 * ACPI found no MADT, and so ACPI wants UP PIC mode.
- 		 * In the event an MPS table was found, forget it.
- 		 * Boot with "acpi=off" to use MPS on such a system.
- 		 */
+		 * ACPI found no MADT, and so ACPI wants UP PIC mode.
+		 * In the event an MPS table was found, forget it.
+		 * Boot with "acpi=off" to use MPS on such a system.
+		 */
 		if (smp_found_config) {
 			printk(KERN_WARNING PREFIX
 				"No APIC-table, disabling MPS\n");
@@ -1508,7 +1508,7 @@ void __init acpi_boot_table_init(void)
 	 * If acpi_disabled, bail out
 	 */
 	if (acpi_disabled)
-		return; 
+		return;
 
 	/*
 	 * Initialize the ACPI boot-time table parser.

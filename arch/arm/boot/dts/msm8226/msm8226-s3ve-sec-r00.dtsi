@@ -41,8 +41,8 @@
 &apc_vreg_corner {
 	qcom,pvs-bin-process = <1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2
 				2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 3>;
-	qcom,pvs-corner-ceiling-slow = <1185000 1185000 1280000>; 
-	qcom,pvs-corner-ceiling-nom  =  <1005000 1105000 1225000>; 
+	qcom,pvs-corner-ceiling-slow = <1185000 1185000 1280000>;
+	qcom,pvs-corner-ceiling-nom  =  <1005000 1105000 1225000>;
 	qcom,pvs-corner-ceiling-fast =  <925000 1025000 1165000>;
 	qcom,cpr-step-quotient = <30>;
 	qcom,cpr-up-threshold = <0>;
@@ -73,4 +73,3 @@
 	qcom,sensors = <6>;
 	qcom,slope = <2901 2846 3038 2955 2901 2846>;
 };
-

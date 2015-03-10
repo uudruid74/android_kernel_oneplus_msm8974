@@ -376,4 +376,3 @@ void mei_watchdog_unregister(struct mei_device *dev)
 		watchdog_unregister_device(&amt_wd_dev);
 	dev->wd_interface_reg = false;
 }
-

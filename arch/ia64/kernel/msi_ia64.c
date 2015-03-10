@@ -211,4 +211,3 @@ int arch_setup_dmar_msi(unsigned int irq)
 	return 0;
 }
 #endif /* CONFIG_INTEL_IOMMU */
-

@@ -396,7 +396,7 @@ void snd_mixart_msg_tasklet(unsigned long arg)
 				break;
 			}
 			break;
- 		case MSG_TYPE_NOTIFY:
+		case MSG_TYPE_NOTIFY:
 			/* msg contains no address ! do not get_msg() ! */
 		case MSG_TYPE_COMMAND:
 			/* get_msg() necessary */

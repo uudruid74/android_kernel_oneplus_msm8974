@@ -1766,4 +1766,3 @@ static void __exit bfin_mac_cleanup(void)
 }
 
 module_exit(bfin_mac_cleanup);
-

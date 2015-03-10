@@ -45,7 +45,7 @@ _ramend:
 .long   0
 
 .text
-	
+
 _start:
 _stext:
 
@@ -98,7 +98,7 @@ _stext:
 	DBG_PUTC('\n')
 	DBG_PUTC('A')
 
-   	moveq   #0,%d0
+	moveq   #0,%d0
 	movew	#16384, %d0  /* PLL settle wait loop */
 L0:
 	subw	#1, %d0
@@ -163,8 +163,8 @@ L3:
 	cmpal	%a1, %a2
 	bhi	L3
 
-	movel	#_sdata, %d0	
-	movel	%d0, _rambase	
+	movel	#_sdata, %d0
+	movel	%d0, _rambase
 	movel	#_ebss,	%d0
 	movel	%d0, _ramstart
 

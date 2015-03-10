@@ -4420,4 +4420,3 @@ s32 fc8300_set_broadcast_mode(HANDLE handle, DEVICEID devid,
 
 	return res;
 }
-

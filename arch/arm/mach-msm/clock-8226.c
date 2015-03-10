@@ -3311,7 +3311,7 @@ static struct clk_lookup msm_clocks_8226[] = {
 #endif
 
 #ifdef CONFIG_SND_SOC_ES705
-	CLK_LOOKUP("iface_clk", gcc_blsp1_ahb_clk.c, "f991d000.uart"),	
+	CLK_LOOKUP("iface_clk", gcc_blsp1_ahb_clk.c, "f991d000.uart"),
 	CLK_LOOKUP("core_clk", gcc_blsp1_uart1_apps_clk.c, "f991d000.uart"),
 #endif /* CONFIG_SND_SOC_ES705 */
 

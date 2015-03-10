@@ -13,8 +13,8 @@
 #define ia64_barrier()		__memory_barrier()
 
 #define ia64_stop()	/* Nothing: As of now stop bit is generated for each
-		 	 * intrinsic
-		 	 */
+			 * intrinsic
+			 */
 
 #define ia64_native_getreg	__getReg
 #define ia64_native_setreg	__setReg

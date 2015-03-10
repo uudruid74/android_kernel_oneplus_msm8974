@@ -235,7 +235,7 @@ static ssize_t q40_ctc_law(const u_char __user *userPtr, size_t userCount,
 	int bal = expand_bal;
 	int hSpeed = dmasound.hard.speed, sSpeed = dmasound.soft.speed;
 	int utotal, ftotal;
- 
+
 	ftotal = frameLeft;
 	utotal = userCount;
 	while (frameLeft) {
@@ -605,7 +605,7 @@ static MACHINE machQ40 = {
 	.setFormat	= Q40SetFormat,
 	.setVolume	= Q40SetVolume,
 	.play		= Q40Play,
- 	.min_dsp_speed	= 10000,
+	.min_dsp_speed	= 10000,
 	.version	= ((DMASOUND_Q40_REVISION<<8) | DMASOUND_Q40_EDITION),
 	.hardware_afmts	= AFMT_U8, /* h'ware-supported formats *only* here */
 	.capabilities	= DSP_CAP_BATCH  /* As per SNDCTL_DSP_GETCAPS */

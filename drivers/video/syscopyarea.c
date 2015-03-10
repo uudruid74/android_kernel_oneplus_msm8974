@@ -45,7 +45,7 @@ bitcpy(struct fb_info *p, unsigned long *dst, int dst_idx,
 		} else {
 			/* Multiple destination words */
 			/* Leading bits */
- 			if (first != ~0UL) {
+			if (first != ~0UL) {
 				*dst = comp(*src, *dst, first);
 				dst++;
 				src++;
@@ -152,7 +152,7 @@ bitcpy(struct fb_info *p, unsigned long *dst, int dst_idx,
 					*dst = comp(d0 << left, *dst, last);
 				} else {
 					/* 2 source words */
- 					d1 = *src;
+					d1 = *src;
 					*dst = comp(d0 << left | d1 >> right,
 						    *dst, last);
 				}
@@ -374,4 +374,3 @@ EXPORT_SYMBOL(sys_copyarea);
 MODULE_AUTHOR("Antonino Daplas <adaplas@pol.net>");
 MODULE_DESCRIPTION("Generic copyarea (sys-to-sys)");
 MODULE_LICENSE("GPL");
-

@@ -837,7 +837,7 @@ static int wacom_tpc_irq(struct wacom_wac *wacom, size_t len)
 		 return wacom_tpc_single_touch(wacom, len);
 
 	case WACOM_PKGLEN_TPC2FG:
- 		return wacom_tpc_mt_touch(wacom);
+		return wacom_tpc_mt_touch(wacom);
 
 	default:
 		switch (data[0]) {

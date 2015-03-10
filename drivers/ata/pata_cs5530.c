@@ -152,8 +152,8 @@ static unsigned int cs5530_qc_issue(struct ata_queued_cmd *qc)
 		/* Maybe, but do the channels match MWDMA/UDMA ? */
 		if ((ata_using_udma(adev) && !ata_using_udma(prev)) ||
 		    (ata_using_udma(prev) && !ata_using_udma(adev)))
-		    	/* Switch the mode bits */
-		    	cs5530_set_dmamode(ap, adev);
+			/* Switch the mode bits */
+			cs5530_set_dmamode(ap, adev);
 	}
 
 	return ata_bmdma_qc_issue(qc);

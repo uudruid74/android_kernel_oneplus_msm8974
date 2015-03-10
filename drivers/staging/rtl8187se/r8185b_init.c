@@ -172,7 +172,7 @@ if (offset == PhyAddr)	{
 		*/
 /*		NdisAcquireSpinLock( &(pDevice->IoSpinLock) );	*/
 
-		for (idx = 0; idx < 30; idx++)	{ 
+		for (idx = 0; idx < 30; idx++)	{
 		/* Make sure command bit is clear before access it.	*/
 			u1bTmp = PlatformIORead1Byte(dev, PhyAddr);
 			if ((u1bTmp & BIT7) == 0)
@@ -1765,4 +1765,3 @@ void rtl8185b_tx_enable(struct net_device *dev)
 	cmd = read_nic_byte(dev, CMD);
 	write_nic_byte(dev, CMD, cmd | (1<<CMD_TX_ENABLE_SHIFT));
 }
-

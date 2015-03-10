@@ -277,7 +277,7 @@ static inline void atmel_lcdfb_free_video_memory(struct atmel_lcdfb_info *sinfo)
 /**
  *	atmel_lcdfb_alloc_video_memory - Allocate framebuffer memory
  *	@sinfo: the frame buffer to allocate memory for
- * 	
+ *
  * 	This function is called only from the atmel_lcdfb_probe()
  * 	so no locking by fb_info->mm_lock around smem_len setting is needed.
  */
@@ -1038,7 +1038,7 @@ unmap_mmio:
 	exit_backlight(sinfo);
 	iounmap(sinfo->mmio);
 release_mem:
- 	release_mem_region(info->fix.mmio_start, info->fix.mmio_len);
+	release_mem_region(info->fix.mmio_start, info->fix.mmio_len);
 free_fb:
 	if (map)
 		iounmap(info->screen_base);
@@ -1083,7 +1083,7 @@ static int __exit atmel_lcdfb_remove(struct platform_device *pdev)
 	fb_dealloc_cmap(&info->cmap);
 	free_irq(sinfo->irq_base, info);
 	iounmap(sinfo->mmio);
- 	release_mem_region(info->fix.mmio_start, info->fix.mmio_len);
+	release_mem_region(info->fix.mmio_start, info->fix.mmio_len);
 	if (platform_get_resource(pdev, IORESOURCE_MEM, 1)) {
 		iounmap(info->screen_base);
 		release_mem_region(info->fix.smem_start, info->fix.smem_len);

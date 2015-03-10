@@ -533,7 +533,7 @@ int tcon_tune_value(struct edp_eeprom_info *pinfo)
 		else
 			tune_value = power_save_tune_value[1][1][0]; /*TCON_POWER_SAVE*/
 	} else
-        	tune_value = power_save_tune_value[pdata->auto_br][pdata->lux][pdata->mode];
+		tune_value = power_save_tune_value[pdata->auto_br][pdata->lux][pdata->mode];
 
 	if (!tune_value) {
 		pr_err("%s tcon value is null", __func__);
@@ -1000,15 +1000,15 @@ static int __devinit edp_eeprom_probe(struct i2c_client *client,
 
 	if (IS_ERR(tcon_class)) {
 		dev_err(&client->dev, "Failed to create class for TCON\n");
-        		goto return_mem_free;
-    	}
+			goto return_mem_free;
+	}
 
 	pdata->dev = device_create(tcon_class,\
 		NULL, 0, pdata, "tcon");
 
 	if (IS_ERR(pdata->dev)) {
 		dev_err(&client->dev, "Failed to create device for TCON\n");
- 		goto return_class_remove;
+		goto return_class_remove;
 	}
 
 	ret = sysfs_create_group(&pdata->dev->kobj, &sysfs_group);

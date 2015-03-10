@@ -33,4 +33,3 @@ must consider at least the following bridge drivers which mention an IR Rx unit
 at address 0x71 (indicative of a Z8):
 
 	ivtv cx18 hdpvr pvrusb2 bt8xx cx88 saa7134
-

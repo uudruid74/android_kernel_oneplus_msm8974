@@ -643,4 +643,3 @@ static int __init mddi_quickvx_lcd_init(void)
 }
 
 module_init(mddi_quickvx_lcd_init);
-

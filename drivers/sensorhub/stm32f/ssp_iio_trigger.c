@@ -52,4 +52,3 @@ void ssp_iio_remove_trigger(struct iio_trigger *trig)
 	iio_trigger_unregister(trig);
 	iio_free_trigger(trig);
 }
-

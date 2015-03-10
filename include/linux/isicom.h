@@ -69,7 +69,7 @@
 #define		BOARD_ACTIVE		0x0002
 #define		BOARD_INIT		0x0004
 
- 	/* isi_port status bitmap  */
+	/* isi_port status bitmap  */
 
 #define		ISI_CTS			0x1000
 #define		ISI_DSR			0x2000

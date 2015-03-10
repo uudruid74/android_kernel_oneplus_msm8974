@@ -189,4 +189,3 @@ usb_copy_descriptors(struct usb_descriptor_header **src)
 
 	return ret;
 }
-

@@ -236,4 +236,3 @@ module_usb_driver(gl620a_driver);
 MODULE_AUTHOR("Jiun-Jie Huang");
 MODULE_DESCRIPTION("GL620-USB-A Host-to-Host Link cables");
 MODULE_LICENSE("GPL");
-

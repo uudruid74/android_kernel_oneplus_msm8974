@@ -204,7 +204,7 @@ void __iomem * __arm_ioremap_pfn_caller(unsigned long pfn,
 	const struct mem_type *type;
 	int err;
 	unsigned long addr;
- 	struct vm_struct * area;
+	struct vm_struct * area;
 
 #ifndef CONFIG_ARM_LPAE
 	/*
@@ -252,9 +252,9 @@ void __iomem * __arm_ioremap_pfn_caller(unsigned long pfn,
 		return NULL;
 
 	area = get_vm_area_caller(size, VM_IOREMAP, caller);
- 	if (!area)
- 		return NULL;
- 	addr = (unsigned long)area->addr;
+	if (!area)
+		return NULL;
+	addr = (unsigned long)area->addr;
 
 #if !defined(CONFIG_SMP) && !defined(CONFIG_ARM_LPAE)
 	if (DOMAIN_IO == 0 &&
@@ -272,9 +272,9 @@ void __iomem * __arm_ioremap_pfn_caller(unsigned long pfn,
 					 __pgprot(type->prot_pte));
 
 	if (err) {
- 		vunmap((void *)addr);
- 		return NULL;
- 	}
+		vunmap((void *)addr);
+		return NULL;
+	}
 
 	flush_cache_vmap(addr, addr + size);
 	return (void __iomem *) (offset + addr);
@@ -285,10 +285,10 @@ void __iomem *__arm_ioremap_caller(phys_addr_t phys_addr, size_t size,
 {
 	phys_addr_t last_addr;
 	phys_addr_t offset = phys_addr & ~PAGE_MASK;
- 	unsigned long pfn = __phys_to_pfn(phys_addr);
+	unsigned long pfn = __phys_to_pfn(phys_addr);
 
- 	/*
- 	 * Don't allow wraparound or zero size
+	/*
+	 * Don't allow wraparound or zero size
 	 */
 	last_addr = phys_addr + size - 1;
 	if (!size || last_addr < phys_addr)

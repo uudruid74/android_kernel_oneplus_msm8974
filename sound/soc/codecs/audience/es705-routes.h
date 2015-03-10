@@ -652,7 +652,7 @@ static const u32 route_2Mic_HS_NB_NSOn[] = {
 static const u32 route_2Mic_SPK_NB_FO_NSOff[] = {
 	0x9031041b,	/* Route, #1051 */
 	0x90310395,	/* Algo, #917 */
-	0x903103e6,	/* Algo, #998 */	
+	0x903103e6,	/* Algo, #998 */
 	0xffffffff	/* terminate */
 };
 #endif
@@ -784,7 +784,7 @@ static const u32 route_2Mic_HS_WB_NSOn[] = {
 static const u32 route_2Mic_SPK_WB_FO_NSOff[] = {
 	0x9031041b,	/* Route, #1051 */
 	0x90310396,	/* Algo, #918 */
-	0x903103e7,	/* Algo, #999 */	
+	0x903103e7,	/* Algo, #999 */
 	0xffffffff	/* terminate */
 };
 #endif

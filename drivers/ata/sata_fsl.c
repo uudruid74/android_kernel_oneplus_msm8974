@@ -1321,7 +1321,7 @@ static int sata_fsl_init_controller(struct ata_host *host)
 	iowrite32(0x00000FFFF, hcr_base + CE);
 	iowrite32(0x00000FFFF, hcr_base + DE);
 
- 	/*
+	/*
 	 * reset the number of command complete bits which will cause the
 	 * interrupt to be signaled
 	 */

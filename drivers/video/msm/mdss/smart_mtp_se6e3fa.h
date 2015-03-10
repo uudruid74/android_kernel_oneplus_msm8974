@@ -247,4 +247,3 @@ struct SMART_DIM {
 } __packed;
 
 #endif
-

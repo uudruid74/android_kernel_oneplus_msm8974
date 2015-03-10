@@ -1101,7 +1101,7 @@ static int download_fw(struct edgeport_serial *serial)
 				__func__, ti_cpu_rev(ti_manuf_desc));
 			kfree(ti_manuf_desc);
 			return -EINVAL;
-  		}
+		}
 
 		rom_desc = kmalloc(sizeof(*rom_desc), GFP_KERNEL);
 		if (!rom_desc) {
@@ -1341,7 +1341,7 @@ static int download_fw(struct edgeport_serial *serial)
 			status = ti_vsend_sync(serial->serial->dev,
 					UMPC_COPY_DNLD_TO_I2C, 0, 0, NULL, 0);
 
-		  	dbg("%s - Update complete 0x%x", __func__, status);
+			dbg("%s - Update complete 0x%x", __func__, status);
 			if (status) {
 				dev_err(dev,
 					"%s - UMPC_COPY_DNLD_TO_I2C failed\n",

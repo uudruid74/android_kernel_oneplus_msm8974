@@ -1916,4 +1916,3 @@ fail_unreg:
 	cx23885_video_unregister(dev);
 	return err;
 }
-

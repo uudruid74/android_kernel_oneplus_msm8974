@@ -121,4 +121,3 @@ cpufreq-bench Command Usage
 
 Due to the high priority, the application may not be responsible for some time.
 After the benchmark, the logfile is saved in OUTPUTDIR/benchmark_TIMESTAMP.log
-

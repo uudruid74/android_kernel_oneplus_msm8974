@@ -128,4 +128,3 @@ static inline const __u32 __fswab32(__u32 x)
 #define swab64s __swab64s
 
 #endif /* _LINUX_BYTEORDER_SWAB_H */
-

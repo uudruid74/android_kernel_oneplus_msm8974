@@ -97,6 +97,3 @@ struct lis2hh_acc_platform_data {
 #endif	/* __KERNEL__ */
 
 #endif	/* __LIS2HH_H__ */
-
-
-

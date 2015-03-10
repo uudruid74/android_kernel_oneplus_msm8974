@@ -70,13 +70,13 @@ PPC64_CACHES:
 _KPROBE(__flush_icache_range)
 
 /*
- * Flush the data cache to memory 
- * 
+ * Flush the data cache to memory
+ *
  * Different systems have different cache line sizes
  * and in some cases i-cache and d-cache line sizes differ from
  * each other.
  */
- 	ld	r10,PPC64_CACHES@toc(r2)
+	ld	r10,PPC64_CACHES@toc(r2)
 	lwz	r7,DCACHEL1LINESIZE(r10)/* Get cache line size */
 	addi	r5,r7,-1
 	andc	r6,r3,r5		/* round low to line bdy */
@@ -92,7 +92,7 @@ _KPROBE(__flush_icache_range)
 	sync
 
 /* Now invalidate the instruction cache */
-	
+
 	lwz	r7,ICACHEL1LINESIZE(r10)	/* Get Icache line size */
 	addi	r5,r7,-1
 	andc	r6,r3,r5		/* round low to line bdy */
@@ -118,11 +118,11 @@ _KPROBE(__flush_icache_range)
 _GLOBAL(flush_dcache_range)
 
 /*
- * Flush the data cache to memory 
- * 
+ * Flush the data cache to memory
+ *
  * Different systems have different cache line sizes
  */
- 	ld	r10,PPC64_CACHES@toc(r2)
+	ld	r10,PPC64_CACHES@toc(r2)
 	lwz	r7,DCACHEL1LINESIZE(r10)	/* Get dcache line size */
 	addi	r5,r7,-1
 	andc	r6,r3,r5		/* round low to line bdy */
@@ -142,14 +142,14 @@ _GLOBAL(flush_dcache_range)
  * Like above, but works on non-mapped physical addresses.
  * Use only for non-LPAR setups ! It also assumes real mode
  * is cacheable. Used for flushing out the DART before using
- * it as uncacheable memory 
+ * it as uncacheable memory
  *
  * flush_dcache_phys_range(unsigned long start, unsigned long stop)
  *
  *    flush all bytes from start to stop-1 inclusive
  */
 _GLOBAL(flush_dcache_phys_range)
- 	ld	r10,PPC64_CACHES@toc(r2)
+	ld	r10,PPC64_CACHES@toc(r2)
 	lwz	r7,DCACHEL1LINESIZE(r10)	/* Get dcache line size */
 	addi	r5,r7,-1
 	andc	r6,r3,r5		/* round low to line bdy */
@@ -177,7 +177,7 @@ _GLOBAL(flush_dcache_phys_range)
 	blr
 
 _GLOBAL(flush_inval_dcache_range)
- 	ld	r10,PPC64_CACHES@toc(r2)
+	ld	r10,PPC64_CACHES@toc(r2)
 	lwz	r7,DCACHEL1LINESIZE(r10)	/* Get dcache line size */
 	addi	r5,r7,-1
 	andc	r6,r3,r5		/* round low to line bdy */
@@ -206,13 +206,13 @@ _GLOBAL(flush_inval_dcache_range)
  */
 _GLOBAL(__flush_dcache_icache)
 /*
- * Flush the data cache to memory 
- * 
+ * Flush the data cache to memory
+ *
  * Different systems have different cache line sizes
  */
 
 /* Flush the dcache */
- 	ld	r7,PPC64_CACHES@toc(r2)
+	ld	r7,PPC64_CACHES@toc(r2)
 	clrrdi	r3,r3,PAGE_SHIFT           	    /* Page align */
 	lwz	r4,DCACHEL1LINESPERPAGE(r7)	/* Get # dcache lines per page */
 	lwz	r5,DCACHEL1LINESIZE(r7)		/* Get dcache line size */
@@ -223,7 +223,7 @@ _GLOBAL(__flush_dcache_icache)
 	bdnz	0b
 	sync
 
-/* Now invalidate the icache */	
+/* Now invalidate the icache */
 
 	lwz	r4,ICACHEL1LINESPERPAGE(r7)	/* Get # icache lines per page */
 	lwz	r5,ICACHEL1LINESIZE(r7)		/* Get icache line size */

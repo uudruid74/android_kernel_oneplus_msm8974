@@ -32,10 +32,8 @@
 		ldr	\irqstat, [\irqstat]		@ get upper interrupts
 		mov	\irqnr, #63
 		clz	\irqstat, \irqstat
- 		cmp	\irqstat, #32
+		cmp	\irqstat, #32
 		subne	\irqnr, \irqnr, \irqstat
 #endif
 1002:
 		.endm
-
-

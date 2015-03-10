@@ -5,7 +5,7 @@
 *
 * FILENAME    : raontv_rf.c
 *
-* DESCRIPTION : 
+* DESCRIPTION :
 *		Library of routines to initialize, and operate on, the RAONTECH RF chip.
 *
 ******************************************************************************/
@@ -25,7 +25,7 @@
 
 #ifdef RTV_ISDBT_ENABLE
 
- static const RTV_REG_INIT_INFO t_ISDBT_INIT[] =   
+ static const RTV_REG_INIT_INFO t_ISDBT_INIT[] =
  {
 	{  0x28,	 0x83  },
 	{  0x2A,	 0x00  },
@@ -46,7 +46,7 @@
 	{  0x3E,	 0x4F  },
 	{  0x3F,	 0x26  },
 	{  0x40,	 0xDA  },
-	{  0x41,	 0x06  },	
+	{  0x41,	 0x06  },
 	{  0x42,	 0x02  },
 	{  0x43,	 0x50  },
 	{  0x44,	 0x4F  },
@@ -98,14 +98,14 @@
 #endif
 	{  0xA9,	 0xD6  },
 	{  0xAA,	 0xB5  },
-	{  0xAB,	 0x51  }, 
+	{  0xAB,	 0x51  },
 	{  0xAC,	 0xCA  },
 	{  0xAD,	 0x52  },
 	{  0xAE,	 0x0C  },
 	{  0xAF,	 0x62  },
 	{  0xB1,	 0x75  }
-	
- };	
+
+ };
 #endif /* RTV_ISDBT_ENABLE */
 
 volatile U8 g_nLnaTuneVal;
@@ -113,9 +113,9 @@ volatile U8 g_nLnaTuneVal;
 /*===============================================================================
  * rtvRF_ConfigurePowerType
  *
- * DESCRIPTION : 
- *		This function returns 
- *		
+ * DESCRIPTION :
+ *		This function returns
+ *
  *
  * ARGUMENTS : none.
  * RETURN VALUE : none.
@@ -123,14 +123,14 @@ volatile U8 g_nLnaTuneVal;
 void rtvRF_ConfigurePowerType(E_RTV_TV_MODE_TYPE eTvMode)
 {
 
-   	RTV_REG_MAP_SEL(RF_PAGE);
-#if defined(RTV_PWR_LDO)             
+	RTV_REG_MAP_SEL(RF_PAGE);
+#if defined(RTV_PWR_LDO)
 	RTV_REG_SET(0x5D,0x00);
-#elif defined(RTV_PWR_EXTERNAL)          
+#elif defined(RTV_PWR_EXTERNAL)
 	RTV_REG_SET(0x5D,0x01);
 #else
 	#error "Code not present"
-#endif    
+#endif
 
 }
 
@@ -156,8 +156,8 @@ static INT rtvRF_Lna_Tuning( U32 dwLoFreq)
 	else
 		return RTV_INVAILD_FREQ;
 #endif
-   	if(g_nLnaTuneVal == nidx)
-   	  return RTV_SUCCESS;
+	if(g_nLnaTuneVal == nidx)
+	  return RTV_SUCCESS;
 
 	RTV_REG_MAP_SEL(RF_PAGE);
 
@@ -186,14 +186,14 @@ static INT rtvRF_Lna_Tuning( U32 dwLoFreq)
 	RTV_REG_MASK_SET(0x42,0x0C,g_atLNAtbl[nidx][17]<<2);
 
 	g_nLnaTuneVal = nidx;
-	
+
 	return RTV_SUCCESS;
 }
 
 
 INT rtvRF_ChangeAdcClock(E_RTV_TV_MODE_TYPE eTvMode,
 			E_RTV_ADC_CLK_FREQ_TYPE eAdcClkFreqType, S16 dwIFFreq)
-{	
+{
 	U8 RD12;
 	UINT nRetryCnt = 10;
 	const U8 *pbAdcClkSynTbl = (const U8 *)&g_abAdcClkSynTbl[eAdcClkFreqType];
@@ -202,18 +202,18 @@ INT rtvRF_ChangeAdcClock(E_RTV_TV_MODE_TYPE eTvMode,
 	if (pbAdcClkSynTbl[0] == 0xFF) {
 		RTV_DBGMSG1("[rtvRF_ChangeAdcClock] Unsupport ADC clock type: %d\n", eAdcClkFreqType);
 		return RTV_UNSUPPORT_ADC_CLK;
-   	 }
+	 }
 
 	RTV_REG_MAP_SEL(OFDM_PAGE);
 
 	if (dwIFFreq == 857) {
-		RTV_REG_SET(0x18, ( ptOfdmCfgTbl->dwPNCO2  >> 0 ));  
+		RTV_REG_SET(0x18, ( ptOfdmCfgTbl->dwPNCO2  >> 0 ));
 		RTV_REG_SET(0x19, ( ptOfdmCfgTbl->dwPNCO2  >> 8 ));
 		RTV_REG_SET(0x1A, ( ptOfdmCfgTbl->dwPNCO2  >> 16));
 		RTV_REG_SET(0x1B, ( ptOfdmCfgTbl->dwPNCO2  >> 24));
 	}
 	else {
-		RTV_REG_SET(0x18, ( ptOfdmCfgTbl->dwPNCO1  >> 0 ));  
+		RTV_REG_SET(0x18, ( ptOfdmCfgTbl->dwPNCO1  >> 0 ));
 		RTV_REG_SET(0x19, ( ptOfdmCfgTbl->dwPNCO1  >> 8 ));
 		RTV_REG_SET(0x1A, ( ptOfdmCfgTbl->dwPNCO1  >> 16));
 		RTV_REG_SET(0x1B, ( ptOfdmCfgTbl->dwPNCO1  >> 24));
@@ -222,14 +222,14 @@ INT rtvRF_ChangeAdcClock(E_RTV_TV_MODE_TYPE eTvMode,
 	if (eAdcClkFreqType == g_eRtvAdcClkFreqType)
 		return RTV_SUCCESS;
 
-	RTV_REG_SET(0x14, (ptOfdmCfgTbl->dwTNCO  >>  0) & 0xFF);   
+	RTV_REG_SET(0x14, (ptOfdmCfgTbl->dwTNCO  >>  0) & 0xFF);
 	RTV_REG_SET(0x15, (ptOfdmCfgTbl->dwTNCO  >>  8) & 0xFF);
 	RTV_REG_SET(0x16, (ptOfdmCfgTbl->dwTNCO  >> 16) & 0xFF);
 	RTV_REG_SET(0x17, (ptOfdmCfgTbl->dwTNCO  >> 24) & 0xFF);
 
 	RTV_REG_SET (0x1C,(ptOfdmCfgTbl->dwGAIN)&0xFF);
 
-	RTV_REG_SET (0x1D, (ptOfdmCfgTbl->dwCFREQGAIN >>  0) & 0xFF);    
+	RTV_REG_SET (0x1D, (ptOfdmCfgTbl->dwCFREQGAIN >>  0) & 0xFF);
 	RTV_REG_SET (0x1E, (ptOfdmCfgTbl->dwCFREQGAIN >>  8) & 0xFF);
 	RTV_REG_SET (0x1F, (ptOfdmCfgTbl->dwCFREQGAIN >> 16) & 0xFF);
 
@@ -261,7 +261,7 @@ INT rtvRF_ChangeAdcClock(E_RTV_TV_MODE_TYPE eTvMode,
 				g_eRtvAdcClkFreqType[RaonTvChipIdx]);
 #endif
 
-	return RTV_SUCCESS;	
+	return RTV_SUCCESS;
 }
 
 
@@ -270,7 +270,7 @@ INT rtvRF_SetFrequency(E_RTV_TV_MODE_TYPE eTvMode, UINT nChNum, U32 dwChFreqKHz)
 
 	INT nRet = RTV_SUCCESS;
 	E_RTV_ADC_CLK_FREQ_TYPE eAdcClkFreqType = RTV_ADC_CLK_FREQ_8_MHz;
-	U32 dwPLLN = 0, dwPLLF = 0, dwPLLNF = 0; 
+	U32 dwPLLN = 0, dwPLLF = 0, dwPLLNF = 0;
 	U32 dwPllFreq = 0, dwLoFreq = 0;
 	S16 dwIFfREQ = 0;
 	U8 WR2A,RD15;
@@ -301,7 +301,7 @@ INT rtvRF_SetFrequency(E_RTV_TV_MODE_TYPE eTvMode, UINT nChNum, U32 dwChFreqKHz)
 	case 30: case 41: case 61:
 		eAdcClkFreqType = g_aeAdcClkTypeTbl_ISDBT[1];
 		break;
-	default: 
+	default:
 		eAdcClkFreqType = g_aeAdcClkTypeTbl_ISDBT[0];
 		break;
 	}
@@ -317,7 +317,7 @@ INT rtvRF_SetFrequency(E_RTV_TV_MODE_TYPE eTvMode, UINT nChNum, U32 dwChFreqKHz)
 
 	dwLoFreq = dwChFreqKHz + dwIFfREQ;
     dwPllFreq = dwLoFreq << 1;
-     
+
 	if (rtvRF_Lna_Tuning(dwLoFreq) != RTV_SUCCESS) {
 		nRet = RTV_INVAILD_FREQ;
 		goto RF_SET_FREQ_EXIT;
@@ -326,7 +326,7 @@ INT rtvRF_SetFrequency(E_RTV_TV_MODE_TYPE eTvMode, UINT nChNum, U32 dwChFreqKHz)
 	nRet = rtvRF_ChangeAdcClock(eTvMode, eAdcClkFreqType,dwIFfREQ);
 	if (nRet != RTV_SUCCESS)
 		goto RF_SET_FREQ_EXIT;
-	
+
 	RTV_REG_MAP_SEL(RF_PAGE);
 
 	if (dwLoFreq < 550000) {
@@ -343,8 +343,8 @@ INT rtvRF_SetFrequency(E_RTV_TV_MODE_TYPE eTvMode, UINT nChNum, U32 dwChFreqKHz)
 	dwPLLN = dwPllFreq / RTV_SRC_CLK_FREQ_KHz;
 	dwPLLF = dwPllFreq - (dwPLLN* RTV_SRC_CLK_FREQ_KHz);
 	dwPLLNF = ((dwPLLN<<20 )
-	     	+ (((dwPLLF<<16) / (RTV_SRC_CLK_FREQ_KHz>>r_div)) << pllf_mul))
-	     	* nPllr ; 
+		+ (((dwPLLF<<16) / (RTV_SRC_CLK_FREQ_KHz>>r_div)) << pllf_mul))
+		* nPllr ;
 
 	RTV_REG_MAP_SEL(RF_PAGE);
 	RTV_REG_SET(0x21, ((dwPLLNF>>22)&0xFF));
@@ -360,7 +360,7 @@ INT rtvRF_SetFrequency(E_RTV_TV_MODE_TYPE eTvMode, UINT nChNum, U32 dwChFreqKHz)
 	RTV_DELAY_MS(1);
 	RTV_REG_SET(0x2A, (WR2A | 0x80));
 	RTV_REG_SET(0x2A, (WR2A | 0x00));
-	
+
 	RTV_REG_MASK_SET(0x2E,0x40,0x40);
     RTV_REG_MASK_SET(0x2E,0x40,0x00);
 #else
@@ -385,21 +385,21 @@ INT rtvRF_SetFrequency(E_RTV_TV_MODE_TYPE eTvMode, UINT nChNum, U32 dwChFreqKHz)
 			break;
 		else {
 #if (RTV_SRC_CLK_FREQ_KHz == 19200)
-			RTV_REG_SET(0x2A, (WR2A | 0x80)); 
-			RTV_REG_SET(0x2A, (WR2A | 0xC0)); 
+			RTV_REG_SET(0x2A, (WR2A | 0x80));
+			RTV_REG_SET(0x2A, (WR2A | 0xC0));
 			RTV_DELAY_MS(1);
-			RTV_REG_SET(0x2A, (WR2A | 0x80)); 
-			RTV_REG_SET(0x2A, (WR2A | 0x00)); 
-			
+			RTV_REG_SET(0x2A, (WR2A | 0x80));
+			RTV_REG_SET(0x2A, (WR2A | 0x00));
+
 			RTV_REG_MASK_SET(0x2E,0x40,0x40);
 			RTV_REG_MASK_SET(0x2E,0x40,0x00);
 
 #else
-			RTV_REG_SET(0x2A, (WR2A | 0x80)); 
-			RTV_REG_SET(0x2A, (WR2A | 0xC0)); 
+			RTV_REG_SET(0x2A, (WR2A | 0x80));
+			RTV_REG_SET(0x2A, (WR2A | 0xC0));
 			RTV_DELAY_MS(1);
-			RTV_REG_SET(0x2A, (WR2A | 0x80)); 
-			RTV_REG_SET(0x2A, (WR2A | 0x00)); 
+			RTV_REG_SET(0x2A, (WR2A | 0x80));
+			RTV_REG_SET(0x2A, (WR2A | 0x00));
 #endif
 		}
 	} while (--PLL_Verify_cnt);
@@ -409,7 +409,7 @@ INT rtvRF_SetFrequency(E_RTV_TV_MODE_TYPE eTvMode, UINT nChNum, U32 dwChFreqKHz)
 	RTV_REG_MASK_SET(0x10, 0x01, 0x00);
 
 	RTV_REG_MAP_SEL(FEC_PAGE);
-	RTV_REG_MASK_SET(0xFB, 0x01, 0x01); 
+	RTV_REG_MASK_SET(0xFB, 0x01, 0x01);
 	RTV_REG_MASK_SET(0xFB, 0x01, 0x00);
 
 	if (PLL_Verify_cnt == 0) {
@@ -423,8 +423,8 @@ INT rtvRF_SetFrequency(E_RTV_TV_MODE_TYPE eTvMode, UINT nChNum, U32 dwChFreqKHz)
 	rtv_UpdateAdj();
 
 RF_SET_FREQ_EXIT:
-	g_fRtvChannelChange = FALSE; 
-		 
+	g_fRtvChannelChange = FALSE;
+
 	return nRet;
 }
 
@@ -433,14 +433,14 @@ INT rtvRF_Initilize(E_RTV_TV_MODE_TYPE eTvMode)
 {
 	UINT nNumTblEntry = 0;
 	const RTV_REG_INIT_INFO *ptInitTbl = NULL;
-			
+
 	g_fRtvChannelChange = FALSE;
 	g_eRtvAdcClkFreqType = MAX_NUM_RTV_ADC_CLK_FREQ_TYPE;
 	g_nLnaTuneVal = 0xFF;
-	
+
 	ptInitTbl = t_ISDBT_INIT;
 	nNumTblEntry = sizeof(t_ISDBT_INIT) / sizeof(RTV_REG_INIT_INFO);
-	
+
 	RTV_REG_MAP_SEL(RF_PAGE);
 	do {
 		RTV_REG_SET(ptInitTbl->bReg, ptInitTbl->bVal);
@@ -487,22 +487,21 @@ INT rtvRF_Initilize(E_RTV_TV_MODE_TYPE eTvMode)
 	RTV_REG_MASK_SET(0x56, 0x0C, 0x04); //BM_VCOCORE_I2C  1
 	RTV_REG_MASK_SET(0x88, 0xE0, 0x80); //ICONDIV1  4
 	RTV_REG_MASK_SET(0x5D, 0xE0, 0xC0); //LDO_OUTSEL  6
-	RTV_REG_SET(0x94,0xC3); 	
-	RTV_REG_SET(0x95,0x70); 	
-	RTV_REG_SET(0x96,0x43); 		
-	RTV_REG_SET(0x97,0x7F); 	
-	RTV_REG_SET(0x98,0xC1); 		
-	RTV_REG_SET(0x99,0x5C); 	
-	RTV_REG_SET(0x9A,0xBF); 			
-	RTV_REG_SET(0x9B,0xC6); 	
-	RTV_REG_SET(0x9C,0x43); 			
-	RTV_REG_SET(0x9D,0x96); 	
-	RTV_REG_SET(0x9E,0xC1); 				
-	RTV_REG_SET(0x9F,0xD7); 	
-	RTV_REG_SET(0xA6,0x3B); 					
-	RTV_REG_SET(0xA7,0x11); 
+	RTV_REG_SET(0x94,0xC3);
+	RTV_REG_SET(0x95,0x70);
+	RTV_REG_SET(0x96,0x43);
+	RTV_REG_SET(0x97,0x7F);
+	RTV_REG_SET(0x98,0xC1);
+	RTV_REG_SET(0x99,0x5C);
+	RTV_REG_SET(0x9A,0xBF);
+	RTV_REG_SET(0x9B,0xC6);
+	RTV_REG_SET(0x9C,0x43);
+	RTV_REG_SET(0x9D,0x96);
+	RTV_REG_SET(0x9E,0xC1);
+	RTV_REG_SET(0x9F,0xD7);
+	RTV_REG_SET(0xA6,0x3B);
+	RTV_REG_SET(0xA7,0x11);
 #endif
 
 	return RTV_SUCCESS;
 }
-

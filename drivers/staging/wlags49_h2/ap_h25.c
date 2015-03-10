@@ -4048,7 +4048,7 @@ static const CFG_PROG_STRCT fw_image_code[] = {
 		CFG_PROG,
 		CFG_PROG_STOP,				// mode
 		0000,
- 	0x000F2101,					// Start execution address
+	0x000F2101,					// Start execution address
 	},
 	{ 0000, 0000, 0000, 0000, 00000000, 0000, 00000000}
 };
@@ -4091,4 +4091,3 @@ memimage fw_image = {
 	(CFG_RANGE20_STRCT *) fw_image_infocompat,
 	(CFG_IDENTITY_STRCT *) fw_image_infoidentity,
 };
-

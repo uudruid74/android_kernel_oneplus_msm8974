@@ -715,12 +715,12 @@ int msm_bus_scale_client_update_request(uint32_t cl, unsigned index)
 			{
 				if (log_cnt >= 1000)
 					log_cnt = 0;
-				
+
 				log_req[log_cnt].ab = client->pdata->usecase[index].vectors[i].ab;
 				log_req[log_cnt].ib = client->pdata->usecase[index].vectors[i].ib;
 				log_req[log_cnt].src = client->pdata->usecase[index].vectors[i].src;
 				log_req[log_cnt].dst = client->pdata->usecase[index].vectors[i].dst;
-				log_req[log_cnt].cnt = arch_counter_get_cntpct(); 
+				log_req[log_cnt].cnt = arch_counter_get_cntpct();
 				strncpy(log_req[log_cnt].name, client->pdata->name, 19);
 				log_cnt++;
 				//printk("*** cl: %s ab: %llu ib: %llu\n", client->pdata->name, req_bw, req_clk);
@@ -920,4 +920,3 @@ void msm_bus_scale_unregister_client(uint32_t cl)
 	kfree(client);
 }
 EXPORT_SYMBOL(msm_bus_scale_unregister_client);
-

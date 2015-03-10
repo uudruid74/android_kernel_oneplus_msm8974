@@ -288,4 +288,3 @@ static int __init iss_console_init(void)
 console_initcall(iss_console_init);
 
 #endif /* CONFIG_SERIAL_CONSOLE */
-

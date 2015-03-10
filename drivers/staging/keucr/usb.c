@@ -71,12 +71,12 @@ static int eucr_resume(struct usb_interface *iface)
 
 	mutex_unlock(&us->dev_mutex);
 
-	
+
          us->Power_IsResum = true;
 	//
 	//us->SD_Status.Ready = 0; //??
-    	us->SM_Status = *(PSM_STATUS)&tmp;
-    	
+	us->SM_Status = *(PSM_STATUS)&tmp;
+
 	return 0;
 }
 //EXPORT_SYMBOL_GPL(eucr_resume);
@@ -94,10 +94,10 @@ static int eucr_reset_resume(struct usb_interface *iface)
 	/* FIXME: Notify the subdrivers that they need to reinitialize
 	 * the device */
 	//ENE_InitMedia(us);
- 	us->Power_IsResum = true;
+	us->Power_IsResum = true;
 	//
 	//us->SD_Status.Ready = 0; //??
-    	us->SM_Status = *(PSM_STATUS)&tmp;
+	us->SM_Status = *(PSM_STATUS)&tmp;
 	return 0;
 }
 //EXPORT_SYMBOL_GPL(usb_stor_reset_resume);
@@ -175,7 +175,7 @@ static int usb_stor_control_thread(void * __us)
 	{
 		if (wait_for_completion_interruptible(&us->cmnd_ready))
 			break;
-			
+
 		/* lock the device pointers */
 		mutex_lock(&(us->dev_mutex));
 
@@ -271,7 +271,7 @@ SkipForAbort:
 	}
 	__set_current_state(TASK_RUNNING);
 	return 0;
-}	
+}
 
 //----- associate_dev() ---------------------
 static int associate_dev(struct us_data *us, struct usb_interface *intf)
@@ -691,9 +691,9 @@ static void eucr_disconnect(struct usb_interface *intf)
 static struct usb_driver usb_storage_driver = {
 	.name =		"eucr",
 	.probe =		eucr_probe,
-    	.suspend =	    eucr_suspend,
+	.suspend =	    eucr_suspend,
 	.resume =	    eucr_resume,
-    	.reset_resume =	eucr_reset_resume,
+	.reset_resume =	eucr_reset_resume,
 	.disconnect =	eucr_disconnect,
 	.pre_reset =	eucr_pre_reset,
 	.post_reset =	eucr_post_reset,

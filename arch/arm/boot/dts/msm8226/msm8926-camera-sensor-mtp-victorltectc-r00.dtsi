@@ -41,7 +41,7 @@
 		qcom,led-flash-src = <&led_flash0>;
 		qcom,actuator-src = <&actuator1>;
 		cam_vdig-supply = <&pm8226_l26>;
-		cam_vio-supply = <&pm8226_l27>; 
+		cam_vio-supply = <&pm8226_l27>;
 		cam_vaf-supply = <&pm8226_l28>;
 		qcom,cam-vreg-name = "cam_vdig", "cam_vio",
 				     "cam_vaf";

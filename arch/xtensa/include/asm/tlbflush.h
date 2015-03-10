@@ -93,7 +93,7 @@ static inline void set_itlbcfg_register (unsigned long val)
 static inline void set_dtlbcfg_register (unsigned long val)
 {
 	__asm__ __volatile__("wsr  %0, "__stringify(DTLBCFG)"; dsync\n\t"
-	    		     : : "a" (val));
+			     : : "a" (val));
 }
 
 static inline void set_ptevaddr_register (unsigned long val)

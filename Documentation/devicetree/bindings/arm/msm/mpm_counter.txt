@@ -16,4 +16,3 @@ Example:
 		reg = <0xfc4a3000 0x1000>;
 		clock-frequency = <32768>;
 	};
-

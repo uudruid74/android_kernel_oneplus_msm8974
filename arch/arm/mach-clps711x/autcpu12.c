@@ -47,8 +47,8 @@
 
 static struct map_desc autcpu12_io_desc[] __initdata = {
 	/* memory-mapped extra io and CS8900A Ethernet chip */
- 	/* ethernet chip */
- 	{
+	/* ethernet chip */
+	{
 		.virtual	= AUTCPU12_VIRT_CS8900A,
 		.pfn		= __phys_to_pfn(AUTCPU12_PHYS_CS8900A),
 		.length		= SZ_1M,
@@ -70,4 +70,3 @@ MACHINE_START(AUTCPU12, "autronix autcpu12")
 	.timer		= &clps711x_timer,
 	.restart	= clps711x_restart,
 MACHINE_END
-

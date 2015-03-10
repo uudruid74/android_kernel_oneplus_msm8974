@@ -44,4 +44,3 @@ typedef unsigned int UINT32;
 
 
 #endif	//__TYPEDEFS_H__
-

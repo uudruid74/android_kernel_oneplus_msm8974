@@ -22,11 +22,11 @@
 				   which falls to zero up to 0.4 sec
 				   before speech stops */
 #define TTS_WRITABLE     0x10	/* mask for RDY bit, which when set to
-             			   1, indicates the TTS port is ready
-             			   to accept a byte of data.  The RDY
-             			   bit goes zero 2-3 usec after
-             			   writing, and goes 1 again 180-190
-             			   usec later. */
+				   1, indicates the TTS port is ready
+				   to accept a byte of data.  The RDY
+				   bit goes zero 2-3 usec after
+				   writing, and goes 1 again 180-190
+				   usec later. */
 #define TTS_ALMOST_FULL  0x08	/* mask for AF bit: When set to 1,
 				   indicates that less than 300 free
 				   bytes are available in the TTS

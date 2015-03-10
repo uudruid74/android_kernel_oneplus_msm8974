@@ -1022,4 +1022,3 @@ ip_selector_match_fields_to_group(
 
   return (int) match;
 }
-

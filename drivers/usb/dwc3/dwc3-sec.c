@@ -82,7 +82,7 @@ static void smb1357_late_power(struct work_struct *work)
 {
 	struct dwc3_sec *snoti = &sec_noti;
 	struct dwc3_msm *dwcm;
-	
+
 	if (!snoti) {
 		pr_err("%s: dwc3_otg (snoti) is null\n", __func__);
 		return;
@@ -93,7 +93,7 @@ static void smb1357_late_power(struct work_struct *work)
 		pr_err("%s: dwc3_otg (dwcm) is null\n", __func__);
 		return;
 	}
-	
+
 	pr_info("%s, ext_xceiv.id=%d\n", __func__, dwcm->ext_xceiv.id);
 
 #ifdef CONFIG_USB_HOST_NOTIFY
@@ -160,7 +160,7 @@ static void bq24260_late_power(struct work_struct *work)
 {
 	struct dwc3_sec *snoti = &sec_noti;
 	struct dwc3_msm *dwcm;
-	
+
 	if (!snoti) {
 		pr_err("%s: dwc3_otg (snoti) is null\n", __func__);
 		return;
@@ -171,7 +171,7 @@ static void bq24260_late_power(struct work_struct *work)
 		pr_err("%s: dwc3_otg (dwcm) is null\n", __func__);
 		return;
 	}
-	
+
 	pr_info("%s, ext_xceiv.id=%d\n", __func__, dwcm->ext_xceiv.id);
 
 #ifdef CONFIG_USB_HOST_NOTIFY
@@ -249,7 +249,7 @@ static irqreturn_t msm_usb_vbus_msm_irq(int irq, void *data)
 static int get_vbus_detect_gpio(struct dwc3_msm *dwcm, struct device *dev)
 {
 	int ret;
-	struct device_node *np = dev->of_node;	
+	struct device_node *np = dev->of_node;
 
 	gpio_usb_vbus_msm = of_get_named_gpio(np, "qcom,vbus-detect-gpio", 0);
 	if (gpio_usb_vbus_msm < 0) {
@@ -369,11 +369,11 @@ static int sec_otg_notifications(struct notifier_block *nb,
 	case HNOTIFY_OVERCURRENT: break;
 	case HNOTIFY_OTG_POWER_ON: break;
 	case HNOTIFY_OTG_POWER_OFF: break;
-	case HNOTIFY_SMARTDOCK_ON: 
+	case HNOTIFY_SMARTDOCK_ON:
 		pr_info("ID clear\n");
 		sec_otg_ext_notify(dwcm, 1);
 		break;
-	case HNOTIFY_SMARTDOCK_OFF: 
+	case HNOTIFY_SMARTDOCK_OFF:
 		pr_info("ID set\n");
 		sec_otg_ext_notify(dwcm, 0);
 		break;

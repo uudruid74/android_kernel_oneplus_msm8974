@@ -74,7 +74,7 @@ static unsigned int net_debug = NET_DEBUG;
 
 
 /*
-  			Details of the i82586.
+			Details of the i82586.
 
    You'll really need the databook to understand the details of this part,
    but the outline is that the i82586 has two separate processing units.
@@ -129,7 +129,7 @@ struct net_local {
 };
 
 /*
-  		Details of the EtherLink16 Implementation
+		Details of the EtherLink16 Implementation
   The 3c507 is a generic shared-memory i82586 implementation.
   The host can map 16K, 32K, 48K, or 64K of the 64K memory into
   0x0[CD][08]0000, or all 64K into 0xF[02468]0000.
@@ -459,7 +459,7 @@ static int __init el16_probe1(struct net_device *dev, int ioaddr)
 	dev->netdev_ops = &netdev_ops;
 	dev->watchdog_timeo = TX_TIMEOUT;
 	dev->ethtool_ops = &netdev_ethtool_ops;
- 	dev->flags &= ~IFF_MULTICAST;	/* Multicast doesn't work */
+	dev->flags &= ~IFF_MULTICAST;	/* Multicast doesn't work */
 	return 0;
 out1:
 	free_irq(dev->irq, dev);

@@ -764,7 +764,7 @@ static int mpu6500_gyro_self_test(struct inv_mpu_state *st,
 				DEF_ST_PRECISION * DEF_GYRO_CT_SHIFT_MIN *
 				DEF_SELFTEST_GYRO_SENS)
 				ret_val |= 1 << i;
-			if (st_shift_cust[i] > 
+			if (st_shift_cust[i] >
 				DEF_ST_PRECISION * DEF_GYRO_CT_SHIFT_MAX *
 				DEF_SELFTEST_GYRO_SENS)
 				ret_val |= 1 << i;

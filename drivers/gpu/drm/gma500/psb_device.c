@@ -329,4 +329,3 @@ const struct psb_ops psb_chip_ops = {
 	.power_down = psb_power_down,
 	.power_up = psb_power_up,
 };
-

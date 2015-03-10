@@ -95,7 +95,7 @@ struct control_regints {
 	unsigned hlfln;		/* half horiz period */
 	unsigned hserr;		/* horiz period - horiz sync len */
 };
-	
+
 /*
  * Dot clock rate is
  * 3.9064MHz * 2**clock_params[2] * clock_params[1] / clock_params[0].
@@ -142,4 +142,3 @@ static struct max_cmodes control_mac_modes[] = {
 	{{ 0, 1}},	/* 1280x960, 75Hz */
 	{{ 0, 1}},	/* 1280x1024, 75Hz */
 };
-

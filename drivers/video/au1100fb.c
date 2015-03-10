@@ -72,7 +72,7 @@
  */
 struct fb_bitfield rgb_bitfields[][4] =
 {
-  	/*     Red, 	   Green, 	 Blue, 	     Transp   */
+	/*     Red, 	   Green, 	 Blue, 	     Transp   */
 	{ { 10, 6, 0 }, { 5, 5, 0 }, { 0, 5, 0 }, { 0, 0, 0 } },
 	{ { 11, 5, 0 }, { 5, 6, 0 }, { 0, 5, 0 }, { 0, 0, 0 } },
 	{ { 11, 5, 0 }, { 6, 5, 0 }, { 0, 6, 0 }, { 0, 0, 0 } },
@@ -131,7 +131,7 @@ static int au1100fb_fb_blank(int blank_mode, struct fb_info *fbi)
 #ifdef CONFIG_MIPS_PB1100
 			if (fbdev->panel_idx == 1) {
 				au_writew(au_readw(PB1100_G_CONTROL)
-				  	  & ~(PB1100_G_CONTROL_BL | PB1100_G_CONTROL_VDD),
+					  & ~(PB1100_G_CONTROL_BL | PB1100_G_CONTROL_VDD),
 			PB1100_G_CONTROL);
 			}
 #endif
@@ -491,7 +491,7 @@ static int __devinit au1100fb_drv_probe(struct platform_device *dev)
 
 	/* Allocate the framebuffer to the maximum screen size * nbr of video buffers */
 	fbdev->fb_len = fbdev->panel->xres * fbdev->panel->yres *
-		  	(fbdev->panel->bpp >> 3) * AU1100FB_NBR_VIDEO_BUFFERS;
+			(fbdev->panel->bpp >> 3) * AU1100FB_NBR_VIDEO_BUFFERS;
 
 	fbdev->fb_mem = dmam_alloc_coherent(&dev->dev,
 					    PAGE_ALIGN(fbdev->fb_len),

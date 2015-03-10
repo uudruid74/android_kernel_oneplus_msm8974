@@ -9,7 +9,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  */
- 
+
 /****************************** Revision History ******************************************
  *CH# Product		author		Description				Date
  *-----------------------------------------------------------------------------------------
@@ -25,7 +25,7 @@
  * QC_SOC_REVISION = Qcomm SOC Version of MTP Board
  * Please refer to .../lk/platform/msm_shared/dev_tree.c also
  */
- 
+
 /dts-v1/;
 /include/ "msm8226-v2.dtsi"
 /include/ "msm8228-sec-mega23g-r00.dtsi"
@@ -100,8 +100,8 @@
 		reg-names = "qup_phys_addr";
 		interrupts = <0 97 0>;
 		interrupt-names = "qup_err_intr";
-		qcom,i2c-bus-freq = <100000>; 
-		
+		qcom,i2c-bus-freq = <100000>;
+
 		qcom,i2c-src-freq = <19200000>;
         };
 
@@ -122,5 +122,3 @@
 		mpp-channel-scaling = <6 1 1>;
         };
 };
-
-

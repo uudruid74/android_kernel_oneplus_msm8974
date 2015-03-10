@@ -2369,4 +2369,3 @@ void BBProcessor_RateChanging(struct hw_data *pHwData,  u8 rate)
 		break;
 	}
 }
-

@@ -381,7 +381,7 @@ affs_add_entry(struct inode *dir, struct inode *inode, struct dentry *dentry, s3
 
 	if (inode_bh) {
 		__be32 chain;
-	       	chain = AFFS_TAIL(sb, inode_bh)->link_chain;
+		chain = AFFS_TAIL(sb, inode_bh)->link_chain;
 		AFFS_TAIL(sb, bh)->original = cpu_to_be32(inode->i_ino);
 		AFFS_TAIL(sb, bh)->link_chain = chain;
 		AFFS_TAIL(sb, inode_bh)->link_chain = cpu_to_be32(block);

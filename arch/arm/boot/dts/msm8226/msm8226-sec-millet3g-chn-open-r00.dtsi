@@ -36,8 +36,8 @@
 			qcom,msm-mi2s-tx-lines = <1>;
 		};
 	};
-	
-    	i2c@f9928000 {	 /*BLSP-1 QUP-6*/
+
+	i2c@f9928000 {	 /*BLSP-1 QUP-6*/
 		compatible = "qcom,i2c-qup";
 		qcom,scl-gpio = <&msmgpio 23 0>;
 		qcom,sda-gpio = <&msmgpio 22 0>;
@@ -48,8 +48,8 @@
 			max98504,i2c-pull-up;
 		};
 	};	/*CONFIG_SND_SOC_MAX98504*/
-	
-	 
+
+
 	i2c@f9925000 { /* BLSP1 QUP2 */
 		backlight_lp8556@2C {
 			compatible = "backlight_lp8556";
@@ -121,7 +121,7 @@
                 compatible = "i2c-gpio";
                 gpios = <&msmgpio 20 0 /* sda */
                          &msmgpio 21 0 /* scl */
-	               		 >;
+				 >;
                 i2c-gpio,delay-us = <4>;
                 lp8556_backlight@2C {
                                 compatible = "lp8556,backlight-control";
@@ -240,7 +240,7 @@
 	alps {
 			compatible = "alps-input";
 	};
-	
+
 	sound {
 		qcom,audio-routing =
 			"RX_BIAS", "MCLK",

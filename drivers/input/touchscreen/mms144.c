@@ -701,8 +701,8 @@ static void melfas_ta_cb(struct tsp_callbacks *cb, bool ta_status)
 struct tsp_callbacks *charger_callbacks;
 void tsp_charger_infom(bool en)
 {
- 	if (charger_callbacks && charger_callbacks->inform_charger)
- 		charger_callbacks->inform_charger(charger_callbacks, en);
+	if (charger_callbacks && charger_callbacks->inform_charger)
+		charger_callbacks->inform_charger(charger_callbacks, en);
 }
 static void melfas_register_callback(void *cb)
 {
@@ -1444,7 +1444,7 @@ static void hw_reboot(struct mms_ts_info *info, bool bootloader)
 	printk("[TSP] %s : Reset pin Output value 0 \n",__func__);
 	gpio_direction_output(info->pdata->gpio_resetb, 0);
 #endif
-	
+
 	msleep(30);
 	melfas_vdd_on(info, 1);
 	msleep(30);
@@ -2387,7 +2387,7 @@ static void clear_cover_mode(void *device_data)
 	dev_info(&info->client->dev, "[TSP] %s: arg=%d\n", __func__,arg);
 
 	info->cover_state = arg;
-	
+
 	if(info->enabled)
 		cover_set(info, arg);
 

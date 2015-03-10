@@ -374,7 +374,7 @@ config PCI_BIOS
 
 config PCI_DIRECT
 	bool
- 	depends on PCI && (PCI_GODIRECT || PCI_GOANY)
+	depends on PCI && (PCI_GODIRECT || PCI_GOANY)
 	default y
 
 source "drivers/pci/Kconfig"

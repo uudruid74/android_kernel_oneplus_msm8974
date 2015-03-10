@@ -156,12 +156,12 @@ static int __devinit snd_card_als100_pnp(int dev, struct snd_card_als100 *acard,
 		mpu_irq[dev] = pnp_irq(pdev, 0);
 	} else {
 	     __mpu_error:
-	     	if (pdev) {
-		     	pnp_release_card_device(pdev);
-	     		snd_printk(KERN_ERR PFX "MPU401 pnp configure failure, skipping\n");
-	     	}
-	     	acard->devmpu = NULL;
-	     	mpu_port[dev] = -1;
+		if (pdev) {
+			pnp_release_card_device(pdev);
+			snd_printk(KERN_ERR PFX "MPU401 pnp configure failure, skipping\n");
+		}
+		acard->devmpu = NULL;
+		mpu_port[dev] = -1;
 	}
 
 	pdev = acard->devopl;
@@ -172,12 +172,12 @@ static int __devinit snd_card_als100_pnp(int dev, struct snd_card_als100 *acard,
 		fm_port[dev] = pnp_port_start(pdev, 0);
 	} else {
 	      __fm_error:
-	     	if (pdev) {
-		     	pnp_release_card_device(pdev);
-	     		snd_printk(KERN_ERR PFX "OPL3 pnp configure failure, skipping\n");
-	     	}
-	     	acard->devopl = NULL;
-	     	fm_port[dev] = -1;
+		if (pdev) {
+			pnp_release_card_device(pdev);
+			snd_printk(KERN_ERR PFX "OPL3 pnp configure failure, skipping\n");
+		}
+		acard->devopl = NULL;
+		fm_port[dev] = -1;
 	}
 
 	return 0;
@@ -254,7 +254,7 @@ static int __devinit snd_card_als100_probe(int dev,
 
 		if (snd_mpu401_uart_new(card, 0,
 					mpu_type,
-					mpu_port[dev], 0, 
+					mpu_port[dev], 0,
 					mpu_irq[dev],
 					NULL) < 0)
 			snd_printk(KERN_ERR PFX "no MPU-401 device at 0x%lx\n", mpu_port[dev]);

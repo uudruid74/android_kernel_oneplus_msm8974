@@ -1199,7 +1199,7 @@ void axusbnet_disconnect(struct usb_interface *intf)
 
 	/* we don't hold rtnl here ... */
 	/*flush_scheduled_work(); */
-        cancel_work_sync(&dev->kevent); 
+        cancel_work_sync(&dev->kevent);
 
 	if (dev->driver_info->unbind)
 		dev->driver_info->unbind(dev, intf);
@@ -1402,4 +1402,3 @@ axusbnet_resume(struct usb_interface *intf)
 
 	return retval;
 }
-

@@ -607,10 +607,10 @@ static void mxt_patch_load_t71data(struct mxt_data *data)
 	u8 buf[MXT_PATCH_T71_DATA_MAX];
 	int error;
 
-	obj = mxt_get_object(data, 
+	obj = mxt_get_object(data,
 			MXT_SPT_DYNAMICCONFIGURATIONCONTAINER_T71);
 	if(obj){
-	    error = mxt_read_mem(data, obj->start_address, 
+	    error = mxt_read_mem(data, obj->start_address,
 				    MXT_PATCH_T71_DATA_MAX, buf);
 
 	    if(!error){
@@ -784,7 +784,7 @@ static int mxt_patch_stage_timer(struct mxt_data *data,
 {
 	if(do_action){
 		int ret = 0;
-		u32 time = period * 10;	
+		u32 time = period * 10;
 
 		//__mxt_patch_debug(data, "STAGE[%d] TIMER: %dx10ms\n",
 		//	data->patch.cur_stage, period);

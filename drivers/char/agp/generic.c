@@ -1435,4 +1435,3 @@ const struct aper_size_info_16 agp3_generic_sizes[AGP_GENERIC_SIZES_ENTRIES] =
 	{   4,    1024, 0, 0xf3f}
 };
 EXPORT_SYMBOL(agp3_generic_sizes);
-

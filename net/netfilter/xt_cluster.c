@@ -113,7 +113,7 @@ xt_cluster_mt(const struct sk_buff *skb, struct xt_action_param *par)
 	 */
 	if (!xt_cluster_is_multicast_addr(skb, par->family) &&
 	    skb->pkt_type == PACKET_MULTICAST) {
-	    	pskb->pkt_type = PACKET_HOST;
+		pskb->pkt_type = PACKET_HOST;
 	}
 
 	ct = nf_ct_get(skb, &ctinfo);

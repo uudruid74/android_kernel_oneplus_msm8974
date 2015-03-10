@@ -55,7 +55,7 @@
     (is_shub2() ? (interface == 0) ? SH2_BT_ENG_CSR_0 :		\
 		  (interface == 1) ? SH2_BT_ENG_CSR_1 :		\
 		  (interface == 2) ? SH2_BT_ENG_CSR_2 :		\
-		  		     SH2_BT_ENG_CSR_3 		\
+				     SH2_BT_ENG_CSR_3 		\
 		: (interface == 0) ? IIO_IBLS0 : IIO_IBLS1)
 
 #define BTE_SOURCE_ADDR(base)					\

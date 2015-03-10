@@ -281,8 +281,8 @@ typedef struct {
 
 	/* queue handling */
 	struct {
-	    	Queue_t		issue;			/* issue queue				*/
-    		Queue_t		disconnected;		/* disconnected command queue		*/
+		Queue_t		issue;			/* issue queue				*/
+		Queue_t		disconnected;		/* disconnected command queue		*/
 	} queues;
 
 	/* per-device info */

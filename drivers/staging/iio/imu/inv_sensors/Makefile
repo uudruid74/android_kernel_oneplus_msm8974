@@ -13,4 +13,3 @@ inv_sensors-$(CONFIG_INV_SENSORS_DMP_K520S) += inv_dmp_k520s.o
 
 inv_sensors-$(CONFIG_INV_SENSORS_DTS_SUPPORT) += inv_sensors_dts.o
 obj-$(CONFIG_INV_SENSORS_IIO) += inv_sensors.o
-

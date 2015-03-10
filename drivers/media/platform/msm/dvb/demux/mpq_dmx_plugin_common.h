@@ -786,4 +786,3 @@ int mpq_dmx_oob_command(struct dvb_demux_feed *feed,
 	struct dmx_oob_command *cmd);
 
 #endif /* _MPQ_DMX_PLUGIN_COMMON_H */
-

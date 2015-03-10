@@ -103,4 +103,3 @@ RTV_POWER_ON_SUCCESS:
 
 	return RTV_SUCCESS;
 }
-

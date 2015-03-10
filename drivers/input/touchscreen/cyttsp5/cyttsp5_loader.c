@@ -737,9 +737,9 @@ int upgrade_firmware_from_sdcard(struct device *dev,
 #else
 int upgrade_firmware_from_sdcard(struct device *dev,
 	const u8 *fw_data, int fw_size)
-{ 
+{
 	dev_err(dev,"%s: Firmware upgrade is not supported.\n",__func__);
-	return -ESRCH; 
+	return -ESRCH;
 }
 #endif
 
@@ -1340,4 +1340,3 @@ int cyttsp5_loader_release(struct device *dev)
 	return rc;
 }
 EXPORT_SYMBOL(cyttsp5_loader_release);
-

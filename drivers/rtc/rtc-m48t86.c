@@ -168,7 +168,7 @@ static int __devexit m48t86_rtc_remove(struct platform_device *dev)
 {
 	struct rtc_device *rtc = platform_get_drvdata(dev);
 
- 	if (rtc)
+	if (rtc)
 		rtc_device_unregister(rtc);
 
 	platform_set_drvdata(dev, NULL);

@@ -1686,7 +1686,7 @@ static int compat_x25_ioctl(struct socket *sock, unsigned int cmd,
 	void __user *argp = (void __user *)get_tainted_stuff();
 	#else
 	void __user *argp = compat_ptr(arg);
-	#endif	
+	#endif
 	struct sock *sk = sock->sk;
 
 	int rc = -ENOIOCTLCMD;

@@ -3388,7 +3388,7 @@ static int mdss_samsung_create_sysfs(void)
 
 #if defined(DDI_VIDEO_ENHANCE_TUNING)
      rc = sysfs_create_file(&lcd_device->dev.kobj,
-		  	 &dev_attr_tuning.attr);
+			 &dev_attr_tuning.attr);
     if (rc) {
 	   pr_err("sysfs create fail-%s\n",
 				   dev_attr_tuning.attr.name);

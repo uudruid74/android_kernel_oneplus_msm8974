@@ -287,4 +287,3 @@ int BBM_AC_CALLBACK_DEREGISTER(void)
 
 	return BBM_OK;
 }
-

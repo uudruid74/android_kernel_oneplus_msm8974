@@ -11,4 +11,3 @@ ccflags-y += -I$(srctree)/drivers/media/video
 ccflags-y += -I$(srctree)/drivers/media/common/tuners
 ccflags-y += -I$(srctree)/drivers/media/dvb/dvb-core
 ccflags-y += -I$(srctree)/drivers/media/dvb/frontends
-

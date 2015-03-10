@@ -241,7 +241,7 @@ uec_set_ringparam(struct net_device *netdev,
 
 	if (ring->rx_pending < UCC_GETH_RX_BD_RING_SIZE_MIN) {
 		printk("%s: RxBD ring size must be no smaller than %d.\n",
-			       	netdev->name, UCC_GETH_RX_BD_RING_SIZE_MIN);
+				netdev->name, UCC_GETH_RX_BD_RING_SIZE_MIN);
 		return -EINVAL;
 	}
 	if (ring->rx_pending % UCC_GETH_RX_BD_RING_SIZE_ALIGNMENT) {
@@ -296,17 +296,17 @@ static void uec_get_strings(struct net_device *netdev, u32 stringset, u8 *buf)
 
 	if (stats_mode & UCC_GETH_STATISTICS_GATHERING_MODE_HARDWARE) {
 		memcpy(buf, hw_stat_gstrings, UEC_HW_STATS_LEN *
-			       	ETH_GSTRING_LEN);
+				ETH_GSTRING_LEN);
 		buf += UEC_HW_STATS_LEN * ETH_GSTRING_LEN;
 	}
 	if (stats_mode & UCC_GETH_STATISTICS_GATHERING_MODE_FIRMWARE_TX) {
 		memcpy(buf, tx_fw_stat_gstrings, UEC_TX_FW_STATS_LEN *
-			       	ETH_GSTRING_LEN);
+				ETH_GSTRING_LEN);
 		buf += UEC_TX_FW_STATS_LEN * ETH_GSTRING_LEN;
 	}
 	if (stats_mode & UCC_GETH_STATISTICS_GATHERING_MODE_FIRMWARE_RX)
 		memcpy(buf, rx_fw_stat_gstrings, UEC_RX_FW_STATS_LEN *
-			       	ETH_GSTRING_LEN);
+				ETH_GSTRING_LEN);
 }
 
 static void uec_get_ethtool_stats(struct net_device *netdev,

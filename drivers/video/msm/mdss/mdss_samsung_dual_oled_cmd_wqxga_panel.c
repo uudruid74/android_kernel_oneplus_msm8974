@@ -1963,7 +1963,7 @@ static int mdss_panel_parse_dt(struct device_node *np,
 */
 
 	mdss_panel_parse_te_params(np, pinfo);
-	
+
 	rc = of_property_read_u32(np,
 		"qcom,mdss-pan-dsi-dst-format", &tmp);
 	pinfo->mipi.dst_format =
@@ -2994,7 +2994,7 @@ static int mdss_samsung_create_sysfs(void)
 
 #if defined(DDI_VIDEO_ENHANCE_TUNING)
      rc = sysfs_create_file(&lcd_device->dev.kobj,
-		  	 &dev_attr_tuning.attr);
+			 &dev_attr_tuning.attr);
     if (rc) {
 	   pr_err("sysfs create fail-%s\n",
 				   dev_attr_tuning.attr.name);

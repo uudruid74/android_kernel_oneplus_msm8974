@@ -1007,7 +1007,7 @@ static struct msm_gpiomux_config audio_gpio_setting[] __initdata = {
 	{
 		.gpio	= 85,		/* EAR_MICBIAS_EN */
 		.settings = {
-			[GPIOMUX_ACTIVE] = &audio_gpio_config[1],		
+			[GPIOMUX_ACTIVE] = &audio_gpio_config[1],
 			[GPIOMUX_SUSPENDED] = &audio_gpio_config[1],
 		},
 	},
@@ -2693,7 +2693,7 @@ void __init msm_8974_init_gpiomux(void)
 
 	msm_gpiomux_install(audio_gpio_setting,
 				ARRAY_SIZE(audio_gpio_setting));
-	
+
 	msm_gpiomux_install(hap_lvl_shft_config,
 				ARRAY_SIZE(hap_lvl_shft_config));
 
@@ -2860,7 +2860,7 @@ void __init msm_8974_init_gpiomux(void)
  }
  else
  {
- 	msm_gpiomux_install(msm8974_felica_configs_rev06,
+	msm_gpiomux_install(msm8974_felica_configs_rev06,
 			ARRAY_SIZE(msm8974_felica_configs_rev06));
  }
 #endif /* CONFIG_FELICA */

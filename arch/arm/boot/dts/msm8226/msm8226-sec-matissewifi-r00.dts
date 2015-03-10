@@ -16,8 +16,8 @@
  *  G[4BITS]:MODEL_VARIANT i.e. 0 for MS01,1 for MILLET_3G, 2 for CT01, 3 for S3VE
  *  H[4BITS]:Hardware Revision
  * Please refer to .../lk/platform/msm_shared/dev_tree.c also
- */ 
- 
+ */
+
 /dts-v1/;
 /include/ "apq8026-v2.dtsi"
 /include/ "msm8226-sec-matissewifi-r00.dtsi"
@@ -104,5 +104,3 @@
 		mpp-channel-scaling = <6 1 1>;
         };
 };
-
-

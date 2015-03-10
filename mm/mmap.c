@@ -69,7 +69,7 @@ static void unmap_region(struct mm_struct *mm,
  * MAP_SHARED	r: (no) no	r: (yes) yes	r: (no) yes	r: (no) yes
  *		w: (no) no	w: (no) no	w: (yes) yes	w: (no) no
  *		x: (no) no	x: (no) yes	x: (no) yes	x: (yes) yes
- *		
+ *
  * MAP_PRIVATE	r: (no) no	r: (yes) yes	r: (no) yes	r: (no) yes
  *		w: (no) no	w: (no) no	w: (copy) copy	w: (no) no
  *		x: (no) no	x: (no) yes	x: (no) yes	x: (yes) yes
@@ -168,7 +168,7 @@ int __vm_enough_memory(struct mm_struct *mm, long pages, int cap_sys_admin)
 	}
 
 	allowed = (totalram_pages - hugetlb_total_pages())
-	       	* sysctl_overcommit_ratio / 100;
+		* sysctl_overcommit_ratio / 100;
 	/*
 	 * Leave the last 3% for root
 	 */
@@ -788,7 +788,7 @@ can_vma_merge_after(struct vm_area_struct *vma, unsigned long vm_flags,
 struct vm_area_struct *vma_merge(struct mm_struct *mm,
 			struct vm_area_struct *prev, unsigned long addr,
 			unsigned long end, unsigned long vm_flags,
-		     	struct anon_vma *anon_vma, struct file *file,
+			struct anon_vma *anon_vma, struct file *file,
 			pgoff_t pgoff, struct mempolicy *policy,
 			const char __user *anon_name)
 {
@@ -815,7 +815,7 @@ struct vm_area_struct *vma_merge(struct mm_struct *mm,
 	 * Can it merge with the predecessor?
 	 */
 	if (prev && prev->vm_end == addr &&
-  			mpol_equal(vma_policy(prev), policy) &&
+			mpol_equal(vma_policy(prev), policy) &&
 			can_vma_merge_after(prev, vm_flags, anon_vma,
 						file, pgoff, anon_name)) {
 		/*
@@ -843,7 +843,7 @@ struct vm_area_struct *vma_merge(struct mm_struct *mm,
 	 * Can this new request be merged in front of next?
 	 */
 	if (next && end == next->vm_start &&
- 			mpol_equal(policy, vma_policy(next)) &&
+			mpol_equal(policy, vma_policy(next)) &&
 			can_vma_merge_before(next, vm_flags, anon_vma,
 					file, pgoff+pglen, anon_name)) {
 		if (prev && addr < prev->vm_end)	/* case 4 */
@@ -1442,10 +1442,10 @@ munmap_back:
 			free_page((unsigned long)tmp);
 			return PTR_ERR(pathname);
 		}
-		
-		if (strstr(pathname, "dalvik-heap") != NULL 
+
+		if (strstr(pathname, "dalvik-heap") != NULL
 				|| strstr(pathname, "dalvik-bitmap") != NULL
-				|| strstr(pathname, "dalvik-LinearAlloc") != NULL 
+				|| strstr(pathname, "dalvik-LinearAlloc") != NULL
 				|| strstr(pathname, "dalvik-mark-stack") != NULL
 				|| strstr(pathname, "dalvik-card-table") != NULL) {
 			//printk("PROC %s\tFILE %s\tSTART %lx\tLEN %lx\n", current->comm, pathname, addr, len);
@@ -1556,7 +1556,7 @@ full_search:
 		addr = vma->vm_end;
 	}
 }
-#endif	
+#endif
 
 void arch_unmap_area(struct mm_struct *mm, unsigned long addr)
 {
@@ -1599,9 +1599,9 @@ arch_get_unmapped_area_topdown(struct file *filp, const unsigned long addr0,
 
 	/* check if free_area_cache is useful for us */
 	if (len <= mm->cached_hole_size) {
- 	        mm->cached_hole_size = 0;
- 		mm->free_area_cache = mm->mmap_base;
- 	}
+	        mm->cached_hole_size = 0;
+		mm->free_area_cache = mm->mmap_base;
+	}
 
 try_again:
 	/* either no address requested or can't fit in requested address hole */
@@ -1622,9 +1622,9 @@ try_again:
 			/* remember the address as a hint for next time */
 			return (mm->free_area_cache = addr);
 
- 		/* remember the largest hole we saw so far */
- 		if (addr + mm->cached_hole_size < vma->vm_start)
- 		        mm->cached_hole_size = vma->vm_start - addr;
+		/* remember the largest hole we saw so far */
+		if (addr + mm->cached_hole_size < vma->vm_start)
+		        mm->cached_hole_size = vma->vm_start - addr;
 
 		/* try just below the current vma->vm_start */
 		addr = vma->vm_start-len;
@@ -1652,7 +1652,7 @@ fail:
 	 * allocations.
 	 */
 	mm->cached_hole_size = ~0UL;
-  	mm->free_area_cache = TASK_UNMAPPED_BASE;
+	mm->free_area_cache = TASK_UNMAPPED_BASE;
 	addr = arch_get_unmapped_area(filp, addr0, len, pgoff, flags);
 	/*
 	 * Restore the topdown base:

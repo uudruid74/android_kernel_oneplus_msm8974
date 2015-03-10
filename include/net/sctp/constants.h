@@ -154,7 +154,7 @@ SCTP_SUBTYPE_CONSTRUCTOR(PRIMITIVE,	sctp_event_primitive_t,	primitive)
 
 /* Calculate the actual data size in a data chunk */
 #define SCTP_DATA_SNDSIZE(c) ((int)((unsigned long)(c->chunk_end)\
-		       		- (unsigned long)(c->chunk_hdr)\
+				- (unsigned long)(c->chunk_hdr)\
 				- sizeof(sctp_data_chunk_t)))
 
 /* Internal error codes */
@@ -214,7 +214,7 @@ typedef enum {
  *   accept new associations, but it can initiate the creation of new ones.
  * - A socket in SCTP_SS_LISTENING state indicates that it is willing to
  *   accept new associations, but cannot initiate the creation of new ones.
- * - A socket in SCTP_SS_ESTABLISHED state indicates that it has a single 
+ * - A socket in SCTP_SS_ESTABLISHED state indicates that it has a single
  *   association.
  */
 typedef enum {

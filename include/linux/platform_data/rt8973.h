@@ -108,4 +108,3 @@ extern struct rt8973_platform_data rt8973_pdata;
 extern int rt_check_jig_state(void);
 extern struct class *sec_class;
 #endif // LINUX_MFD_RT8973_H
-

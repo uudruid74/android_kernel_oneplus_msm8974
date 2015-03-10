@@ -146,4 +146,3 @@ const struct squashfs_decompressor squashfs_zlib_comp_ops = {
 	.name = "zlib",
 	.supported = 1
 };
-

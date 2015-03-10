@@ -784,19 +784,19 @@ hugetlbfs_parse_options(char *options, struct hugetlbfs_config *pconfig)
 		switch (token) {
 		case Opt_uid:
 			if (match_int(&args[0], &option))
- 				goto bad_val;
+				goto bad_val;
 			pconfig->uid = option;
 			break;
 
 		case Opt_gid:
 			if (match_int(&args[0], &option))
- 				goto bad_val;
+				goto bad_val;
 			pconfig->gid = option;
 			break;
 
 		case Opt_mode:
 			if (match_octal(&args[0], &option))
- 				goto bad_val;
+				goto bad_val;
 			pconfig->mode = option & 01777U;
 			break;
 
@@ -853,9 +853,9 @@ hugetlbfs_parse_options(char *options, struct hugetlbfs_config *pconfig)
 	return 0;
 
 bad_val:
- 	printk(KERN_ERR "hugetlbfs: Bad value '%s' for mount option '%s'\n",
+	printk(KERN_ERR "hugetlbfs: Bad value '%s' for mount option '%s'\n",
 	       args[0].from, p);
- 	return -EINVAL;
+	return -EINVAL;
 }
 
 static int

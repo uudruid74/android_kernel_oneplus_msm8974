@@ -81,7 +81,7 @@ MODULE_VERSION(my_VERSION);
 static int mptfc_dev_loss_tmo = MPTFC_DEV_LOSS_TMO;	/* reasonable default */
 module_param(mptfc_dev_loss_tmo, int, 0);
 MODULE_PARM_DESC(mptfc_dev_loss_tmo, " Initial time the driver programs the "
-    				     " transport to wait for an rport to "
+				     " transport to wait for an rport to "
 				     " return following a device loss event."
 				     "  Default=60.");
 
@@ -340,7 +340,7 @@ mptfc_GetFcDevPage0(MPT_ADAPTER *ioc, int ioc_port,
 
 		data_sz = hdr.PageLength * 4;
 		ppage0_alloc = pci_alloc_consistent(ioc->pcidev, data_sz,
-		    					&page0_dma);
+							&page0_dma);
 		rc = -ENOMEM;
 		if (!ppage0_alloc)
 			break;
@@ -376,7 +376,7 @@ mptfc_GetFcDevPage0(MPT_ADAPTER *ioc, int ioc_port,
 			*p_pp0++ = p_p0++;	/* save addr */
 		}
 		pci_free_consistent(ioc->pcidev, data_sz,
-		    			(u8 *) ppage0_alloc, page0_dma);
+					(u8 *) ppage0_alloc, page0_dma);
 		if (rc != 0)
 			break;
 
@@ -1011,10 +1011,10 @@ mptfc_init_host_attr(MPT_ADAPTER *ioc,int portnum)
 	fc_host_maxframe_size(sh) = pp0->MaxFrameSize;
 
 	fc_host_node_name(sh) =
-	    	(u64)pp0->WWNN.High << 32 | (u64)pp0->WWNN.Low;
+		(u64)pp0->WWNN.High << 32 | (u64)pp0->WWNN.Low;
 
 	fc_host_port_name(sh) =
-	    	(u64)pp0->WWPN.High << 32 | (u64)pp0->WWPN.Low;
+		(u64)pp0->WWPN.High << 32 | (u64)pp0->WWPN.Low;
 
 	fc_host_port_id(sh) = pp0->PortIdentifier;
 

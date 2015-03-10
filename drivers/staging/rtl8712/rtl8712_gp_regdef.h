@@ -39,4 +39,3 @@
 
 
 #endif	/*__RTL8712_GP_REGDEF_H__ */
-

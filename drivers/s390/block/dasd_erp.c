@@ -60,7 +60,7 @@ dasd_alloc_erp_request(char *magic, int cplength, int datasize,
 	cqr->data = NULL;
 	if (datasize > 0) {
 		cqr->data = data;
- 		memset(cqr->data, 0, datasize);
+		memset(cqr->data, 0, datasize);
 	}
 	strncpy((char *) &cqr->magic, magic, 4);
 	ASCEBC((char *) &cqr->magic, 4);
@@ -182,4 +182,3 @@ EXPORT_SYMBOL(dasd_default_erp_postaction);
 EXPORT_SYMBOL(dasd_alloc_erp_request);
 EXPORT_SYMBOL(dasd_free_erp_request);
 EXPORT_SYMBOL(dasd_log_sense);
-

@@ -68,4 +68,3 @@ An example using SRAM:
 		reg = <2 0 0x00200000>;
 		bank-width = <2>;
 	};
-

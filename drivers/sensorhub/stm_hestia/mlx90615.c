@@ -197,7 +197,7 @@ static void mlx90615_set_power(struct mlx90615_data *mlx90615, int onoff)
 		msleep(50);
 		setscl(mlx90615, 1);
 		msleep(20);
-	} else 
+	} else
 		if (mlx90615->power > 0)
 			gpio_set_value(mlx90615->power, 0);
 }

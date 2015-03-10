@@ -244,7 +244,7 @@ rio_probe1 (struct pci_dev *pdev, const struct pci_device_id *ent)
 	/* Set media and reset PHY */
 	if (np->phy_media) {
 		/* default Auto-Negotiation for fiber deivices */
-	 	if (np->an_enable == 2) {
+		if (np->an_enable == 2) {
 			np->an_enable = 1;
 		}
 		mii_set_media_pcs (dev);
@@ -588,7 +588,7 @@ alloc_list (struct net_device *dev)
 		/* Rubicon now supports 40 bits of addressing space. */
 		np->rx_ring[i].fraginfo =
 		    cpu_to_le64 ( pci_map_single (
-			 	  np->pdev, skb->data, np->rx_buf_sz,
+				  np->pdev, skb->data, np->rx_buf_sz,
 				  PCI_DMA_FROMDEVICE));
 		np->rx_ring[i].fraginfo |= cpu_to_le64((u64)np->rx_buf_sz << 48);
 	}
@@ -857,7 +857,7 @@ receive_packet (struct net_device *dev)
 			if (frame_status & RxAlignmentError && np->speed != 1000)
 				np->stats.rx_frame_errors++;
 			if (frame_status & RxFIFOOverrun)
-	 			np->stats.rx_fifo_errors++;
+				np->stats.rx_fifo_errors++;
 		} else {
 			struct sk_buff *skb;
 
@@ -1784,4 +1784,3 @@ gcc -D__KERNEL__ -DMODULE -I/usr/src/linux/include -Wall -Wstrict-prototypes -O2
 Read Documentation/networking/dl2k.txt for details.
 
 */
-

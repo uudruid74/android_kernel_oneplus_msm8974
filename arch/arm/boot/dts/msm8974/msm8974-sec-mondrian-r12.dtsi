@@ -67,7 +67,7 @@
 		    reg = <0x66>;
 		    interrupt-parent = <&pm8941_gpios>;
 		    interrupts = <23 0>,
-		    		 <27 0>;
+				 <27 0>;
 		    max77888,irq-gpio = <&pm8941_gpios 23 0x00>;
 		    max77888,irq-reset-gpio = <&pm8941_gpios 27 0x00>;
 		    max77888,irq-base = <357>;
@@ -346,7 +346,7 @@
 			qcom,gpio-req-tbl-num = <0 1>;
 			qcom,gpio-req-tbl-flags = <1 1>;
 			qcom,gpio-req-tbl-label = "I2C_DATA0",
-							  		"I2C_CLK0";
+									"I2C_CLK0";
 		};
 	};
 
@@ -1070,4 +1070,3 @@
 		qcom,cdc-on-demand-supplies = "cdc-vdd-spkdrv";
 	};
 };
-

@@ -135,12 +135,12 @@ static int __devinit snd_card_azt2320_pnp(int dev, struct snd_card_azt2320 *acar
 		mpu_irq[dev] = pnp_irq(pdev, 0);
 	} else {
 	     __mpu_error:
-	     	if (pdev) {
-		     	pnp_release_card_device(pdev);
-	     		snd_printk(KERN_ERR PFX "MPU401 pnp configure failure, skipping\n");
-	     	}
-	     	acard->devmpu = NULL;
-	     	mpu_port[dev] = -1;
+		if (pdev) {
+			pnp_release_card_device(pdev);
+			snd_printk(KERN_ERR PFX "MPU401 pnp configure failure, skipping\n");
+		}
+		acard->devmpu = NULL;
+		mpu_port[dev] = -1;
 	}
 
 	return 0;

@@ -4,4 +4,3 @@ timers/hpet_example
 vm/hugepage-mmap
 vm/hugepage-shm
 vm/map_hugetlb
-

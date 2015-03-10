@@ -1,7 +1,7 @@
 /*
  *  Copyright (c) by Jaroslav Kysela <perex@perex.cz>
  *                   Takashi Iwai <tiwai@suse.de>
- * 
+ *
  *  Generic memory allocators
  *
  *
@@ -133,4 +133,3 @@ void *snd_malloc_pages(size_t size, gfp_t gfp_flags);
 void snd_free_pages(void *ptr, size_t size);
 
 #endif /* __SOUND_MEMALLOC_H */
-

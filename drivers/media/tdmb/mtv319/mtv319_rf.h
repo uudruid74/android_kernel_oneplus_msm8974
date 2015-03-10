@@ -37,4 +37,3 @@ INT rtvRF_Initilize(void);
 #endif
 
 #endif /* __MTV319_RF_H__ */
-

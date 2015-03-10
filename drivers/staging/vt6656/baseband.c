@@ -1002,13 +1002,13 @@ BOOL BBbVT3184Init(PSDevice pDevice)
     DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"Init Zone Type :USA\n");
   }
  else if((pDevice->config_file.ZoneType == 1)&&
- 	     (pDevice->abyEEPROM[EEP_OFS_ZONETYPE]!=0x01)){   //for Japan
+	     (pDevice->abyEEPROM[EEP_OFS_ZONETYPE]!=0x01)){   //for Japan
     pDevice->abyEEPROM[EEP_OFS_ZONETYPE] = 0x01;
     pDevice->abyEEPROM[EEP_OFS_MAXCHANNEL] = 0x0D;
     DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"Init Zone Type :Japan\n");
   }
  else if((pDevice->config_file.ZoneType == 2)&&
- 	     (pDevice->abyEEPROM[EEP_OFS_ZONETYPE]!=0x02)){   //for Europe
+	     (pDevice->abyEEPROM[EEP_OFS_ZONETYPE]!=0x02)){   //for Europe
     pDevice->abyEEPROM[EEP_OFS_ZONETYPE] = 0x02;
     pDevice->abyEEPROM[EEP_OFS_MAXCHANNEL] = 0x0D;
     DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"Init Zone Type :Europe\n");
@@ -2066,4 +2066,3 @@ BBvUpdatePreEDThreshold(
     }
 
 }
-

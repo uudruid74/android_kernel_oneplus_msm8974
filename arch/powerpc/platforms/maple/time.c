@@ -1,6 +1,6 @@
 /*
  *  (c) Copyright 2004 Benjamin Herrenschmidt (benh@kernel.crashing.org),
- *                     IBM Corp. 
+ *                     IBM Corp.
  *
  *  This program is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU General Public License
@@ -173,4 +173,3 @@ unsigned long __init maple_get_boot_time(void)
 	return mktime(tm.tm_year+1900, tm.tm_mon+1, tm.tm_mday,
 		      tm.tm_hour, tm.tm_min, tm.tm_sec);
 }
-

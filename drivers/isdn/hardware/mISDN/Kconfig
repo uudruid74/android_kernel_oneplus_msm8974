@@ -90,4 +90,3 @@ config MISDN_IPAC
 config MISDN_ISAR
 	tristate
 	depends on MISDN
-

@@ -108,9 +108,9 @@ static double objdump_line__calc_percent(struct objdump_line *self,
 			++offset;
 		}
 		/*
- 		 * If the percentage wasn't already calculated in
- 		 * symbol__get_source_line, do it now:
- 		 */
+		 * If the percentage wasn't already calculated in
+		 * symbol__get_source_line, do it now:
+		 */
 		if (src_line == NULL && h->sum)
 			percent = 100.0 * hits / h->sum;
 	}

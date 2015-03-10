@@ -632,7 +632,7 @@ RXbBulkInProcessData (
                 skb_put(skb, FrameSize);
 		skb_reset_mac_header(skb);
 	            skb->pkt_type = PACKET_OTHERHOST;
-    	        skb->protocol = htons(ETH_P_802_2);
+	        skb->protocol = htons(ETH_P_802_2);
 	            memset(skb->cb, 0, sizeof(skb->cb));
 	            netif_rx(skb);
                 return TRUE;
@@ -683,8 +683,8 @@ RXbBulkInProcessData (
                 return FALSE;
             }
    //mike add:station mode check eapol-key challenge--->
-   	  {
-   	    BYTE  Protocol_Version;    //802.1x Authentication
+	  {
+	    BYTE  Protocol_Version;    //802.1x Authentication
 	    BYTE  Packet_Type;           //802.1x Authentication
 	    BYTE  Descriptor_type;
              WORD Key_info;
@@ -710,7 +710,7 @@ RXbBulkInProcessData (
 		     }
                   }
 	      }
-   	  }
+	  }
     //mike add:station mode check eapol-key challenge<---
         }
     }
@@ -1594,5 +1594,3 @@ void RXvMngWorkItem(void *Context)
 	spin_unlock_irq(&pDevice->lock);
 
 }
-
-

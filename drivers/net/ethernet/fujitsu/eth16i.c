@@ -81,7 +81,7 @@
 				received. Now fixed.
 
    0.23		26.02-96	Made resetting the adapter
-			 	more reliable.
+				more reliable.
 
    0.24		27.02-96	Rewrote faulty packet handling in eth16i_rx
 

@@ -688,7 +688,7 @@ static unsigned char fts_event_handler_type_b(struct fts_ts_info *info,
 	unsigned char TouchID = 0, EventID = 0;
 	unsigned char LastLeftEvent = 0;
 	int x = 0, y = 0, z = 0;
-	int bw = 0, bh = 0, palm = 0, sumsize = 0;	
+	int bw = 0, bh = 0, palm = 0, sumsize = 0;
 
 	for (EventNum = 0; EventNum < LeftEvent; EventNum++) {
 
@@ -1042,10 +1042,10 @@ int fts_vdd_on(bool onoff)
 	}else{
 		pr_err("[TSP]%s: i2c_vddo_vreg is null  vdd en:%d\n",	__func__, onoff);
 	}
-	
-	if(gpio_ldo_en_p > 0){	
+
+	if(gpio_ldo_en_p > 0){
 	gpio_direction_output(gpio_ldo_en_p, onoff);
-	}	
+	}
 	//msleep(50);
 	return 1;
 }
@@ -1057,10 +1057,10 @@ void fts_init_gpio(struct fts_ts_info *info, struct fts_ts_platform_data *pdata)
 	if(pdata->tsp_id > 0)
 		gpio_tlmm_config(GPIO_CFG(pdata->tsp_id, 0, GPIO_CFG_INPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA), 1);
 	gpio_tlmm_config(GPIO_CFG(pdata->scl_gpio, 3, GPIO_CFG_INPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA), 1);
-	gpio_tlmm_config(GPIO_CFG(pdata->sda_gpio, 3, GPIO_CFG_INPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA), 1);	
+	gpio_tlmm_config(GPIO_CFG(pdata->sda_gpio, 3, GPIO_CFG_INPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA), 1);
 	gpio_tlmm_config(GPIO_CFG(pdata->gpio_int, 0, GPIO_CFG_INPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA), 1);
 
-	if(pdata->gpio_ldo_en > 0){	
+	if(pdata->gpio_ldo_en > 0){
 	ret = gpio_request(pdata->gpio_ldo_en, "fts_gpio_ldo_en");
 	if(ret) {
 		tsp_debug_err(true, &info->client->dev, "[TSP]%s: unable to request fts_gpio_ldo_en [%d]\n",	__func__, pdata->gpio_ldo_en);
@@ -1078,7 +1078,7 @@ static int fts_parse_dt(struct device *dev, struct fts_ts_platform_data *pdata)
 
 	pdata->gpio_ldo_en = of_get_named_gpio(np, "fts,vdd_en-gpio", 0);
 	pdata->gpio_int = of_get_named_gpio(np, "fts,irq-gpio", 0);
-	
+
 	printk(KERN_INFO "[TSP]%s: en_vdd:%d, irq:%d \n",	__func__, pdata->gpio_ldo_en, pdata->gpio_int);
 
 	pdata->tsp_id = of_get_named_gpio(np, "fts,id-gpio", 0);
@@ -1126,7 +1126,7 @@ static int fts_probe(struct i2c_client *client, const struct i2c_device_id *idp)
 	}
 
 #ifdef CONFIG_OF
-	
+
 	if (client->dev.of_node) {
 		pdata = devm_kzalloc(&client->dev,
 			sizeof(struct fts_ts_platform_data), GFP_KERNEL);
@@ -1134,17 +1134,17 @@ static int fts_probe(struct i2c_client *client, const struct i2c_device_id *idp)
 			tsp_debug_err(true, &client->dev, "Failed to allocate memory\n");
 			return -ENOMEM;
 		}
-	
+
 		ret = fts_parse_dt(&client->dev, pdata);
-		
+
 		if (ret) {
-			tsp_debug_err(true, &client->dev, "Error parsing dt %d\n", ret);				
+			tsp_debug_err(true, &client->dev, "Error parsing dt %d\n", ret);
 			return ret;
 		}
-		
+
 		fts_init_gpio(info, pdata);
 		gpio_ldo_en_p = pdata->gpio_ldo_en;
-		
+
 	}else{
 		tsp_debug_err(true, &client->dev, "%s, of-node error %d\n",__func__,__LINE__);
 		return -ENOMEM;
@@ -1791,10 +1791,10 @@ static int fts_start_device(struct fts_ts_info *info)
 
 	info->touch_stopped = false;
 	info->reinit_done = false;
-	
+
 	fts_reinit(info);
 	info->reinit_done = true;
-	
+
 	enable_irq(info->irq);
 
  out:
@@ -1896,7 +1896,7 @@ static struct i2c_driver fts_i2c_driver = {
 		   .name = FTS_TS_DRV_NAME,
 		   .owner = THIS_MODULE,
 #ifdef CONFIG_OF
-		   .of_match_table = fts_match_table,	   
+		   .of_match_table = fts_match_table,
 #endif
 #if defined(CONFIG_PM) && !defined(USE_OPEN_CLOSE)
 		   .pm = &fts_dev_pm_ops,

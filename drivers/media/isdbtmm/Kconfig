@@ -15,4 +15,3 @@ config TMM_ANT_DET
 config TMM_CHG_CTRL
 	depends on ISDBTMM
 	bool "TMM charging input current reduce"
-

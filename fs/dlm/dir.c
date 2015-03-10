@@ -385,7 +385,7 @@ static struct dlm_rsb *find_rsb_root(struct dlm_ls *ls, char *name, int len)
    node.  inbuf is the rsb name last sent, inlen is the name's length */
 
 void dlm_copy_master_names(struct dlm_ls *ls, char *inbuf, int inlen,
- 			   char *outbuf, int outlen, int nodeid)
+			   char *outbuf, int outlen, int nodeid)
 {
 	struct list_head *list;
 	struct dlm_rsb *r;
@@ -454,4 +454,3 @@ void dlm_copy_master_names(struct dlm_ls *ls, char *inbuf, int inlen,
  out:
 	up_read(&ls->ls_root_sem);
 }
-

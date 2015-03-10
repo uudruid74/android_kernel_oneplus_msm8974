@@ -264,13 +264,13 @@ int msm_sensor_power_down(struct msm_sensor_ctrl_t *s_ctrl,
 			__func__, __LINE__, power_info, sensor_i2c_client);
 		return -EINVAL;
 	}
-	
+
 	if (s_ctrl->sensor_state == MSM_SENSOR_POWER_DOWN) {
 		pr_err("%s:%d invalid sensor state %d\n", __func__, __LINE__,
 			s_ctrl->sensor_state);
 		return -EINVAL;
-	}	
-	
+	}
+
 	pr_warn("[%s:%d]", __func__, __LINE__);
 	rc = msm_camera_power_down(power_info, sensor_device_type,
 		sensor_i2c_client);
@@ -293,7 +293,7 @@ int msm_sensor_power_up(struct msm_sensor_ctrl_t *s_ctrl,
 			sensor_i2c_client, slave_info, sensor_name);
 		return -EINVAL;
 	}
-	
+
 	if (s_ctrl->sensor_state == MSM_SENSOR_POWER_UP) {
 		pr_err("%s:%d invalid sensor state %d\n", __func__, __LINE__,
 			s_ctrl->sensor_state);
@@ -364,7 +364,7 @@ static void msm_sensor_stop_stream(struct msm_sensor_ctrl_t *s_ctrl)
 			s_ctrl->sensordata->sensor_name);
 		return;
 	}
- 
+
 	if (s_ctrl->stop_setting.reg_setting) {
 	s_ctrl->sensor_i2c_client->i2c_func_tbl->i2c_write_table(
 		s_ctrl->sensor_i2c_client, &s_ctrl->stop_setting);
@@ -646,7 +646,7 @@ int msm_sensor_config(struct msm_sensor_ctrl_t *s_ctrl, void __user *argp)
 			break;
 		}
 		break;
-	}	
+	}
 
 	case CFG_WRITE_I2C_SEQ_ARRAY: {
 		struct msm_camera_i2c_seq_reg_setting conf_array;
@@ -899,7 +899,7 @@ int msm_sensor_platform_probe(struct platform_device *pdev, void *data)
 			&msm_sensor_cci_func_tbl;
 	if (!s_ctrl->sensor_v4l2_subdev_ops)
 		s_ctrl->sensor_v4l2_subdev_ops = &msm_sensor_subdev_ops;
-	
+
 	s_ctrl->sensordata->power_info.clk_info =
 		kzalloc(sizeof(cam_8974_clk_info), GFP_KERNEL);
 	if (!s_ctrl->sensordata->power_info.clk_info) {

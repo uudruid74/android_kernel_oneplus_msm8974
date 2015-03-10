@@ -2568,7 +2568,7 @@ int mpol_to_str(char *buffer, int maxlen, struct mempolicy *pol, int unused)
 		if (buffer + maxlen < p + 2)
 			return -ENOSPC;
 		*p++ = ':';
-	 	p += nodelist_scnprintf(p, buffer + maxlen - p, nodes);
+		p += nodelist_scnprintf(p, buffer + maxlen - p, nodes);
 	}
 	return p - buffer;
 }

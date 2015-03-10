@@ -1039,7 +1039,7 @@ static int mdss_panel_parse_dt(struct device_node *np,
 					"qcom,mdss-dsi-bl-pmic-bank-select", &tmp);
 			if (rc) {
 				pr_err("%s:%d, Error, dsi lpg channel\n",
- 						__func__, __LINE__);
+						__func__, __LINE__);
 				return -EINVAL;
 			}
 			ctrl_pdata->pwm_lpg_chan = tmp;
@@ -1048,7 +1048,7 @@ static int mdss_panel_parse_dt(struct device_node *np,
 			ctrl_pdata->pwm_pmic_gpio = tmp;
 		} else if (!strncmp(data, "bl_ctrl_dcs", 11)) {
 			ctrl_pdata->bklt_ctrl = BL_DCS_CMD;
- 		}
+		}
 	}
 	rc = of_property_read_u32(np, "qcom,mdss-brightness-max-level", &tmp);
     pinfo->brightness_max = (!rc ? tmp : MDSS_MAX_BL_BRIGHTNESS);
@@ -1855,9 +1855,9 @@ int mdss_dsi_panel_init(struct device_node *node,
 #endif
 
 #if defined(CONFIG_MDNIE_TFT_MSM8X26)
- 		pr_info("[%s] CONFIG_MDNIE_TFT feature ok ! initclass called!\n",__func__);
- 		init_mdnie_class();
- 		mdnie_tft_init(&msd);
+		pr_info("[%s] CONFIG_MDNIE_TFT feature ok ! initclass called!\n",__func__);
+		init_mdnie_class();
+		mdnie_tft_init(&msd);
 #endif
 
 #if defined(CONFIG_ESD_ERR_FG_RECOVERY)

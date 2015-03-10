@@ -74,7 +74,7 @@ static void traverse_receive_queue(struct sock *sk)
 	struct sk_buff *skb;
 	struct sk_buff *skb1;
 	struct meta *meta;
-	__u32 now = jiffies;	
+	__u32 now = jiffies;
 
 	/* Remove packets from receive queue as long as
 	 * 1. the receive buffer is full,
@@ -91,17 +91,17 @@ static void traverse_receive_queue(struct sock *sk)
 		skb_orphan(skb);
 		ppp_input(&po->chan, skb);
 	}
-	
+
 	if (skb_queue_len(&sk->sk_receive_queue) > 0) {
 		/* Start the timer. The timer will
-		   expire after one second. When the 
-		   timer expires, the receive_queue is 
-		   checked and all packets older than 
+		   expire after one second. When the
+		   timer expires, the receive_queue is
+		   checked and all packets older than
 		   one second are removed from the queue and
 		   passed forward. */
-	  	if (timer_pending(&po->recv_queue_timer)) {
-	        	/* Something is wrong. Recv timer is already active. However, Ignoring...*/
-		} else {	  
+		if (timer_pending(&po->recv_queue_timer)) {
+			/* Something is wrong. Recv timer is already active. However, Ignoring...*/
+		} else {
 			init_timer(&po->recv_queue_timer);
 			po->recv_queue_timer.data = (unsigned long)sk;
 			po->recv_queue_timer.function = recv_queue_timer_callback;
@@ -198,7 +198,7 @@ static int pppopns_recv_core(struct sock *sk_raw, struct sk_buff *skb)
 			meta->timestamp = now;
 			skb_queue_tail(&sk->sk_receive_queue, skb);
 		}
-		
+
 		if (timer_pending(&pppox_sk(sk)->recv_queue_timer)) {
 			del_timer_sync(&pppox_sk(sk)->recv_queue_timer);
 		}
@@ -379,7 +379,7 @@ static int pppopns_release(struct socket *sock)
 
 	if (po) {
 		spin_lock(&po->recv_queue_lock);
-		if (po && timer_pending( &po->recv_queue_timer )) {	    
+		if (po && timer_pending( &po->recv_queue_timer )) {
 			del_timer_sync( &po->recv_queue_timer );
 		}
 		spin_unlock(&po->recv_queue_lock);
@@ -483,7 +483,7 @@ static int pppopns_ioctl(struct socket *sock, unsigned int cmd, unsigned long ar
 		err = 0;
 		break;
 	}
-       
+
 	return err;
 }
 

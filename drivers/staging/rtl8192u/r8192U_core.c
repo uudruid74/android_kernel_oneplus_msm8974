@@ -2355,7 +2355,7 @@ void rtl8192_update_beacon(struct work_struct * work)
 {
         struct r8192_priv *priv = container_of(work, struct r8192_priv, update_beacon_wq.work);
         struct net_device *dev = priv->ieee80211->dev;
- 	struct ieee80211_device* ieee = priv->ieee80211;
+	struct ieee80211_device* ieee = priv->ieee80211;
 	struct ieee80211_network* net = &ieee->current_network;
 
 	if (ieee->pHTInfo->bCurrentHTSupport)
@@ -3594,14 +3594,14 @@ TxCheckStuck(struct net_device *dev)
 //	     spin_lock_irqsave(&priv->ieee80211->lock,flags);
 	     for (QueueID = 0; QueueID<=BEACON_QUEUE;QueueID ++)
 	     {
-	     		if(QueueID == TXCMD_QUEUE)
+			if(QueueID == TXCMD_QUEUE)
 		         continue;
 #ifdef USB_TX_DRIVER_AGGREGATION_ENABLE
 			if((skb_queue_len(&priv->ieee80211->skb_waitQ[QueueID]) == 0) && (skb_queue_len(&priv->ieee80211->skb_aggQ[QueueID]) == 0) && (skb_queue_len(&priv->ieee80211->skb_drv_aggQ[QueueID]) == 0))
 #else
-		     	if((skb_queue_len(&priv->ieee80211->skb_waitQ[QueueID]) == 0)  && (skb_queue_len(&priv->ieee80211->skb_aggQ[QueueID]) == 0))
+			if((skb_queue_len(&priv->ieee80211->skb_waitQ[QueueID]) == 0)  && (skb_queue_len(&priv->ieee80211->skb_aggQ[QueueID]) == 0))
 #endif
-			 	continue;
+				continue;
 
 	             bCheckFwTxCnt = true;
 	     }
@@ -4020,15 +4020,15 @@ void CAM_read_entry(
 	u32	 		iIndex
 )
 {
- 	u32 target_command=0;
+	u32 target_command=0;
 	 u32 target_content=0;
 	 u8 entry_i=0;
 	 u32 ulStatus;
 	s32 i=100;
 //	printk("=======>start read CAM\n");
- 	for(entry_i=0;entry_i<CAM_CONTENT_COUNT;entry_i++)
- 	{
-   	// polling bit, and No Write enable, and address
+	for(entry_i=0;entry_i<CAM_CONTENT_COUNT;entry_i++)
+	{
+	// polling bit, and No Write enable, and address
 		target_command= entry_i+CAM_CONTENT_COUNT*iIndex;
 		target_command= target_command | BIT31;
 
@@ -4133,7 +4133,7 @@ extern	void	rtl819x_watchdog_wqcallback(struct work_struct *work)
 	//check if reset the driver
 	if(check_reset_cnt++ >= 3)
 	{
-    		ResetType = rtl819x_ifcheck_resetornot(dev);
+		ResetType = rtl819x_ifcheck_resetornot(dev);
 		check_reset_cnt = 3;
 		//DbgPrint("Start to check silent reset\n");
 	}
@@ -4429,10 +4429,10 @@ int rtl8192_ioctl(struct net_device *dev, struct ifreq *rq, int cmd)
 							setKey(	dev,
 								ipw->u.crypt.idx,
 								ipw->u.crypt.idx,		//KeyIndex
-						     		ieee->group_key_type,	//KeyType
-						            	broadcast_addr,	//MacAddr
+								ieee->group_key_type,	//KeyType
+								broadcast_addr,	//MacAddr
 								0,		//DefaultKey
-							      	key);		//KeyContent
+								key);		//KeyContent
 					}
 				}
 			}

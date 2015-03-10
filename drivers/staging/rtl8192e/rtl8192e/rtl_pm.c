@@ -131,4 +131,3 @@ int rtl8192E_enable_wake(struct pci_dev *dev, pm_message_t state, int enable)
 	       state.event, enable);
 	return -EAGAIN;
 }
-

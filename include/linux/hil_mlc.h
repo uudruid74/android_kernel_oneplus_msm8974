@@ -44,15 +44,15 @@ typedef struct hil_mlc hil_mlc;
  * We define the structure of nodes in the state engine here.
  */
 enum hilse_act {
-  	/* HILSE_OUT prepares to receive input if the next node
+	/* HILSE_OUT prepares to receive input if the next node
 	 * is an IN or EXPECT, and then sends the given packet.
 	 */
 	HILSE_OUT = 0,
 
-  	/* HILSE_CTS checks if the loop is busy. */
+	/* HILSE_CTS checks if the loop is busy. */
 	HILSE_CTS,
 
-	/* HILSE_OUT_LAST sends the given command packet to 
+	/* HILSE_OUT_LAST sends the given command packet to
 	 * the last configured/running device on the loop.
 	 */
 	HILSE_OUT_LAST,
@@ -67,22 +67,22 @@ enum hilse_act {
 	 */
 	HILSE_FUNC,
 
-  	/* HILSE_IN simply expects any non-errored packet to arrive 
+	/* HILSE_IN simply expects any non-errored packet to arrive
 	 * within arg usecs.
 	 */
 	HILSE_IN		= 0x100,
 
-  	/* HILSE_EXPECT expects a particular packet to arrive 
+	/* HILSE_EXPECT expects a particular packet to arrive
 	 * within arg usecs, any other packet is considered an error.
 	 */
 	HILSE_EXPECT,
 
-  	/* HILSE_EXPECT_LAST as above but dev field should be last 
+	/* HILSE_EXPECT_LAST as above but dev field should be last
 	 * discovered/operational device.
 	 */
 	HILSE_EXPECT_LAST,
 
-  	/* HILSE_EXPECT_LAST as above but dev field should be first 
+	/* HILSE_EXPECT_LAST as above but dev field should be first
 	 * undiscovered/inoperational device.
 	 */
 	HILSE_EXPECT_DISC

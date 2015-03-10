@@ -78,4 +78,3 @@ ssize_t smb358_chg_store_attrs(struct device *dev,
 }
 
 #endif	/* __SMB358_CHARGER_H */
-

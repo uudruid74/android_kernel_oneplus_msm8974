@@ -17,7 +17,7 @@
 &soc {
 	serial@f991f000 {
 		status = "ok";
-	}; 
+	};
 
 	samsung,vibrator{
 		compatible = "vibrator";
@@ -106,20 +106,20 @@
        };
 
 	i2c@f9923000 { /* BLSP1 QUP1 */
-	
+
 		sec-nfc@27 {
 			compatible = "sec-nfc";
 			reg = <0x27>;
 			interrupt-parent = <&msmgpio>;
 			interrupts = <21 0>;
-        	    	vdd_nfc-supply = <&pm8226_l6>;
-            		sec-nfc,firm-gpio = <&msmgpio 62 0x00>;
-            		sec-nfc,ven-gpio = <&msmgpio 20 0x00>;
-            		sec-nfc,irq-gpio = <&msmgpio 21 0x01>;
-             		nfc_ldo-supply = <&pm8226_l23>;
+			vdd_nfc-supply = <&pm8226_l6>;
+			sec-nfc,firm-gpio = <&msmgpio 62 0x00>;
+			sec-nfc,ven-gpio = <&msmgpio 20 0x00>;
+			sec-nfc,irq-gpio = <&msmgpio 21 0x01>;
+			nfc_ldo-supply = <&pm8226_l23>;
 		};
 	};
-	
+
 	i2c@0f {
 		cell-index = <20>;
 		compatible = "i2c-gpio";
@@ -366,9 +366,9 @@
 
 		battery,thermal_source = <2>; /* SEC_BATTERY_THERMAL_SOURCE_ADC */
 
-		battery,temp_table_adc = <26390 26780 27182 27604 28080 28628 28858 29182 29306 29438 29627 30032 30879 31325 31772 32132 32825 33127 33825 34132  
+		battery,temp_table_adc = <26390 26780 27182 27604 28080 28628 28858 29182 29306 29438 29627 30032 30879 31325 31772 32132 32825 33127 33825 34132
 			34843 35228 35911 36313 37021 37356 38034 38433 38716 38912 39120 39442 39855 40043 40580 41173 41667>;
-		battery,temp_table_data = <800 750 700 650 600 550 530 510 500 490 480 450 400 380 350 330 300 280 250 230  
+		battery,temp_table_data = <800 750 700 650 600 550 530 510 500 490 480 450 400 380 350 330 300 280 250 230
 			200 180 150 130 100 80 50 30 10 0 (-10) (-30) (-50) (-70) (-100) (-150) (-200)>;
 		battery,temp_check_type = <2>; /* SEC_BATTERY_TEMP_CHECK_TEMP */
 		battery,temp_check_count = <1>;

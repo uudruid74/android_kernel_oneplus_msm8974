@@ -754,4 +754,3 @@ module_exit(dsps_exit);
 MODULE_LICENSE("GPL v2");
 MODULE_DESCRIPTION("Dedicated Sensors Processor Subsystem (DSPS) driver");
 MODULE_AUTHOR("Amir Samuelov <amirs@codeaurora.org>");
-

@@ -35,7 +35,7 @@
 
 #include "smart_dimming.h"
 #if defined(CONFIG_FB_MSM_MIPI_MAGNA_OCTA_VIDEO_720P_PT_PANEL) \
-	|| defined(CONFIG_FB_MSM_MDSS_MAGNA_OCTA_VIDEO_720P_PANEL) 
+	|| defined(CONFIG_FB_MSM_MDSS_MAGNA_OCTA_VIDEO_720P_PANEL)
 #include "smart_mtp_ea8061v.h"
 #else
 #include "smart_mtp_ea8061.h"
@@ -161,4 +161,3 @@ struct panel_hrev {
 
 #endif
 void mdss_dsi_cmds_send(struct mdss_dsi_ctrl_pdata *ctrl, struct dsi_cmd_desc *cmds, int cnt, int flag);
-

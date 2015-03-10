@@ -11,7 +11,7 @@
 
 	-----<snip>-----
 
-        	Written 1997-2001 by Donald Becker.
+		Written 1997-2001 by Donald Becker.
 		This software may be used and distributed according to the
 		terms of the GNU General Public License (GPL), incorporated
 		herein by reference.  Drivers based on or derived from this
@@ -543,8 +543,8 @@ static const struct {
 
 	{ "RTL-8100",
 	  HW_REVID(1, 1, 1, 1, 0, 1, 0),
- 	  HasLWake,
- 	},
+	  HasLWake,
+	},
 
 	{ "RTL-8100B/8139D",
 	  HW_REVID(1, 1, 1, 0, 1, 0, 1),
@@ -990,7 +990,7 @@ static int __devinit rtl8139_init_one (struct pci_dev *pdev,
 	    pdev->device == PCI_DEVICE_ID_REALTEK_8139 && pdev->revision >= 0x20) {
 		dev_info(&pdev->dev,
 			   "This (id %04x:%04x rev %02x) is an enhanced 8139C+ chip, use 8139cp\n",
-		       	   pdev->vendor, pdev->device, pdev->revision);
+			   pdev->vendor, pdev->device, pdev->revision);
 		return -ENODEV;
 	}
 

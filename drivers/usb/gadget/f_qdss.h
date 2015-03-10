@@ -42,4 +42,3 @@ struct f_qdss {
 };
 
 #endif
-

@@ -1192,4 +1192,3 @@ module_exit(SM5414_charger_exit);
 MODULE_DESCRIPTION("Samsung SM5414 Charger Driver");
 MODULE_AUTHOR("Samsung Electronics");
 MODULE_LICENSE("GPL");
-

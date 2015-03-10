@@ -242,4 +242,3 @@ target m32rsdi
 setup
 load_modules
 boot
-

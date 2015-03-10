@@ -197,4 +197,3 @@ out_invalid:
 	fput(file);
 	return ERR_PTR(-EINVAL);
 }
-

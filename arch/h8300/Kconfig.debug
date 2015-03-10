@@ -29,7 +29,7 @@ config SYSCALL_PRINT
 	  output history of systemcall
 
 config GDB_DEBUG
-   	bool "Use gdb stub"
+	bool "Use gdb stub"
 	depends on (!H8300H_SIM && !H8S_SIM)
 	help
 	  gdb stub exception support

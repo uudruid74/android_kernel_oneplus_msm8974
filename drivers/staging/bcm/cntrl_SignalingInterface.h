@@ -160,7 +160,7 @@ typedef struct _stServiceFlowParamSI{
     B_UINT32                        u32MinReservedTrafficRate;
 
 	/**  32bit Tolerated Jitter of the Service Flow*/
-    	B_UINT32                        u32ToleratedJitter;
+	B_UINT32                        u32ToleratedJitter;
 
    /**  32bit Maximum Latency of the Service Flow*/
     B_UINT32                        u32MaximumLatency;
@@ -330,7 +330,7 @@ typedef struct _stLocalSFAddRequest{
 	/// \brief 16 bit TID
 	B_UINT16                        u16TID;	/**<  16bit TID*/
 	/// \brief 16bitCID
-    	B_UINT16                        u16CID;	/**<  16bit CID*/
+	B_UINT16                        u16CID;	/**<  16bit CID*/
 	/// \brief 16bitVCID
 	B_UINT16                        u16VCID;	/**<  16bit VCID*/
     /// \brief structure ParameterSet

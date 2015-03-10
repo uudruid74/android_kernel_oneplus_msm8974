@@ -83,4 +83,3 @@ struct spi_device *isdbt_get_if_handle(void)
 {
 	return isdbt_spi_device;
 }
-

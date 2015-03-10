@@ -384,7 +384,7 @@ static struct msm_gpiomux_config msm_blsp_configs[] __initdata = {
 			[GPIOMUX_ACTIVE] = &gpio_spi_act_config,
 			[GPIOMUX_SUSPENDED] = &gpio_spi_susp_config,
 		},
-	},	
+	},
 	{
 		.gpio      = 8,			/* BLSP1 UART2 TX */
 		.settings = {
@@ -822,14 +822,14 @@ static struct msm_gpiomux_config muic_configs[] __initdata = {
 			[GPIOMUX_ACTIVE] = &gpio_muic_config,
 			[GPIOMUX_SUSPENDED] = &gpio_muic_config,
 		},
- 	},
- 	{
+	},
+	{
 		.gpio      = 5,
 		.settings = {
 			[GPIOMUX_ACTIVE] = &gpio_muic_config,
 			[GPIOMUX_SUSPENDED] = &gpio_muic_config,
 		},
- 	},
+	},
 };
 
 /* Touch Screen 3.3V configurations */
@@ -938,7 +938,7 @@ static struct msm_gpiomux_config berluti_nc_gpio_cfgs[] __initdata = {
 	NC_GPIO_CONFIG(110),
 	NC_GPIO_CONFIG(113),
 	NC_GPIO_CONFIG(115),
-	NC_GPIO_CONFIG(116),	
+	NC_GPIO_CONFIG(116),
 #else
 /* BERLUTI LTE NC configs */
 	NC_GPIO_CONFIG(24),
@@ -1040,7 +1040,7 @@ void __init msm8226_init_gpiomux(void)
 
 	/* MUIC */
 	msm_gpiomux_install(muic_configs,
- 		ARRAY_SIZE(muic_configs));
+		ARRAY_SIZE(muic_configs));
 
 	/* HW_REV Pin */
 	msm_gpiomux_install(hwrev_configs,
@@ -1053,4 +1053,3 @@ void __init msm8226_init_gpiomux(void)
 	/* NC */
 	msm_gpiomux_install(berluti_nc_gpio_cfgs, ARRAY_SIZE(berluti_nc_gpio_cfgs));
 }
-

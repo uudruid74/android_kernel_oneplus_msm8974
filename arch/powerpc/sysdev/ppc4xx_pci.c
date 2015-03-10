@@ -1384,7 +1384,7 @@ static void __init ppc_476fpe_pciex_check_link(struct ppc4xx_pciex_port *port)
 		                    port->index);
 		return;
 	}
-		
+
 	while (timeout_ms--) {
 		val = in_le32(mbase + PECFG_TLDLP);
 
@@ -2186,4 +2186,3 @@ static int __init ppc4xx_pci_find_bridges(void)
 	return 0;
 }
 arch_initcall(ppc4xx_pci_find_bridges);
-

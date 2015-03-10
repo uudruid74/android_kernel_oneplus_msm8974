@@ -3171,4 +3171,3 @@ print_state:
 	tipc_printbuf_validate(buf);
 	info("%s", print_area);
 }
-

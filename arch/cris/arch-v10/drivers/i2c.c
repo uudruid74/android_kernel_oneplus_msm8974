@@ -638,7 +638,7 @@ i2c_init(void)
 		return res;
 	}
 
-	*R_PORT_PB_I2C = port_pb_i2c_shadow |= 
+	*R_PORT_PB_I2C = port_pb_i2c_shadow |=
 		IO_STATE(R_PORT_PB_I2C, i2c_en,  on) |
 		IO_FIELD(R_PORT_PB_I2C, i2c_d,   1)  |
 		IO_FIELD(R_PORT_PB_I2C, i2c_clk, 1)  |
@@ -680,14 +680,14 @@ i2c_register(void)
 	res = i2c_init();
 	if (res < 0)
 		return res;
-  	res = register_chrdev(I2C_MAJOR, i2c_name, &i2c_fops);
+	res = register_chrdev(I2C_MAJOR, i2c_name, &i2c_fops);
 	if(res < 0) {
 		printk(KERN_ERR "i2c: couldn't get a major number.\n");
 		return res;
 	}
 
 	printk(KERN_INFO "I2C driver v2.2, (c) 1999-2004 Axis Communications AB\n");
-	
+
 	return 0;
 }
 

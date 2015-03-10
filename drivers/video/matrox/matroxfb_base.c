@@ -2583,4 +2583,3 @@ EXPORT_SYMBOL(matroxfb_enable_irq);
  * c-basic-offset: 8
  * End:
  */
-

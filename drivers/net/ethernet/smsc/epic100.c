@@ -976,7 +976,7 @@ static netdev_tx_t epic_start_xmit(struct sk_buff *skb, struct net_device *dev)
 
 	ep->tx_skbuff[entry] = skb;
 	ep->tx_ring[entry].bufaddr = pci_map_single(ep->pci_dev, skb->data,
-		 			            skb->len, PCI_DMA_TODEVICE);
+					            skb->len, PCI_DMA_TODEVICE);
 	if (free_count < TX_QUEUE_LEN/2) {/* Typical path */
 		ctrl_word = 0x100000; /* No interrupt */
 	} else if (free_count == TX_QUEUE_LEN/2) {
@@ -1331,7 +1331,7 @@ static int epic_close(struct net_device *dev)
 		ep->rx_ring[i].buflength = 0;
 		if (skb) {
 			pci_unmap_single(ep->pci_dev, ep->rx_ring[i].bufaddr,
-				 	 ep->rx_buf_sz, PCI_DMA_FROMDEVICE);
+					 ep->rx_buf_sz, PCI_DMA_FROMDEVICE);
 			dev_kfree_skb(skb);
 		}
 		ep->rx_ring[i].bufaddr = 0xBADF00D0; /* An invalid address. */

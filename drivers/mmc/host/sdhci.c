@@ -176,8 +176,8 @@ static void sdhci_dump_state(struct sdhci_host *host)
 		atomic_read(&mmc->parent->power.usage_count),
 		mmc->parent->power.disable_depth);
 	if (mmc->card) {
-		pr_info("%s: card->cid : %08x%08x%08x%08x\n", mmc_hostname(mmc), 
-				mmc->card->raw_cid[0], mmc->card->raw_cid[1], 
+		pr_info("%s: card->cid : %08x%08x%08x%08x\n", mmc_hostname(mmc),
+				mmc->card->raw_cid[0], mmc->card->raw_cid[1],
 				mmc->card->raw_cid[2], mmc->card->raw_cid[3]);
 	}
 }
@@ -3339,9 +3339,9 @@ int sdhci_add_host(struct sdhci_host *host)
 	#endif
 		/* Custom: An external level shifter on SDC3 */
 		caps[0] |= (SDHCI_CAN_VDD_330 | SDHCI_CAN_VDD_300 | SDHCI_CAN_VDD_180);
-		/* 
-		 * Disable SD 3.0 feature 
-		 * But, 8974pro after HW_GPIO_06 uses SDR50 Mode 
+		/*
+		 * Disable SD 3.0 feature
+		 * But, 8974pro after HW_GPIO_06 uses SDR50 Mode
 		 */
 #if defined(CONFIG_SEC_K_PROJECT) || defined(CONFIG_SEC_PATEK_PROJECT)
 		caps[1] &= (u32) ~(SDHCI_SUPPORT_SDR104 | SDHCI_SUPPORT_DDR50);

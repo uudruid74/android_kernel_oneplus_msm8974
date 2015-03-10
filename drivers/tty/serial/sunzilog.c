@@ -227,7 +227,7 @@ static int __load_zsregs(struct zilog_channel __iomem *channel, unsigned char *r
 	/* Lower and upper byte of baud rate generator divisor.  */
 	write_zsreg(channel, R12, regs[R12]);
 	write_zsreg(channel, R13, regs[R13]);
-	
+
 	/* Now rewrite R14, with BRENAB (if set).  */
 	write_zsreg(channel, R14, regs[R14]);
 
@@ -400,7 +400,7 @@ sunzilog_receive_chars(struct uart_sunzilog_port *up,
 
 		if (up->port.ignore_status_mask == 0xff ||
 		    (r1 & up->port.ignore_status_mask) == 0) {
-		    	tty_insert_flip_char(tty, ch, flag);
+			tty_insert_flip_char(tty, ch, flag);
 		}
 		if (r1 & Rx_OVR)
 			tty_insert_flip_char(tty, 0, TTY_OVERRUN);
@@ -666,7 +666,7 @@ static void sunzilog_set_mctrl(struct uart_port *port, unsigned int mctrl)
 	else
 		clear_bits |= DTR;
 
-	/* NOTE: Not subject to 'transmitter active' rule.  */ 
+	/* NOTE: Not subject to 'transmitter active' rule.  */
 	up->curregs[R5] |= set_bits;
 	up->curregs[R5] &= ~clear_bits;
 	write_zsreg(channel, R5, up->curregs[R5]);
@@ -749,7 +749,7 @@ static void sunzilog_enable_ms(struct uart_port *port)
 	if (new_reg != up->curregs[R15]) {
 		up->curregs[R15] = new_reg;
 
-		/* NOTE: Not subject to 'transmitter active' rule.  */ 
+		/* NOTE: Not subject to 'transmitter active' rule.  */
 		write_zsreg(channel, R15, up->curregs[R15] & ~WR7pEN);
 	}
 }
@@ -775,7 +775,7 @@ static void sunzilog_break_ctl(struct uart_port *port, int break_state)
 	if (new_reg != up->curregs[R5]) {
 		up->curregs[R5] = new_reg;
 
-		/* NOTE: Not subject to 'transmitter active' rule.  */ 
+		/* NOTE: Not subject to 'transmitter active' rule.  */
 		write_zsreg(channel, R5, up->curregs[R5]);
 	}
 

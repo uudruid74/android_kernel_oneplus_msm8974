@@ -34,14 +34,14 @@ Module Name:
 
 Abstract:
 
- 	 AMD8111 based 10/100 Ethernet Controller Driver.
+	 AMD8111 based 10/100 Ethernet Controller Driver.
 
 Environment:
 
 	Kernel Mode
 
 Revision History:
- 	3.0.0
+	3.0.0
 	   Initial Revision.
 	3.0.1
 	 1. Dynamic interrupt coalescing.
@@ -316,13 +316,13 @@ static int amd8111e_init_ring(struct net_device *dev)
 
 	else{
 		 /* allocate the tx and rx descriptors */
-	     	if((lp->tx_ring = pci_alloc_consistent(lp->pci_dev,
+		if((lp->tx_ring = pci_alloc_consistent(lp->pci_dev,
 			sizeof(struct amd8111e_tx_dr)*NUM_TX_RING_DR,
 			&lp->tx_ring_dma_addr)) == NULL)
 
 			goto err_no_mem;
 
-	     	if((lp->rx_ring = pci_alloc_consistent(lp->pci_dev,
+		if((lp->rx_ring = pci_alloc_consistent(lp->pci_dev,
 			sizeof(struct amd8111e_rx_dr)*NUM_RX_RING_DR,
 			&lp->rx_ring_dma_addr)) == NULL)
 
@@ -683,7 +683,7 @@ static int amd8111e_tx(struct net_device *dev)
 		/* We must free the original skb */
 		if (lp->tx_skbuff[tx_index]) {
 			pci_unmap_single(lp->pci_dev, lp->tx_dma_addr[tx_index],
-				  	lp->tx_skbuff[tx_index]->len,
+					lp->tx_skbuff[tx_index]->len,
 					PCI_DMA_TODEVICE);
 			dev_kfree_skb_irq (lp->tx_skbuff[tx_index]);
 			lp->tx_skbuff[tx_index] = NULL;
@@ -842,7 +842,7 @@ static int amd8111e_link_change(struct net_device* dev)
 	int status0,speed;
 
 	/* read the link change */
-     	status0 = readl(lp->mmio + STAT0);
+	status0 = readl(lp->mmio + STAT0);
 
 	if(status0 & LINK_STATS){
 		if(status0 & AUTONEG_COMPLETE)
@@ -1068,7 +1068,7 @@ static int amd8111e_calc_coalesce(struct net_device *dev)
 			}
 		}
 	}
-    	/* NOW FOR TX INTR COALESC */
+	/* NOW FOR TX INTR COALESC */
 	if(tx_pkt_rate < 800){
 		if(coal_conf->tx_coal_type != NO_COALESCE){
 
@@ -1624,7 +1624,7 @@ static void amd8111e_tx_timeout(struct net_device *dev)
 	int err;
 
 	printk(KERN_ERR "%s: transmit timed out, resetting\n",
-	 					      dev->name);
+						      dev->name);
 	spin_lock_irq(&lp->lock);
 	err = amd8111e_restart(dev);
 	spin_unlock_irq(&lp->lock);
@@ -1942,7 +1942,7 @@ static int __devinit amd8111e_probe_one(struct pci_dev *pdev,
 
 	/*  display driver and device information */
 
-    	chip_version = (readl(lp->mmio + CHIPID) & 0xf0000000)>>28;
+	chip_version = (readl(lp->mmio + CHIPID) & 0xf0000000)>>28;
 	printk(KERN_INFO "%s: AMD-8111e Driver Version: %s\n",
 	       dev->name,MODULE_VERS);
 	printk(KERN_INFO "%s: [ Rev %x ] PCI 10/100BaseT Ethernet %pM\n",
@@ -1953,7 +1953,7 @@ static int __devinit amd8111e_probe_one(struct pci_dev *pdev,
 	else
 		printk(KERN_INFO "%s: Couldn't detect MII PHY, assuming address 0x01\n",
 		       dev->name);
-    	return 0;
+	return 0;
 err_iounmap:
 	iounmap(lp->mmio);
 

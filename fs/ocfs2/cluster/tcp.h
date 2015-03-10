@@ -69,7 +69,7 @@ static inline int o2net_link_down(int err, struct socket *sock)
 {
 	if (sock) {
 		if (sock->sk->sk_state != TCP_ESTABLISHED &&
-	    	    sock->sk->sk_state != TCP_CLOSE_WAIT)
+		    sock->sk->sk_state != TCP_CLOSE_WAIT)
 			return 1;
 	}
 

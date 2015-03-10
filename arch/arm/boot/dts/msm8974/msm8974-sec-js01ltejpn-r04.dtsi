@@ -120,7 +120,7 @@
 			vcc_en-supply = <&pm8941_lvs3>;
 			cypress,scl-gpio = <&msmgpio 96 0x00>;
 			cypress,sda-gpio = <&msmgpio 95 0x00>;
-			cypress,irq-gpio = <&pm8941_gpios 29 0x1>;		
+			cypress,irq-gpio = <&pm8941_gpios 29 0x1>;
 			cypress,tkey-keycodes = <139 158>;
 			cypress,i2c-pull-up = <1>;
 		};
@@ -155,7 +155,7 @@
 		&msmgpio 61 0 /* scl */
 		>;
 	};
-	
+
 	qcom,hdmi_tx@fd922100 {
 		status = "ok";
 	};
@@ -331,7 +331,7 @@
 		status = "disabled";
 	};
 
-	i2c@25 {			
+	i2c@25 {
 		cell-index = <25>;
 		compatible = "i2c-gpio";
 		gpios = <&msmgpio 55 0 /* sda */
@@ -342,7 +342,7 @@
 			compatible = "isdbtmm_smtej113_main1";
 			reg = <0x61>;
 		};
-		
+
 		isdbtmm-main2@62 {
 			compatible = "isdbtmm_smtej113_main2";
 			reg = <0x62>;
@@ -351,9 +351,9 @@
 		isdbtmm-sub@60 {
 			compatible = "isdbtmm_smtej113_sub";
 			reg = <0x60>;
-		};		
-		
-	};	
+		};
+
+	};
 
 	i2c@f9965000 {
 		gpios = <&msmgpio 51 0>, /* sda */
@@ -377,7 +377,7 @@
 		qcom,rx-gpio = <&msmgpio 28 0x00>;
 	};
     felica_gpio{
-    	compatible = "felica,gpio-table";
+	compatible = "felica,gpio-table";
 		interrupt-parent = <&pm8941_gpios>;
 		interrupts = <17 0>;
 		felica,irq-gpio = <&pm8941_gpios 17 0x1>;
@@ -542,7 +542,7 @@
 		qcom,isdbtmm-gpio-rst = <&pm8941_gpios 31 0>;
 		qcom,isdbtmm-gpio-irq = <&msmgpio 73 0>;
 	};
-	
+
 	isdbtmm-spi {
 		compatible = "isdbtmm_spi_data";
 
@@ -589,7 +589,7 @@
 
 	earjack {
 		compatible = "sec_jack";
-		qcom,earjack-read-vadc = <&pm8941_vadc>;		
+		qcom,earjack-read-vadc = <&pm8941_vadc>;
 		qcom,earjack-detect-gpio = <&pm8941_gpios 22 0>;
 		qcom,earjack-micbias-gpio = <&pm8941_gpios 34 0>;
 		qcom,earjack-sendend-gpio = <&msmgpio 77 0>;
@@ -601,7 +601,7 @@
 		but-zones-list = <&but_zones 0 0 159>,
 						 <&but_zones 1 160 321>,
 						 <&but_zones 2 322 645>;
-		mpp-channel-scaling = <4 1 3>;							
+		mpp-channel-scaling = <4 1 3>;
 	};
 
 	usb2_otg_sw: regulator-tpd4s214 {
@@ -1315,4 +1315,3 @@
 		es325-slim-ifd-elemental-addr = [00 00 02 00 BE 02];
 	};
 };
-

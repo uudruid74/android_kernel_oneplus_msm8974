@@ -96,4 +96,3 @@ enum ISDBT_INTERRUPT_TYPE {
 #endif
 
 #endif /* __FCI_TYPES_H__ */
-

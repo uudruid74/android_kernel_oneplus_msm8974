@@ -60,4 +60,3 @@ s32 fci_hpi_deinit(HANDLE handle)
 {
 	return BBM_OK;
 }
-

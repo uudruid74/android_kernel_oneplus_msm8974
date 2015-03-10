@@ -304,7 +304,7 @@ int propagate_mount_busy(struct mount *mnt, int refcnt)
 		return 1;
 
 	for (m = propagation_next(parent, parent); m;
-	     		m = propagation_next(m, parent)) {
+			m = propagation_next(m, parent)) {
 		child = __lookup_mnt(&m->mnt, mnt->mnt_mountpoint, 0);
 		if (child && list_empty(&child->mnt_mounts) &&
 		    (ret = do_refcount_check(child, 1)))

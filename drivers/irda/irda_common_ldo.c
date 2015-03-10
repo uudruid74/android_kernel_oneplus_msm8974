@@ -793,7 +793,7 @@ err_del_dev_file_send:
 
 err_del_dev:
 	device_destroy(sec_class,ir_remocon_dev->devt);
-	
+
 err_fw_update_fail:
 	regulator_put(vled_ic);
 err_free_mem:

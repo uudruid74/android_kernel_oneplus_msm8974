@@ -893,4 +893,3 @@ void __exit cleanup_module(void)
 MODULE_AUTHOR("Donald Becker, Alan Cox");
 MODULE_DESCRIPTION("Support for the ancient 3Com 3c501 ethernet card");
 MODULE_LICENSE("GPL");
-

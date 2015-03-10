@@ -73,7 +73,7 @@ static void fc8300_data(HANDLE handle, DEVICEID devid, u8 buf_int_status)
 				ISDB_PR_DBG("fc8300_ts_callback\n");
 				(*fc8300_ts_callback)(fc8300_ts_user_data,
 						i, &ts_buffer[0], size);
-			}			
+			}
 		}
 	}
 #if 0			//Fix PLM P140206-02359
@@ -96,7 +96,7 @@ static void fc8300_data(HANDLE handle, DEVICEID devid, u8 buf_int_status)
 				ISDB_PR_DBG("fc8300_ac_callback\n");
 				(*fc8300_ac_callback)(fc8300_ac_user_data,
 						i, &ac_buffer[0], size);
-			}			
+			}
 		}
 	}
 #endif
@@ -247,4 +247,3 @@ void fc8300_isr(HANDLE handle)
 	}
 #endif
 }
-

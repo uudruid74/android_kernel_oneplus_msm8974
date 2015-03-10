@@ -781,4 +781,3 @@ void *rds_ib_get_mr(struct scatterlist *sg, unsigned long nents,
 		rds_ib_dev_put(rds_ibdev);
 	return ibmr;
 }
-

@@ -336,7 +336,7 @@ Run the SiliconID Verification, and proceed according to result.
 	fIsError = fEraseTarget();
 	if (fIsError) {
 		ErrorTrap(info, fIsError);
-		return fIsError;		
+		return fIsError;
 	}
 
 	#ifdef TX_ON
@@ -487,4 +487,3 @@ out:
 	return 0;
 }
 #endif  /* (PROJECT_REV_) */
-

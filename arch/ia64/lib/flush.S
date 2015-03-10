@@ -26,7 +26,7 @@ GLOBAL_ENTRY(flush_icache_range)
 	.prologue
 	alloc	r2=ar.pfs,2,0,0,0
 	movl	r3=ia64_i_cache_stride_shift
- 	mov	r21=1
+	mov	r21=1
 	;;
 	ld8	r20=[r3]		// r20: stride shift
 	sub	r22=in1,r0,1		// last byte address

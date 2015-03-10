@@ -36,8 +36,8 @@ static ssize_t node_read_cpumap(struct device *dev, int type, char *buf)
 	len = type?
 		cpulist_scnprintf(buf, PAGE_SIZE-2, mask) :
 		cpumask_scnprintf(buf, PAGE_SIZE-2, mask);
- 	buf[len++] = '\n';
- 	buf[len] = '\0';
+	buf[len++] = '\n';
+	buf[len] = '\0';
 	return len;
 }
 
@@ -650,8 +650,8 @@ static int __init register_node_type(void)
 {
 	int ret;
 
- 	BUILD_BUG_ON(ARRAY_SIZE(node_state_attr) != NR_NODE_STATES);
- 	BUILD_BUG_ON(ARRAY_SIZE(node_state_attrs)-1 != NR_NODE_STATES);
+	BUILD_BUG_ON(ARRAY_SIZE(node_state_attr) != NR_NODE_STATES);
+	BUILD_BUG_ON(ARRAY_SIZE(node_state_attrs)-1 != NR_NODE_STATES);
 
 	ret = subsys_system_register(&node_subsys, cpu_root_attr_groups);
 	if (!ret) {

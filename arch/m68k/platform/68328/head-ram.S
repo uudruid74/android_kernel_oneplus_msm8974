@@ -4,7 +4,7 @@
 
         .global _rambase
         .global _ramstart
-	
+
 	.global splash_bits
 	.global _start
 	.global _stext
@@ -15,7 +15,7 @@
 #define STACK_GAURD 0x10
 
 	.text
-	
+
 _start:
 _stext:
 	movew	#0x2700, %sr            /* Exceptions off! */

@@ -209,7 +209,7 @@
 			<&msmgpio 21 0>,
 			<&msmgpio 20 0>,
 			<&msmgpio 77 0>,
-			<&msmgpio 99 0>;	
+			<&msmgpio 99 0>;
 		qcom,gpio-reset = <1>;
 		qcom,gpio-standby = <2>;
 		qcom,gpio-c-en = <3>;

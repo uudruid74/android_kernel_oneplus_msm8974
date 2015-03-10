@@ -338,11 +338,11 @@ static int wireless_commit(struct net_device *dev,
 
 	wl_lock( lp, &flags );
 
-    	wl_act_int_off( lp );
+	wl_act_int_off( lp );
 
 	wl_apply(lp);
 
-    	wl_act_int_on( lp );
+	wl_act_int_on( lp );
 
 	wl_unlock(lp, &flags);
 
@@ -456,7 +456,7 @@ static int wireless_set_frequency(struct net_device *dev, struct iw_request_info
 
 	wl_lock( lp, &flags );
 
-    	wl_act_int_off( lp );
+	wl_act_int_off( lp );
 
 	lp->Channel = channel;
 
@@ -467,7 +467,7 @@ static int wireless_set_frequency(struct net_device *dev, struct iw_request_info
 	/* Send an event that channel/freq has been set */
 	wl_wext_event_freq( lp->dev );
 
-    	wl_act_int_on( lp );
+	wl_act_int_on( lp );
 
 	wl_unlock(lp, &flags);
 
@@ -517,7 +517,7 @@ static int wireless_get_frequency(struct net_device *dev, struct iw_request_info
 
 	wl_lock( lp, &flags );
 
-    	wl_act_int_off( lp );
+	wl_act_int_off( lp );
 
 	lp->ltvRecord.len = 2;
 	lp->ltvRecord.typ = CFG_CUR_CHANNEL;
@@ -530,7 +530,7 @@ static int wireless_get_frequency(struct net_device *dev, struct iw_request_info
 		freq->e = 1;
 	}
 
-    	wl_act_int_on( lp );
+	wl_act_int_on( lp );
 
 	wl_unlock(lp, &flags);
 
@@ -587,7 +587,7 @@ static int wireless_get_range(struct net_device *dev, struct iw_request_info *in
 
 	wl_lock( lp, &flags );
 
-    	wl_act_int_off( lp );
+	wl_act_int_off( lp );
 
 	/* Set range information */
 	memset( range, 0, sizeof( struct iw_range ));
@@ -743,7 +743,7 @@ retry:
 	range->scan_capa = IW_SCAN_CAPA_NONE;
 
 out_unlock:
-    	wl_act_int_on( lp );
+	wl_act_int_on( lp );
 
 	wl_unlock(lp, &flags);
 
@@ -793,7 +793,7 @@ static int wireless_get_bssid(struct net_device *dev, struct iw_request_info *in
 
 	wl_lock( lp, &flags );
 
-    	wl_act_int_off( lp );
+	wl_act_int_off( lp );
 
 	memset( &ap_addr->sa_data, 0, ETH_ALEN );
 
@@ -824,7 +824,7 @@ static int wireless_get_bssid(struct net_device *dev, struct iw_request_info *in
 
 #endif // (HCF_TYPE) & HCF_TYPE_STA
 
-    	wl_act_int_on( lp );
+	wl_act_int_on( lp );
 
 	wl_unlock(lp, &flags);
 
@@ -887,7 +887,7 @@ static int wireless_get_ap_list (struct net_device *dev, struct iw_request_info 
 
 	wl_lock( lp, &flags );
 
-    	wl_act_int_off( lp );
+	wl_act_int_off( lp );
 
 	/* Set the completion state to FALSE */
 	lp->scan_results.scan_complete = FALSE;
@@ -914,7 +914,7 @@ static int wireless_get_ap_list (struct net_device *dev, struct iw_request_info 
 	ret = hcf_action( &( lp->hcfCtx ), HCF_ACT_ACS_SCAN );
 #endif  // WARP
 
-    	wl_act_int_on( lp );
+	wl_act_int_on( lp );
 
 	//;? unlock? what about the access to lp below? is it broken?
 	wl_unlock(lp, &flags);
@@ -1029,12 +1029,12 @@ static int wireless_set_sensitivity(struct net_device *dev, struct iw_request_in
 
 	wl_lock( lp, &flags );
 
-    	wl_act_int_off( lp );
+	wl_act_int_off( lp );
 
 	lp->DistanceBetweenAPs = dens;
 	wl_apply( lp );
 
-    	wl_act_int_on( lp );
+	wl_act_int_on( lp );
 
 	wl_unlock(lp, &flags);
 
@@ -1135,7 +1135,7 @@ static int wireless_set_essid(struct net_device *dev, struct iw_request_info *in
 
 	wl_lock( lp, &flags );
 
-    	wl_act_int_off( lp );
+	wl_act_int_off( lp );
 
 	memset( lp->NetworkName, 0, sizeof( lp->NetworkName ));
 
@@ -1161,7 +1161,7 @@ static int wireless_set_essid(struct net_device *dev, struct iw_request_info *in
 	/* Send an event that ESSID has been set */
 	wl_wext_event_essid( lp->dev );
 
-    	wl_act_int_on( lp );
+	wl_act_int_on( lp );
 
 	wl_unlock(lp, &flags);
 
@@ -1215,7 +1215,7 @@ static int wireless_get_essid(struct net_device *dev, struct iw_request_info *in
 
 	wl_lock( lp, &flags );
 
-    	wl_act_int_off( lp );
+	wl_act_int_off( lp );
 
 	/* Get the desired network name */
 	lp->ltvRecord.len = 1 + ( sizeof( *pName ) / sizeof( hcf_16 ));
@@ -1296,7 +1296,7 @@ static int wireless_get_essid(struct net_device *dev, struct iw_request_info *in
 	}
 
 out_unlock:
-    	wl_act_int_on( lp );
+	wl_act_int_on( lp );
 
 	wl_unlock(lp, &flags);
 
@@ -1413,7 +1413,7 @@ static int wireless_get_encode(struct net_device *dev, struct iw_request_info *i
 
 	wl_lock( lp, &flags );
 
-    	wl_act_int_off( lp );
+	wl_act_int_off( lp );
 
 	/* Is it supported? */
 	if( !wl_has_wep( &( lp->hcfCtx ))) {
@@ -1446,7 +1446,7 @@ static int wireless_get_encode(struct net_device *dev, struct iw_request_info *i
 
 out_unlock:
 
-    	wl_act_int_on( lp );
+	wl_act_int_on( lp );
 
 	wl_unlock(lp, &flags);
 
@@ -1510,7 +1510,7 @@ static int wireless_set_nickname(struct net_device *dev, struct iw_request_info 
 
 	wl_lock( lp, &flags );
 
-    	wl_act_int_off( lp );
+	wl_act_int_off( lp );
 
 	memset( lp->StationName, 0, sizeof( lp->StationName ));
 
@@ -1519,7 +1519,7 @@ static int wireless_set_nickname(struct net_device *dev, struct iw_request_info 
 	/* Commit the adapter parameters */
 	wl_apply( lp );
 
-    	wl_act_int_on( lp );
+	wl_act_int_on( lp );
 
 	wl_unlock(lp, &flags);
 
@@ -1571,7 +1571,7 @@ static int wireless_get_nickname(struct net_device *dev, struct iw_request_info 
 
 	wl_lock( lp, &flags );
 
-    	wl_act_int_off( lp );
+	wl_act_int_off( lp );
 
 	/* Get the current station name */
 	lp->ltvRecord.len = 1 + ( sizeof( *pName ) / sizeof( hcf_16 ));
@@ -1596,7 +1596,7 @@ static int wireless_get_nickname(struct net_device *dev, struct iw_request_info 
 		ret = -EFAULT;
 	}
 
-    	wl_act_int_on( lp );
+	wl_act_int_on( lp );
 
 	wl_unlock(lp, &flags);
 
@@ -1647,7 +1647,7 @@ static int wireless_set_porttype(struct net_device *dev, struct iw_request_info 
 
 	wl_lock( lp, &flags );
 
-    	wl_act_int_off( lp );
+	wl_act_int_off( lp );
 
 	/* Validate the new value */
 	switch( *mode ) {
@@ -1710,7 +1710,7 @@ static int wireless_set_porttype(struct net_device *dev, struct iw_request_info 
 		}
 	}
 
-    	wl_act_int_on( lp );
+	wl_act_int_on( lp );
 
 	wl_unlock(lp, &flags);
 
@@ -1763,7 +1763,7 @@ static int wireless_get_porttype(struct net_device *dev, struct iw_request_info 
 
 	wl_lock( lp, &flags );
 
-    	wl_act_int_off( lp );
+	wl_act_int_off( lp );
 
 	/* Get the current port type */
 	lp->ltvRecord.len = 1 + ( sizeof( *pPortType ) / sizeof( hcf_16 ));
@@ -1820,7 +1820,7 @@ static int wireless_get_porttype(struct net_device *dev, struct iw_request_info 
 		ret = -EFAULT;
 	}
 
-    	wl_act_int_on( lp );
+	wl_act_int_on( lp );
 
 	wl_unlock(lp, &flags);
 
@@ -1881,7 +1881,7 @@ static int wireless_set_power(struct net_device *dev, struct iw_request_info *in
 
 	wl_lock( lp, &flags );
 
-    	wl_act_int_off( lp );
+	wl_act_int_off( lp );
 
 	/* Set the power management state based on the 'disabled' value */
 	if( wrq->disabled ) {
@@ -1893,7 +1893,7 @@ static int wireless_set_power(struct net_device *dev, struct iw_request_info *in
 	/* Commit the adapter parameters */
 	wl_apply( lp );
 
-    	wl_act_int_on( lp );
+	wl_act_int_on( lp );
 
 	wl_unlock(lp, &flags);
 
@@ -1944,7 +1944,7 @@ static int wireless_get_power(struct net_device *dev, struct iw_request_info *in
 
 	wl_lock( lp, &flags );
 
-    	wl_act_int_off( lp );
+	wl_act_int_off( lp );
 
 	rrq->flags = 0;
 	rrq->value = 0;
@@ -1955,7 +1955,7 @@ static int wireless_get_power(struct net_device *dev, struct iw_request_info *in
 		rrq->disabled = 1;
 	}
 
-    	wl_act_int_on( lp );
+	wl_act_int_on( lp );
 
 	wl_unlock(lp, &flags);
 
@@ -2003,7 +2003,7 @@ static int wireless_get_tx_power(struct net_device *dev, struct iw_request_info 
 
 	wl_lock( lp, &flags );
 
-    	wl_act_int_off( lp );
+	wl_act_int_off( lp );
 
 #ifdef USE_POWER_DBM
 	rrq->value = RADIO_TX_POWER_DBM;
@@ -2015,7 +2015,7 @@ static int wireless_get_tx_power(struct net_device *dev, struct iw_request_info 
 	rrq->fixed = 1;
 	rrq->disabled = 0;
 
-    	wl_act_int_on( lp );
+	wl_act_int_on( lp );
 
 	wl_unlock(lp, &flags);
 
@@ -2080,13 +2080,13 @@ static int wireless_set_rts_threshold (struct net_device *dev, struct iw_request
 
 	wl_lock( lp, &flags );
 
-    	wl_act_int_off( lp );
+	wl_act_int_off( lp );
 
 	lp->RTSThreshold = rthr;
 
 	wl_apply( lp );
 
-    	wl_act_int_on( lp );
+	wl_act_int_on( lp );
 
 	wl_unlock(lp, &flags);
 
@@ -2135,7 +2135,7 @@ static int wireless_get_rts_threshold (struct net_device *dev, struct iw_request
 
 	wl_lock( lp, &flags );
 
-    	wl_act_int_off( lp );
+	wl_act_int_off( lp );
 
 	rts->value = lp->RTSThreshold;
 
@@ -2143,7 +2143,7 @@ static int wireless_get_rts_threshold (struct net_device *dev, struct iw_request
 
 	rts->fixed = 1;
 
-    	wl_act_int_on( lp );
+	wl_act_int_on( lp );
 
 	wl_unlock(lp, &flags);
 
@@ -2198,7 +2198,7 @@ static int wireless_set_rate(struct net_device *dev, struct iw_request_info *inf
 
 	wl_lock( lp, &flags );
 
-    	wl_act_int_off( lp );
+	wl_act_int_off( lp );
 
 #ifdef WARP
 
@@ -2371,7 +2371,7 @@ static int wireless_set_rate(struct net_device *dev, struct iw_request_info *inf
 
 out_unlock:
 
-    	wl_act_int_on( lp );
+	wl_act_int_on( lp );
 
 	wl_unlock(lp, &flags);
 
@@ -2424,7 +2424,7 @@ static int wireless_get_rate(struct net_device *dev, struct iw_request_info *inf
 
 	wl_lock( lp, &flags );
 
-    	wl_act_int_off( lp );
+	wl_act_int_off( lp );
 
 	/* Get the current transmit rate from the adapter */
 	lp->ltvRecord.len = 1 + ( sizeof(txRate)/sizeof(hcf_16));
@@ -2486,7 +2486,7 @@ static int wireless_get_rate(struct net_device *dev, struct iw_request_info *inf
 		ret = -EFAULT;
 	}
 
-    	wl_act_int_on( lp );
+	wl_act_int_on( lp );
 
 	wl_unlock(lp, &flags);
 
@@ -2607,7 +2607,7 @@ static int wireless_set_scan(struct net_device *dev, struct iw_request_info *inf
 
 	wl_lock( lp, &flags );
 
-    	wl_act_int_off( lp );
+	wl_act_int_off( lp );
 
 	/*
          * This looks like a nice place to test if the HCF is still
@@ -2690,7 +2690,7 @@ retry:
 		DBG_TRACE( DbgInfo, "INITIATE SCAN FAILED...\n" );
 	}
 
-    	wl_act_int_on( lp );
+	wl_act_int_on( lp );
 
 	wl_unlock(lp, &flags);
 
@@ -2748,7 +2748,7 @@ static int wireless_get_scan(struct net_device *dev, struct iw_request_info *inf
 
 	wl_lock( lp, &flags );
 
-    	wl_act_int_off( lp );
+	wl_act_int_off( lp );
 
 	/* If the scan is not done, tell the calling process to try again later */
 	if( !lp->probe_results.scan_complete ) {
@@ -2884,7 +2884,7 @@ static int wireless_get_scan(struct net_device *dev, struct iw_request_info *inf
 
 out_unlock:
 
-    	wl_act_int_on( lp );
+	wl_act_int_on( lp );
 
 	wl_unlock(lp, &flags);
 
@@ -2934,7 +2934,7 @@ static int wireless_set_auth(struct net_device *dev,
 
 	wl_lock( lp, &flags );
 
-    	wl_act_int_off( lp );
+	wl_act_int_off( lp );
 
 	if (iwa_idx > IW_AUTH_MFP)
 		iwa_idx = IW_AUTH_MFP + 1;
@@ -3034,7 +3034,7 @@ static int wireless_set_auth(struct net_device *dev,
 		break;
 	}
 
-    	wl_act_int_on( lp );
+	wl_act_int_on( lp );
 
 	wl_unlock(lp, &flags);
 
@@ -3344,7 +3344,7 @@ struct iw_statistics * wl_get_wireless_stats( struct net_device *dev )
 
 	wl_lock( lp, &flags );
 
-    	wl_act_int_off( lp );
+	wl_act_int_off( lp );
 
 #ifdef USE_RTS
 	if( lp->useRTS == 1 ) {
@@ -3354,7 +3354,7 @@ struct iw_statistics * wl_get_wireless_stats( struct net_device *dev )
 	{
 		pStats = wl_wireless_stats( dev );
 	}
-    	wl_act_int_on( lp );
+	wl_act_int_on( lp );
 
 	wl_unlock(lp, &flags);
 

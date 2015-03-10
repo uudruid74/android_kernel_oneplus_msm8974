@@ -36,4 +36,3 @@ void ms_wait(int ms)
 {
 	usleep_range(ms*1000, ms*1000);
 }
-

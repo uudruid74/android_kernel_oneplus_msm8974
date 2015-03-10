@@ -1012,7 +1012,7 @@ int wext_handle_ioctl(struct net *net, struct ifreq *ifr, unsigned int cmd,
 {
 	#ifdef KW_TAINT_ANALYSIS
 	void __user *arg = (void __user *)get_tainted_stuff();
-	#else	
+	#else
 	void __user *arg = (void __user *)arg_actual;
 	#endif
 	struct iw_request_info info = { .cmd = cmd, .flags = 0 };
@@ -1067,7 +1067,7 @@ int compat_wext_handle_ioctl(struct net *net, unsigned int cmd,
 	void __user *argp = (void __user *)get_tainted_stuff();
 	#else
 	void __user *argp = (void __user *)arg;
-	#endif	
+	#endif
 	struct iw_request_info info;
 	struct iwreq iwr;
 	char *colon;

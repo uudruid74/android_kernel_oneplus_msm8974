@@ -987,4 +987,3 @@ struct clk_lookup msm_clocks_7x25[] = {
 };
 
 unsigned msm_num_clocks_7x25 = ARRAY_SIZE(msm_clocks_7x25);
-

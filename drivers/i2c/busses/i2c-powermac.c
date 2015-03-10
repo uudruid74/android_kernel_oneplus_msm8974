@@ -68,12 +68,12 @@ static s32 i2c_powermac_smbus_xfer(	struct i2c_adapter*	adap,
         case I2C_SMBUS_QUICK:
 		buf = NULL;
 		len = 0;
-	    	break;
+		break;
         case I2C_SMBUS_BYTE:
         case I2C_SMBUS_BYTE_DATA:
 		buf = &data->byte;
 		len = 1;
-	    	break;
+		break;
         case I2C_SMBUS_WORD_DATA:
 		if (!read) {
 			local[0] = data->word & 0xff;
@@ -81,7 +81,7 @@ static s32 i2c_powermac_smbus_xfer(	struct i2c_adapter*	adap,
 		}
 		buf = local;
 		len = 2;
-	    	break;
+		break;
 
 	/* Note that these are broken vs. the expected smbus API where
 	 * on reads, the length is actually returned from the function,

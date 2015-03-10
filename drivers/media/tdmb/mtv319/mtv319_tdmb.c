@@ -1481,6 +1481,3 @@ tdmb_init_exit:
 
 	return RTV_SUCCESS;
 }
-
-
-

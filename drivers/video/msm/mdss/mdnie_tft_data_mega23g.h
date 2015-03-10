@@ -2053,7 +2053,7 @@ char AUTO_CAMERA_2[] = {
 	0x20,	//curve23	a
 	0x00,	//curve24	b
 	0xFF,	//curve24	a
-	0x60,	//cs gain	
+	0x60,	//cs gain
 	0x01,
 };
 
@@ -3150,5 +3150,3 @@ char *mdnie_tune_value[MAX_mDNIe_MODE][MAX_BACKGROUND_MODE][MAX_OUTDOOR_MODE][4]
 };
 
 #endif
-
-

@@ -975,7 +975,7 @@ static int cyttsp4_si_get_op_data_ptrs(struct cyttsp4_core_data *cd)
 
 	dev_info(cd->dev, "%s: xy_mode=%p xy_data=%p\n", __func__,
 		si->xy_mode, si->xy_data);
-		
+
 #ifdef SAMSUNG_TSP_INFO
 	dev_info(cd->dev, "%s: ic_vendor=%c%c\n", __func__,
 		(char)si->sti->ic_vendorh, (char)si->sti->ic_vendorl);
@@ -1772,7 +1772,7 @@ static int cyttsp4_request_restart_(struct device *dev, bool wait)
 {
 	struct cyttsp4_core_data *cd = dev_get_drvdata(dev);
 	int rc = 0;
-	
+
 	dev_dbg(dev, "%s: \n", __func__);
 
 	mutex_lock(&cd->system_lock);
@@ -1790,7 +1790,7 @@ static int cyttsp4_request_restart_(struct device *dev, bool wait)
 		return rc;
 	}
 
-	if (cd->pdata->loader_pdata->flags & 
+	if (cd->pdata->loader_pdata->flags &
 		CY_LOADER_FLAG_CALIBRATE_AFTER_FW_UPGRADE) {
 		dev_dbg(dev, "%s: calibrate after fw upgrade\n", __func__);
 		rc = cyttsp4_fw_calibrate(cd->dev);
@@ -1800,7 +1800,7 @@ static int cyttsp4_request_restart_(struct device *dev, bool wait)
 			return rc;
 		}
 	}
-	
+
 	return 0;
 }
 
@@ -1969,7 +1969,7 @@ static int _cyttsp4_exec_cmd(struct cyttsp4_core_data *cd, u8 mode,
 		return rc;
 	}
 
-	dev_dbg(dev, "%s: cmd=%s rc=%d\n", __func__, 
+	dev_dbg(dev, "%s: cmd=%s rc=%d\n", __func__,
 		cy_cmd_str(mode, cmd_buf[0]), rc);
 	return 0;
 }
@@ -2723,7 +2723,7 @@ struct cyttsp4_sysinfo *cyttsp4_update_sysinfo_(struct device *dev)
 			__func__);
 		goto err_release;
 	}
-	
+
 	rc = cyttsp4_get_sysinfo_regs(cd);
 	if (rc < 0)
 		dev_err(dev, "%s: Error on cyttsp4_get_sysinfo_regs r=%d\n",
@@ -2745,7 +2745,7 @@ err_release:
 
 	if (rc < 0)
 		goto error;
-		
+
 	mutex_lock(&cd->system_lock);
 	ready = cd->sysinfo.ready;
 	mutex_unlock(&cd->system_lock);
@@ -2857,9 +2857,9 @@ static int cyttsp4_scan_and_retrieve_(struct device *dev, bool switch_to_cat, bo
 	u8 element_start_offset = cmd_param_ofs
 		+ CY_CMD_CAT_RETRIEVE_PANEL_SCAN_RET_SZ;
 	u8 element_size;
-	
+
 	dev_dbg(dev, "%s: ", __func__);
-				
+
 	rc = request_exclusive(cd, (void *)dev, CY_CORE_REQUEST_EXCLUSIVE_TIMEOUT);
 	if (rc < 0) {
 		dev_err(dev, "%s: Error on request exclusive r=%d\n",
@@ -2869,14 +2869,14 @@ static int cyttsp4_scan_and_retrieve_(struct device *dev, bool switch_to_cat, bo
 
 	if (!switch_to_cat)
 		goto do_scan;
-	
+
 	rc = set_mode(cd, CY_MODE_CAT);
 	if (rc < 0) {
 		dev_err(dev, "%s: fail switch mode to CAT\n",
 			__func__);
 		goto err_release;
 	}
-	
+
 do_scan:
 	if (scan_start)	{
 		/* Start scan */
@@ -2915,7 +2915,7 @@ do_scan:
 			__func__, element_size);
 	if (r_element_size)
 		*r_element_size = element_size;
-		
+
 	/* read data */
 	read_byte += returned_element * element_size;
 
@@ -2981,14 +2981,14 @@ do_scan:
 
 	if (!switch_to_cat)
 		goto err_release;
-	
+
 	rc = set_mode(cd, CY_MODE_OPERATIONAL);
 	if (rc < 0) {
 		dev_err(dev, "%s: fail switch mode to OPMODE\n",
 			__func__);
 		goto err_release;
 	}
-	
+
 err_release:
 	rc1 = release_exclusive(cd, (void *)dev);
 	if (rc1 < 0) {
@@ -2998,12 +2998,12 @@ err_release:
 	dev_dbg(dev, "%s: big_buf[0~11]:"
 		"0x%02x 0x%02x 0x%02x 0x%02x "
 		"0x%02x 0x%02x 0x%02x 0x%02x "
-		"0x%02x 0x%02x 0x%02x 0x%02x ", __func__, 
-		big_buf[0], big_buf[1], big_buf[2], big_buf[3], 
-		big_buf[4], big_buf[5], big_buf[6], big_buf[7], 
+		"0x%02x 0x%02x 0x%02x 0x%02x ", __func__,
+		big_buf[0], big_buf[1], big_buf[2], big_buf[3],
+		big_buf[4], big_buf[5], big_buf[6], big_buf[7],
 		big_buf[8], big_buf[9], big_buf[10], big_buf[11]);
-		
-	
+
+
 	dev_dbg(dev, "%s: rc=%d", __func__, rc);
 	return rc;
 }
@@ -3043,7 +3043,7 @@ static int cyttsp4_retrieve_data_structure_(struct device *dev, int read_offset,
 	int returned_element;
 	u8 element_start_offset = cmd_param_ofs
 		+ CY_CMD_CAT_RETRIEVE_DATA_STRUCT_RET_SZ;
-	
+
 	dev_dbg(dev, "%s: ", __func__);
 
 	rc = request_exclusive(cd, (void *)dev, CY_CORE_REQUEST_EXCLUSIVE_TIMEOUT);
@@ -3059,7 +3059,7 @@ static int cyttsp4_retrieve_data_structure_(struct device *dev, int read_offset,
 			__func__);
 		goto err_release;
 	}
-	
+
 	/* retrieve scan data */
 	rc = exec_cmd_retrieve_data_structure(dev, read_element_offset,
 			left_over_element, data_id, return_buf);
@@ -3080,7 +3080,7 @@ static int cyttsp4_retrieve_data_structure_(struct device *dev, int read_offset,
 	dev_dbg(dev, "%s: num_element:%d\n",
 		__func__, returned_element);
 
-		
+
 	/* read data */
 	read_byte += returned_element;
 
@@ -3148,7 +3148,7 @@ static int cyttsp4_retrieve_data_structure_(struct device *dev, int read_offset,
 			__func__);
 		goto err_release;
 	}
-	
+
 err_release:
 	rc1 = release_exclusive(cd, (void *)dev);
 	if (rc1 < 0) {
@@ -3158,11 +3158,11 @@ err_release:
 	dev_dbg(dev, "%s: big_buf[0~11]:"
 		"0x%02x 0x%02x 0x%02x 0x%02x "
 		"0x%02x 0x%02x 0x%02x 0x%02x "
-		"0x%02x 0x%02x 0x%02x 0x%02x ", __func__, 
-		big_buf[0], big_buf[1], big_buf[2], big_buf[3], 
-		big_buf[4], big_buf[5], big_buf[6], big_buf[7], 
+		"0x%02x 0x%02x 0x%02x 0x%02x ", __func__,
+		big_buf[0], big_buf[1], big_buf[2], big_buf[3],
+		big_buf[4], big_buf[5], big_buf[6], big_buf[7],
 		big_buf[8], big_buf[9], big_buf[10], big_buf[11]);
-	
+
 	dev_dbg(dev, "%s: rc=%d", __func__, rc);
 	return rc;
 }
@@ -3170,13 +3170,13 @@ err_release:
 int cyttsp4_fw_calibrate(struct device *dev)
 {
 	struct cyttsp4_core_data *cd = dev_get_drvdata(dev);
-	
+
 	u8 cmd_buf[CY_CMD_CAT_CALIBRATE_IDAC_CMD_SZ];
 	u8 return_buf[CY_CMD_CAT_CALIBRATE_IDAC_RET_SZ];
 	int rc;
 
 	dev_dbg(dev, "%s: \n", __func__);
-	
+
 	rc = request_exclusive(cd, (void *)dev, CY_CORE_REQUEST_EXCLUSIVE_TIMEOUT);
 	if (rc < 0) {
 		dev_err(dev, "%s: Error on request exclusive r=%d\n",
@@ -3298,12 +3298,12 @@ int cyttsp4_get_btn_signal(struct device *dev, int btn, s16 *value)
 	si->si_ofs.tch_rec_size
 	si->si_ofs.btn_diff_size
 	GET_NUM_TOUCH_RECORDS(tt_stat)
-	
+
 	rc = cyttsp4_adap_read(cd, CY_REG_BASE, value, 2);
 	if (rc < 0) {
 		dev_err(dev, "%s: Error on read r=%d\n", __func__, rc);
 	}
-	
+
 //back_to_prev_mode:
 	if (cd->mode != CY_MODE_OPERATIONAL) {
 		rc = set_mode(cd, cd->mode); // go back to previous mode
@@ -3312,7 +3312,7 @@ int cyttsp4_get_btn_signal(struct device *dev, int btn, s16 *value)
 					__func__, rc);
 		}
 	}
-	
+
 exit_release:
 	rc1 = release_exclusive(cd, (void *)dev);
 	if (rc1 < 0)
@@ -3693,7 +3693,7 @@ static int _cyttsp4_ldr_exit(struct cyttsp4_core_data *cd)
 		return cyttsp4_adap_write(cd, CY_REG_BASE, (u8 *)ldr_fast_exit,
 				sizeof(ldr_fast_exit));
 	}
-	
+
 	return cyttsp4_adap_write(cd, CY_REG_BASE, (u8 *)ldr_exit,
 			sizeof(ldr_exit));
 }
@@ -3828,7 +3828,7 @@ static int cyttsp4_get_ttconfig_info(struct cyttsp4_core_data *cd)
 	int rc;
 
 	dev_dbg(cd->dev, "%s: \n", __func__);
-	
+
 	rc = set_mode(cd, CY_MODE_CAT);
 	if (rc < 0) {
 		dev_err(cd->dev, "%s: failed to set mode to CAT rc=%d\n",
@@ -3883,7 +3883,7 @@ static int cyttsp4_get_active_refresh_cycle(struct cyttsp4_core_data *cd)
 	u32 value;
 
 	dev_dbg(cd->dev, "%s: \n", __func__);
-	
+
 	rc = cyttsp4_get_parameter(cd, CY_RAM_ID_REFRESH_INTERVAL, &value);
 	if (!rc)
 		cd->active_refresh_cycle_ms = (u8)value;
@@ -4052,9 +4052,9 @@ exit_no_wd:
 static int cyttsp4_startup(struct cyttsp4_core_data *cd)
 {
 	int rc;
-	
+
 	dev_dbg(cd->dev, "%s\n",__func__);
-	
+
 	mutex_lock(&cd->system_lock);
 	cd->startup_state = STARTUP_RUNNING;
 	mutex_unlock(&cd->system_lock);
@@ -4598,9 +4598,9 @@ static struct cyttsp4_core_commands _cyttsp4_core_commands = {
 
 	.update_sysinfo = cyttsp4_update_sysinfo_,
 	.exec_panel_scan = cyttsp4_exec_panel_scan_,
- 	.retrieve_panel_scan = cyttsp4_retrieve_panel_scan_,
- 	.scan_and_retrieve = cyttsp4_scan_and_retrieve_,
- 	.retrieve_data_structure = cyttsp4_retrieve_data_structure_,
+	.retrieve_panel_scan = cyttsp4_retrieve_panel_scan_,
+	.scan_and_retrieve = cyttsp4_scan_and_retrieve_,
+	.retrieve_data_structure = cyttsp4_retrieve_data_structure_,
 };
 
 struct cyttsp4_core_commands *cyttsp4_get_commands(void)
@@ -4703,7 +4703,7 @@ int cyttsp4_probe(const struct cyttsp4_bus_ops *ops, struct device *dev,
 	int rc = 0;
 
 	pr_err("%s: \n", __func__);
-	
+
 	if (!pdata || !pdata->core_pdata || !pdata->mt_pdata) {
 		dev_err(dev, "%s: Missing platform data\n", __func__);
 		rc = -ENODEV;
@@ -4858,7 +4858,7 @@ int cyttsp4_probe(const struct cyttsp4_bus_ops *ops, struct device *dev,
 		dev_err(dev, "%s: Error, fail loader probe\n", __func__);
 		goto error_sysfs_interfaces;
 	}
-	
+
 	rc = cyttsp4_mt_probe(dev);
 	if (rc < 0) {
 		dev_err(dev, "%s: Error, fail mt probe\n", __func__);
@@ -4946,7 +4946,7 @@ int cyttsp4_release(struct cyttsp4_core_data *cd)
 	struct device *dev = cd->dev;
 
 	dev_info(dev, "%s\n",__func__);
-	
+
 	cyttsp4_samsung_sysfs_release(dev);
 	cyttsp4_device_access_release(dev);
 	cyttsp4_debug_release(dev);
@@ -4954,7 +4954,7 @@ int cyttsp4_release(struct cyttsp4_core_data *cd)
 	cyttsp4_btn_release(dev);
 	cyttsp4_mt_release(dev);
 	cyttsp4_loader_release(dev);
-	
+
 #ifdef CONFIG_HAS_EARLYSUSPEND
 	unregister_early_suspend(&cd->es);
 #endif

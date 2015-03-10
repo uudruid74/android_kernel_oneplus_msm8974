@@ -42,4 +42,3 @@ extern u32 ch_mode_6[7][113][21];
 #endif
 
 #endif /* __FC8300_TUN_TABLE_H__ */
-

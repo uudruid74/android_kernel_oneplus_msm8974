@@ -43,7 +43,7 @@
 #include <linux/i2c.h>
 #include <linux/spi/spi.h>
 #include <linux/wait.h>
-#include <linux/list.h> 
+#include <linux/list.h>
 #include <linux/jiffies.h>
 #include <linux/wakelock.h>
 #include <linux/kthread.h>
@@ -141,4 +141,3 @@ void isdbt_spi_exit(void);
 int isdbt_spi_probe(struct spi_device *spi);
 
 #endif /* __ISDBT_H__*/
-

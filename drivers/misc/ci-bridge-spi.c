@@ -425,4 +425,3 @@ module_exit(ci_bridge_exit);
 
 MODULE_DESCRIPTION("CI Bridge SPI Driver");
 MODULE_LICENSE("GPL v2");
-

@@ -96,8 +96,8 @@ asm volatile ("\n"					\
 		__put_user_asm(__pu_err, __pu_val, ptr, l, r, -EFAULT);	\
 		break;							\
 	case 8:								\
- 	    {								\
- 		const void __user *__pu_ptr = (ptr);			\
+	    {								\
+		const void __user *__pu_ptr = (ptr);			\
 		asm volatile ("\n"					\
 			"1:	"MOVES".l	%2,(%1)+\n"		\
 			"2:	"MOVES".l	%R2,(%1)\n"		\
@@ -164,9 +164,9 @@ asm volatile ("\n"					\
 		__get_user_asm(__gu_err, x, ptr, u32, l, r, -EFAULT);	\
 		break;							\
 /*	case 8:	disabled because gcc-4.1 has a broken typeof		\
- 	    {								\
- 		const void *__gu_ptr = (ptr);				\
- 		u64 __gu_val;						\
+	    {								\
+		const void *__gu_ptr = (ptr);				\
+		u64 __gu_val;						\
 		asm volatile ("\n"					\
 			"1:	"MOVES".l	(%2)+,%1\n"		\
 			"2:	"MOVES".l	(%2),%R1\n"		\

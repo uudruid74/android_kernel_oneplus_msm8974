@@ -1770,4 +1770,3 @@ extern void InitialGainOperateWorkItemCallBack(struct work_struct *work)
 			break;
 	}
 }
-

@@ -570,4 +570,3 @@ module_i2c_driver(fm3130_driver);
 MODULE_DESCRIPTION("RTC driver for FM3130");
 MODULE_AUTHOR("Sergey Lapin <slapin@ossfans.org>");
 MODULE_LICENSE("GPL");
-

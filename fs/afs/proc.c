@@ -159,7 +159,7 @@ int afs_proc_init(void)
 	return 0;
 
 error_rootcell:
- 	remove_proc_entry("cells", proc_afs);
+	remove_proc_entry("cells", proc_afs);
 error_cells:
 	remove_proc_entry("fs/afs", NULL);
 error_dir:

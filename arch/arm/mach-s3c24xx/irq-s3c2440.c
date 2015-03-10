@@ -125,4 +125,3 @@ static int s3c2440_irq_init(void)
 }
 
 arch_initcall(s3c2440_irq_init);
-

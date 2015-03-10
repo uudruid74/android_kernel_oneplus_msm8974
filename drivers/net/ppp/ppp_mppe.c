@@ -174,7 +174,7 @@ static void mppe_rekey(struct ppp_mppe_state * state, int initial_key)
 		setup_sg(sg_out, state->session_key, state->keylen);
 		if (crypto_blkcipher_encrypt(&desc, sg_out, sg_in,
 					     state->keylen) != 0) {
-    		    printk(KERN_WARNING "mppe_rekey: cipher_encrypt failed\n");
+		    printk(KERN_WARNING "mppe_rekey: cipher_encrypt failed\n");
 		}
 	} else {
 		memcpy(state->session_key, state->sha1_digest, state->keylen);

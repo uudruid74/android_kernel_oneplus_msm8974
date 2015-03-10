@@ -102,4 +102,3 @@ void mhl_i2c_reg_modify(uint8_t slave_addr_index, uint8_t reg_offset,
 	temp |= (mask & val);
 	mhl_i2c_reg_write(slave_addr_index, reg_offset, temp);
 }
-

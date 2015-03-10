@@ -287,4 +287,3 @@ fips_drbg_final(struct fips_drbg_ctx_s *ctx)
 	memset(ctx->prev_hw_drbg_block, 0, Q_HW_DRBG_BLOCK_BYTES);
 	ctx->magic = 0;
 }
-

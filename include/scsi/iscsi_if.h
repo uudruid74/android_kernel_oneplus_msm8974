@@ -171,7 +171,7 @@ struct iscsi_uevent {
 			enum iscsi_tgt_dscvr	type;
 			uint32_t	host_no;
 			/*
- 			 * enable = 1 to establish a new connection
+			 * enable = 1 to establish a new connection
 			 * with the server. enable = 0 to disconnect
 			 * from the server. Used primarily to switch
 			 * from one iSNS server to another.

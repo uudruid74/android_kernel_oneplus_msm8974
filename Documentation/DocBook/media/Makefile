@@ -383,4 +383,3 @@ $(MEDIA_OBJ_DIR)/media-indices.tmpl: $(MEDIA_OBJ_DIR)/v4l2.xml
 	done)
 	@(								\
 	echo "</index>") >>$@
-

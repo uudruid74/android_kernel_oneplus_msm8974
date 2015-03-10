@@ -227,4 +227,3 @@ module_exit(mod_exit);
 
 MODULE_DESCRIPTION("TSIF character device interface");
 MODULE_LICENSE("GPL v2");
-

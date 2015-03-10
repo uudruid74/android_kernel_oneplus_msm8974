@@ -374,4 +374,3 @@ static const struct hc_driver ehci_omap_hc_driver = {
 MODULE_ALIAS("platform:ehci-omap");
 MODULE_AUTHOR("Texas Instruments, Inc.");
 MODULE_AUTHOR("Felipe Balbi <felipe.balbi@nokia.com>");
-

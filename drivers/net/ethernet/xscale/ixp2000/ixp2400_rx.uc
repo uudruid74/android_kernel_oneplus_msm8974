@@ -404,5 +404,3 @@ buffer_overflow#:
 
 rx_done_ring_overflow#:
 	halt
-
-

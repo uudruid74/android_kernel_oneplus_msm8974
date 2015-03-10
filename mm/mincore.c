@@ -271,7 +271,7 @@ SYSCALL_DEFINE3(mincore, unsigned long, start, size_t, len,
 	unsigned char *tmp;
 
 	/* Check the start address: needs to be page-aligned.. */
- 	if (start & ~PAGE_CACHE_MASK)
+	if (start & ~PAGE_CACHE_MASK)
 		return -EINVAL;
 
 	/* ..and we need to be passed a valid user-space range */

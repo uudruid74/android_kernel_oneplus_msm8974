@@ -386,7 +386,7 @@ static BOOL device_init_registers(PSDevice pDevice, DEVICE_INIT_TYPE InitType)
             if (FIRMWAREbDownload(pDevice) == TRUE) {
                 if (FIRMWAREbBrach2Sram(pDevice) == FALSE) {
                     DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO" FIRMWAREbBrach2Sram fail \n");
-                  	spin_unlock_irq(&pDevice->lock);
+			spin_unlock_irq(&pDevice->lock);
                     return FALSE;
                 }
             } else {
@@ -1395,7 +1395,7 @@ static int Config_FileGetParameter(unsigned char *string,
   //except space
   tmp_p = buf1;
   while(*tmp_p != 0x00) {
-  	if(*tmp_p==' ')
+	if(*tmp_p==' ')
 	    tmp_p++;
          else
 	  break;
@@ -1436,7 +1436,7 @@ static unsigned char *Config_FileOperation(PSDevice pDevice)
            printk("file %s cann't readable or writable?\n",config_path);
 	  result = -1;
 	  goto error1;
-     	}
+	}
 
     buffer = kmalloc(1024, GFP_KERNEL);
     if(buffer==NULL) {
@@ -1724,7 +1724,7 @@ static int  device_ioctl(struct net_device *dev, struct ifreq *rq, int cmd) {
 
 		// Set mode of operation
 	case SIOCSIWMODE:
-    	rc = iwctl_siwmode(dev, NULL, &(wrq->u.mode), NULL);
+	rc = iwctl_siwmode(dev, NULL, &(wrq->u.mode), NULL);
 		break;
 
 		// Get mode of operation

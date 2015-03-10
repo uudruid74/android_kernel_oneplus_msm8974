@@ -344,7 +344,7 @@
 			qcom,gpio-req-tbl-num = <0 1>;
 			qcom,gpio-req-tbl-flags = <1 1>;
 			qcom,gpio-req-tbl-label = "I2C_DATA0",
-							  		"I2C_CLK0";
+									"I2C_CLK0";
 		};
 	};
 
@@ -1061,4 +1061,3 @@
 		qcom,cdc-on-demand-supplies = "cdc-vdd-spkdrv";
 	};
 };
-

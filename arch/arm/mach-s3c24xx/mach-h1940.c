@@ -688,7 +688,7 @@ static void __init h1940_init(void)
 
 	s3c24xx_fb_set_platdata(&h1940_fb_info);
 	s3c24xx_mci_set_platdata(&h1940_mmc_cfg);
- 	s3c24xx_udc_set_platdata(&h1940_udc_cfg);
+	s3c24xx_udc_set_platdata(&h1940_udc_cfg);
 	s3c24xx_ts_set_platdata(&h1940_ts_cfg);
 	s3c_i2c0_set_platdata(NULL);
 

@@ -549,7 +549,7 @@ static struct platform_device brcm_device_wlan = {
 
 int __init brcm_wlan_init(void)
 {
-	printk(KERN_INFO"%s: gpio_to_irq IRQ=%d \n", 
+	printk(KERN_INFO"%s: gpio_to_irq IRQ=%d \n",
 			__func__, (int)gpio_to_irq(GPIO_WL_HOST_WAKE) );
 
 #if defined(CONFIG_SPARSE_IRQ)

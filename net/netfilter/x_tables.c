@@ -1041,7 +1041,7 @@ static void *xt_mttg_seq_next(struct seq_file *seq, void *v, loff_t *ppos,
 		mutex_lock(&xt[NFPROTO_UNSPEC].mutex);
 		trav->head = trav->curr = is_target ?
 			&xt[NFPROTO_UNSPEC].target : &xt[NFPROTO_UNSPEC].match;
- 		break;
+		break;
 	case MTTG_TRAV_NFP_UNSPEC:
 		trav->curr = trav->curr->next;
 		if (trav->curr != trav->head)
@@ -1402,4 +1402,3 @@ static void __exit xt_fini(void)
 
 module_init(xt_init);
 module_exit(xt_fini);
-

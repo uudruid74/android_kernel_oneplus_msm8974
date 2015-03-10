@@ -42,7 +42,7 @@ bitfill_aligned(struct fb_info *p, unsigned long *dst, int dst_idx,
 		/* Multiple destination words */
 
 		/* Leading bits */
- 		if (first!= ~0UL) {
+		if (first!= ~0UL) {
 			*dst = comp(pat, *dst, first);
 			dst++;
 			n -= bits - dst_idx;

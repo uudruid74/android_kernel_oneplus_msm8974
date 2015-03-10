@@ -1354,7 +1354,7 @@ toshoboe_net_open (struct net_device *dev)
   rc = request_irq (self->io.irq, toshoboe_interrupt,
                     IRQF_SHARED | IRQF_DISABLED, dev->name, self);
   if (rc)
-  	return rc;
+	return rc;
 
   spin_lock_irqsave(&self->spinlock, flags);
   toshoboe_startchip (self);
@@ -1752,7 +1752,7 @@ static struct pci_driver donauboe_pci_driver = {
 	.probe		= toshoboe_open,
 	.remove		= toshoboe_close,
 	.suspend	= toshoboe_gotosleep,
-	.resume		= toshoboe_wakeup 
+	.resume		= toshoboe_wakeup
 };
 
 static int __init

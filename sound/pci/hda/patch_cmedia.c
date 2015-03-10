@@ -747,7 +747,7 @@ static int patch_cmi9880(struct hda_codec *codec)
  */
 static const struct hda_codec_preset snd_hda_preset_cmedia[] = {
 	{ .id = 0x13f69880, .name = "CMI9880", .patch = patch_cmi9880 },
- 	{ .id = 0x434d4980, .name = "CMI9880", .patch = patch_cmi9880 },
+	{ .id = 0x434d4980, .name = "CMI9880", .patch = patch_cmi9880 },
 	{} /* terminator */
 };
 

@@ -369,7 +369,7 @@ typedef struct _mace_private {
 
     char tx_free_frames; /* Number of free transmit frame buffers */
     char tx_irq_disabled; /* MACE TX interrupt disabled */
-    
+
     spinlock_t bank_lock; /* Must be held if you step off bank 0 */
 } mace_private;
 
@@ -447,7 +447,7 @@ static int nmclan_probe(struct pcmcia_device *link)
     lp = netdev_priv(dev);
     lp->p_dev = link;
     link->priv = dev;
-    
+
     spin_lock_init(&lp->bank_lock);
     link->resource[0]->end = 32;
     link->resource[0]->flags |= IO_DATA_PATH_WIDTH_AUTO;
@@ -546,7 +546,7 @@ static int mace_init(mace_private *lp, unsigned int ioaddr, char *enet_addr)
     if(++ct > 500)
     {
 	pr_err("reset failed, card removed?\n");
-    	return -1;
+	return -1;
     }
     udelay(1);
   }
@@ -590,11 +590,11 @@ static int mace_init(mace_private *lp, unsigned int ioaddr, char *enet_addr)
   ct = 0;
   while (mace_read(lp, ioaddr, MACE_IAC) & MACE_IAC_ADDRCHG)
   {
-  	if(++ ct > 500)
-  	{
+	if(++ ct > 500)
+	{
 		pr_err("ADDRCHG timeout, card removed?\n");
-  		return -1;
-  	}
+		return -1;
+	}
   }
   /* Set PADR register */
   for (i = 0; i < ETH_ALEN; i++)
@@ -660,7 +660,7 @@ static int nmclan_config(struct pcmcia_device *link)
   }
 
   if(mace_init(lp, ioaddr, dev->dev_addr) == -1)
-  	goto failed;
+	goto failed;
 
   /* The if_port symbol can be set when the module is loaded */
   if (if_port <= 2)
@@ -1111,7 +1111,7 @@ static int mace_rx(struct net_device *dev, unsigned char RxCnt)
 	if (pkt_len & 1)
 	    *(skb_tail_pointer(skb) - 1) = inb(ioaddr + AM2150_RCV);
 	skb->protocol = eth_type_trans(skb, dev);
-	
+
 	netif_rx(skb); /* Send the packet to the upper (protocol) layers. */
 
 	lp->linux_stats.rx_packets++;
@@ -1237,7 +1237,7 @@ static void update_stats(unsigned int ioaddr, struct net_device *dev)
      out. */
 
   /* lp->linux_stats.multicast; */
-  lp->linux_stats.collisions = 
+  lp->linux_stats.collisions =
     lp->mace_stats.rcvcco * 256 + lp->mace_stats.rcvcc;
     /* Collision: The MACE may retry sending a packet 15 times
        before giving up.  The retry count is in XMTRC.
@@ -1245,13 +1245,13 @@ static void update_stats(unsigned int ioaddr, struct net_device *dev)
        If so, why doesn't the RCVCC record these collisions? */
 
   /* detailed rx_errors: */
-  lp->linux_stats.rx_length_errors = 
+  lp->linux_stats.rx_length_errors =
     lp->mace_stats.rntpco * 256 + lp->mace_stats.rntpc;
   /* lp->linux_stats.rx_over_errors */
   lp->linux_stats.rx_crc_errors = lp->mace_stats.fcs;
   lp->linux_stats.rx_frame_errors = lp->mace_stats.fram;
   lp->linux_stats.rx_fifo_errors = lp->mace_stats.oflo;
-  lp->linux_stats.rx_missed_errors = 
+  lp->linux_stats.rx_missed_errors =
     lp->mace_stats.mpco * 256 + lp->mace_stats.mpc;
 
   /* detailed tx_errors */

@@ -2047,4 +2047,3 @@ void unregister_control_device_interface(PMINI_ADAPTER Adapter)
 		unregister_chrdev(Adapter->major, DEV_NAME);
 	}
 }
-

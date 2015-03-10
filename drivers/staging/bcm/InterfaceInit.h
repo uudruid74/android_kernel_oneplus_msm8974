@@ -25,4 +25,3 @@ INT InterfaceExit(void);
 INT usbbcm_worker_thread(PS_INTERFACE_ADAPTER psIntfAdapter);
 
 #endif
-

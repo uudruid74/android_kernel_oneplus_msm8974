@@ -728,7 +728,7 @@ ENTRY(memcpy)
 	xtrct	r9, r8		!  48 EX
 
 	mov.l   @(0x00,r5), r12 !  18 LS (latency=2)
-    	xtrct	r10, r9		!  48 EX
+	xtrct	r10, r9		!  48 EX
 
 	movca.l	r0,@r1		!  40 LS (latency=3-7)
 	add	#-0x1c, r1	!  50 EX
@@ -796,4 +796,3 @@ ENTRY(memcpy)
 	mov.b	@(r0,r5),r1
 	rts
 	 mov.b	r1,@-r0
-

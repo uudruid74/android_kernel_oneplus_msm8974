@@ -1905,14 +1905,14 @@ mpt_attach(struct pci_dev *pdev, const struct pci_device_id *id)
 	case MPI_MANUFACTPAGE_DEVICEID_FC929X:
 		if (revision < XL_929) {
 			/* 929X Chip Fix. Set Split transactions level
-		 	* for PCIX. Set MOST bits to zero.
-		 	*/
+			* for PCIX. Set MOST bits to zero.
+			*/
 			pci_read_config_byte(pdev, 0x6a, &pcixcmd);
 			pcixcmd &= 0x8F;
 			pci_write_config_byte(pdev, 0x6a, pcixcmd);
 		} else {
 			/* 929XL Chip Fix. Set MMRBC to 0x08.
-		 	*/
+			*/
 			pci_read_config_byte(pdev, 0x6a, &pcixcmd);
 			pcixcmd |= 0x08;
 			pci_write_config_byte(pdev, 0x6a, pcixcmd);
@@ -3919,7 +3919,7 @@ KickStart(MPT_ADAPTER *ioc, int force, int sleepFlag)
 		ioc_state = mpt_GetIocState(ioc, 1);
 		if ((ioc_state == MPI_IOC_STATE_READY) || (ioc_state == MPI_IOC_STATE_OPERATIONAL)) {
 			dinitprintk(ioc, printk(MYIOC_s_DEBUG_FMT "KickStart successful! (cnt=%d)\n",
- 					ioc->name, cnt));
+					ioc->name, cnt));
 			return hard_reset_done;
 		}
 		if (sleepFlag == CAN_SLEEP) {
@@ -4329,14 +4329,14 @@ initChainBuffers(MPT_ADAPTER *ioc)
 
 		ioc->ReqToChain = (int *) mem;
 		dinitprintk(ioc, printk(MYIOC_s_DEBUG_FMT "ReqToChain alloc  @ %p, sz=%d bytes\n",
-			 	ioc->name, mem, sz));
+				ioc->name, mem, sz));
 		mem = kmalloc(sz, GFP_ATOMIC);
 		if (mem == NULL)
 			return -1;
 
 		ioc->RequestNB = (int *) mem;
 		dinitprintk(ioc, printk(MYIOC_s_DEBUG_FMT "RequestNB alloc  @ %p, sz=%d bytes\n",
-			 	ioc->name, mem, sz));
+				ioc->name, mem, sz));
 	}
 	for (ii = 0; ii < ioc->req_depth; ii++) {
 		ioc->ReqToChain[ii] = MPT_HOST_NO_CHAIN;
@@ -4403,7 +4403,7 @@ initChainBuffers(MPT_ADAPTER *ioc)
 
 		ioc->ChainToChain = (int *) mem;
 		dinitprintk(ioc, printk(MYIOC_s_DEBUG_FMT "ChainToChain alloc @ %p, sz=%d bytes\n",
-			 	ioc->name, mem, sz));
+				ioc->name, mem, sz));
 	} else {
 		mem = (u8 *) ioc->ChainToChain;
 	}
@@ -4469,22 +4469,22 @@ PrimeIocFifos(MPT_ADAPTER *ioc)
 
 		total_size = reply_sz = (ioc->reply_sz * ioc->reply_depth);
 		dinitprintk(ioc, printk(MYIOC_s_DEBUG_FMT "ReplyBuffer sz=%d bytes, ReplyDepth=%d\n",
-			 	ioc->name, ioc->reply_sz, ioc->reply_depth));
+				ioc->name, ioc->reply_sz, ioc->reply_depth));
 		dinitprintk(ioc, printk(MYIOC_s_DEBUG_FMT "ReplyBuffer sz=%d[%x] bytes\n",
-			 	ioc->name, reply_sz, reply_sz));
+				ioc->name, reply_sz, reply_sz));
 
 		sz = (ioc->req_sz * ioc->req_depth);
 		dinitprintk(ioc, printk(MYIOC_s_DEBUG_FMT "RequestBuffer sz=%d bytes, RequestDepth=%d\n",
-			 	ioc->name, ioc->req_sz, ioc->req_depth));
+				ioc->name, ioc->req_sz, ioc->req_depth));
 		dinitprintk(ioc, printk(MYIOC_s_DEBUG_FMT "RequestBuffer sz=%d[%x] bytes\n",
-			 	ioc->name, sz, sz));
+				ioc->name, sz, sz));
 		total_size += sz;
 
 		sz = num_chain * ioc->req_sz; /* chain buffer pool size */
 		dinitprintk(ioc, printk(MYIOC_s_DEBUG_FMT "ChainBuffer sz=%d bytes, ChainDepth=%d\n",
-			 	ioc->name, ioc->req_sz, num_chain));
+				ioc->name, ioc->req_sz, num_chain));
 		dinitprintk(ioc, printk(MYIOC_s_DEBUG_FMT "ChainBuffer sz=%d[%x] bytes num_chain=%d\n",
-			 	ioc->name, sz, sz, num_chain));
+				ioc->name, sz, sz, num_chain));
 
 		total_size += sz;
 		mem = pci_alloc_consistent(ioc->pcidev, total_size, &alloc_dma);
@@ -4495,7 +4495,7 @@ PrimeIocFifos(MPT_ADAPTER *ioc)
 		}
 
 		dinitprintk(ioc, printk(MYIOC_s_DEBUG_FMT "Total alloc @ %p[%p], sz=%d[%x] bytes\n",
-			 	ioc->name, mem, (void *)(ulong)alloc_dma, total_size, total_size));
+				ioc->name, mem, (void *)(ulong)alloc_dma, total_size, total_size));
 
 		memset(mem, 0, total_size);
 		ioc->alloc_total += total_size;
@@ -4506,7 +4506,7 @@ PrimeIocFifos(MPT_ADAPTER *ioc)
 		ioc->reply_frames_low_dma = (u32) (alloc_dma & 0xFFFFFFFF);
 
 		dinitprintk(ioc, printk(MYIOC_s_DEBUG_FMT "ReplyBuffers @ %p[%p]\n",
-	 		ioc->name, ioc->reply_frames, (void *)(ulong)alloc_dma));
+			ioc->name, ioc->reply_frames, (void *)(ulong)alloc_dma));
 
 		alloc_dma += reply_sz;
 		mem += reply_sz;
@@ -4517,7 +4517,7 @@ PrimeIocFifos(MPT_ADAPTER *ioc)
 		ioc->req_frames_dma = alloc_dma;
 
 		dinitprintk(ioc, printk(MYIOC_s_DEBUG_FMT "RequestBuffers @ %p[%p]\n",
-			 	ioc->name, mem, (void *)(ulong)alloc_dma));
+				ioc->name, mem, (void *)(ulong)alloc_dma));
 
 		ioc->req_frames_low_dma = (u32) (alloc_dma & 0xFFFFFFFF);
 
@@ -4546,12 +4546,12 @@ PrimeIocFifos(MPT_ADAPTER *ioc)
 			ioc->name, ioc->ChainBuffer, (void *)(ulong)ioc->ChainBufferDMA));
 
 		/* Initialize the free chain Q.
-	 	*/
+		*/
 
 		INIT_LIST_HEAD(&ioc->FreeChainQ);
 
 		/* Post the chain buffers to the FreeChainQ.
-	 	*/
+		*/
 		mem = (u8 *)ioc->ChainBuffer;
 		for (i=0; i < num_chain; i++) {
 			mf = (MPT_FRAME_HDR *) mem;
@@ -4588,7 +4588,7 @@ PrimeIocFifos(MPT_ADAPTER *ioc)
 		ioc->sense_buf_low_dma = (u32) (ioc->sense_buf_pool_dma & 0xFFFFFFFF);
 		ioc->alloc_total += sz;
 		dinitprintk(ioc, printk(MYIOC_s_DEBUG_FMT "SenseBuffers @ %p[%p]\n",
- 			ioc->name, ioc->sense_buf_pool, (void *)(ulong)ioc->sense_buf_pool_dma));
+			ioc->name, ioc->sense_buf_pool, (void *)(ulong)ioc->sense_buf_pool_dma));
 
 	}
 
@@ -4596,7 +4596,7 @@ PrimeIocFifos(MPT_ADAPTER *ioc)
 	 */
 	alloc_dma = ioc->alloc_dma;
 	dinitprintk(ioc, printk(MYIOC_s_DEBUG_FMT "ReplyBuffers @ %p[%p]\n",
-	 	ioc->name, ioc->reply_frames, (void *)(ulong)alloc_dma));
+		ioc->name, ioc->reply_frames, (void *)(ulong)alloc_dma));
 
 	for (i = 0; i < ioc->reply_depth; i++) {
 		/*  Write each address to the IOC!  */

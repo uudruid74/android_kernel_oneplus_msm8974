@@ -105,4 +105,3 @@
 
 
 #endif /* __RTL8712_CMDCTRL_BITDEF_H__*/
-

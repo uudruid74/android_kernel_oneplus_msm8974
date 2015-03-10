@@ -207,7 +207,7 @@ static void wcd9xxx_disable_clock_block(struct wcd9xxx_resmgr *resmgr)
 		usleep_range(100, 100);
 #else
 		usleep_range(50, 50);
-#endif	
+#endif
 	}
 	/* Notify */
 	if (resmgr->clk_type == WCD9XXX_CLK_RCO) {

@@ -2716,4 +2716,3 @@ module_exit(sps_exit);
 
 MODULE_LICENSE("GPL v2");
 MODULE_DESCRIPTION("Smart Peripheral Switch (SPS)");
-

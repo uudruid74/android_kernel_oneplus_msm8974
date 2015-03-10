@@ -1174,7 +1174,7 @@ event_create_dir(struct ftrace_event_call *call, struct dentry *d_events,
 #ifdef CONFIG_PERF_EVENTS
 	if (call->event.type && call->class->reg)
 		trace_create_file("id", 0444, call->dir, call,
-		 		  id);
+				  id);
 #endif
 
 	/*

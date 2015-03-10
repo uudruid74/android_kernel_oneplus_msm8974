@@ -90,4 +90,3 @@ SECTIONS {
 	/* Sections to be discarded */
 	DISCARDS
 }
-

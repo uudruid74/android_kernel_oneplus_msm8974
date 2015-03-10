@@ -2,7 +2,7 @@
 #include <linux/sys.h>
 #include <asm/linkage.h>
 #include <asm/unistd.h>
-	
+
 .globl SYMBOL_NAME(sys_call_table)
 
 #if defined(CONFIG_CPU_H8300H)
@@ -13,7 +13,7 @@
 #endif
 	.section .text
 	.align	2
-SYMBOL_NAME_LABEL(sys_call_table)	
+SYMBOL_NAME_LABEL(sys_call_table)
 	.long SYMBOL_NAME(sys_ni_syscall)	/* 0  -  old "setup()" system call*/
 	.long SYMBOL_NAME(sys_exit)
 	.long SYMBOL_NAME(sys_fork)
@@ -271,22 +271,22 @@ SYMBOL_NAME_LABEL(sys_call_table)
 	.long SYMBOL_NAME(sys_epoll_create)
 	.long SYMBOL_NAME(sys_epoll_ctl)	/* 255 */
 	.long SYMBOL_NAME(sys_epoll_wait)
- 	.long SYMBOL_NAME(sys_ni_syscall)	/* sys_remap_file_pages */
- 	.long SYMBOL_NAME(sys_set_tid_address)
- 	.long SYMBOL_NAME(sys_timer_create)
- 	.long SYMBOL_NAME(sys_timer_settime)	/* 260 */
- 	.long SYMBOL_NAME(sys_timer_gettime)
- 	.long SYMBOL_NAME(sys_timer_getoverrun)
- 	.long SYMBOL_NAME(sys_timer_delete)
- 	.long SYMBOL_NAME(sys_clock_settime)
- 	.long SYMBOL_NAME(sys_clock_gettime)	/* 265 */
- 	.long SYMBOL_NAME(sys_clock_getres)
- 	.long SYMBOL_NAME(sys_clock_nanosleep)
+	.long SYMBOL_NAME(sys_ni_syscall)	/* sys_remap_file_pages */
+	.long SYMBOL_NAME(sys_set_tid_address)
+	.long SYMBOL_NAME(sys_timer_create)
+	.long SYMBOL_NAME(sys_timer_settime)	/* 260 */
+	.long SYMBOL_NAME(sys_timer_gettime)
+	.long SYMBOL_NAME(sys_timer_getoverrun)
+	.long SYMBOL_NAME(sys_timer_delete)
+	.long SYMBOL_NAME(sys_clock_settime)
+	.long SYMBOL_NAME(sys_clock_gettime)	/* 265 */
+	.long SYMBOL_NAME(sys_clock_getres)
+	.long SYMBOL_NAME(sys_clock_nanosleep)
 	.long SYMBOL_NAME(sys_statfs64)
-	.long SYMBOL_NAME(sys_fstatfs64)	
+	.long SYMBOL_NAME(sys_fstatfs64)
 	.long SYMBOL_NAME(sys_tgkill)		/* 270 */
 	.long SYMBOL_NAME(sys_utimes)
- 	.long SYMBOL_NAME(sys_fadvise64_64)
+	.long SYMBOL_NAME(sys_fadvise64_64)
 	.long SYMBOL_NAME(sys_ni_syscall)	/* sys_vserver */
 	.long SYMBOL_NAME(sys_ni_syscall)
 	.long SYMBOL_NAME(sys_get_mempolicy)	/* 275 */
@@ -340,9 +340,9 @@ SYMBOL_NAME_LABEL(sys_call_table)
 	bra	SYMBOL_NAME(syscall_trampoline):8
 	.endm
 
-SYMBOL_NAME_LABEL(sys_clone)	
+SYMBOL_NAME_LABEL(sys_clone)
 	call_sp	h8300_clone
-	
+
 SYMBOL_NAME_LABEL(sys_sigsuspend)
 	call_sp	do_sigsuspend
 

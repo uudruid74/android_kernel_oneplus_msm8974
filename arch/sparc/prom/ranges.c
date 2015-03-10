@@ -94,7 +94,7 @@ void prom_apply_generic_ranges(phandle node, phandle parent,
 	int success;
 	int num_ranges;
 	struct linux_prom_ranges ranges[PROMREG_MAX];
-	
+
 	success = prom_getproperty(node, "ranges",
 				   (char *) ranges,
 				   sizeof (ranges));
@@ -103,10 +103,10 @@ void prom_apply_generic_ranges(phandle node, phandle parent,
 		if (parent) {
 			struct linux_prom_ranges parent_ranges[PROMREG_MAX];
 			int num_parent_ranges;
-		
+
 			success = prom_getproperty(parent, "ranges",
-				   		   (char *) parent_ranges,
-				   		   sizeof (parent_ranges));
+						   (char *) parent_ranges,
+						   sizeof (parent_ranges));
 			if (success != -1) {
 				num_parent_ranges = (success/sizeof(struct linux_prom_ranges));
 				prom_adjust_ranges (ranges, num_ranges, parent_ranges, num_parent_ranges);

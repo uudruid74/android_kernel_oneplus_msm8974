@@ -2,7 +2,7 @@
  *  Maple (970 eval board) setup code
  *
  *  (c) Copyright 2004 Benjamin Herrenschmidt (benh@kernel.crashing.org),
- *                     IBM Corp. 
+ *                     IBM Corp.
  *
  *  This program is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU General Public License
@@ -184,7 +184,7 @@ void __init maple_setup_arch(void)
 	smp_ops = &maple_smp_ops;
 #endif
 	/* Lookup PCI hosts */
-       	maple_pci_init();
+	maple_pci_init();
 
 #ifdef CONFIG_DUMMY_CONSOLE
 	conswitchp = &dummy_con;
@@ -196,7 +196,7 @@ void __init maple_setup_arch(void)
 	mmio_nvram_init();
 }
 
-/* 
+/*
  * Early initialization.
  */
 static void __init maple_init_early(void)
@@ -327,10 +327,10 @@ define_machine(maple) {
 	.restart		= maple_restart,
 	.power_off		= maple_power_off,
 	.halt			= maple_halt,
-       	.get_boot_time		= maple_get_boot_time,
-       	.set_rtc_time		= maple_set_rtc_time,
-       	.get_rtc_time		= maple_get_rtc_time,
-      	.calibrate_decr		= generic_calibrate_decr,
+	.get_boot_time		= maple_get_boot_time,
+	.set_rtc_time		= maple_set_rtc_time,
+	.get_rtc_time		= maple_get_rtc_time,
+	.calibrate_decr		= generic_calibrate_decr,
 	.progress		= maple_progress,
 	.power_save		= power4_idle,
 };

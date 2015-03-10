@@ -59,7 +59,7 @@ static uint opt_disable_sdcard;
 static int __init trout_disablesdcard_setup(char *str)
 {
 	int cal = simple_strtol(str, NULL, 0);
-	
+
 	opt_disable_sdcard = cal;
 	return 1;
 }
@@ -180,4 +180,3 @@ int __init trout_init_mmc(unsigned int sys_rev)
 		printk(KERN_INFO "trout: SD-Card interface disabled\n");
 	return 0;
 }
-

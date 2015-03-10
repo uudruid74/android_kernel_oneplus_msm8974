@@ -1043,13 +1043,13 @@ static void perf_session__warn_about_errors(const struct perf_session *session,
 			    session->hists.stats.nr_unknown_id);
 	}
 
- 	if (session->hists.stats.nr_invalid_chains != 0) {
- 		ui__warning("Found invalid callchains!\n\n"
- 			    "%u out of %u events were discarded for this reason.\n\n"
- 			    "Consider reporting to linux-kernel@vger.kernel.org.\n\n",
- 			    session->hists.stats.nr_invalid_chains,
- 			    session->hists.stats.nr_events[PERF_RECORD_SAMPLE]);
- 	}
+	if (session->hists.stats.nr_invalid_chains != 0) {
+		ui__warning("Found invalid callchains!\n\n"
+			    "%u out of %u events were discarded for this reason.\n\n"
+			    "Consider reporting to linux-kernel@vger.kernel.org.\n\n",
+			    session->hists.stats.nr_invalid_chains,
+			    session->hists.stats.nr_events[PERF_RECORD_SAMPLE]);
+	}
 
 	if (session->hists.stats.nr_unprocessable_samples != 0) {
 		ui__warning("%u unprocessable samples recorded.\n"

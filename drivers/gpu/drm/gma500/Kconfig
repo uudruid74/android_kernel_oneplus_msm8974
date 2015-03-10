@@ -30,4 +30,3 @@ config DRM_MEDFIELD
 	depends on DRM_GMA500 && X86_INTEL_MID
 	help
 	  Say yes to include support for the Intel Medfield platform.
-

@@ -101,7 +101,7 @@ static void qube_raq_galileo_fixup(struct pci_dev *dev)
 	 * something sensible when using the new Galileo.
 	 */
 
- 	printk(KERN_INFO "Galileo: revision %u\n", dev->revision);
+	printk(KERN_INFO "Galileo: revision %u\n", dev->revision);
 
 #if 0
 	if (dev->revision >= 0x10) {

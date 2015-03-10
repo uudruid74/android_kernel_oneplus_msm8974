@@ -215,4 +215,3 @@ struct clk_ops clk_ops_pcom_ext_config = {
 	.is_local = pc_clk_is_local,
 	.handoff = pc_clk_handoff,
 };
-

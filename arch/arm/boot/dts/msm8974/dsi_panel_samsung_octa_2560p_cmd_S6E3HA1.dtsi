@@ -158,8 +158,8 @@
 			the last byte in read commands  represent READ LENGH,
 			like below  READ LENGH = 0x21
 		 */
-		 	samsung,panel-test-key-enable-cmds 	= [ 29 01 00 00 00 00 03 F0 5A 5A];
-		 	samsung,panel-test-key-disable-cmds = [ 29 01 00 00 00 00 03 F0 A5 A5];
+			samsung,panel-test-key-enable-cmds 	= [ 29 01 00 00 00 00 03 F0 5A 5A];
+			samsung,panel-test-key-disable-cmds = [ 29 01 00 00 00 00 03 F0 A5 A5];
 
 			samsung,panel-nv-mtp-read-cmds		= [ 06 01 00 00 00 00 01 c8 21 00];
 			samsung,panel-nv-mtp-read-hbm-cmds	= [ 06 01 00 00 00 00 01 c8 07 21];	/* read C8 34~40th , 33=0x21*/
@@ -323,7 +323,7 @@
 			 * ************************************************************************************************************************
 			 */
 			 samsung,panel-aclcont-cmds-list = [
-			 		29 01 00 00 00 00 03 F0 5A 5A
+					29 01 00 00 00 00 03 F0 5A 5A
 					29 01 00 00 00 00 02 B5 51
 					29 01 00 00 00 00 02 55 01
 					29 01 00 00 00 00 03 F0 A5 A5
@@ -622,8 +622,8 @@
 			the last byte in read commands  represent READ LENGH,
 			like below  READ LENGH = 0x21
 		 */
-		 	samsung,panel-test-key-enable-cmds 	= [ 29 01 00 00 00 00 03 F0 5A 5A];
-		 	samsung,panel-test-key-disable-cmds = [ 29 01 00 00 00 00 03 F0 A5 A5];
+			samsung,panel-test-key-enable-cmds 	= [ 29 01 00 00 00 00 03 F0 5A 5A];
+			samsung,panel-test-key-disable-cmds = [ 29 01 00 00 00 00 03 F0 A5 A5];
 
 			samsung,panel-nv-mtp-read-cmds		= [ 06 01 00 00 00 00 01 c8 21 00];
 			samsung,panel-nv-mtp-read-hbm-cmds	= [ 06 01 00 00 00 00 01 c8 07 21];	/* read C8 34~40th , 33=0x21*/
@@ -786,7 +786,7 @@
 			 * ************************************************************************************************************************
 			 */
 			 samsung,panel-aclcont-cmds-list = [
-			 		29 01 00 00 00 00 03 F0 5A 5A
+					29 01 00 00 00 00 03 F0 5A 5A
 					29 01 00 00 00 00 02 B5 51
 					29 01 00 00 00 00 02 55 01
 					29 01 00 00 00 00 03 F0 A5 A5
@@ -934,4 +934,3 @@
 	};
 
 };
-

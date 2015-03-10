@@ -1,11 +1,11 @@
 /******************************************************************************
 * (c) COPYRIGHT 2010 RAONTECH, Inc. ALL RIGHTS RESERVED.
 *
-* TITLE 	  : RAONTECH TV internal header file. 
+* TITLE 	  : RAONTECH TV internal header file.
 *
 * FILENAME    : raontv_internal.h
 *
-* DESCRIPTION : 
+* DESCRIPTION :
 *		All the declarations and definitions necessary for the RAONTECH TV driver.
 *
 ******************************************************************************/
@@ -20,19 +20,19 @@
 #ifndef __RAONTV_INTERNAL_H__
 #define __RAONTV_INTERNAL_H__
 
-#ifdef __cplusplus 
-extern "C"{ 
-#endif  
+#ifdef __cplusplus
+extern "C"{
+#endif
 
 #include "raontv.h"
 
 
 // Do not modify the order!
 typedef enum
-{	
+{
 	RTV_TV_MODE_TDMB   = 0,     // Band III  Korea
 	RTV_TV_MODE_DAB_B3 = 1,      // Band III
-	RTV_TV_MODE_DAB_L  = 2,      // L-Band		
+	RTV_TV_MODE_DAB_L  = 2,      // L-Band
 	RTV_TV_MODE_1SEG   = 3, // UHF
 	RTV_TV_MODE_FM     = 4,       // FM
 	MAX_NUM_RTV_MODE
@@ -147,7 +147,7 @@ typedef struct
 #define SPI_THRESHOLD_INTR      0x08
 #define SPI_INTR_BITS (SPI_THRESHOLD_INTR|SPI_UNDERFLOW_INTR|SPI_OVERFLOW_INTR)
 
-#define MODE1 2 		
+#define MODE1 2
 #define MODE2 1
 #define MODE3 0
 
@@ -181,7 +181,7 @@ typedef struct
 
 #define RTV_TS_STREAM_DISABLE_DELAY		20 // ms
 
-// ISDB-T Channel 
+// ISDB-T Channel
 #define ISDBT_CH_NUM_START__JAPAN			13
 #define ISDBT_CH_NUM_END__JAPAN				62
 #define ISDBT_CH_FREQ_START__JAPAN			473143
@@ -236,7 +236,7 @@ static INLINE void rtv_StreamDisable(E_RTV_TV_MODE_TYPE eTvMode)
 {
 	if (g_fRtvStreamEnabled) {
 		RTV_REG_MAP_SEL(FEC_PAGE);
-		RTV_REG_SET(0xA8, 0x80);	
+		RTV_REG_SET(0xA8, 0x80);
 		RTV_REG_SET(0xAA, 0x80);
 
 #if defined(RTV_IF_SPI) || defined(RTV_IF_EBI2)
@@ -250,7 +250,7 @@ static INLINE void rtv_StreamDisable(E_RTV_TV_MODE_TYPE eTvMode)
 		RTV_REG_SET(0x2A, 1);
 		RTV_REG_SET(0x2A, 0);
 #endif
-	    g_fRtvStreamEnabled = FALSE; 
+	    g_fRtvStreamEnabled = FALSE;
 	}
 }
 
@@ -258,7 +258,7 @@ static INLINE void rtv_StreamDisable(E_RTV_TV_MODE_TYPE eTvMode)
 static INLINE void rtv_StreamEnable(void)
 {
 	if (!g_fRtvStreamEnabled) {
-#if defined(RTV_IF_SPI) || defined(RTV_IF_EBI2)				
+#if defined(RTV_IF_SPI) || defined(RTV_IF_EBI2)
 		rtv_SetupInterruptThreshold();
 
 		/* Enable SPI interrupts */
@@ -301,23 +301,23 @@ static INLINE void rtv_UpdateAdj(void)
 static INLINE void rtv_ConfigureTsifFormat(void)
 {
 	RTV_REG_MAP_SEL(FEC_PAGE);
-	
-#if defined(RTV_IF_MPEG2_SERIAL_TSIF) || defined(RTV_IF_SPI_SLAVE) 
+
+#if defined(RTV_IF_MPEG2_SERIAL_TSIF) || defined(RTV_IF_SPI_SLAVE)
   #if defined(RTV_TSIF_FORMAT_1)
- 	RTV_REG_SET(0x9F, 0x00);
-	RTV_REG_SET(0xA4, 0x0B);  
-	RTV_REG_SET(0xA5, 0x08);   
+	RTV_REG_SET(0x9F, 0x00);
+	RTV_REG_SET(0xA4, 0x0B);
+	RTV_REG_SET(0xA5, 0x08);
   #elif defined(RTV_TSIF_FORMAT_2)
 	RTV_REG_SET(0x9F, 0x10);
-	RTV_REG_SET(0xA4, 0x0B);  
+	RTV_REG_SET(0xA4, 0x0B);
 	RTV_REG_SET(0xA5, 0x08);
   #elif defined(RTV_TSIF_FORMAT_3)
 	RTV_REG_SET(0x9F, 0x00);
-	RTV_REG_SET(0xA4, 0x0B);  
+	RTV_REG_SET(0xA4, 0x0B);
 	RTV_REG_SET(0xA5, 0x00);
   #elif defined(RTV_TSIF_FORMAT_4)
 	RTV_REG_SET(0x9F, 0x10);
-	RTV_REG_SET(0xA4, 0x0B);  
+	RTV_REG_SET(0xA4, 0x0B);
 	RTV_REG_SET(0xA5, 0x00);
   #else
 	#error "Code not present"
@@ -326,28 +326,28 @@ static INLINE void rtv_ConfigureTsifFormat(void)
 #elif defined(RTV_IF_QUALCOMM_TSIF)
   #if defined(RTV_TSIF_FORMAT_1)
 	RTV_REG_SET(0x9F, 0x00);
-	RTV_REG_SET(0xA4, 0x0B);  
-	RTV_REG_SET(0xA5, 0x08);  
+	RTV_REG_SET(0xA4, 0x0B);
+	RTV_REG_SET(0xA5, 0x08);
   #elif defined(RTV_TSIF_FORMAT_2)
 	RTV_REG_SET(0x9F, 0x00);
-	RTV_REG_SET(0xA4, 0x0B);  
-	RTV_REG_SET(0xA5, 0x00); 
+	RTV_REG_SET(0xA4, 0x0B);
+	RTV_REG_SET(0xA5, 0x00);
   #elif defined(RTV_TSIF_FORMAT_3)
 	RTV_REG_SET(0x9F, 0x00);
-	RTV_REG_SET(0xA4, 0x0B);  
-	RTV_REG_SET(0xA5, 0x00); 
+	RTV_REG_SET(0xA4, 0x0B);
+	RTV_REG_SET(0xA5, 0x00);
   #elif defined(RTV_TSIF_FORMAT_4)
 	RTV_REG_SET(0x9F, 0x00);
-	RTV_REG_SET(0xA4, 0x0B);  
+	RTV_REG_SET(0xA4, 0x0B);
 	RTV_REG_SET(0xA5, 0x04);
   #elif defined(RTV_TSIF_FORMAT_5)
 	RTV_REG_SET(0x9F, 0x00);
-	RTV_REG_SET(0xA4, 0x0B);  
-	RTV_REG_SET(0xA5, 0x0C);   
+	RTV_REG_SET(0xA4, 0x0B);
+	RTV_REG_SET(0xA5, 0x0C);
   #else
 	#error "Code not present"
   #endif
-#endif	
+#endif
 
 #ifdef SYNC_LENGTH_1BIT
 	RTV_REG_MASK_SET(0xA4,0x80,0x80);
@@ -360,14 +360,12 @@ static INLINE void rtv_ConfigureTsifFormat(void)
 
 /*==============================================================================
  * External functions for RAONTV driver core.
- *============================================================================*/ 
+ *============================================================================*/
 void rtv_ConfigureHostIF(void);
 INT  rtv_InitSystem(E_RTV_TV_MODE_TYPE eTvMode, E_RTV_ADC_CLK_FREQ_TYPE eAdcClkFreqType);
 
-#ifdef __cplusplus 
-} 
-#endif 
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* __RAONTV_INTERNAL_H__ */
-
-

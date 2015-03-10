@@ -74,9 +74,9 @@ END(__kernel_syscall_via_break)
 	 * When we get here, the memory stack looks like this:
 	 *
 	 *   +===============================+
-       	 *   |				     |
-       	 *   //	    struct sigframe          //
-       	 *   |				     |
+	 *   |				     |
+	 *   //	    struct sigframe          //
+	 *   |				     |
 	 *   +-------------------------------+ <-- sp+16
 	 *   |      16 byte of scratch       |
 	 *   |            space              |

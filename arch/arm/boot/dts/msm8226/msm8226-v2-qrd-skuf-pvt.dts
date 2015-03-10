@@ -19,4 +19,3 @@
 	compatible = "qcom,msm8226-qrd", "qcom,msm8226", "qcom,skuf", "qcom,qrd";
 	qcom,board-id = <0x2000b 0x2>;
 };
-

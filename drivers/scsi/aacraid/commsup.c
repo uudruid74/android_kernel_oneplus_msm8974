@@ -573,7 +573,7 @@ int aac_fib_send(u16 command, struct fib *fibptr, unsigned long size,
 					q->numpending--;
 					spin_unlock_irqrestore(q->lock, qflags);
 					if (wait == -1) {
-	        				printk(KERN_ERR "aacraid: aac_fib_send: first asynchronous command timed out.\n"
+						printk(KERN_ERR "aacraid: aac_fib_send: first asynchronous command timed out.\n"
 						  "Usually a result of a PCI interrupt routing problem;\n"
 						  "update mother board BIOS or consider utilizing one of\n"
 						  "the SAFE mode kernel options (acpi, apic etc)\n");
@@ -582,7 +582,7 @@ int aac_fib_send(u16 command, struct fib *fibptr, unsigned long size,
 				}
 				if ((blink = aac_adapter_check_health(dev)) > 0) {
 					if (wait == -1) {
-	        				printk(KERN_ERR "aacraid: aac_fib_send: adapter blinkLED 0x%x.\n"
+						printk(KERN_ERR "aacraid: aac_fib_send: adapter blinkLED 0x%x.\n"
 						  "Usually a result of a serious unrecoverable hardware problem\n",
 						  blink);
 					}

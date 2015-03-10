@@ -807,4 +807,3 @@ tx_drop:
 	priv->stats.tx_dropped++;
 	return NETDEV_TX_OK;
 }
-

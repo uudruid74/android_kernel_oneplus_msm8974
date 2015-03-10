@@ -42,7 +42,7 @@ struct e1000_stats {
 
 #define E1000_STAT(m)		E1000_STATS, \
 				sizeof(((struct e1000_adapter *)0)->m), \
-		      		offsetof(struct e1000_adapter, m)
+				offsetof(struct e1000_adapter, m)
 #define E1000_NETDEV_STAT(m)	NETDEV_STATS, \
 				sizeof(((struct net_device *)0)->m), \
 				offsetof(struct net_device, m)
@@ -1407,7 +1407,7 @@ static int e1000_run_loopback_test(struct e1000_adapter *adapter)
 
 			ret_val = e1000_check_lbtest_frame(
 					rxdr->buffer_info[l].skb,
-				   	1024);
+					1024);
 			if (!ret_val)
 				good_cnt++;
 			if (unlikely(++l == rxdr->count)) l = 0;

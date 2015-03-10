@@ -378,7 +378,7 @@ static struct ib_mr *c2_reg_phys_mr(struct ib_pd *ib_pd,
 
 		int naddrs;
 
- 		naddrs = ALIGN(buffer_list[i].size,
+		naddrs = ALIGN(buffer_list[i].size,
 			       (1 << page_shift)) >> page_shift;
 		for (k = 0; k < naddrs; k++)
 			page_list[j++] = (buffer_list[i].addr +
@@ -397,10 +397,10 @@ static struct ib_mr *c2_reg_phys_mr(struct ib_pd *ib_pd,
 		"*iova_start %llx, first pa %llx, last pa %llx\n",
 		__func__, page_shift, pbl_depth, total_len,
 		(unsigned long long) *iova_start,
-	       	(unsigned long long) page_list[0],
-	       	(unsigned long long) page_list[pbl_depth-1]);
-  	err = c2_nsmr_register_phys_kern(to_c2dev(ib_pd->device), page_list,
- 					 (1 << page_shift), pbl_depth,
+		(unsigned long long) page_list[0],
+		(unsigned long long) page_list[pbl_depth-1]);
+	err = c2_nsmr_register_phys_kern(to_c2dev(ib_pd->device), page_list,
+					 (1 << page_shift), pbl_depth,
 					 total_len, 0, iova_start,
 					 c2_convert_access(acc), mr);
 	vfree(page_list);
@@ -476,7 +476,7 @@ static struct ib_mr *c2_reg_user_mr(struct ib_pd *pd, u64 start, u64 length,
 	}
 
 	kva = virt;
-  	err = c2_nsmr_register_phys_kern(to_c2dev(pd->device),
+	err = c2_nsmr_register_phys_kern(to_c2dev(pd->device),
 					 pages,
 					 c2mr->umem->page_size,
 					 i,

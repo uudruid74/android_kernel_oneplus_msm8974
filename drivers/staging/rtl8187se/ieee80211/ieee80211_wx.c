@@ -359,7 +359,7 @@ int ieee80211_wx_set_encode(struct ieee80211_device *ieee,
 				   key, escape_essid(sec.keys[key], len),
 				   erq->length, len);
 		sec.key_sizes[key] = len;
- 		(*crypt)->ops->set_key(sec.keys[key], len, NULL,
+		(*crypt)->ops->set_key(sec.keys[key], len, NULL,
 				       (*crypt)->priv);
 		sec.flags |= (1 << key);
 		/* This ensures a key will be activated if no key is
@@ -582,7 +582,7 @@ int ieee80211_wx_set_encode_ext(struct ieee80211_device *ieee,
                 }
                 *crypt = new_crypt;
 
- 	}
+	}
 
         if (ext->key_len > 0 && (*crypt)->ops->set_key &&
             (*crypt)->ops->set_key(ext->key, ext->key_len, ext->rx_seq,

@@ -75,7 +75,7 @@ enum sec_nfc_uart_state {
 struct sec_nfc_fn_platform_data {
 	unsigned int push;
 	void    (*cfg_gpio)(void);
-	u32 int_gpio_flags; 
+	u32 int_gpio_flags;
 };
 
 enum readable_state {
@@ -86,7 +86,7 @@ enum readable_state {
 };
 #endif
 
-#else /* CONFIG_SEC_NFC_SENN3AB */ 
+#else /* CONFIG_SEC_NFC_SENN3AB */
 
 #ifdef CONFIG_SEC_NFC_CLK_REQ
 #include <linux/clk.h>

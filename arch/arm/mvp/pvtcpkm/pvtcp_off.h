@@ -217,4 +217,3 @@ PvskSetFlag(struct PvtcpSock *pvsk,
 int PvtcpOffSockInit(PvtcpSock *pvsk, CommChannel channel);
 
 #endif /* _PVTCP_OFF_H_ */
-

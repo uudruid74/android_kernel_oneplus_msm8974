@@ -1431,4 +1431,3 @@ struct fsa9485_platform_data fsa9485_pdata = {
 };
 
 #endif
-

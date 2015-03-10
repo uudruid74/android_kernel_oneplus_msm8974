@@ -749,4 +749,3 @@ EXTERN_C void        mdd_assert         (IFBP ifbp, unsigned int line_number, hc
 #undef IN_PORT_STRING_32
 #endif // HCF_IO
 #endif  //HCFDEFC_H
-

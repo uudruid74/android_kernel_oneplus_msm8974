@@ -292,7 +292,7 @@ static long tosh_ioctl(struct file *fp, unsigned int cmd, unsigned long arg)
 	}
 
         if (copy_to_user(argp, &regs, sizeof(SMMRegisters)))
-        	return -EFAULT;
+		return -EFAULT;
 
 	return (err==0) ? 0:-EINVAL;
 }
@@ -543,4 +543,3 @@ static void __exit toshiba_exit(void)
 
 module_init(toshiba_init);
 module_exit(toshiba_exit);
-

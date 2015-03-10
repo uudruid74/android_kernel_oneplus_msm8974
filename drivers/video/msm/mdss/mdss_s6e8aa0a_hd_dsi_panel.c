@@ -977,9 +977,9 @@ u32 mdss_dsi_cmd_receive(struct mdss_dsi_ctrl_pdata *ctrl, struct dsi_cmd_desc *
         cmdreq.cb = NULL;
 
         // This mutex is to sync up with dynamic FPS changes
-    	// so that DSI lockups shall not happen
+	// so that DSI lockups shall not happen
 
-    	BUG_ON(msd.ctrl_pdata == NULL);
+	BUG_ON(msd.ctrl_pdata == NULL);
 //    	mutex_lock(&msd.ctrl_pdata->dfps_mutex);
         mdss_dsi_cmdlist_put(ctrl, &cmdreq);
 //      mutex_unlock(&msd.ctrl_pdata->dfps_mutex);
@@ -1085,9 +1085,9 @@ static int find_mtp(struct mdss_panel_data *pdata)
 	int mtp_size = MTP_DATA_SIZE;
 	struct mdss_dsi_ctrl_pdata *ctrl = NULL;
 	char pBuffer[256] = {0,};
-       	int i;
+	int i;
 	struct msm_fb_data_type *mfd;
-       	char *mtp;
+	char *mtp;
 	int correct_mtp = 0;
 
 #if defined(CONFIG_LCD_CONNECTION_CHECK)
@@ -2002,7 +2002,7 @@ static int mdss_panel_parse_dt(struct device_node *np,
 					"qcom,mdss-dsi-bl-pmic-bank-select", &tmp);
 			if (rc) {
 				pr_err("%s:%d, Error, dsi lpg channel\n",
- 						__func__, __LINE__);
+						__func__, __LINE__);
 				return -EINVAL;
 			}
 			ctrl_pdata->pwm_lpg_chan = tmp;
@@ -2011,7 +2011,7 @@ static int mdss_panel_parse_dt(struct device_node *np,
 			ctrl_pdata->pwm_pmic_gpio = tmp;
 		} else if (!strncmp(data, "bl_ctrl_dcs", 11)) {
 			ctrl_pdata->bklt_ctrl = BL_DCS_CMD;
- 		}
+		}
 	}
 	rc = of_property_read_u32(np, "qcom,mdss-brightness-max-level", &tmp);
 	pinfo->brightness_max = (!rc ? tmp : MDSS_MAX_BL_BRIGHTNESS);

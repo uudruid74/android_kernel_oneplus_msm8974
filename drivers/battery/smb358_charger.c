@@ -1975,4 +1975,3 @@ module_exit(smb358_charger_exit);
 MODULE_DESCRIPTION("Samsung SMB358 Charger Driver");
 MODULE_AUTHOR("Samsung Electronics");
 MODULE_LICENSE("GPL");
-

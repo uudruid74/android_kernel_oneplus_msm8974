@@ -218,7 +218,7 @@
 		status = "ok";
 	};
 
- 	qcom,camera@2 {
+	qcom,camera@2 {
 		cell-index = <2>;
 		compatible = "qcom,camera";
 		reg = <0x2>;

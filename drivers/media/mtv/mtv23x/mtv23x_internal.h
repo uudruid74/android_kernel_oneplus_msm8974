@@ -652,7 +652,7 @@ static INLINE INT rtv_ServiceTypeSelect(enum E_RTV_SERVICE_TYPE eServiceType)
 
 		RTV_REG_SET(0xFC, 0x83);
 		RTV_REG_SET(0xFF, 0xFF);
-		
+
 #if 0
 		RTV_REG_SET(0x44, 0xE8);
 		RTV_REG_SET(0x47, 0x40);
@@ -677,5 +677,3 @@ INT rtv_InitSystem(void);
 #endif
 
 #endif /* __MTV23X_INTERNAL_H__ */
-
-

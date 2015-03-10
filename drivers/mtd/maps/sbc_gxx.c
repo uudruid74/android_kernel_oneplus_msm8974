@@ -192,7 +192,7 @@ static void cleanup_sbc_gxx(void)
 
 static int __init init_sbc_gxx(void)
 {
-  	iomapadr = ioremap(WINDOW_START, WINDOW_LENGTH);
+	iomapadr = ioremap(WINDOW_START, WINDOW_LENGTH);
 	if (!iomapadr) {
 		printk( KERN_ERR"%s: failed to ioremap memory region\n",
 			sbc_gxx_map.name );

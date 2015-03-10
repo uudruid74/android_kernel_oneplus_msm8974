@@ -2445,7 +2445,7 @@ static bool synaptics_skip_firmware_update(struct synaptics_rmi4_data *rmi4_data
 #endif
 	} else if (rmi4_data->ic_version == SYNAPTICS_PRODUCT_ID_S5006) {
 		rmi4_data->ic_revision_of_bin = (int)fw_entry->data[IC_REVISION_BIN_OFFSET];
-		rmi4_data->fw_version_of_bin = (int)fw_entry->data[FW_VERSION_BIN_OFFSET];		
+		rmi4_data->fw_version_of_bin = (int)fw_entry->data[FW_VERSION_BIN_OFFSET];
 	} else if (rmi4_data->ic_version >= SYNAPTICS_PRODUCT_ID_S5050) {
 		rmi4_data->ic_revision_of_bin = (int)fw_entry->data[IC_REVISION_BIN_OFFSET_S5050];
 		rmi4_data->fw_version_of_bin = (int)fw_entry->data[FW_VERSION_BIN_OFFSET_S5050];
@@ -2515,7 +2515,7 @@ static bool synaptics_skip_firmware_update(struct synaptics_rmi4_data *rmi4_data
 				__func__);
 		return false;
 	}
-	
+
 	if (rmi4_data->fw_version_of_bin <= rmi4_data->fw_version_of_ic) {
 		dev_info(&rmi4_data->i2c_client->dev,
 				"%s: Do not need to update\n",

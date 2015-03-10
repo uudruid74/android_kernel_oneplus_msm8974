@@ -97,4 +97,3 @@ void update_lux(unsigned int input_lux);
 int get_panel_power_state(void);
 
 #endif
-

@@ -446,4 +446,3 @@ unsigned int be_cmd_get_mac_addr(struct beiscsi_hba *phba)
 	spin_unlock(&ctrl->mbox_lock);
 	return tag;
 }
-

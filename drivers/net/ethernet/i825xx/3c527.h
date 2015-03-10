@@ -32,8 +32,8 @@
 
 struct mc32_mailbox
 {
- 	u16 mbox;
- 	u16 data[1];
+	u16 mbox;
+	u16 data[1];
 } __packed;
 
 struct skb_header

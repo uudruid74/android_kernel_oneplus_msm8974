@@ -1488,4 +1488,3 @@ void formac_reinit_tx(struct s_smc *smc)
 		(void)init_mac(smc,0) ;
 	}
 }
-

@@ -5,7 +5,7 @@
  *
  *  Copyright (C) 1998  D. Jeff Dionne <jeff@lineo.ca>,
  *                      Kenneth Albanowski <kjahds@kjahds.com>,
- *  Copyright (C) 2000  Lineo Inc. (www.lineo.com) 
+ *  Copyright (C) 2000  Lineo Inc. (www.lineo.com)
  *  Copyright (C) 1991, 1992  Linus Torvalds
  *
  *  Linux/m68k support by Hamish Macdonald
@@ -367,4 +367,3 @@ ENTRY(sys_call_table)
 	.long sys_setns
 	.long sys_process_vm_readv	/* 345 */
 	.long sys_process_vm_writev
-

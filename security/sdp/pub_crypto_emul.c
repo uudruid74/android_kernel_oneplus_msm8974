@@ -51,36 +51,36 @@ static char* process_crypto_request(u8 opcode, char* send_msg, int send_msg_size
 	char* result  = NULL;
 	int rc = 0;
 	int ready = 0;
-	
-	
+
+
 	skb_in = nlmsg_new(send_msg_size, 0);
 	if (!skb_in) {
 		printk("%s %s Failed to allocate new skb: \n", PUB_CRYPTO_DEBUG, __FUNCTION__);
-    	return NULL;
+	return NULL;
 	}
-	
+
 	nlh = nlmsg_put(skb_in, 0, 0, NLMSG_DONE, send_msg_size, 0);
 	NETLINK_CB(skb_in).dst_group = 0;
 	memcpy(nlmsg_data(nlh), send_msg, send_msg_size);
-	
+
 	mutex_lock(&crypto_send_mutex);
 	rc = nlmsg_unicast(crypto_sock, skb_in, user_fipscryptod_pid);
 	mutex_unlock(&crypto_send_mutex);
-	
-    
+
+
 	if (rc < 0) {
 		printk(KERN_INFO "Error while sending bak to user, err id: %d\n", rc);
 		return NULL;
 	}
-	
+
     //*******Reset the memory to hide plaintext!!!!!!
     memset(send_msg, 0, send_msg_size);
-    
+
 	{
 		DECLARE_WAITQUEUE(wait, current);
 		set_current_state(TASK_INTERRUPTIBLE);
 		add_wait_queue(&event_wait_crypto_results, &wait);
-	
+
 	    while (!ready) {
 			schedule_timeout_interruptible(CRYPTO_MAX_TIMEOUT);
 			mutex_lock(&crypto_data_ready_mutex);
@@ -88,32 +88,32 @@ static char* process_crypto_request(u8 opcode, char* send_msg, int send_msg_size
 		    g_data_ready = 0;
 		    mutex_unlock(&crypto_data_ready_mutex);
 		}
-	
+
 		set_current_state(TASK_RUNNING);
 		remove_wait_queue(&event_wait_crypto_results, &wait);
-   		
-   		skb_out = skb_dequeue(&crypto_sock->sk_receive_queue);
-   		
-   		if(g_result_status == PUB_CRYPTO_ERROR) {
-   			printk("%s %s FIPS_CRYPTO_ERROR!!!\n", PUB_CRYPTO_DEBUG, __FUNCTION__);
-   			if(skb_out) {
-	   			kfree_skb(skb_out);
-   			}
-   			result = NULL; goto out;
-   		}
-		
-   		if(g_result.ret == -1) {
-   			printk("%s %s failed to opcode(%d)!!!\n", PUB_CRYPTO_DEBUG, __FUNCTION__, opcode);
-   			result = NULL; goto out;
-   		}
 
-   		if(opcode == OP_RSA_ENC || opcode == OP_RSA_DEC ||
-   				opcode == OP_DH_DEC || opcode == OP_DH_ENC) {
-   			*result_len = sizeof(dek_t);
-   			result = kmalloc(*result_len, GFP_KERNEL);
-   			memcpy(result, &(g_result.dek), *result_len);
-   		}
-   		*ret = (int)g_result.ret;
+		skb_out = skb_dequeue(&crypto_sock->sk_receive_queue);
+
+		if(g_result_status == PUB_CRYPTO_ERROR) {
+			printk("%s %s FIPS_CRYPTO_ERROR!!!\n", PUB_CRYPTO_DEBUG, __FUNCTION__);
+			if(skb_out) {
+				kfree_skb(skb_out);
+			}
+			result = NULL; goto out;
+		}
+
+		if(g_result.ret == -1) {
+			printk("%s %s failed to opcode(%d)!!!\n", PUB_CRYPTO_DEBUG, __FUNCTION__, opcode);
+			result = NULL; goto out;
+		}
+
+		if(opcode == OP_RSA_ENC || opcode == OP_RSA_DEC ||
+				opcode == OP_DH_DEC || opcode == OP_DH_ENC) {
+			*result_len = sizeof(dek_t);
+			result = kmalloc(*result_len, GFP_KERNEL);
+			memcpy(result, &(g_result.dek), *result_len);
+		}
+		*ret = (int)g_result.ret;
 	}
 
 out:
@@ -121,7 +121,7 @@ out:
 	return result;
 }
 
-   
+
 static int crypto_recv_msg(struct sk_buff *skb, struct nlmsghdr *nlh)
 {
 	void			*data;
@@ -156,7 +156,7 @@ static int crypto_recv_msg(struct sk_buff *skb, struct nlmsghdr *nlh)
 					break;
 				default:
 					g_result_status = PUB_CRYPTO_ERROR;
-			}			
+			}
 			mutex_lock(&crypto_data_ready_mutex);
 			g_data_ready = 1;
 			mutex_unlock(&crypto_data_ready_mutex);
@@ -169,7 +169,7 @@ static int crypto_recv_msg(struct sk_buff *skb, struct nlmsghdr *nlh)
 	}
 
 	wake_up_interruptible(&event_wait_crypto_results);
-	
+
 	return err;
 }
 
@@ -206,7 +206,7 @@ void rsa_encryptByPub(kek_t *pub_key, dek_t *in, dek_t *out){
 	msg.opcode = OP_RSA_ENC;
 	memcpy(&msg.key, (void *) pub_key, sizeof(kek_t));
 	memcpy(&msg.in, (void *)in, sizeof(dek_t));
-	
+
 	out_ret = (dek_t *)process_crypto_request(msg.opcode, (char*)&msg, sizeof(struct rsa_send_msg), &len, &ret);
 	if(!out_ret){
 		out = NULL;
@@ -228,13 +228,13 @@ int rsa_decryptByPair(kek_t *pair, dek_t *in, dek_t *out){
 	memcpy(&msg.in, (void *)in, sizeof(dek_t));
 
 	out_ret = (dek_t *)process_crypto_request(msg.opcode, (char*)&msg, sizeof(struct rsa_send_msg), &len, &ret);
-	
+
 	if(!out_ret){
 		out = NULL;
 		return -1;
 	}
 	memcpy(out, out_ret, sizeof(dek_t));
-	
+
 	kfree(out_ret);
 	return ret;
 }
@@ -245,11 +245,11 @@ int dh_decryptEDEK(dek_t *edek, dek_t *dek, kek_t *kek){
 	int ret = 0;
 	dek_t *ret_dek = NULL;
 	r_msg.opcode = OP_DH_DEC;
-	
+
 	//r_msg.userid = (u32)userid;
 	memcpy(&r_msg.in, (void *) edek, sizeof(dek_t));
 	memcpy(&r_msg.key, (void *) kek, sizeof(kek_t));
-	
+
 	ret_dek = (dek_t *)process_crypto_request(r_msg.opcode, (char*)&r_msg, sizeof(struct dh_send_msg), &len, &ret);
 	if(!ret_dek){
 		kek = NULL;
@@ -257,7 +257,7 @@ int dh_decryptEDEK(dek_t *edek, dek_t *dek, kek_t *kek){
 	}
 
 	memcpy(dek, ret_dek, sizeof(dek_t));
-	
+
 	kfree(ret_dek);
 	return ret;
 }
@@ -271,7 +271,7 @@ int dh_encryptDEK(dek_t *dek, dek_t *edek, kek_t *kek){
 	//r_msg.userid = (u32)userid;
 	memcpy(&r_msg.in, (void *) dek, sizeof(dek_t));
 	memcpy(&r_msg.key, (void *) kek, sizeof(kek_t));
-	
+
 	ret_dek = (dek_t *)process_crypto_request(r_msg.opcode, (char*)&r_msg, sizeof(struct dh_send_msg), &len, &ret);
 	if(!ret_dek){
 		kek = NULL;
@@ -293,14 +293,14 @@ static int __init pub_crypto_mod_init(void) {
 	}
     printk("%s netlink socket is created successfully! \n", PUB_CRYPTO_DEBUG);
     return 0;
-	
+
 }
 
 static void __exit pub_crypto_mod_exit(void) {
-	
+
 	/*
 	if (crypto_sock && crypto_sock->sk_socket) {
-        	sock_release(crypto_sock->sk_socket);
+		sock_release(crypto_sock->sk_socket);
     }
     */
     netlink_kernel_release(crypto_sock);
@@ -311,4 +311,3 @@ module_exit(pub_crypto_mod_exit);
 
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("FIPS Crypto Algorithm");
-

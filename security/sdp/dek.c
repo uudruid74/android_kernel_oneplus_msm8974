@@ -560,13 +560,13 @@ static long dek_do_ioctl_evt(unsigned int minor, unsigned int cmd,
 	 */
 	case DEK_ON_BOOT: {
 		dek_arg_on_boot *evt = kzalloc(sizeof(dek_arg_on_boot), GFP_KERNEL);
-		
+
 		DEK_LOGD("DEK_ON_BOOT\n");
 
 		if (evt == NULL) {
 			ret = -ENOMEM;
 			goto err;
-		}		
+		}
 		cleanup = evt;
 		size = sizeof(dek_arg_on_boot);
 
@@ -590,12 +590,12 @@ static long dek_do_ioctl_evt(unsigned int minor, unsigned int cmd,
 	 */
 	case DEK_ON_DEVICE_LOCKED: {
 		dek_arg_on_device_locked *evt = kzalloc(sizeof(dek_arg_on_device_locked), GFP_KERNEL);
-		
+
 		DEK_LOGD("DEK_ON_DEVICE_LOCKED\n");
 		if (evt == NULL) {
 			ret = -ENOMEM;
 			goto err;
-		}		
+		}
 		cleanup = evt;
 		size = sizeof(dek_arg_on_device_locked);
 
@@ -624,7 +624,7 @@ static long dek_do_ioctl_evt(unsigned int minor, unsigned int cmd,
 		if (evt == NULL) {
 			ret = -ENOMEM;
 			goto err;
-		}		
+		}
 		cleanup = evt;
 		size = sizeof(dek_arg_on_device_unlocked);
 
@@ -655,7 +655,7 @@ static long dek_do_ioctl_evt(unsigned int minor, unsigned int cmd,
 		if (evt == NULL) {
 			ret = -ENOMEM;
 			goto err;
-		}		
+		}
 		cleanup = evt;
 		size = sizeof(dek_arg_on_user_added);
 
@@ -679,12 +679,12 @@ static long dek_do_ioctl_evt(unsigned int minor, unsigned int cmd,
 	 */
 	case DEK_ON_USER_REMOVED: {
 		dek_arg_on_user_removed *evt = kzalloc(sizeof(dek_arg_on_user_removed), GFP_KERNEL);
-		
+
 		DEK_LOGD("DEK_ON_USER_REMOVED\n");
 		if (evt == NULL) {
 			ret = -ENOMEM;
 			goto err;
-		}		
+		}
 		cleanup = evt;
 		size = sizeof(dek_arg_on_user_removed);
 

@@ -718,4 +718,3 @@ module_exit(qcikbd_exit);
 MODULE_AUTHOR("Quanta Computer Inc.");
 MODULE_DESCRIPTION("Quanta Embedded Controller I2C Keyboard Driver");
 MODULE_LICENSE("GPL v2");
-

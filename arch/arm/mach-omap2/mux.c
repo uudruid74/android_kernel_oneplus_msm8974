@@ -1157,4 +1157,3 @@ int __init omap_mux_init(const char *name, u32 flags,
 
 	return 0;
 }
-

@@ -199,7 +199,7 @@ ether3_addr(char *addr, struct expansion_card *ec)
 {
 	struct in_chunk_dir cd;
 	char *s;
-	
+
 	if (ecard_readchunk(&cd, ec, 0xf5, 0) && (s = strchr(cd.d.string, '('))) {
 		int i;
 		for (i = 0; i<6; i++) {
@@ -628,8 +628,8 @@ if (next_ptr < RX_START || next_ptr >= RX_END) {
  break;
 }
 		/*
- 		 * ignore our own packets...
-	 	 */
+		 * ignore our own packets...
+		 */
 		if (!(*(unsigned long *)&dev->dev_addr[0] ^ *(unsigned long *)&addrs[2+6]) &&
 		    !(*(unsigned short *)&dev->dev_addr[4] ^ *(unsigned short *)&addrs[2+10])) {
 			maxcnt ++; /* compensate for loopedback packet */
@@ -680,7 +680,7 @@ done:
 	 */
 	if (!(ether3_inw(REG_STATUS) & STAT_RXON)) {
 		dev->stats.rx_dropped++;
-    		ether3_outw(next_ptr, REG_RECVPTR);
+		ether3_outw(next_ptr, REG_RECVPTR);
 		ether3_outw(priv(dev)->regs.command | CMD_RXON, REG_COMMAND);
 	}
 
@@ -711,13 +711,13 @@ static void ether3_tx(struct net_device *dev)
 	int max_work = 14;
 
 	do {
-	    	unsigned long status;
+		unsigned long status;
 
-    		/*
-	    	 * Read the packet header
-    		 */
-	    	ether3_setbuffer(dev, buffer_read, tx_tail * 0x600);
-    		status = ether3_readlong(dev);
+		/*
+		 * Read the packet header
+		 */
+		ether3_setbuffer(dev, buffer_read, tx_tail * 0x600);
+		status = ether3_readlong(dev);
 
 		/*
 		 * Check to see if this packet has been transmitted

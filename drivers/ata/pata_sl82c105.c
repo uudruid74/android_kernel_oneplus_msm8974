@@ -280,7 +280,7 @@ static int sl82c105_bridge_revision(struct pci_dev *pdev)
 	if (bridge->vendor != PCI_VENDOR_ID_WINBOND ||
 	    bridge->device != PCI_DEVICE_ID_WINBOND_83C553 ||
 	    bridge->class >> 8 != PCI_CLASS_BRIDGE_ISA) {
-	    	pci_dev_put(bridge);
+		pci_dev_put(bridge);
 		return -1;
 	}
 	/*

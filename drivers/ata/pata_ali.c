@@ -69,7 +69,7 @@ static int ali_cable_override(struct pci_dev *pdev)
 {
 	/* Fujitsu P2000 */
 	if (pdev->subsystem_vendor == 0x10CF && pdev->subsystem_device == 0x10AF)
-	   	return 1;
+		return 1;
 	/* Mitac 8317 (Winbook-A) and relatives */
 	if (pdev->subsystem_vendor == 0x1071 && pdev->subsystem_device == 0x8317)
 		return 1;
@@ -564,15 +564,15 @@ static int ali_init_one(struct pci_dev *pdev, const struct pci_device_id *id)
 	if (pdev->revision < 0x20) {
 		ppi[0] = &info_early;
 	} else if (pdev->revision < 0xC2) {
-        	ppi[0] = &info_20;
+		ppi[0] = &info_20;
 	} else if (pdev->revision == 0xC2) {
-        	ppi[0] = &info_c2;
+		ppi[0] = &info_c2;
 	} else if (pdev->revision == 0xC3) {
-        	ppi[0] = &info_c3;
+		ppi[0] = &info_c3;
 	} else if (pdev->revision == 0xC4) {
-        	ppi[0] = &info_c4;
+		ppi[0] = &info_c4;
 	} else
-        	ppi[0] = &info_c5;
+		ppi[0] = &info_c5;
 
 	ali_init_chipset(pdev);
 
@@ -580,7 +580,7 @@ static int ali_init_one(struct pci_dev *pdev, const struct pci_device_id *id)
 		/* Are we paired with a UDMA capable chip */
 		pci_read_config_byte(ali_isa_bridge, 0x5E, &tmp);
 		if ((tmp & 0x1E) == 0x12)
-	        	ppi[0] = &info_20_udma;
+			ppi[0] = &info_20_udma;
 	}
 
 	if (!ppi[0]->mwdma_mask && !ppi[0]->udma_mask)

@@ -2006,4 +2006,3 @@ int __init omap2420_clk_init(void)
 
 	return 0;
 }
-

@@ -726,7 +726,7 @@ static ssize_t gp2a_prox_attr_store(struct device *dev,
 							THR_REG_MSB(thrd, reg);
 							gp2a_i2c_write(prox_data->data, gp2a_reg[6][0], &reg);
 						}
-						
+
 						err = iio_push_event(iio_priv_to_dev(prox_data),
 								IIO_UNMOD_EVENT_CODE(IIO_PROXIMITY,
 									0,
@@ -871,13 +871,13 @@ static irqreturn_t gp2a_irq_handler(int irq, void *dev_id)
 					IIO_EV_TYPE_THRESH,
 					IIO_EV_DIR_EITHER),
 				iio_get_time_ns());
-		
+
 		if (err)
 			pr_err("%s, Could not push IIO_LIGHT event\n", __func__);
 		else
 		#endif
 			pr_info("%s, interrupt occured\n", __func__);
-		
+
 	} else {
 		pr_err("%s, wrong irq occured(%d)\n", __func__, irq);
 	}
@@ -1069,7 +1069,7 @@ static int gp2a_prox_do_calibrate(struct gp2a_data  *data,
 		/* calibration result */
 		data->cal_result = 2;
 	}
-    
+
 	old_fs = get_fs();
 	set_fs(KERNEL_DS);
 
@@ -1105,7 +1105,7 @@ static ssize_t gp2a_prox_cal_show(struct device *dev,
 	struct gp2a_data *data = dev_get_drvdata(dev);
 	int thresh_hi;
 	unsigned char get_D2_data[2];
-	
+
     msleep(20);
 	gp2a_i2c_read(data, PS_HT_LSB, get_D2_data,
 		sizeof(get_D2_data));
@@ -1357,7 +1357,7 @@ static ssize_t prox_offset_pass_show(struct device *dev,
 	struct device_attribute *attr, char *buf)
 {
 	struct gp2a_data *data = dev_get_drvdata(dev);
-  
+
 	return sprintf(buf, "%d\n", data->cal_result);
 }
 

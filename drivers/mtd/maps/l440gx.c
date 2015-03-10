@@ -132,7 +132,7 @@ static int __init init_l440gx(void)
 	/* Enable the gate on the WE line */
 	outb(inb(TRIBUF_PORT) & ~1, TRIBUF_PORT);
 
-       	printk(KERN_NOTICE "Enabled WE line to L440GX BIOS flash chip.\n");
+	printk(KERN_NOTICE "Enabled WE line to L440GX BIOS flash chip.\n");
 
 	mymtd = do_map_probe("jedec_probe", &l440gx_map);
 	if (!mymtd) {

@@ -794,7 +794,7 @@ int vt6656_hostap_ioctl(PSDevice pDevice, struct iw_point *p)
 	case VIAWGET_HOSTAPD_FLUSH:
 	    DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "VIAWGET_HOSTAPD_FLUSH \n");
         spin_lock_irq(&pDevice->lock);
-    	hostap_flush_sta(pDevice);
+	hostap_flush_sta(pDevice);
         spin_unlock_irq(&pDevice->lock);
 		break;
 	case VIAWGET_HOSTAPD_ADD_STA:
@@ -862,4 +862,3 @@ int vt6656_hostap_ioctl(PSDevice pDevice, struct iw_point *p)
 
 	return ret;
 }
-

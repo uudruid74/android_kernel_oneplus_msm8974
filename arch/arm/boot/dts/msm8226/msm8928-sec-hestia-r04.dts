@@ -110,5 +110,3 @@
 		mpp-channel-scaling = <6 1 1>;
         };
 };
-
-

@@ -121,4 +121,3 @@ CommTranspEvent_Exit(void)
 
 	CommOS_Debug(("%s: Exit\n", __func__));
 }
-

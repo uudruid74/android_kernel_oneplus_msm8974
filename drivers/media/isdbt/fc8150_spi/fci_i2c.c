@@ -240,4 +240,3 @@ int fci_i2c_deinit(HANDLE hDevice)
 	bbm_write(hDevice, BBM_I2C_CTR, 0x00);
 	return BBM_OK;
 }
-

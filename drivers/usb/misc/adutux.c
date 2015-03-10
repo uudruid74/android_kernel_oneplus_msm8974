@@ -359,14 +359,14 @@ static int adu_release(struct inode *inode, struct file *file)
 	dbg(2," %s : enter", __func__);
 
 	if (file == NULL) {
- 		dbg(1," %s : file is NULL", __func__);
+		dbg(1," %s : file is NULL", __func__);
 		retval = -ENODEV;
 		goto exit;
 	}
 
 	dev = file->private_data;
 	if (dev == NULL) {
- 		dbg(1," %s : object is NULL", __func__);
+		dbg(1," %s : object is NULL", __func__);
 		retval = -ENODEV;
 		goto exit;
 	}
@@ -481,7 +481,7 @@ static ssize_t adu_read(struct file *file, __user char *buffer, size_t count,
 
 					usb_fill_int_urb(dev->interrupt_in_urb,dev->udev,
 							 usb_rcvintpipe(dev->udev,
-							 		dev->interrupt_in_endpoint->bEndpointAddress),
+									dev->interrupt_in_endpoint->bEndpointAddress),
 							 dev->interrupt_in_buffer,
 							 usb_endpoint_maxp(dev->interrupt_in_endpoint),
 							 adu_interrupt_in_callback,
@@ -534,7 +534,7 @@ static ssize_t adu_read(struct file *file, __user char *buffer, size_t count,
 		spin_unlock_irqrestore(&dev->buflock, flags);
 		usb_fill_int_urb(dev->interrupt_in_urb,dev->udev,
 				 usb_rcvintpipe(dev->udev,
-				 		dev->interrupt_in_endpoint->bEndpointAddress),
+						dev->interrupt_in_endpoint->bEndpointAddress),
 				dev->interrupt_in_buffer,
 				usb_endpoint_maxp(dev->interrupt_in_endpoint),
 				adu_interrupt_in_callback,

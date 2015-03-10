@@ -175,4 +175,3 @@ void omap2_sms_write_rot_physical_ba(u32 val, unsigned ctx)
 {
 	sms_write_reg(val, SMS_ROT_PHYSICAL_BA(ctx));
 }
-

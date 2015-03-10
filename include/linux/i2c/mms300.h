@@ -15,7 +15,7 @@
 #ifndef _LINUX_MMS_TOUCH_H
 #define _LINUX_MMS_TOUCH_H
 #define MELFAS_TS_NAME			"mms300-ts"
-#undef TOUCHKEY	
+#undef TOUCHKEY
 
 struct melfas_tsi_platform_data {
 	int max_x;

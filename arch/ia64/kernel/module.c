@@ -211,7 +211,7 @@ apply_imm21b (struct module *mod, struct insn *insn, uint64_t val)
 
 struct plt_entry {
 	/* Three instruction bundles in PLT. */
- 	unsigned char bundle[2][16];
+	unsigned char bundle[2][16];
 };
 
 static const struct plt_entry ia64_plt_template = {
@@ -256,7 +256,7 @@ plt_target (struct plt_entry *plt)
 
 struct plt_entry {
 	/* Three instruction bundles in PLT. */
- 	unsigned char bundle[3][16];
+	unsigned char bundle[3][16];
 };
 
 static const struct plt_entry ia64_plt_template = {

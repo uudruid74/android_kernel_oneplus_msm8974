@@ -1,5 +1,5 @@
 /*
- * 
+ *
  * Common boot and setup code.
  *
  * Copyright (C) 2001 PPC64 Team, IBM Corp
@@ -194,7 +194,7 @@ void __init early_setup(unsigned long dt_ptr)
 	/* Enable early debugging if any specified (see udbg.h) */
 	udbg_early_init();
 
- 	DBG(" -> early_setup(), dt_ptr: 0x%lx\n", dt_ptr);
+	DBG(" -> early_setup(), dt_ptr: 0x%lx\n", dt_ptr);
 
 	/*
 	 * Do early initialization using the flattened device
@@ -350,7 +350,7 @@ static void __init initialize_cache_info(void)
 
 
 /*
- * Do some initial setup of the system.  The parameters are those which 
+ * Do some initial setup of the system.  The parameters are those which
  * were passed in from the bootloader.
  */
 void __init setup_system(void)
@@ -377,7 +377,7 @@ void __init setup_system(void)
 
 	/*
 	 * Fill the ppc64_caches & systemcfg structures with informations
- 	 * retrieved from the device-tree.
+	 * retrieved from the device-tree.
 	 */
 	initialize_cache_info();
 
@@ -401,7 +401,7 @@ void __init setup_system(void)
 	if (ppc_md.init_early)
 		ppc_md.init_early();
 
- 	/*
+	/*
 	 * We can discover serial ports now since the above did setup the
 	 * hash table management for us, thus ioremap works. We do that early
 	 * so that further code can be debugged
@@ -573,7 +573,7 @@ void __init setup_arch(char **cmdline_p)
 	init_mm.end_code = (unsigned long) _etext;
 	init_mm.end_data = (unsigned long) _edata;
 	init_mm.brk = klimit;
-	
+
 	irqstack_early_init();
 	exc_lvl_early_init();
 	emergency_stack_init();
@@ -688,4 +688,3 @@ void __init setup_per_cpu_areas(void)
 struct ppc_pci_io ppc_pci_io;
 EXPORT_SYMBOL(ppc_pci_io);
 #endif /* CONFIG_PPC_INDIRECT_IO */
-

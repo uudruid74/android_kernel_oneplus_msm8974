@@ -980,4 +980,3 @@ void tipc_nametbl_stop(void)
 	table.types = NULL;
 	write_unlock_bh(&tipc_nametbl_lock);
 }
-

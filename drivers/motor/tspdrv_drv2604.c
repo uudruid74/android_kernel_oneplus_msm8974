@@ -3,25 +3,25 @@
 ** File:
 **     tspdrv_drv2604.c
 **
-** Description: 
+** Description:
 **     TouchSense Kernel Module main entry-point.
 **
 ** Portions Copyright (c) 2008-2014 Immersion Corporation. All Rights Reserved.
 **
-** This file contains Original Code and/or Modifications of Original Code 
-** as defined in and that are subject to the GNU Public License v2 - 
-** (the 'License'). You may not use this file except in compliance with the 
-** License. You should have received a copy of the GNU General Public License 
+** This file contains Original Code and/or Modifications of Original Code
+** as defined in and that are subject to the GNU Public License v2 -
+** (the 'License'). You may not use this file except in compliance with the
+** License. You should have received a copy of the GNU General Public License
 ** along with this program; if not, write to the Free Software Foundation, Inc.,
-** 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA or contact 
+** 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA or contact
 ** TouchSenseSales@immersion.com.
 **
-** The Original Code and all software distributed under the License are 
-** distributed on an 'AS IS' basis, WITHOUT WARRANTY OF ANY KIND, EITHER 
-** EXPRESS OR IMPLIED, AND IMMERSION HEREBY DISCLAIMS ALL SUCH WARRANTIES, 
-** INCLUDING WITHOUT LIMITATION, ANY WARRANTIES OF MERCHANTABILITY, FITNESS 
-** FOR A PARTICULAR PURPOSE, QUIET ENJOYMENT OR NON-INFRINGEMENT. Please see 
-** the License for the specific language governing rights and limitations 
+** The Original Code and all software distributed under the License are
+** distributed on an 'AS IS' basis, WITHOUT WARRANTY OF ANY KIND, EITHER
+** EXPRESS OR IMPLIED, AND IMMERSION HEREBY DISCLAIMS ALL SUCH WARRANTIES,
+** INCLUDING WITHOUT LIMITATION, ANY WARRANTIES OF MERCHANTABILITY, FITNESS
+** FOR A PARTICULAR PURPOSE, QUIET ENJOYMENT OR NON-INFRINGEMENT. Please see
+** the License for the specific language governing rights and limitations
 ** under the License.
 ** =========================================================================
 */
@@ -61,7 +61,7 @@ static atomic_t g_bRuntimeRecord;
 /* Device name and version information */
 #define VERSION_STR " v3.7.45.1\n"                  /* DO NOT CHANGE - this is auto-generated */
 #define VERSION_STR_LEN 16                          /* account extra space for future extra digits in version number */
-static char g_szDeviceName[  (VIBE_MAX_DEVICE_NAME_LENGTH 
+static char g_szDeviceName[  (VIBE_MAX_DEVICE_NAME_LENGTH
                             + VERSION_STR_LEN)
                             * NUM_ACTUATORS];       /* initialized in init_module */
 static size_t g_cchDeviceName;                      /* initialized in init_module */
@@ -210,7 +210,7 @@ static long unlocked_ioctl(struct file *file, unsigned int cmd, unsigned long ar
 #else
 static int ioctl(struct inode *inode, struct file *file, unsigned int cmd, unsigned long arg);
 #endif
-static struct file_operations fops = 
+static struct file_operations fops =
 {
     .owner =            THIS_MODULE,
     .read =             read,
@@ -226,7 +226,7 @@ static struct file_operations fops =
 };
 
 #ifndef IMPLEMENT_AS_CHAR_DRIVER
-static struct miscdevice miscdev = 
+static struct miscdevice miscdev =
 {
 	.minor =    MISC_DYNAMIC_MINOR,
 	.name =     MODULE_NAME,
@@ -377,36 +377,36 @@ static int __devinit drv2604_vibrator_i2c_probe(struct i2c_client *client,
     return 0;
 }
 
-static int open(struct inode *inode, struct file *file) 
+static int open(struct inode *inode, struct file *file)
 {
     DbgOut((DBL_INFO, "tspdrv: open.\n"));
 
     if (!try_module_get(THIS_MODULE)) return -ENODEV;
 
-    return 0; 
+    return 0;
 }
 
-static int release(struct inode *inode, struct file *file) 
+static int release(struct inode *inode, struct file *file)
 {
     DbgOut((DBL_INFO, "tspdrv: release.\n"));
 
-    /* 
+    /*
     ** Reset force and stop timer when the driver is closed, to make sure
     ** no dangling semaphore remains in the system, especially when the
     ** driver is run outside of immvibed for testing purposes.
     */
     VibeOSKernelLinuxStopTimer();
 
-    /* 
-    ** Clear the variable used to store the magic number to prevent 
-    ** unauthorized caller to write data. TouchSense service is the only 
+    /*
+    ** Clear the variable used to store the magic number to prevent
+    ** unauthorized caller to write data. TouchSense service is the only
     ** valid caller.
     */
     file->private_data = (void*)NULL;
 
     module_put(THIS_MODULE);
 
-    return 0; 
+    return 0;
 }
 
 static ssize_t read(struct file *file, char *buf, size_t count, loff_t *ppos)
@@ -416,7 +416,7 @@ static ssize_t read(struct file *file, char *buf, size_t count, loff_t *ppos)
     /* End of buffer, exit */
     if (0 == nBufSize) return 0;
 
-    if (0 != copy_to_user(buf, g_szDeviceName + (*ppos), nBufSize)) 
+    if (0 != copy_to_user(buf, g_szDeviceName + (*ppos), nBufSize))
     {
         /* Failed to copy all the data, exit */
         DbgOut((DBL_ERROR, "tspdrv: copy_to_user failed.\n"));
@@ -432,17 +432,17 @@ static ssize_t write(struct file *file, const char *buf, size_t count, loff_t *p
 {
     *ppos = 0;  /* file position not used, always set to 0 */
 
-    /* 
-    ** Prevent unauthorized caller to write data. 
+    /*
+    ** Prevent unauthorized caller to write data.
     ** TouchSense service is the only valid caller.
     */
-    if (file->private_data != (void*)TSPDRV_MAGIC_NUMBER) 
+    if (file->private_data != (void*)TSPDRV_MAGIC_NUMBER)
     {
         DbgOut((DBL_ERROR, "tspdrv: unauthorized write.\n"));
         return 0;
     }
 
-    /* 
+    /*
     ** Ignore packets that have size smaller than SPI_HEADER_SIZE or bigger than MAX_SPI_BUFFER_SIZE.
     ** Please note that the daemon may send an empty buffer (count == SPI_HEADER_SIZE)
     ** during quiet time between effects while playing a Timeline effect in order to maintain
@@ -553,7 +553,7 @@ static int ioctl(struct inode *inode, struct file *file, unsigned int cmd, unsig
                 atomic_set(&g_bRuntimeRecord, nRecordFlag);
                 if (nRecordFlag) {
                     int i;
-                    for (i=0; i<NUM_ACTUATORS; i++) { 
+                    for (i=0; i<NUM_ACTUATORS; i++) {
                         DbgRecorderReset((i));
                     }
                 }
@@ -703,4 +703,3 @@ module_exit(drv2604_vibrator_exit);
 MODULE_AUTHOR("Immersion Corporation");
 MODULE_DESCRIPTION("TouchSense Kernel Module");
 MODULE_LICENSE("GPL v2");
-

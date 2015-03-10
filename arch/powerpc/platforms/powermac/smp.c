@@ -527,7 +527,7 @@ static void smp_core99_cypress_tb_freeze(int freeze)
 
 	data = (data & 0xf3) | (freeze ? 0x00 : 0x0c);
 
-       	pmac_i2c_setmode(pmac_tb_clock_chip_host, pmac_i2c_mode_stdsub);
+	pmac_i2c_setmode(pmac_tb_clock_chip_host, pmac_i2c_mode_stdsub);
 	rc = pmac_i2c_xfer(pmac_tb_clock_chip_host,
 			   0xd0 | pmac_i2c_write,
 			   1, 0x81, &data, 1);
@@ -570,7 +570,7 @@ static void smp_core99_pulsar_tb_freeze(int freeze)
 
 static void __init smp_core99_setup_i2c_hwsync(int ncpus)
 {
-	struct device_node *cc = NULL;	
+	struct device_node *cc = NULL;
 	struct device_node *p;
 	const char *name = NULL;
 	const u32 *reg;
@@ -774,8 +774,8 @@ static int __init smp_core99_probe(void)
 	if (ppc_md.progress) ppc_md.progress("smp_core99_probe", 0x345);
 
 	/* Count CPUs in the device-tree */
-       	for (cpus = NULL; (cpus = of_find_node_by_type(cpus, "cpu")) != NULL;)
-	       	++ncpus;
+	for (cpus = NULL; (cpus = of_find_node_by_type(cpus, "cpu")) != NULL;)
+		++ncpus;
 
 	printk(KERN_INFO "PowerMac SMP probe found %d cpus\n", ncpus);
 
@@ -1033,5 +1033,3 @@ void __init pmac_setup_smp(void)
 	ppc_md.cpu_die = pmac_cpu_die;
 #endif
 }
-
-

@@ -104,4 +104,3 @@ MODULE_LICENSE("GPL v2");
  * by default (i.e., neither mkinitrd nor modprobe will accept it).
  */
 MODULE_INFO(supported, "external");
-

@@ -51,4 +51,3 @@ extern s32 fc8080_data_deselect(HANDLE handle, u8 subch_id, u8 buf_id);
 #endif
 
 #endif /* __FC8080_BB_H__ */
-

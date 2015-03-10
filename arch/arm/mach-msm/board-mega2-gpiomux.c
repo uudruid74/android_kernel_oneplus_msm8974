@@ -204,7 +204,7 @@ static struct gpiomux_setting lcd_rst_act_cfg = {
 	.func = GPIOMUX_FUNC_GPIO,
 	.drv = GPIOMUX_DRV_2MA,
 	.pull = GPIOMUX_PULL_NONE,
-	.dir = GPIOMUX_OUT_HIGH,	
+	.dir = GPIOMUX_OUT_HIGH,
 };
 
 static struct gpiomux_setting lcd_rst_sus_cfg = {
@@ -348,7 +348,7 @@ static struct msm_gpiomux_config msm_blsp_configs[] __initdata = {
 			[GPIOMUX_ACTIVE] = &gpio_i2c_config_tsp,
 			[GPIOMUX_SUSPENDED] = &gpio_i2c_config_tsp,
 		},
-	},	
+	},
 	{
 		.gpio      = 6,		/* BLSP1 QUP2 I2C_SDA */
 		.settings = {
@@ -867,7 +867,7 @@ static struct msm_gpiomux_config usb_otg_sw_configs[] __initdata = {
 
 static struct msm_gpiomux_config tkey_led_gpio_configs[] __initdata = {
 	{
-		.gpio      = 110,		
+		.gpio      = 110,
 		.settings = {
 			[GPIOMUX_ACTIVE] = &tkey_led_gpio,
 			[GPIOMUX_SUSPENDED] = &tkey_led_gpio,
@@ -1078,7 +1078,7 @@ void __init msm8226_init_gpiomux(void)
 #endif
 
 	/*
-	 * gpio mux settings for the NC GPIOs	
+	 * gpio mux settings for the NC GPIOs
 	 */
 	msm_gpiomux_install(gpio_nc_configs,
 			ARRAY_SIZE(gpio_nc_configs));

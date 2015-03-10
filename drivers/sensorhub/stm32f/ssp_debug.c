@@ -38,7 +38,7 @@ void ssp_dump_task(struct work_struct *work) {
 	int iTimeTemp;
 	mm_segment_t fs;
 	int buf_len, packet_len, residue, iRet = 0, index = 0 ,iRetTrans=0 ,iRetWrite=0;
-	
+
 
 	big = container_of(work, struct ssp_big, work);
 	pr_err("[SSP]: %s - start ssp dumping (%d)(%d)\n", __func__,big->data->bMcuDumpMode,big->data->uDumpCnt);
@@ -98,7 +98,7 @@ void ssp_dump_task(struct work_struct *work) {
 					break;
 				}
 		}
-		
+
 		residue -= packet_len;
 	}
 
@@ -119,7 +119,7 @@ void ssp_dump_task(struct work_struct *work) {
 	}
 	set_fs(fs);
 	sanity_check(big->data);
-	
+
 	wake_unlock(&big->data->ssp_wake_lock);
 	kfree(buffer);
 	kfree(big);

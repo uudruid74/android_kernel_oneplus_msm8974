@@ -453,7 +453,7 @@ static int lola_setup_controller(struct lola *chip, struct lola_pcm *pcm,
 	lola_dsd_write(chip, str->dsd, LVI, str->frags - 1);
 	lola_stream_clear_pending_irq(chip, str);
 
- 	lola_dsd_write(chip, str->dsd, CTL,
+	lola_dsd_write(chip, str->dsd, CTL,
 		       LOLA_DSD_CTL_IOCE | LOLA_DSD_CTL_DEIE | LOLA_DSD_CTL_SRUN);
 
 	str->prepared = 1;

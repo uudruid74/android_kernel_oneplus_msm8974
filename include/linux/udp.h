@@ -60,7 +60,7 @@ struct udp_sock {
 #define udp_portaddr_node	inet.sk.__sk_common.skc_portaddr_node
 	int		 pending;	/* Any pending frames ? */
 	unsigned int	 corkflag;	/* Cork is required */
-  	__u16		 encap_type;	/* Is this an Encapsulation socket? */
+	__u16		 encap_type;	/* Is this an Encapsulation socket? */
 	/*
 	 * Following member retains the information to create a UDP header
 	 * when the socket is uncorked.

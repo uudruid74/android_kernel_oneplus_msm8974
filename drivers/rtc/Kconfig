@@ -12,7 +12,7 @@ menuconfig RTC_CLASS
 	select RTC_LIB
 	help
 	  Generic RTC class support. If you say yes here, you will
- 	  be allowed to plug one or more RTCs to your system. You will
+	  be allowed to plug one or more RTCs to your system. You will
 	  probably want to enable one or more of the interfaces below.
 
 if RTC_CLASS
@@ -844,7 +844,7 @@ config RTC_DRV_SH
 	  Say Y here to enable support for the on-chip RTC found in
 	  most SuperH processors.
 
- 	  To compile this driver as a module, choose M here: the
+	  To compile this driver as a module, choose M here: the
 	  module will be called rtc-sh.
 
 config RTC_DRV_VR41XX

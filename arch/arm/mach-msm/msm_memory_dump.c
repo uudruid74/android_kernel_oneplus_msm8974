@@ -62,4 +62,3 @@ static int __init init_memory_dump(void)
 }
 
 early_initcall(init_memory_dump);
-

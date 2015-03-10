@@ -1336,7 +1336,7 @@ try_next_bio:
 	/* check write congestion marks, and if bio_queue_size is
 	   below, wake up any waiters */
 	wakeup = (pd->write_congestion_on > 0
-	 		&& pd->bio_queue_size <= pd->write_congestion_off);
+			&& pd->bio_queue_size <= pd->write_congestion_off);
 	spin_unlock(&pd->lock);
 	if (wakeup) {
 		clear_bdi_congested(&pd->disk->queue->backing_dev_info,
@@ -2542,7 +2542,7 @@ static void pkt_make_request(struct request_queue *q, struct bio *bio)
 	}
 	spin_unlock(&pd->cdrw.active_list_lock);
 
- 	/*
+	/*
 	 * Test if there is enough room left in the bio work queue
 	 * (queue size >= congestion on mark).
 	 * If not, wait till the work queue size is below the congestion off mark.

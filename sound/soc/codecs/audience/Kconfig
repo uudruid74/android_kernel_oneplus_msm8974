@@ -60,4 +60,3 @@ config SND_SOC_ES_CDEV
         ---help---
 	The character device interface allows the streaming out the audio
 	data through selected Bus interface.
-

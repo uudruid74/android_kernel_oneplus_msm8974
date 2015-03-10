@@ -136,8 +136,8 @@ static void dasd_eer_write_buffer(struct eerbuffer *eerb,
 	nextdata = data;
 	rest = count;
 	while (rest > 0) {
- 		headindex = eerb->head / PAGE_SIZE;
- 		localhead = eerb->head % PAGE_SIZE;
+		headindex = eerb->head / PAGE_SIZE;
+		localhead = eerb->head % PAGE_SIZE;
 		len = min(rest, PAGE_SIZE - localhead);
 		memcpy(eerb->buffer[headindex]+localhead, nextdata, len);
 		nextdata += len;
@@ -163,8 +163,8 @@ static int dasd_eer_read_buffer(struct eerbuffer *eerb, char *data, int count)
 	nextdata = data;
 	rest = finalcount;
 	while (rest > 0) {
- 		tailindex = eerb->tail / PAGE_SIZE;
- 		localtail = eerb->tail % PAGE_SIZE;
+		tailindex = eerb->tail / PAGE_SIZE;
+		localtail = eerb->tail % PAGE_SIZE;
 		len = min(rest, PAGE_SIZE - localtail);
 		memcpy(nextdata, eerb->buffer[tailindex] + localtail, len);
 		nextdata += len;

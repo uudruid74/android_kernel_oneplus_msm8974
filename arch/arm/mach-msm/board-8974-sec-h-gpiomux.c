@@ -159,7 +159,7 @@ static struct msm_gpiomux_config mdm_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &ap2mdm_wakeup,
 		}
 	},
-#if !defined(CONFIG_MACH_JS01LTEDCM)	
+#if !defined(CONFIG_MACH_JS01LTEDCM)
 	/* MDM2AP_PBL_READY*/
 	{
 		.gpio = 80,
@@ -167,7 +167,7 @@ static struct msm_gpiomux_config mdm_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &mdm2ap_pblrdy,
 		}
 	},
-#endif 	
+#endif
 };
 
 #if defined(CONFIG_W1_SLAVE_DS28EL15) && !defined(CONFIG_MACH_JSGLTE_CHN_CMCC)
@@ -1158,7 +1158,7 @@ static struct msm_gpiomux_config msm_epm_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &gpio_epm_marker_config,
 		},
 	},
-#endif	
+#endif
 	{
 		.gpio      = 96,		/* EPM MARKER1 */
 		.settings = {
@@ -1253,7 +1253,7 @@ static struct msm_gpiomux_config msm_blsp_configs[] __initdata = {
 			[GPIOMUX_ACTIVE] = &gpio_i2c_config,
 		},
 	},
- 	{
+	{
 		.gpio      = 25,		/* BLSP5 QUP I2C_DAT */
 		.settings = {
 			[GPIOMUX_ACTIVE]    = &gpio_i2c_config_4,
@@ -1267,7 +1267,7 @@ static struct msm_gpiomux_config msm_blsp_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &gpio_i2c_config_5,
 		},
 	},
-#if !defined(CONFIG_INPUT_WACOM) 
+#if !defined(CONFIG_INPUT_WACOM)
 #if defined(CONFIG_MACH_JSGLTE_CHN_CMCC)
     {
 		.gpio      = 29,                /* BLSP6 QUP I2C_DAT */
@@ -1475,7 +1475,7 @@ static struct gpiomux_setting cam_settings[] = {
 
 static struct msm_gpiomux_config msm_sensor_configs[] __initdata = {
 #if defined(CONFIG_MACH_JSGLTE_CHN_CMCC)
- 	{
+	{
 		.gpio = 15, /* CAM_MCLK0 */
 		.settings = {
 			[GPIOMUX_ACTIVE]    = &cam_settings[0],
@@ -1491,7 +1491,7 @@ static struct msm_gpiomux_config msm_sensor_configs[] __initdata = {
 		},
 	},
 #endif
-#if 0	
+#if 0
 	{
 		.gpio = 16, /* CAM_MCLK1 */
 		.settings = {
@@ -1501,7 +1501,7 @@ static struct msm_gpiomux_config msm_sensor_configs[] __initdata = {
 	},
 #endif
 #if defined(CONFIG_MACH_JSGLTE_CHN_CMCC)
- 	{
+	{
 		.gpio = 17, /* CAM_MCLK2 */
 		.settings = {
 			[GPIOMUX_ACTIVE]    = &cam_settings[0],
@@ -1634,14 +1634,14 @@ static struct msm_gpiomux_config msm_sensor_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &gpio_suspend_config[2],
 		},
 	},
-#if !defined(CONFIG_MACH_JS01LTEDCM)&&!defined(CONFIG_MACH_HLTE_CHN_CMCC)	
+#if !defined(CONFIG_MACH_JS01LTEDCM)&&!defined(CONFIG_MACH_HLTE_CHN_CMCC)
 	{
 		.gpio = 129, /* 8M_AVDD_LDO_EN */
 		.settings = {
 			[GPIOMUX_SUSPENDED] = &gpio_suspend_config[3],
 		},
 	},
-#endif	
+#endif
 };
 
 static struct gpiomux_setting sd_card_det_active_config = {
@@ -1667,7 +1667,7 @@ static struct msm_gpiomux_config sd_card_det __initdata = {
 };
 #ifdef CONFIG_MACH_H3GDUOS
  static struct gpiomux_setting cam_mclk2_suspend_settings = {
-	.func = GPIOMUX_FUNC_GPIO, 
+	.func = GPIOMUX_FUNC_GPIO,
 	.drv = GPIOMUX_DRV_2MA,
 	.pull = GPIOMUX_PULL_NONE,
 	.dir = GPIOMUX_OUT_LOW,
@@ -1809,7 +1809,7 @@ static struct msm_gpiomux_config msm_sensor_configs_dragonboard[] __initdata = {
 		},
 	},
 #endif
-#if 0 // es325 pin	
+#if 0 // es325 pin
 	{
 		.gpio = 94, /* CAM2_RST_N */
 		.settings = {
@@ -1817,7 +1817,7 @@ static struct msm_gpiomux_config msm_sensor_configs_dragonboard[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &gpio_suspend_config[1],
 		},
 	},
-#endif	
+#endif
 };
 
 static struct gpiomux_setting auxpcm_act_cfg = {
@@ -2338,7 +2338,7 @@ static struct msm_gpiomux_config msm8974_sdc4_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &sdc4_suspend_cfg,
 		},
 	},
-#if 0 // es325 pin	
+#if 0 // es325 pin
 	{
 		/* DAT2 */
 		.gpio      = 94,
@@ -2347,7 +2347,7 @@ static struct msm_gpiomux_config msm8974_sdc4_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &sdc4_suspend_cfg,
 		},
 	},
-#endif	
+#endif
 	{
 		/* DAT1 */
 		.gpio      = 95,
@@ -2572,7 +2572,7 @@ static struct msm_gpiomux_config msm8974_pcd_int_configs[] __initdata = {
 
 #ifdef CONFIG_FELICA
 
-/* USE "GPIO_SHARED_I2C_SCL/SDA" 
+/* USE "GPIO_SHARED_I2C_SCL/SDA"
  * ("GPIO_MHL_SCL/SDA" sets initial configuration)
  */
 static struct gpiomux_setting felica_i2c_sda_setting = {
@@ -2682,7 +2682,7 @@ static struct msm_gpiomux_config msm8974_felica_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &felica_pon_setting,
 		},
 	},
-	
+
 };
 #endif /* CONFIG_FELICA */
 
@@ -2775,7 +2775,7 @@ void __init msm_8974_init_gpiomux(void)
 
 	msm_gpiomux_install(msm_taiko_config, ARRAY_SIZE(msm_taiko_config));
 	msm_gpiomux_install(es325_config, ARRAY_SIZE(es325_config));
-	msm_gpiomux_install(msm8974_audio_configs, ARRAY_SIZE(msm8974_audio_configs));	
+	msm_gpiomux_install(msm8974_audio_configs, ARRAY_SIZE(msm8974_audio_configs));
 	msm_gpiomux_install(msm8974_pri_pri_auxpcm_configs,
 				 ARRAY_SIZE(msm8974_pri_pri_auxpcm_configs));
 #if 0 // MCU pin
@@ -2952,4 +2952,3 @@ static void wcnss_switch_to_5wire(void)
 		return rf_data_received;
 		}
 #endif
-

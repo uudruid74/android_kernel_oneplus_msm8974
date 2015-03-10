@@ -249,4 +249,3 @@ static int __init wii_device_probe(void)
 	return 0;
 }
 device_initcall(wii_device_probe);
-

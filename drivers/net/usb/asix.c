@@ -19,7 +19,7 @@
  */
 
 /* debug messages, extra info */
- #define	DEBUG 
+ #define	DEBUG
 
 #include <linux/version.h>
 /* #include <linux/config.h> */
@@ -3573,7 +3573,7 @@ static void ax88772b_link_reset(struct work_struct *work)
 	}
 
 	ax772b_data->Event = AX_NOP;
-	
+
 	return;
 }
 
@@ -3895,5 +3895,3 @@ module_exit(asix_exit);
 MODULE_AUTHOR("David Hollis");
 MODULE_DESCRIPTION("ASIX AX8817X based USB 2.0 Ethernet Devices");
 MODULE_LICENSE("GPL");
-
-

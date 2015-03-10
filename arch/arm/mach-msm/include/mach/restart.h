@@ -29,4 +29,3 @@ void fsm_restart(char mode, const char *cmd);
 extern int pmic_reset_irq;
 
 #endif
-

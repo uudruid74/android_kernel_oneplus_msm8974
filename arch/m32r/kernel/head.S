@@ -207,8 +207,8 @@ ENTRY(startup_AP)
 	seth  r4, #high(MATM)
 	or3   r4, r4, #low(MATM)
 	ldi   r5, #0
-    	st    r5, @r4            ; Set MATM Reg(T bit OFF)
-    	ld    r6, @r4            ; MATM Check
+	st    r5, @r4            ; Set MATM Reg(T bit OFF)
+	ld    r6, @r4            ; MATM Check
 	LDIMM (r4, 3f)
 	seth  r5, #high(__PAGE_OFFSET)
 	or3   r5, r5, #low(__PAGE_OFFSET)
@@ -262,7 +262,7 @@ ENTRY(empty_zero_page)
 	.long	0	/* TIMER_DIVIDE */	/* +0x20 */
 	.balign	256,0
 	.asciz	COMMAND_LINE
-  	.byte	0
+	.byte	0
 	.balign	4096,0,4096
 
 /*------------------------------------------------------------------------

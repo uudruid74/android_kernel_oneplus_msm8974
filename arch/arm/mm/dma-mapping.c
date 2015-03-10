@@ -754,7 +754,7 @@ void tima_cache_clean_setway(unsigned int reg_c7)
 {
         __asm__ __volatile__ (
                         "mov    r0, %0\n"
-                        "mcr	p15, 0, r0, c7, c10, 2\n"		 
+                        "mcr	p15, 0, r0, c7, c10, 2\n"
                         ::"r"(reg_c7):"r0");
 }
 

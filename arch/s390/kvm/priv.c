@@ -379,4 +379,3 @@ int kvm_s390_handle_e5(struct kvm_vcpu *vcpu)
 		return handle_tprot(vcpu);
 	return -EOPNOTSUPP;
 }
-

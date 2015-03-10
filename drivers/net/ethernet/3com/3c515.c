@@ -533,7 +533,7 @@ static struct net_device *corkscrew_scan(int unit)
 				pr_debug("ISAPNP reports %s at i/o 0x%x, irq %d\n",
 					(char*) corkscrew_isapnp_adapters[i].driver_data, ioaddr, irq);
 			pr_info("3c515 Resource configuration register %#4.4x, DCR %4.4x.\n",
-		     		inl(ioaddr + 0x2002), inw(ioaddr + 0x2000));
+				inl(ioaddr + 0x2002), inw(ioaddr + 0x2000));
 			/* irq = inw(ioaddr + 0x2002) & 15; */ /* Use the irq from isapnp */
 			SET_NETDEV_DEV(dev, &idev->dev);
 			pnp_cards++;

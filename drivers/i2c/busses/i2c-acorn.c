@@ -44,7 +44,7 @@ static void ioc_setscl(void *data, int state)
 
 	force_ones = ones;
 
- 	ioc_writeb(ioc_control | ones, IOC_CONTROL);
+	ioc_writeb(ioc_control | ones, IOC_CONTROL);
 }
 
 static void ioc_setsda(void *data, int state)
@@ -59,7 +59,7 @@ static void ioc_setsda(void *data, int state)
 
 	force_ones = ones;
 
- 	ioc_writeb(ioc_control | ones, IOC_CONTROL);
+	ioc_writeb(ioc_control | ones, IOC_CONTROL);
 }
 
 static int ioc_getscl(void *data)

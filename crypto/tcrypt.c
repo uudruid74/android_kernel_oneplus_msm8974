@@ -1014,7 +1014,7 @@ static int do_test(int m)
 #ifdef CONFIG_CRYPTO_XTS
 		ret += tcrypt_test("xts(aes)");
 #endif
-#ifdef CONFIG_CRYPTO_CTR		
+#ifdef CONFIG_CRYPTO_CTR
 		ret += tcrypt_test("ctr(aes)");
 		ret += tcrypt_test("rfc3686(ctr(aes))");
 #endif
@@ -1591,7 +1591,7 @@ static int do_test(int m)
 		/* AES */
 		ret += alg_test("ecb(aes-generic)", "ecb(aes)", 0, 0);
 		ret += alg_test("cbc(aes-generic)", "cbc(aes)", 0, 0);
-		
+
 #ifdef CONFIG_CRYPTO_AES_ARM
 		ret += alg_test("ecb(aes-asm)", "ecb(aes)", 0, 0);
 		ret += alg_test("cbc(aes-asm)", "cbc(aes)", 0, 0);
@@ -1680,9 +1680,9 @@ static int __init tcrypt_mod_init(void)
 
 #ifdef CONFIG_CRYPTO_FIPS_OLD_INTEGRITY_CHECK
 		if (integrity_mem_reservoir != 0) {
-		  	printk(KERN_NOTICE "FIPS free integrity_mem_reservoir = %ld\n", integrity_mem_reservoir);
-		 	free_bootmem_late((unsigned long)CONFIG_CRYPTO_FIPS_INTEG_COPY_ADDRESS, integrity_mem_reservoir);
-		 	integrity_mem_reservoir = 0;
+			printk(KERN_NOTICE "FIPS free integrity_mem_reservoir = %ld\n", integrity_mem_reservoir);
+			free_bootmem_late((unsigned long)CONFIG_CRYPTO_FIPS_INTEG_COPY_ADDRESS, integrity_mem_reservoir);
+			integrity_mem_reservoir = 0;
 		}
 #endif
 	}

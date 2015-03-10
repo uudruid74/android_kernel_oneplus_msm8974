@@ -2103,7 +2103,7 @@ static int max77803_muic_irq_init(struct max77803_muic_info *info)
 		dev_info(info->dev, "%s: reg=%x, val=%x\n", __func__,
 				count, val);
 	}
-	
+
 	return 0;
 }
 
@@ -2450,7 +2450,7 @@ static int __devinit max77803_muic_probe(struct platform_device *pdev)
 		ret = -ENOMEM;
 		goto err_input;
 	}
-	
+
 	info->edev->name=DEV_NAME;
 	info->edev->supported_cable = extcon_cable_name;
 

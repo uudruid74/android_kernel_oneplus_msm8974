@@ -16,7 +16,7 @@
  *  G[4BITS]:MODEL_VARIANT i.e. 0 for MS01,1 for MS01_3G, 2 for CT01, 3 for S3VE
  *  H[4BITS]:Hardware Revision
  * Please refer to .../lk/platform/msm_shared/dev_tree.c also
- */ 
+ */
 
 /dts-v1/;
 /include/ "msm8226-v2.dtsi"
@@ -32,7 +32,7 @@
 		      <205 8 0x20003>;
 };
 
-&soc {	
+&soc {
     i2c@f9924000 { /* BLSP1 QUP2 */
 		accelerometer@18 {
 			compatible = "bma255-i2c";

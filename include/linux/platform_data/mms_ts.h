@@ -66,7 +66,7 @@ struct mms_ts_platform_data {
 	u32 scl_gpio_flags;
 	int	gpio_resetb;
 	int vdd_en;
-	
+
 //	int	gpio_resetb;
 	int	gpio_lcd_type;
 	int	(*mux_fw_flash)(bool to_gpios);

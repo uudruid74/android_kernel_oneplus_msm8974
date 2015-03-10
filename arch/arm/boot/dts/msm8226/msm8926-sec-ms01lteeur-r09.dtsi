@@ -28,7 +28,7 @@
 &soc {
 	serial@f991f000 {
 		status = "ok";
-	}; 
+	};
 
 	i2c@f9925000 {
 		sec-nfc@27 {

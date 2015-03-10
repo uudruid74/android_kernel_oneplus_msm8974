@@ -90,7 +90,7 @@ struct cyttsp4_touch_firmware {
 	uint32_t size;
 	const uint8_t *ver;
 	uint8_t vsize;
-#ifdef SAMSUNG_TSP_INFO	
+#ifdef SAMSUNG_TSP_INFO
 	uint8_t hw_version;
 	uint16_t fw_version;
 	uint8_t cfg_version;

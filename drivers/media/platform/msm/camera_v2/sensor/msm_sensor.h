@@ -45,7 +45,7 @@ enum msm_sensor_state_t {
 struct msm_sensor_fn_t {
 	int (*sensor_config) (struct msm_sensor_ctrl_t *, void __user *);
 	int (*sensor_power_down) (struct msm_sensor_ctrl_t *,
-		struct msm_camera_power_ctrl_t *,	
+		struct msm_camera_power_ctrl_t *,
 		enum msm_camera_device_type_t, struct msm_camera_i2c_client *);
 	int (*sensor_power_up) (struct msm_sensor_ctrl_t *,
 		struct msm_camera_power_ctrl_t *,

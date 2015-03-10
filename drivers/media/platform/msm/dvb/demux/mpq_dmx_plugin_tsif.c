@@ -848,4 +848,3 @@ module_exit(mpq_dmx_tsif_plugin_exit);
 
 MODULE_DESCRIPTION("Qualcomm demux TSIF HW Plugin");
 MODULE_LICENSE("GPL v2");
-

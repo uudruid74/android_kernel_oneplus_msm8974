@@ -1825,7 +1825,7 @@ static struct v4l2_ctrl **get_super_cluster(struct msm_vidc_inst *inst,
 
 	if (!size || !cluster || !inst)
 	{
-		if(cluster) 
+		if(cluster)
 			kfree(cluster); // PREVENT Resouce leak fix
 		return NULL;
 	}

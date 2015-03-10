@@ -123,10 +123,10 @@ static unsigned int tuner_module_entry_poll( struct file *file,
 
 #if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,36)
 static int tuner_module_entry_ioctl( struct inode* Inode,
-                                     struct file* FIle, 
+                                     struct file* FIle,
                                      unsigned int uCommand,
                                      unsigned long uArgument );
-#else  /* LINUX_VERSION_CODE */ 
+#else  /* LINUX_VERSION_CODE */
 static long tuner_module_entry_ioctl( struct file *file,
                                       unsigned int uCommand,
                                       unsigned long uArgument );
@@ -147,7 +147,7 @@ static struct file_operations TunerFileOperations = {
 #if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,36)
 								.ioctl   = tuner_module_entry_ioctl,
 #else  /* LINUX_VERSION_CODE */
- 								.unlocked_ioctl = tuner_module_entry_ioctl,
+								.unlocked_ioctl = tuner_module_entry_ioctl,
 #endif /* LINUX_VERSION_CODE */
 								.open    = tuner_module_entry_open,
 								.release = tuner_module_entry_close
@@ -158,7 +158,7 @@ static const struct of_device_id isdbtmm_match_table[] = {
 	},
 	{}
 };
-													
+
 static struct platform_driver mmtuner_driver = {
 										.probe  = tuner_probe,
 										.remove = tuner_remove,
@@ -368,7 +368,7 @@ static bool isdbtmm_ant_det_irq_set(bool set)
 	DPRINTK("%s set= %d\n", __func__,set);
 
 	if (set) {
-	
+
 		int irq_ret;
 			isdbtmm_pdata->irq_ant_det = gpio_to_irq(isdbtmm_pdata->gpio_ant_det);
 			irq_set_irq_type(isdbtmm_pdata->irq_ant_det
@@ -397,7 +397,7 @@ static bool isdbtmm_ant_det_irq_set(bool set)
 static struct isdbtmm_platform_data *isdbtmm_populate_dt_pdata(struct device *dev)
 {
 	struct isdbtmm_platform_data *pdata;
-	
+
 	printk("%s\n", __func__);
 	pdata =  devm_kzalloc(dev, sizeof(*pdata), GFP_KERNEL);
 	if (!pdata) {
@@ -420,64 +420,64 @@ static struct isdbtmm_platform_data *isdbtmm_populate_dt_pdata(struct device *de
 		goto alloc_err;
 	} else
 		pr_info("%s : isdbt-detect-gpio gpio_en =%d\n", __func__, pdata->gpio_en);
-		
+
 	pdata->gpio_rst = of_get_named_gpio(dev->of_node, "qcom,isdbtmm-gpio-rst", 0);
 	if (pdata->gpio_rst < 0) {
 		pr_err("%s : can not find the isdbt-detect-gpio gpio_rst in the dt\n", __func__);
 		goto alloc_err;
 	} else
 		pr_info("%s : isdbt-detect-gpio gpio_rst =%d\n", __func__, pdata->gpio_rst);
-		
+
 	pdata->gpio_int = of_get_named_gpio(dev->of_node, "qcom,isdbtmm-gpio-irq", 0);
 	if (pdata->gpio_int < 0) {
 		pr_err("%s : can not find the isdbt-detect-gpio in the gpio_int dt\n", __func__);
 		goto alloc_err;
 	} else
 		pr_info("%s : isdbt-detect-gpio gpio_int =%d\n", __func__, pdata->gpio_int);
-		
+
 	pdata->gpio_spi_do = of_get_named_gpio(dev->of_node, "qcom,isdbtmm-gpio-spi_do", 0);
 	if (pdata->gpio_spi_do < 0) {
 		pr_err("%s : can not find the isdbt-detect-gpio in the gpio_spi_do dt\n", __func__);
 		goto alloc_err;
 	} else
 		pr_info("%s : isdbt-detect-gpio gpio_spi_do =%d\n", __func__, pdata->gpio_spi_do);
-		
+
 	pdata->gpio_spi_di = of_get_named_gpio(dev->of_node, "qcom,isdbtmm-gpio-spi_di", 0);
 	if (pdata->gpio_spi_di < 0) {
 		pr_err("%s : can not find the isdbt-detect-gpio in the gpio_spi_di dt\n", __func__);
 		goto alloc_err;
 	} else
 		pr_info("%s : isdbt-detect-gpio gpio_spi_di =%d\n", __func__, pdata->gpio_spi_di);
-		
+
 	pdata->gpio_spi_cs = of_get_named_gpio(dev->of_node, "qcom,isdbtmm-gpio-spi_cs", 0);
 	if (pdata->gpio_spi_cs < 0) {
 		pr_err("%s : can not find the isdbt-detect-gpio gpio_spi_cs in the dt\n", __func__);
 		goto alloc_err;
 	} else
 		pr_info("%s : isdbt-detect-gpio gpio_spi_cs=%d\n", __func__, pdata->gpio_spi_cs);
-		
+
 	pdata->gpio_spi_clk = of_get_named_gpio(dev->of_node, "qcom,isdbtmm-gpio-spi_clk", 0);
 	if (pdata->gpio_spi_clk < 0) {
 		pr_err("%s : can not find the isdbt-detect-gpio gpio_spi_clk in the dt\n", __func__);
 		goto alloc_err;
 	} else
 		pr_info("%s : isdbt-detect-gpio gpio_spi_clk=%d\n", __func__, pdata->gpio_spi_clk);
-		
+
 	pdata->gpio_i2c_sda = of_get_named_gpio(dev->of_node, "qcom,isdbtmm-gpio-i2c_sda", 0);
 	if (pdata->gpio_i2c_sda < 0) {
 		pr_err("%s : can not find the isdbt-detect-gpio gpio_i2c_sda in the dt\n", __func__);
 		goto alloc_err;
 	} else
 		pr_info("%s : isdbt-detect-gpio gpio_i2c_sda=%d\n", __func__, pdata->gpio_i2c_sda);
-		
+
 	pdata->gpio_i2c_scl = of_get_named_gpio(dev->of_node, "qcom,isdbtmm-gpio-i2c_scl", 0);
 	if (pdata->gpio_i2c_scl < 0) {
 		pr_err("%s : can not find the isdbt-detect-gpio gpio_i2c_scl in the dt\n", __func__);
 		goto alloc_err;
 	} else
 		pr_info("%s : isdbt-detect-gpio gpio_i2c_scl=%d\n", __func__, pdata->gpio_i2c_scl);
-		
-		
+
+
 	return pdata;
 alloc_err:
 	devm_kfree(dev, pdata);
@@ -502,11 +502,11 @@ err:
 static int tuner_probe(struct platform_device *pdev)
 {
 	int ret;
-	
+
     printk("mmtuner_probe: Called.\n");
     /* tuner register */
-    if (register_chrdev(TUNER_CONFIG_DRV_MAJOR, TUNER_CONFIG_DRIVER_NAME, 
-    											&TunerFileOperations))
+    if (register_chrdev(TUNER_CONFIG_DRV_MAJOR, TUNER_CONFIG_DRIVER_NAME,
+											&TunerFileOperations))
     {
         ERROR_PRINT("mmtuner_probe: register_chrdev()\
                      Failed Major:%d.", TUNER_CONFIG_DRV_MAJOR);
@@ -518,9 +518,9 @@ static int tuner_probe(struct platform_device *pdev)
 		pr_err("%s : isdbt_pdata is NULL.\n", __func__);
 		return -ENODEV;
 	}
-	
 
-	
+
+
     /* initialization of external variable */
     init_waitqueue_head( &g_tuner_poll_wait_queue );
     spin_lock_init( &g_tuner_lock );
@@ -531,7 +531,7 @@ static int tuner_probe(struct platform_device *pdev)
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,37)
     mutex_init(&g_tuner_mutex);
 #endif
-	
+
     printk("tuner_probe: END.\n");
 
 #if defined(CONFIG_TMM_ANT_DET)
@@ -550,7 +550,7 @@ static int tuner_probe(struct platform_device *pdev)
 
 	/* NORMAL END */
 	return 0;
-	
+
 #if defined(CONFIG_TMM_ANT_DET)
 free_ant_det_wq:
 	isdbtmm_ant_det_destroy_wq();
@@ -618,7 +618,7 @@ int tuner_kernel_thread( void * arg )
     unsigned long flags;
     unsigned long ktread_flg;
     mm_segment_t    oldfs;
-    struct sched_param  param; 
+    struct sched_param  param;
 
     struct i2c_adapter	*adap;
     struct i2c_msg		msgs[4];
@@ -634,7 +634,7 @@ int tuner_kernel_thread( void * arg )
 	adap = NULL;
     param.sched_priority = TUNER_CONFIG_KTH_PRI;
 
-    daemonize( "tuner_kthread" ); 
+    daemonize( "tuner_kthread" );
     oldfs = get_fs();
     set_fs( KERNEL_DS );
     ret = sched_setscheduler( g_tuner_kthread_id, SCHED_FIFO, &param );
@@ -646,8 +646,8 @@ int tuner_kernel_thread( void * arg )
     while(1)
     {
         DEBUG_PRINT("tuner_kernel_thread waiting... ");
-        wait_event_interruptible( g_tuner_kthread_wait_queue, 
-        						  g_tuner_kthread_flag );
+        wait_event_interruptible( g_tuner_kthread_wait_queue,
+							  g_tuner_kthread_flag );
 
         spin_lock_irqsave( &g_tuner_lock, flags );
         ktread_flg = g_tuner_kthread_flag;
@@ -657,8 +657,8 @@ int tuner_kernel_thread( void * arg )
         memset( msgs, 0x00, sizeof(struct i2c_msg) * 4 );
         adap = i2c_get_adapter(TUNER_CONFIG_I2C_BUSNUM);
         if (adap == NULL) {
-    	    TRACE();
-    	    break;
+	    TRACE();
+	    break;
         }
 
         /* get interrupt factor  */
@@ -690,17 +690,17 @@ int tuner_kernel_thread( void * arg )
 
             ret = i2c_transfer(adap, msgs, 4);
             if (ret < 0) {
-            	TRACE();
-               	break;
+		TRACE();
+		break;
             }
             DEBUG_PRINT(
-            	"read        slv:0x%02x adr:0x%02x len:%-4d 0x%02x ... 0x%02x ",
-                msgs[0].addr, *(msgs[0].buf), msgs[1].len, 
-            	msgs[1].buf[0], msgs[1].buf[1]);
+		"read        slv:0x%02x adr:0x%02x len:%-4d 0x%02x ... 0x%02x ",
+                msgs[0].addr, *(msgs[0].buf), msgs[1].len,
+		msgs[1].buf[0], msgs[1].buf[1]);
             DEBUG_PRINT(
-            	"read        slv:0x%02x adr:0x%02x len:%-4d 0x%02x ... 0x%02x ",
-				msgs[2].addr, *(msgs[2].buf), msgs[3].len, 
-            	msgs[3].buf[0], msgs[3].buf[1]);
+		"read        slv:0x%02x adr:0x%02x len:%-4d 0x%02x ... 0x%02x ",
+				msgs[2].addr, *(msgs[2].buf), msgs[3].len,
+		msgs[3].buf[0], msgs[3].buf[1]);
 
             g_tuner_intcnd_f	|= buff[1];
             g_tuner_intst_f		|= buff[2];
@@ -708,10 +708,10 @@ int tuner_kernel_thread( void * arg )
             g_tuner_intst_s		|= bufs[2];
 
             DEBUG_PRINT( "// IRQ factor update: INTCND_F:0x%02x INTST_F:0x%02x"
-            		,g_tuner_intcnd_f, g_tuner_intst_f );
+			,g_tuner_intcnd_f, g_tuner_intst_f );
             DEBUG_PRINT( "// IRQ factor update: INTCND_S:0x%02x INTST_S:0x%02x"
-            		,g_tuner_intcnd_s, g_tuner_intst_s );
-            
+			,g_tuner_intcnd_s, g_tuner_intst_s );
+
             memset( msgs, 0x00, sizeof(struct i2c_msg) * 4 );
             msgs[0].addr	= TUNER_SLAVE_ADR_M1;
             msgs[0].flags	= 0;	/* write */
@@ -723,13 +723,13 @@ int tuner_kernel_thread( void * arg )
             msgs[1].buf		= bufs;
             ret = i2c_transfer(adap, msgs, 2);
             if (ret < 0) {
-            	TRACE();
+		TRACE();
                 i2c_put_adapter(adap);
                 break;
             }
             i2c_put_adapter(adap);
 
-        	/* poll wait release */
+		/* poll wait release */
             g_tuner_wakeup_flag = TUNER_ON;
             wake_up( &g_tuner_poll_wait_queue );
 
@@ -790,7 +790,7 @@ static int __init tuner_drv_start(void)
                      failed in platform_driver_register.");
         return ret;
     }
-    
+
     /* device alloc */
     mmtuner_device = platform_device_alloc(TUNER_CONFIG_DRIVER_NAME, -1);
 
@@ -800,7 +800,7 @@ static int __init tuner_drv_start(void)
         platform_driver_unregister(&mmtuner_driver);
         return -ENOMEM;
     }
-    
+
     /* device add */
     ret = platform_device_add(mmtuner_device);
     if ( ret )
@@ -812,7 +812,7 @@ static int __init tuner_drv_start(void)
     }
 
 	device_class = class_create(THIS_MODULE, TUNER_CONFIG_DRIVER_NAME);
-    if (IS_ERR(device_class)) 
+    if (IS_ERR(device_class))
     {
         ERROR_PRINT("init_module: Error: failed in class_create.");
         platform_device_put(mmtuner_device);
@@ -820,12 +820,12 @@ static int __init tuner_drv_start(void)
         return PTR_ERR(device_class);
     }
 
-    dev = device_create ( device_class, 
-    					  NULL, 
-    					  MKDEV(TUNER_CONFIG_DRV_MAJOR, 
-    					  TUNER_CONFIG_DRV_MINOR), 
-    					  NULL, 
-    					  TUNER_CONFIG_DRIVER_NAME);
+    dev = device_create ( device_class,
+					  NULL,
+					  MKDEV(TUNER_CONFIG_DRV_MAJOR,
+					  TUNER_CONFIG_DRV_MINOR),
+					  NULL,
+					  TUNER_CONFIG_DRIVER_NAME);
 
     if(IS_ERR(dev))
     {
@@ -834,7 +834,7 @@ static int __init tuner_drv_start(void)
         platform_driver_unregister(&mmtuner_driver);
         return PTR_ERR(dev);
     }
-   
+
     /* thread creat */
     g_tuner_kthread_flag = TUNER_KTH_NONE;
 
@@ -891,8 +891,8 @@ static void __exit tuner_drv_end(void)
     }
 
     /* device destroy */
-    device_destroy(device_class, MKDEV(TUNER_CONFIG_DRV_MAJOR, 
-    								   TUNER_CONFIG_DRV_MINOR));
+    device_destroy(device_class, MKDEV(TUNER_CONFIG_DRV_MAJOR,
+								   TUNER_CONFIG_DRV_MINOR));
     /* class destroy */
     class_destroy(device_class);
     /* device unregister */
@@ -936,8 +936,8 @@ static int tuner_module_entry_open(struct inode* Inode, struct file* FIle)
         open_cnt++;
     }
 #endif /* TUNER_CONFIG_DRV_MULTI */
-    INFO_PRINT("tuner_module_entry_open: end << open cnt = %ld >>", 
-    			open_cnt );
+    INFO_PRINT("tuner_module_entry_open: end << open cnt = %ld >>",
+			open_cnt );
 
     return 0;
 }
@@ -978,7 +978,7 @@ static int tuner_module_entry_close(struct inode* Inode, struct file* FIle)
 	{
         /* interrupt release */
         tuner_drv_release_interrupt();
-    
+
         if( FIle == NULL )
         {
             return -1;
@@ -1043,8 +1043,8 @@ static ssize_t tuner_module_entry_write(struct file* FIle,
 
     /* argument check */
     if (Count < 3) {
-    	TRACE();
-    	return -EINVAL;
+	TRACE();
+	return -EINVAL;
     }
 
     /* memory allocation for data area */
@@ -1062,9 +1062,9 @@ static ssize_t tuner_module_entry_write(struct file* FIle,
     /* get i2c adapter */
     adap = i2c_get_adapter(TUNER_CONFIG_I2C_BUSNUM);
     if (adap == NULL) {
-    	TRACE();
-    	vfree(buf);
-    	return -EINVAL;
+	TRACE();
+	vfree(buf);
+	return -EINVAL;
     }
 
     /* construct i2c message */
@@ -1077,14 +1077,14 @@ static ssize_t tuner_module_entry_write(struct file* FIle,
 
     ret = i2c_transfer(adap, msgs, 1);
     if (ret < 0) {
-    	TRACE();
-    	i2c_put_adapter(adap);
-    	vfree(buf);
-    	return -EINVAL;
+	TRACE();
+	i2c_put_adapter(adap);
+	vfree(buf);
+	return -EINVAL;
     }
     DEBUG_PRINT(
-    		"write        slv:0x%02x adr:0x%02x len:%-4d 0x%02x ... 0x%02x ",
-    		buf[0], buf[1], Count-2, buf[2], buf[Count-1]);
+		"write        slv:0x%02x adr:0x%02x len:%-4d 0x%02x ... 0x%02x ",
+		buf[0], buf[1], Count-2, buf[2], buf[Count-1]);
 
     vfree(buf);
     return ret;
@@ -1105,57 +1105,57 @@ static ssize_t tuner_module_entry_write(struct file* FIle,
  *            :   uArgument
  *    output  :   none
  ******************************************************************************/
-static int SMT113J_IOCTL_GET_OPEN_COUNT ( struct file*  FIle, 
-										  unsigned int cmd, 
+static int SMT113J_IOCTL_GET_OPEN_COUNT ( struct file*  FIle,
+										  unsigned int cmd,
 										  unsigned long arg )
 {
 	TUNER_STS_DATA *arg_data;
     int				ret = 0;
 	unsigned long 	temp_open = 0,
-				  	temp_moni = 0;
-	
-	DEBUG_PRINT ("SMT113J_IOCTL_GET_OPEN_COUNT << Start >> : open = %ld", 
+					temp_moni = 0;
+
+	DEBUG_PRINT ("SMT113J_IOCTL_GET_OPEN_COUNT << Start >> : open = %ld",
 				 ( open_cnt - moni_cnt ));
 
 	/* Parameter check */
 	arg_data = (TUNER_STS_DATA*)arg;
-	
+
 	if ( NULL == arg_data )
 	{
 		ERROR_PRINT ("Parameter Error : arg = NULL");
 		return ( -1 );
 	}
 	/* state check */
-	if ( open_cnt < moni_cnt ) 
+	if ( open_cnt < moni_cnt )
 	{
-		ERROR_PRINT ("-> Status Error : open = %ld, moni = %ld", 
+		ERROR_PRINT ("-> Status Error : open = %ld, moni = %ld",
 					 open_cnt, moni_cnt );
 		return ( -1 );
 	}
 	temp_open = (open_cnt - moni_cnt);
 	temp_moni = moni_cnt;
-	
+
 	/* Copy to User Area */
 	ret = put_user ( temp_open, (unsigned long __user *)&(arg_data->open_cnt) );
-	
+
 	if ( 0 != ret )
 	{
 		ERROR_PRINT ("-> put_user(arg_data->open_cnt) Error : ret = %d", ret );
 		return ( -1 );
 	}
-	
+
 	/* Copy to User Area */
 	ret = put_user ( moni_cnt, (unsigned long __user *)&(arg_data->moni_cnt) );
 	if ( 0 != ret )
 	{
 		ERROR_PRINT ("-> put_user(arg_data->moni_cnt) Error : ret = %d", ret );
 		return ( -1 );
-	}	
-	
+	}
+
 	DEBUG_PRINT ("SMT113J_IOCTL_GET_OPEN_COUNT << End >>");
 	DEBUG_PRINT ("-> Open Count Result    : %ld", open_cnt );
 	DEBUG_PRINT ("-> Monitor Count Result : %ld", moni_cnt );
-	
+
 	return ( 0 );
 }
 
@@ -1173,14 +1173,14 @@ static int SMT113J_IOCTL_GET_OPEN_COUNT ( struct file*  FIle,
  *            :   uArgument
  *    output  :   none
  ******************************************************************************/
-static int SMT113J_IOCTL_SET_MONITOR_MODE ( struct file* FIle, 
-											unsigned int cmd, 
+static int SMT113J_IOCTL_SET_MONITOR_MODE ( struct file* FIle,
+											unsigned int cmd,
 											unsigned long arg )
 {
 	int ret = 0;
-	
+
 	DEBUG_PRINT ("SMT113J_IOCTL_SET_MONITOR_MODE << Start >> ");
-	
+
 	if ( 1 == arg )
 	{
 		/* Monitor Mode Start */
@@ -1196,7 +1196,7 @@ static int SMT113J_IOCTL_SET_MONITOR_MODE ( struct file* FIle,
 			moni_cnt = 0;
 		}
 	}
-	DEBUG_PRINT ("SMT113J_IOCTL_SET_MONITOR_MODE << End >> : moni_cnt = %ld", 
+	DEBUG_PRINT ("SMT113J_IOCTL_SET_MONITOR_MODE << End >> : moni_cnt = %ld",
 				 moni_cnt );
 
 	return ( ret );
@@ -1244,10 +1244,10 @@ static long tuner_module_entry_ioctl(struct file *file,
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,37)
         /* lock release */
         mutex_unlock(&g_tuner_mutex);
-#endif  
+#endif
         return -EINVAL;
     }
-    
+
     switch( uCommand )
     {
         /* read data */
@@ -1261,7 +1261,7 @@ static long tuner_module_entry_ioctl(struct file *file,
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,37)
                 /* lock release */
                 mutex_unlock(&g_tuner_mutex);
-#endif  
+#endif
                 return -EINVAL;
             }
 
@@ -1278,7 +1278,7 @@ static long tuner_module_entry_ioctl(struct file *file,
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,37)
                     /* lock release */
                     mutex_unlock(&g_tuner_mutex);
-#endif  
+#endif
                     return -EINVAL;
                 }
             }
@@ -1297,7 +1297,7 @@ static long tuner_module_entry_ioctl(struct file *file,
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,37)
                 /* lock release */
                 mutex_unlock(&g_tuner_mutex);
-#endif  
+#endif
                 return -EINVAL;
             }
 
@@ -1314,7 +1314,7 @@ static long tuner_module_entry_ioctl(struct file *file,
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,37)
                 /* lock release */
                 mutex_unlock(&g_tuner_mutex);
-#endif  
+#endif
                 return -EINVAL;
             }
             /* INTCND_S */
@@ -1350,14 +1350,14 @@ static long tuner_module_entry_ioctl(struct file *file,
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,37)
                 /* lock release */
                 mutex_unlock(&g_tuner_mutex);
-#endif  
+#endif
                 return -EINVAL;
             }
 
             DEBUG_PRINT( "// IRQ factor send: INTCND_F:0x%02x INTST_F:0x%02x"
-            		,g_tuner_intcnd_f, g_tuner_intst_f );
+			,g_tuner_intcnd_f, g_tuner_intst_f );
             DEBUG_PRINT( "// IRQ factor send: INTCND_S:0x%02x INTST_S:0x%02x"
-            		,g_tuner_intcnd_s, g_tuner_intst_s );
+			,g_tuner_intcnd_s, g_tuner_intst_s );
 
             /* initialization */
             g_tuner_intcnd_f = 0x00;
@@ -1370,7 +1370,7 @@ static long tuner_module_entry_ioctl(struct file *file,
             break;
         /* event set */
         case TUNER_IOCTL_VALSET_EVENT:
-        	DEBUG_PRINT("*** VALSET_EVENT ***");
+		DEBUG_PRINT("*** VALSET_EVENT ***");
             copy_ret = copy_from_user( &data,
                                        &( *(TUNER_DATA_RW *)uArgument ),
                                        sizeof( TUNER_DATA_RW ));
@@ -1380,22 +1380,22 @@ static long tuner_module_entry_ioctl(struct file *file,
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,37)
                 /* lock release */
                 mutex_unlock(&g_tuner_mutex);
-#endif  
+#endif
                 return -EINVAL;
             }
 
             /* when 1st time of event setting, be enable interrupt */
-    		/* slave address */
+		/* slave address */
             event_status[0].slave_adr = TUNER_SLAVE_ADR_M1;
-    		/* reg. address  */
+		/* reg. address  */
             event_status[0].adr       = REG_INTDEF1_F;
-    		/* start bit position */
+		/* start bit position */
             event_status[0].sbit      = SIG_ENS_INTDEF1_F;
-    		/* end bit position */
+		/* end bit position */
             event_status[0].ebit      = SIG_ENE_INTDEF1_F;
-    		/* clear for read */
+		/* clear for read */
             event_status[0].param     = 0x00;
-    		/* enable bit mask */
+		/* enable bit mask */
             event_status[0].enabit    = SIG_ENA_INTDEF1_F;
             event_status[1].slave_adr = TUNER_SLAVE_ADR_M1;
             event_status[1].adr       = REG_INTDEF2_F;
@@ -1416,10 +1416,10 @@ static long tuner_module_entry_ioctl(struct file *file,
             event_status[3].param     = 0x00;
             event_status[3].enabit    = SIG_ENA_INTDEF2_S;
 
-            ret = tuner_drv_hw_access( TUNER_IOCTL_VALGET, 
-            						   event_status, 
-            						   TUNER_EVENT_REGNUM );
-            
+            ret = tuner_drv_hw_access( TUNER_IOCTL_VALGET,
+							   event_status,
+							   TUNER_EVENT_REGNUM );
+
             if( ret != 0 )
             {
                 TRACE();
@@ -1427,17 +1427,17 @@ static long tuner_module_entry_ioctl(struct file *file,
                 /* lock release */
                 mutex_unlock(&g_tuner_mutex);
 #endif
-                return -EINVAL;  
+                return -EINVAL;
             }
 
             if (((event_status[0].param & event_status[0].enabit) == 0x00) &&
-            	((event_status[1].param & event_status[1].enabit) == 0x00) &&
+		((event_status[1].param & event_status[1].enabit) == 0x00) &&
                 ((event_status[2].param & event_status[2].enabit) == 0x00) &&
                 ((event_status[3].param & event_status[3].enabit) == 0x00))
             {
-            	DEBUG_PRINT("*** REQUEST IRQ ***");
+		DEBUG_PRINT("*** REQUEST IRQ ***");
                 ret = tuner_drv_set_interrupt();
-                
+
                 if( ret != 0 )
                 {
                     TRACE();
@@ -1445,7 +1445,7 @@ static long tuner_module_entry_ioctl(struct file *file,
                 /* lock release */
                 mutex_unlock(&g_tuner_mutex);
 #endif
-                return -EINVAL;  
+                return -EINVAL;
                 }
             }
 
@@ -1463,7 +1463,7 @@ static long tuner_module_entry_ioctl(struct file *file,
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,37)
                 /* lock release */
                 mutex_unlock(&g_tuner_mutex);
-#endif  
+#endif
                 return -EINVAL;
             }
 
@@ -1475,21 +1475,21 @@ static long tuner_module_entry_ioctl(struct file *file,
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,37)
                 /* lock release */
                 mutex_unlock(&g_tuner_mutex);
-#endif  
+#endif
                 return -EINVAL;
             }
-    		/* slave address */
+		/* slave address */
             event_status[0].slave_adr = TUNER_SLAVE_ADR_M1;
-    		/* reg. address  */
+		/* reg. address  */
             event_status[0].adr       = REG_INTDEF1_F;
-    		/* start bit position */
+		/* start bit position */
             event_status[0].sbit      = SIG_ENS_INTDEF1_F;
-    		/* end bit position */
+		/* end bit position */
             event_status[0].ebit      = SIG_ENE_INTDEF1_F;
-    		/* clear for read */
+		/* clear for read */
             event_status[0].param     = 0x00;
-    		/* enable bit mask */
-    		event_status[0].enabit    = SIG_ENA_INTDEF1_F;
+		/* enable bit mask */
+		event_status[0].enabit    = SIG_ENA_INTDEF1_F;
             event_status[1].slave_adr = TUNER_SLAVE_ADR_M1;
             event_status[1].adr       = REG_INTDEF2_F;
             event_status[1].sbit      = SIG_ENS_INTDEF2_F;
@@ -1509,16 +1509,16 @@ static long tuner_module_entry_ioctl(struct file *file,
             event_status[3].param     = 0x00;
             event_status[3].enabit    = SIG_ENA_INTDEF2_S;
 
-            ret = tuner_drv_hw_access( TUNER_IOCTL_VALGET, 
-            						   event_status, 
-            						   TUNER_EVENT_REGNUM );
+            ret = tuner_drv_hw_access( TUNER_IOCTL_VALGET,
+							   event_status,
+							   TUNER_EVENT_REGNUM );
 
             if (((event_status[0].param & event_status[0].enabit) == 0x00) &&
                 ((event_status[1].param & event_status[1].enabit) == 0x00) &&
                 ((event_status[2].param & event_status[2].enabit) == 0x00) &&
                 ((event_status[3].param & event_status[3].enabit) == 0x00))
             {
-            	DEBUG_PRINT("*** release IRQ REQUEST ***");
+		DEBUG_PRINT("*** release IRQ REQUEST ***");
                 tuner_drv_release_interrupt();
             }
 
@@ -1533,7 +1533,7 @@ static long tuner_module_entry_ioctl(struct file *file,
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,37)
                 /* lock release */
                 mutex_unlock(&g_tuner_mutex);
-#endif  
+#endif
                 return -EINVAL;
             }
             ret = tuner_drv_ctl_power( param );
@@ -1543,32 +1543,32 @@ static long tuner_module_entry_ioctl(struct file *file,
 /* Add Start 20121218 No_1 */
 #if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,36)
         case TUNER_IOCTL_VALGET_OPENCNT:
-			ret = SMT113J_IOCTL_GET_OPEN_COUNT ( FIle->private_data, 
-												 uCommand, 
+			ret = SMT113J_IOCTL_GET_OPEN_COUNT ( FIle->private_data,
+												 uCommand,
 												 uArgument );
 			break;
-    	
+
         case TUNER_IOCTL_VALSET_MONICNT:
-			ret = SMT113J_IOCTL_SET_MONITOR_MODE ( FIle->private_data, 
-												   uCommand, 
+			ret = SMT113J_IOCTL_SET_MONITOR_MODE ( FIle->private_data,
+												   uCommand,
 												   uArgument );
 			break;
 #else  /* LINUX_VERSION_CODE */
         case TUNER_IOCTL_VALGET_OPENCNT:
-			ret = SMT113J_IOCTL_GET_OPEN_COUNT ( file->private_data, 
-												 uCommand, 
+			ret = SMT113J_IOCTL_GET_OPEN_COUNT ( file->private_data,
+												 uCommand,
 												 uArgument );
 			break;
-    	
+
         case TUNER_IOCTL_VALSET_MONICNT:
-			ret = SMT113J_IOCTL_SET_MONITOR_MODE ( file->private_data, 
-												   uCommand, 
+			ret = SMT113J_IOCTL_SET_MONITOR_MODE ( file->private_data,
+												   uCommand,
 												   uArgument );
 			break;
 #endif /* LINUX_VERSION_CODE */
 /* Add End 20121218 No_1 */
-    	
-    	default:
+
+	default:
             TRACE();
             ret = -EINVAL;
             break;
@@ -1578,7 +1578,7 @@ static long tuner_module_entry_ioctl(struct file *file,
     /* lock release */
     mutex_unlock(&g_tuner_mutex);
 #endif
-	
+
     return ret;
 }
 /******************************************************************************
@@ -1614,7 +1614,7 @@ static unsigned int tuner_module_entry_poll(
     {
         tuner_mask = ( POLLIN | POLLRDNORM );
     }
-    
+
     g_tuner_wakeup_flag = TUNER_OFF;
 
     /* interrupt enable */

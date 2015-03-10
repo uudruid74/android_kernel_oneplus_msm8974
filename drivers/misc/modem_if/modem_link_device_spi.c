@@ -864,7 +864,7 @@ static void spi_rx_work(void)
 	spi_print_data(spi_packet_buf, 64);
 #endif
 
-	
+
 }
 
 static int spi_init_ipc(struct spi_link_device *spild)
@@ -1270,7 +1270,7 @@ ACK:
 		pr_err("[SPI DUMP] TX_D2(%d) : [%02x %02x %02x %02x %02x %02x %02x %02x]\n",
 			send_packet_size, spi_ptr[0], spi_ptr[1], spi_ptr[2],
 			spi_ptr[3], spi_ptr[4], spi_ptr[5], spi_ptr[6],
-			spi_ptr[7]);	
+			spi_ptr[7]);
 		goto err;
 	}
 
@@ -1643,7 +1643,7 @@ void spi_work(struct work_struct *work)
 		{
 		       /* active the spi wakelock to prevent ap
 		       becoming deep sleep during waiting SUB_SRDY signal. Otherwise,
-		       may cause CP side TX queue full, because the MRDY keeping on 
+		       may cause CP side TX queue full, because the MRDY keeping on
 		       HIGH_LEVEL*/
 			if (!wake_lock_active(&p_spild->spi_wake_lock)){
 			    wake_lock(&p_spild->spi_wake_lock);
@@ -1759,7 +1759,7 @@ static void get_mif_spi_dt_data(struct device *dev)
 	p_spild->gpio_modem_bin_srdy = p_spild->gpio_ipc_srdy;
 
 	mif_info("gpio_mrdy:%d, gpio_srdy:%d, gpio_submrdy:%d, gpio_subsrdy:%d, gpio_cpdump_int:%d\n",
-		p_spild->gpio_ipc_mrdy, p_spild->gpio_ipc_srdy, 
+		p_spild->gpio_ipc_mrdy, p_spild->gpio_ipc_srdy,
 		p_spild->gpio_ipc_sub_mrdy, p_spild->gpio_ipc_sub_srdy,
 		p_spild->gpio_cp_dump_int);
 }
@@ -2062,4 +2062,3 @@ err1:
 err2:
 	return NULL;
 }
-

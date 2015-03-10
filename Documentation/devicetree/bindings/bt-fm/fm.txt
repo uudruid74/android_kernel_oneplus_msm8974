@@ -26,4 +26,3 @@ Example:
 	qcom,iris-fm {
 		compatible = "qcom,iris_fm";
 	};
-

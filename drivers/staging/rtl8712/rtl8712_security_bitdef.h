@@ -45,4 +45,3 @@
 
 
 #endif	/*__RTL8712_SECURITY_BITDEF_H__*/
-

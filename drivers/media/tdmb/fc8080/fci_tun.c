@@ -189,4 +189,3 @@ s32 tuner_get_rssi(HANDLE handle, s32 *rssi)
 
 	return BBM_OK;
 }
-

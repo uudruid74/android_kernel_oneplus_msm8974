@@ -1150,5 +1150,3 @@ BOOL s_bVT3226D0_11bLoCurrentAdjust(
 
     return bResult;
 }
-
-

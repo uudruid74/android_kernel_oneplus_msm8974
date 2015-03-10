@@ -580,7 +580,7 @@ static inline int ocfs2_calc_tree_trunc_credits(struct super_block *sb,
 						struct ocfs2_dinode *fe,
 						struct ocfs2_extent_list *last_el)
 {
- 	/* for dinode + all headers in this pass + update to next leaf */
+	/* for dinode + all headers in this pass + update to next leaf */
 	u16 next_free = le16_to_cpu(last_el->l_next_free_rec);
 	u16 tree_depth = le16_to_cpu(fe->id2.i_list.l_tree_depth);
 	int credits = 1 + tree_depth + 1;

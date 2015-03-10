@@ -508,4 +508,3 @@ clr_buf:
 	}
 	return rc;
 }
-

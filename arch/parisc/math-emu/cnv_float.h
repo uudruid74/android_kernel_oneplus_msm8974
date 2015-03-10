@@ -64,7 +64,7 @@
 
 #define Sgl_roundnearest_from_int(int_value,sgl_value)			\
     if (int_value & 1<<(SGL_EXP_LENGTH - 2))   /* round bit */		\
-    	if ((int_value << 34 - SGL_EXP_LENGTH) || Slow(sgl_value))	\
+	if ((int_value << 34 - SGL_EXP_LENGTH) || Slow(sgl_value))	\
 		Sall(sgl_value)++
 
 #define Dint_isinexact_to_sgl(dint_valueA,dint_valueB)		\
@@ -72,8 +72,8 @@
 
 #define Sgl_roundnearest_from_dint(dint_valueA,dint_valueB,sgl_value)	\
     if (Dintp1(dint_valueA) & 1<<(SGL_EXP_LENGTH - 2)) 			\
-    	if ((Dintp1(dint_valueA) << 34 - SGL_EXP_LENGTH) ||		\
-    	Dintp2(dint_valueB) || Slow(sgl_value)) Sall(sgl_value)++
+	if ((Dintp1(dint_valueA) << 34 - SGL_EXP_LENGTH) ||		\
+	Dintp2(dint_valueB) || Slow(sgl_value)) Sall(sgl_value)++
 
 #define Dint_isinexact_to_dbl(dint_value) 	\
     (Dintp2(dint_value) << 33 - DBL_EXP_LENGTH)
@@ -91,7 +91,7 @@
      Sall(sgl_value) << (SGL_EXP_LENGTH + 2 + exponent) : FALSE)
 
 
-/* 
+/*
  * Double format macros
  */
 
@@ -148,43 +148,43 @@
 		sticky = inexact;					\
 		inexact |= guard;					\
 		dest >>= 1;						\
-    		Deposit_dsign(srcA,0);					\
-    	        Shiftdouble(Dallp1(srcA),Dallp2(srcB),30,dest);		\
+		Deposit_dsign(srcA,0);					\
+	        Shiftdouble(Dallp1(srcA),Dallp2(srcB),30,dest);		\
 	        odd = dest << 31;					\
 	}								\
 	else {								\
-    	    inexact = Dallp2(srcB) << (2 + exp);			\
-    	    guard = inexact >> 31;					\
-    	    sticky = inexact << 1; 					\
-    	    Deposit_dsign(srcA,0);					\
-    	    if (exp == -2) dest = Dallp1(srcA);				\
-    	    else Variable_shift_double(Dallp1(srcA),Dallp2(srcB),30-exp,dest); \
-    	    odd = dest << 31;						\
+	    inexact = Dallp2(srcB) << (2 + exp);			\
+	    guard = inexact >> 31;					\
+	    sticky = inexact << 1; 					\
+	    Deposit_dsign(srcA,0);					\
+	    if (exp == -2) dest = Dallp1(srcA);				\
+	    else Variable_shift_double(Dallp1(srcA),Dallp2(srcB),30-exp,dest); \
+	    odd = dest << 31;						\
 	}								\
     }									\
     else {								\
-    	Deposit_dsign(srcA,0);						\
-    	if (exp > (1 - SGL_P)) {					\
-    	    dest = Dallp1(srcA) >> (- 2 - exp);				\
-    	    inexact = Dallp1(srcA) << (34 + exp);			\
-    	    guard = inexact >> 31;					\
-    	    sticky = (inexact << 1) | Dallp2(srcB);			\
-    	    inexact |= Dallp2(srcB); 					\
-    	    odd = dest << 31;						\
-    	}								\
-    	else {								\
-    	    dest = 0;							\
-    	    inexact = Dallp1(srcA) | Dallp2(srcB);			\
-    	    if (exp == (1 - SGL_P)) {					\
-    	    	guard = Dhidden(srcA);					\
-    	    	sticky = Dmantissap1(srcA) | Dallp2(srcB); 		\
-    	    }								\
-    	    else {							\
-    	    	guard = 0;						\
-    	    	sticky = inexact;					\
-    	    }								\
-    	    odd = 0;							\
-    	}								\
+	Deposit_dsign(srcA,0);						\
+	if (exp > (1 - SGL_P)) {					\
+	    dest = Dallp1(srcA) >> (- 2 - exp);				\
+	    inexact = Dallp1(srcA) << (34 + exp);			\
+	    guard = inexact >> 31;					\
+	    sticky = (inexact << 1) | Dallp2(srcB);			\
+	    inexact |= Dallp2(srcB); 					\
+	    odd = dest << 31;						\
+	}								\
+	else {								\
+	    dest = 0;							\
+	    inexact = Dallp1(srcA) | Dallp2(srcB);			\
+	    if (exp == (1 - SGL_P)) {					\
+		guard = Dhidden(srcA);					\
+		sticky = Dmantissap1(srcA) | Dallp2(srcB); 		\
+	    }								\
+	    else {							\
+		guard = 0;						\
+		sticky = inexact;					\
+	    }								\
+	    odd = 0;							\
+	}								\
     }									\
     exp = 0
 
@@ -196,7 +196,7 @@
 
 #define Dbl_isoverflow_to_int(exponent,dbl_valueA,dbl_valueB)		\
     ((exponent > SGL_FX_MAX_EXP + 1) || Dsign(dbl_valueA)==0 ||		\
-     Dmantissap1(dbl_valueA)!=0 || (Dallp2(dbl_valueB)>>21)!=0 ) 
+     Dmantissap1(dbl_valueA)!=0 || (Dallp2(dbl_valueB)>>21)!=0 )
 
 #define Dbl_isone_roundbit(dbl_valueA,dbl_valueB,exponent)              \
     ((exponent < (DBL_P - 33) ?						\
@@ -214,7 +214,7 @@
 
 #define Int_from_sgl_mantissa(sgl_value,exponent)	\
     Sall(sgl_value) = 				\
-    	(unsigned)(Sall(sgl_value) << SGL_EXP_LENGTH)>>(31 - exponent)
+	(unsigned)(Sall(sgl_value) << SGL_EXP_LENGTH)>>(31 - exponent)
 
 #define Int_from_dbl_mantissa(dbl_valueA,dbl_valueB,exponent)	\
     Shiftdouble(Dallp1(dbl_valueA),Dallp2(dbl_valueB),22,Dallp1(dbl_valueA)); \
@@ -229,35 +229,35 @@
 #define Dint_from_sgl_mantissa(sgl_value,exponent,dresultA,dresultB)	\
     {Sall(sgl_value) <<= SGL_EXP_LENGTH;  /*  left-justify  */		\
     if (exponent <= 31) {						\
-    	Dintp1(dresultA) = 0;						\
-    	Dintp2(dresultB) = (unsigned)Sall(sgl_value) >> (31 - exponent); \
+	Dintp1(dresultA) = 0;						\
+	Dintp2(dresultB) = (unsigned)Sall(sgl_value) >> (31 - exponent); \
     }									\
     else {								\
-    	Dintp1(dresultA) = Sall(sgl_value) >> (63 - exponent);		\
-    	Dintp2(dresultB) = Sall(sgl_value) << (exponent - 31);		\
+	Dintp1(dresultA) = Sall(sgl_value) >> (63 - exponent);		\
+	Dintp2(dresultB) = Sall(sgl_value) << (exponent - 31);		\
     }}
 
 
 #define Dint_from_dbl_mantissa(dbl_valueA,dbl_valueB,exponent,destA,destB) \
     {if (exponent < 32) {						\
-    	Dintp1(destA) = 0;						\
-    	if (exponent <= 20)						\
-    	    Dintp2(destB) = Dallp1(dbl_valueA) >> 20-exponent;		\
-    	else Variable_shift_double(Dallp1(dbl_valueA),Dallp2(dbl_valueB), \
+	Dintp1(destA) = 0;						\
+	if (exponent <= 20)						\
+	    Dintp2(destB) = Dallp1(dbl_valueA) >> 20-exponent;		\
+	else Variable_shift_double(Dallp1(dbl_valueA),Dallp2(dbl_valueB), \
 	     52-exponent,Dintp2(destB));					\
     }									\
     else {								\
-    	if (exponent <= 52) {						\
-    	    Dintp1(destA) = Dallp1(dbl_valueA) >> 52-exponent;		\
+	if (exponent <= 52) {						\
+	    Dintp1(destA) = Dallp1(dbl_valueA) >> 52-exponent;		\
 	    if (exponent == 52) Dintp2(destB) = Dallp2(dbl_valueB);	\
 	    else Variable_shift_double(Dallp1(dbl_valueA),Dallp2(dbl_valueB), \
 	    52-exponent,Dintp2(destB));					\
         }								\
-    	else {								\
-    	    Variable_shift_double(Dallp1(dbl_valueA),Dallp2(dbl_valueB), \
+	else {								\
+	    Variable_shift_double(Dallp1(dbl_valueA),Dallp2(dbl_valueB), \
 	    84-exponent,Dintp1(destA));					\
-    	    Dintp2(destB) = Dallp2(dbl_valueB) << exponent-52;		\
-    	}								\
+	    Dintp2(destB) = Dallp2(dbl_valueB) << exponent-52;		\
+	}								\
     }}
 
 #define Dint_setzero(dresultA,dresultB) 	\
@@ -321,7 +321,7 @@
 
 #define Sgl_roundnearest_from_suint(suint_value,sgl_value)		\
     if (suint_value & 1<<(SGL_EXP_LENGTH - 1))   /* round bit */	\
-    	if ((suint_value << 33 - SGL_EXP_LENGTH) || Slow(sgl_value))	\
+	if ((suint_value << 33 - SGL_EXP_LENGTH) || Slow(sgl_value))	\
 		Sall(sgl_value)++
 
 #define Duint_isinexact_to_sgl(duint_valueA,duint_valueB)	\
@@ -329,8 +329,8 @@
 
 #define Sgl_roundnearest_from_duint(duint_valueA,duint_valueB,sgl_value) \
     if (Duintp1(duint_valueA) & 1<<(SGL_EXP_LENGTH - 1))		\
-    	if ((Duintp1(duint_valueA) << 33 - SGL_EXP_LENGTH) ||		\
-    	Duintp2(duint_valueB) || Slow(sgl_value)) Sall(sgl_value)++
+	if ((Duintp1(duint_valueA) << 33 - SGL_EXP_LENGTH) ||		\
+	Duintp2(duint_valueB) || Slow(sgl_value)) Sall(sgl_value)++
 
 #define Duint_isinexact_to_dbl(duint_value) 	\
     (Duintp2(duint_value) << 32 - DBL_EXP_LENGTH)
@@ -349,12 +349,12 @@
 #define Duint_from_sgl_mantissa(sgl_value,exponent,dresultA,dresultB)	\
   {Sall(sgl_value) <<= SGL_EXP_LENGTH;  /*  left-justify  */		\
     if (exponent <= 31) {						\
-    	Dintp1(dresultA) = 0;						\
-    	Dintp2(dresultB) = (unsigned)Sall(sgl_value) >> (31 - exponent); \
+	Dintp1(dresultA) = 0;						\
+	Dintp2(dresultB) = (unsigned)Sall(sgl_value) >> (31 - exponent); \
     }									\
     else {								\
-    	Dintp1(dresultA) = Sall(sgl_value) >> (63 - exponent);		\
-    	Dintp2(dresultB) = Sall(sgl_value) << (exponent - 31);		\
+	Dintp1(dresultA) = Sall(sgl_value) >> (63 - exponent);		\
+	Dintp2(dresultB) = Sall(sgl_value) << (exponent - 31);		\
     }									\
     Sall(sgl_value) >>= SGL_EXP_LENGTH;  /* return to original */	\
   }
@@ -362,7 +362,7 @@
 #define Duint_setzero(dresultA,dresultB) 	\
     Dint_setzero(dresultA,dresultB)
 
-#define Duint_increment(dresultA,dresultB) Dint_increment(dresultA,dresultB) 
+#define Duint_increment(dresultA,dresultB) Dint_increment(dresultA,dresultB)
 
 #define Duint_isone_lowp2(dresultB)  Dint_isone_lowp2(dresultB)
 
@@ -374,4 +374,4 @@
     Dbl_isinexact_to_fix(dbl_valueA,dbl_valueB,exponent)
 
 #define Duint_from_dbl_mantissa(dbl_valueA,dbl_valueB,exponent,destA,destB) \
-    Dint_from_dbl_mantissa(dbl_valueA,dbl_valueB,exponent,destA,destB) 
+    Dint_from_dbl_mantissa(dbl_valueA,dbl_valueB,exponent,destA,destB)

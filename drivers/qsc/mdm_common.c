@@ -586,7 +586,7 @@ static long mdm_modem_ioctl(struct file *filp, unsigned int cmd,
 		mdm_drv->pdata->image_upgrade_supported =1;
 		if (mdm_drv->pdata->image_upgrade_supported &&
 				mdm_ops->image_upgrade_cb) {
-			pr_info("%s enter dload\n", __func__);	
+			pr_info("%s enter dload\n", __func__);
 			get_user(status, (unsigned long __user *) arg);
 			mdm_ops->image_upgrade_cb(mdm_drv, status);
 		} else
@@ -617,7 +617,7 @@ static void mdm_status_fn(struct work_struct *work)
 		container_of(work, struct mdm_device, mdm_status_work);
 	struct mdm_modem_drv *mdm_drv = &mdev->mdm_data;
 	int value = gpio_get_value(MDM_GPIO(MDM2AP_STATUS));
-	
+
 	pr_debug("%s: status:%d\n", __func__, value);
 	if (atomic_read(&mdm_drv->mdm_ready) && mdm_ops->status_cb)
 		mdm_ops->status_cb(mdm_drv, value);
@@ -632,7 +632,7 @@ static void mdm_disable_irqs(struct mdm_device *mdev)
 		return;
 	disable_irq_nosync(mdev->mdm_errfatal_irq);
 	disable_irq_nosync(mdev->mdm_status_irq);
-#ifdef USE_MDM_MODEM	
+#ifdef USE_MDM_MODEM
 	disable_irq_nosync(mdev->mdm_pblrdy_irq);
 #endif
 }
@@ -646,7 +646,7 @@ static irqreturn_t mdm_errfatal(int irq, void *dev_id)
 	if (!mdev)
 		return IRQ_HANDLED;
 
-	mdelay(2); //ADD THIS LINE 
+	mdelay(2); //ADD THIS LINE
 
 	pr_info("%s: mdm id %d sent errfatal interrupt\n",
 			 __func__, mdev->mdm_data.device_id);
@@ -722,7 +722,7 @@ static irqreturn_t mdm_status_change(int irq, void *dev_id)
 	if (!mdev)
 		return IRQ_HANDLED;
 
-	pr_info("%s: MDM2AP_STATUS(irq:%d)\n",__func__, 
+	pr_info("%s: MDM2AP_STATUS(irq:%d)\n",__func__,
 				mdev->mdm_status_irq);
 
 	/*delay to ensure the status gpio value is correct (i.e not caused by some noise) */
@@ -731,7 +731,7 @@ static irqreturn_t mdm_status_change(int irq, void *dev_id)
 	mdm_drv = &mdev->mdm_data;
 	value = gpio_get_value(MDM_GPIO(MDM2AP_STATUS));
 
-	pr_info("%s: MDM2AP_STATUS(irq:%d):%d\n",__func__, 
+	pr_info("%s: MDM2AP_STATUS(irq:%d):%d\n",__func__,
 				mdev->mdm_status_irq, value);
 
 	mdm_print_all_pin(mdm_drv);
@@ -757,7 +757,7 @@ static irqreturn_t mdm_status_change(int irq, void *dev_id)
 		queue_work(mdev->mdm_queue, &mdev->mdm_status_work);
 	}
 
-#ifdef CONFIG_STATUS_IRQ_BY_LEVEL_TRIG	
+#ifdef CONFIG_STATUS_IRQ_BY_LEVEL_TRIG
 	if (value)
 		irq_set_irq_type(irq, IRQF_TRIGGER_LOW | IRQF_ONESHOT);
 	else
@@ -806,9 +806,9 @@ static int mdm_subsys_shutdown(const struct subsys_desc *crashed_subsys)
 		mdm_ops->reset_mdm_cb(mdm_drv);
 		mdm_update_gpio_configs(mdev, GPIO_UPDATE_BOOTING_CONFIG);
 		}
-	else 
+	else
 		mdm_drv->mdm_unexpected_reset_occurred = 0;
-	
+
 	return 0;
 }
 
@@ -824,7 +824,7 @@ static int mdm_subsys_powerup(const struct subsys_desc *crashed_subsys)
 
 	gpio_direction_output(MDM_GPIO(AP2MDM_ERRFATAL), 0);
 	gpio_direction_output(MDM_GPIO(AP2MDM_STATUS), 1);
-	
+
 	if (mdm_drv->pdata->ps_hold_delay_ms > 0)
 		msleep(mdm_drv->pdata->ps_hold_delay_ms);
 
@@ -974,7 +974,7 @@ static int mdm_dt_to_gpio_rscs(struct device_node *node,
 		}
 	}
 	mdm_debug_gpio_show(mdev);
-	
+
 	return rc;
 }
 
@@ -1079,63 +1079,63 @@ static int mdm_gpios_from_resources(struct platform_device *pdev,
 			struct mdm_device *mdev)
 {
 	struct mdm_modem_drv *mdm_drv = &mdev->mdm_data;
-	struct resource *pres;	
+	struct resource *pres;
 
 		/* MDM2AP_ERRFATAL */
- 	pres = platform_get_resource_byname(pdev, IORESOURCE_IO,
- 							"MDM2AP_ERRFATAL");
+	pres = platform_get_resource_byname(pdev, IORESOURCE_IO,
+							"MDM2AP_ERRFATAL");
 	MDM_GPIO(MDM2AP_ERRFATAL) = pres ? pres->start : -1;
- 
- 	/* AP2MDM_ERRFATAL */
- 	pres = platform_get_resource_byname(pdev, IORESOURCE_IO,
- 							"AP2MDM_ERRFATAL");
+
+	/* AP2MDM_ERRFATAL */
+	pres = platform_get_resource_byname(pdev, IORESOURCE_IO,
+							"AP2MDM_ERRFATAL");
 	MDM_GPIO(AP2MDM_ERRFATAL) = pres ? pres->start : -1;
- 
- 	/* MDM2AP_STATUS */
- 	pres = platform_get_resource_byname(pdev, IORESOURCE_IO,
- 							"MDM2AP_STATUS");
+
+	/* MDM2AP_STATUS */
+	pres = platform_get_resource_byname(pdev, IORESOURCE_IO,
+							"MDM2AP_STATUS");
 	MDM_GPIO(MDM2AP_STATUS) = pres ? pres->start : -1;
- 
- 	/* AP2MDM_STATUS */
- 	pres = platform_get_resource_byname(pdev, IORESOURCE_IO,
- 							"AP2MDM_STATUS");
+
+	/* AP2MDM_STATUS */
+	pres = platform_get_resource_byname(pdev, IORESOURCE_IO,
+							"AP2MDM_STATUS");
 	MDM_GPIO(AP2MDM_STATUS) = pres ? pres->start : -1;
- 
- 	/* MDM2AP_WAKEUP */
- 	pres = platform_get_resource_byname(pdev, IORESOURCE_IO,
- 							"MDM2AP_WAKEUP");
+
+	/* MDM2AP_WAKEUP */
+	pres = platform_get_resource_byname(pdev, IORESOURCE_IO,
+							"MDM2AP_WAKEUP");
 	MDM_GPIO(MDM2AP_WAKEUP) = pres ? pres->start : -1;
- 
- 	/* AP2MDM_WAKEUP */
- 	pres = platform_get_resource_byname(pdev, IORESOURCE_IO,
- 							"AP2MDM_WAKEUP");
+
+	/* AP2MDM_WAKEUP */
+	pres = platform_get_resource_byname(pdev, IORESOURCE_IO,
+							"AP2MDM_WAKEUP");
 	MDM_GPIO(AP2MDM_WAKEUP) = pres ? pres->start : -1;
- 
- 	/* AP2MDM_SOFT_RESET */
- 	pres = platform_get_resource_byname(pdev, IORESOURCE_IO,
- 							"AP2MDM_SOFT_RESET");
+
+	/* AP2MDM_SOFT_RESET */
+	pres = platform_get_resource_byname(pdev, IORESOURCE_IO,
+							"AP2MDM_SOFT_RESET");
 	MDM_GPIO(AP2MDM_SOFT_RESET) = pres ? pres->start : -1;
- 
- 	/* AP2MDM_KPDPWR_N */
- 	pres = platform_get_resource_byname(pdev, IORESOURCE_IO,
- 							"AP2MDM_KPDPWR_N");
+
+	/* AP2MDM_KPDPWR_N */
+	pres = platform_get_resource_byname(pdev, IORESOURCE_IO,
+							"AP2MDM_KPDPWR_N");
 	MDM_GPIO(AP2MDM_KPDPWR) = pres ? pres->start : -1;
- 
- 	/* AP2MDM_PMIC_PWR_EN */
- 	pres = platform_get_resource_byname(pdev, IORESOURCE_IO,
- 							"AP2MDM_PMIC_PWR_EN");
+
+	/* AP2MDM_PMIC_PWR_EN */
+	pres = platform_get_resource_byname(pdev, IORESOURCE_IO,
+							"AP2MDM_PMIC_PWR_EN");
 	MDM_GPIO(AP2MDM_PMIC_PWR_EN) = pres ? pres->start : -1;
 
  #ifdef USE_MDM_MODEM
- 	/* MDM2AP_PBLRDY */
- 	pres = platform_get_resource_byname(pdev, IORESOURCE_IO,
- 							"MDM2AP_PBLRDY");
+	/* MDM2AP_PBLRDY */
+	pres = platform_get_resource_byname(pdev, IORESOURCE_IO,
+							"MDM2AP_PBLRDY");
 	MDM_GPIO(MDM2AP_PBLRDY) = pres ? pres->start : -1;
  #endif
- 
- 	/*USB_SW*/
- 	pres = platform_get_resource_byname(pdev, IORESOURCE_IO,
- 							"USB_SW");
+
+	/*USB_SW*/
+	pres = platform_get_resource_byname(pdev, IORESOURCE_IO,
+							"USB_SW");
 	MDM_GPIO(USB_SW) = pres ? pres->start : -1;
 
 	return 0;
@@ -1227,7 +1227,7 @@ static void mdm_deconfigure_ipc(struct mdm_device *mdev)
 {
 	struct mdm_modem_drv *mdm_drv = &mdev->mdm_data;
 	int i;
-	
+
 
 	for (i = 0; i < GPIO_TOTAL; ++i) {
 		if (GPIO_IS_VALID(MDM_GPIO(i)))
@@ -1278,7 +1278,7 @@ static int mdm_configure_ipc(struct mdm_device *mdev)
 				   __func__);
 			goto fatal_err;
 		}
-#ifdef USE_MDM_MODEM		
+#ifdef USE_MDM_MODEM
 		if (GPIO_IS_VALID(MDM_GPIO(MDM2AP_PBLRDY))) {
 			if (gpio_request(MDM_GPIO(MDM2AP_PBLRDY), "MDM2AP_PBLRDY")) {
 				pr_err("%s Failed to configure MDM2AP_PBLRDY gpio\n",
@@ -1323,13 +1323,13 @@ static int mdm_configure_ipc(struct mdm_device *mdev)
 				goto fatal_err;
 			}
 		}
-		
+
 		gpio_direction_output(MDM_GPIO(AP2MDM_STATUS), 0);
 		gpio_direction_output(MDM_GPIO(AP2MDM_ERRFATAL), 0);
 
 	if (GPIO_IS_VALID(MDM_GPIO(AP2MDM_CHNLRDY)))
 		gpio_direction_output(MDM_GPIO(AP2MDM_CHNLRDY), 0);
-	
+
 	gpio_direction_input(MDM_GPIO(MDM2AP_STATUS));
 	gpio_direction_input(MDM_GPIO(MDM2AP_ERRFATAL));
 
@@ -1349,17 +1349,17 @@ static int mdm_configure_ipc(struct mdm_device *mdev)
 		goto fatal_err;
 	}
 
-	
-	 /* Register subsystem handlers */ 
-	 mdev->mdm_subsys_dev = subsys_register(&mdev->mdm_subsys); 
+
+	 /* Register subsystem handlers */
+	 mdev->mdm_subsys_dev = subsys_register(&mdev->mdm_subsys);
 	 pr_err("%s: %d\n", __func__, __LINE__);
-	 if (IS_ERR(mdev->mdm_subsys_dev)) { 
-		 ret = PTR_ERR(mdev->mdm_subsys_dev); 
+	 if (IS_ERR(mdev->mdm_subsys_dev)) {
+		 ret = PTR_ERR(mdev->mdm_subsys_dev);
 		 pr_err("%s: %d\n", __func__, ret);
-		 goto fatal_err; 
-	 } 
-	 subsys_default_online(mdev->mdm_subsys_dev); 
-	
+		 goto fatal_err;
+	 }
+	 subsys_default_online(mdev->mdm_subsys_dev);
+
 
 //	subsys_default_online(mdev->mdm_subsys_dev);
 	/* ERR_FATAL irq. */
@@ -1420,7 +1420,7 @@ errfatal_err:
 
 
 status_err:
-#ifdef USE_MDM_MODEM	
+#ifdef USE_MDM_MODEM
 	if (GPIO_IS_VALID(MDM_GPIO(MDM2AP_PBLRDY))) {
 		irq =  platform_get_irq_byname(mdev->pdev, "plbrdy_irq");
 		if (irq < 0) {
@@ -1473,7 +1473,7 @@ static int  mdm_modem_probe(struct platform_device *pdev)
 		return PTR_ERR(mdev);
 
 	pr_info("%s 1\n", __func__);
-#if 0 //TEST_HS	
+#if 0 //TEST_HS
 	pdev->dev.platform_data=&sglte_platform_data;
 	pdev->id=1;
 	pdev->name = "mdm2_modem";
@@ -1526,7 +1526,7 @@ static int  mdm_modem_probe(struct platform_device *pdev)
 		}
 		#endif
 	}
-	
+
 end:
 	return ret;
 }
@@ -1577,7 +1577,7 @@ static struct platform_driver mdm_modem_driver = {
 static int __init mdm_modem_init(void)
 {
 	int ret;
-	
+
 	ret = mdm_get_ops(&mdm_ops);
 	if (ret)
 		return ret;

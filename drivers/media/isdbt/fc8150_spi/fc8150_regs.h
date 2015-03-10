@@ -28,7 +28,7 @@ extern "C" {
 #endif
 /* #define BBM_XTAL_FREQ               27000 */
 /* #define BBM_XTAL_FREQ               27120 */
-//#define BBM_XTAL_FREQ               24576 
+//#define BBM_XTAL_FREQ               24576
 /* #define BBM_XTAL_FREQ               32000 */
 /* #define BBM_XTAL_FREQ               37400 */
 /* #define BBM_XTAL_FREQ               38400 */

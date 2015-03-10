@@ -63,14 +63,14 @@ enum {
 };
 
  struct display_status{
- 	unsigned char auto_brightness;
+	unsigned char auto_brightness;
 	int bright_level;
 	int siop_status;
 	unsigned char acl_on;
  };
 
  struct mdss_samsung_driver_data{
- 	struct dsi_buf samsung_tx_buf;
+	struct dsi_buf samsung_tx_buf;
 	struct msm_fb_data_type *mfd;
 	struct dsi_buf samsung_rx_buf;
 	struct mdss_panel_common_pdata *mdss_samsung_disp_pdata;
@@ -80,7 +80,7 @@ enum {
 	int bl_level;
 #if defined(CONFIG_BACKLIGHT_IC_KTD2801)
 	int bl_ap_pwm;
-#endif	
+#endif
 
 #if defined(CONFIG_LCD_CLASS_DEVICE)
 	struct platform_device *msm_pdev;

@@ -728,7 +728,7 @@ ssize_t ist30xxb_direct_store(struct device *dev, struct device_attribute *attr,
 	}
 
 	if (ist30xx_intr_wait(30) < 0) return size;
-	
+
 	ts_data->status.event_mode = false;
 	if (direct->cmd == DIRECT_CMD_WRITE) {
 		ret = ist30xx_write_cmd(ts_data->client, DIRECT_ADDR(direct->addr),

@@ -298,4 +298,3 @@ extern unsigned int fp_debugprint;
 #endif	/* __ASSEMBLY__ */
 
 #endif	/* _ASM_FRV_MATH_EMU_H */
-

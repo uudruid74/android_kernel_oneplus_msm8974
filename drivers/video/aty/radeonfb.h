@@ -83,7 +83,7 @@ enum radeon_chip_flags {
 	CHIP_FLAGS_MASK		= 0xffff0000UL,
 	CHIP_IS_MOBILITY	= 0x00010000UL,
 	CHIP_IS_IGP		= 0x00020000UL,
-	CHIP_HAS_CRTC2		= 0x00040000UL,	
+	CHIP_HAS_CRTC2		= 0x00040000UL,
 };
 
 /*
@@ -229,7 +229,7 @@ struct radeon_regs {
 	/* Computed values for PLL */
 	u32		dot_clock_freq;
 	int		feedback_div;
-	int		post_div;	
+	int		post_div;
 
 	/* PLL registers */
 	u32		ppll_div_3;
@@ -247,7 +247,7 @@ struct radeon_regs {
 	u32		p2pll_div_0;
 	u32		htotal_cntl2;
 
-       	/* Palette */
+	/* Palette */
 	int		palette_valid;
 };
 
@@ -516,16 +516,16 @@ static inline int var_to_depth(const struct fb_var_screeninfo *var)
 static inline u32 radeon_get_dstbpp(u16 depth)
 {
 	switch (depth) {
-       	case 8:
-       		return DST_8BPP;
-       	case 15:
-       		return DST_15BPP;
-       	case 16:
-       		return DST_16BPP;
-       	case 32:
-       		return DST_32BPP;
-       	default:
-       		return 0;
+	case 8:
+		return DST_8BPP;
+	case 15:
+		return DST_15BPP;
+	case 16:
+		return DST_16BPP;
+	case 32:
+		return DST_32BPP;
+	default:
+		return 0;
 	}
 }
 

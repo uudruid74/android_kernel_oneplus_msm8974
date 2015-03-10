@@ -1488,4 +1488,3 @@ MODULE_DESCRIPTION("ASoC 88PM860x driver");
 MODULE_AUTHOR("Haojian Zhuang <haojian.zhuang@marvell.com>");
 MODULE_LICENSE("GPL");
 MODULE_ALIAS("platform:88pm860x-codec");
-

@@ -328,15 +328,15 @@ static int snd_info_entry_open(struct inode *inode, struct file *file)
 	if (mode == O_RDONLY || mode == O_RDWR) {
 		if ((entry->content == SNDRV_INFO_CONTENT_DATA &&
 		     entry->c.ops->read == NULL)) {
-		    	err = -ENODEV;
-		    	goto __error;
+			err = -ENODEV;
+			goto __error;
 		}
 	}
 	if (mode == O_WRONLY || mode == O_RDWR) {
 		if ((entry->content == SNDRV_INFO_CONTENT_DATA &&
 		     entry->c.ops->write == NULL)) {
-		    	err = -ENODEV;
-		    	goto __error;
+			err = -ENODEV;
+			goto __error;
 		}
 	}
 	data = kzalloc(sizeof(*data), GFP_KERNEL);
@@ -891,7 +891,7 @@ static int snd_info_dev_register_entry(struct snd_device *device)
  * The parent is assumed as card->proc_root.
  *
  * For releasing this entry, use snd_device_free() instead of
- * snd_info_free_entry(). 
+ * snd_info_free_entry().
  *
  * Returns zero if successful, or a negative error code on failure.
  */

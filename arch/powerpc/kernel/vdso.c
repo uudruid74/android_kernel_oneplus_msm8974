@@ -539,7 +539,7 @@ static __init int vdso_fixup_datapage(struct lib32_elfinfo *v32,
 #ifdef CONFIG_PPC64
 	Elf64_Sym *sym64;
 
-       	sym64 = find_symbol64(v64, "__kernel_datapage_offset");
+	sym64 = find_symbol64(v64, "__kernel_datapage_offset");
 	if (sym64 == NULL) {
 		printk(KERN_ERR "vDSO64: Can't find symbol "
 		       "__kernel_datapage_offset !\n");
@@ -826,4 +826,3 @@ struct vm_area_struct *get_gate_vma(struct mm_struct *mm)
 {
 	return NULL;
 }
-

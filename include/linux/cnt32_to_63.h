@@ -97,7 +97,7 @@ union cnt32_to_63 {
 	static u32 __m_cnt_hi; \
 	union cnt32_to_63 __x; \
 	__x.hi = __m_cnt_hi; \
- 	smp_rmb(); \
+	smp_rmb(); \
 	__x.lo = (cnt_lo); \
 	if (unlikely((s32)(__x.hi ^ __x.lo) < 0)) \
 		__m_cnt_hi = __x.hi = (__x.hi ^ 0x80000000) + (__x.hi >> 31); \

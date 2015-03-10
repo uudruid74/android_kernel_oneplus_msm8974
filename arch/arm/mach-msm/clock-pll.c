@@ -744,4 +744,3 @@ void __init configure_sr_hpm_lp_pll(struct pll_config *config,
 	if (ena_fsm_mode)
 		__set_fsm_mode(PLL_MODE_REG(regs), 0x1, 0x0);
 }
-

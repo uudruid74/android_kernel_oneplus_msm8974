@@ -252,7 +252,7 @@ static void synaptics_set_dvfs_lock(struct synaptics_rmi4_data *rmi4_data,
 		if ((!rmi4_data->dvfs_lock_status) || (rmi4_data->dvfs_old_stauts < on)) {
 			cancel_delayed_work(&rmi4_data->work_dvfs_chg);
 				if (rmi4_data->dvfs_freq != MIN_TOUCH_LIMIT) {
-				if (rmi4_data->dvfs_boost_mode == DVFS_STAGE_TRIPLE) 
+				if (rmi4_data->dvfs_boost_mode == DVFS_STAGE_TRIPLE)
 					ret = set_freq_limit(DVFS_TOUCH_ID,
 						MIN_TOUCH_LIMIT_SECOND);
 				else
@@ -598,9 +598,9 @@ static void clear_tcount(void)
 		tcount_finger[i] = 0;
 		touchbx[i] = 0;
 		touchby[i] = 0;
-	}		 
+	}
 }
- 
+
 static int diff_two_point(int x, int y, int oldx, int oldy)
 {
 	int diffx,diffy;
@@ -2490,7 +2490,7 @@ static int synaptics_rmi4_reset_device(struct synaptics_rmi4_data *rmi4_data)
 		msleep(SYNAPTICS_HW_RESET_TIME);
 	} else {
 		synaptics_power_ctrl(rmi4_data,false);
-		
+
 		msleep(30);
 		synaptics_power_ctrl(rmi4_data,true);
 		rmi4_data->current_page = MASK_8BIT;

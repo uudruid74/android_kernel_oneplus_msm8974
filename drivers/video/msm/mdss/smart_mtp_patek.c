@@ -2188,4 +2188,3 @@ struct smartdim_conf *smart_S6E8FA0_get_conf_sub(void) {
 	__EA8061V_SUB__.print_aid_log = print_aid_log_sub;
 	return (struct smartdim_conf *)&__EA8061V_SUB__;
 }
-

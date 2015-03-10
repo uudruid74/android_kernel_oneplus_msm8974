@@ -255,7 +255,7 @@ config MTD_DILNETPC
 	help
 	  MTD map driver for SSV DIL/Net PC Boards "DNP" and "ADNP".
 	  For details, see <http://www.ssv-embedded.de/ssv/pc104/p169.htm>
- 	  and <http://www.ssv-embedded.de/ssv/pc104/p170.htm>
+	  and <http://www.ssv-embedded.de/ssv/pc104/p170.htm>
 
 config MTD_DILNETPC_BOOTSIZE
 	hex "Size of DIL/Net PC flash boot partition"

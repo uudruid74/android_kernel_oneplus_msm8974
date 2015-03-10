@@ -1528,4 +1528,3 @@ static char VT_6[] = {
 };
 
 #endif
-

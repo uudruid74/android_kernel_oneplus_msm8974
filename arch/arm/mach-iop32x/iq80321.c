@@ -52,7 +52,7 @@ static struct sys_timer iq80321_timer = {
  * IQ80321 I/O.
  */
 static struct map_desc iq80321_io_desc[] __initdata = {
- 	{	/* on-board devices */
+	{	/* on-board devices */
 		.virtual	= IQ80321_UART,
 		.pfn		= __phys_to_pfn(IQ80321_UART),
 		.length		= 0x00100000,

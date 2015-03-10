@@ -8,4 +8,3 @@ obj-y += mtv23x.o
 obj-y += mtv23x_demod.o
 obj-y += mtv23x_rf.o
 obj-y += mtv23x_port.o
-

@@ -663,4 +663,3 @@ int dsi_buf_alloc(struct dsi_buf *dp, int size)
 	dp->len = 0;
 	return 0;
 }
-

@@ -1695,4 +1695,3 @@ module_exit(qca199x_dev_exit);
 
 MODULE_DESCRIPTION("NFC QCA199x");
 MODULE_LICENSE("GPL v2");
-

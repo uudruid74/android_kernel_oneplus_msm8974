@@ -365,12 +365,12 @@ struct synaptics_rmi4_data {
 	struct delayed_work reboot_work;
 #endif
 	struct mutex rmi4_device_mutex;
-	
+
 #ifdef SYNAPTICS_RMI_INFORM_CHARGER
 	void (*register_cb)(struct synaptics_rmi_callbacks *);
 	struct synaptics_rmi_callbacks callbacks;
 #endif
-	
+
 	int (*i2c_read)(struct synaptics_rmi4_data *pdata, unsigned short addr,
 			unsigned char *data, unsigned short length);
 	int (*i2c_write)(struct synaptics_rmi4_data *pdata, unsigned short addr,

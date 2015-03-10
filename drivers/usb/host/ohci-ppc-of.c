@@ -177,7 +177,7 @@ err_ioremap:
 err_irq:
 	release_mem_region(hcd->rsrc_start, hcd->rsrc_len);
 err_rmr:
- 	usb_put_hcd(hcd);
+	usb_put_hcd(hcd);
 
 	return rv;
 }
@@ -250,4 +250,3 @@ static struct platform_driver ohci_hcd_ppc_of_driver = {
 		.of_match_table = ohci_hcd_ppc_of_match,
 	},
 };
-

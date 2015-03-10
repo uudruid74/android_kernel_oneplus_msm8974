@@ -1105,11 +1105,11 @@ static uint8_t felica_get_tamper_fuse_cmd(void)
 	scm_call(FELICA_SCM_SVC_FUSE, FELICA_SCM_IS_SW_FUSE_BLOWN_ID, cmd_buf,
 						cmd_len, &resp_buf, resp_len);
 	FELICA_PR_DBG(" %s END resp_buf = %d\n",__func__, resp_buf);
-	
+
 #ifdef NO_CHECK_TAMPER
 	FELICA_PR_ERR(" No checking tampered kernel just for test!\n");
 	return 0;
-#endif		
+#endif
 
 	return resp_buf;
 }
@@ -1139,7 +1139,7 @@ static void felica_pon_init(void)
 	int ret;
 	struct device *device_felica_pon;
 	FELICA_PR_DBG(" %s START", __func__);
-	
+
 	devid_felica_pon = MKDEV(FELICA_MAJOR, FELICA_MINOR);
 	ret =
 	    alloc_chrdev_region(&devid_felica_pon, FELICA_BASEMINOR,
@@ -1347,7 +1347,7 @@ static ssize_t felica_pon_write(struct file *file, const char __user *data,
 #if defined(CONFIG_MACH_KLTE_KDI)
 	if(gfelica_uim_mon == 1) {
 		FELICA_PR_ERR(" %s gfelica_uim_mon=%d\n", __func__, gfelica_uim_mon);
-		gpio_set_value(gfelica_pon_pin, GPIO_VALUE_HIGH);		
+		gpio_set_value(gfelica_pon_pin, GPIO_VALUE_HIGH);
 		return FELICA_PON_DATA_LEN;
 	}
 	gpio_set_value(gfelica_pon_pin, setparam);
@@ -1356,7 +1356,7 @@ static ssize_t felica_pon_write(struct file *file, const char __user *data,
 #else
 	gpio_set_value(GPIO_PINID_FELICA_PON, setparam);
 #endif // CONFIG_MACH_KLTE
-#endif 
+#endif
 
 	return FELICA_PON_DATA_LEN;
 }
@@ -1365,7 +1365,7 @@ static ssize_t felica_pon_write(struct file *file, const char __user *data,
  * felica_i2c_driver
  ******************************************************************************/
 static struct i2c_client *felica_i2c_client;
-static const struct i2c_device_id felica_i2c_idtable[] = 
+static const struct i2c_device_id felica_i2c_idtable[] =
 {
 	{FELICA_I2C_NAME, 0},
 	{}
@@ -1374,7 +1374,7 @@ static const struct i2c_device_id felica_i2c_idtable[] =
 MODULE_DEVICE_TABLE(i2c, felica_i2c_idtable);
 
 #if defined(CONFIG_ARCH_MSM8974) || defined(CONFIG_ARCH_MSM8974PRO)
-static struct of_device_id felica_i2c_match_table[] = 
+static struct of_device_id felica_i2c_match_table[] =
 {
 	{ .compatible = "felica,felica-i2c",},
 	{},
@@ -1382,11 +1382,11 @@ static struct of_device_id felica_i2c_match_table[] =
 #endif
 
 
-static struct i2c_driver felica_i2c_driver = 
+static struct i2c_driver felica_i2c_driver =
 {
 	.probe = felica_i2c_probe,
 	.remove = felica_i2c_remove,
-	.driver = 
+	.driver =
 			{
 		   .name = FELICA_I2C_NAME,
 		   .owner = THIS_MODULE,
@@ -1552,7 +1552,7 @@ static int felica_cen_open(struct inode *inode, struct file *file)
 		of_sii8240_hw_poweron(FELICA_CEN_UNLOCK);
 	}
 	#endif
-	
+
 #ifdef FELICA_UICC_FUNCTION
 	start_adr = current->mm->arg_start;
 	end_adr = current->mm->arg_end;
@@ -1579,7 +1579,7 @@ static int felica_cen_open(struct inode *inode, struct file *file)
 		if ((uid != gdiag_uid) && (uid != gmfl_uid)) {
 #endif
 	FELICA_PR_ERR(" %s END -EACCES, uid=[%d], gmfc_uid=[%d], gdiag_uid=[%d], gmfl_uid=[%d]\n", __func__, uid,gmfc_uid,gdiag_uid,gmfl_uid);
-			
+
 			#if defined(CONFIG_MACH_HLTEDCM)
 			//low
 			if (system_rev == HW_REV09_OR_10)
@@ -1588,7 +1588,7 @@ static int felica_cen_open(struct inode *inode, struct file *file)
 		//		of_sii8240_hw_poweron(FELICA_CEN_LOCK);
 			}
 			#endif
-			
+
 #ifdef SRIB_DIAG_ENABLED
 		FELICA_PR_ERR(" SRIB-Diag enabled just for test\n");
 #else
@@ -1614,7 +1614,7 @@ static int felica_cen_close(struct inode *inode, struct file *file)
 	//	of_sii8240_hw_poweron(FELICA_CEN_LOCK);
 	}
 	#endif
-	
+
 	FELICA_PR_DBG(" %s END system_rev=[%d]", __func__,system_rev);
 	return 0;
 }
@@ -2096,7 +2096,7 @@ static irqreturn_t felica_int_irq_handler(int irq, void *dev_id)
 	disable_irq_nosync(gpio_to_irq(GPIO_PINID_FELICA_INT));
 #else
 	disable_irq_nosync(gpio_to_irq(gfelica_irq_int_pin));
-#endif	
+#endif
 #else
 	disable_irq_nosync(gpio_to_irq(GPIO_PINID_FELICA_INT_REV03));
 #endif /* CONFIG_ARCH_MSM8974 */
@@ -2141,7 +2141,7 @@ static void felica_int_poll_init(void)
 {
 	int ret;
 	struct device *device_felica_int_poll;
-	
+
 #if defined(CONFIG_ARCH_MSM8974) || defined(CONFIG_ARCH_MSM8974PRO)
 #if !defined(CONFIG_MACH_KLTE_KDI) && !defined(CONFIG_MACH_KLTE_DCM) && !defined(CONFIG_MACH_KLTE_SBM)
 	struct device *dev = &felica_gpio_pdev->dev;
@@ -2234,9 +2234,9 @@ static void felica_int_poll_init(void)
 		  IRQF_TRIGGER_FALLING,
 		  FELICA_INT_POLL_NAME,
 		  (void *)pgint_irq);
-	
+
 	FELICA_PR_INFO(" %s INFO(request_irq)= %d GPIO=%d, ret=[%d]",
-			       __func__, gpio_to_irq(GPIO_PINID_FELICA_INT),GPIO_PINID_FELICA_INT,ret);		  
+			       __func__, gpio_to_irq(GPIO_PINID_FELICA_INT),GPIO_PINID_FELICA_INT,ret);
 #else
 	ret = request_threaded_irq(
 		  gpio_to_irq(gfelica_irq_int_pin),
@@ -2245,7 +2245,7 @@ static void felica_int_poll_init(void)
 		  IRQF_TRIGGER_FALLING,
 		  FELICA_INT_POLL_NAME,
 		  (void *)pgint_irq);
-#endif	// CONFIG_MACH_KLTE  
+#endif	// CONFIG_MACH_KLTE
 #else
 	ret = request_irq(gpio_to_irq(GPIO_PINID_FELICA_INT_REV03),
 		  felica_int_irq_handler,
@@ -2324,7 +2324,7 @@ static void felica_int_poll_exit(void)
 	free_irq(gpio_to_irq(
 		GPIO_PINID_FELICA_INT),
 		(void *)pgint_irq);
-#else		
+#else
 	disable_irq(gpio_to_irq(gfelica_irq_int_pin));
 	free_irq(gpio_to_irq(
 		gfelica_irq_int_pin),
@@ -2390,7 +2390,7 @@ static ssize_t felica_int_poll_read(struct file *file, char __user *buf,
 #if defined(CONFIG_ARCH_MSM8974) || defined(CONFIG_ARCH_MSM8974PRO)
 #if defined(CONFIG_MACH_KLTE_KDI) || defined(CONFIG_MACH_KLTE_DCM) || defined(CONFIG_MACH_KLTE_SBM)
 	ret = gpio_get_value(GPIO_PINID_FELICA_INT);
-#else	
+#else
 	ret = gpio_get_value(gfelica_irq_int_pin);
 #endif	// CONFIG_MACH_KLTE
 #else
@@ -2666,12 +2666,12 @@ static int felica_ant_open(struct inode *inode, struct file *file)
 		of_sii8240_hw_poweron(FELICA_CEN_UNLOCK);
 	}
 	#endif
-	
+
 	uid = __task_cred(current)->uid;
 	if ((uid != gant_uid) && (uid != gdiag_uid)) {
 		FELICA_PR_ERR(\
 		" %s END -EACCES, uid=[%d], gant_uid=[%d]\n", __func__, uid, gant_uid);
-		
+
 		#if defined(CONFIG_MACH_HLTEDCM)
 		//low
 		if (system_rev == HW_REV09_OR_10)
@@ -2680,7 +2680,7 @@ static int felica_ant_open(struct inode *inode, struct file *file)
 	//		of_sii8240_hw_poweron(FELICA_CEN_LOCK);
 		}
 		#endif
-		
+
 #ifdef SRIB_DIAG_ENABLED
 		FELICA_PR_ERR(" SRIB-Diag enabled just for test\n");
 #else
@@ -2704,9 +2704,9 @@ static int felica_ant_close(struct inode *inode, struct file *file)
 	{
 		FELICA_PR_INFO(" %s Making MHL_EN LOW", __func__);
 	//	of_sii8240_hw_poweron(FELICA_CEN_LOCK);
-	}	
+	}
 	#endif
-	
+
 	FELICA_PR_DBG(" %s END system_rev=[%d]", __func__,system_rev);
 	return 0;
 }
@@ -2792,7 +2792,7 @@ static ssize_t felica_ant_write(struct file *file, const char __user *data,
 	write_buff[1] = ant;
 	gwrite_msgs[0].buf = &write_buff[0];
 	gwrite_msgs[0].addr = gi2c_address;
-	
+
 	ret = i2c_transfer(felica_i2c_client->adapter, gwrite_msgs, 1);
 	if (ret < 0) {
 		FELICA_PR_ERR(" %s ERROR(i2c_transfer), ret=[%d]",
@@ -2855,20 +2855,20 @@ static void felica_register_device(void)
 {
 #if defined(CONFIG_MACH_KLTE_KDI) || defined(CONFIG_MACH_KLTE_DCM) || defined(CONFIG_MACH_KLTE_SBM)
 	struct device *dev = &felica_gpio_pdev->dev;
-	struct device_node *np;	
-#endif 	
+	struct device_node *np;
+#endif
 
 	FELICA_PR_DBG(" %s START", __func__);
 
 #if defined(CONFIG_MACH_KLTE_KDI) || defined(CONFIG_MACH_KLTE_DCM) || defined(CONFIG_MACH_KLTE_SBM)
-	if (!dev) 
+	if (!dev)
 	{
 		FELICA_PR_ERR(" %s ERROR NULL", __func__);
 		return;
 	}
-	
+
 	np  = dev->of_node;
-	
+
 	if(system_rev <=8)
 	{
 	gfelica_pon_pin = of_get_named_gpio(np, "felica,pon-gpio", 0);
@@ -2883,9 +2883,9 @@ static void felica_register_device(void)
 					GPIO_CFG_ENABLE);
 	FELICA_PR_INFO(" %s gfelica_pon_pin [%d]",__func__, gpio_get_value(gfelica_pon_pin));
 	}
-	
+
 	gpio_set_value(gfelica_pon_pin, GPIO_VALUE_LOW);
-	
+
 	gfelica_hsel_pin = of_get_named_gpio (np, "felica,hsel-gpio", 0);
 	if(gfelica_hsel_pin < 0)
 	{
@@ -2893,8 +2893,8 @@ static void felica_register_device(void)
 		return;
 	}
 	FELICA_PR_INFO(" %s gfelica_hsel_pin [%d]",__func__, gfelica_hsel_pin);
-			
-	if (system_rev >= g_uicc_initrev) 
+
+	if (system_rev >= g_uicc_initrev)
 	{
 		gpio_tlmm_config(GPIO_CFG(gfelica_hsel_pin, GPIOMUX_FUNC_GPIO,
 				 GPIO_CFG_OUTPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA),
@@ -2903,9 +2903,9 @@ static void felica_register_device(void)
 	}
 
 	gpio_set_value(gfelica_hsel_pin, GPIO_VALUE_LOW);
-	
+
 #if defined(CONFIG_MACH_KLTE_DCM) || defined(CONFIG_MACH_KLTE_SBM)
-	
+
 	gfelica_sps_pin = of_get_named_gpio(np, "felica,sps-gpio", 0);
 	if(gfelica_sps_pin < 0)
 	{
@@ -2913,8 +2913,8 @@ static void felica_register_device(void)
 		return;
 	}
 	FELICA_PR_INFO(" %s gfelica_sps_pin [%d]",__func__, gfelica_sps_pin);
-			
-	if (system_rev >= g_uicc_initrev) 
+
+	if (system_rev >= g_uicc_initrev)
 	{
 		gpio_tlmm_config(GPIO_CFG(gfelica_sps_pin, GPIOMUX_FUNC_GPIO,
 				 GPIO_CFG_OUTPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA),
@@ -2922,7 +2922,7 @@ static void felica_register_device(void)
 		FELICA_PR_INFO(" %s gfelica_sps_pin [%d]",__func__, gpio_get_value(gfelica_sps_pin));
 	}
 
-#endif	
+#endif
 #else
 	felica_int_poll_init();
 #endif	//CONFIG_MACH_KLTE
@@ -2953,7 +2953,7 @@ static void felica_deregister_device(void)
 
 
 #if defined(CONFIG_ARCH_MSM8974) || defined(CONFIG_ARCH_MSM8974PRO)
-static struct of_device_id felica_of_match[] = 
+static struct of_device_id felica_of_match[] =
 {
 	{	.compatible = "felica,gpio-table",
 	},
@@ -2964,10 +2964,10 @@ static int __devexit felica_gpio_remove(struct platform_device *pdev)
 	felica_int_poll_exit();
 	return 0;
 }
-static struct platform_driver felica_of_driver = 
+static struct platform_driver felica_of_driver =
 {
 	.remove = __devexit_p(felica_gpio_remove),
-	.driver = 
+	.driver =
 		{
 		.name = FELICA_GPIO_DRIVER_NAME,
 		.owner = THIS_MODULE,
@@ -5050,7 +5050,7 @@ static long uicc_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 			FELICA_PR_INFO(" %s regulator_get, reg_l9 OK]", __func__);
 
 			ret = regulator_set_voltage(reg_l9, 1800000, 1800000);
-			if (ret) { 
+			if (ret) {
 				FELICA_PR_ERR(
 				" %s ERROR(regulator_set_voltage 1.8V~1.8V), ret=[%d]"
 				, __func__, ret);
@@ -5074,7 +5074,7 @@ static long uicc_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 				}
 			}
 			FELICA_PR_INFO(
-				" %s regulator_enable, ret=[%d]", __func__, ret);  
+				" %s regulator_enable, ret=[%d]", __func__, ret);
 		}
 		break;
 
@@ -5116,7 +5116,7 @@ static long uicc_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 			FELICA_PR_INFO(
 				" %s Select Power Supply -> HI [%d][%d]\n", __func__,
 				gfelica_sps_pin, gpio_get_value(gfelica_sps_pin));
-#endif			
+#endif
 		}
 
 		break;
@@ -5128,7 +5128,7 @@ static long uicc_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 		gpio_set_value(gfelica_pon_pin, GPIO_VALUE_HIGH);
 #else
 		FELICA_PR_ERR(" %s UICC_POWER_UIM_MON! this is only for K-KDDI\n", __func__);
-#endif			
+#endif
 		break;
 
 	default:
@@ -5208,9 +5208,9 @@ static ssize_t snfc_cen_sts_init(void)
 	{
 		FELICA_PR_INFO(" %s Making MHL_EN HIGH", __func__);
 		of_sii8240_hw_poweron(FELICA_CEN_UNLOCK);
-	}	
+	}
 	#endif
-	
+
 	ret = i2c_transfer(felica_i2c_client->adapter, &read_msgs[0], 1);
 	if (ret < 0) {
 		FELICA_PR_ERR(" %s ERROR(i2c_transfer[0]), ret=[%d]",
@@ -5237,7 +5237,7 @@ static ssize_t snfc_cen_sts_init(void)
 	//	of_sii8240_hw_poweron(FELICA_CEN_LOCK);
 	}
 	#endif
-	
+
 	FELICA_PR_DBG(" %s END", __func__);
 	return FELICA_CEN_DATA_LEN;
 }
@@ -5335,7 +5335,7 @@ static int snfc_cen_open(struct inode *inode, struct file *file)
 		of_sii8240_hw_poweron(SNFC_CEN_UNLOCK);
 	}
 	#endif
-	
+
 #ifdef FELICA_UICC_FUNCTION
 	start_adr = current->mm->arg_start;
 	end_adr = current->mm->arg_end;
@@ -5397,7 +5397,7 @@ static int snfc_cen_close(struct inode *inode, struct file *file)
 	//	of_sii8240_hw_poweron(SNFC_CEN_LOCK);
 	}
 	#endif
-	
+
 	FELICA_PR_DBG(" %s END system_rev=[%d]", __func__,system_rev);
 	return 0;
 }

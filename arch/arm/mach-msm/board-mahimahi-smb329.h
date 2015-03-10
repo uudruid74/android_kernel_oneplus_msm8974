@@ -29,4 +29,3 @@ extern int smb329_set_charger_ctrl(uint32_t ctl);
 #endif /* __KERNEL__ */
 
 #endif /* _LINUX_SMB329_H */
-

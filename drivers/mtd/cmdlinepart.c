@@ -133,7 +133,7 @@ static struct mtd_partition * newpart(char *s,
 	{
 		char *p;
 
-	    	name = ++s;
+		name = ++s;
 		p = strchr(name, delim);
 		if (!p)
 		{
@@ -145,7 +145,7 @@ static struct mtd_partition * newpart(char *s,
 	}
 	else
 	{
-	    	name = NULL;
+		name = NULL;
 		name_len = 13; /* Partition_000 */
 	}
 
@@ -236,11 +236,11 @@ static int mtdpart_setup_real(char *s)
 	{
 		struct cmdline_mtd_partition *this_mtd;
 		struct mtd_partition *parts;
-	    	int mtd_id_len;
+		int mtd_id_len;
 		int num_parts;
 		char *p, *mtd_id;
 
-	    	mtd_id = s;
+		mtd_id = s;
 		/* fetch <mtd-id> */
 		if (!(p = strchr(s, ':')))
 		{

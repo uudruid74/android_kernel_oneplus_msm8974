@@ -762,10 +762,10 @@ static int wpa_set_associate(PSDevice pDevice, struct viawget_wpa_param *param)
 	} else if (pMgmt->eAuthenMode == WMAC_AUTH_OPEN) {
 		if(bwepEnabled==TRUE) { //@open-wep
 			pDevice->eEncryptionStatus = Ndis802_11Encryption1Enabled;
-	   	} else {
+		} else {
 			// @only open
 			pDevice->eEncryptionStatus = Ndis802_11EncryptionDisabled;
-	   	}
+		}
 	}
 	// mike save old encryption status
 	pDevice->eOldEncryptionStatus = pDevice->eEncryptionStatus;

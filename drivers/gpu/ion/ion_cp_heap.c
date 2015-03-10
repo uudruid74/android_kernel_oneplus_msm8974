@@ -829,5 +829,3 @@ void ion_cp_heap_get_base(struct ion_heap *heap, unsigned long *base,
 	*base = cp_heap->base;
 	*size = cp_heap->total_size;
 }
-
-

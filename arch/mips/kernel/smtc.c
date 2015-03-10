@@ -228,7 +228,7 @@ static void smtc_configure_tlb(void)
 		    mips_ihb();
 		    /* No need to un-Halt - that happens later anyway */
 		    for (i=0; i < vpes; i++) {
-		    	write_tc_c0_tcbind(i);
+			write_tc_c0_tcbind(i);
 			/*
 			 * To be 100% sure we're really getting the right
 			 * information, we exit the configuration state
@@ -838,10 +838,10 @@ void smtc_send_ipi(int cpu, int type, unsigned int action)
 		mips_ihb();
 
 		/*
-	 	 * Inspect TCStatus - if IXMT is set, we have to queue
+		 * Inspect TCStatus - if IXMT is set, we have to queue
 		 * a message. Otherwise, we set up the "interrupt"
 		 * of the other TC
-	 	 */
+		 */
 		tcstatus = read_tc_c0_tcstatus();
 
 		if ((tcstatus & TCSTATUS_IXMT) != 0) {
@@ -1227,7 +1227,7 @@ void smtc_idle_loop_hook(void)
 			for (tc = 0; tc < hook_ntcs; tc++) {
 				tcnoprog[tc] = 0;
 				clock_hang_reported[tc] = 0;
-	    		}
+			}
 			for (vpe = 0; vpe < 2; vpe++)
 				for (im = 0; im < 8; im++)
 					imstuckcount[vpe][im] = 0;

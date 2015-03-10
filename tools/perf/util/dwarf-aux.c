@@ -840,4 +840,3 @@ int die_get_varname(Dwarf_Die *vr_die, char *buf, int len)
 	}
 	return ret;
 }
-

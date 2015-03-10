@@ -64,9 +64,9 @@ static void change_pte_range(struct mm_struct *mm, pmd_t *pmd,
 			pte_t ptent;
 
 #ifdef CONFIG_TIMA_RKP_L2_GROUP
-			/* 
-			 * skip the pte_clear here. Instead just 
-			 * dereference the pte pointer and get the 
+			/*
+			 * skip the pte_clear here. Instead just
+			 * dereference the pte pointer and get the
 			 * pte value. tima_l2group_ptep_modify_prot_commit
 			 * will write the same pte anyway.
 			 */

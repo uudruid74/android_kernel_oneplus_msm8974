@@ -206,7 +206,7 @@ sal_emulator (long index, unsigned long in1, unsigned long in2,
                         r9 = inl(0xCFC);
                 status = PCIBIOS_SUCCESSFUL;
 	} else if (index == SAL_PCI_CONFIG_WRITE) {
-	      	/*
+		/*
 		 * in1 contains the PCI configuration address, in2 the
 		 * size of the write, and in3 the actual value to be
 		 * written out.

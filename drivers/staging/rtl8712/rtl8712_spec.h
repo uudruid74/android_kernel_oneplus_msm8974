@@ -132,4 +132,3 @@
 #include "basic_types.h"
 
 #endif /* __RTL8712_SPEC_H__ */
-

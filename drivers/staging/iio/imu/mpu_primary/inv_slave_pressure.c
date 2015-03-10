@@ -507,4 +507,3 @@ int inv_mpu_setup_pressure_slave(struct inv_mpu_state *st)
 
 	return st->slave_pressure->setup(st);
 }
-

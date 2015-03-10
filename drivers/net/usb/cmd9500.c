@@ -1526,11 +1526,11 @@ void GetEeprom(PCOMMAND_DATA commandData, unsigned long address, bool msgOn)
     ioctl(commandData->hSockFD,SMSC9500_IOCTL,&(commandData->IfReq));
 
     if(commandData->IoctlData.dwSignature==SMSC9500_DRIVER_SIGNATURE) {
-    	if(msgOn){
-    		printf("Index == 0x%04lX, Read Value == 0x%02X\n",
-    				commandData->IoctlData.Data[0],
-    				(unsigned int)commandData->IoctlData.Data[1]);
-    	}
+	if(msgOn){
+		printf("Index == 0x%04lX, Read Value == 0x%02X\n",
+				commandData->IoctlData.Data[0],
+				(unsigned int)commandData->IoctlData.Data[1]);
+	}
     } else {
 
         printf("Failed to Read EEPROM\n");
@@ -1588,7 +1588,7 @@ void SetEepromBuffer(
 
     commandData->IoctlData.Data[1]=len;
 
-    memcpy(&commandData->IoctlData.Data[2], buf, len); 
+    memcpy(&commandData->IoctlData.Data[2], buf, len);
 
     ioctl(commandData->hSockFD,SMSC9500_IOCTL,&(commandData->IfReq));
 
@@ -1780,7 +1780,7 @@ bool Initialize(PCOMMAND_DATA commandData,const char *ethName) {
 
 		return false;
 
-   	}
+	}
 
 	commandData->IfReq.ifr_data= (void *)&(commandData->IoctlData);
 
@@ -2595,18 +2595,18 @@ char * av[];
 
         break;
     case COMMAND_WRITE_EEPROM_FROM_FILE:
-    	if(!fSet) goto BAD_USAGE;
+	if(!fSet) goto BAD_USAGE;
         UpdateEepromFromFile(&commandData, fileName);
         break;
 
     case COMMAND_WRITE_EEPROM_TO_FILE:
-    	if(!fSet) goto BAD_USAGE;
+	if(!fSet) goto BAD_USAGE;
 
         WriteEepromToFile(&commandData, fileName);
         break;
 
     case COMMAND_VERIFY_EEPROM_WITH_FILE:
-    	if(!fSet) goto BAD_USAGE;
+	if(!fSet) goto BAD_USAGE;
         VerifyEepromWithFile(&commandData, fileName);
         break;
 
@@ -2685,4 +2685,3 @@ BAD_USAGE:
 	return 1;
 
 }
-

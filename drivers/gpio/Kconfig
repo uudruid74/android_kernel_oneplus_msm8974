@@ -263,10 +263,10 @@ config GPIO_MAX732X
 	  below:
 
 	  8 bits:	max7319 (8I), max7320 (8O), max7321 (8P),
-		  	max7322 (4I4O), max7323 (4P4O)
+			max7322 (4I4O), max7323 (4P4O)
 
 	  16 bits:	max7324 (8I8O), max7325 (8P8O),
-		  	max7326 (4I12O), max7327 (4P12O)
+			max7326 (4I12O), max7327 (4P12O)
 
 	  Board setup code must specify the model to use, and the start
 	  number for these GPIOs.
@@ -295,7 +295,7 @@ config GPIO_PCA953X
 	  4 bits:	pca9536, pca9537
 
 	  8 bits:	max7310, pca9534, pca9538, pca9554, pca9557,
-	  		tca6408
+			tca6408
 
 	  16 bits:	pca9535, pca9539, pca9555, tca6416
 
@@ -317,7 +317,7 @@ config GPIO_PCF857X
 
 	  8 bits:   pcf8574, pcf8574a, pca8574, pca8574a,
 	            pca9670, pca9672, pca9674, pca9674a,
-	  	    max7328, max7329
+		    max7328, max7329
 
 	  16 bits:  pcf8575, pcf8575c, pca8575,
 	            pca9671, pca9673, pca9675

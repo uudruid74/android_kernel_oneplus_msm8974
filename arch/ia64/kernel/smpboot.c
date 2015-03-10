@@ -511,10 +511,10 @@ do_boot_cpu (int sapicid, int cpu)
 	 * We can't use kernel_thread since we must avoid to
 	 * reschedule the child.
 	 */
- 	c_idle.idle = get_idle_for_cpu(cpu);
- 	if (c_idle.idle) {
+	c_idle.idle = get_idle_for_cpu(cpu);
+	if (c_idle.idle) {
 		init_idle(c_idle.idle, cpu);
- 		goto do_rest;
+		goto do_rest;
 	}
 
 	schedule_work(&c_idle.work);
@@ -753,7 +753,7 @@ void __cpu_die(unsigned int cpu)
 		}
 		msleep(100);
 	}
- 	printk(KERN_ERR "CPU %u didn't die...\n", cpu);
+	printk(KERN_ERR "CPU %u didn't die...\n", cpu);
 }
 #endif /* CONFIG_HOTPLUG_CPU */
 
@@ -852,7 +852,7 @@ init_smp_config(void)
 }
 
 /*
- * identify_siblings(cpu) gets called from identify_cpu. This populates the 
+ * identify_siblings(cpu) gets called from identify_cpu. This populates the
  * information related to logical execution units in per_cpu_data structure.
  */
 void __devinit

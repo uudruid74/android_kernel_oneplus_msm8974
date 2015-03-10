@@ -1087,7 +1087,7 @@ const struct fb_videomode *fb_find_best_display(const struct fb_monspecs *specs,
 		}
 
 		if (m->flag & FB_MODE_IS_FIRST) {
- 			md = m;
+			md = m;
 			break;
 		}
 	}

@@ -15,7 +15,7 @@
  *    2 of the License, or (at your option) any later version.
  *
  * Author:          Ed Okerson, <eokerson@quicknet.net>
- *    
+ *
  * Contributors:    Greg Herlein, <gherlein@quicknet.net>
  *                  David W. Erhart, <derhart@quicknet.net>
  *                  John Sellers, <jsellers@quicknet.net>
@@ -34,7 +34,7 @@
  * QUICKNET TECHNOLOGIES, INC. SPECIFICALLY DISCLAIMS ANY WARRANTIES,
  * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
  * AND FITNESS FOR A PARTICULAR PURPOSE.  THE SOFTWARE PROVIDED HEREUNDER IS
- * ON AN "AS IS" BASIS, AND QUICKNET TECHNOLOGIES, INC. HAS NO OBLIGATION 
+ * ON AN "AS IS" BASIS, AND QUICKNET TECHNOLOGIES, INC. HAS NO OBLIGATION
  * TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
  *
  *****************************************************************************/
@@ -1079,14 +1079,14 @@ typedef struct {
 	unsigned int on1;	/* State 1 */
 
 	unsigned long on1min;	/* State 1 - 10% + jiffies */
- 	unsigned long on1dot;	/* State 1 + jiffies */
+	unsigned long on1dot;	/* State 1 + jiffies */
 
 	unsigned long on1max;	/* State 1 + 10% + jiffies */
 
 	unsigned int off1;	/* State 2 */
 
 	unsigned long off1min;
- 	unsigned long off1dot;	/* State 2 + jiffies */
+	unsigned long off1dot;	/* State 2 + jiffies */
 	unsigned long off1max;
 	unsigned int on2;	/* State 3 */
 
@@ -1096,7 +1096,7 @@ typedef struct {
 	unsigned int off2;	/* State 4 */
 
 	unsigned long off2min;
- 	unsigned long off2dot;	/* State 4 + jiffies */
+	unsigned long off2dot;	/* State 4 + jiffies */
 	unsigned long off2max;
 	unsigned int on3;	/* State 5 */
 
@@ -1106,7 +1106,7 @@ typedef struct {
 	unsigned int off3;	/* State 6 */
 
 	unsigned long off3min;
- 	unsigned long off3dot;	/* State 6 + jiffies */
+	unsigned long off3dot;	/* State 6 + jiffies */
 	unsigned long off3max;
 } IXJ_CADENCE_F;
 
@@ -1319,4 +1319,3 @@ typedef struct {
 typedef int (*IXJ_REGFUNC) (IXJ * j, unsigned long arg);
 
 extern IXJ *ixj_pcmcia_probe(unsigned long, unsigned long);
-

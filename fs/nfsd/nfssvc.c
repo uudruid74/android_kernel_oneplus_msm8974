@@ -398,7 +398,7 @@ int nfsd_set_nrthreads(int n, int *nthreads, struct net *net)
 	if (tot > NFSD_MAXSERVS) {
 		/* total too large: scale down requested numbers */
 		for (i = 0; i < n && tot > 0; i++) {
-		    	int new = nthreads[i] * NFSD_MAXSERVS / tot;
+			int new = nthreads[i] * NFSD_MAXSERVS / tot;
 			tot -= (nthreads[i] - new);
 			nthreads[i] = new;
 		}
@@ -419,7 +419,7 @@ int nfsd_set_nrthreads(int n, int *nthreads, struct net *net)
 	svc_get(nfsd_serv);
 	for (i = 0; i < n; i++) {
 		err = svc_set_num_threads(nfsd_serv, &nfsd_serv->sv_pools[i],
-				    	  nthreads[i]);
+					  nthreads[i]);
 		if (err)
 			break;
 	}
@@ -614,7 +614,7 @@ nfsd_dispatch(struct svc_rqst *rqstp, __be32 *statp)
 	}
 
 	/* need to grab the location to store the status, as
-	 * nfsv4 does some encoding while processing 
+	 * nfsv4 does some encoding while processing
 	 */
 	nfserrp = rqstp->rq_res.head[0].iov_base
 		+ rqstp->rq_res.head[0].iov_len;

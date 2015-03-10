@@ -221,4 +221,3 @@ struct langwell_udc {
 };
 
 #define gadget_to_langwell(g)	container_of((g), struct langwell_udc, gadget)
-

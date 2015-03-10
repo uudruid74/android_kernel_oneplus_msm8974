@@ -661,4 +661,3 @@ This application simulates HAL's usage calls to the driver. It creates three
 threads. One for data read; one for event read; one for sysfs control.
 It can run without any parameters or run with some control parameters. Please
 see README in the same directories for details.
-

@@ -141,7 +141,7 @@ int wacom_i2c_flash_cmd(struct wacom_i2c *wac_i2c)
 		dev_err(&wac_i2c->client->dev, "%s: enter boot mode failed[%d], 1\n", __func__, ret);
 		ret = wacom_i2c_send(wac_i2c, &flashq, len, true);
 		if (ret < 0)
-			dev_err(&wac_i2c->client->dev, "%s: enter boot mode failed[%d], 2\n", __func__, ret);	
+			dev_err(&wac_i2c->client->dev, "%s: enter boot mode failed[%d], 2\n", __func__, ret);
 		usleep(1*1000);
 		len = 8;
 		ret = wacom_i2c_send(wac_i2c, buf, len, false);
@@ -1298,12 +1298,12 @@ int wacom_fw_load_from_UMS(struct wacom_i2c *wac_i2c)
 
 	return 0;
 
-	read_err:		
+	read_err:
 		kfree(firm_data);
 	malloc_error:
 		filp_close(fp, current->files);
 	open_err:
-		set_fs(old_fs);   
+		set_fs(old_fs);
 		return ret;
 	}
 
@@ -1364,9 +1364,9 @@ int wacom_load_fw_from_req_fw(struct wacom_i2c *wac_i2c)
 
 	/* firmware version check */
 	if (wac_i2c->ic_mpu_ver == MPU_W9010 || wac_i2c->ic_mpu_ver == MPU_W9007)
-		wac_i2c->wac_feature->fw_version = 
+		wac_i2c->wac_feature->fw_version =
 			firm_data->data[FIRM_VER_LB_ADDR_W9007] |(firm_data->data[FIRM_VER_UB_ADDR_W9007] << 8);
-			
+
 	dev_info(&wac_i2c->client->dev, "%s: firmware version = %x\n",
 			__func__, wac_i2c->wac_feature->fw_version);
 	wacom_i2c_set_firm_data((unsigned char *)firm_data->data);
@@ -1376,4 +1376,3 @@ int wacom_load_fw_from_req_fw(struct wacom_i2c *wac_i2c)
 	request_firm_err:
 		return ret;
 }
-

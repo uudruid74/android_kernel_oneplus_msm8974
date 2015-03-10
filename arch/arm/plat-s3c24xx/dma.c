@@ -1180,12 +1180,12 @@ int s3c2410_dma_getposition(enum dma_ch channel, dma_addr_t *src, dma_addr_t *ds
 		return -EINVAL;
 
 	if (src != NULL)
- 		*src = dma_rdreg(chan, S3C2410_DMA_DCSRC);
+		*src = dma_rdreg(chan, S3C2410_DMA_DCSRC);
 
- 	if (dst != NULL)
- 		*dst = dma_rdreg(chan, S3C2410_DMA_DCDST);
+	if (dst != NULL)
+		*dst = dma_rdreg(chan, S3C2410_DMA_DCDST);
 
- 	return 0;
+	return 0;
 }
 
 EXPORT_SYMBOL(s3c2410_dma_getposition);

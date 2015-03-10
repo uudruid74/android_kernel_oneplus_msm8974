@@ -131,7 +131,7 @@ struct gru_instruction_bits {
 struct gru_instruction {
     /* DW 0 */
     union {
-    	unsigned long		op64;    /* icmd,xtype,iaa0,ima,opc,tri0 */
+	unsigned long		op64;    /* icmd,xtype,iaa0,ima,opc,tri0 */
 	struct {
 		unsigned int	op32;
 		unsigned int	tri0;

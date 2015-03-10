@@ -129,4 +129,3 @@ static int __init sapphire_init_keypad(void)
 }
 
 device_initcall(sapphire_init_keypad);
-

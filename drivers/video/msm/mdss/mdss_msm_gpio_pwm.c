@@ -118,11 +118,11 @@ extern void __iomem *virt_mmss_gp0_base;
 void mdss_dsi_panel_bklt_pwm( int level)
 {
 	/* Put the MND counter in reset mode for programming */
-	HWIO_OUTM(GP0_CFG_RCGR, HWIO_GP_SRC_SEL_VAL_BMSK, 
+	HWIO_OUTM(GP0_CFG_RCGR, HWIO_GP_SRC_SEL_VAL_BMSK,
 				0 << HWIO_GP_SRC_SEL_VAL_SHFT); //SRC_SEL = 000(cxo)
 	HWIO_OUTM(GP0_CFG_RCGR, HWIO_GP_SRC_DIV_VAL_BMSK,
 				31 << HWIO_GP_SRC_DIV_VAL_SHFT); //SRC_DIV = 11111 (Div 16)
-	HWIO_OUTM(GP0_CFG_RCGR, HWIO_GP_MODE_VAL_BMSK, 
+	HWIO_OUTM(GP0_CFG_RCGR, HWIO_GP_MODE_VAL_BMSK,
 				2 << HWIO_GP_MODE_VAL_SHFT); //Mode Select 10
 	//M value
 	HWIO_OUTM(GP_M_REG, HWIO_GP_MD_REG_M_VAL_BMSK,
@@ -132,8 +132,8 @@ void mdss_dsi_panel_bklt_pwm( int level)
 	// D value
 	HWIO_OUTM(GP_D_REG, HWIO_GP_MD_REG_D_VAL_BMSK,
 	 (~((int16_t)level << 1)) << HWIO_GP_MD_REG_D_VAL_SHFT);
-	
-	//N value	
+
+	//N value
 	HWIO_OUTM(GP_NS_REG, HWIO_GP_NS_REG_GP_N_VAL_BMSK,
 	 ~(GP_CLK_N_DEFAULT - GP_CLK_M_DEFAULT) << 0);
 
@@ -141,7 +141,7 @@ void mdss_dsi_panel_bklt_pwm( int level)
 	HWIO_OUTM(GP0_CMD_RCGR,HWIO_UPDATE_VAL_BMSK,
 				1 << HWIO_UPDATE_VAL_SHFT);//UPDATE ACTIVE
 	HWIO_OUTM(GP0_CMD_RCGR,HWIO_ROOT_EN_VAL_BMSK,
-				1 << HWIO_ROOT_EN_VAL_SHFT);//ROOT_EN		
+				1 << HWIO_ROOT_EN_VAL_SHFT);//ROOT_EN
 	HWIO_OUTM(CAMSS_GP0_CBCR, HWIO_CLK_ENABLE_VAL_BMSK,
 				1 << HWIO_CLK_ENABLE_VAL_SHFT); //CLK_ENABLE
 

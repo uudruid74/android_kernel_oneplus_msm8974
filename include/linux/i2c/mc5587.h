@@ -155,7 +155,7 @@ struct i2c_client; /* forward declaration */
 
 struct mc5587_gpio_platform_data {
 	int gpio_start;		/* GPIO Chip base # */
-	int ngpio;		
+	int ngpio;
 	unsigned irq_base;	/* interrupt base # */
 	int reset_gpio;		/* reset gpio pin   */
 	int irq_gpio;		/* irq gpio pin	    */

@@ -174,11 +174,11 @@ PRINTF(0,"%s\n",__func__);
 		return BBM_E_TN_SELECT;
 
 	if (tuner_i2c == FCI_BYPASS_TYPE)
-	{	
+	{
 		PRINTF(0,"FCI_BYPASS_TYPE\n");
 		bbm_write(hDevice, BBM_RF_DEVID, tuner_addr);
 	}
-	
+
 	if (tuner->init(hDevice, tuner_band))
 		return BBM_E_TN_INIT;
 
@@ -208,4 +208,3 @@ int tuner_get_rssi(HANDLE hDevice, s32 *rssi)
 
 	return BBM_OK;
 }
-

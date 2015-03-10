@@ -41,7 +41,7 @@
 		reg = <0x00000000 0x20000000>;
 	};
 
-  	tsi109@c0000000 {
+	tsi109@c0000000 {
 		device_type = "tsi-bridge";
 		compatible = "tsi109-bridge", "tsi108-bridge";
 		#address-cells = <1>;
@@ -125,7 +125,7 @@
 			interrupts = <0xd 0x2>;
 		};
 
-	  	MPIC: pic@7400 {
+		MPIC: pic@7400 {
 			device_type = "open-pic";
 			compatible = "chrp,open-pic";
 			interrupt-controller;

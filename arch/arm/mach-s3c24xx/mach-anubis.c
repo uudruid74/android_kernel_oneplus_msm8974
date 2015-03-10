@@ -398,7 +398,7 @@ static struct platform_device *anubis_devices[] __initdata = {
 	&s3c_device_wdt,
 	&s3c_device_adc,
 	&s3c_device_i2c0,
- 	&s3c_device_rtc,
+	&s3c_device_rtc,
 	&s3c_device_nand,
 	&anubis_device_ide0,
 	&anubis_device_ide1,

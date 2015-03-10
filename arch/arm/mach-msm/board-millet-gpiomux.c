@@ -377,7 +377,7 @@ static struct gpiomux_setting lcd_rst_act_cfg = {
 	.func = GPIOMUX_FUNC_GPIO,
 	.drv = GPIOMUX_DRV_2MA,
 	.pull = GPIOMUX_PULL_NONE,
-	.dir = GPIOMUX_OUT_HIGH,	
+	.dir = GPIOMUX_OUT_HIGH,
 };
 
 static struct gpiomux_setting lcd_rst_sus_cfg = {

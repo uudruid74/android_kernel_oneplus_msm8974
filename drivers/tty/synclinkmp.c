@@ -244,7 +244,7 @@ typedef struct _synclinkmp_info {
 	u32 last_mem_alloc;
 	unsigned char* memory_base;		/* shared memory address (PCI only) */
 	u32 phys_memory_base;
-    	int shared_mem_requested;
+	int shared_mem_requested;
 
 	unsigned char* sca_base;		/* HD64570 SCA Memory address */
 	u32 phys_sca_base;
@@ -813,8 +813,8 @@ static void close(struct tty_struct *tty, struct file *filp)
 		goto cleanup;
 
 	mutex_lock(&info->port.mutex);
- 	if (info->port.flags & ASYNC_INITIALIZED)
- 		wait_until_sent(tty, info->timeout);
+	if (info->port.flags & ASYNC_INITIALIZED)
+		wait_until_sent(tty, info->timeout);
 
 	flush_buffer(tty);
 	tty_ldisc_flush(tty);
@@ -876,7 +876,7 @@ static void set_termios(struct tty_struct *tty, struct ktermios *old_termios)
 	    !(tty->termios->c_cflag & CBAUD)) {
 		info->serial_signals &= ~(SerialSignal_RTS + SerialSignal_DTR);
 		spin_lock_irqsave(&info->lock,flags);
-	 	set_signals(info);
+		set_signals(info);
 		spin_unlock_irqrestore(&info->lock,flags);
 	}
 
@@ -884,12 +884,12 @@ static void set_termios(struct tty_struct *tty, struct ktermios *old_termios)
 	if (!(old_termios->c_cflag & CBAUD) &&
 	    tty->termios->c_cflag & CBAUD) {
 		info->serial_signals |= SerialSignal_DTR;
- 		if (!(tty->termios->c_cflag & CRTSCTS) ||
- 		    !test_bit(TTY_THROTTLED, &tty->flags)) {
+		if (!(tty->termios->c_cflag & CRTSCTS) ||
+		    !test_bit(TTY_THROTTLED, &tty->flags)) {
 			info->serial_signals |= SerialSignal_RTS;
- 		}
+		}
 		spin_lock_irqsave(&info->lock,flags);
-	 	set_signals(info);
+		set_signals(info);
 		spin_unlock_irqrestore(&info->lock,flags);
 	}
 
@@ -952,7 +952,7 @@ static int write(struct tty_struct *tty,
 			    info->max_frame_size - info->tx_put));
 		if (c <= 0)
 			break;
-			
+
 		memcpy(info->tx_buf + info->tx_put, buf, c);
 
 		spin_lock_irqsave(&info->lock,flags);
@@ -975,12 +975,12 @@ static int write(struct tty_struct *tty,
 		tx_load_dma_buffer(info, info->tx_buf, info->tx_count);
 	}
 start:
- 	if (info->tx_count && !tty->stopped && !tty->hw_stopped) {
+	if (info->tx_count && !tty->stopped && !tty->hw_stopped) {
 		spin_lock_irqsave(&info->lock,flags);
 		if (!info->tx_active)
-		 	tx_start(info);
+			tx_start(info);
 		spin_unlock_irqrestore(&info->lock,flags);
- 	}
+	}
 
 cleanup:
 	if (debug_level >= DEBUG_LEVEL_INFO)
@@ -1045,7 +1045,7 @@ static void send_xchar(struct tty_struct *tty, char ch)
 		/* Make sure transmit interrupts are on */
 		spin_lock_irqsave(&info->lock,flags);
 		if (!info->tx_enabled)
-		 	tx_start(info);
+			tx_start(info);
 		spin_unlock_irqrestore(&info->lock,flags);
 	}
 }
@@ -1079,7 +1079,7 @@ static void wait_until_sent(struct tty_struct *tty, int timeout)
 	 */
 
 	if ( info->params.data_rate ) {
-	       	char_time = info->timeout/(32 * 5);
+		char_time = info->timeout/(32 * 5);
 		if (!char_time)
 			char_time++;
 	} else
@@ -1174,7 +1174,7 @@ static void flush_chars(struct tty_struct *tty)
 			tx_load_dma_buffer(info,
 				 info->tx_buf,info->tx_count);
 		}
-	 	tx_start(info);
+		tx_start(info);
 	}
 
 	spin_unlock_irqrestore(&info->lock,flags);
@@ -1218,7 +1218,7 @@ static void tx_hold(struct tty_struct *tty)
 
 	spin_lock_irqsave(&info->lock,flags);
 	if (info->tx_enabled)
-	 	tx_stop(info);
+		tx_stop(info);
 	spin_unlock_irqrestore(&info->lock,flags);
 }
 
@@ -1238,7 +1238,7 @@ static void tx_release(struct tty_struct *tty)
 
 	spin_lock_irqsave(&info->lock,flags);
 	if (!info->tx_enabled)
-	 	tx_start(info);
+		tx_start(info);
 	spin_unlock_irqrestore(&info->lock,flags);
 }
 
@@ -1297,7 +1297,7 @@ static int ioctl(struct tty_struct *tty,
 		 */
 	case TIOCMIWAIT:
 		return modem_input_wait(info,(int)arg);
-		
+
 		/*
 		 * Get counter of input serial line interrupts (DCD,RI,DSR,CTS)
 		 * Return: write counters to the user passed counter struct
@@ -1357,7 +1357,7 @@ static inline void line_info(struct seq_file *m, SLMP_INFO *info)
 
 	/* output current serial signal states */
 	spin_lock_irqsave(&info->lock,flags);
- 	get_signals(info);
+	get_signals(info);
 	spin_unlock_irqrestore(&info->lock,flags);
 
 	stat_buf[0] = 0;
@@ -1473,10 +1473,10 @@ static void throttle(struct tty_struct * tty)
 	if (I_IXOFF(tty))
 		send_xchar(tty, STOP_CHAR(tty));
 
- 	if (tty->termios->c_cflag & CRTSCTS) {
+	if (tty->termios->c_cflag & CRTSCTS) {
 		spin_lock_irqsave(&info->lock,flags);
 		info->serial_signals &= ~SerialSignal_RTS;
-	 	set_signals(info);
+		set_signals(info);
 		spin_unlock_irqrestore(&info->lock,flags);
 	}
 }
@@ -1502,10 +1502,10 @@ static void unthrottle(struct tty_struct * tty)
 			send_xchar(tty, START_CHAR(tty));
 	}
 
- 	if (tty->termios->c_cflag & CRTSCTS) {
+	if (tty->termios->c_cflag & CRTSCTS) {
 		spin_lock_irqsave(&info->lock,flags);
 		info->serial_signals |= SerialSignal_RTS;
-	 	set_signals(info);
+		set_signals(info);
 		spin_unlock_irqrestore(&info->lock,flags);
 	}
 }
@@ -1528,7 +1528,7 @@ static int set_break(struct tty_struct *tty, int break_state)
 
 	spin_lock_irqsave(&info->lock,flags);
 	RegValue = read_reg(info, CTL);
- 	if (break_state == -1)
+	if (break_state == -1)
 		RegValue |= BIT3;
 	else
 		RegValue &= ~BIT3;
@@ -1623,7 +1623,7 @@ static netdev_tx_t hdlcdev_xmit(struct sk_buff *skb,
 	/* start hardware transmitter if necessary */
 	spin_lock_irqsave(&info->lock,flags);
 	if (!info->tx_active)
-	 	tx_start(info);
+		tx_start(info);
 	spin_unlock_irqrestore(&info->lock,flags);
 
 	return NETDEV_TX_OK;
@@ -2100,8 +2100,8 @@ static void isr_timer(SLMP_INFO * info)
 
 static void isr_rxint(SLMP_INFO * info)
 {
- 	struct tty_struct *tty = info->port.tty;
- 	struct	mgsl_icount *icount = &info->icount;
+	struct tty_struct *tty = info->port.tty;
+	struct	mgsl_icount *icount = &info->icount;
 	unsigned char status = read_reg(info, SR1) & info->ie1_value & (FLGD + IDLD + CDCD + BRKD);
 	unsigned char status2 = read_reg(info, SR2) & info->ie2_value & OVRN;
 
@@ -2111,7 +2111,7 @@ static void isr_rxint(SLMP_INFO * info)
 
 	if (status2)
 		write_reg(info, SR2, status2);
-	
+
 	if ( debug_level >= DEBUG_LEVEL_ISR )
 		printk("%s(%d):%s isr_rxint status=%02X %02x\n",
 			__FILE__,__LINE__,info->device_name,status,status2);
@@ -2161,8 +2161,8 @@ static void isr_rxrdy(SLMP_INFO * info)
 {
 	u16 status;
 	unsigned char DataByte;
- 	struct tty_struct *tty = info->port.tty;
- 	struct	mgsl_icount *icount = &info->icount;
+	struct tty_struct *tty = info->port.tty;
+	struct	mgsl_icount *icount = &info->icount;
 
 	if ( debug_level >= DEBUG_LEVEL_ISR )
 		printk("%s(%d):%s isr_rxrdy\n",
@@ -2418,7 +2418,7 @@ static void isr_txdmaerror(SLMP_INFO * info)
  */
 static void isr_io_pin( SLMP_INFO *info, u16 status )
 {
- 	struct	mgsl_icount *icount;
+	struct	mgsl_icount *icount;
 
 	if ( debug_level >= DEBUG_LEVEL_ISR )
 		printk("%s(%d):isr_io_pin status=%04X\n",
@@ -2498,7 +2498,7 @@ static void isr_io_pin( SLMP_INFO *info, u16 status )
 					if (status & SerialSignal_CTS) {
 						if ( debug_level >= DEBUG_LEVEL_ISR )
 							printk("CTS tx start...");
-			 			info->port.tty->hw_stopped = 0;
+						info->port.tty->hw_stopped = 0;
 						tx_start(info);
 						info->pending_bh |= BH_TRANSMIT;
 						return;
@@ -2507,7 +2507,7 @@ static void isr_io_pin( SLMP_INFO *info, u16 status )
 					if (!(status & SerialSignal_CTS)) {
 						if ( debug_level >= DEBUG_LEVEL_ISR )
 							printk("CTS tx stop...");
-			 			info->port.tty->hw_stopped = 1;
+						info->port.tty->hw_stopped = 1;
 						tx_stop(info);
 					}
 				}
@@ -2708,8 +2708,8 @@ static void shutdown(SLMP_INFO * info)
 
 	reset_port(info);
 
- 	if (!info->port.tty || info->port.tty->termios->c_cflag & HUPCL) {
- 		info->serial_signals &= ~(SerialSignal_DTR + SerialSignal_RTS);
+	if (!info->port.tty || info->port.tty->termios->c_cflag & HUPCL) {
+		info->serial_signals &= ~(SerialSignal_DTR + SerialSignal_RTS);
 		set_signals(info);
 	}
 
@@ -2773,7 +2773,7 @@ static void change_params(SLMP_INFO *info)
 
 	/* if B0 rate (hangup) specified then negate DTR and RTS */
 	/* otherwise assert DTR and RTS */
- 	if (cflag & CBAUD)
+	if (cflag & CBAUD)
 		info->serial_signals |= SerialSignal_RTS + SerialSignal_DTR;
 	else
 		info->serial_signals &= ~(SerialSignal_RTS + SerialSignal_DTR);
@@ -2841,8 +2841,8 @@ static void change_params(SLMP_INFO *info)
 	info->read_status_mask2 = OVRN;
 	if (I_INPCK(info->port.tty))
 		info->read_status_mask2 |= PE | FRME;
- 	if (I_BRKINT(info->port.tty) || I_PARMRK(info->port.tty))
- 		info->read_status_mask1 |= BRKD;
+	if (I_BRKINT(info->port.tty) || I_PARMRK(info->port.tty))
+		info->read_status_mask1 |= BRKD;
 	if (I_IGNPAR(info->port.tty))
 		info->ignore_status_mask2 |= PE | FRME;
 	if (I_IGNBRK(info->port.tty)) {
@@ -2900,7 +2900,7 @@ static int get_params(SLMP_INFO * info, MGSL_PARAMS __user *user_params)
 
 static int set_params(SLMP_INFO * info, MGSL_PARAMS __user *new_params)
 {
- 	unsigned long flags;
+	unsigned long flags;
 	MGSL_PARAMS tmp_params;
 	int err;
 
@@ -2920,7 +2920,7 @@ static int set_params(SLMP_INFO * info, MGSL_PARAMS __user *new_params)
 	memcpy(&info->params,&tmp_params,sizeof(MGSL_PARAMS));
 	spin_unlock_irqrestore(&info->lock,flags);
 
- 	change_params(info);
+	change_params(info);
 	mutex_unlock(&info->port.mutex);
 
 	return 0;
@@ -2947,7 +2947,7 @@ static int get_txidle(SLMP_INFO * info, int __user *idle_mode)
 
 static int set_txidle(SLMP_INFO * info, int idle_mode)
 {
- 	unsigned long flags;
+	unsigned long flags;
 
 	if (debug_level >= DEBUG_LEVEL_INFO)
 		printk("%s(%d):%s set_txidle(%d)\n",
@@ -2962,7 +2962,7 @@ static int set_txidle(SLMP_INFO * info, int idle_mode)
 
 static int tx_enable(SLMP_INFO * info, int enable)
 {
- 	unsigned long flags;
+	unsigned long flags;
 
 	if (debug_level >= DEBUG_LEVEL_INFO)
 		printk("%s(%d):%s tx_enable(%d)\n",
@@ -2985,7 +2985,7 @@ static int tx_enable(SLMP_INFO * info, int enable)
  */
 static int tx_abort(SLMP_INFO * info)
 {
- 	unsigned long flags;
+	unsigned long flags;
 
 	if (debug_level >= DEBUG_LEVEL_INFO)
 		printk("%s(%d):%s tx_abort()\n",
@@ -3001,7 +3001,7 @@ static int tx_abort(SLMP_INFO * info)
 		write_reg(info, TXDMA + DSR, 0);		/* disable DMA channel */
 		write_reg(info, TXDMA + DCMD, SWABORT);	/* reset/init DMA channel */
 
-   		write_reg(info, CMD, TXABORT);
+		write_reg(info, CMD, TXABORT);
 	}
 	spin_unlock_irqrestore(&info->lock,flags);
 	return 0;
@@ -3009,7 +3009,7 @@ static int tx_abort(SLMP_INFO * info)
 
 static int rx_enable(SLMP_INFO * info, int enable)
 {
- 	unsigned long flags;
+	unsigned long flags;
 
 	if (debug_level >= DEBUG_LEVEL_INFO)
 		printk("%s(%d):%s rx_enable(%d)\n",
@@ -3031,7 +3031,7 @@ static int rx_enable(SLMP_INFO * info, int enable)
  */
 static int wait_mgsl_event(SLMP_INFO * info, int __user *mask_ptr)
 {
- 	unsigned long flags;
+	unsigned long flags;
 	int s;
 	int rc=0;
 	struct mgsl_icount cprev, cnow;
@@ -3057,7 +3057,7 @@ static int wait_mgsl_event(SLMP_INFO * info, int __user *mask_ptr)
 
 	events = mask &
 		( ((s & SerialSignal_DSR) ? MgslEvent_DsrActive:MgslEvent_DsrInactive) +
- 		  ((s & SerialSignal_DCD) ? MgslEvent_DcdActive:MgslEvent_DcdInactive) +
+		  ((s & SerialSignal_DCD) ? MgslEvent_DcdActive:MgslEvent_DcdInactive) +
 		  ((s & SerialSignal_CTS) ? MgslEvent_CtsActive:MgslEvent_CtsInactive) +
 		  ((s & SerialSignal_RI)  ? MgslEvent_RiActive :MgslEvent_RiInactive) );
 	if (events) {
@@ -3155,7 +3155,7 @@ exit:
 
 static int modem_input_wait(SLMP_INFO *info,int arg)
 {
- 	unsigned long flags;
+	unsigned long flags;
 	int rc;
 	struct mgsl_icount cprev, cnow;
 	DECLARE_WAITQUEUE(wait, current);
@@ -3209,10 +3209,10 @@ static int tiocmget(struct tty_struct *tty)
 {
 	SLMP_INFO *info = tty->driver_data;
 	unsigned int result;
- 	unsigned long flags;
+	unsigned long flags;
 
 	spin_lock_irqsave(&info->lock,flags);
- 	get_signals(info);
+	get_signals(info);
 	spin_unlock_irqrestore(&info->lock,flags);
 
 	result = ((info->serial_signals & SerialSignal_RTS) ? TIOCM_RTS:0) +
@@ -3234,7 +3234,7 @@ static int tiocmset(struct tty_struct *tty,
 					unsigned int set, unsigned int clear)
 {
 	SLMP_INFO *info = tty->driver_data;
- 	unsigned long flags;
+	unsigned long flags;
 
 	if (debug_level >= DEBUG_LEVEL_INFO)
 		printk("%s(%d):%s tiocmset(%x,%x)\n",
@@ -3250,7 +3250,7 @@ static int tiocmset(struct tty_struct *tty,
 		info->serial_signals &= ~SerialSignal_DTR;
 
 	spin_lock_irqsave(&info->lock,flags);
- 	set_signals(info);
+	set_signals(info);
 	spin_unlock_irqrestore(&info->lock,flags);
 
 	return 0;
@@ -3262,7 +3262,7 @@ static int carrier_raised(struct tty_port *port)
 	unsigned long flags;
 
 	spin_lock_irqsave(&info->lock,flags);
- 	get_signals(info);
+	get_signals(info);
 	spin_unlock_irqrestore(&info->lock,flags);
 
 	return (info->serial_signals & SerialSignal_DCD) ? 1 : 0;
@@ -3278,7 +3278,7 @@ static void dtr_rts(struct tty_port *port, int on)
 		info->serial_signals |= SerialSignal_RTS + SerialSignal_DTR;
 	else
 		info->serial_signals &= ~(SerialSignal_RTS + SerialSignal_DTR);
- 	set_signals(info);
+	set_signals(info);
 	spin_unlock_irqrestore(&info->lock,flags);
 }
 
@@ -3345,8 +3345,8 @@ static int block_til_ready(struct tty_struct *tty, struct file *filp,
 
 		cd = tty_port_carrier_raised(port);
 
- 		if (!(port->flags & ASYNC_CLOSING) && (do_clocal || cd))
- 			break;
+		if (!(port->flags & ASYNC_CLOSING) && (do_clocal || cd))
+			break;
 
 		if (signal_pending(current)) {
 			retval = -ERESTARTSYS;
@@ -3433,8 +3433,8 @@ static int alloc_dma_bufs(SLMP_INFO *info)
 
 	if ( alloc_buf_list( info ) < 0 ||
 		alloc_frame_bufs(info,
-		  			info->rx_buf_list,
-		  			info->rx_buf_list_ex,
+					info->rx_buf_list,
+					info->rx_buf_list_ex,
 					info->rx_buf_count) < 0 ||
 		alloc_frame_bufs(info,
 					info->tx_buf_list,
@@ -3957,11 +3957,11 @@ static int __init synclinkmp_init(void)
 	int rc;
 
 	if (break_on_load) {
-	 	synclinkmp_get_text_ptr();
-  		BREAKPOINT();
+		synclinkmp_get_text_ptr();
+		BREAKPOINT();
 	}
 
- 	printk("%s %s\n", driver_name, driver_version);
+	printk("%s %s\n", driver_name, driver_version);
 
 	if ((rc = pci_register_driver(&synclinkmp_pci_driver)) < 0) {
 		printk("%s:failed to register PCI driver, error=%d\n",__FILE__,rc);
@@ -3997,7 +3997,7 @@ static int __init synclinkmp_init(void)
 		goto error;
 	}
 
- 	printk("%s %s, tty major#%d\n",
+	printk("%s %s, tty major#%d\n",
 		driver_name, driver_version,
 		serial_driver->major);
 
@@ -4042,7 +4042,7 @@ static void enable_loopback(SLMP_INFO *info, int enable)
 
 	} else {
 		/* MD2 (Mode Register 2)
-	 	 * 01..00  CNCT<1..0> Channel connection, 0=normal
+		 * 01..00  CNCT<1..0> Channel connection, 0=normal
 		 */
 		write_reg(info, MD2, (unsigned char)(read_reg(info, MD2) & ~(BIT1 + BIT0)));
 
@@ -4069,8 +4069,8 @@ static void enable_loopback(SLMP_INFO *info, int enable)
  */
 static void set_rate( SLMP_INFO *info, u32 data_rate )
 {
-       	u32 TMCValue;
-       	unsigned char BRValue;
+	u32 TMCValue;
+	unsigned char BRValue;
 	u32 Divisor=0;
 
 	/* fBRG = fCLK/(TMC * 2^BR)
@@ -4227,24 +4227,24 @@ static void tx_start(SLMP_INFO *info)
 
 			write_reg(info, TXDMA + DSR, 0); 		/* disable DMA channel */
 			write_reg(info, TXDMA + DCMD, SWABORT);	/* reset/init DMA channel */
-	
+
 			/* set TX CDA (current descriptor address) */
 			write_reg16(info, TXDMA + CDA,
 				info->tx_buf_list_ex[0].phys_entry);
-	
+
 			/* set TX EDA (last descriptor address) */
 			write_reg16(info, TXDMA + EDA,
 				info->tx_buf_list_ex[info->last_tx_buf].phys_entry);
-	
+
 			/* enable underrun IRQ */
 			info->ie1_value &= ~IDLE;
 			info->ie1_value |= UDRN;
 			write_reg(info, IE1, info->ie1_value);
 			write_reg(info, SR1, (unsigned char)(IDLE + UDRN));
-	
+
 			write_reg(info, TXDMA + DIR, 0x40);		/* enable Tx DMA interrupts (EOM) */
 			write_reg(info, TXDMA + DSR, 0xf2);		/* clear Tx DMA IRQs, enable Tx DMA */
-	
+
 			mod_timer(&info->tx_timer, jiffies +
 					msecs_to_jiffies(5000));
 		}
@@ -4305,7 +4305,7 @@ static void tx_load_fifo(SLMP_INFO *info)
 		/* there is more data in transmit buffer */
 
 		if ( (info->tx_count > 1) && !info->x_char ) {
- 			/* write 16-bits */
+			/* write 16-bits */
 			TwoBytes[0] = info->tx_buf[info->tx_get++];
 			if (info->tx_get >= info->max_frame_size)
 				info->tx_get -= info->max_frame_size;
@@ -4376,7 +4376,7 @@ static void reset_adapter(SLMP_INFO *info)
 static void async_mode(SLMP_INFO *info)
 {
 
-  	unsigned char RegValue;
+	unsigned char RegValue;
 
 	tx_stop(info);
 	rx_stop(info);
@@ -4840,7 +4840,7 @@ static bool rx_get_frame(SLMP_INFO *info)
 	unsigned long flags;
 	struct tty_struct *tty = info->port.tty;
 	unsigned char addr_field = 0xff;
-   	SCADESC *desc;
+	SCADESC *desc;
 	SCADESC_EX *desc_ex;
 
 CheckAgain:
@@ -5264,7 +5264,7 @@ static bool loopback_test(SLMP_INFO *info)
 	spin_lock_irqsave(&info->lock,flags);
 	hdlc_mode(info);
 	enable_loopback(info,1);
-       	rx_start(info);
+	rx_start(info);
 	info->tx_count = count;
 	tx_load_dma_buffer(info,buf,count);
 	tx_start(info);

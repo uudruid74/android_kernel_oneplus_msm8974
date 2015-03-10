@@ -734,7 +734,7 @@ static int msm_isp_cfg_ping_pong_address(struct vfe_device *vfe_dev,
 			vfe_dev, stream_info->wm[i],
 			pingpong_status, buf->mapped_info[i].paddr +
 			stream_info->plane_cfg[i].plane_addr_offset);
-	}       
+	}
 	pingpong_bit = (~(pingpong_status >> stream_info->wm[0]) & 0x1);
 	stream_info->buf[pingpong_bit] = buf;
 	return 0;

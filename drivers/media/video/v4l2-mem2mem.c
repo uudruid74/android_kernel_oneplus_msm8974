@@ -628,4 +628,3 @@ void v4l2_m2m_buf_queue(struct v4l2_m2m_ctx *m2m_ctx, struct vb2_buffer *vb)
 	spin_unlock_irqrestore(&q_ctx->rdy_spinlock, flags);
 }
 EXPORT_SYMBOL_GPL(v4l2_m2m_buf_queue);
-

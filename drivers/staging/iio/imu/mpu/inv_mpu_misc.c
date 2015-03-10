@@ -2025,4 +2025,3 @@ firmware_write_fail:
 
 	return size;
 }
-

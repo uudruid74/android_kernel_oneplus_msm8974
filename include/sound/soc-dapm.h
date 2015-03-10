@@ -260,9 +260,9 @@
 #define SOC_DAPM_ENUM(xname, xenum) \
 {	.iface = SNDRV_CTL_ELEM_IFACE_MIXER, .name = xname, \
 	.info = snd_soc_info_enum_double, \
- 	.get = snd_soc_dapm_get_enum_double, \
- 	.put = snd_soc_dapm_put_enum_double, \
-  	.private_value = (unsigned long)&xenum }
+	.get = snd_soc_dapm_get_enum_double, \
+	.put = snd_soc_dapm_put_enum_double, \
+	.private_value = (unsigned long)&xenum }
 #define SOC_DAPM_ENUM_VIRT(xname, xenum)		    \
 {	.iface = SNDRV_CTL_ELEM_IFACE_MIXER, .name = xname, \
 	.info = snd_soc_info_enum_double, \

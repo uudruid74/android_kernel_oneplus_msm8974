@@ -580,7 +580,7 @@ int drm_mm_scan_remove_block(struct drm_mm_node *node)
 	 * stored. */
 	if (node->start >= mm->scan_hit_start &&
 	    node->start + node->size
-	    		<= mm->scan_hit_start + mm->scan_hit_size) {
+			<= mm->scan_hit_start + mm->scan_hit_size) {
 		return 1;
 	}
 

@@ -30,4 +30,3 @@ config SND_PDAUDIOCF
 	  will be called snd-pdaudiocf.
 
 endif	# SND_PCMCIA
-

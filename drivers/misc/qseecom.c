@@ -1417,7 +1417,7 @@ static int __validate_send_cmd_inputs(struct qseecom_dev_handle *data,
 	}
 
 
-	if (((uintptr_t)req->cmd_req_buf < 
+	if (((uintptr_t)req->cmd_req_buf <
 		data->client.user_virt_sb_base) ||
 	    ((uintptr_t)req->cmd_req_buf >=
 	    (data->client.user_virt_sb_base + data->client.sb_length))) {
@@ -1468,7 +1468,7 @@ static int __validate_send_cmd_inputs(struct qseecom_dev_handle *data,
 	}
 	return 0;
 }
- 
+
 static int __qseecom_send_cmd(struct qseecom_dev_handle *data,
 				struct qseecom_send_cmd_req *req)
 {

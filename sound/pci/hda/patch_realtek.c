@@ -1588,9 +1588,9 @@ static int alc_read_coef_idx(struct hda_codec *codec,
 {
 	unsigned int val;
 	snd_hda_codec_write(codec, 0x20, 0, AC_VERB_SET_COEF_INDEX,
-		    		coef_idx);
+				coef_idx);
 	val = snd_hda_codec_read(codec, 0x20, 0,
-			 	AC_VERB_GET_PROC_COEF, 0);
+				AC_VERB_GET_PROC_COEF, 0);
 	return val;
 }
 

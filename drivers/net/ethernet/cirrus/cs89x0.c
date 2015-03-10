@@ -549,10 +549,10 @@ cs89x0_probe1(struct net_device *dev, unsigned long ioaddr, int modular)
 		if (net_debug > 1)
 			printk(KERN_INFO "%s: odd ioaddr 0x%lx\n", dev->name, ioaddr);
 	        if ((ioaddr & 2) != 2)
-	        	if ((readword(ioaddr & ~3, ADD_PORT) & ADD_MASK) != ADD_SIG) {
+			if ((readword(ioaddr & ~3, ADD_PORT) & ADD_MASK) != ADD_SIG) {
 				printk(KERN_ERR "%s: bad signature 0x%x\n",
 					dev->name, readword(ioaddr & ~3, ADD_PORT));
-		        	retval = -ENODEV;
+				retval = -ENODEV;
 				goto out2;
 			}
 	}
@@ -567,8 +567,8 @@ cs89x0_probe1(struct net_device *dev, unsigned long ioaddr, int modular)
 		printk(KERN_DEBUG "%s: incorrect signature at %lx[%x]: 0x%x!="
 			CHIP_EISA_ID_SIG_STR "\n",
 			dev->name, ioaddr, DATA_PORT, tmp);
-  		retval = -ENODEV;
-  		goto out2;
+		retval = -ENODEV;
+		goto out2;
 	}
 
 	/* Fill in the 'dev' fields. */
@@ -617,7 +617,7 @@ cs89x0_probe1(struct net_device *dev, unsigned long ioaddr, int modular)
 		        dev->dev_addr[i*2+1] = Addr >> 8;
 		}
 
-	   	/* Load the Adapter Configuration.
+		/* Load the Adapter Configuration.
 		   Note:  Barring any more specific information from some
 		   other source (ie EEPROM+Schematics), we would not know
 		   how to operate a 10Base2 interface on the AUI port.
@@ -670,7 +670,7 @@ cs89x0_probe1(struct net_device *dev, unsigned long ioaddr, int modular)
 		   at 0 in the EEPROM*/
 		if ((readreg(dev, PP_SelfST) & (EEPROM_OK | EEPROM_PRESENT)) !=
 		    (EEPROM_OK|EEPROM_PRESENT))
-                	printk(KERN_WARNING "cs89x0: Extended EEPROM checksum bad and no Cirrus EEPROM, relying on command line\n");
+			printk(KERN_WARNING "cs89x0: Extended EEPROM checksum bad and no Cirrus EEPROM, relying on command line\n");
 
         } else {
 		/* This reads an extended EEPROM that is not documented
@@ -1500,7 +1500,7 @@ static irqreturn_t net_interrupt(int irq, void *dev_id)
 	struct net_device *dev = dev_id;
 	struct net_local *lp;
 	int ioaddr, status;
- 	int handled = 0;
+	int handled = 0;
 
 	ioaddr = dev->base_addr;
 	lp = netdev_priv(dev);

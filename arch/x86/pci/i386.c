@@ -355,10 +355,10 @@ int pci_mmap_page_range(struct pci_dev *dev, struct vm_area_struct *vma,
 	prot = pgprot_val(vma->vm_page_prot);
 
 	/*
- 	 * Return error if pat is not enabled and write_combine is requested.
- 	 * Caller can followup with UC MINUS request and add a WC mtrr if there
- 	 * is a free mtrr slot.
- 	 */
+	 * Return error if pat is not enabled and write_combine is requested.
+	 * Caller can followup with UC MINUS request and add a WC mtrr if there
+	 * is a free mtrr slot.
+	 */
 	if (!pat_enabled && write_combine)
 		return -EINVAL;
 

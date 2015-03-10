@@ -221,5 +221,3 @@ All that the above results needed were those new tracepoints
 in include/tracing/events/kmem.h.
 
 	Ingo
-
-

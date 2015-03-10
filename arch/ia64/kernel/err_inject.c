@@ -101,14 +101,14 @@ store_call_start(struct device *dev, struct device_attribute *attr,
 					err_struct_info[cpu],
 					ia64_tpa(&err_data_buffer[cpu]),
 					&capabilities[cpu],
-			 		&resources[cpu]);
+					&resources[cpu]);
 		break;
 	    case 2: /* Call pal_mc_error_inject in virtual mode. */
 		status[cpu]=ia64_pal_mc_error_inject_virt(err_type_info[cpu],
 					err_struct_info[cpu],
 					ia64_tpa(&err_data_buffer[cpu]),
 					&capabilities[cpu],
-			 		&resources[cpu]);
+					&resources[cpu]);
 		break;
 	    default:
 		status[cpu] = -EINVAL;

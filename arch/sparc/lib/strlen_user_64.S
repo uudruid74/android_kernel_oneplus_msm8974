@@ -17,7 +17,7 @@
 	.global __strlen_user, __strnlen_user
 __strlen_user:
 	sethi	%hi(32768), %o1
-__strnlen_user:	
+__strnlen_user:
 	mov	%o1, %g1
 	mov	%o0, %o1
 	andcc	%o0, 3, %g0

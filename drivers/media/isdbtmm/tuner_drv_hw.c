@@ -127,25 +127,25 @@ int tuner_drv_hw_access( unsigned int uCommand, TUNER_DATA_RW *data,
         }
 
         if( flags != I2C_M_RD ) {
-        	 /* bit modify write */
-        	if( !(( data[ loop_cnt ].sbit == 0 ) && 
-        	 	  ( data[ loop_cnt ].ebit == 7 )))
-        	{
-            	/* specified start/end bit position mode */
+		 /* bit modify write */
+		if( !(( data[ loop_cnt ].sbit == 0 ) &&
+			  ( data[ loop_cnt ].ebit == 7 )))
+		{
+		/* specified start/end bit position mode */
                 /* TODO: enabit */
                 if(( data[ loop_cnt ].sbit == TUNER_SET_ENADATA )
                 && ( data[ loop_cnt ].ebit == TUNER_SET_ENADATA ))
                 {
-                    ena_data = ( unsigned char )data[ loop_cnt ].enabit; 
+                    ena_data = ( unsigned char )data[ loop_cnt ].enabit;
                 }
                 else
                 {
                     /* calculate enable bit mask */
-                	ena_data = (unsigned char)(((1U << 
-                			(1+data[loop_cnt].ebit-data[loop_cnt].sbit))-1) <<
-                			data[loop_cnt].sbit);
+			ena_data = (unsigned char)(((1U <<
+					(1+data[loop_cnt].ebit-data[loop_cnt].sbit))-1) <<
+					data[loop_cnt].sbit);
                 }
-                
+
                 if( ena_data != 0xFF )
                 {
                     /* read a current value */
@@ -172,8 +172,8 @@ int tuner_drv_hw_access( unsigned int uCommand, TUNER_DATA_RW *data,
                     /* clear bits of write position */
                     read_data  &= ( unsigned char )( ~ena_data );
                     /* construct a write value */
-                    write_data = ( unsigned char )( ena_data & 
-                    								data[ loop_cnt ].param );
+                    write_data = ( unsigned char )( ena_data &
+										data[ loop_cnt ].param );
                     buf[ 1 ] = ( unsigned char )( write_data | read_data );
                 }
             }
@@ -198,7 +198,7 @@ int tuner_drv_hw_access( unsigned int uCommand, TUNER_DATA_RW *data,
                 return -EINVAL;
             }
         } else {
-        	/* write register */
+		/* write register */
             msgs[ 0 ].addr  = addr;
             msgs[ 0 ].flags = 0;
             msgs[ 0 ].len   = TUNER_R_MSGLEN;
@@ -224,7 +224,7 @@ int tuner_drv_hw_access( unsigned int uCommand, TUNER_DATA_RW *data,
             data[ loop_cnt ].param = buf[ 1 ];
 #ifdef USER_DEBUG_LOG
             DEBUG_PRINT(
-            	"ioctl(R) slv:0x%02x adr:0x%02x 0x%02x (RETURN:0x%02x)",
+		"ioctl(R) slv:0x%02x adr:0x%02x 0x%02x (RETURN:0x%02x)",
                 addr, buf[ 0 ], buf[1], data[ loop_cnt ].param);
 #endif /* USER_DEBUG_LOG */
 

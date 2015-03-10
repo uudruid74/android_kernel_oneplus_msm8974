@@ -666,7 +666,7 @@
 	sound {
 		compatible = "qcom,msm8x10-audio-codec";
 		qcom,model = "msm8x10-snd-card";
-		
+
 	};
 
 	qti,msm-pcm {
@@ -692,7 +692,7 @@
 	qcom,msm-compr-dsp {
 		compatible = "qcom,msm-compr-dsp";
 	};
-	
+
 	qcom,msm-compress-dsp {
 		compatible = "qcom,msm-compress-dsp";
 	};

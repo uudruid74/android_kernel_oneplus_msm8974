@@ -90,4 +90,3 @@ static inline int is_iommu_present(struct msm_vidc_platform_resources *res)
 extern uint32_t msm_vidc_pwr_collapse_delay;
 
 #endif
-

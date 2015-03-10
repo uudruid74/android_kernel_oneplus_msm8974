@@ -56,4 +56,3 @@ extern int sm5504_dock_init(void);
 extern void sm5504_lanhub_callback(enum cable_type_t cable_type, int attached, bool lanhub_ta);
 #endif
 #endif /* _SM5504_H_ */
-

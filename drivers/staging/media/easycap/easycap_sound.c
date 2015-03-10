@@ -747,4 +747,3 @@ int easycap_alsa_probe(struct easycap *peasycap)
 	SAM("registered %s\n", &psnd_card->id[0]);
 	return 0;
 }
-

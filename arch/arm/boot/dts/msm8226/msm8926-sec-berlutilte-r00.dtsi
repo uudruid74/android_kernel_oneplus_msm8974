@@ -17,8 +17,8 @@
 &soc {
 	serial@f991f000 {
 		status = "ok";
-	}; 
-	
+	};
+
 	i2c@f9925000 {
 		compatible = "qcom,i2c-qup";
 		qcom,scl-gpio = <&msmgpio 11 0>;
@@ -119,7 +119,7 @@
 				reg = <0x24>; /*slave address*/
 				cy,adapter_id = "cyttsp5_i2c_adapter";
 
-				cy,core { 
+				cy,core {
 					cy,name = "cyttsp5_core";
 
 					cy,irq_gpio = <17>;
@@ -127,9 +127,9 @@
 					cy,pwr_1p8 = <31>; /*<&msmgpio 31 0x01>; */ /*Touch En 1 gpio*/
 					cy,pwr_3p3 = <60>;  /* <&msmgpio 60 0x01>; */ /* Touch En2 gpio */
 
-					cy,mt { 
+					cy,mt {
 						cy,name = "cyttsp5_mt";
-						cy,inp_dev_name = "sec_touchscreen";					
+						cy,inp_dev_name = "sec_touchscreen";
 						cy,abs =
 							/* ABS_MT_POSITION_X, CY_ABS_MIN_X, CY_ABS_MAX_X, 0, 0 */
 							<0x35 0 720 0 0
@@ -713,4 +713,3 @@
 &dsi_magna_720p_berluti3g  {
 	qcom,cont-splash-enabled = <1>;
 };
-

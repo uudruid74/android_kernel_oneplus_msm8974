@@ -409,7 +409,7 @@ static inline long strnlen_user(const char __user *str, long len)
 {
 	if (!access_ok(VERIFY_READ, str, 0))
 		return 0;
-	else		
+	else
 		return __strnlen_user(str, len);
 }
 
@@ -421,4 +421,3 @@ struct exception_table_entry {
 extern int fixup_exception(struct pt_regs *regs);
 
 #endif /* __SCORE_UACCESS_H */
-

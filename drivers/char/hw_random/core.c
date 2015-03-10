@@ -4,15 +4,15 @@
 
 	derived from
 
- 	Hardware driver for the Intel/AMD/VIA Random Number Generators (RNG)
+	Hardware driver for the Intel/AMD/VIA Random Number Generators (RNG)
 	(c) Copyright 2003 Red Hat Inc <jgarzik@redhat.com>
 
- 	derived from
+	derived from
 
         Hardware driver for the AMD 768 Random Number Generator (RNG)
         (c) Copyright 2001 Red Hat Inc <alan@redhat.com>
 
- 	derived from
+	derived from
 
 	Hardware driver for Intel i810 Random Number Generator (RNG)
 	Copyright 2000,2001 Jeff Garzik <jgarzik@pobox.com>

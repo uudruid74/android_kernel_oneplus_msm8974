@@ -151,7 +151,7 @@ struct chip_info {
 };
 
 static const struct chip_info skel_netdrv_tbl[] __devinitdata = {
- 	{ "100/10M Ethernet PCI Adapter",	HAS_MII_XCVR },
+	{ "100/10M Ethernet PCI Adapter",	HAS_MII_XCVR },
 	{ "100/10M Ethernet PCI Adapter",	HAS_CHIP_XCVR },
 	{ "1000/100/10M Ethernet PCI Adapter",	HAS_MII_XCVR },
 };

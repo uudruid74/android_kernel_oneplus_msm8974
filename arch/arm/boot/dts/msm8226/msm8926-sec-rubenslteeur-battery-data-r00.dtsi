@@ -9,7 +9,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  */
- 
+
 &soc {
 		battery {
 				status = "okay";
@@ -19,7 +19,7 @@
 				battery,fuelgauge_name = "sec-fuelgauge";
 				battery,technology = <2>; /* POWER_SUPPLY_TECHNOLOGY_LION */
 				battery,ta_irq_attr = <0x3>;
-	
+
 				battery,chip_vendor = "QCOM";
 				battery,temp_adc_type = <1>; /* SEC_BATTERY_ADC_TYPE_AP */
 
@@ -101,4 +101,4 @@
 					battery,full_check_current_2nd = <2400 0 2400 2400 2400 2400 2400 2400 0 2400 2400 2400 2400 0 2400 2400 2400 2400 2400 2400 2400 0 0>;
 				};
 		};
-};		
+};

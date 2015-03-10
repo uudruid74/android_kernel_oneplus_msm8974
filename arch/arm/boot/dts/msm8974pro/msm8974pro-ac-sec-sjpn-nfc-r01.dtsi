@@ -20,7 +20,7 @@
                 sec-nfc-fn,int-gpio =   <&msmgpio 59 0x00>;
         };
 
-        
+
         felica_uart: serial@f995f000
         {
                 compatible = "qcom,msm-lsuart-v14";
@@ -46,5 +46,3 @@
         };
 
 }; /* soc */
-
-

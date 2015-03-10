@@ -181,7 +181,7 @@ int PIPEnsControlOut(
 	pDevice->pControlURB->transfer_flags |= URB_ASYNC_UNLINK;
     pDevice->pControlURB->actual_length = 0;
     // Notice, pbyBuffer limited point to variable buffer, can't be constant.
-  	usb_fill_control_urb(pDevice->pControlURB, pDevice->usb,
+	usb_fill_control_urb(pDevice->pControlURB, pDevice->usb,
 			 usb_sndctrlpipe(pDevice->usb , 0), (char *) &pDevice->sUsbCtlRequest,
 			 pbyBuffer, wLength, s_nsControlInUsbIoCompleteWrite, pDevice);
 
@@ -663,20 +663,20 @@ PIPEnsSendBulkOut(
         pDevice->ulBulkOutPosted++;
 //        pDevice->pPendingBulkOutContext = pContext;
         usb_fill_bulk_urb(
-        	    pUrb,
-        		pDevice->usb,
+		    pUrb,
+			pDevice->usb,
 		    usb_sndbulkpipe(pDevice->usb, 3),
 		    (void *) &(pContext->Data[0]),
-        		pContext->uBufLen,
-        		s_nsBulkOutIoCompleteWrite,
-        		pContext);
+			pContext->uBufLen,
+			s_nsBulkOutIoCompleteWrite,
+			pContext);
 
-    	status = usb_submit_urb(pUrb, GFP_ATOMIC);
-    	if (status != 0)
-    	{
-    		DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"Submit Tx URB failed %d\n", status);
-    		return STATUS_FAILURE;
-    	}
+	status = usb_submit_urb(pUrb, GFP_ATOMIC);
+	if (status != 0)
+	{
+		DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"Submit Tx URB failed %d\n", status);
+		return STATUS_FAILURE;
+	}
         return STATUS_PENDING;
     }
     else {

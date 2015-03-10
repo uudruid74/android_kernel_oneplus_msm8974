@@ -246,4 +246,3 @@ int ipa_rm_inactivity_timer_release_resource(
 
 	return 0;
 }
-

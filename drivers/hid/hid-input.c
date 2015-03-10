@@ -1269,4 +1269,3 @@ void hidinput_disconnect(struct hid_device *hid)
 	}
 }
 EXPORT_SYMBOL_GPL(hidinput_disconnect);
-

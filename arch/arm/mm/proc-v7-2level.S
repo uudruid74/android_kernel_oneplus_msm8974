@@ -95,8 +95,8 @@ ENTRY(cpu_v7_switch_mm)
 ENDPROC(cpu_v7_switch_mm)
 
 #ifdef CONFIG_TIMA_RKP_L2_GROUP
-/* 
- * Pass the pointer to the group buffer and its length to TZ side. 
+/*
+ * Pass the pointer to the group buffer and its length to TZ side.
  * cpu_v7_timal2group_set_pte_commit(tima_l2group_entry_ptr,
  * 				tima_l2group_entries_count)
  */
@@ -107,7 +107,7 @@ ENTRY(cpu_v7_timal2group_set_pte_commit)
 	mov	r1, r0
 	stmfd   sp!,{r0-r3, r11}
 	stmfd   sp!,{r0}
-	mov	r11, r3       
+	mov	r11, r3
 	ldr     r0, =0x3f811221        @cmd_id=0x11
 	smc     #1
 	pop	{r0}
@@ -115,11 +115,11 @@ ENTRY(cpu_v7_timal2group_set_pte_commit)
 	mov	pc, lr
 ENDPROC(cpu_v7_timal2group_set_pte_commit)
 
-/*  
+/*
  * Function writes the pte addr, arm pte value and linux
  * pte value at the address pointed to by the L2 group
  * pointer.
- * cpu_v7_timal2group_set_pte_ext(pte_t *ptep, pte_t pte, 
+ * cpu_v7_timal2group_set_pte_ext(pte_t *ptep, pte_t pte,
  *	unsigned int ext, unsigned long tima_l2group_entry_ptr);
  */
 ENTRY(cpu_v7_timal2group_set_pte_ext)
@@ -176,13 +176,13 @@ ENTRY(cpu_v7_timal2group_set_pte_ext)
 	/* r0 has the pointer to the pte */
 	str	r0, [r2]
 	/* flush cache after the str */
-	mcr     p15, 0, r2, c7, c14, 1          
+	mcr     p15, 0, r2, c7, c14, 1
 	//ldr	r1, =0xdeadbee2
 	add	r2, r2, #4
 	/* r1 has the linux pte value */
 	str	r1, [r2]
 	/* flush cache after the str */
-	mcr     p15, 0, r2, c7, c14, 1  
+	mcr     p15, 0, r2, c7, c14, 1
 	//ldr	r3, =0xdeadbee3
 	add	r2, r2, #4
 	/* r3 has the arm pte value */
@@ -192,7 +192,7 @@ ENTRY(cpu_v7_timal2group_set_pte_ext)
 	dsb
 	isb
 #endif
-2:	
+2:
 	mov	r0, r5
 	pop	{r5}
 	pop	{r4}
@@ -202,7 +202,7 @@ ENDPROC(cpu_v7_timal2group_set_pte_ext)
 
 #ifdef CONFIG_TIMA_RKP
 ENTRY(cpu_v7_tima_iommu_opt)
-	
+
 	stmfd   sp!,{r0-r3, r11}
 	mov	r3, r2
 	/* Second parameter is the end addr, move it to r2 */
@@ -210,7 +210,7 @@ ENTRY(cpu_v7_tima_iommu_opt)
 	/* First parameter is the start addr, move it to r1 */
 	mov	r1, r0
 	stmfd   sp!,{r0}
-	mov	r11, r3       
+	mov	r11, r3
 	ldr     r0, =0x3f820221        @cmd_id=0x20
 	smc     #1
 	pop	{r0}
@@ -272,8 +272,8 @@ ENTRY(cpu_v7_tima_set_pte_ext)
 	beq 	4f
 1:
 	/** Prepare the stack for L2 write emulation!
-	 */	
-	pop	{r1}	 	
+	 */
+	pop	{r1}
 	stmfd   sp!,{r0-r3, r11}
 	stmfd   sp!,{r0}
 	mov     r11, r0
@@ -291,7 +291,7 @@ ENTRY(cpu_v7_tima_set_pte_ext)
 	ldr     r0, =0x3f807221
 	smc     #1
 	pop	{r0}
-	/** Cache invalidate again to ensure no 
+	/** Cache invalidate again to ensure no
 	 *  values re-cached by speculative fetching
 	 */
 #ifndef	CONFIG_TIMA_RKP_COHERENT_TT
@@ -302,10 +302,10 @@ ENTRY(cpu_v7_tima_set_pte_ext)
 #ifdef CONFIG_TIMA_RKP_DEBUG
 	ldr     r2, [r0]
 	cmp     r1, r2
-	beq	2f     
+	beq	2f
 	stmfd	sp!, {r0}
 	ldr	r0, =0x3f80f221		@cmd_id=0x0f
-	smc	#1	
+	smc	#1
 	pop	{r0}
 2:
 #endif
@@ -423,10 +423,10 @@ ENDPROC(cpu_v7_set_pte_ext)
 	 * - \ttb0 and \ttb1 updated with the corresponding flags.
 	 */
 	.macro	v7_ttb_setup, zero, ttbr0, ttbr1, tmp
-#ifdef	CONFIG_TIMA_RKP_EMUL_CP15_INSTR 
+#ifdef	CONFIG_TIMA_RKP_EMUL_CP15_INSTR
 	ldr	r0, =0x3f805221
 	smc	#1
-#else 
+#else
 	mcr	p15, 0, \zero, c2, c0, 2	@ TTB control register
 #endif
 	ALT_SMP(orr	\ttbr0, \ttbr0, #TTB_FLAGS_SMP)

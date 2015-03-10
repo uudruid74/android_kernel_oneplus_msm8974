@@ -127,7 +127,7 @@ xfs_nfs_get_inode(
 	u64			ino,
 	u32			generation)
  {
- 	xfs_mount_t		*mp = XFS_M(sb);
+	xfs_mount_t		*mp = XFS_M(sb);
 	xfs_inode_t		*ip;
 	int			error;
 

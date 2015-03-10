@@ -442,7 +442,7 @@ ssize_t isdbt_read(struct file *filp, char *buf, size_t count, loff_t *f_pos)
 	mutex_lock(&ringbuffer_lock);
 
 	avail = fci_ringbuffer_avail(cibuf);
-	
+
 	if (count >= avail)
 		len = avail;
 	else
@@ -565,8 +565,8 @@ long isdbt_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 
 	switch (cmd) {
 	case IOCTL_ISDBT_RESET:
-		PRINTF(hInit, "IOCTL_ISDBT_RESET, !\n");				
-		
+		PRINTF(hInit, "IOCTL_ISDBT_RESET, !\n");
+
 		res = BBM_RESET(hInit);
 		PRINTF(hInit, "FC8150 BBM_RESET \n");
 		break;
@@ -1014,7 +1014,7 @@ static struct platform_driver isdbt_driver = {
 			.remove = isdbt_remove,
 			.suspend = isdbt_suspend,
 			.resume = isdbt_resume,
-			.shutdown = isdbt_shutdown,			
+			.shutdown = isdbt_shutdown,
 			.driver = {
 					.owner	= THIS_MODULE,
 					.name = "isdbt"

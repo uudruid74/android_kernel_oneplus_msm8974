@@ -1819,4 +1819,3 @@ MODULE_PARM_DESC(debug, "activates debug info");
 
 module_param(vid_limit, int, 0644);
 MODULE_PARM_DESC(vid_limit, "capture memory limit in megabytes");
-

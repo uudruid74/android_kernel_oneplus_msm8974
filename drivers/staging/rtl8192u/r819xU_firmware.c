@@ -402,4 +402,3 @@ download_firmware_fail:
 MODULE_FIRMWARE("RTL8192U/boot.img");
 MODULE_FIRMWARE("RTL8192U/main.img");
 MODULE_FIRMWARE("RTL8192U/data.img");
-

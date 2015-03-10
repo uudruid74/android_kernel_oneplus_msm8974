@@ -91,11 +91,11 @@ static int remove_migration_pte(struct page *new, struct vm_area_struct *vma,
 {
 	struct mm_struct *mm = vma->vm_mm;
 	swp_entry_t entry;
- 	pgd_t *pgd;
- 	pud_t *pud;
- 	pmd_t *pmd;
+	pgd_t *pgd;
+	pud_t *pud;
+	pmd_t *pmd;
 	pte_t *ptep, pte;
- 	spinlock_t *ptl;
+	spinlock_t *ptl;
 
 	if (unlikely(PageHuge(new))) {
 		ptep = huge_pte_offset(mm, addr);
@@ -127,7 +127,7 @@ static int remove_migration_pte(struct page *new, struct vm_area_struct *vma,
 		ptl = pte_lockptr(mm, pmd);
 	}
 
- 	spin_lock(ptl);
+	spin_lock(ptl);
 	pte = *ptep;
 	if (!is_swap_pte(pte))
 		goto unlock;
@@ -308,7 +308,7 @@ static int migrate_page_move_mapping(struct address_space *mapping,
 	spin_lock_irq(&mapping->tree_lock);
 
 	pslot = radix_tree_lookup_slot(&mapping->page_tree,
- 					page_index(page));
+					page_index(page));
 
 	expected_count = 2 + page_has_private(page);
 	if (page_count(page) != expected_count ||
@@ -454,7 +454,7 @@ void migrate_page_copy(struct page *newpage, struct page *page)
 		 * Whereas only part of our page may be dirty.
 		 */
 		__set_page_dirty_nobuffers(newpage);
- 	}
+	}
 
 	mlock_migrate_page(newpage, page);
 	ksm_migrate_page(newpage, page);
@@ -557,7 +557,7 @@ int buffer_migrate_page(struct address_space *mapping,
 	bh = head;
 	do {
 		unlock_buffer(bh);
- 		put_bh(bh);
+		put_bh(bh);
 		bh = bh->b_this_page;
 
 	} while (bh != head);
@@ -1406,8 +1406,8 @@ SYSCALL_DEFINE6(move_pages, pid_t, pid, unsigned long, nr_pages,
 	}
 	rcu_read_unlock();
 
- 	err = security_task_movememory(task);
- 	if (err)
+	err = security_task_movememory(task);
+	if (err)
 		goto out;
 
 	task_nodes = cpuset_mems_allowed(task);
@@ -1439,16 +1439,16 @@ out:
 int migrate_vmas(struct mm_struct *mm, const nodemask_t *to,
 	const nodemask_t *from, unsigned long flags)
 {
- 	struct vm_area_struct *vma;
- 	int err = 0;
+	struct vm_area_struct *vma;
+	int err = 0;
 
 	for (vma = mm->mmap; vma && !err; vma = vma->vm_next) {
- 		if (vma->vm_ops && vma->vm_ops->migrate) {
- 			err = vma->vm_ops->migrate(vma, to, from, flags);
- 			if (err)
- 				break;
- 		}
- 	}
- 	return err;
+		if (vma->vm_ops && vma->vm_ops->migrate) {
+			err = vma->vm_ops->migrate(vma, to, from, flags);
+			if (err)
+				break;
+		}
+	}
+	return err;
 }
 #endif

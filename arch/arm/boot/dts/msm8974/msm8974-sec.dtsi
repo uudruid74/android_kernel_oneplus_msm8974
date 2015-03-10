@@ -866,7 +866,7 @@
 		"lpaif_sec_mode_muxsel",
 		"lpaif_tert_mode_muxsel",
 		"lpaif_quat_mode_muxsel";
-		
+
 		qcom,audio-routing =
 			"RX_BIAS", "MCLK",
 			"LDO_H", "MCLK",
@@ -1005,9 +1005,9 @@
 		status = "disabled";
 	};
 	i2c_7: i2c@f9963000 {
-	   	cell-index = <7>;
-	   	compatible = "qcom,i2c-qup";
-	   	reg = <0xf9963000 0x1000>;
+		cell-index = <7>;
+		compatible = "qcom,i2c-qup";
+		reg = <0xf9963000 0x1000>;
 		#address-cells = <1>;
 		#size-cells = <0>;
 		reg-names = "qup_phys_addr";

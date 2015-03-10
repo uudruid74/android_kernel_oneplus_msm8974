@@ -68,4 +68,3 @@ Example:
 			qcom,bat-present-decidegc = <200>;
 		};
 	};
-

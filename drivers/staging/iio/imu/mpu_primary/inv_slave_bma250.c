@@ -312,4 +312,3 @@ int inv_register_mpu3050_slave(struct inv_mpu_state *st)
 
 	return 0;
 }
-

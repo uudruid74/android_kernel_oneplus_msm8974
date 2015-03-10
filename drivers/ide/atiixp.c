@@ -156,7 +156,7 @@ static const struct ide_port_info atiixp_pci_info[] __devinitdata = {
 		.pio_mask	= ATA_PIO4,
 		.mwdma_mask	= ATA_MWDMA2,
 		.udma_mask	= ATA_UDMA5,
- 	},
+	},
 };
 
 /**

@@ -751,7 +751,7 @@ static void pata_macio_reset_hw(struct pata_macio_priv *priv, int resume)
 	} else {
 		int rc;
 
- 		/* Reset and enable controller */
+		/* Reset and enable controller */
 		rc = ppc_md.feature_call(PMAC_FTR_IDE_RESET,
 					 priv->node, priv->aapl_bus_id, 1);
 		ppc_md.feature_call(PMAC_FTR_IDE_ENABLE,

@@ -1162,4 +1162,3 @@ MODULE_DESCRIPTION("DVB Frontend module for Conexant " \
 	"CX24123/CX24109/CX24113 hardware");
 MODULE_AUTHOR("Steven Toth");
 MODULE_LICENSE("GPL");
-

@@ -1213,5 +1213,3 @@ static void rndis_qc_cleanup(void)
 	misc_deregister(&rndis_qc_device);
 	_rndis_qc = NULL;
 }
-
-

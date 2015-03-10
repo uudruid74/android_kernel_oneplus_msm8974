@@ -340,4 +340,3 @@ int s5p_mfc_wakeup(struct s5p_mfc_dev *dev)
 	mfc_debug_leave();
 	return 0;
 }
-

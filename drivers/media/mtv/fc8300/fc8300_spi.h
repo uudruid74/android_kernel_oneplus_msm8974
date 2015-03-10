@@ -55,4 +55,3 @@ extern s32 fc8300_spi_deinit(HANDLE handle);
 #endif
 
 #endif /* __FC8300_SPI__ */
-

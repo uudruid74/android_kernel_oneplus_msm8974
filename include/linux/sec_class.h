@@ -8,4 +8,3 @@
  * published by the Free Software Foundation.
  */
 extern struct class *sec_class;
-

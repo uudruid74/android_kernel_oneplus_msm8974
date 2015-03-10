@@ -100,7 +100,7 @@ void kill_bdev(struct block_device *bdev)
 
 	invalidate_bh_lrus();
 	truncate_inode_pages(mapping, 0);
-}	
+}
 EXPORT_SYMBOL(kill_bdev);
 
 /* Invalidate clean unused buffers and pagecache. */
@@ -412,13 +412,13 @@ out:
 	mutex_unlock(&bd_inode->i_mutex);
 	return retval;
 }
-	
+
 int blkdev_fsync(struct file *filp, loff_t start, loff_t end, int datasync)
 {
 	struct inode *bd_inode = filp->f_mapping->host;
 	struct block_device *bdev = I_BDEV(bd_inode);
 	int error;
-	
+
 	error = filemap_write_and_wait_range(filp->f_mapping, start, end);
 	if (error)
 		return error;
@@ -631,7 +631,7 @@ void bdput(struct block_device *bdev)
 }
 
 EXPORT_SYMBOL(bdput);
- 
+
 static struct block_device *bd_acquire(struct inode *inode)
 {
 	struct block_device *bdev;
@@ -1635,7 +1635,7 @@ const struct file_operations def_blk_fops = {
 	.llseek		= block_llseek,
 	.read		= do_sync_read,
 	.write		= do_sync_write,
-  	.aio_read	= generic_file_aio_read,
+	.aio_read	= generic_file_aio_read,
 	.aio_write	= blkdev_aio_write,
 	.mmap		= generic_file_mmap,
 	.fsync		= blkdev_fsync,

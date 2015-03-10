@@ -74,7 +74,7 @@ static int pxa2xx_ac97_pcm_startup(struct snd_pcm_substream *substream)
 	runtime->hw.rates = pxa2xx_ac97_ac97->rates[r];
 	snd_pcm_limit_hw_rates(runtime);
 
-       	platform_ops = substream->pcm->card->dev->platform_data;
+	platform_ops = substream->pcm->card->dev->platform_data;
 	if (platform_ops && platform_ops->startup)
 		return platform_ops->startup(substream, platform_ops->priv);
 	else
@@ -85,7 +85,7 @@ static void pxa2xx_ac97_pcm_shutdown(struct snd_pcm_substream *substream)
 {
 	pxa2xx_audio_ops_t *platform_ops;
 
-       	platform_ops = substream->pcm->card->dev->platform_data;
+	platform_ops = substream->pcm->card->dev->platform_data;
 	if (platform_ops && platform_ops->shutdown)
 		platform_ops->shutdown(substream, platform_ops->priv);
 }

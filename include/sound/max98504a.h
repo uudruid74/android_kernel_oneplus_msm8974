@@ -30,7 +30,7 @@ struct max98504_cfg_data {
 	u32 meas_dc_block_en;
 	u32 rx_flt_mode;
 	u32 rx_ch_en;
-	u32 tx_ch_en;	
+	u32 tx_ch_en;
 	u32 tx_hiz_ch_en;
 	u32 tx_ch_src;
 	u32 auth_en;
@@ -45,4 +45,3 @@ struct max98504_pdata {
 };
 
 #endif
-

@@ -155,17 +155,17 @@
 
 struct i82593_conf_block {
   u_char fifo_limit : 4,
-  	 forgnesi   : 1,
-  	 fifo_32    : 1,
-  	 d6mod      : 1,
-  	 throttle_enb : 1;
+	 forgnesi   : 1,
+	 fifo_32    : 1,
+	 d6mod      : 1,
+	 throttle_enb : 1;
   u_char throttle   : 6,
 	 cntrxint   : 1,
 	 contin	    : 1;
   u_char addr_len   : 3,
-  	 acloc 	    : 1,
- 	 preamb_len : 2,
-  	 loopback   : 2;
+	 acloc 	    : 1,
+	 preamb_len : 2,
+	 loopback   : 2;
   u_char lin_prio   : 3,
 	 tbofstop   : 1,
 	 exp_prio   : 3,
@@ -179,18 +179,18 @@ struct i82593_conf_block {
 	 max_retr   : 4;
   u_char prmisc     : 1,
 	 bc_dis     : 1,
-  		    : 1,
+		    : 1,
 	 crs_1	    : 1,
 	 nocrc_ins  : 1,
 	 crc_1632   : 1,
-  	 	    : 1,
-  	 crs_cdt    : 1;
+		    : 1,
+	 crs_cdt    : 1;
   u_char cs_filter  : 3,
 	 crs_src    : 1,
 	 cd_filter  : 3,
 		    : 1;
   u_char	    : 2,
-  	 min_fr_len : 6;
+	 min_fr_len : 6;
   u_char lng_typ    : 1,
 	 lng_fld    : 1,
 	 rxcrc_xf   : 1,
@@ -198,19 +198,19 @@ struct i82593_conf_block {
 	 sarec	    : 1,
 	 tx_jabber  : 1,	/* why is this called max_len in the manual? */
 	 hash_1	    : 1,
-  	 lbpkpol    : 1;
+	 lbpkpol    : 1;
   u_char	    : 6,
-  	 fdx	    : 1,
-  	  	    : 1;
+	 fdx	    : 1,
+		    : 1;
   u_char dummy_6    : 6,	/* supposed to be ones */
-  	 mult_ia    : 1,
-  	 dis_bof    : 1;
+	 mult_ia    : 1,
+	 dis_bof    : 1;
   u_char dummy_1    : 1,	/* supposed to be one */
 	 tx_ifs_retrig : 2,
 	 mc_all     : 1,
 	 rcv_mon    : 2,
 	 frag_acpt  : 1,
-  	 tstrttrs   : 1;
+	 tstrttrs   : 1;
   u_char fretx	    : 1,
 	 runt_eop   : 1,
 	 hw_sw_pin  : 1,
@@ -218,10 +218,10 @@ struct i82593_conf_block {
 	 syncrqs    : 1,
 	 sttlen     : 1,
 	 tx_eop     : 1,
-  	 rx_eop	    : 1;
+	 rx_eop	    : 1;
   u_char rbuf_size  : 5,
 	 rcvstop    : 1,
-  	 	    : 2;
+		    : 2;
 };
 
 #define I82593_MAX_MULTICAST_ADDRESSES	128	/* Hardware hashed filter */

@@ -34,7 +34,7 @@ INT rtv_InitSystem(void)
 	U8 read0, read1;
 	U8 rev_num;
 	U8 ALDO_OUT = 0, DLDO_OUT = 0;
-		
+
 #ifdef RTV_DUAL_DIVERISTY_ENABLE
 	U8 S_ALDO_OUT = 0, S_DLDO_OUT = 0;
 #endif
@@ -122,30 +122,30 @@ RTV_POWER_ON_SUCCESS:
 			read0 = RTV_REG_GET(0x22);
 			RTV_REG_SET(0x22, 0xAA);
 			read1 = RTV_REG_GET(0x22);
-	
+
 			RTV_DBGMSG2("Before Power Setup :readSPI22_55(0x%02X), readSPI22_AA(0x%02X)\n",
 						read0, read1);
 		}
-	
+
 		RTV_REG_MAP_SEL(RF_PAGE);
 		for (i = 0; i < 100; i++) {
 			RTV_REG_SET(0x20, 0x55);
 			read0 = RTV_REG_GET(0x20);
 			RTV_REG_SET(0x20, 0xAA);
 			read1 = RTV_REG_GET(0x20);
-	
+
 			RTV_DBGMSG2("Before Power Setup :readRF20_55(0x%02X), readRF20_AA(0x%02X)\n",
 					read0, read1);
 		}
 #else
 		RTV_REG_MAP_SEL(RF_PAGE);
-	
+
 		for (i = 0; i < 100; i++) {
 			RTV_REG_SET(0x20, 0x55);
 			read0 = RTV_REG_GET(0x20);
 			RTV_REG_SET(0x20, 0xAA);
 			read1 = RTV_REG_GET(0x20);
-	
+
 			RTV_DBGMSG2("Before Power Setup :readRF20_55(0x%02X), readRF20_AA(0x%02X)\n",
 				read0, read1);
 		}

@@ -9,7 +9,7 @@
  *        + Module parameters  can now be specified only in the
  *          same format as the kernel boot options.
  *
- *             boot option    old module param 
+ *             boot option    old module param
  *             -----------    ------------------
  *             addr,...       io_port=addr,...
  *             lc:[y|n]       linked_comm=[1|0]
@@ -622,7 +622,7 @@ struct eata_info {
 
 #if defined(__BIG_ENDIAN_BITFIELD)
 	unchar version	: 4,
-	       		: 4;
+			: 4;
 	unchar haaval	: 1,
 	       ata	: 1,
 	       drqvld	: 1,
@@ -633,7 +633,7 @@ struct eata_info {
 	       ocsena	: 1;
 #else
 	unchar		: 4,	/* unused low nibble */
-	 	version	: 4;	/* EATA version, should be 0x1 */
+		version	: 4;	/* EATA version, should be 0x1 */
 	unchar ocsena	: 1,	/* Overlap Command Support Enabled */
 	       tarsup	: 1,	/* Target Mode Supported */
 	       trnxfr	: 1,	/* Truncate Transfer Cmd NOT Necessary */
@@ -670,7 +670,7 @@ struct eata_info {
 	       pci	: 1,
 	       idquest	: 1,
 	       m1	: 1,
-	       		: 4;
+			: 4;
 #else
 	unchar irq	: 4,	/* Interrupt Request assigned to this controller */
 	       irq_tr	: 1,	/* 0 for edge triggered, 1 for level triggered */
@@ -683,7 +683,7 @@ struct eata_info {
 	       forcaddr	: 1,	/* Port address has been forced */
 	       large_sg	: 1,	/* 1 if large SG lists are supported */
 	       res1	: 1,
-	       		: 4;
+			: 4;
 	unchar max_id	: 5,	/* Max SCSI target ID number */
 	       max_chan	: 3;	/* Max SCSI channel number on this board */
 
@@ -718,7 +718,7 @@ struct eata_config {
 	       ocena	: 1,	/* Overlapped Commands Enabled */
 	       mdpena	: 1,	/* Transfer all Modified Data Pointer Messages */
 	       tarena	: 1,	/* Target Mode Enabled for this controller */
-	       		: 4;
+			: 4;
 #endif
 	unchar cpad[511];
 };
@@ -750,7 +750,7 @@ struct mscp {
 	unchar din	: 1,
 	       dout	: 1,
 	       interp	: 1,
-	       		: 1,
+			: 1,
 		sg	: 1,
 		reqsen	:1,
 		init	: 1,
@@ -774,7 +774,7 @@ struct mscp {
 	       init	:1,	/* Re-initialize controller and self test */
 	       reqsen	:1,	/* Transfer Request Sense Data to addr using DMA */
 	       sg	:1,	/* Use Scatter/Gather */
-	       		:1,
+			:1,
 	       interp	:1,	/* The controller interprets cp, not the target */
 	       dout	:1,	/* Direction of Transfer is Out (Host to Target) */
 	       din	:1;	/* Direction of Transfer is In (Target to Host) */
@@ -785,7 +785,7 @@ struct mscp {
 	unchar phsunit	: 1,	/* Send to Target Physical Unit (bypass RAID) */
 	       iat	: 1,	/* Inhibit Address Translation */
 	       hbaci	: 1,	/* Inhibit HBA Caching for this command */
-	       		: 5;
+			: 5;
 	unchar target	: 5,	/* SCSI target ID */
 	       channel	: 3;	/* SCSI channel number */
 	unchar lun	: 5,	/* SCSI logical unit number */
@@ -1285,7 +1285,7 @@ static int port_detect(unsigned long port_base, unsigned int j,
 	shost->cmd_per_lun = MAX_CMD_PER_LUN;
 
 	ha = (struct hostdata *)shost->hostdata;
-	
+
 	memset(ha, 0, sizeof(struct hostdata));
 	ha->subversion = subversion;
 	ha->protocol_rev = protocol_rev;

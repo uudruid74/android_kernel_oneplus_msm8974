@@ -1036,4 +1036,3 @@ module_exit(pm121_exit);
 MODULE_AUTHOR("Étienne Bersac <bersace@gmail.com>");
 MODULE_DESCRIPTION("Thermal control logic for iMac G5 (iSight)");
 MODULE_LICENSE("GPL");
-

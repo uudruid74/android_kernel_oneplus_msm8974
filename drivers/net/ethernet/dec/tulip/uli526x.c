@@ -426,7 +426,7 @@ static void __devexit uli526x_remove_one (struct pci_dev *pdev)
 
 	pci_free_consistent(db->pdev, sizeof(struct tx_desc) *
 				DESC_ALL_CNT + 0x20, db->desc_pool_ptr,
- 				db->desc_pool_dma_ptr);
+				db->desc_pool_dma_ptr);
 	pci_free_consistent(db->pdev, TX_BUF_ALLOC * TX_DESC_CNT + 4,
 				db->buf_pool_ptr, db->buf_pool_dma_ptr);
 	unregister_netdev(dev);
@@ -778,7 +778,7 @@ static void uli526x_free_tx_pkt(struct net_device *dev,
 			}
 		}
 
-    		txptr = txptr->next_tx_desc;
+		txptr = txptr->next_tx_desc;
 	}/* End of while */
 
 	/* Update TX remove pointer to next */
@@ -1011,7 +1011,7 @@ static void uli526x_timer(unsigned long data)
 	unsigned char tmp_cr12=0;
 	struct net_device *dev = (struct net_device *) data;
 	struct uli526x_board_info *db = netdev_priv(dev);
- 	unsigned long flags;
+	unsigned long flags;
 
 	//ULI526X_DBUG(0, "uli526x_timer()", 0);
 	spin_lock_irqsave(&db->lock, flags);
@@ -1568,14 +1568,14 @@ static void uli526x_set_phyxcer(struct uli526x_board_info *db)
 
 	}
 
-  	/* Write new capability to Phyxcer Reg4 */
+	/* Write new capability to Phyxcer Reg4 */
 	if ( !(phy_reg & 0x01e0)) {
 		phy_reg|=db->PHY_reg4;
 		db->media_mode|=ULI526X_AUTO;
 	}
 	phy_write(db->ioaddr, db->phy_addr, 4, phy_reg, db->chip_id);
 
- 	/* Restart Auto-Negotiation */
+	/* Restart Auto-Negotiation */
 	phy_write(db->ioaddr, db->phy_addr, 0, 0x1200, db->chip_id);
 	udelay(50);
 }
@@ -1583,7 +1583,7 @@ static void uli526x_set_phyxcer(struct uli526x_board_info *db)
 
 /*
  *	Process op-mode
- 	AUTO mode : PHY controller in Auto-negotiation Mode
+	AUTO mode : PHY controller in Auto-negotiation Mode
  *	Force mode: PHY controller in force mode with HUB
  *			N-way force capability with SWITCH
  */
@@ -1822,8 +1822,8 @@ static int __init uli526x_init_module(void)
 	if (cr6set)
 		uli526x_cr6_user_set = cr6set;
 
- 	switch (mode) {
-   	case ULI526X_10MHF:
+	switch (mode) {
+	case ULI526X_10MHF:
 	case ULI526X_100MHF:
 	case ULI526X_10MFD:
 	case ULI526X_100MFD:

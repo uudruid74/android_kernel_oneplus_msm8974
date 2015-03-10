@@ -903,8 +903,8 @@ static void eexp_hw_rx_pio(struct net_device *dev)
 	printk(KERN_DEBUG "%s: eexp_hw_rx()\n", dev->name);
 #endif
 
- 	do {
- 		unsigned short rfd_cmd, rx_next, pbuf, pkt_len;
+	do {
+		unsigned short rfd_cmd, rx_next, pbuf, pkt_len;
 
 		outw(rx_block, ioaddr + READ_PTR);
 		status = inw(ioaddr + DATAPORT);
@@ -919,7 +919,7 @@ static void eexp_hw_rx_pio(struct net_device *dev)
 			pkt_len = inw(ioaddr + DATAPORT);
 
 			if (rfd_cmd!=0x0000)
-  			{
+			{
 				printk(KERN_WARNING "%s: rfd_cmd not zero:0x%04x\n",
 				       dev->name, rfd_cmd);
 				continue;
@@ -934,9 +934,9 @@ static void eexp_hw_rx_pio(struct net_device *dev)
 			{
 				printk(KERN_WARNING "%s: EOF or F not set on received buffer (%04x)\n",
 				       dev->name, pkt_len & 0xc000);
-  				continue;
-  			}
-  			else if (!FD_OK(status))
+				continue;
+			}
+			else if (!FD_OK(status))
 			{
 				dev->stats.rx_errors++;
 				if (FD_CRC(status))
@@ -1001,7 +1001,7 @@ static void eexp_hw_tx_pio(struct net_device *dev, unsigned short *buf,
 		outw(0xFFFF, ioaddr+SIGNAL_CA);
 	}
 
- 	outw(lp->tx_head, ioaddr + WRITE_PTR);
+	outw(lp->tx_head, ioaddr + WRITE_PTR);
 
 	outw(0x0000, ioaddr + DATAPORT);
         outw(Cmd_INT|Cmd_Xmit, ioaddr + DATAPORT);
@@ -1120,13 +1120,13 @@ static int __init eexp_hw_probe(struct net_device *dev, unsigned short ioaddr)
 	memset(lp, 0, sizeof(struct net_local));
 	spin_lock_init(&lp->lock);
 
- 	printk("(IRQ %d, %s connector, %d-bit bus", dev->irq,
- 	       eexp_ifmap[dev->if_port], buswidth?8:16);
+	printk("(IRQ %d, %s connector, %d-bit bus", dev->irq,
+	       eexp_ifmap[dev->if_port], buswidth?8:16);
 
 	if (!request_region(dev->base_addr + 0x300e, 1, "EtherExpress"))
 		return -EBUSY;
 
- 	eexp_hw_set_interface(dev);
+	eexp_hw_set_interface(dev);
 
 	release_region(dev->base_addr + 0x300e, 1);
 
@@ -1259,7 +1259,7 @@ static unsigned short eexp_hw_lasttxstat(struct net_device *dev)
 			{
 				char *whatsup = NULL;
 				dev->stats.tx_errors++;
-  				if (Stat_Abort(status))
+				if (Stat_Abort(status))
 					dev->stats.tx_aborted_errors++;
 				if (Stat_TNoCar(status)) {
 					whatsup = "aborted, no carrier";
@@ -1433,8 +1433,8 @@ static void eexp_hw_rxinit(struct net_device *dev)
 	outw(lp->rx_first + 0x16, ioaddr+DATAPORT);
 
 	/* Close Rx frame descriptor ring */
-  	outw(lp->rx_last + 4, ioaddr+WRITE_PTR);
-  	outw(lp->rx_first, ioaddr+DATAPORT);
+	outw(lp->rx_last + 4, ioaddr+WRITE_PTR);
+	outw(lp->rx_first, ioaddr+DATAPORT);
 
 	/* Close Rx buffer descriptor ring */
 	outw(lp->rx_last + 0x16 + 2, ioaddr+WRITE_PTR);

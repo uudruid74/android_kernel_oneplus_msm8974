@@ -510,7 +510,7 @@
 #define HOVER_PRESSED		0x5
 #define GLOVE_PRESSED		0x6
 
-#ifdef ENABLE_F12_OBJTYPE 
+#ifdef ENABLE_F12_OBJTYPE
 /* Define for object type report enable Mask(F12_2D_CTRL23) */
 #define OBJ_TYPE_FINGER			(1 << 0)
 #define OBJ_TYPE_PASSIVE_STYLUS	(1 << 1)

@@ -64,9 +64,9 @@ void voc_set_loopback_enable(int mode)
 {
 	loopback_prev_mode = loopback_mode;
 	loopback_mode = mode;
-	
+
 	pr_info("%s : prev_mode = %d, mode = %d\n",
-		__func__, loopback_prev_mode, mode);	
+		__func__, loopback_prev_mode, mode);
 }
 
 int voc_get_roaming_enable(void)
@@ -77,9 +77,9 @@ int voc_get_roaming_enable(void)
 void voc_set_roaming_enable(int mode)
 {
 	In_roaming = mode;
-	
+
 	pr_info("%s : In_roaming = %d, mode = %d\n",
-		__func__, In_roaming, mode);	
+		__func__, In_roaming, mode);
 }
 
 static int voice_send_enable_vocproc_cmd(struct voice_data *v);
@@ -118,7 +118,7 @@ static int32_t qdsp_cvp_callback(struct apr_client_data *data, void *priv);
 static int voice_send_set_pp_enable_cmd(struct voice_data *v,
 					uint32_t module_id, int enable);
 static int send_packet_loopback_cmd(struct voice_data *v, bool mode);
-					
+
 static int is_cal_memory_allocated(void);
 static int is_voip_memory_allocated(void);
 static int voice_alloc_cal_mem_map_table(void);
@@ -127,7 +127,7 @@ static int voice_alloc_oob_shared_mem(void);
 static int voice_free_oob_shared_mem(void);
 static int voice_alloc_oob_mem_table(void);
 static int voice_alloc_and_map_cal_mem(struct voice_data *v);
-static int voice_alloc_and_map_oob_mem(struct voice_data *v);		
+static int voice_alloc_and_map_oob_mem(struct voice_data *v);
 static int voc_disable_cvp(uint32_t session_id);
 static int voc_enable_cvp(uint32_t session_id);
 
@@ -3294,8 +3294,8 @@ static int voice_setup_vocproc(struct voice_data *v)
 
 		voice_send_netid_timing_cmd(v);
 	}
-	
-	
+
+
 	if (v->st_enable && !v->tty_mode)
 		voice_send_set_pp_enable_cmd(v,
 					     MODULE_ID_VOICE_MODULE_ST,
@@ -4815,7 +4815,7 @@ int voc_set_pp_enable(uint32_t session_id, uint32_t module_id, uint32_t enable)
 			if (module_id == MODULE_ID_VOICE_MODULE_ST)
 				v->st_enable = enable;
 
-			if (v->voc_state == VOC_RUN) {		    
+			if (v->voc_state == VOC_RUN) {
 				if ((module_id == MODULE_ID_VOICE_MODULE_ST) &&
 					(!v->tty_mode))
 					ret = voice_send_set_pp_enable_cmd(v,
@@ -5312,7 +5312,7 @@ int voc_start_voice_call(uint32_t session_id)
 			} else {
 				pr_info("%s : send packet loopback enable cmd success\n", __func__);
 			}
-		}		
+		}
 
 		v->voc_state = VOC_RUN;
 	} else {
@@ -5469,7 +5469,7 @@ static int voice_send_dha_data(struct voice_data *v)
 		pr_err("%s: wait_event timeout\n", __func__);
 		goto fail;
 	}
-	
+
 	return 0;
 
 fail:
@@ -5787,7 +5787,7 @@ static int32_t qdsp_cvs_callback(struct apr_client_data *data, void *priv)
 				((loopback_mode == 0) && (loopback_prev_mode == 1))) {
 					v->cvs_state = CMD_STATUS_SUCCESS;
 					wake_up(&v->cvs_wait);
-				}				
+				}
 				break;
 			case VOICE_CMD_GET_PARAM:
 				pr_debug("%s: VOICE_CMD_GET_PARAM\n",

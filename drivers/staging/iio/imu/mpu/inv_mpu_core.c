@@ -2911,7 +2911,7 @@ static ssize_t inv_accel_cal_show(struct device *dev,
 	struct inv_mpu_state *st;
 	int err;
 	st = dev_get_drvdata(dev);
-	if (!st->cal_data[0] && !st->cal_data[1] && !st->cal_data[2]) 
+	if (!st->cal_data[0] && !st->cal_data[1] && !st->cal_data[2])
 		err = -1;
 	else
 		err = 1;
@@ -3048,7 +3048,7 @@ static ssize_t inv_accel_cal_store(struct device *dev,
 		st = dev_get_drvdata(dev);
 		err = accel_do_calibrate(st, enable);
 	}
-	
+
 	return size;
 }
 
@@ -4623,4 +4623,3 @@ MODULE_AUTHOR("Invensense Corporation");
 MODULE_DESCRIPTION("Invensense device driver");
 MODULE_LICENSE("GPL");
 MODULE_ALIAS("inv-mpu-iio");
-

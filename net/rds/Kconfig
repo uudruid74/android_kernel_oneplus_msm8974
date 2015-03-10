@@ -25,4 +25,3 @@ config RDS_DEBUG
         bool "RDS debugging messages"
 	depends on RDS
         default n
-

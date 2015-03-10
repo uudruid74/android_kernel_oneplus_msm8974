@@ -310,4 +310,3 @@ struct iommu_pm_hw_ops *iommu_pm_get_hw_ops_v0(void)
 	return &iommu_pm_hw_ops;
 }
 EXPORT_SYMBOL(iommu_pm_get_hw_ops_v0);
-

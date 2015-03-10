@@ -976,4 +976,3 @@ abatron_pteptrs:
 cpu6_errata_word:
 	.space	16
 #endif
-

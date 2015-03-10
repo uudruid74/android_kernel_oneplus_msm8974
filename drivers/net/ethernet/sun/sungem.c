@@ -1261,8 +1261,8 @@ static void gem_begin_auto_negotiation(struct gem *gp, struct ethtool_cmd *ep)
 	int duplex;
 
 	if (gp->phy_type != phy_mii_mdio0 &&
-     	    gp->phy_type != phy_mii_mdio1)
-     	    	goto non_mii;
+	    gp->phy_type != phy_mii_mdio1)
+		goto non_mii;
 
 	/* Setup advertise */
 	if (found_mii_phy(gp))
@@ -1302,9 +1302,9 @@ start_aneg:
 		speed = SPEED_10;
 	if (duplex == DUPLEX_FULL &&
 	    !(features & (SUPPORTED_1000baseT_Full |
-	    		  SUPPORTED_100baseT_Full |
-	    		  SUPPORTED_10baseT_Full)))
-	    	duplex = DUPLEX_HALF;
+			  SUPPORTED_100baseT_Full |
+			  SUPPORTED_10baseT_Full)))
+		duplex = DUPLEX_HALF;
 	if (speed == 0)
 		speed = SPEED_10;
 
@@ -1349,13 +1349,13 @@ static int gem_set_link_modes(struct gem *gp)
 	pause = 0;
 
 	if (found_mii_phy(gp)) {
-	    	if (gp->phy_mii.def->ops->read_link(&gp->phy_mii))
-	    		return 1;
+		if (gp->phy_mii.def->ops->read_link(&gp->phy_mii))
+			return 1;
 		full_duplex = (gp->phy_mii.duplex == DUPLEX_FULL);
 		speed = gp->phy_mii.speed;
 		pause = gp->phy_mii.pause;
 	} else if (gp->phy_type == phy_serialink ||
-	    	   gp->phy_type == phy_serdes) {
+		   gp->phy_type == phy_serdes) {
 		u32 pcs_lpa = readl(gp->regs + PCS_MIILP);
 
 		if ((pcs_lpa & PCS_MIIADV_FD) || gp->phy_type == phy_serdes)
@@ -1413,7 +1413,7 @@ static int gem_set_link_modes(struct gem *gp)
 
 	if (gp->phy_type == phy_serialink ||
 	    gp->phy_type == phy_serdes) {
- 		u32 pcs_lpa = readl(gp->regs + PCS_MIILP);
+		u32 pcs_lpa = readl(gp->regs + PCS_MIILP);
 
 		if (pcs_lpa & (PCS_MIIADV_SP | PCS_MIIADV_AP))
 			pause = 1;
@@ -1786,7 +1786,7 @@ static u32 gem_setup_multicast(struct gem *gp)
 
 	if ((gp->dev->flags & IFF_ALLMULTI) ||
 	    (netdev_mc_count(gp->dev) > 256)) {
-	    	for (i=0; i<16; i++)
+		for (i=0; i<16; i++)
 			writel(0xffff, gp->regs + MAC_HASH0 + (i << 2));
 		rxcfg |= MAC_RXCFG_HFE;
 	} else if (gp->dev->flags & IFF_PROMISC) {
@@ -1803,7 +1803,7 @@ static u32 gem_setup_multicast(struct gem *gp)
 			crc >>= 24;
 			hash_table[crc >> 4] |= 1 << (15 - (crc & 0xf));
 		}
-	    	for (i=0; i<16; i++)
+		for (i=0; i<16; i++)
 			writel(hash_table[i], gp->regs + MAC_HASH0 + (i << 2));
 		rxcfg |= MAC_RXCFG_HFE;
 	}
@@ -1895,7 +1895,7 @@ static void gem_init_mac(struct gem *gp)
 
 static void gem_init_pause_thresholds(struct gem *gp)
 {
-       	u32 cfg;
+	u32 cfg;
 
 	/* Calculate pause thresholds.  Setting the OFF threshold to the
 	 * full RX fifo size effectively disables PAUSE generation which
@@ -1917,15 +1917,15 @@ static void gem_init_pause_thresholds(struct gem *gp)
 	/* Configure the chip "burst" DMA mode & enable some
 	 * HW bug fixes on Apple version
 	 */
-       	cfg  = 0;
-       	if (gp->pdev->vendor == PCI_VENDOR_ID_APPLE)
+	cfg  = 0;
+	if (gp->pdev->vendor == PCI_VENDOR_ID_APPLE)
 		cfg |= GREG_CFG_RONPAULBIT | GREG_CFG_ENBUG2FIX;
 #if !defined(CONFIG_SPARC64) && !defined(CONFIG_ALPHA)
-       	cfg |= GREG_CFG_IBURST;
+	cfg |= GREG_CFG_IBURST;
 #endif
-       	cfg |= ((31 << 1) & GREG_CFG_TXDMALIM);
-       	cfg |= ((31 << 6) & GREG_CFG_RXDMALIM);
-       	writel(cfg, gp->regs + GREG_CFG);
+	cfg |= ((31 << 1) & GREG_CFG_TXDMALIM);
+	cfg |= ((31 << 6) & GREG_CFG_RXDMALIM);
+	writel(cfg, gp->regs + GREG_CFG);
 
 	/* If Infinite Burst didn't stick, then use different
 	 * thresholds (and Apple bug fixes don't exist)

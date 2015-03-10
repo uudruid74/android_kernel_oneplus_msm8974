@@ -3769,7 +3769,7 @@ s32 fc8300_probe(HANDLE handle, DEVICEID devid)
 	u16 ver;
 		print_log(0," %s\n",__func__);
 
-	
+
 	bbm_word_read(handle, devid, BBM_CHIP_ID, &ver);
 
 	return (ver == 0x8300) ? BBM_OK : BBM_NOK;
@@ -4419,8 +4419,8 @@ s32 fc8300_scan_status(HANDLE handle, DEVICEID devid)
 	}
 
 	if (i == ffs_lock_timeout)
-	{	
-		pr_info("ISDBT ffs_lock_timeout \n");	
+	{
+		pr_info("ISDBT ffs_lock_timeout \n");
 		return BBM_NOK;
 		}
 
@@ -4735,5 +4735,3 @@ s32 fc8300_set_broadcast_mode(HANDLE handle, DEVICEID devid,
 
 	return res;
 }
-
-

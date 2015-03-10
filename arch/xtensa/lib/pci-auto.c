@@ -345,8 +345,3 @@ int __init pciauto_bus_scan(struct pci_controller *pci_ctrl, int current_bus)
 	}
 	return sub_bus;
 }
-
-
-
-
-

@@ -17,7 +17,7 @@
 &soc {
 	serial@f991f000 {
 		status = "ok";
-	}; 
+	};
 
 	i2c@79 {
 		cell-index = <79>;
@@ -55,7 +55,7 @@
 /*	i2c@75 {
 		cell-index = <75>;
 		compatible = "i2c-gpio";
-		gpios = <&msmgpio 20 0 
+		gpios = <&msmgpio 20 0
 			&msmgpio 21 0>;*/
 
 	backlight_lp8556@2C {

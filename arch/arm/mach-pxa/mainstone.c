@@ -595,7 +595,7 @@ static void __init mainstone_init(void)
 
 
 static struct map_desc mainstone_io_desc[] __initdata = {
-  	{	/* CPLD */
+	{	/* CPLD */
 		.virtual	=  MST_FPGA_VIRT,
 		.pfn		= __phys_to_pfn(MST_FPGA_PHYS),
 		.length		= 0x00100000,
@@ -608,9 +608,9 @@ static void __init mainstone_map_io(void)
 	pxa27x_map_io();
 	iotable_init(mainstone_io_desc, ARRAY_SIZE(mainstone_io_desc));
 
- 	/*	for use I SRAM as framebuffer.	*/
- 	PSLR |= 0xF04;
- 	PCFR = 0x66;
+	/*	for use I SRAM as framebuffer.	*/
+	PSLR |= 0xF04;
+	PCFR = 0x66;
 }
 
 MACHINE_START(MAINSTONE, "Intel HCDDBBVA0 Development Platform (aka Mainstone)")

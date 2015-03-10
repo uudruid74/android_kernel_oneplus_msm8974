@@ -499,7 +499,7 @@ static struct chan *parse_chan(struct line *line, char *str, int device,
 	}
 	*chan = ((struct chan) { .list	 	= LIST_HEAD_INIT(chan->list),
 				 .free_list 	=
-				 	LIST_HEAD_INIT(chan->free_list),
+					LIST_HEAD_INIT(chan->free_list),
 				 .line		= line,
 				 .primary	= 1,
 				 .input		= 0,

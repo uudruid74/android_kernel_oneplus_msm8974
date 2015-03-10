@@ -234,8 +234,8 @@ static int __init ni5010_probe1(struct net_device *dev, int ioaddr)
 	 *   - Andreas
 	 */
 
- 	PRINTK2((KERN_DEBUG "%s: entering ni5010_probe1(%#3x)\n",
- 		dev->name, ioaddr));
+	PRINTK2((KERN_DEBUG "%s: entering ni5010_probe1(%#3x)\n",
+		dev->name, ioaddr));
 
 	if (inb(ioaddr+0) == 0xff)
 		goto out;
@@ -323,19 +323,19 @@ static int __init ni5010_probe1(struct net_device *dev, int ioaddr)
  * i.e. data for offs. 0x801 is written to 0x1 with a 2K onboard buffer
  */
 	if (!bufsize_rcv) {
-        	outb(1, IE_MMODE);      /* Put Rcv buffer on system bus */
-        	outw(0, IE_GP);		/* Point GP at start of packet */
-        	outb(0, IE_RBUF);	/* set buffer byte 0 to 0 */
-        	for (i = 1; i < 0xff; i++) {
-                	outw(i << 8, IE_GP); /* Point GP at packet size to be tested */
-                	outb(i, IE_RBUF);
-                	outw(0x0, IE_GP); /* Point GP at start of packet */
-                	data = inb(IE_RBUF);
-                	if (data == i) break;
-        	}
+		outb(1, IE_MMODE);      /* Put Rcv buffer on system bus */
+		outw(0, IE_GP);		/* Point GP at start of packet */
+		outb(0, IE_RBUF);	/* set buffer byte 0 to 0 */
+		for (i = 1; i < 0xff; i++) {
+			outw(i << 8, IE_GP); /* Point GP at packet size to be tested */
+			outb(i, IE_RBUF);
+			outw(0x0, IE_GP); /* Point GP at start of packet */
+			data = inb(IE_RBUF);
+			if (data == i) break;
+		}
 		bufsize_rcv = i << 8;
-        	outw(0, IE_GP);		/* Point GP at start of packet */
-        	outb(0, IE_RBUF);	/* set buffer byte 0 to 0 again */
+		outw(0, IE_GP);		/* Point GP at start of packet */
+		outb(0, IE_RBUF);	/* set buffer byte 0 to 0 again */
 	}
         printk("-> bufsize rcv/xmt=%d/%d\n", bufsize_rcv, NI5010_BUFSIZE);
 
@@ -422,7 +422,7 @@ static int ni5010_open(struct net_device *dev)
 	if (NI5010_DEBUG) ni5010_show_registers(dev);
 
 	PRINTK((KERN_DEBUG "%s: open successful\n", dev->name));
-     	return 0;
+	return 0;
 }
 
 static void reset_receiver(struct net_device *dev)
@@ -536,7 +536,7 @@ static void ni5010_rx(struct net_device *dev)
 		if (rcv_stat & RS_ALIGN) dev->stats.rx_frame_errors++;
 		if (rcv_stat & RS_CRC_ERR) dev->stats.rx_crc_errors++;
 		if (rcv_stat & RS_OFLW) dev->stats.rx_fifo_errors++;
-        	outb(0xff, EDLC_RCLR); /* Clear the interrupt */
+		outb(0xff, EDLC_RCLR); /* Clear the interrupt */
 		return;
 	}
 
@@ -742,9 +742,9 @@ static int __init ni5010_init_module(void)
 	PRINTK2((KERN_DEBUG "%s: entering init_module\n", boardname));
 	/*
 	if(io <= 0 || irq == 0){
-	   	printk(KERN_WARNING "%s: Autoprobing not allowed for modules.\n", boardname);
+		printk(KERN_WARNING "%s: Autoprobing not allowed for modules.\n", boardname);
 		printk(KERN_WARNING "%s: Set symbols 'io' and 'irq'\n", boardname);
-	   	return -EINVAL;
+		return -EINVAL;
 	}
 	*/
 	if (io <= 0){

@@ -480,7 +480,7 @@ static void forceSatisfyPalmPause(struct cyttsp5_mt_data *md,
 {
 	int x, y;
 
-	dev_dbg(md->dev, "%s: \n", __func__);	
+	dev_dbg(md->dev, "%s: \n", __func__);
 	switch (t) {
 	case 0: x = 10;y = 10; break;
 	case 1: x = 700;y = 10; break;

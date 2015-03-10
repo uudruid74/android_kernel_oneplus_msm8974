@@ -1551,7 +1551,7 @@ xfs_dir2_node_addname_int(
 				XFS_DATA_FORK))) {
 			xfs_da_buf_done(dbp);
 			return error;
-  		}
+		}
 		/*
 		 * If there wasn't a freespace block, the read will
 		 * return a NULL fbp.  Allocate and initialize a new one.

@@ -135,8 +135,8 @@ check_partition(struct gendisk *hd, struct block_device *bdev)
 		res = check_part[i++](state);
 		if (res < 0) {
 			/* We have hit an I/O error which we don't report now.
-		 	* But record it, and let the others do their job.
-		 	*/
+			* But record it, and let the others do their job.
+			*/
 			err = res;
 			res = 0;
 		}

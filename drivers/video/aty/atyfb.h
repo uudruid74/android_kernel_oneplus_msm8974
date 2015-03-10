@@ -366,4 +366,3 @@ extern u8   aty_ld_pll_ct(int offset, const struct atyfb_par *par);
 void atyfb_copyarea(struct fb_info *info, const struct fb_copyarea *area);
 void atyfb_fillrect(struct fb_info *info, const struct fb_fillrect *rect);
 void atyfb_imageblit(struct fb_info *info, const struct fb_image *image);
-

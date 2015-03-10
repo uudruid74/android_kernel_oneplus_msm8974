@@ -57,4 +57,3 @@ extern void sm5502_oxp_callback(int state);
 extern int sm5502_dock_init(void);
 
 #endif /* _SM5502_H_ */
-

@@ -137,4 +137,3 @@ static int is_targeted(struct usb_device *dev)
 	return 1;
 #endif
 }
-

@@ -176,4 +176,3 @@ unsigned int Comm_RequestInlineEvents(CommChannel channel);
 unsigned int Comm_ReleaseInlineEvents(CommChannel channel);
 
 #endif /* _COMM_H_ */
-

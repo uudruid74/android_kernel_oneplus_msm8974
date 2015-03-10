@@ -190,7 +190,7 @@ typedef struct rx_packet {
 	/* Write _1_ to corresponding bit to clear */
 #define METH_INT_TX_EMPTY	BIT(0)	/* 0: No interrupt pending, 1: The TX ring buffer is empty */
 #define METH_INT_TX_PKT		BIT(1)	/* 0: No interrupt pending */
-					      	/* 1: A TX message had the INT request bit set, the packet has been sent. */
+						/* 1: A TX message had the INT request bit set, the packet has been sent. */
 #define METH_INT_TX_LINK_FAIL	BIT(2)	/* 0: No interrupt pending, 1: PHY has reported a link failure */
 #define METH_INT_MEM_ERROR	BIT(3)	/* 0: No interrupt pending */
 						/* 1: A memory error occurred during DMA, DMA stopped, Fatal */

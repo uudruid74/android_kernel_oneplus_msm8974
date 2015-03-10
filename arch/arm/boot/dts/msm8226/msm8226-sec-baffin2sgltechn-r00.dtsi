@@ -156,7 +156,7 @@
 		qcom,cdc-mclk-gpios = <&pm8226_gpios 1 0>;
 		/*qcom,cdc-vdd-spkr-gpios = <&pm8226_gpios 2 0>;*/
 	};
-	
+
 	sound-9302 {
 		qcom,audio-routing =
 			"RX_BIAS", "MCLK",
@@ -391,7 +391,7 @@
 				qcom,id = <0>;
 			};
 		};
-		
+
 	};
 };
 

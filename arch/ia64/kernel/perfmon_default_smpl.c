@@ -250,16 +250,16 @@ default_exit(struct task_struct *task, void *buf, struct pt_regs *regs)
 }
 
 static pfm_buffer_fmt_t default_fmt={
- 	.fmt_name 	    = "default_format",
- 	.fmt_uuid	    = PFM_DEFAULT_SMPL_UUID,
- 	.fmt_arg_size	    = sizeof(pfm_default_smpl_arg_t),
- 	.fmt_validate	    = default_validate,
- 	.fmt_getsize	    = default_get_size,
- 	.fmt_init	    = default_init,
- 	.fmt_handler	    = default_handler,
- 	.fmt_restart	    = default_restart,
- 	.fmt_restart_active = default_restart,
- 	.fmt_exit	    = default_exit,
+	.fmt_name 	    = "default_format",
+	.fmt_uuid	    = PFM_DEFAULT_SMPL_UUID,
+	.fmt_arg_size	    = sizeof(pfm_default_smpl_arg_t),
+	.fmt_validate	    = default_validate,
+	.fmt_getsize	    = default_get_size,
+	.fmt_init	    = default_init,
+	.fmt_handler	    = default_handler,
+	.fmt_restart	    = default_restart,
+	.fmt_restart_active = default_restart,
+	.fmt_exit	    = default_exit,
 };
 
 static int __init
@@ -293,4 +293,3 @@ pfm_default_smpl_cleanup_module(void)
 
 module_init(pfm_default_smpl_init_module);
 module_exit(pfm_default_smpl_cleanup_module);
-

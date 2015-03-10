@@ -1204,7 +1204,7 @@ static int edp_link_rate_down_shift(struct mdss_edp_drv_pdata *ep)
 	prate /= 8; /* byte */
 
 #if !defined(CONFIG_FB_MSM_EDP_SAMSUNG)
-	/* 
+	/*
 		Link rate is fixed to 2.7G for eDP panel.
 	*/
 
@@ -1212,7 +1212,7 @@ static int edp_link_rate_down_shift(struct mdss_edp_drv_pdata *ep)
 		rate -= 4;		/* reduce rate */
 		changed++;
 	}
-#endif	
+#endif
 
 	if (changed) {
 		if (lane >= 1 && lane < max_lane)

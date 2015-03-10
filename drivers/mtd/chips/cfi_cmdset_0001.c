@@ -1081,7 +1081,7 @@ static int __xipram xip_wait_for_operation(
 	unsigned long usec, suspended, start, done;
 	flstate_t oldstate, newstate;
 
-       	start = xip_currtime();
+	start = xip_currtime();
 	usec = chip_op_time_max;
 	if (usec == 0)
 		usec = 500000;
@@ -1276,7 +1276,7 @@ static int inval_cache_and_wait_for_operation(
 	}
 
 	/* Done and happy. */
- 	chip->state = FL_STATUS;
+	chip->state = FL_STATUS;
 	return 0;
 }
 

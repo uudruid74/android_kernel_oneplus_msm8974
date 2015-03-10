@@ -115,4 +115,3 @@
 #define ARM_PSR_MONITOR_MASK (((1 << ARM_PSR_MONITOR_BITS) - 1) & ~ARM_PSR_T)
 
 #endif /* ifndef _PSR_DEFS_H_ */
-

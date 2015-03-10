@@ -787,4 +787,3 @@ struct _cmd_callback {
 #include "rtl8712_cmd.h"
 
 #endif /* _CMD_H_ */
-

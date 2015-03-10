@@ -436,7 +436,7 @@ static int serverworks_init_one(struct pci_dev *pdev, const struct pci_device_id
 		 /* If the returned btr is the newer revision then
 		    select the right info block */
 		 if (rc == 3)
-		 	ppi[0] = &info[3];
+			ppi[0] = &info[3];
 
 		/* Is this the 3rd channel CSB6 IDE ? */
 		if (pdev->device == PCI_DEVICE_ID_SERVERWORKS_CSB6IDE2)

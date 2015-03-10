@@ -51,4 +51,3 @@ extern s32 bbm_data(HANDLE handle, DEVICEID devid,
 #endif
 
 #endif /* __FCI_HAL_H__ */
-

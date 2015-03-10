@@ -1,7 +1,7 @@
 /******************************************************************************
 * (c) COPYRIGHT 2010 RAONTECH, Inc. ALL RIGHTS RESERVED.
 *
-* TITLE 	  : RAONTECH TV configuration header file. 
+* TITLE 	  : RAONTECH TV configuration header file.
 *
 * FILENAME    : raontv_port.h
 *
@@ -22,7 +22,7 @@
 
 /*=============================================================================
  * Includes the user header files if neccessry.
- *============================================================================*/ 
+ *============================================================================*/
 #if defined(__KERNEL__) /* Linux kernel */
     #include <linux/io.h>
     #include <linux/kernel.h>
@@ -31,18 +31,18 @@
     #include <linux/mutex.h>
     #include <linux/uaccess.h>
     #include <linux/jiffies.h>
-	
+
 #elif defined(WINCE)
     #include <windows.h>
     #include <drvmsg.h>
-    
+
 #else
-	#include <stdio.h>   
+	#include <stdio.h>
 #endif
 
-#ifdef __cplusplus 
-extern "C"{ 
-#endif  
+#ifdef __cplusplus
+extern "C"{
+#endif
 
 /*############################################################################
 #
@@ -52,7 +52,7 @@ extern "C"{
 /*============================================================================
 * The slave address for I2C and SPI, the base address for EBI2.
 *===========================================================================*/
-#define RAONTV_CHIP_ADDR	0x86 
+#define RAONTV_CHIP_ADDR	0x86
 
 /*============================================================================
 * Modifies the basic data types if neccessry.
@@ -69,7 +69,7 @@ typedef int                 INT;
 typedef unsigned int        UINT;
 typedef long                LONG;
 typedef unsigned long       ULONG;
- 
+
 
 typedef volatile U8			VU8;
 typedef volatile U16		VU16;
@@ -102,17 +102,17 @@ typedef volatile U32		VU32;
 * Defines the external source freqenecy in KHz.
 * Ex> #define RTV_SRC_CLK_FREQ_KHz	36000 // 36MHz
 *=============================================================================
-* MTV250 : #define RTV_SRC_CLK_FREQ_KHz  32000  //must be defined 
-* MTV350 : #define RTV_SRC_CLK_FREQ_KHz  19200  //must be defined 
+* MTV250 : #define RTV_SRC_CLK_FREQ_KHz  32000  //must be defined
+* MTV350 : #define RTV_SRC_CLK_FREQ_KHz  19200  //must be defined
 *===========================================================================*/
 //#define RTV_SRC_CLK_FREQ_KHz			36000
 //#define RTV_SRC_CLK_FREQ_KHz			32000
 #define RTV_SRC_CLK_FREQ_KHz			19200
-	
+
 
 /*============================================================================
 * Define the power type.
-*============================================================================*/  
+*============================================================================*/
 //#define RTV_PWR_EXTERNAL
 #define RTV_PWR_LDO
 
@@ -120,7 +120,7 @@ typedef volatile U32		VU32;
 /*============================================================================
 * Defines the Host interface.
 *===========================================================================*/
-//#define RTV_IF_MPEG2_SERIAL_TSIF // I2C + TSIF Master Mode. 
+//#define RTV_IF_MPEG2_SERIAL_TSIF // I2C + TSIF Master Mode.
 //#define RTV_IF_QUALCOMM_TSIF // I2C + TSIF Master Mode
 #define RTV_IF_SPI // AP: SPI Master Mode
 //#define RTV_IF_SPI_SLAVE // AP: SPI Slave Mode
@@ -153,17 +153,17 @@ typedef volatile U32		VU32;
 
 		do {
 			end_jiffies = get_jiffies_64();
-			
+
 			diff_time = jiffies_to_msecs(end_jiffies - start_jiffies);
 			if (diff_time >= ms)
 				break;
 
-			mdelay(1);		
+			mdelay(1);
 		} while (--_1ms_cnt);
 	}
 
 #elif defined(WINCE)
-	#define RTV_DELAY_MS(ms)    Sleep(ms) 
+	#define RTV_DELAY_MS(ms)    Sleep(ms)
 
 #else
 	extern void mtv_delay_ms(int ms);
@@ -175,15 +175,15 @@ typedef volatile U32		VU32;
 *===========================================================================*/
 #if 1
 	#define RTV_DBGMSG0(fmt)			printk(fmt)
-	#define RTV_DBGMSG1(fmt, arg1)			printk(fmt, arg1) 
-	#define RTV_DBGMSG2(fmt, arg1, arg2)		printk(fmt, arg1, arg2) 
-	#define RTV_DBGMSG3(fmt, arg1, arg2, arg3)	printk(fmt, arg1, arg2, arg3) 
+	#define RTV_DBGMSG1(fmt, arg1)			printk(fmt, arg1)
+	#define RTV_DBGMSG2(fmt, arg1, arg2)		printk(fmt, arg1, arg2)
+	#define RTV_DBGMSG3(fmt, arg1, arg2, arg3)	printk(fmt, arg1, arg2, arg3)
 #else
 	/* To eliminates the debug messages. */
-	#define RTV_DBGMSG0(fmt)					((void)0) 
-	#define RTV_DBGMSG1(fmt, arg1)				((void)0) 
-	#define RTV_DBGMSG2(fmt, arg1, arg2)		((void)0) 
-	#define RTV_DBGMSG3(fmt, arg1, arg2, arg3)	((void)0) 
+	#define RTV_DBGMSG0(fmt)					((void)0)
+	#define RTV_DBGMSG1(fmt, arg1)				((void)0)
+	#define RTV_DBGMSG2(fmt, arg1, arg2)		((void)0)
+	#define RTV_DBGMSG3(fmt, arg1, arg2, arg3)	((void)0)
 #endif
 /*#### End of Common ###########*/
 
@@ -230,7 +230,7 @@ extern U8 g_bRtvPage;
 
 #if defined(RTV_IF_TSIF) || defined(RTV_IF_SPI_SLAVE)
 	/*=================================================================
-	* Defines the TSIF interface for MPEG2 or QUALCOMM TSIF.	 
+	* Defines the TSIF interface for MPEG2 or QUALCOMM TSIF.
 	*================================================================*/
 	//#define RTV_TSIF_FORMAT_1
 	//#define RTV_TSIF_FORMAT_2
@@ -312,7 +312,7 @@ extern U8 g_bRtvPage;
 #define RTV_SPI_MSC1_ENABLED /* to backward */
 
 #if (defined(RTV_TDMB_ENABLE)||defined(RTV_DAB_ENABLE))\
-&& !(defined(RTV_ISDBT_ENABLE)||defined(RTV_FM_ENABLE)) 
+&& !(defined(RTV_ISDBT_ENABLE)||defined(RTV_FM_ENABLE))
 	/* Only TDMB or DAB enabled. */
 	#define RTV_TDMBorDAB_ONLY_ENABLED
 
@@ -332,14 +332,14 @@ extern U8 g_bRtvPage;
 # Define the critical object.
 ############################################################################*/
 #if defined(RTV_IF_SPI) || defined(RTV_FIC_I2C_INTR_ENABLED)
-	#if defined(__KERNEL__)	
+	#if defined(__KERNEL__)
 		extern struct mutex raontv_guard;
 		#define RTV_GUARD_INIT		mutex_init(&raontv_guard)
 		#define RTV_GUARD_LOCK		mutex_lock(&raontv_guard)
 		#define RTV_GUARD_FREE		mutex_unlock(&raontv_guard)
 		#define RTV_GUARD_DEINIT 	((void)0)
-		
-    #elif defined(WINCE)        
+
+    #elif defined(WINCE)
 	        extern CRITICAL_SECTION		raontv_guard;
 	        #define RTV_GUARD_INIT		InitializeCriticalSection(&raontv_guard)
 	        #define RTV_GUARD_LOCK		EnterCriticalSection(&raontv_guard)
@@ -352,7 +352,7 @@ extern U8 g_bRtvPage;
 		#define RTV_GUARD_FREE 	((void)0)
 		#define RTV_GUARD_DEINIT 	((void)0)
 	#endif
-	
+
 #else
 	#define RTV_GUARD_INIT		((void)0)
 	#define RTV_GUARD_LOCK		((void)0)
@@ -373,7 +373,7 @@ extern U8 g_bRtvPage;
 #if !defined(RTV_PWR_EXTERNAL) && !defined(RTV_PWR_LDO)
 	#error "Must define the power type !"
 #endif
- 
+
 #if defined(RTV_IF_TSIF) || defined(RTV_IF_SPI_SLAVE)\
 || defined(RTV_IF_SPI)
     #if (RAONTV_CHIP_ADDR >= 0xFF)
@@ -389,9 +389,8 @@ extern U8 g_bRtvPage;
 void rtvOEM_ConfigureInterrupt(void);
 void rtvOEM_PowerOn(int on);
 
-#ifdef __cplusplus 
-} 
-#endif 
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* __RAONTV_PORT_H__ */
-

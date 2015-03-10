@@ -981,7 +981,7 @@ void remove_sysfs(struct ssp_data *data)
 
 #if defined (CONFIG_MACH_VIKALCU)
 static struct regulator *sub_ldo1 = NULL;
-extern int get_lcd_attached(void); 
+extern int get_lcd_attached(void);
 void proximity_ldo_enable(int onoff)
 {
 	int ret = 0;
@@ -999,7 +999,7 @@ void proximity_ldo_enable(int onoff)
 		}
 		if(sub_ldo1 != NULL){
 			ret = regulator_set_voltage(sub_ldo1, 1800000, 1800000);
-			if (ret) 
+			if (ret)
 				pr_err("set_voltage sub_ldo1 failed, rc=%d\n", ret);
 		}
 	}
@@ -1007,16 +1007,16 @@ void proximity_ldo_enable(int onoff)
 	if(onoff){
 		printk(KERN_ERR "[SSP] %s : on\n",__func__);
 		ret = regulator_enable(sub_ldo1);
-		if (ret) 
+		if (ret)
 			pr_err("enable sub_ldo1 failed, rc=%d\n", ret);
 	}
 	else{
 		printk(KERN_ERR "[SSP] %s : off ",__func__);
 		ret = regulator_disable(sub_ldo1);
-		if (ret) 
+		if (ret)
 			pr_err("enable sub_ldo1 failed, rc=%d\n", ret);
 	}
-	gpio_tlmm_config(GPIO_CFG(561, 0, GPIO_CFG_OUTPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA), GPIO_CFG_ENABLE);	
+	gpio_tlmm_config(GPIO_CFG(561, 0, GPIO_CFG_OUTPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA), GPIO_CFG_ENABLE);
 	gpio_set_value(561, 1);
 	}else{
 		pr_err("sub_ldo1 is NULL, failed\n");

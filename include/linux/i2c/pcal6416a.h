@@ -14,7 +14,7 @@
 #define PCAL6416A_SEL_PULLUPDOWN	0x48  /* Port0 Pull-up/Pull-down selection [R/W]    */
 #define PCAL6416A_INT_MASK		0x4A  /* Interrupt mask register [R/W]              */
 #define PCAL6416A_INT_STATUS		0x4C  /* Interrupt status register [RO]             */
-#define PCAL6416A_OUTPUT_CONFIG		0x4F  /* Output port configuration register [R/W]   */ 
+#define PCAL6416A_OUTPUT_CONFIG		0x4F  /* Output port configuration register [R/W]   */
 
 #define NO_PULL				0x00
 #define PULL_DOWN			0x01

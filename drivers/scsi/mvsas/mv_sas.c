@@ -2190,4 +2190,3 @@ int mvs_int_rx(struct mvs_info *mvi, bool self_clear)
 		MVS_CHIP_DISP->int_full(mvi);
 	return 0;
 }
-

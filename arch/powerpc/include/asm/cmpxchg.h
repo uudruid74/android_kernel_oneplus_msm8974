@@ -137,7 +137,7 @@ __xchg_local(volatile void *ptr, unsigned long x, unsigned int size)
   ({									     \
      __typeof__(*(ptr)) _x_ = (x);					     \
      (__typeof__(*(ptr))) __xchg_local((ptr),				     \
-     		(unsigned long)_x_, sizeof(*(ptr))); 			     \
+		(unsigned long)_x_, sizeof(*(ptr))); 			     \
   })
 
 /*

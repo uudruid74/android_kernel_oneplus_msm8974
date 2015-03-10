@@ -181,7 +181,7 @@ irqreturn_t timer_interrupt(int irq, void *dev)
 	delta = now - state.last_time;
 	state.last_time = now;
 	delta = delta * state.scaled_ticks_per_cycle + state.partial_tick;
-	state.partial_tick = delta & ((1UL << FIX_SHIFT) - 1); 
+	state.partial_tick = delta & ((1UL << FIX_SHIFT) - 1);
 	nticks = delta >> FIX_SHIFT;
 
 	if (nticks)
@@ -425,7 +425,7 @@ time_init(void)
 
 	/* From John Bowman <bowman@math.ualberta.ca>: allow the values
 	   to settle, as the Update-In-Progress bit going low isn't good
-	   enough on some hardware.  2ms is our guess; we haven't found 
+	   enough on some hardware.  2ms is our guess; we haven't found
 	   bogomips yet, but this is close on a 500Mhz box.  */
 	__delay(1000000);
 
@@ -504,7 +504,7 @@ set_rtc_mmss(unsigned long nowtime)
 		printk_once(KERN_NOTICE
 		       "set_rtc_mmss: can't update from %d to %d\n",
 		       cmos_minutes, real_minutes);
- 		retval = -1;
+		retval = -1;
 	}
 
 	/* The following flags have to be released exactly in this order,

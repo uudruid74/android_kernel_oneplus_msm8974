@@ -194,7 +194,7 @@ static unsigned char pmu_nvram_read_byte(int addr)
 {
 	struct adb_request req;
 	DECLARE_COMPLETION_ONSTACK(req_complete);
-	
+
 	req.arg = system_state == SYSTEM_RUNNING ? &req_complete : NULL;
 	if (pmu_request(&req, pmu_nvram_complete, 3, PMU_READ_NVRAM,
 			(addr >> 8) & 0xff, addr & 0xff))
@@ -210,7 +210,7 @@ static void pmu_nvram_write_byte(int addr, unsigned char val)
 {
 	struct adb_request req;
 	DECLARE_COMPLETION_ONSTACK(req_complete);
-	
+
 	req.arg = system_state == SYSTEM_RUNNING ? &req_complete : NULL;
 	if (pmu_request(&req, pmu_nvram_complete, 4, PMU_WRITE_NVRAM,
 			(addr >> 8) & 0xff, addr & 0xff, val))
@@ -240,7 +240,7 @@ static u32 core99_calc_adler(u8 *buffer)
 	int cnt;
 	u32 low, high;
 
-   	buffer += CORE99_ADLER_START;
+	buffer += CORE99_ADLER_START;
 	low = 1;
 	high = 0;
 	for (cnt=0; cnt<(NVRAM_SIZE-CORE99_ADLER_START); cnt++) {
@@ -283,7 +283,7 @@ static int sm_erase_bank(int bank)
 
 	u8 __iomem *base = (u8 __iomem *)nvram_data + core99_bank*NVRAM_SIZE;
 
-       	DBG("nvram: Sharp/Micron Erasing bank %d...\n", bank);
+	DBG("nvram: Sharp/Micron Erasing bank %d...\n", bank);
 
 	out_8(base, SM_FLASH_CMD_ERASE_SETUP);
 	out_8(base, SM_FLASH_CMD_ERASE_CONFIRM);
@@ -314,7 +314,7 @@ static int sm_write_bank(int bank, u8* datas)
 
 	u8 __iomem *base = (u8 __iomem *)nvram_data + core99_bank*NVRAM_SIZE;
 
-       	DBG("nvram: Sharp/Micron Writing bank %d...\n", bank);
+	DBG("nvram: Sharp/Micron Writing bank %d...\n", bank);
 
 	for (i=0; i<NVRAM_SIZE; i++) {
 		out_8(base+i, SM_FLASH_CMD_WRITE_SETUP);
@@ -348,7 +348,7 @@ static int amd_erase_bank(int bank)
 
 	u8 __iomem *base = (u8 __iomem *)nvram_data + core99_bank*NVRAM_SIZE;
 
-       	DBG("nvram: AMD Erasing bank %d...\n", bank);
+	DBG("nvram: AMD Erasing bank %d...\n", bank);
 
 	/* Unlock 1 */
 	out_8(base+0x555, 0xaa);
@@ -375,7 +375,7 @@ static int amd_erase_bank(int bank)
 		}
 		stat = in_8(base) ^ in_8(base);
 	} while (stat != 0);
-	
+
 	/* Reset */
 	out_8(base, 0xf0);
 	udelay(1);
@@ -394,7 +394,7 @@ static int amd_write_bank(int bank, u8* datas)
 
 	u8 __iomem *base = (u8 __iomem *)nvram_data + core99_bank*NVRAM_SIZE;
 
-       	DBG("nvram: AMD Writing bank %d...\n", bank);
+	DBG("nvram: AMD Writing bank %d...\n", bank);
 
 	for (i=0; i<NVRAM_SIZE; i++) {
 		/* Unlock 1 */
@@ -408,7 +408,7 @@ static int amd_write_bank(int bank, u8* datas)
 		out_8(base+0x555, 0xa0);
 		udelay(1);
 		out_8(base+i, datas[i]);
-		
+
 		timeout = 0;
 		do {
 			if (++timeout > 1000000) {
@@ -500,7 +500,7 @@ static void core99_nvram_sync(void)
 	raw_spin_unlock_irqrestore(&nv_lock, flags);
 
 #ifdef DEBUG
-       	mdelay(2000);
+	mdelay(2000);
 #endif
 }
 
@@ -540,7 +540,7 @@ static int __init core99_nvram_setup(struct device_node *dp, unsigned long addr)
 	ppc_md.nvram_size	= core99_nvram_size;
 	ppc_md.nvram_sync	= core99_nvram_sync;
 	ppc_md.machine_shutdown	= core99_nvram_sync;
-	/* 
+	/*
 	 * Maybe we could be smarter here though making an exclusive list
 	 * of known flash chips is a bit nasty as older OF didn't provide us
 	 * with a useful "compatible" entry. A solution would be to really

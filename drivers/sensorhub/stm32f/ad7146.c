@@ -1608,4 +1608,3 @@ module_exit(ad7146_i2c_exit);
 MODULE_DESCRIPTION("Analog Devices ad7146 MLD Driver");
 MODULE_AUTHOR("Analog Devices");
 MODULE_LICENSE("GPL");
-

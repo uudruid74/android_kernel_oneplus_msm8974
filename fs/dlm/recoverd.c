@@ -323,4 +323,3 @@ void dlm_recoverd_resume(struct dlm_ls *ls)
 {
 	mutex_unlock(&ls->ls_recoverd_active);
 }
-

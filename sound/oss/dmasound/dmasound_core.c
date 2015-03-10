@@ -661,7 +661,7 @@ static unsigned int sq_poll(struct file *file, struct poll_table_struct *wait)
 {
 	unsigned int mask = 0;
 	int retVal;
-	
+
 	if (write_sq.locked == 0) {
 		if ((retVal = sq_setup(&write_sq)) < 0)
 			return retVal;
@@ -1077,7 +1077,7 @@ static int sq_ioctl(struct file *file, u_int cmd, u_long arg)
 	case SNDCTL_DSP_SETFMT:
 		if (shared_resources_are_mine(file->f_mode) &&
 		    queues_are_quiescent()) {
-		    	int format;
+			int format;
 			IOCTL_IN(arg, data);
 			shared_resources_initialised = 0 ;
 			format = sound_set_format(data);

@@ -232,25 +232,25 @@ static int w100fb_blank(int blank_mode, struct fb_info *info)
 
 	switch(blank_mode) {
 
- 	case FB_BLANK_NORMAL:         /* Normal blanking */
+	case FB_BLANK_NORMAL:         /* Normal blanking */
 	case FB_BLANK_VSYNC_SUSPEND:  /* VESA blank (vsync off) */
 	case FB_BLANK_HSYNC_SUSPEND:  /* VESA blank (hsync off) */
- 	case FB_BLANK_POWERDOWN:      /* Poweroff */
-  		if (par->blanked == 0) {
+	case FB_BLANK_POWERDOWN:      /* Poweroff */
+		if (par->blanked == 0) {
 			if(tg && tg->suspend)
 				tg->suspend(par);
 			par->blanked = 1;
-  		}
-  		break;
+		}
+		break;
 
- 	case FB_BLANK_UNBLANK: /* Unblanking */
-  		if (par->blanked != 0) {
+	case FB_BLANK_UNBLANK: /* Unblanking */
+		if (par->blanked != 0) {
 			if(tg && tg->resume)
 				tg->resume(par);
 			par->blanked = 0;
-  		}
-  		break;
- 	}
+		}
+		break;
+	}
 	return 0;
 }
 

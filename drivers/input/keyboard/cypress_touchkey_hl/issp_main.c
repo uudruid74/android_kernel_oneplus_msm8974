@@ -642,7 +642,7 @@ RAM Load, FLASHBlock Program, and Target Checksum Verification.*/
 	   Acquire the device through reset or power cycle */
 	gpio_tlmm_config(GPIO_CFG(issp_tkey_i2c->pdata->gpio_scl, 0, GPIO_CFG_INPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA), 1);
 	gpio_tlmm_config(GPIO_CFG(issp_tkey_i2c->pdata->gpio_sda, 0, GPIO_CFG_INPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA), 1);
-	
+
 #ifdef RESET_MODE
 #if 0
 	gpio_tlmm_config(LED_26V_EN);
@@ -675,7 +675,7 @@ RAM Load, FLASHBlock Program, and Target Checksum Verification.*/
 	issp_tkey_i2c->pdata->suspend();
 	/*msleep(1);*/
 	for (n = 0; n < 3; n++) {
-		//Delay(DELAY100us);		
+		//Delay(DELAY100us);
 		msleep(2000);
 	}
 	/*INTLOCK(); */
@@ -716,7 +716,7 @@ RAM Load, FLASHBlock Program, and Target Checksum Verification.*/
 			/*local_irq_save(flags);*/
 			for (iBlockCounter = 0; iBlockCounter < BLOCKS_PER_BANK;
 				 iBlockCounter++) {
- 				LoadProgramData((unsigned char)iBlockCounter,
+				LoadProgramData((unsigned char)iBlockCounter,
 						bBankCounter);
 				iChecksumData += iLoadTarget();
 			}

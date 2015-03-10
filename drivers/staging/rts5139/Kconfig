@@ -13,4 +13,3 @@ config RTS5139_DEBUG
 	help
 	  Say Y here in order to have the rts5139 code generate
 	  verbose debugging messages.
-

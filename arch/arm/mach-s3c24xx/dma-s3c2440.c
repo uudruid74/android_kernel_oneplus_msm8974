@@ -65,7 +65,7 @@ static struct s3c24xx_dma_map __initdata s3c2440_dma_mappings[] = {
 		.name		= "uart1",
 		.channels[1]	= S3C2410_DCON_CH1_UART1 | DMA_CH_VALID,
 	},
-      	[DMACH_UART2] = {
+	[DMACH_UART2] = {
 		.name		= "uart2",
 		.channels[3]	= S3C2410_DCON_CH3_UART2 | DMA_CH_VALID,
 	},
@@ -194,4 +194,3 @@ static int __init s3c2440_dma_init(void)
 }
 
 arch_initcall(s3c2440_dma_init);
-

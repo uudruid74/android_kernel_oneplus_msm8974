@@ -152,4 +152,3 @@ static int call_battery_notify(struct usb_device *dev, bool bOnOff)
 
 	return 1;
 }
-

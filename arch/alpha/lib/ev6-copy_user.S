@@ -236,7 +236,7 @@ $exitout:			# Destination for exception recovery(?)
 $exitin:
 
 	/* A stupid byte-by-byte zeroing of the rest of the output
-	   buffer.  This cures security holes by never leaving 
+	   buffer.  This cures security holes by never leaving
 	   random kernel data around to be copied elsewhere.  */
 
 	nop
@@ -256,4 +256,3 @@ $101:
 	ret $31,($28),1		# L0
 
 	.end __copy_user
-

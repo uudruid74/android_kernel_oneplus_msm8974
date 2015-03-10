@@ -32,4 +32,3 @@
 
 	qcom,misc-ref = <&pm8941_misc>;
 };
-

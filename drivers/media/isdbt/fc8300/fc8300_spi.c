@@ -354,4 +354,3 @@ s32 fc8300_spi_deinit(HANDLE handle)
 
 	return BBM_OK;
 }
-

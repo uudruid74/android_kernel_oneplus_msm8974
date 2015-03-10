@@ -262,5 +262,3 @@ fail:
 	mutex_unlock(&core_lock);
 	return rc;
 }
-
-

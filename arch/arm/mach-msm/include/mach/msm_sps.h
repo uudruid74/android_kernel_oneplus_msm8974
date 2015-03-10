@@ -22,4 +22,3 @@ struct msm_sps_platform_data {
 };
 
 #endif /* _MSM_SPS_H_ */
-

@@ -17,6 +17,3 @@ TODO:
 	- fix use of file I/O to load config with better API
 	- merge some files together?
 	- cleanup/eliminate debug messages
-
-
-

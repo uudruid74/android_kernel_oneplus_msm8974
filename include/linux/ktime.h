@@ -217,7 +217,7 @@ extern ktime_t ktime_sub_ns(const ktime_t kt, u64 nsec);
 static inline ktime_t timespec_to_ktime(const struct timespec ts)
 {
 	return (ktime_t) { .tv = { .sec = (s32)ts.tv_sec,
-			   	   .nsec = (s32)ts.tv_nsec } };
+				   .nsec = (s32)ts.tv_nsec } };
 }
 
 /**

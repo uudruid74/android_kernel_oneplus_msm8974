@@ -54,7 +54,7 @@
 #define TK_UPDATE_PASS		0
 
 /* Flip cover*/
-#define TKEY_FLIP_MODE 
+#define TKEY_FLIP_MODE
 
 #ifdef TKEY_FLIP_MODE
 #define TK_BIT_FLIP	0x08
@@ -63,7 +63,7 @@
 #ifdef TK_USE_LDO_CONTROL
 /* LDO Regulator */
 #define	TKEY_I2C_REGULATOR	"8941_lvs3"
-	
+
 /* LDO Regulator */
 #define	TKEY_LED_REGULATOR	"8941_l13"
 

@@ -440,10 +440,10 @@ static struct dentry *relay_create_buf_file(struct rchan *chan,
  */
 static struct rchan_buf *relay_open_buf(struct rchan *chan, unsigned int cpu)
 {
- 	struct rchan_buf *buf = NULL;
+	struct rchan_buf *buf = NULL;
 	struct dentry *dentry;
 
- 	if (chan->is_global)
+	if (chan->is_global)
 		return chan->buf[0];
 
 	buf = relay_create_buf(chan);
@@ -457,18 +457,18 @@ static struct rchan_buf *relay_open_buf(struct rchan *chan, unsigned int cpu)
 		relay_set_buf_dentry(buf, dentry);
 	}
 
- 	buf->cpu = cpu;
- 	__relay_reset(buf, 1);
+	buf->cpu = cpu;
+	__relay_reset(buf, 1);
 
- 	if(chan->is_global) {
- 		chan->buf[0] = buf;
- 		buf->cpu = 0;
-  	}
+	if(chan->is_global) {
+		chan->buf[0] = buf;
+		buf->cpu = 0;
+	}
 
 	return buf;
 
 free_buf:
- 	relay_destroy_buf(buf);
+	relay_destroy_buf(buf);
 	return NULL;
 }
 

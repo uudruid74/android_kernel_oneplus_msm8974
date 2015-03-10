@@ -33,4 +33,3 @@ ifeq ($(CONFIG_INV_IIO_MPU3050_ACCEL_SLAVE_BMA250), y)
 inv-mpu-iio-objs += inv_slave_bma250.o
 CFLAGS_inv_slave_bma250.o   += -Idrivers/staging/iio
 endif
-

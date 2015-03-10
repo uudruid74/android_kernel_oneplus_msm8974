@@ -351,7 +351,7 @@ static inline void sonic_buf_put(void* base, int bitmode,
 		((__u16 *) base + (offset*2))[0] = val;
 #endif
 	else
-	 	((__u16 *) base)[offset] = val;
+		((__u16 *) base)[offset] = val;
 }
 
 static inline __u16 sonic_buf_get(void* base, int bitmode,

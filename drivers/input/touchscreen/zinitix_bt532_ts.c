@@ -441,8 +441,8 @@ static struct tsp_cmd tsp_cmds[] = {
 	{TSP_CMD("get_delta", get_delta),},
 	{TSP_CMD("get_config_ver", get_config_ver),},
 	{TSP_CMD("clear_cover_mode", clear_cover_mode),},
-#if defined(USE_ACTIVE_REPORT_RATE)	
-	{TSP_CMD("report_rate", report_rate),},	
+#if defined(USE_ACTIVE_REPORT_RATE)
+	{TSP_CMD("report_rate", report_rate),},
 #endif
 	{TSP_CMD("not_support_cmd", not_support_cmd),},
 };
@@ -1014,7 +1014,7 @@ static bool ts_get_raw_data(struct bt532_ts_info *info)
 	return true;
 }
 
-#if defined(USE_ACTIVE_REPORT_RATE)	
+#if defined(USE_ACTIVE_REPORT_RATE)
 #define BT532_LPM_INTERRUPT_INTERVAL	0x0142
 #define BT532_LPM_PERIOD_DELAY			0x00e2
 #define BT532_LPM_STATE					0x007e
@@ -1140,8 +1140,8 @@ out:
 		return false;
 	}
 
-#if defined(USE_ACTIVE_REPORT_RATE)	
-	ts_lpm_set(g_lpm_level);	
+#if defined(USE_ACTIVE_REPORT_RATE)
+	ts_lpm_set(g_lpm_level);
 #endif
 
 /*
@@ -1331,7 +1331,7 @@ static void bt532_hw_power(struct bt532_ts_info *info, int onoff)
 		if (info->vddo_vreg)
 			regulator_disable(info->vddo_vreg);
 	}
-	
+
 	if (pdata->tsp_supply_type == TSP_LDO_SUPPLY){
 		gpio_direction_output(info->pdata->tsp_en_gpio, onoff);
 	}else if (pdata->tsp_supply_type == TSP_REGULATOR_SUPPLY){
@@ -1342,7 +1342,7 @@ static void bt532_hw_power(struct bt532_ts_info *info, int onoff)
 			if (info->vdd_en)
 				regulator_disable(info->vdd_en);
 		}
-	}	
+	}
 	return;
 }
 
@@ -1714,10 +1714,10 @@ static bool init_touch(struct bt532_ts_info *info)
 	char* productionMode = "androidboot.bsp=2";
 	char* checkMode = NULL;
 
-#if defined(USE_ACTIVE_REPORT_RATE)	
+#if defined(USE_ACTIVE_REPORT_RATE)
 	g_prev_lpm_level = DEF_TS_LPM_LEVEL_DEFAULT;
 	g_lpm_level = DEF_TS_LPM_LEVEL_DEFAULT;
-#endif	
+#endif
 
 	checkMode = strstr(saved_command_line, productionMode);
 retry_init:
@@ -2063,11 +2063,11 @@ static bool mini_init_touch(struct bt532_ts_info *info)
 	}
 #endif
 
-#if defined(USE_ACTIVE_REPORT_RATE)	
+#if defined(USE_ACTIVE_REPORT_RATE)
 	g_prev_lpm_level = DEF_TS_LPM_LEVEL_DEFAULT;
 	g_lpm_level = DEF_TS_LPM_LEVEL_DEFAULT;
 #endif
-	
+
 	if (write_cmd(client, BT532_SWRESET_CMD) != I2C_SUCCESS) {
 		dev_info(&client->dev, "Failed to write reset command\n");
 
@@ -3078,7 +3078,7 @@ static void get_module_vendor(void *device_data)
 		gpio_tlmm_config(GPIO_CFG(info->pdata->tsp_vendor2, 0,
 				GPIO_CFG_INPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA), 1);
 		val = gpio_get_value(info->pdata->tsp_vendor1);
-		val2 = gpio_get_value(info->pdata->tsp_vendor2);		
+		val2 = gpio_get_value(info->pdata->tsp_vendor2);
 		dev_info(&info->client->dev,
 			"%s: TSP_ID: %d[%d]%d[%d]\n", __func__,
 			info->pdata->tsp_vendor1, val,info->pdata->tsp_vendor2, val2);
@@ -3137,7 +3137,7 @@ static void get_config_ver(void *device_data)
 	return;
 }
 
-#if defined(USE_ACTIVE_REPORT_RATE)	
+#if defined(USE_ACTIVE_REPORT_RATE)
 static void report_rate(void *device_data)
 {
 	struct bt532_ts_info *info = (struct bt532_ts_info *)device_data;
@@ -3147,27 +3147,27 @@ static void report_rate(void *device_data)
 
 	if((info->work_state == SUSPEND) || (info->work_state == PROBE)) {
 		dev_err(&client->dev, "%s: probe is not done or suspend mode work_state : %d \n",
-				__func__,info->work_state);		
-		return;	
+				__func__,info->work_state);
+		return;
 	}
 
-	set_default_result(info);	
+	set_default_result(info);
 
 	if ((finfo->cmd_param[0] < 0) ||
 		(finfo->cmd_param[0] > 2)) {
 		dev_err(&client->dev, "%s: parameter %d is wrong\n",
 			__func__, finfo->cmd_param[0]);
 		return;
-	}	
+	}
 	report_rate_cmd = finfo->cmd_param[0];
 	ts_lpm_level_set(report_rate_cmd);
-	
+
 	set_cmd_result(info, finfo->cmd_buff,
 		strnlen(finfo->cmd_buff, sizeof(finfo->cmd_buff)));
 	finfo->cmd_state = OK;
 
 	dev_info(&client->dev, "%s: %s(%d)\n", __func__, finfo->cmd_buff,
-		strnlen(finfo->cmd_buff, sizeof(finfo->cmd_buff)));	
+		strnlen(finfo->cmd_buff, sizeof(finfo->cmd_buff)));
 }
 #endif
 
@@ -4311,9 +4311,9 @@ static struct attribute *touchkey_attributes[] = {
 #endif
 	//&dev_attr_touchkey_idac_back.attr,
 	//&dev_attr_touchkey_idac_menu.attr,
-#if SUPPORTED_TOUCH_KEY_LED	
+#if SUPPORTED_TOUCH_KEY_LED
 	&dev_attr_brightness.attr,
-#endif	
+#endif
 	NULL,
 };
 static struct attribute_group touchkey_attr_group = {

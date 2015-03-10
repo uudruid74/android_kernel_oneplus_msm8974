@@ -463,7 +463,7 @@ static void wl_get_drvinfo(struct net_device *dev, struct ethtool_drvinfo *info)
 //	sizeof(info.fw_version) - 1);
 
     if (dev->dev.parent) {
-    	dev_set_name(dev->dev.parent, "%s", info->bus_info);
+	dev_set_name(dev->dev.parent, "%s", info->bus_info);
 	//strncpy(info->bus_info, dev->dev.parent->bus_id,
 	//	sizeof(info->bus_info) - 1);
     } else {
@@ -1235,7 +1235,7 @@ struct net_device * wl_device_alloc( void )
     {
 	    DBG_WARNING( DbgInfo, "%s: MTU set too high, limiting to %d.\n",
                         dev->name, MTU_MAX );
-    	dev->mtu = MTU_MAX;
+	dev->mtu = MTU_MAX;
     }
 
     /* Setup the function table in the device structure. */

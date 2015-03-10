@@ -2064,4 +2064,3 @@ module_i2c_driver(lis2hh_acc_driver)
 MODULE_DESCRIPTION("lis2hh accelerometer sysfs driver");
 MODULE_AUTHOR("Matteo Dameno, Denis Ciocca, STMicroelectronics");
 MODULE_LICENSE("GPL");
-

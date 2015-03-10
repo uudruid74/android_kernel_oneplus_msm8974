@@ -225,7 +225,7 @@ static int autofs4_direct_busy(struct vfsmount *mnt,
  * The tree is not busy iff no mountpoints are busy
  */
 static int autofs4_tree_busy(struct vfsmount *mnt,
-	       		     struct dentry *top,
+			     struct dentry *top,
 			     unsigned long timeout,
 			     int do_now)
 {
@@ -578,4 +578,3 @@ int autofs4_expire_multi(struct super_block *sb, struct vfsmount *mnt,
 
 	return autofs4_do_expire_multi(sb, mnt, sbi, do_now);
 }
-

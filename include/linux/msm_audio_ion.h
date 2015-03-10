@@ -65,4 +65,3 @@ static int msm_audio_ion_free_legacy(struct ion_client *client,
 
 #endif /* CONFIG_MSM_QDSP6V2_CODECS */
 #endif /* _LINUX_MSM_AUDIO_ION_H */
-

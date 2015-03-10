@@ -1065,13 +1065,13 @@ static void rt8973_irq_work(struct work_struct *work)
 
 #if defined(CONFIG_TOUCHSCREEN_MELFAS_CS02_GF1) || defined(CONFIG_TOUCHSCREEN_IST30XX)
 	if(chip->curr_status.cable_type==MUIC_RT8973_CABLE_TYPE_NONE){
-		charger_enable(0);	
+		charger_enable(0);
 	}
 	else if(chip->curr_status.cable_type==MUIC_RT8973_CABLE_TYPE_UNKNOWN){
-		printk("[TSP] %s : attached, but don't noti (MUIC_RT8973_CABLE_TYPE_UNKNOWN)\n",__func__);	
+		printk("[TSP] %s : attached, but don't noti (MUIC_RT8973_CABLE_TYPE_UNKNOWN)\n",__func__);
 	}
-	else{	
-		charger_enable(1);	
+	else{
+		charger_enable(1);
 	}
 #endif
 
@@ -1303,7 +1303,7 @@ static int __devinit rt8973_probe(struct i2c_client *client,
 		if (ret < 0)
 			return ret;
 
-#if 0 		
+#if 0
 		pdata->callback = rt8973_callback;
 		pdata->dock_init = rt8973_dock_init;
 //KBJ temp block ( this source is based on fsa9280, but following value doesn't match fsa880 )

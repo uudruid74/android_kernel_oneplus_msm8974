@@ -356,7 +356,7 @@ void ist30xx_start(struct ist30xx_data *data)
 		ist30xx_noise_mode |= (TSP_LOCAL_CODE << 16);                                             // insert local mode
         ist30xx_write_cmd(data->client, CMD_SET_NOISE_MODE, ist30xx_noise_mode);
 
-		tsp_info("%s(), local : 0x%x, mode : 0x%x\n", __func__, 
+		tsp_info("%s(), local : 0x%x, mode : 0x%x\n", __func__,
 			(ist30xx_noise_mode >> 16) & 0xFFFF, ist30xx_noise_mode & 0xFFFF);
 
 		ist30xx_write_cmd(data->client, CMD_SET_NOISE_MODE, ist30xx_noise_mode);

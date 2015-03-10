@@ -388,7 +388,7 @@ static int c2_alloc_qpn(struct c2_dev *c2dev, struct c2_qp *qp)
 					c2dev->qp_table.last++, &qp->qpn);
 		spin_unlock_irq(&c2dev->qp_table.lock);
         } while ((ret == -EAGAIN) &&
-	 	 idr_pre_get(&c2dev->qp_table.idr, GFP_KERNEL));
+		 idr_pre_get(&c2dev->qp_table.idr, GFP_KERNEL));
 	return ret;
 }
 

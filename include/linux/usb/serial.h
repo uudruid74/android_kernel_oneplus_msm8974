@@ -416,4 +416,3 @@ do {									\
 		       usb_serial_deregister_drivers, __serial_drivers)
 
 #endif /* __LINUX_USB_SERIAL_H */
-

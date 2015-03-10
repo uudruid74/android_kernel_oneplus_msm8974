@@ -97,8 +97,8 @@
 	__asm__ __volatile__("rsr %0," __stringify(CPENABLE) : "=a" (x)); \
 	} while(0);
 #define WSR_CPENABLE(x)	do {						  \
-  	__asm__ __volatile__("wsr %0," __stringify(CPENABLE) "; rsync" 	  \
-	    		     :: "a" (x));				  \
+	__asm__ __volatile__("wsr %0," __stringify(CPENABLE) "; rsync" 	  \
+			     :: "a" (x));				  \
 	} while(0);
 
 #endif /* XCHAL_HAVE_CP */

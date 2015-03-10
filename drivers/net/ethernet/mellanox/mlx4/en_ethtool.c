@@ -626,8 +626,3 @@ const struct ethtool_ops mlx4_en_ethtool_ops = {
 	.get_rxfh_indir = mlx4_en_get_rxfh_indir,
 	.set_rxfh_indir = mlx4_en_set_rxfh_indir,
 };
-
-
-
-
-

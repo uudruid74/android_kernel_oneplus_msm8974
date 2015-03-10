@@ -2366,7 +2366,7 @@ qpnp_chg_chgr_chg_fastchg_irq_handler(int irq, void *_chip)
 			pr_debug("psy changed batt_psy\n");
 			power_supply_changed(&chip->batt_psy);
 		}
-	#endif	
+	#endif
 
 		pr_debug("psy changed usb_psy\n");
 		power_supply_changed(chip->usb_psy);
@@ -2389,14 +2389,14 @@ qpnp_chg_chgr_chg_fastchg_irq_handler(int irq, void *_chip)
 				qpnp_chg_set_appropriate_vbatdet(chip);
 			}
 
-	#ifndef CONFIG_BATTERY_SAMSUNG	
+	#ifndef CONFIG_BATTERY_SAMSUNG
 			if (!chip->charging_disabled) {
 				schedule_delayed_work(&chip->eoc_work,
 					msecs_to_jiffies(EOC_CHECK_PERIOD_MS));
 				pm_stay_awake(chip->dev);
 			}
 	#endif
-	
+
 			if (chip->parallel_ovp_mode)
 				switch_parallel_ovp_mode(chip, 1);
 
@@ -2414,7 +2414,7 @@ qpnp_chg_chgr_chg_fastchg_irq_handler(int irq, void *_chip)
 		}
 	}
 
-	#ifndef CONFIG_BATTERY_SAMSUNG			
+	#ifndef CONFIG_BATTERY_SAMSUNG
 	qpnp_chg_enable_irq(&chip->chg_vbatdet_lo);
 	#endif
 

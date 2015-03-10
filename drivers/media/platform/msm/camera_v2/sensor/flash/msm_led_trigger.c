@@ -173,7 +173,7 @@ static ssize_t ktd2692_flash(struct device *dev,
 }
 
 static DEVICE_ATTR(rear_flash, S_IWUSR|S_IWGRP|S_IROTH,
- 	NULL, ktd2692_flash);
+	NULL, ktd2692_flash);
 
 #endif
 
@@ -244,7 +244,7 @@ static int32_t msm_led_trigger_config(struct msm_led_flash_ctrl_t *fctrl,
 		else {
 			gpio_direction_output(led_torch_en, 0);
 			gpio_free(led_torch_en);
-		}	
+		}
 		break;
 
 	default:

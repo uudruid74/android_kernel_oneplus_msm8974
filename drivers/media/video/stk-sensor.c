@@ -592,4 +592,3 @@ int stk_sensor_set_brightness(struct stk_camera *dev, int br)
 	stk_sensor_outb(dev, REG_AEW, min(0xff, br + 6));
 	return 0;
 }
-

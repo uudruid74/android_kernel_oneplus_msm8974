@@ -533,7 +533,7 @@ static void __init lubbock_init(void)
 }
 
 static struct map_desc lubbock_io_desc[] __initdata = {
-  	{	/* CPLD */
+	{	/* CPLD */
 		.virtual	=  LUBBOCK_FPGA_VIRT,
 		.pfn		= __phys_to_pfn(LUBBOCK_FPGA_PHYS),
 		.length		= 0x00100000,

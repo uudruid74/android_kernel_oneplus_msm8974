@@ -49,7 +49,7 @@ static int init_stub_pte(struct mm_struct *mm, unsigned long proc,
 
 int init_new_context(struct task_struct *task, struct mm_struct *mm)
 {
- 	struct mm_context *from_mm = NULL;
+	struct mm_context *from_mm = NULL;
 	struct mm_context *to_mm = &mm->context;
 	unsigned long stack = 0;
 	int ret = -ENOMEM;

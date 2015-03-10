@@ -144,7 +144,7 @@ static int create_packet(void *data, size_t length)
 	 *       or you will run out of mem trying to allocate the array.
 	 */
 	packet_array_size = max(
-	       		(unsigned int)(allocation_floor / rbu_data.packetsize),
+			(unsigned int)(allocation_floor / rbu_data.packetsize),
 			(unsigned int)1);
 	invalid_addr_packet_array = kzalloc(packet_array_size * sizeof(void*),
 						GFP_KERNEL);

@@ -325,13 +325,13 @@ static int s3c2410_nand_inithw(struct s3c2410_nand_info *info)
 	if (ret < 0)
 		return ret;
 
- 	switch (info->cpu_type) {
- 	case TYPE_S3C2410:
+	switch (info->cpu_type) {
+	case TYPE_S3C2410:
 	default:
 		break;
 
- 	case TYPE_S3C2440:
- 	case TYPE_S3C2412:
+	case TYPE_S3C2440:
+	case TYPE_S3C2412:
 		/* enable the controller and de-assert nFCE */
 
 		writel(S3C2440_NFCONT_ENABLE, info->regs + S3C2440_NFCONT);
@@ -810,7 +810,7 @@ static void s3c2410_nand_init_chip(struct s3c2410_nand_info *info,
 			dev_info(info->device, "System booted from NAND\n");
 
 		break;
-  	}
+	}
 
 	chip->IO_ADDR_R = chip->IO_ADDR_W;
 
@@ -832,13 +832,13 @@ static void s3c2410_nand_init_chip(struct s3c2410_nand_info *info,
 			break;
 
 		case TYPE_S3C2412:
-  			chip->ecc.hwctl     = s3c2412_nand_enable_hwecc;
-  			chip->ecc.calculate = s3c2412_nand_calculate_ecc;
+			chip->ecc.hwctl     = s3c2412_nand_enable_hwecc;
+			chip->ecc.calculate = s3c2412_nand_calculate_ecc;
 			break;
 
 		case TYPE_S3C2440:
-  			chip->ecc.hwctl     = s3c2440_nand_enable_hwecc;
-  			chip->ecc.calculate = s3c2440_nand_calculate_ecc;
+			chip->ecc.hwctl     = s3c2440_nand_enable_hwecc;
+			chip->ecc.calculate = s3c2440_nand_calculate_ecc;
 			break;
 
 		}
@@ -921,7 +921,7 @@ static void s3c2410_nand_update_chip(struct s3c2410_nand_info *info,
 static int s3c24xx_nand_probe(struct platform_device *pdev)
 {
 	struct s3c2410_platform_nand *plat = to_nand_plat(pdev);
-	enum s3c_cpu_type cpu_type; 
+	enum s3c_cpu_type cpu_type;
 	struct s3c2410_nand_info *info;
 	struct s3c2410_nand_mtd *nmtd;
 	struct s3c2410_nand_set *sets;

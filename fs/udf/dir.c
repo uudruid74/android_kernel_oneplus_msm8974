@@ -197,7 +197,7 @@ static int udf_readdir(struct file *filp, void *dirent, filldir_t filldir)
 	}
 
 	result = do_udf_readdir(dir, filp, filldir, dirent);
- 	return result;
+	return result;
 }
 
 /* readdir and lookup functions */

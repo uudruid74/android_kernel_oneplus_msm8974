@@ -166,4 +166,3 @@ config TOUCHSCREEN_CYPRESS_CYTTSP4_DEBUG_MDL
 
 	  This module adds support for verbose printing touch
 	  information.
-

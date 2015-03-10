@@ -155,4 +155,3 @@ int lg3ff_init(struct hid_device *hid)
 	hid_info(hid, "Force feedback for Logitech Flight System G940 by Gary Stein <LordCnidarian@gmail.com>\n");
 	return 0;
 }
-

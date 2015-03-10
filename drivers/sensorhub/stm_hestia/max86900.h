@@ -128,4 +128,3 @@ extern int sensors_register(struct device *dev, void * drvdata,
 extern void sensors_unregister(struct device *dev,
 	struct device_attribute *attributes[]);
 #endif
-

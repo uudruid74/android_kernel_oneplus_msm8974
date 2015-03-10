@@ -248,4 +248,3 @@ static int __init mddi_client_nt35399_init(void)
 }
 
 module_init(mddi_client_nt35399_init);
-

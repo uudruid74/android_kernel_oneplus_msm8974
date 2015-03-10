@@ -53,4 +53,3 @@
 
 
 #endif	/*__RTL8712_RATECTRL_REGDEF_H__*/
-

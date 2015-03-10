@@ -168,7 +168,7 @@ static u32 aty_pll_514_to_var(const struct fb_info *info,
 	ref_div_count = pll->ibm514.n;
 
 	return ((par->ref_clk_per * ref_div_count) << (3 - df))/
-	    		(vco_div_count + 65);
+			(vco_div_count + 65);
 }
 
 static void aty_set_pll_514(const struct fb_info *info,
@@ -364,7 +364,7 @@ static int aty_var_to_pll_18818(const struct fb_info *info, u32 vclk_per,
 	}
 	MHz100 *= 1000;
 	MHz100 = (REF_DIV_2595 * MHz100) / REF_FREQ_2595;
- 
+
 	MHz100 += 500;		/* + 0.5 round */
 	MHz100 /= 1000;
 

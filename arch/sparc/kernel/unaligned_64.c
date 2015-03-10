@@ -115,7 +115,7 @@ static inline long sign_extend_imm13(long imm)
 static unsigned long fetch_reg(unsigned int reg, struct pt_regs *regs)
 {
 	unsigned long value;
-	
+
 	if (reg < 16)
 		return (!reg ? 0 : regs->u_regs[reg]);
 	if (regs->tstate & TSTATE_PRIV) {
@@ -183,7 +183,7 @@ static void __used unaligned_panic(char *str, struct pt_regs *regs)
 
 extern int do_int_load(unsigned long *dest_reg, int size,
 		       unsigned long *saddr, int is_signed, int asi);
-	
+
 extern int __do_int_store(unsigned long *dst_addr, int size,
 			  unsigned long src_val, int asi);
 
@@ -255,11 +255,11 @@ static void kernel_mna_trap_fault(int fixup_tstate_asi)
 
 		address = compute_effective_address(regs, insn,
 						    ((insn >> 25) & 0x1f));
-        	if (address < PAGE_SIZE) {
-                	printk(KERN_ALERT "Unable to handle kernel NULL "
+		if (address < PAGE_SIZE) {
+			printk(KERN_ALERT "Unable to handle kernel NULL "
 			       "pointer dereference in mna handler");
-        	} else
-                	printk(KERN_ALERT "Unable to handle kernel paging "
+		} else
+			printk(KERN_ALERT "Unable to handle kernel paging "
 			       "request in mna handler");
 	        printk(KERN_ALERT " at virtual address %016lx\n",address);
 		printk(KERN_ALERT "current->{active_,}mm->context = %016lx\n",
@@ -385,7 +385,7 @@ int handle_popc(u32 insn, struct pt_regs *regs)
 	int from_kernel = (regs->tstate & TSTATE_PRIV) != 0;
 	int ret, rd = ((insn >> 25) & 0x1f);
 	u64 value;
-	                        
+
 	perf_sw_event(PERF_COUNT_SW_EMULATION_FAULTS, 1, regs, 0);
 	if (insn & 0x2000) {
 		maybe_flush_windows(0, 0, rd, from_kernel);
@@ -442,7 +442,7 @@ int handle_ldf_stq(u32 insn, struct pt_regs *regs)
 	if (insn & 0x200000) {
 		/* STQ */
 		u64 first = 0, second = 0;
-		
+
 		if (current_thread_info()->fpsaved[0] & flag) {
 			first = *(u64 *)&f->regs[freg];
 			second = *(u64 *)&f->regs[freg+2];
@@ -455,11 +455,11 @@ int handle_ldf_stq(u32 insn, struct pt_regs *regs)
 		case ASI_P:
 		case ASI_S: break;
 		case ASI_PL:
-		case ASI_SL: 
+		case ASI_SL:
 			{
 				/* Need to convert endians */
 				u64 tmp = __swab64p(&first);
-				
+
 				first = __swab64p(&second);
 				second = tmp;
 				break;
@@ -479,7 +479,7 @@ int handle_ldf_stq(u32 insn, struct pt_regs *regs)
 				sun4v_data_access_exception(regs, addr, 0);
 			else
 				spitfire_data_access_exception(regs, 0, addr);
-		    	return 1;
+			return 1;
 		}
 	} else {
 		/* LDF, LDDF, LDQF */
@@ -504,7 +504,7 @@ int handle_ldf_stq(u32 insn, struct pt_regs *regs)
 		}
 		for (i = 0; i < size; i++)
 			data[i] = 0;
-		
+
 		err = get_user (data[0], (u32 __user *) addr);
 		if (!err) {
 			for (i = 1; i < size; i++)
@@ -552,7 +552,7 @@ void handle_ld_nf(u32 insn, struct pt_regs *regs)
 	int rd = ((insn >> 25) & 0x1f);
 	int from_kernel = (regs->tstate & TSTATE_PRIV) != 0;
 	unsigned long *reg;
-	                        
+
 	perf_sw_event(PERF_COUNT_SW_EMULATION_FAULTS, 1, regs, 0);
 
 	maybe_flush_windows(0, 0, rd, from_kernel);
@@ -664,7 +664,7 @@ void handle_stdfmna(struct pt_regs *regs, unsigned long sfar, unsigned long sfsr
 		case ASI_P:
 		case ASI_S: break;
 		case ASI_PL:
-		case ASI_SL: 
+		case ASI_SL:
 			value = __swab64p(&value); break;
 		default: goto daex;
 		}

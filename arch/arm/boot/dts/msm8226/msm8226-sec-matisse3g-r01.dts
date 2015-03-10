@@ -16,8 +16,8 @@
  *  G[4BITS]:MODEL_VARIANT i.e. 0 for MS01,1 for MILLET_3G, 2 for CT01, 3 for S3VE
  *  H[4BITS]:Hardware Revision
  * Please refer to .../lk/platform/msm_shared/dev_tree.c also
- */ 
- 
+ */
+
 /dts-v1/;
 /include/ "msm8226-v2.dtsi"
 /include/ "msm8226-sec-matisse3g-r01.dtsi"
@@ -37,8 +37,8 @@
         spi0{
         status = "disable";
         };
-	
-	i2c@22 {		
+
+	i2c@22 {
                 mc96fr332@50{
 			mc96fr332,irda_led_en = <&msmgpio 116 0x00>;
 		};
@@ -109,5 +109,3 @@
 		mpp-channel-scaling = <6 1 1>;
         };
 };
-
-

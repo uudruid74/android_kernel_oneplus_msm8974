@@ -462,7 +462,7 @@ qpnp_pon_input_dispatch(struct qpnp_pon *pon, u32 pon_type)
 	}else if((cfg->key_code == 116) && !(pon_rt_sts & pon_rt_bit)){
 		pon->powerkey_state = 0;
 	}
-#endif	
+#endif
 
 #if defined(CONFIG_SEC_PM)
 	/* RESIN is used for VOL DOWN key, it should report the keycode for kernel panic */

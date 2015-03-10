@@ -151,4 +151,3 @@ config SENSORS_SSP_UVIS25
 	  This is for UV Sensor device driver.
           If you say yes here you get uv sensor support.
 	  If you say no here uv sensor will not be supported.
-

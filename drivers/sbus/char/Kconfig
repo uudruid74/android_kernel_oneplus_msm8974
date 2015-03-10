@@ -72,4 +72,3 @@ config DISPLAY7SEG
 	  you should say N to this option.
 
 endmenu
-

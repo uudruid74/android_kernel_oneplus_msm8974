@@ -41,7 +41,7 @@ register unsigned long ia64_r13 asm ("r13") __used;
 		    break;							\
 	    case _IA64_REG_AR_KR0 ... _IA64_REG_AR_EC:				\
 		    asm volatile ("mov ar%0=%1" ::				\
-		    			  "i" (regnum - _IA64_REG_AR_KR0),	\
+					  "i" (regnum - _IA64_REG_AR_KR0),	\
 					  "r"(val): "memory");			\
 		    break;							\
 	    case _IA64_REG_CR_DCR ... _IA64_REG_CR_LRR1:			\
@@ -51,7 +51,7 @@ register unsigned long ia64_r13 asm ("r13") __used;
 		    break;							\
 	    case _IA64_REG_SP:							\
 		    asm volatile ("mov r12=%0" ::				\
-			    		  "r"(val): "memory");			\
+					  "r"(val): "memory");			\
 		    break;							\
 	    case _IA64_REG_GP:							\
 		    asm volatile ("mov gp=%0" :: "r"(val) : "memory");		\

@@ -17,7 +17,7 @@
  * QC_SOC_REVISION = Qcomm SOC Version of MTP Board
  * Please refer to .../lk/platform/msm_shared/dev_tree.c also
  */
- 
+
 /dts-v1/;
 /include/ "msm8926.dtsi"
 /include/ "msm8926-sec-milletlte-r00.dtsi"
@@ -119,13 +119,12 @@
         };
 };
 
-&cci { 	
-	qcom,camera@0 {		
+&cci {
+	qcom,camera@0 {
 		gpios = <&msmgpio 26 0>,
 			<&msmgpio 110 0>,	/*CAM_RESET*/
-			<&msmgpio 36 0>,	
+			<&msmgpio 36 0>,
 			<&pm8226_gpios 6 0>,
 			<&msmgpio 112 0>;
 	};
 };
-

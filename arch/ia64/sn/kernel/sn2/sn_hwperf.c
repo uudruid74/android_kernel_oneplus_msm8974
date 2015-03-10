@@ -1,4 +1,4 @@
-/* 
+/*
  * This file is subject to the terms and conditions of the GNU General Public
  * License.  See the file "COPYING" in the main directory of this archive
  * for more details.
@@ -6,7 +6,7 @@
  * Copyright (C) 2004-2006 Silicon Graphics, Inc. All rights reserved.
  *
  * SGI Altix topology and hardware performance monitoring API.
- * Mark Goodwin <markgw@sgi.com>. 
+ * Mark Goodwin <markgw@sgi.com>.
  *
  * Creates /proc/sgi_sn/sn_topology (read-only) to export
  * info about Altix nodes, routers, CPUs and NumaLink
@@ -17,7 +17,7 @@
  * to discover hw objects, topology and to read/write
  * memory mapped registers, e.g. for performance monitoring.
  * The "sn_hwperf" device is registered only after the procfs
- * file is first opened, i.e. only if/when it's needed. 
+ * file is first opened, i.e. only if/when it's needed.
  *
  * This API is used by SGI Performance Co-Pilot and other
  * tools, see http://oss.sgi.com/projects/pcp
@@ -94,11 +94,11 @@ static int sn_hwperf_location_to_bpos(char *location,
 	/* first scan for an old style geoid string */
 	if (sscanf(location, "%03d%c%02d#%d",
 		rack, &type, bay, slab) == 4)
-		*slot = 0; 
+		*slot = 0;
 	else /* scan for a new bladed geoid string */
 	if (sscanf(location, "%03d%c%02d^%02d#%d",
 		rack, &type, bay, slot, slab) != 5)
-		return -1; 
+		return -1;
 	/* success */
 	return 0;
 }
@@ -171,7 +171,7 @@ static const char *sn_hwperf_get_slabname(struct sn_hwperf_object_info *obj,
 	const char *slabname = slabname_other;
 
 	if ((isnode = SN_HWPERF_IS_NODE(obj)) || SN_HWPERF_IS_IONODE(obj)) {
-	    	slabname = isnode ? slabname_node : slabname_ionode;
+		slabname = isnode ? slabname_node : slabname_ionode;
 		*ordinal = sn_hwperf_obj_to_cnode(obj);
 	}
 	else {
@@ -422,7 +422,7 @@ static int sn_topology_show(struct seq_file *s, void *d)
 			"region_size %d\n",
 
 			partid, utsname()->nodename,
-			shubtype ? "shub2" : "shub1", 
+			shubtype ? "shub2" : "shub1",
 			(u64)nasid_mask << nasid_shift, nasid_msb, nasid_shift,
 			system_size, sharing_size, coher, region_size);
 
@@ -481,8 +481,8 @@ static int sn_topology_show(struct seq_file *s, void *d)
 				for_each_online_cpu(j) {
 					seq_printf(s, j ? ":%d" : ", dist %d",
 						   node_distance(
-						    	cpu_to_node(i),
-						    	cpu_to_node(j)));
+							cpu_to_node(i),
+							cpu_to_node(j)));
 				}
 				seq_putc(s, '\n');
 			}
@@ -604,7 +604,7 @@ static int sn_hwperf_op_cpu(struct sn_hwperf_op_info *op_info)
 	u32 use_ipi;
 	int r = 0;
 	cpumask_t save_allowed;
-	
+
 	cpu = (op_info->a->arg & SN_HWPERF_ARG_CPU_MASK) >> 32;
 	use_ipi = op_info->a->arg & SN_HWPERF_ARG_USE_IPI_MASK;
 	op_info->a->arg &= SN_HWPERF_ARG_OBJID_MASK;
@@ -631,7 +631,7 @@ static int sn_hwperf_op_cpu(struct sn_hwperf_op_info *op_info)
 				op_info, 1);
 		}
 		else {
-			/* migrate the task before calling SAL */ 
+			/* migrate the task before calling SAL */
 			save_allowed = current->cpus_allowed;
 			set_cpus_allowed_ptr(current, cpumask_of(cpu));
 			sn_hwperf_call_sal(op_info);
@@ -812,7 +812,7 @@ static long sn_hwperf_ioctl(struct file *fp, u32 op, unsigned long arg)
 
 			if (!SN_HWPERF_IS_NODE(objs + i) &&
 			    !SN_HWPERF_IS_IONODE(objs + i)) {
-			    	r = -ENOENT;
+				r = -ENOENT;
 				vfree(objs);
 				goto error;
 			}

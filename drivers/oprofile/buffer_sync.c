@@ -595,4 +595,3 @@ void oprofile_put_buff(unsigned long *buf, unsigned int start,
 
 	mutex_unlock(&buffer_mutex);
 }
-

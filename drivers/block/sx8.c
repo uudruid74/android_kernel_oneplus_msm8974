@@ -1759,5 +1759,3 @@ static void __exit carm_exit(void)
 
 module_init(carm_init);
 module_exit(carm_exit);
-
-

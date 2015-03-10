@@ -81,7 +81,7 @@ struct thread_struct {
 #if defined(__H8300H__)
 #define start_thread(_regs, _pc, _usp)			        \
 do {							        \
-  	(_regs)->pc = (_pc);				        \
+	(_regs)->pc = (_pc);				        \
 	(_regs)->ccr = 0x00;	   /* clear all flags */        \
 	(_regs)->er5 = current->mm->start_data;	/* GOT base */  \
 	wrusp((unsigned long)(_usp) - sizeof(unsigned long)*3);	\

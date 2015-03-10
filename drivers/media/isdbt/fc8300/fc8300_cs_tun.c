@@ -1664,7 +1664,7 @@ s32 fc8300_cs_set_freq(HANDLE handle, DEVICEID devid, u32 freq)
 		} else if (tf_offset[0][11] < freq) {
 			fc8300_write(handle, devid, 0x1c, 0x10);
 		} else {
-			
+
 			for (i = 0; i < 11; i++) {
 				if ((tf_offset[0][i] < freq) &&
 					(tf_offset[0][i + 1] >= freq))

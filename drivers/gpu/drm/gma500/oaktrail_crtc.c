@@ -589,4 +589,3 @@ const struct drm_crtc_helper_funcs oaktrail_helper_funcs = {
 	.prepare = oaktrail_crtc_prepare,
 	.commit = oaktrail_crtc_commit,
 };
-

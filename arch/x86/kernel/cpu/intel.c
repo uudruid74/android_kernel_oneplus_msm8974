@@ -567,4 +567,3 @@ static const struct cpu_dev __cpuinitconst intel_cpu_dev = {
 };
 
 cpu_dev_register(intel_cpu_dev);
-

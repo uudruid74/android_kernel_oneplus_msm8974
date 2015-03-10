@@ -1117,4 +1117,3 @@ static int __init tmd20qvga_init(void)
 }
 
 module_init(tmd20qvga_init);
-

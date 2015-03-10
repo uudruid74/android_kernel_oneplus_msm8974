@@ -1755,4 +1755,3 @@ void mDNIe_Set_Mode(enum Lcd_mDNIe_UI mode)
 		mode, mdnie_tun_state.background);
 }
 #endif
-

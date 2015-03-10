@@ -105,7 +105,7 @@
 
 		qcom,panel-touchsensing-on-cmds = [29 01 00 00 00 00 03 ff 07 01];
 		qcom,panel-touchsensing-off-cmds = [29 01 00 00 12 00 03 ff 1f 01];
-		
+
 
 		/*
 			the last byte in read commands  represent READ LENGH,
@@ -130,7 +130,7 @@
 
 			qcom,panel-display-on-cmds = [05 01 00 00 32 00 02 29 00];
 			qcom,panel-display-off-cmds = [05 01 00 00 32 00 02 28 00];
-							
+
 			qcom,panel-display-unblank-cmds = [05 01 00 00 32 00 02 13 00];			/*Normal mode command*/
 			qcom,panel-display-blank-cmds = [05 01 00 00 45 00 02 22 00];		 /* All pixel off - for making display black*/
 
@@ -160,7 +160,7 @@
 					29 01 00 00 00 00 05	E3 FF FF FF FF		/* als cont */
 					29 01 00 00 00 00 02 55 41	   	/* power saving Set */
 					29 01 00 00 00 00 03	BC 20 38		/* psre cont */
-/*					29 01 00 00 00 00 3B	BC 
+/*					29 01 00 00 00 00 3B	BC
 	20 38 64 64 00 03 E8 00 00 B2
 	C2 C2 AC AE C1 B5 00 78 B1 6C
 	00 00 00 00 00 B8 B8 A8 90 90
@@ -232,16 +232,16 @@
 					249  0         265  0        282  0        300  0
 				>;
 
-			/* 
+			/*
 			 * ************************************************************************************************************************
 			 * ACL command list and mappings
 			 * ************************************************************************************************************************
 			 */
 			 /* B5h
- 			   * 1st - 0x01 : PSRE , 0x03 : no PSRE
+			   * 1st - 0x01 : PSRE , 0x03 : no PSRE
 			   * 2nd(OPR) - 0x99 : 60%
- 			   * 3rd(ACL) - 0x23 : 27.6% , 0x27 : 30%, 0x35 : 40%
- 			   */
+			   * 3rd(ACL) - 0x23 : 27.6% , 0x27 : 30%, 0x35 : 40%
+			   */
 			samsung,panel-aclcont-cmds-list = [
 					29 01 00 00 00 00 04	B5 03 99 35	 /* 0x27 : 30% */
 			 ];

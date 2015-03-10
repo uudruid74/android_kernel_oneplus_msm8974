@@ -265,7 +265,7 @@ struct chbk {
        __u32               IO_active;
         __u8                claw_state;
         struct irb          *irb;
-       	struct ccw_device   *cdev;  /* pointer to the channel device */
+	struct ccw_device   *cdev;  /* pointer to the channel device */
 	struct net_device   *ndev;
         wait_queue_head_t   wait;
         struct tasklet_struct    tasklet;
@@ -350,5 +350,3 @@ struct claw_privbk {
 /************************************************************/
 
 #define CCWBK_SIZE sizeof(struct ccwbk)
-
-

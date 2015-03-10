@@ -515,7 +515,7 @@ static int recover_locks_queue(struct dlm_rsb *r, struct list_head *head)
 	int error = 0;
 
 	list_for_each_entry(lkb, head, lkb_statequeue) {
-	   	error = dlm_send_rcom_lock(r, lkb);
+		error = dlm_send_rcom_lock(r, lkb);
 		if (error)
 			break;
 		r->res_recover_locks_count++;
@@ -837,4 +837,3 @@ void dlm_clear_toss_list(struct dlm_ls *ls)
 		spin_unlock(&ls->ls_rsbtbl[i].lock);
 	}
 }
-

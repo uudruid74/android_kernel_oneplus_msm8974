@@ -96,7 +96,7 @@
 		&msmgpio 1 0 /* scl */
 		>;
 
-		isl98611_backlight@29 { 
+		isl98611_backlight@29 {
 			compatible = "isl98611,backlight-control";
 			reg = <0x29>;
 			isl98611,scl-gpio = <&msmgpio 1 0x00>;
@@ -168,7 +168,7 @@
 		qcom,scl-gpio = <&msmgpio 19 0>;
 		qcom,sda-gpio = <&msmgpio 18 0>;
 
-		qcom,i2c-bus-freq = <400000>;		
+		qcom,i2c-bus-freq = <400000>;
 		bt532_ts_device@20 {
 			compatible = "zinitix,bt532_ts_device";
 			reg = <0x20>;
@@ -177,7 +177,7 @@
 			vdd_en-supply = <&pm8226_l15>;
 			zinitix,irq-gpio = <&msmgpio 17 0x00>;
 			zinitix,vendor1 = <&msmgpio 22 0x00>;
-			zinitix,vendor2 = <&msmgpio 22 0x00>;			
+			zinitix,vendor2 = <&msmgpio 22 0x00>;
 			zinitix,x_resolution = <720>;
 			zinitix,y_resolution = <1280>;
 			zinitix,page_size = <128>;
@@ -526,7 +526,7 @@
 				qcom,s2-timer = <1000>;
 				qcom,s2-type = <7>;
 				qcom,use-bark;
-			};		
+			};
 		};
 	};
 

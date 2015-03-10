@@ -497,7 +497,7 @@ static int compute_gbe_timing(struct fb_var_screeninfo *var,
 				if (error < best_error &&
 				    pll_m / pll_n >
 				    gbe_pll->fvco_min / gbe_pll->clock_rate &&
- 				    pll_m / pll_n <
+				    pll_m / pll_n <
 				    gbe_pll->fvco_max / gbe_pll->clock_rate) {
 					best_error = error;
 					best_m = pll_m;

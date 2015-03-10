@@ -2142,7 +2142,7 @@ static int ccg6_candela_table[][2] = {
 };
 
 static int gradation_offset[][9] = {
-/*	V255 V203 V151 V87 V51 V35 V23 V11 V3 */	
+/*	V255 V203 V151 V87 V51 V35 V23 V11 V3 */
 	{0, 2, 3, 6, 7, 9, 10, 12, 15,},
 	{0, 2, 3, 6, 7, 9, 10, 12, 15,},
 	{0, 2, 3, 6, 7, 8, 9, 11, 14,},
@@ -2202,7 +2202,7 @@ static int gradation_offset[][9] = {
 #define RGB_COMPENSATION 24
 static int rgb_offset[][RGB_COMPENSATION] = {
 /*	R255 G255 B255 R203 G203 B203 R151 G151 B151
-	R87 G87 B87 R51 G51 B51 R35 G35 B35 
+	R87 G87 B87 R51 G51 B51 R35 G35 B35
 	R23 G23 B23 R11 G11 B11
 */
 {-1, 0, 0, 0, 0, -2, -2, 0, -3, -3, 1, -4, -5,
@@ -2538,7 +2538,7 @@ static void gamma_init_evt1(
 }
 
 static int gradation_offset_evt1_second[][9] = {
-/*	V255 V203 V151 V87 V51 V35 V23 V11 V3 */	
+/*	V255 V203 V151 V87 V51 V35 V23 V11 V3 */
 	{0, 1, 2, 5, 8, 10, 12, 15, 19},
 	{0, 1, 2, 5, 8, 10, 11, 14, 18},
 	{0, 1, 2, 4, 7, 9, 10, 13, 17},
@@ -2597,7 +2597,7 @@ static int gradation_offset_evt1_second[][9] = {
 
 static int rgb_offset_evt1_second[][RGB_COMPENSATION] = {
 /*	R255 G255 B255 R203 G203 B203 R151 G151 B151
-	R87 G87 B87 R51 G51 B51 R35 G35 B35 
+	R87 G87 B87 R51 G51 B51 R35 G35 B35
 	R23 G23 B23 R11 G11 B11
 */
 {-1, 0, 0, 0, 0, -2, -2, 0, -2, -5, 1, -5, -4, 3, -4, -6, 3, -5, -7, 5, -7, -9, 10, -10},
@@ -2878,7 +2878,7 @@ static void gamma_init_evt1_second(
 
 
 static int gradation_offset_evt1_third[][9] = {
-/*	V255 V203 V151 V87 V51 V35 V23 V11 V3 */	
+/*	V255 V203 V151 V87 V51 V35 V23 V11 V3 */
 	{0, 2, 3, 9, 10, 13, 15, 19, 21,},
 	{0, 2, 3, 9, 10, 12, 14, 18, 20,},
 	{0, 2, 3, 8, 10, 11, 13, 17, 19,},
@@ -2937,7 +2937,7 @@ static int gradation_offset_evt1_third[][9] = {
 
 static int rgb_offset_evt1_third[][RGB_COMPENSATION] = {
 /*	R255 G255 B255 R203 G203 B203 R151 G151 B151
-	R87 G87 B87 R51 G51 B51 R35 G35 B35 
+	R87 G87 B87 R51 G51 B51 R35 G35 B35
 	R23 G23 B23 R11 G11 B11
 */
 {0, 0, 1, -1, 1, -1, 0, 2, -2, -4, 2, -5, -6, 4, -6, -7, 4, -7, -8, 5, -7, -10, 7, -10,},
@@ -3519,7 +3519,7 @@ static int smart_dimming_init(struct SMART_DIM *psmart)
 
 /* ----------------------------------------------------------------------------
  * Wrapper functions for smart dimming to work with 8974 generic code
- * ---------------------------------------------------------------------------- 
+ * ----------------------------------------------------------------------------
  */
 
 static struct SMART_DIM 	smart_S6E8FA0;
@@ -3548,5 +3548,5 @@ struct smartdim_conf *smart_S6E8FA0_get_conf(void){
 
 /* ----------------------------------------------------------------------------
  * END - Wrapper
- * ---------------------------------------------------------------------------- 
+ * ----------------------------------------------------------------------------
  */

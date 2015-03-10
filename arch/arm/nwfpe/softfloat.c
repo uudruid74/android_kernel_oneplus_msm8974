@@ -179,16 +179,16 @@ INLINE float32 packFloat32( flag zSign, int16 zExp, bits32 zSig )
 #if 0
    float32 f;
    __asm__("@ packFloat32				\n\
-   	    mov %0, %1, asl #31				\n\
-   	    orr %0, %2, asl #23				\n\
-   	    orr %0, %3"
-   	    : /* no outputs */
-   	    : "g" (f), "g" (zSign), "g" (zExp), "g" (zSig)
-   	    : "cc");
+	    mov %0, %1, asl #31				\n\
+	    orr %0, %2, asl #23				\n\
+	    orr %0, %3"
+	    : /* no outputs */
+	    : "g" (f), "g" (zSign), "g" (zExp), "g" (zSig)
+	    : "cc");
    return f;
 #else
     return ( ( (bits32) zSign )<<31 ) + ( ( (bits32) zExp )<<23 ) + zSig;
-#endif 
+#endif
 }
 
 /*
@@ -716,7 +716,7 @@ static floatx80
     else {
         if ( zSig0 == 0 ) zExp = 0;
     }
-    
+
     return packFloatx80( zSign, zExp, zSig0 );
 }
 
@@ -2787,10 +2787,10 @@ static floatx80 addFloatx80Sigs( struct roundingData *roundData, floatx80 a, flo
         zExp = aExp;
         goto shiftRight1;
     }
-    
+
     zSig0 = aSig + bSig;
 
-    if ( (sbits64) zSig0 < 0 ) goto roundAndPack; 
+    if ( (sbits64) zSig0 < 0 ) goto roundAndPack;
  shiftRight1:
     shift64ExtraRightJamming( zSig0, zSig1, 1, &zSig0, &zSig1 );
     zSig0 |= LIT64( 0x8000000000000000 );
@@ -2882,7 +2882,7 @@ Standard for Binary Floating-point Arithmetic.
 floatx80 floatx80_add( struct roundingData *roundData, floatx80 a, floatx80 b )
 {
     flag aSign, bSign;
-    
+
     aSign = extractFloatx80Sign( a );
     bSign = extractFloatx80Sign( b );
     if ( aSign == bSign ) {
@@ -2891,7 +2891,7 @@ floatx80 floatx80_add( struct roundingData *roundData, floatx80 a, floatx80 b )
     else {
         return subFloatx80Sigs( roundData, a, b, aSign );
     }
-    
+
 }
 
 /*
@@ -3432,4 +3432,3 @@ flag floatx80_lt_quiet( floatx80 a, floatx80 b )
 }
 
 #endif
-

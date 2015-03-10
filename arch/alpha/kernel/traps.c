@@ -71,7 +71,7 @@ dik_show_regs(struct pt_regs *regs, unsigned long *r9_15)
 	printk("v0 = %016lx  t0 = %016lx  t1 = %016lx\n",
 	       regs->r0, regs->r1, regs->r2);
 	printk("t2 = %016lx  t3 = %016lx  t4 = %016lx\n",
- 	       regs->r3, regs->r4, regs->r5);
+	       regs->r3, regs->r4, regs->r5);
 	printk("t5 = %016lx  t6 = %016lx  t7 = %016lx\n",
 	       regs->r6, regs->r7, regs->r8);
 
@@ -86,8 +86,8 @@ dik_show_regs(struct pt_regs *regs, unsigned long *r9_15)
 	printk("a0 = %016lx  a1 = %016lx  a2 = %016lx\n",
 	       regs->r16, regs->r17, regs->r18);
 	printk("a3 = %016lx  a4 = %016lx  a5 = %016lx\n",
- 	       regs->r19, regs->r20, regs->r21);
- 	printk("t8 = %016lx  t9 = %016lx  t10= %016lx\n",
+	       regs->r19, regs->r20, regs->r21);
+	printk("t8 = %016lx  t9 = %016lx  t10= %016lx\n",
 	       regs->r22, regs->r23, regs->r24);
 	printk("t11= %016lx  pv = %016lx  at = %016lx\n",
 	       regs->r25, regs->r27, regs->r28);
@@ -247,7 +247,7 @@ do_entIF(unsigned long type, struct pt_regs *regs)
 			const unsigned int *data
 			  = (const unsigned int *) regs->pc;
 			printk("Kernel bug at %s:%d\n",
-			       (const char *)(data[1] | (long)data[2] << 32), 
+			       (const char *)(data[1] | (long)data[2] << 32),
 			       data[0]);
 		}
 		die_if_kernel((type == 1 ? "Kernel Bug" : "Instruction fault"),
@@ -277,7 +277,7 @@ do_entIF(unsigned long type, struct pt_regs *regs)
 		info.si_trapno = 0;
 		send_sig_info(SIGTRAP, &info, current);
 		return;
-		
+
 	      case 2: /* gentrap */
 		info.si_addr = (void __user *) regs->pc;
 		info.si_trapno = regs->r16;
@@ -357,8 +357,8 @@ do_entIF(unsigned long type, struct pt_regs *regs)
 			   fault during the boot sequence and testing if
 			   we get the correct PC.  If not, we set a flag
 			   to correct it every time through.  */
-			regs->pc += opDEC_fix; 
-			
+			regs->pc += opDEC_fix;
+
 			/* EV4 does not implement anything except normal
 			   rounding.  Everything else will come here as
 			   an illegal instruction.  Emulate them.  */
@@ -402,7 +402,7 @@ do_entIF(unsigned long type, struct pt_regs *regs)
 	send_sig_info(SIGILL, &info, current);
 }
 
-/* There is an ifdef in the PALcode in MILO that enables a 
+/* There is an ifdef in the PALcode in MILO that enables a
    "kernel debugging entry point" as an unprivileged call_pal.
 
    We don't want to have anything to do with it, but unfortunately
@@ -644,7 +644,7 @@ got_exception:
 	/*
 	 * Yikes!  No one to forward the exception to.
 	 * Since the registers are in a weird format, dump them ourselves.
- 	 */
+	 */
 
 	printk("%s(%d): unhandled unaligned exception\n",
 	       current->comm, task_pid_nr(current));
@@ -654,7 +654,7 @@ got_exception:
 	printk("r0 = %016lx  r1 = %016lx  r2 = %016lx\n",
 	       una_reg(0), una_reg(1), una_reg(2));
 	printk("r3 = %016lx  r4 = %016lx  r5 = %016lx\n",
- 	       una_reg(3), una_reg(4), una_reg(5));
+	       una_reg(3), una_reg(4), una_reg(5));
 	printk("r6 = %016lx  r7 = %016lx  r8 = %016lx\n",
 	       una_reg(6), una_reg(7), una_reg(8));
 	printk("r9 = %016lx  r10= %016lx  r11= %016lx\n",
@@ -665,8 +665,8 @@ got_exception:
 	printk("r16= %016lx  r17= %016lx  r18= %016lx\n",
 	       una_reg(16), una_reg(17), una_reg(18));
 	printk("r19= %016lx  r20= %016lx  r21= %016lx\n",
- 	       una_reg(19), una_reg(20), una_reg(21));
- 	printk("r22= %016lx  r23= %016lx  r24= %016lx\n",
+	       una_reg(19), una_reg(20), una_reg(21));
+	printk("r22= %016lx  r23= %016lx  r24= %016lx\n",
 	       una_reg(22), una_reg(23), una_reg(24));
 	printk("r25= %016lx  r27= %016lx  r28= %016lx\n",
 	       una_reg(25), una_reg(27), una_reg(28));

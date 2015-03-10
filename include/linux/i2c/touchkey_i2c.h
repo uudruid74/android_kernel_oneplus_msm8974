@@ -314,14 +314,14 @@ struct cypress_touchkey_info {
 	bool charging_mode;
 #endif
 #ifdef TKEY_REQUEST_FW_UPDATE
-	const struct firmware		*fw;	
+	const struct firmware		*fw;
 	struct fw_image	*fw_img;
 	u8	cur_fw_path;
 #endif
 	int	src_fw_ver;
 	int	ic_fw_ver;
 	int	module_ver;
-	int	device_ver;	
+	int	device_ver;
 	u32 fw_id;
 
 	u8	touchkeyid;

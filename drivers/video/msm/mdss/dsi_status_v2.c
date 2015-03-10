@@ -97,4 +97,3 @@ void mdp3_check_dsi_ctrl_status(struct work_struct *work,
 		}
 	}
 }
-

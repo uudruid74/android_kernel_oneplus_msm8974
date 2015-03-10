@@ -4435,7 +4435,7 @@ static unsigned int ata_dev_set_xfermode(struct ata_device *dev)
 	if (ata_pio_need_iordy(dev))
 		tf.nsect = dev->xfer_mode;
 	/* If the device has IORDY and the controller does not - turn it off */
- 	else if (ata_id_has_iordy(dev->id))
+	else if (ata_id_has_iordy(dev->id))
 		tf.nsect = 0x01;
 	else /* In the ancient relic department - skip all of this */
 		return 0;

@@ -1402,11 +1402,11 @@ ctnetlink_create_conntrack(struct net *net, u16 zone,
 	ct->timeout.expires = jiffies + ct->timeout.expires * HZ;
 
 	rcu_read_lock();
- 	if (cda[CTA_HELP]) {
+	if (cda[CTA_HELP]) {
 		char *helpname = NULL;
- 
- 		err = ctnetlink_parse_help(cda[CTA_HELP], &helpname);
- 		if (err < 0)
+
+		err = ctnetlink_parse_help(cda[CTA_HELP], &helpname);
+		if (err < 0)
 			goto err2;
 
 		helper = __nf_conntrack_helper_find(helpname, nf_ct_l3num(ct),

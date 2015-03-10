@@ -422,7 +422,7 @@ static void wf_smu_create_cpu_fans(void)
 				  GFP_KERNEL);
 	if (wf_smu_cpu_fans == NULL)
 		goto fail;
-       	wf_smu_cpu_fans->ticks = 1;
+	wf_smu_cpu_fans->ticks = 1;
 
 	wf_smu_cpu_fans->scale = WF_SMU_CPU_FANS_SIBLING_SCALE;
 	wf_smu_cpu_fans->offset = WF_SMU_CPU_FANS_SIBLING_OFFSET;

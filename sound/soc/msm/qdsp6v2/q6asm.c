@@ -1784,7 +1784,7 @@ static int __q6asm_open_read(struct audio_client *ac,
 	open.mode_flags = 0x0;
 
 	//if (ac->perf_mode)
-        if (ac->perf_mode == LOW_LATENCY_PCM_MODE) 
+        if (ac->perf_mode == LOW_LATENCY_PCM_MODE)
 		open.mode_flags |= ASM_LOW_LATENCY_TX_STREAM_SESSION << ASM_SHIFT_STREAM_PERF_MODE_FLAG_IN_OPEN_READ;
 	else
 		open.mode_flags |= ASM_LEGACY_STREAM_SESSION << ASM_SHIFT_STREAM_PERF_MODE_FLAG_IN_OPEN_READ;
@@ -1879,7 +1879,7 @@ static int __q6asm_open_write(struct audio_client *ac, uint32_t format,
 	open.hdr.opcode = ASM_STREAM_CMD_OPEN_WRITE_V3;
 	open.mode_flags = 0x00;
 	if (ac->perf_mode == ULTRA_LOW_LATENCY_PCM_MODE)
-		open.mode_flags |= ASM_ULTRA_LOW_LATENCY_STREAM_SESSION;	
+		open.mode_flags |= ASM_ULTRA_LOW_LATENCY_STREAM_SESSION;
 	else if (ac->perf_mode == LOW_LATENCY_PCM_MODE)
 		open.mode_flags |= ASM_LOW_LATENCY_STREAM_SESSION;
 	else {
@@ -3708,7 +3708,7 @@ int q6asm_set_sa(struct audio_client *ac, int *param)
 	int rc  = 0;
 	int i = 0;
 	struct asm_stream_cmd_set_pp_params_sa cmd ;
-	
+
 	if(ac == NULL){
 		printk("%s: audio client is null\n", __func__);
 		return -1;
@@ -3727,7 +3727,7 @@ int q6asm_set_sa(struct audio_client *ac, int *param)
 	cmd.data.param_id = ASM_PARAM_ID_PP_SA_PARAMS;
 	cmd.data.param_size = cmd.param.data_payload_size - sizeof(cmd.data);
 	cmd.data.reserved = 0;
-	
+
 	/* SA paramerters */
 	cmd.sa_param.OutDevice = param[0];
 	cmd.sa_param.Preset = param[1];
@@ -3742,8 +3742,8 @@ int q6asm_set_sa(struct audio_client *ac, int *param)
 	cmd.sa_param.Sqrow = param[15];
 	cmd.sa_param.Sqcol = param[16];
 	cmd.sa_param.TabInfo = param[17];
-	cmd.sa_param.NewUI = param[18];		
-	
+	cmd.sa_param.NewUI = param[18];
+
 	printk("S ");
 	for(i = 0 ; i < 19; i++)
 		printk("%d ", param[i]);

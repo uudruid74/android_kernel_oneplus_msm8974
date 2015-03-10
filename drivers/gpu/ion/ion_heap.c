@@ -285,7 +285,7 @@ static size_t _ion_heap_freelist_drain(struct ion_heap *heap, size_t size,
 
 	if (size == 0)
 		size = ion_heap_freelist_size(heap);
-	
+
 	while (true) {
 		rt_mutex_lock(&heap->lock);
 		if (list_empty(&heap->free_list) || total_drained >= size ) {

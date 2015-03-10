@@ -217,7 +217,7 @@ static ssize_t yas53x_enable_show(struct device *dev,
 	return sprintf(buf, "%d\n", atomic_read(&data->enable));
 }
 
-static ssize_t yas53x_enable_store(struct device *dev, 
+static ssize_t yas53x_enable_store(struct device *dev,
 	struct device_attribute *attr, const char *buf, size_t count)
 {
 	struct yas53x_data *data = dev_get_drvdata(dev);
@@ -285,7 +285,7 @@ static ssize_t yas53x_self_test_show(struct device *dev,
 		"[SENSOR] Test7 - err = %d, offset = %d,%d,%d\n"
 		"[SENSOR] Test2 - err = %d\n", __func__,
 		err[0], r.id, err[2], err[3], r.xy1y2[0], r.xy1y2[1],
-		r.xy1y2[2], err[4], r.dir, err[5], r.sx, r.sy, 
+		r.xy1y2[2], err[4], r.dir, err[5], r.sx, r.sy,
 		err[6], r.xyz[0], r.xyz[1], r.xyz[2], err[1]);
 
 	return sprintf(buf,

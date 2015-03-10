@@ -1092,7 +1092,7 @@ static int sm5504_attach_dev(struct sm5504_usbsw *usbsw)
 			printk("[TSP] detached, but don't noti \n");
 		}
 		if(!tsp_noti_ignore)
-#if defined(CONFIG_TOUCHSCREEN_MMS144) 
+#if defined(CONFIG_TOUCHSCREEN_MMS144)
 			tsp_charger_infom(1);
 #else
 		charger_enable(1);
@@ -1252,7 +1252,7 @@ static int sm5504_detach_dev(struct sm5504_usbsw *usbsw)
 		printk("[TSP] detached, but don't noti \n");
 	}
 	if(!tsp_noti_ignore)
-#if defined(CONFIG_TOUCHSCREEN_MMS144) 
+#if defined(CONFIG_TOUCHSCREEN_MMS144)
 		tsp_charger_infom(0);
 #else
 		charger_enable(0);

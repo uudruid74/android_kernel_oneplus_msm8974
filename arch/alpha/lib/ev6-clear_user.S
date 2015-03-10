@@ -182,7 +182,7 @@ $do_wh64:
 $trailquad:
 	# zero to 16 quadwords left to store, plus any trailing bytes
 	# $1 is the number of quadwords left to go.
-	# 
+	#
 	nop			# .. .. .. E
 	nop			# .. .. E  ..
 	nop			# .. E  .. ..
@@ -222,4 +222,3 @@ $exception:			# Destination for exception recovery(?)
 	nop			# .. E  .. ..	:
 	ret	$31, ($28), 1	# L0 .. .. ..	: L U L U
 	.end __do_clear_user
-

@@ -267,7 +267,7 @@ void set_string_mode(u16 w_length)
 /* Description  : Set config mode
  *		  This mode will be used for deciding other interface.
  * Parameter    : u16 w_length
- *		- 4 means MAC request 
+ *		- 4 means MAC request
  *		- Windows and Linux PC always request Maxconfig size.
  */
 void set_config_mode(u16 w_length)

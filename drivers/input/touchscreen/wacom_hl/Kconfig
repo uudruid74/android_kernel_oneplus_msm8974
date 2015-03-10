@@ -73,4 +73,3 @@ config EPEN_WACOM_G10PM
 
 	  To compile this driver as a module, choose M here: the
 	  module will be called wacom_G10PM.
-

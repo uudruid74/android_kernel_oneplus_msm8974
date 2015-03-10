@@ -138,4 +138,3 @@ INT  rtvTDMB_Initialize(unsigned long interface);
 #endif
 
 #endif /* __MTV319_H__ */
-

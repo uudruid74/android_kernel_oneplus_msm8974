@@ -777,7 +777,7 @@ static int khazad_setkey(struct crypto_tfm *tfm, const u8 *in_key,
 			    T6[(int)(K1 >>  8) & 0xff] ^
 			    T7[(int)(K1      ) & 0xff] ^
 			    c[r] ^ K2;
-		K2 = K1; 
+		K2 = K1;
 		K1 = ctx->E[r];
 	}
 	/* Setup the decrypt key */
@@ -819,7 +819,7 @@ static void khazad_crypt(const u64 roundKey[KHAZAD_ROUNDS + 1],
 			T6[(int)(state >>  8) & 0xff] ^
 			T7[(int)(state      ) & 0xff] ^
 			roundKey[r];
-    	}
+	}
 
 	state = (T0[(int)(state >> 56)       ] & 0xff00000000000000ULL) ^
 		(T1[(int)(state >> 48) & 0xff] & 0x00ff000000000000ULL) ^
@@ -865,7 +865,7 @@ static struct crypto_alg khazad_alg = {
 static int __init khazad_mod_init(void)
 {
 	int ret = 0;
-	
+
 	ret = crypto_register_alg(&khazad_alg);
 	return ret;
 }

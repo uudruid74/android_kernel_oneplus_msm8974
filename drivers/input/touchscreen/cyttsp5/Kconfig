@@ -18,8 +18,8 @@ config TOUCHSCREEN_CYTTSP5
 config TOUCHSCREEN_CYTTSP5_DEVICETREE_SUPPORT
 	bool "Enable Device Tree support"
 	depends on TOUCHSCREEN_CYTTSP5
-	default n	
+	default n
 	help
 	  Say Y here to enable support for device tree.
 
-	  If unsure, say N. 
+	  If unsure, say N.

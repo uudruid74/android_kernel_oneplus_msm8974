@@ -960,4 +960,3 @@ struct platform_device msm_kgsl_3d0 = {
 		.platform_data = &kgsl_3d0_pdata,
 	},
 };
-

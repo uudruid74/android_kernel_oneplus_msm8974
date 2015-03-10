@@ -362,7 +362,7 @@ static struct msm_gpiomux_config msm_lcd_configs[] __initdata = {
 		},
 	},
 	{
-		.gpio = 60,		
+		.gpio = 60,
 		.settings = {
 			[GPIOMUX_ACTIVE]    = &lcd_power_act_cfg,
 			[GPIOMUX_SUSPENDED] = &lcd_power_sus_cfg,

@@ -282,7 +282,7 @@ static struct gpiomux_setting lcd_rst_act_cfg = {
 	.func = GPIOMUX_FUNC_GPIO,
 	.drv = GPIOMUX_DRV_2MA,
 	.pull = GPIOMUX_PULL_NONE,
-	.dir = GPIOMUX_OUT_HIGH,	
+	.dir = GPIOMUX_OUT_HIGH,
 };
 
 static struct gpiomux_setting lcd_rst_sus_cfg = {
@@ -342,7 +342,7 @@ static struct msm_gpiomux_config msm_lcd_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &lcd_pwr_sus_cfg,
 		},
 	},
-	
+
 };
 
 static struct gpiomux_setting gpio_uart_config = {
@@ -1155,7 +1155,7 @@ void __init msm8226_init_gpiomux(void)
 #endif
 
 	/*
-	 * gpio mux settings for the NC GPIOs	
+	 * gpio mux settings for the NC GPIOs
 	 */
 	msm_gpiomux_install(afyon_nc_gpio_cfgs,
 			ARRAY_SIZE(afyon_nc_gpio_cfgs));

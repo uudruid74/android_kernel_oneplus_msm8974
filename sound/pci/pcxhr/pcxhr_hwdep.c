@@ -335,7 +335,7 @@ static int pcxhr_dsp_load(struct pcxhr_mgr *mgr, int index,
 		snd_printk(KERN_ERR "pcxhr pipes could not be set up\n");
 		return err;
 	}
-       	/* create devices and mixer in accordance with HW options*/
+	/* create devices and mixer in accordance with HW options*/
         for (card_index = 0; card_index < mgr->num_cards; card_index++) {
 		struct snd_pcxhr *chip = mgr->chip[card_index];
 

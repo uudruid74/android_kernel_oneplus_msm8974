@@ -55,4 +55,3 @@ config ARCH_LPC32XX_MII_SUPPORT
 endmenu
 
 endif
-

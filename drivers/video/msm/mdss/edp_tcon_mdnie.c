@@ -170,10 +170,10 @@ static ssize_t bypass_store(struct device *dev,
 	int value;
 
 	sscanf(buf, "%d", &value);
-	
+
 	if (value)
 		mdnie_tun_state.mdnie_bypass = BYPASS_ENABLE;
-	else 
+	else
 		mdnie_tun_state.mdnie_bypass = BYPASS_DISABLE;
 
 	DPRINT("%s bypass : %s value : %d\n", __func__, mdnie_tun_state.mdnie_bypass ? "ENABLE" : "DISABLE", value);
@@ -208,7 +208,7 @@ static ssize_t cabc_store(struct device *dev,
 
 	if (value)
 		mdnie_tun_state.cabc_bypass = BYPASS_ENABLE; /* ONLY POWER SAVE MODE */
-	else 
+	else
 		mdnie_tun_state.cabc_bypass = BYPASS_DISABLE; /* DBLC MODE */
 
 	DPRINT("%s bypass : %s value : %d\n", __func__, mdnie_tun_state.cabc_bypass ? "ENABLE" : "DISABLE", value);
@@ -237,7 +237,7 @@ static ssize_t negative_store(struct device *dev,
 	sscanf(buf, "%d", &value);
 	mdnie_tun_state.mdnie_negative = value;
 	DPRINT("%s value = %d\n", __func__, mdnie_tun_state.mdnie_negative);
-	update_mdnie_register();	
+	update_mdnie_register();
 	return size;
 }
 static DEVICE_ATTR(negative, 0664,
@@ -248,9 +248,9 @@ static ssize_t accessibility_show(struct device *dev,
 			struct device_attribute *attr,
 			char *buf)
 {
-	DPRINT("%s %s\n", __func__, mdnie_tun_state.mdnie_accessibility ? 
+	DPRINT("%s %s\n", __func__, mdnie_tun_state.mdnie_accessibility ?
 		mdnie_tun_state.mdnie_accessibility == 1 ? "NEGATIVE" : "COLOR_BLIND" : "ACCESSIBILITY_OFF");
-	return snprintf(buf, 256, "%s %s\n", __func__, mdnie_tun_state.mdnie_accessibility ? 
+	return snprintf(buf, 256, "%s %s\n", __func__, mdnie_tun_state.mdnie_accessibility ?
 		mdnie_tun_state.mdnie_accessibility == 1 ? "NEGATIVE" : "COLOR_BLIND" : "ACCESSIBILITY_OFF");
 }
 

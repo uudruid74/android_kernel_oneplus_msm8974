@@ -1133,7 +1133,7 @@ int wacom_i2c_flash(struct wacom_i2c *wac_i2c)
 #endif
 
 	wacom_i2c_set_firm_data(wac_i2c);
-	
+
 	if (fw_data == NULL) {
 		printk(KERN_ERR"epen:Data is NULL. Exit.\n");
 		return -1;
@@ -1170,7 +1170,7 @@ int wacom_i2c_flash(struct wacom_i2c *wac_i2c)
 	}
 #endif
 
-	printk(KERN_DEBUG"epen:MPU type: %x \n", iMpuType);	
+	printk(KERN_DEBUG"epen:MPU type: %x \n", iMpuType);
 
 	/*Set start and end address and block numbers*/
 	eraseBlockNum = 0;

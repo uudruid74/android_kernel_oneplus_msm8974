@@ -52,7 +52,7 @@ static int set_run(struct super_block *sb, int map,
 	struct buffer_head *bh;
 	struct omfs_sb_info *sbi = OMFS_SB(sb);
 
- 	err = -ENOMEM;
+	err = -ENOMEM;
 	bh = sb_bread(sb, clus_to_blk(sbi, sbi->s_bitmap_ino) + map);
 	if (!bh)
 		goto out;

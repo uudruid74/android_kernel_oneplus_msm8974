@@ -2237,4 +2237,3 @@ subsys_initcall(ipa_module_init);
 
 MODULE_LICENSE("GPL v2");
 MODULE_DESCRIPTION("IPA HW device driver");
-

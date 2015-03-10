@@ -73,7 +73,7 @@ static struct mtd_info *map_ram_probe(struct map_info *map)
 	mtd->writesize = 1;
 
 	mtd->erasesize = PAGE_SIZE;
- 	while(mtd->size & (mtd->erasesize - 1))
+	while(mtd->size & (mtd->erasesize - 1))
 		mtd->erasesize >>= 1;
 
 	__module_get(THIS_MODULE);

@@ -418,7 +418,7 @@ acpi_cpufreq_init (void)
 {
 	pr_debug("acpi_cpufreq_init\n");
 
- 	return cpufreq_register_driver(&acpi_cpufreq_driver);
+	return cpufreq_register_driver(&acpi_cpufreq_driver);
 }
 
 
@@ -434,4 +434,3 @@ acpi_cpufreq_exit (void)
 
 late_initcall(acpi_cpufreq_init);
 module_exit(acpi_cpufreq_exit);
-

@@ -840,7 +840,7 @@ int o2net_register_handler(u32 msg_type, u32 key, u32 max_len,
 		goto out;
 	}
 
-       	nmh = kzalloc(sizeof(struct o2net_msg_handler), GFP_NOFS);
+	nmh = kzalloc(sizeof(struct o2net_msg_handler), GFP_NOFS);
 	if (nmh == NULL) {
 		ret = -ENOMEM;
 		goto out;
@@ -927,7 +927,7 @@ static int o2net_recv_tcp_msg(struct socket *sock, void *data, size_t len)
 	struct msghdr msg = {
 		.msg_iovlen = 1,
 		.msg_iov = (struct iovec *)&vec,
-       		.msg_flags = MSG_DONTWAIT,
+		.msg_flags = MSG_DONTWAIT,
 	};
 
 	oldfs = get_fs();
@@ -2009,7 +2009,7 @@ static int o2net_open_listening_sock(__be32 addr, __be16 port)
 	ret = sock->ops->bind(sock, (struct sockaddr *)&sin, sizeof(sin));
 	if (ret < 0) {
 		printk(KERN_ERR "o2net: Error %d while binding socket at "
-		       "%pI4:%u\n", ret, &addr, ntohs(port)); 
+		       "%pI4:%u\n", ret, &addr, ntohs(port));
 		goto out;
 	}
 

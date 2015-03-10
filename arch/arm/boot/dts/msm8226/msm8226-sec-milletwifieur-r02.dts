@@ -17,7 +17,7 @@
  * QC_SOC_REVISION = Qcomm SOC Version of MTP Board
  * Please refer to .../lk/platform/msm_shared/dev_tree.c also
  */
- 
+
 /dts-v1/;
 /include/ "apq8026-v2.dtsi"
 /include/ "msm8226-sec-milletwifieur-r02.dtsi"
@@ -118,5 +118,3 @@
 		mpp-channel-scaling = <6 1 1>;
         };
 };
-
-

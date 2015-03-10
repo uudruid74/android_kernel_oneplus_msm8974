@@ -327,7 +327,7 @@ vm_info(char *page)
 			p += sprintf(p, "unlimited\n");
 		else
 			p += sprintf(p, "%d\n",
-		     		vm_info_2.pal_vm_info_2_s.max_purges ?
+				vm_info_2.pal_vm_info_2_s.max_purges ?
 				vm_info_2.pal_vm_info_2_s.max_purges : 1);
 	}
 

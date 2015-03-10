@@ -1496,14 +1496,14 @@ static struct msm_gpiomux_config speaker_enable_config[] __initdata = {
 		.settings = {
 			[GPIOMUX_SUSPENDED] = &gpio_speaker_suspend_config,
 		},
-	},	
+	},
 };
 
 static struct msm_gpiomux_config if_con_sense_18_config[] __initdata = {
 	{
 		.gpio	= 77,		/* IF_CON_SENSE_18 */
 		.settings = {
-			[GPIOMUX_ACTIVE]    = &gpio_suspend_config[0],		
+			[GPIOMUX_ACTIVE]    = &gpio_suspend_config[0],
 			[GPIOMUX_SUSPENDED] = &gpio_suspend_config[0],
 		},
 	},

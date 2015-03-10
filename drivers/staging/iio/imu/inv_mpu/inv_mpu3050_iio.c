@@ -268,4 +268,3 @@ int set_power_mpu3050(struct inv_mpu_state *st, bool power_on)
 
 	return 0;
 }
-

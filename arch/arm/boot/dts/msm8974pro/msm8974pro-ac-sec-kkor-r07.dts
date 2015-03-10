@@ -50,7 +50,7 @@
 		qcom,hw-settle-time = <0>;
 		qcom,fast-avg-setup = <0>;
 	};
-	
+
 	chan@73 {
 		label = "msm_therm";
 		reg = <0x73>;

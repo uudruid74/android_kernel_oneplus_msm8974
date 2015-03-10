@@ -454,7 +454,7 @@ static int __init early_parse_mem(char *p)
 	if (usermem == 0) {
 		boot_mem_map.nr_map = 0;
 		usermem = 1;
- 	}
+	}
 	start = 0;
 	size = memparse(p, &p);
 	if (*p == '@')

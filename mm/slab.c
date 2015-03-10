@@ -1347,8 +1347,8 @@ static int __cpuinit cpuup_callback(struct notifier_block *nfb,
 		start_cpu_timer(cpu);
 		break;
 #ifdef CONFIG_HOTPLUG_CPU
-  	case CPU_DOWN_PREPARE:
-  	case CPU_DOWN_PREPARE_FROZEN:
+	case CPU_DOWN_PREPARE:
+	case CPU_DOWN_PREPARE_FROZEN:
 		/*
 		 * Shutdown cache reaper. Note that the cache_chain_mutex is
 		 * held so that if cache_reap() is invoked it cannot do
@@ -1358,11 +1358,11 @@ static int __cpuinit cpuup_callback(struct notifier_block *nfb,
 		cancel_delayed_work_sync(&per_cpu(slab_reap_work, cpu));
 		/* Now the cache_reaper is guaranteed to be not running. */
 		per_cpu(slab_reap_work, cpu).work.func = NULL;
-  		break;
-  	case CPU_DOWN_FAILED:
-  	case CPU_DOWN_FAILED_FROZEN:
+		break;
+	case CPU_DOWN_FAILED:
+	case CPU_DOWN_FAILED_FROZEN:
 		start_cpu_timer(cpu);
-  		break;
+		break;
 	case CPU_DEAD:
 	case CPU_DEAD_FROZEN:
 		/*
@@ -2159,7 +2159,7 @@ static size_t calculate_slab_order(struct kmem_cache *cachep,
 			offslab_limit = size - sizeof(struct slab);
 			offslab_limit /= sizeof(kmem_bufctl_t);
 
- 			if (num > offslab_limit)
+			if (num > offslab_limit)
 				break;
 		}
 

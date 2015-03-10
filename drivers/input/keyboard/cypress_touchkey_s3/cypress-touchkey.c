@@ -237,13 +237,13 @@ void cypress_power_onoff(struct cypress_touchkey_info *info, int onoff)
 error_reg_en_vcc_en:
 	if (info->pdata->i2c_pull_up) {
 //		reg_set_optimum_mode_check(info->vcc_en, 0);
-		if (info->pdata->vdd_led < 0) 
+		if (info->pdata->vdd_led < 0)
 			reg_set_optimum_mode_check(info->vdd_led, 0);
 	}
 error_reg_opt_i2c:
 //error_set_vtg_i2c:
 //	regulator_put(info->vcc_en);
-	if (info->pdata->vdd_led < 0) 
+	if (info->pdata->vdd_led < 0)
 		regulator_put(info->vdd_led);
 error_get_vtg_i2c:
 	return;
@@ -1141,7 +1141,7 @@ printk("[TKEY] %s _ %d\n",__func__,__LINE__);
 	info->pdata = pdata;
 	info->irq = client->irq;
 	info->touchkey_update_status = 0;
-	
+
 	input_dev->name = "sec_touchkey";
 	input_dev->phys = info->phys;
 	input_dev->id.bustype = BUS_I2C;
@@ -1224,7 +1224,7 @@ printk("[TKEY] %s _ %d\n",__func__,__LINE__);
 	if (is_lcd_attached() == 0) {
 		disable_irq(client->irq);
 		printk("[TSK] %s : is_lcd_attached()=0 \n",__func__);
-	
+
 	}
 	else{
 #endif
@@ -1270,7 +1270,7 @@ printk("[TKEY] %s _ %d\n",__func__,__LINE__);
 	cypress_touchkey_auto_cal(info);
 #if defined(CONFIG_LCD_CONNECTION_CHECK)	//for SMD test
 	}
-#endif	
+#endif
 	sec_touchkey = device_create(sec_class, NULL, 0, NULL, "sec_touchkey");
 	if (IS_ERR(sec_touchkey)) {
 		pr_err("Failed to create device(sec_touchkey)!\n");
@@ -1540,7 +1540,7 @@ static void cypress_input_close(struct input_dev *dev)
 	struct cypress_touchkey_info *info = input_get_drvdata(dev);
 
 	dev_info(&info->client->dev, "%s.\n", __func__);
-	
+
 	gpio_tlmm_config(GPIO_CFG(info->pdata->gpio_scl, 0, GPIO_CFG_INPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA), 1);
 	gpio_tlmm_config(GPIO_CFG(info->pdata->gpio_sda, 0, GPIO_CFG_INPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA), 1);
 	cypress_touchkey_suspend(&info->client->dev);

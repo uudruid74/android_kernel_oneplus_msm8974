@@ -26,4 +26,3 @@ int force_headset_speaker_on(int enable);
 int enable_aux_loopback(uint32_t enable);
 
 #endif
-

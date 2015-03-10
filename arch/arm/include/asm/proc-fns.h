@@ -71,7 +71,7 @@ extern struct processor {
 	void (*set_pte_ext)(pte_t *ptep, pte_t pte, unsigned int ext);
 # ifdef CONFIG_TIMA_RKP_L2_TABLES
 	void (*tima_set_pte_ext)(pte_t *ptep, pte_t pte, unsigned int ext);
-# endif	
+# endif
 #endif
 
 	/* Suspend/resume */
@@ -91,7 +91,7 @@ extern void cpu_set_pte_ext(pte_t *ptep, pte_t pte);
 #else
 # ifdef CONFIG_TIMA_RKP_L2_TABLES
 extern void cpu_tima_set_pte_ext(pte_t *ptep, pte_t pte, unsigned int ext);
-# endif	
+# endif
 extern void cpu_set_pte_ext(pte_t *ptep, pte_t pte, unsigned int ext);
 #endif
 extern void cpu_reset(unsigned long addr) __attribute__((noreturn));

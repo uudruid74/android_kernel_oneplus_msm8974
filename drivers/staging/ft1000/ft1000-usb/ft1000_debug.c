@@ -707,8 +707,8 @@ static long ft1000_ioctl (struct file *file, unsigned int command,
                 if(copy_to_user (&pioctl_dpram->pseudohdr, pdpram_blk->pbuffer, msglen))
 				{
 					DEBUG("FT1000:ft1000_ioctl: copy fault occurred\n");
-	             	result = -EFAULT;
-	             	break;
+			result = -EFAULT;
+			break;
 				}
 
                 ft1000_free_buffer(pdpram_blk, &freercvpool);
@@ -779,4 +779,3 @@ static int ft1000_release (struct inode *inode, struct file *file)
 
     return 0;
 }
-

@@ -937,7 +937,7 @@ static inline int audit_add_rule(struct audit_entry *entry)
 #endif
 	mutex_unlock(&audit_filter_mutex);
 
- 	return 0;
+	return 0;
 
 error:
 	if (watch)

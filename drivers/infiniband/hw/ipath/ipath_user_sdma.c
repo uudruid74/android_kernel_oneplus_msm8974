@@ -872,4 +872,3 @@ u32 ipath_user_sdma_inflight_counter(struct ipath_user_sdma_queue *pq)
 {
 	return pq->counter;
 }
-

@@ -124,6 +124,6 @@ void mmc_cd_gpio_free(struct mmc_host *host)
 	cd->gpio = -EINVAL;
 	kfree(cd);
 	host->hotplug.handler_priv = NULL;
-   
+
 }
 EXPORT_SYMBOL(mmc_cd_gpio_free);

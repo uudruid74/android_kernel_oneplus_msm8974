@@ -733,9 +733,9 @@ static const struct ethtool_ops dm9000_ethtool_ops = {
 	.get_link		= dm9000_get_link,
 	.get_wol		= dm9000_get_wol,
 	.set_wol		= dm9000_set_wol,
- 	.get_eeprom_len		= dm9000_get_eeprom_len,
- 	.get_eeprom		= dm9000_get_eeprom,
- 	.set_eeprom		= dm9000_set_eeprom,
+	.get_eeprom_len		= dm9000_get_eeprom_len,
+	.get_eeprom		= dm9000_get_eeprom,
+	.set_eeprom		= dm9000_set_eeprom,
 };
 
 static void dm9000_show_carrier(board_info_t *db,
@@ -778,7 +778,7 @@ dm9000_poll_work(struct work_struct *w)
 		}
 	} else
 		mii_check_media(&db->mii, netif_msg_link(db), 0);
-	
+
 	if (netif_running(ndev))
 		dm9000_schedule_poll(db);
 }
@@ -1298,7 +1298,7 @@ dm9000_open(struct net_device *dev)
 
 	mii_check_media(&db->mii, netif_msg_link(db), 1);
 	netif_start_queue(dev);
-	
+
 	dm9000_schedule_poll(db);
 
 	return 0;
@@ -1581,7 +1581,7 @@ dm9000_probe(struct platform_device *pdev)
 
 	if (!is_valid_ether_addr(ndev->dev_addr)) {
 		/* try reading from mac */
-		
+
 		mac_src = "chip";
 		for (i = 0; i < 6; i++)
 			ndev->dev_addr[i] = ior(db, i+DM9000_PAR);

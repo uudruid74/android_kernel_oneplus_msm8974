@@ -168,7 +168,7 @@ static void usb_ep1_command_reply_dispatch (struct urb* urb)
 
 	switch(buf[0]) {
 	case EP1_CMD_GET_DEVICE_INFO:
-	 	memcpy(&dev->spec, buf+1, sizeof(struct caiaq_device_spec));
+		memcpy(&dev->spec, buf+1, sizeof(struct caiaq_device_spec));
 		dev->spec.fw_version = le16_to_cpu(dev->spec.fw_version);
 		debug("device spec (firmware %d): audio: %d in, %d out, "
 			"MIDI: %d in, %d out, data alignment %d\n",
@@ -235,7 +235,7 @@ int snd_usb_caiaq_send_command(struct snd_usb_caiaqdev *dev,
 }
 
 int snd_usb_caiaq_set_audio_params (struct snd_usb_caiaqdev *dev,
-		   		    int rate, int depth, int bpp)
+				    int rate, int depth, int bpp)
 {
 	int ret;
 	char tmp[5];
@@ -539,4 +539,3 @@ static struct usb_driver snd_usb_driver = {
 };
 
 module_usb_driver(snd_usb_driver);
-

@@ -1546,7 +1546,7 @@ static int abov_tk_resume(struct device *dev)
 #ifdef CONFIG_DUAL_LCD
 void samsung_switching_tkey(int flip)
 {
- 	struct abov_tk_info *info;
+	struct abov_tk_info *info;
 
 	info = abov_get_tkey_info();
 

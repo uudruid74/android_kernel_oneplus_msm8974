@@ -629,7 +629,7 @@ static void __init aedsp16_hard_decode(void) {
 	decoded_hcfg.mpubase	= ae_config.mpu_base;
 
 #if defined(CONFIG_SC6600_JOY)
- 	decoded_hcfg.joystick	= CONFIG_SC6600_JOY; /* Enable */
+	decoded_hcfg.joystick	= CONFIG_SC6600_JOY; /* Enable */
 #endif
 #if defined(CONFIG_SC6600_CDROM)
 	decoded_hcfg.cdrom	= CONFIG_SC6600_CDROM; /* 4:N-3:I-2:G-1:P-0:S */
@@ -818,7 +818,7 @@ static int __init aedsp16_init_mss(int port)
 		DBG(("failure.\n"));
 		return FALSE;
 	}
-	
+
 	mdelay(10);
 
 	if (aedsp16_cfg_write(port) == FALSE)
@@ -1169,7 +1169,7 @@ static int __init init_aedsp16_mss(void)
 	if (ae_config.init & INIT_MSS)
 		return FALSE;
 /*
- * We must allocate the CONFIG_AEDSP16_BASE region too because these are the 
+ * We must allocate the CONFIG_AEDSP16_BASE region too because these are the
  * I/O ports to access card's control registers.
  */
 	if (!(ae_config.init & INIT_MPU401)) {
@@ -1210,7 +1210,7 @@ static int __init init_aedsp16_mpu(void)
 		return FALSE;
 
 /*
- * We must request the CONFIG_AEDSP16_BASE region too because these are the I/O 
+ * We must request the CONFIG_AEDSP16_BASE region too because these are the I/O
  * ports to access card's control registers.
  */
 	if (!(ae_config.init & (INIT_MSS | INIT_SBPRO))) {
@@ -1357,7 +1357,7 @@ static int __init setup_aedsp16(char *str)
 {
 	/* io, irq, dma, mss_io, mpu_io, mpu_irq */
 	int ints[7];
-	
+
 	str = get_options(str, ARRAY_SIZE(ints), ints);
 
 	io	 = ints[1];

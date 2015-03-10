@@ -204,7 +204,7 @@ int __kprobes do_page_fault(struct pt_regs *regs, unsigned long address,
 	int code = SEGV_MAPERR;
 	int is_write = 0;
 	int trap = TRAP(regs);
- 	int is_exec = trap == 0x400;
+	int is_exec = trap == 0x400;
 	int fault;
 
 #if !(defined(CONFIG_4xx) || defined(CONFIG_BOOKE))
@@ -250,7 +250,7 @@ int __kprobes do_page_fault(struct pt_regs *regs, unsigned long address,
 
 #if !(defined(CONFIG_4xx) || defined(CONFIG_BOOKE) || \
 			     defined(CONFIG_PPC_BOOK3S_64))
-  	if (error_code & DSISR_DABRMATCH) {
+	if (error_code & DSISR_DABRMATCH) {
 		/* DABR match */
 		do_dabr(regs, address, error_code);
 		return 0;

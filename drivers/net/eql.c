@@ -274,7 +274,7 @@ static int eql_ioctl(struct net_device *dev, struct ifreq *ifr, int cmd)
 {
 	if (cmd != EQL_GETMASTRCFG && cmd != EQL_GETSLAVECFG &&
 	    !capable(CAP_NET_ADMIN))
-	  	return -EPERM;
+		return -EPERM;
 
 	switch (cmd) {
 		case EQL_ENSLAVE:

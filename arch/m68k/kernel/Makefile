@@ -22,4 +22,3 @@ obj-$(CONFIG_MMU_SUN3) += ints.o vectors.o
 ifndef CONFIG_MMU_SUN3
 obj-y	+= dma.o
 endif
-

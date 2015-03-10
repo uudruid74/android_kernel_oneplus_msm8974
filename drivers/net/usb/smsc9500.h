@@ -261,8 +261,8 @@ typedef unsigned char BYTE;
 	#define FLAG_ATTR_PME_BUFF_TYPE     (0x8UL)
 	#define FLAG_ATTR_PME_WAKE_PHY      (0x4UL)
 	#define FLAG_ATTR_PME_GPIO10_HIGH   (0x2UL)
-	
-	
+
+
 
 // MAC CSRs
 #define MAC_CR					(0x100UL)
@@ -848,10 +848,10 @@ typedef struct _ADAPTER_DATA {
 	u32	RxFifoDroppedFrames;
 	u32     EeeRxLpiTransitions;
 	u32     EeeRxLpiTime;
-	
+
 	SMSC9500_RX_STATS rx_statistics;
 	SMSC9500_TX_STATS tx_statistics;
-	
+
 } ADAPTER_DATA, *PADAPTER_DATA;
 
 typedef struct _MAC_ADDR_IN_RAM{
@@ -882,6 +882,3 @@ enum{
 #define ARP_LEN     2
 
 #endif    // _LAN9500_H
-
-
-

@@ -1626,7 +1626,7 @@ static int msm8x10_wcd_codec_enable_spk_pa(struct snd_soc_dapm_widget *w,
 		break;
 	}
 #endif
-	
+
 	return 0;
 }
 
@@ -3910,4 +3910,3 @@ module_exit(msm8x10_wcd_codec_exit);
 MODULE_DESCRIPTION("MSM8x10 Audio codec driver");
 MODULE_LICENSE("GPL v2");
 MODULE_DEVICE_TABLE(i2c, msm8x10_wcd_id_table);
-

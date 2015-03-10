@@ -110,7 +110,7 @@ typedef struct boot_infos
        (non-PCI) only. On PCI, memory is contiguous and it's size is in the
        device-tree. */
     boot_info_map_entry_t
-    	        physMemoryMap[MAX_MEM_MAP_SIZE]; /* Where the phys memory is */
+	        physMemoryMap[MAX_MEM_MAP_SIZE]; /* Where the phys memory is */
     __u32       physMemoryMapSize;               /* How many entries in map */
 
 

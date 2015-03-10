@@ -256,7 +256,7 @@ static inline void set_pte_at(struct mm_struct *mm, unsigned long addr,
 }
 
 #ifdef CONFIG_TIMA_RKP_L2_GROUP
-static inline void timal2group_set_pte_at(pte_t *ptep, pte_t pteval, 
+static inline void timal2group_set_pte_at(pte_t *ptep, pte_t pteval,
 			unsigned long tima_l2group_entry_ptr, unsigned long addr,
 			unsigned long *tima_l2group_buffer_index)
 {

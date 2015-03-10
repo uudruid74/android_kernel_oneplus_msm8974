@@ -233,8 +233,8 @@
 		fsl,qe-num-snums = <28>;
 
 		muram@10000 {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
+			#address-cells = <1>;
+			#size-cells = <1>;
 			compatible = "fsl,qe-muram", "fsl,cpm-muram";
 			ranges = <0x0 0x00010000 0x00004000>;
 

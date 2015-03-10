@@ -53,7 +53,7 @@ static void proc_audio_usbid_read(struct snd_info_entry *entry, struct snd_info_
 {
 	struct snd_usb_audio *chip = entry->private_data;
 	if (!chip->shutdown)
-		snd_iprintf(buffer, "%04x:%04x\n", 
+		snd_iprintf(buffer, "%04x:%04x\n",
 			    USB_ID_VENDOR(chip->usb_id),
 			    USB_ID_PRODUCT(chip->usb_id));
 }
@@ -170,4 +170,3 @@ void snd_usb_proc_pcm_format_add(struct snd_usb_stream *stream)
 	if (!snd_card_proc_new(card, name, &entry))
 		snd_info_set_text_ops(entry, stream, proc_pcm_format_read);
 }
-

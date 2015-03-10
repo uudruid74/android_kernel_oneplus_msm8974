@@ -131,4 +131,3 @@ uint32 Math_Djb2Hash(uint8 *str)
 }
 
 #endif /* ifndef _MVP_MATH_H_ */
-

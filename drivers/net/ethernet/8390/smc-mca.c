@@ -572,4 +572,3 @@ static void __exit ultramca_cleanup_module(void)
 }
 module_init(ultramca_init_module);
 module_exit(ultramca_cleanup_module);
-

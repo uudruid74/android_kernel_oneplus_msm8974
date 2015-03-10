@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-/* 
+/*
  *  Interrupt numbers
  */
 #define IRQ_PIC_START			0
@@ -80,4 +80,3 @@
 
 #define NR_IRQS_INTEGRATOR_AP		34
 #define NR_IRQS_INTEGRATOR_CP		47
-

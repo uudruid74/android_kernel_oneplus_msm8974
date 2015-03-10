@@ -15,7 +15,7 @@ ENDPROC(copy_page_c)
 
 /* Don't use streaming store because it's better when the target
    ends up in cache. */
-	    
+
 /* Could vary the prefetch distance based on SMP/UP */
 
 ENTRY(copy_page)
@@ -30,7 +30,7 @@ ENTRY(copy_page)
 	movl	$(4096/64)-5,%ecx
 	.p2align 4
 .Loop64:
-  	dec     %rcx
+	dec     %rcx
 
 	movq        (%rsi), %rax
 	movq      8 (%rsi), %rbx

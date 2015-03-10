@@ -98,7 +98,7 @@
 		compatible = "qcom,i2c-qup";
 		qcom,scl-gpio = <&msmgpio 19 0>;
 		qcom,sda-gpio = <&msmgpio 18 0>;
-		status = "okay";		
+		status = "okay";
 
 		synaptics_rmi4_i2c@20 {
 			compatible = "synaptics,rmi4-ts";
@@ -656,4 +656,3 @@
 &dsi_s6e88a0_qhd_panel  {
 	qcom,cont-splash-enabled = <1>;
 };
-

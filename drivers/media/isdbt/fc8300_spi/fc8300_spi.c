@@ -171,7 +171,7 @@ static s32 spi_bulkwrite(HANDLE handle, u8 devid,
 		{
 			tx_data[4+i] = data[i];
 		}
-		else		
+		else
 			ISDB_PR_ERR("Error spi_bulkwrite  tx_data length= %d\n",length);
 	}
 	res = fc8300_spi_write_then_read(fc8300_spi
@@ -202,7 +202,7 @@ static s32 spi_dataread(HANDLE handle, u8 devid,
 		ISDB_PR_ERR("fc8300 spi_dataread fail : %d\n", res);
 		return BBM_NOK;
 	}
-	
+
 	return res;
 }
 
@@ -379,4 +379,3 @@ s32 fc8300_spi_deinit(HANDLE handle)
 	ISDB_PR_ERR("fc8300_spi_deinit\n");
 	return BBM_OK;
 }
-

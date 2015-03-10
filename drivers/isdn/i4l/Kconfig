@@ -137,4 +137,3 @@ source "drivers/isdn/act2000/Kconfig"
 endmenu
 # end ISDN_I4L
 endif
-

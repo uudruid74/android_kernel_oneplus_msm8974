@@ -61,7 +61,7 @@ static inline int sec_debug_init(void)
 	return 0;
 }
 
-static inline int sec_debug_dump_stack(void)  
+static inline int sec_debug_dump_stack(void)
 {
 	return 0;
 }

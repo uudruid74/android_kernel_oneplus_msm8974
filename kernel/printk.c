@@ -280,7 +280,7 @@ static void __init sec_log_save_old(void)
 }
 #endif
 
-	
+
 #ifdef CONFIG_PRINTK_NOCACHE
 static int __init printk_remap_nocache(void)
 {
@@ -322,7 +322,7 @@ static int __init printk_remap_nocache(void)
 		return rc;
 	}
 	pr_err("%s: nocache_base printk virtual addrs 0x%x  phy=0x%x\n",__func__, (unsigned int)(nocache_base), (unsigned int)(sec_log_save_base));
-	
+
 	nocache_base = nocache_base + 4096;
 
 	sec_log_mag = nocache_base - 8;
@@ -339,7 +339,7 @@ static int __init printk_remap_nocache(void)
 	}
 
 	raw_spin_lock_irqsave(&logbuf_lock, flags);
-		
+
 	start = min(con_start, log_start);
 	while (start != log_end) {
 		emit_sec_log_char(__log_buf
@@ -1301,7 +1301,7 @@ asmlinkage int vprintk(const char *fmt, va_list args)
 	 * Try to acquire and then immediately release the
 	 * console semaphore. The release will do all the
 	 * actual magic (print out buffers, wake up klogd,
-	 * etc). 
+	 * etc).
 	 *
 	 * The console_trylock_for_printk() function
 	 * will release 'logbuf_lock' regardless of whether it

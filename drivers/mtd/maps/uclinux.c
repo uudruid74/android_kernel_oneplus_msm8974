@@ -66,7 +66,7 @@ static int __init uclinux_mtd_init(void)
 	mapp->bankwidth = 4;
 
 	printk("uclinux[mtd]: RAM probe address=0x%x size=0x%x\n",
-	       	(int) mapp->phys, (int) mapp->size);
+		(int) mapp->phys, (int) mapp->size);
 
 	mapp->virt = ioremap_nocache(mapp->phys, mapp->size);
 

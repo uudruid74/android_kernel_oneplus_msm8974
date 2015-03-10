@@ -103,7 +103,7 @@ typedef int32_t		VibeInt32;
 typedef u_int32_t	VibeUInt32;
 typedef u_int8_t	VibeBool;
 typedef VibeInt32	VibeStatus;
-#endif 
+#endif
 
 struct isa1400_vibrator_platform_data {
 	int (*gpio_en) (bool) ;

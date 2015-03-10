@@ -1451,9 +1451,9 @@ int wl_get_tallies(struct wl_private *lp,
     if( status == HCF_SUCCESS ) {
 	pTallies = (CFG_HERMES_TALLIES_STRCT *)&(lp->ltvRecord.u.u32);
 	memcpy(tallies, pTallies, sizeof(*tallies));
-    	DBG_TRACE( DbgInfo, "Get tallies okay, dixe: %d\n", sizeof(*tallies) );
+	DBG_TRACE( DbgInfo, "Get tallies okay, dixe: %d\n", sizeof(*tallies) );
     } else {
-    	DBG_TRACE( DbgInfo, "Get tallies failed\n" );
+	DBG_TRACE( DbgInfo, "Get tallies failed\n" );
 	ret = -EFAULT;
     }
 
@@ -1461,4 +1461,3 @@ int wl_get_tallies(struct wl_private *lp,
 
     return ret;
 }
-

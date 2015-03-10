@@ -670,4 +670,3 @@ module_exit(ufs_test_exit)
 
 MODULE_LICENSE("GPL v2");
 MODULE_DESCRIPTION("UFC test");
-

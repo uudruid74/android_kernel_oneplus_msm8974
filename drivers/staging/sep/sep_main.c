@@ -4318,7 +4318,7 @@ static void sep_remove(struct pci_dev *pdev)
 static DEFINE_PCI_DEVICE_TABLE(sep_pci_id_tbl) = {
 	{PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x0826)},
 	{PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x08e9)},
- 	{0}
+	{0}
 };
 
 /* Export our pci_device_id structure to user space */

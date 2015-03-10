@@ -2018,7 +2018,7 @@ tr_interrupt(int irq, void *dev_id)
 			/* Read jiffies_usec first,
 			 * we want this time to be as late as possible
 			 */
- 			PROCSTAT(ser_stat[info->line].tx_dma_ints++);
+			PROCSTAT(ser_stat[info->line].tx_dma_ints++);
 			info->last_tx_active_usec = GET_JIFFIES_USEC();
 			info->last_tx_active = jiffies;
 			transmit_chars_dma(info);
@@ -4115,7 +4115,7 @@ rs_open(struct tty_struct *tty, struct file * filp)
 
 #ifdef SERIAL_DEBUG_OPEN
         printk("[%d] rs_open %s, count = %d\n", current->pid, tty->name,
- 	       info->count);
+	       info->count);
 #endif
 
 	info->count++;

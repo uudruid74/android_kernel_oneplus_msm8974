@@ -231,4 +231,3 @@ void hlwd_quiesce(void)
 
 	__hlwd_quiesce(io_base);
 }
-

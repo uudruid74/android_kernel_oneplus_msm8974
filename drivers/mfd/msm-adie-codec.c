@@ -192,5 +192,3 @@ int adie_codec_set_master_mode(struct adie_codec_path *path_ptr, u8 master)
 	return rc;
 }
 EXPORT_SYMBOL(adie_codec_set_master_mode);
-
-

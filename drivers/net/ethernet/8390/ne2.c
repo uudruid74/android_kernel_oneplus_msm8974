@@ -342,8 +342,8 @@ static int __init ne2_probe1(struct net_device *dev, int slot)
         else {
 		i = (POS & 0xE)>>1;
 		/* printk("Halleluja sdog, als er na de pijl een 1 staat is 1 - 1 == 0"
-	   	" en zou het moeten werken -> %d\n", i);
-	   	The above line was for remote testing, thanx to sdog ... */
+		" en zou het moeten werken -> %d\n", i);
+		The above line was for remote testing, thanx to sdog ... */
 		base_addr = addresses[i - 1];
 		irq = irqs[(POS & 0x60)>>5];
 	}
@@ -437,7 +437,7 @@ static int __init ne2_probe1(struct net_device *dev, int slot)
 		unsigned int v;
 
 		for (i = 0; i < 3; i++) {
- 			v = dlink_get_eeprom(i, base_addr);
+			v = dlink_get_eeprom(i, base_addr);
 			SA_prom[(i << 1)    ] = v & 0xff;
 			SA_prom[(i << 1) + 1] = (v >> 8) & 0xff;
 		}

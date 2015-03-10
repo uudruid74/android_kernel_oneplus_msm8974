@@ -1989,4 +1989,3 @@ static void fmbim_cleanup(void)
 
 	_mbim_dev = NULL;
 }
-

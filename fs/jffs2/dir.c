@@ -878,4 +878,3 @@ static int jffs2_rename (struct inode *old_dir_i, struct dentry *old_dentry,
 
 	return 0;
 }
-

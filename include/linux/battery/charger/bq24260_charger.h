@@ -48,4 +48,3 @@ ssize_t bq24260_chg_store_attrs(struct device *dev,
 }
 
 #endif /* __BQ24260_CHARGER_H */
-

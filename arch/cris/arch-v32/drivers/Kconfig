@@ -589,7 +589,7 @@ config ETRAX_PE_CHANGEABLE_DIR
 
 config ETRAX_PE_CHANGEABLE_BITS
 	hex "PE user changeable bits mask"
- 	depends on ETRAX_GPIO && ETRAXFS
+	depends on ETRAX_GPIO && ETRAXFS
 	default "0x00000"
 	help
 	  This is a bitmask (18 bits) with information of what bits in PE

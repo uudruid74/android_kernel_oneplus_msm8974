@@ -1844,7 +1844,7 @@ static void hp100_rx(struct net_device *dev)
 #ifdef HP100_DEBUG_RX
 			printk("hp100: %s: rx: %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x\n",
 					dev->name, ptr[0], ptr[1], ptr[2], ptr[3],
-		 			ptr[4], ptr[5], ptr[6], ptr[7], ptr[8],
+					ptr[4], ptr[5], ptr[6], ptr[7], ptr[8],
 					ptr[9], ptr[10], ptr[11]);
 #endif
 			netif_rx(skb);
@@ -1920,7 +1920,7 @@ static void hp100_rx_bm(struct net_device *dev)
 				dev->name, (u_int) (ptr->pdl - 1), (u_int) header,
 				pkt_len, (header >> 16) & 0xfff8, (header >> 16) & 7);
 		printk("hp100: %s: RX_PDL_COUNT:0x%x TX_PDL_COUNT:0x%x, RX_PKT_CNT=0x%x PDH=0x%x, Data@0x%x len=0x%x\n",
-		   		dev->name, hp100_inb(RX_PDL), hp100_inb(TX_PDL),
+				dev->name, hp100_inb(RX_PDL), hp100_inb(TX_PDL),
 				hp100_inb(RX_PKT_CNT), (u_int) * (ptr->pdl),
 				(u_int) * (ptr->pdl + 3), (u_int) * (ptr->pdl + 4));
 #endif

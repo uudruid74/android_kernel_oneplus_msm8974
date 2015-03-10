@@ -23,7 +23,7 @@ void pgd_init(unsigned long page)
 	entry = (unsigned long)invalid_pmd_table;
 #endif
 
- 	p = (unsigned long *) page;
+	p = (unsigned long *) page;
 	end = p + PTRS_PER_PGD;
 
 	while (p < end) {
@@ -44,7 +44,7 @@ void pmd_init(unsigned long addr, unsigned long pagetable)
 {
 	unsigned long *p, *end;
 
- 	p = (unsigned long *) addr;
+	p = (unsigned long *) addr;
 	end = p + PTRS_PER_PMD;
 
 	while (p < end) {

@@ -11,7 +11,7 @@
  */
 
 
-#define PDC_PAT_CELL           	64L   /* Interface for gaining and 
+#define PDC_PAT_CELL           	64L   /* Interface for gaining and
                                          * manipulatin g cell state within PD */
 #define PDC_PAT_CELL_GET_NUMBER    0L   /* Return Cell number */
 #define PDC_PAT_CELL_GET_INFO      1L   /* Returns info about Cell */
@@ -80,7 +80,7 @@
 #define PDC_PAT_CPU_GET_CLOCK_INFO  	7L /* Return CPU Clock info */
 #define PDC_PAT_CPU_GET_RENDEZVOUS_STATE 8L /* Return Rendezvous State */
 #define PDC_PAT_CPU_PLUNGE_FABRIC 	128L /* Plunge Fabric */
-#define PDC_PAT_CPU_UPDATE_CACHE_CLEANSING 129L /* Manipulate Cache 
+#define PDC_PAT_CPU_UPDATE_CACHE_CLEANSING 129L /* Manipulate Cache
                                                  * Cleansing Mode */
 /*  PDC PAT EVENT -- Platform Events */
 
@@ -97,7 +97,7 @@
 
 #define PDC_PAT_HPMC               70L
 #define PDC_PAT_HPMC_RENDEZ_CPU     0L /* go into spin loop */
-#define PDC_PAT_HPMC_SET_PARAMS     1L /* Allows OS to specify intr which PDC 
+#define PDC_PAT_HPMC_SET_PARAMS     1L /* Allows OS to specify intr which PDC
                                         * will use to interrupt OS during
                                         * machine check rendezvous */
 
@@ -112,25 +112,25 @@
 #define PDC_PAT_IO_GET_SLOT_STATUS   	5L /* Get Slot Status Info*/
 #define PDC_PAT_IO_GET_LOC_FROM_HARDWARE 6L /* Get Physical Location from */
                                             /* Hardware Path */
-#define PDC_PAT_IO_GET_HARDWARE_FROM_LOC 7L /* Get Hardware Path from 
+#define PDC_PAT_IO_GET_HARDWARE_FROM_LOC 7L /* Get Hardware Path from
                                              * Physical Location */
 #define PDC_PAT_IO_GET_PCI_CONFIG_FROM_HW 11L /* Get PCI Configuration
                                                * Address from Hardware Path */
-#define PDC_PAT_IO_GET_HW_FROM_PCI_CONFIG 12L /* Get Hardware Path 
+#define PDC_PAT_IO_GET_HW_FROM_PCI_CONFIG 12L /* Get Hardware Path
                                                * from PCI Configuration Address */
 #define PDC_PAT_IO_READ_HOST_BRIDGE_INFO 13L  /* Read Host Bridge State Info */
 #define PDC_PAT_IO_CLEAR_HOST_BRIDGE_INFO 14L /* Clear Host Bridge State Info*/
-#define PDC_PAT_IO_GET_PCI_ROUTING_TABLE_SIZE 15L /* Get PCI INT Routing Table 
+#define PDC_PAT_IO_GET_PCI_ROUTING_TABLE_SIZE 15L /* Get PCI INT Routing Table
                                                    * Size */
 #define PDC_PAT_IO_GET_PCI_ROUTING_TABLE  16L /* Get PCI INT Routing Table */
 #define PDC_PAT_IO_GET_HINT_TABLE_SIZE 	17L /* Get Hint Table Size */
 #define PDC_PAT_IO_GET_HINT_TABLE   	18L /* Get Hint Table */
 #define PDC_PAT_IO_PCI_CONFIG_READ  	19L /* PCI Config Read */
 #define PDC_PAT_IO_PCI_CONFIG_WRITE 	20L /* PCI Config Write */
-#define PDC_PAT_IO_GET_NUM_IO_SLOTS 	21L /* Get Number of I/O Bay Slots in 
-                                       		  * Cabinet */
+#define PDC_PAT_IO_GET_NUM_IO_SLOTS 	21L /* Get Number of I/O Bay Slots in
+						  * Cabinet */
 #define PDC_PAT_IO_GET_LOC_IO_SLOTS 	22L /* Get Physical Location of I/O */
-                                   		     /* Bay Slots in Cabinet */
+						     /* Bay Slots in Cabinet */
 #define PDC_PAT_IO_BAY_STATUS_INFO  	28L /* Get I/O Bay Slot Status Info */
 #define PDC_PAT_IO_GET_PROC_VIEW        29L /* Get Processor view of IO address */
 #define PDC_PAT_IO_PROG_SBA_DIR_RANGE   30L /* Program directed range */
@@ -150,7 +150,7 @@
 #define PDC_PAT_MEM_SETGM	  	9L /* Set Golden Memory value      */
 #define PDC_PAT_MEM_ADD_PAGE    	10L /* ADDs a page to the cell      */
 #define PDC_PAT_MEM_ADDRESS     	11L /* Get Physical Location From   */
-                                    		 /* Memory Address               */
+						 /* Memory Address               */
 #define PDC_PAT_MEM_GET_TXT_SIZE   	12L /* Get Formatted Text Size   */
 #define PDC_PAT_MEM_GET_PD_TXT     	13L /* Get PD Formatted Text     */
 #define PDC_PAT_MEM_GET_CELL_TXT   	14L /* Get Cell Formatted Text   */
@@ -175,7 +175,7 @@
 #define PDC_PAT_PD_GET_ADDR_MAP		0L  /* Get Address Map          */
 
 /* PDC_PAT_PD_GET_ADDR_MAP entry types */
-#define PAT_MEMORY_DESCRIPTOR		1   
+#define PAT_MEMORY_DESCRIPTOR		1
 
 /* PDC_PAT_PD_GET_ADDR_MAP memory types */
 #define PAT_MEMTYPE_MEMORY		0
@@ -294,8 +294,8 @@ extern int pdc_pat_cpu_get_number(struct pdc_pat_cpu_num *cpu_info, void *hpa);
 extern int pdc_pat_pd_get_addr_map(unsigned long *actual_len, void *mem_addr, unsigned long count, unsigned long offset);
 
 
-extern int pdc_pat_io_pci_cfg_read(unsigned long pci_addr, int pci_size, u32 *val); 
-extern int pdc_pat_io_pci_cfg_write(unsigned long pci_addr, int pci_size, u32 val); 
+extern int pdc_pat_io_pci_cfg_read(unsigned long pci_addr, int pci_size, u32 *val);
+extern int pdc_pat_io_pci_cfg_write(unsigned long pci_addr, int pci_size, u32 val);
 
 
 /* Flag to indicate this is a PAT box...don't use this unless you

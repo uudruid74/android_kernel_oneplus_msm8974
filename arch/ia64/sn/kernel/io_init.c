@@ -136,14 +136,14 @@ sn_legacy_pci_window_fixup(struct pci_controller *controller,
 		controller->window[0].resource.flags = IORESOURCE_IO;
 		controller->window[0].resource.start = legacy_io;
 		controller->window[0].resource.end =
-	    			controller->window[0].resource.start + 0xffff;
+				controller->window[0].resource.start + 0xffff;
 		controller->window[0].resource.parent = &ioport_resource;
 		controller->window[1].offset = legacy_mem;
 		controller->window[1].resource.name = "legacy_mem";
 		controller->window[1].resource.flags = IORESOURCE_MEM;
 		controller->window[1].resource.start = legacy_mem;
 		controller->window[1].resource.end =
-	    	       controller->window[1].resource.start + (1024 * 1024) - 1;
+		       controller->window[1].resource.start + (1024 * 1024) - 1;
 		controller->window[1].resource.parent = &iomem_resource;
 		controller->windows = 2;
 }
@@ -300,9 +300,9 @@ sn_pci_controller_fixup(int segment, int busnum, struct pci_bus *bus)
 	LIST_HEAD(resources);
 	int i;
 
- 	status = sal_get_pcibus_info((u64) segment, (u64) busnum,
- 				     (u64) ia64_tpa(&prom_bussoft_ptr));
- 	if (status > 0)
+	status = sal_get_pcibus_info((u64) segment, (u64) busnum,
+				     (u64) ia64_tpa(&prom_bussoft_ptr));
+	if (status > 0)
 		return;		/*bus # does not exist */
 	prom_bussoft_ptr = __va(prom_bussoft_ptr);
 
@@ -325,8 +325,8 @@ sn_pci_controller_fixup(int segment, int busnum, struct pci_bus *bus)
 					controller->window[i].offset);
 	bus = pci_scan_root_bus(NULL, busnum, &pci_root_ops, controller,
 				&resources);
- 	if (bus == NULL)
- 		goto error_return; /* error, or bus already scanned */
+	if (bus == NULL)
+		goto error_return; /* error, or bus already scanned */
 
 	bus->sysdata = controller;
 

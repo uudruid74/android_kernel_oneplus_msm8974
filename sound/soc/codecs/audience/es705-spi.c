@@ -236,4 +236,3 @@ MODULE_LICENSE("GPL v2");
 MODULE_AUTHOR("Hemal Meghpara <hmeghpara@audience.com>");
 MODULE_DESCRIPTION("es705 SPI driver for es705 ALSA control");
 MODULE_ALIAS("platform:es705-codec");
-

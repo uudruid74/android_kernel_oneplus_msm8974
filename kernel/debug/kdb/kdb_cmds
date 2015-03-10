@@ -28,4 +28,3 @@ defcmd dumpcpu "" "Same as dumpall but only tasks on cpus"
   -dumpcommon
   -btc
 endefcmd
-

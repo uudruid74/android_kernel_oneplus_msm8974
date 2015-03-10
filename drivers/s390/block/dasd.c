@@ -1258,7 +1258,7 @@ struct dasd_ccw_req *dasd_smalloc_request(int magic, int cplength,
 	cqr->data = NULL;
 	if (datasize > 0) {
 		cqr->data = data;
- 		memset(cqr->data, 0, datasize);
+		memset(cqr->data, 0, datasize);
 	}
 	cqr->magic = magic;
 	set_bit(DASD_CQR_FLAGS_USE_ERP, &cqr->flags);
@@ -3065,7 +3065,7 @@ int dasd_generic_set_online(struct ccw_device *cdev,
 
 	discipline = base_discipline;
 	if (device->features & DASD_FEATURE_USEDIAG) {
-	  	if (!dasd_diag_discipline_pointer) {
+		if (!dasd_diag_discipline_pointer) {
 			pr_warning("%s Setting the DASD online failed because "
 				   "of missing DIAG discipline\n",
 				   dev_name(&cdev->dev));

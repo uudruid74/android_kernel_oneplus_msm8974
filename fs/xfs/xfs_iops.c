@@ -357,7 +357,7 @@ xfs_vn_rename(
 
 	return -xfs_rename(XFS_I(odir), &oname, XFS_I(odentry->d_inode),
 			   XFS_I(ndir), &nname, new_inode ?
-			   			XFS_I(new_inode) : NULL);
+						XFS_I(new_inode) : NULL);
 }
 
 /*

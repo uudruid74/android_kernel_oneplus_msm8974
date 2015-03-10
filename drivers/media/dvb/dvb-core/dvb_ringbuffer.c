@@ -371,4 +371,3 @@ EXPORT_SYMBOL(dvb_ringbuffer_read_user);
 EXPORT_SYMBOL(dvb_ringbuffer_read);
 EXPORT_SYMBOL(dvb_ringbuffer_write);
 EXPORT_SYMBOL(dvb_ringbuffer_write_user);
-

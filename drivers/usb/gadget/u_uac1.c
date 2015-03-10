@@ -693,4 +693,3 @@ void gaudio_cleanup(void)
 		the_card = NULL;
 	}
 }
-

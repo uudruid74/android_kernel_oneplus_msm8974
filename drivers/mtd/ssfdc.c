@@ -185,7 +185,7 @@ static int read_raw_oob(struct mtd_info *mtd, loff_t offs, uint8_t *buf)
 /* Parity calculator on a word of n bit size */
 static int get_parity(int number, int size)
 {
- 	int k;
+	int k;
 	int parity;
 
 	parity = 1;

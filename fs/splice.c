@@ -1510,7 +1510,7 @@ static int pipe_to_user(struct pipe_inode_info *pipe, struct pipe_buffer *buf,
 
 	/*
 	 * No dice, use slow non-atomic map and copy
- 	 */
+	 */
 	src = buf->ops->map(pipe, buf, 0);
 
 	ret = sd->len;
@@ -2043,8 +2043,8 @@ SYSCALL_DEFINE4(tee, int, fdin, int, fdout, size_t, len, unsigned int, flags)
 				fput_light(out, fput_out);
 			}
 		}
- 		fput_light(in, fput_in);
- 	}
+		fput_light(in, fput_in);
+	}
 
 	return error;
 }

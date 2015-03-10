@@ -403,8 +403,8 @@ static struct layout layouts[] = {
 	{
 	  .layout_id = 96,
 	  .codecs[0] = {
-	  	.name = "onyx",
-	  	.connections = onyx_connections_noheadphones,
+		.name = "onyx",
+		.connections = onyx_connections_noheadphones,
 	  },
 	},
 	/* unknown, untested, but this comes from Apple */
@@ -891,7 +891,7 @@ static void layout_attached_codec(struct aoa_codec *codec)
 
 	headphones = codec->gpio->methods->get_detect(codec->gpio,
 						      AOA_NOTIFY_HEADPHONE);
- 	lineout = codec->gpio->methods->get_detect(codec->gpio,
+	lineout = codec->gpio->methods->get_detect(codec->gpio,
 						   AOA_NOTIFY_LINE_OUT);
 
 	if (codec->gpio->methods->set_master) {
@@ -1075,8 +1075,8 @@ static int aoa_fabric_layout_probe(struct soundbus_dev *sdev)
 	layouts_list_items--;
 	kfree(ldev);
  outnodev:
- 	of_node_put(sound);
- 	layout_device = NULL;
+	of_node_put(sound);
+	layout_device = NULL;
 	return -ENODEV;
 }
 

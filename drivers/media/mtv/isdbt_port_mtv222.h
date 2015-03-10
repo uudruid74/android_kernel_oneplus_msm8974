@@ -31,20 +31,20 @@
 /*
 */
 #define DMB_DEBUG_MSG_ENABLE
-	
+
 #if defined(RTV_IF_SPI)
 		/* Select debug options */
 	#define DEBUG_INTERRUPT
 		//#define DEBUG_TSP_BUF
 #endif
-	
+
 #define DMBERR(fmt, args...) \
 		printk(KERN_ERR "MTV222: %s(): " fmt, __func__, ## args)
-	
+
 #ifdef DMB_DEBUG_MSG_ENABLE
 	#define DMBMSG(fmt, args...) \
 			printk(KERN_INFO "MTV222: %s(): " fmt, __func__, ## args)
-#else 
+#else
 	#define DMBMSG(x...)  do {} while (0)
 #endif
 
@@ -72,7 +72,7 @@ struct TSB_DESC_INFO {
 	/* TSP buffer index which update when write operation by Kernel. */
 	volatile int write_idx;
 
-	/* Mapping base address of TS buffer segments.	
+	/* Mapping base address of TS buffer segments.
 	The number of allocating elements was configured by application. */
 	unsigned long seg_base[MAX_NUM_TSB_SEG];
 };
@@ -146,7 +146,7 @@ struct MTV222_CB {
 
 	volatile bool tsout_enabled;
 	enum E_RTV_SERVICE_TYPE cfged_svc; /* Configured service type */
-	
+
 #ifdef DEBUG_INTERRUPT
 	unsigned long invalid_intr_cnt;
 	unsigned long level_intr_cnt;
@@ -243,7 +243,7 @@ static INLINE void reset_debug_tspb_stat(void)
 	mtv222_cb_ptr->max_alloc_seg_cnt = 0;
 	mtv222_cb_ptr->max_enqueued_seg_cnt = 0;
 	mtv222_cb_ptr->max_enqueued_tsp_cnt = 0;
-	mtv222_cb_ptr->alloc_tspb_err_cnt = 0;	
+	mtv222_cb_ptr->alloc_tspb_err_cnt = 0;
 }
 #define RESET_DEBUG_TSPB_STAT	reset_debug_tspb_stat()
 
@@ -258,7 +258,7 @@ static inline void reset_debug_interrupt_stat(void)
 	mtv222_cb_ptr->invalid_intr_cnt = 0;
 	mtv222_cb_ptr->level_intr_cnt = 0;
 	mtv222_cb_ptr->ovf_intr_cnt = 0;
-	mtv222_cb_ptr->udf_intr_cnt = 0;	
+	mtv222_cb_ptr->udf_intr_cnt = 0;
 }
 
 #define RESET_DEBUG_INTR_STAT	reset_debug_interrupt_stat()
@@ -326,7 +326,7 @@ typedef struct {
 	unsigned int write_data;
 
 	unsigned long param1;
-	
+
 	unsigned int read_cnt;
 	unsigned char read_data[MAX_NUM_MTV_REG_READ_BUF]; /* output */
 } IOCTL_REG_ACCESS_INFO;
@@ -424,7 +424,3 @@ typedef struct {
 
 
 #endif /* __ISDBT_PORT_MTV222_H__*/
-
-
-
-

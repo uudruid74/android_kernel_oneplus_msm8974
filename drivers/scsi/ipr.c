@@ -901,7 +901,7 @@ static void ipr_init_ioadl(struct ipr_cmnd *ipr_cmd, dma_addr_t dma_addr,
 		ioadl64->address = cpu_to_be64(dma_addr);
 
 		ipr_cmd->ioarcb.ioadl_len =
-		       	cpu_to_be32(sizeof(struct ipr_ioadl64_desc));
+			cpu_to_be32(sizeof(struct ipr_ioadl64_desc));
 		ipr_cmd->ioarcb.data_transfer_length = cpu_to_be32(len);
 	} else {
 		ioadl->flags_and_data_len = cpu_to_be32(flags | len);
@@ -913,7 +913,7 @@ static void ipr_init_ioadl(struct ipr_cmnd *ipr_cmd, dma_addr_t dma_addr,
 			ipr_cmd->ioarcb.read_data_transfer_length = cpu_to_be32(len);
 		} else {
 			ipr_cmd->ioarcb.ioadl_len =
-			       	cpu_to_be32(sizeof(struct ipr_ioadl_desc));
+				cpu_to_be32(sizeof(struct ipr_ioadl_desc));
 			ipr_cmd->ioarcb.data_transfer_length = cpu_to_be32(len);
 		}
 	}
@@ -6608,7 +6608,7 @@ static void ipr_scsi_bus_speed_limit(struct ipr_ioa_cfg *ioa_cfg)
  * 	none
  **/
 static void ipr_modify_ioafp_mode_page_28(struct ipr_ioa_cfg *ioa_cfg,
-					  	struct ipr_mode_pages *mode_pages)
+						struct ipr_mode_pages *mode_pages)
 {
 	int i, entry_length;
 	struct ipr_dev_bus_entry *bus;

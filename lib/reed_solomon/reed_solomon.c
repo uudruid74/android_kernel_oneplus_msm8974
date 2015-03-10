@@ -207,9 +207,9 @@ static struct rs_control *init_rs_internal(int symsize, int gfpoly,
 	if (symsize < 1)
 		return NULL;
 	if (fcr < 0 || fcr >= (1<<symsize))
-    		return NULL;
+		return NULL;
 	if (prim <= 0 || prim >= (1<<symsize))
-    		return NULL;
+		return NULL;
 	if (nroots < 0 || nroots >= (1<<symsize))
 		return NULL;
 
@@ -381,4 +381,3 @@ EXPORT_SYMBOL_GPL(free_rs);
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("Reed Solomon encoder/decoder");
 MODULE_AUTHOR("Phil Karn, Thomas Gleixner");
-

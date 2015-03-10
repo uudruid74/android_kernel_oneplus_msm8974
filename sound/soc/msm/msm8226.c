@@ -1197,7 +1197,7 @@ static int msm_audrx_init(struct snd_soc_pcm_runtime *rtd)
 	}
 
 	tapan_event_register(msm8226_tapan_event_cb, rtd->codec);
-	
+
 	tapan_register_mclk_cb(codec, msm_snd_enable_codec_ext_clk);
 	return 0;
 
@@ -1391,20 +1391,20 @@ static struct afe_clk_cfg lpass_mi2s_disable = {
 
 static void msm8226_mi2s_shutdown(struct snd_pcm_substream *substream)
 {
-	
+
 
 	if (atomic_dec_return(&pri_mi2s_clk.mi2s_rsc_ref) == 0) {
 		int ret =0;
 		pr_err("[MAX98504_DEBUG] %s: free mi2s resources\n", __func__);
 			if(substream->stream==0)
-				ret = afe_set_lpass_clock(AFE_PORT_ID_TERTIARY_MI2S_RX, &lpass_mi2s_disable);	
+				ret = afe_set_lpass_clock(AFE_PORT_ID_TERTIARY_MI2S_RX, &lpass_mi2s_disable);
 			else if(substream->stream==1)
-				ret = afe_set_lpass_clock(AFE_PORT_ID_TERTIARY_MI2S_TX, &lpass_mi2s_disable);		
-       		
-       		if (ret < 0) {	
-      			pr_err("%s: afe_set_lpass_clock failed\n", __func__);	
-       	
-      		}	
+				ret = afe_set_lpass_clock(AFE_PORT_ID_TERTIARY_MI2S_TX, &lpass_mi2s_disable);
+
+		if (ret < 0) {
+			pr_err("%s: afe_set_lpass_clock failed\n", __func__);
+
+		}
 		msm226_pri_mi2s_free_gpios();
 	}
 }
@@ -1419,7 +1419,7 @@ static int msm8226_configure_pri_mi2s_gpio(void)
 				pri_mi2s_gpio[i].gpio_name);
 
 		pr_info("%s: gpio = %d, gpio name = %s, rtn = %d\n", __func__,
-		pri_mi2s_gpio[i].gpio_no, pri_mi2s_gpio[i].gpio_name, rtn);		
+		pri_mi2s_gpio[i].gpio_no, pri_mi2s_gpio[i].gpio_name, rtn);
 		if (rtn) {
 			pr_err("%s: Failed to request gpio %d\n",
 				   __func__,
@@ -1445,15 +1445,15 @@ static int msm8226_mi2s_startup(struct snd_pcm_substream *substream)
 
 	if (atomic_inc_return(&pri_mi2s_clk.mi2s_rsc_ref) == 1) {
 		pr_info("%s: acquire mi2s resources\n", __func__);
-		msm8226_configure_pri_mi2s_gpio();	
+		msm8226_configure_pri_mi2s_gpio();
 			if(substream->stream==0)
-				ret = afe_set_lpass_clock(AFE_PORT_ID_TERTIARY_MI2S_RX, &lpass_mi2s_enable);	
+				ret = afe_set_lpass_clock(AFE_PORT_ID_TERTIARY_MI2S_RX, &lpass_mi2s_enable);
 			else if(substream->stream==1)
-				ret = afe_set_lpass_clock(AFE_PORT_ID_TERTIARY_MI2S_TX, &lpass_mi2s_enable); 
-       		if (ret < 0) {	
-      			pr_err("%s: afe_set_lpass_clock failed\n", __func__);	
-       		return ret;	
-      		}	
+				ret = afe_set_lpass_clock(AFE_PORT_ID_TERTIARY_MI2S_TX, &lpass_mi2s_enable);
+		if (ret < 0) {
+			pr_err("%s: afe_set_lpass_clock failed\n", __func__);
+		return ret;
+		}
 		ret = snd_soc_dai_set_fmt(cpu_dai, SND_SOC_DAIFMT_CBS_CFS);
 		if (ret < 0)
 			dev_err(cpu_dai->dev, "set format for CPU dai"
@@ -2547,7 +2547,7 @@ err:
 static int msm8226_prepare_codec_mclk(struct snd_soc_card *card)
 {
 	struct msm8226_asoc_mach_data *pdata = snd_soc_card_get_drvdata(card);
-	
+
 	if (pdata->mclk_gpio) {
 		int ret;
 		ret = gpio_request(pdata->mclk_gpio, "TAPAN_CODEC_PMIC_MCLK");
@@ -2633,7 +2633,7 @@ static int msm8226_setup_hs_jack(struct platform_device *pdev,
 		struct msm8226_asoc_mach_data *pdata)
 {
 #ifndef CONFIG_SAMSUNG_JACK //ms01 mbhc not used
-	
+
 
 	pdata->us_euro_gpio = of_get_named_gpio(pdev->dev.of_node,
 				"qcom,cdc-us-euro-gpios", 0);

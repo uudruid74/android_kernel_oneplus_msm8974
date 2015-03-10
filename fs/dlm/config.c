@@ -779,10 +779,10 @@ static ssize_t comm_addr_list_read(struct dlm_comm *cm, char *buf)
 	struct sockaddr_storage *addr;
 	struct sockaddr_in *addr_in;
 	struct sockaddr_in6 *addr_in6;
-	
+
 	/* Taken from ip6_addr_string() defined in lib/vsprintf.c */
 	char buf0[sizeof("AF_INET6	xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:255.255.255.255\n")];
-	
+
 
 	/* Derived from SIMPLE_ATTR_SIZE of fs/configfs/file.c */
 	allowance = 4096;
@@ -1078,4 +1078,3 @@ struct dlm_config_info dlm_config = {
 	.ci_recover_callbacks = DEFAULT_RECOVER_CALLBACKS,
 	.ci_cluster_name = DEFAULT_CLUSTER_NAME
 };
-

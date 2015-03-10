@@ -387,7 +387,7 @@ static ssize_t proximity_thresh_high_store(struct device *dev,
 	iRet = kstrtou16(buf, 10, &uNewThresh);
 	if (iRet < 0)
 		pr_err("[SSP]: %s - kstrtoint failed.(%d)\n", __func__, iRet);
-	else {	
+	else {
 		if(uNewThresh & 0xfc00)
 			pr_err("[SSP]: %s - allow 10bits.(%d)\n", __func__, uNewThresh);
 		else {

@@ -460,4 +460,3 @@ void __init mmu_context_init(void)
 	next_context = first_context;
 	nr_free_contexts = last_context - first_context + 1;
 }
-

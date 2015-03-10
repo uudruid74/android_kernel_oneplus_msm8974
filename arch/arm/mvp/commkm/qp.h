@@ -305,4 +305,3 @@ int32 QP_DequeueCommit(QPHandle *qp);
 #endif
 
 #endif
-

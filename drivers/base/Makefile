@@ -28,4 +28,3 @@ obj-$(CONFIG_SYNC)	+= sync.o
 obj-$(CONFIG_SW_SYNC)	+= sw_sync.o
 
 ccflags-$(CONFIG_DEBUG_DRIVER) := -DDEBUG
-

@@ -21,9 +21,9 @@
 #ifndef __RAONTV_H__
 #define __RAONTV_H__
 
-#ifdef __cplusplus 
-extern "C"{ 
-#endif  
+#ifdef __cplusplus
+extern "C"{
+#endif
 
 #include "raontv_port.h"
 
@@ -75,18 +75,18 @@ extern "C"{
 #define RTV_NO_MORE_SUB_CHANNEL			-8 // for T-DMB and DAB
 #define RTV_ALREADY_OPENED_SUB_CHANNEL_ID	-9 // for T-DMB and DAB
 #define RTV_NOT_OPENED_SUB_CHANNEL_ID		-10 // for T-DMB and DAB
-#define RTV_INVAILD_THRESHOLD_SIZE		-11 
-#define RTV_POWER_ON_CHECK_ERROR		-12 
-#define RTV_PLL_UNLOCKED			-13 
-#define RTV_ADC_CLK_UNLOCKED			-14 
+#define RTV_INVAILD_THRESHOLD_SIZE		-11
+#define RTV_POWER_ON_CHECK_ERROR		-12
+#define RTV_PLL_UNLOCKED			-13
+#define RTV_ADC_CLK_UNLOCKED			-14
 
 
 typedef enum
 {
 	RTV_COUNTRY_BAND_JAPAN = 0,
-	RTV_COUNTRY_BAND_KOREA,		
+	RTV_COUNTRY_BAND_KOREA,
 	RTV_COUNTRY_BAND_BRAZIL,
-	RTV_COUNTRY_BAND_ARGENTINA 
+	RTV_COUNTRY_BAND_ARGENTINA
 } E_RTV_COUNTRY_BAND_TYPE;
 
 
@@ -143,11 +143,11 @@ static INLINE UINT RTV_ISDBT_FREQ2CHNUM(E_RTV_COUNTRY_BAND_TYPE eRtvCountryBandT
 	switch (eRtvCountryBandType) {
 		case RTV_COUNTRY_BAND_JAPAN:
 			return ((dwFreqKHz - 395143) / 6000);
-			
+
 		case RTV_COUNTRY_BAND_BRAZIL:
-		case RTV_COUNTRY_BAND_ARGENTINA: 
+		case RTV_COUNTRY_BAND_ARGENTINA:
 			return (((dwFreqKHz - 395143) / 6000) + 1);
-			
+
 		default:
 			return 0xFFFF;
 	}
@@ -206,11 +206,11 @@ typedef struct
 	E_RTV_MODULATION_TYPE		eModulation;
 	E_RTV_CODE_RATE_TYPE		eCodeRate;
 	E_RTV_ISDBT_INTERLV_TYPE	eInterlv;
-	int						fEWS;	
+	int						fEWS;
 } RTV_ISDBT_TMCC_INFO;
 
 void rtvISDBT_StandbyMode(int on);
-UINT rtvISDBT_GetLockStatus(void); 
+UINT rtvISDBT_GetLockStatus(void);
 U8   rtvISDBT_GetAGC(void);
 S32  rtvISDBT_GetRSSI(void);
 U32  rtvISDBT_GetPER(void);
@@ -225,10 +225,9 @@ INT  rtvISDBT_ScanFrequency(UINT nChNum);
 void rtvISDBT_SwReset(void);
 INT  rtvISDBT_Initialize(E_RTV_COUNTRY_BAND_TYPE eRtvCountryBandType, UINT nThresholdSize);
 
- 
-#ifdef __cplusplus 
-} 
-#endif 
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* __RAONTV_H__ */
-

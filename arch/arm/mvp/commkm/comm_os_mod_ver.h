@@ -34,4 +34,3 @@
 #define COMM_OS_MOD_VERSION_STRING   "1.0.0.0"
 
 #endif /* _COM_OS_MOD_VER_H_ */
-

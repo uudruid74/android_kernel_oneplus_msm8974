@@ -354,7 +354,7 @@ struct asb_rec {
 };
 
 struct rec_buf {
-  	unsigned char reserved1[2];
+	unsigned char reserved1[2];
 	__u16 buf_ptr;
 	unsigned char reserved2;
 	unsigned char receive_fs;

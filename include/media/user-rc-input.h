@@ -18,4 +18,3 @@
 #define USER_CONTROL_RELEASED   0x03
 
 #endif /* __USER_RC_INPUT_H__ */
-

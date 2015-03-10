@@ -78,7 +78,7 @@ EXPORT_SYMBOL(get_clk_frequency_khz);
  *       and cache flush area.
  */
 static struct map_desc common_io_desc[] __initdata = {
-  	{	/* Devs */
+	{	/* Devs */
 		.virtual	=  0xf2000000,
 		.pfn		= __phys_to_pfn(0x40000000),
 		.length		= 0x02000000,

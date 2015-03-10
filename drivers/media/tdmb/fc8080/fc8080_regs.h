@@ -240,4 +240,3 @@ internal buffer is 16K, your setting value is big !!!!!!!!!!!!!!!
 #endif
 
 #endif /* __FC8080_REGS_H__ */
-

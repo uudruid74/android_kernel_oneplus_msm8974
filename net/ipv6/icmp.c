@@ -1008,4 +1008,3 @@ struct ctl_table * __net_init ipv6_icmp_sysctl_init(struct net *net)
 	return table;
 }
 #endif
-

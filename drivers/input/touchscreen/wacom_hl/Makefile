@@ -6,4 +6,3 @@ obj-$(CONFIG_EPEN_WACOM_G9PM)	+= wacom_i2c_flash.o
 obj-$(CONFIG_EPEN_WACOM_G9PL)	+= w9002_flash.o
 obj-$(CONFIG_EPEN_WACOM_G9PLL)	+= w9002_flash.o
 obj-$(CONFIG_EPEN_WACOM_G10PM)	+= w9002_flash.o
-

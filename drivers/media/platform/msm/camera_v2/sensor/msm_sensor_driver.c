@@ -194,7 +194,7 @@ int32_t msm_sensor_driver_probe(void *setting)
     power_info->power_setting_size = size;
     power_info->power_off_setting = power_off_setting;
     power_info->power_off_setting_size = off_size;
-    
+
     s_ctrl->sensordata->slave_info = camera_info;
 
     /* Fill sensor slave info */

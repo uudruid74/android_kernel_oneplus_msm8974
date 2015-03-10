@@ -1942,7 +1942,7 @@ static ssize_t acc_data_read(struct device *dev,
 		usleep_range(10000, 11000);
 	}
 
-	return sprintf(buf, "%d, %d, %d\n", data->acc_data.x - data->acc_cal[0], 
+	return sprintf(buf, "%d, %d, %d\n", data->acc_data.x - data->acc_cal[0],
 		   data->acc_data.y - data->acc_cal[1], data->acc_data.z - data->acc_cal[2]);
 }
 static struct device_attribute dev_attr_raw_data =
@@ -2146,7 +2146,7 @@ static int mpu6500_parse_dt(struct device *dev,
 	NULL);
 	pdata->gyro_cal_path = of_get_property(np, "invensense,gyro_cal_path",
 	NULL);
-	
+
 
 	pr_err("mpu6500_parse_dt complete, SCL:%d SDA:%d IRQ:%d\n",pdata->gpio_scl, pdata->gpio_sda, pdata->gpio_int );
 
@@ -2278,12 +2278,12 @@ static int __devinit mpu6500_input_probe(struct i2c_client *client,
 		error = mpu6500_parse_dt(&client->dev, pdata);
 		if (error)
 			return error;
-	} 
+	}
 	else
 		{
 		/* get platform data */
 		pdata = client->dev.platform_data;
-	
+
 	if (!pdata)
 		return -EINVAL;
 	}

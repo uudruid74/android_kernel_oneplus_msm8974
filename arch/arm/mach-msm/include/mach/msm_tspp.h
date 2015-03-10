@@ -58,4 +58,3 @@ int tspp_allocate_buffers(u32 dev, u32 channel_id, u32 count,
 	tspp_memfree *memfree, void *user);
 
 #endif /* _MSM_TSPP_H_ */
-

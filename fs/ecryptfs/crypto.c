@@ -465,7 +465,7 @@ int virt_to_scatterlist(const void *addr, int size, struct scatterlist *sg,
 	int remainder_of_page;
 
     if (sg)
-    	sg_init_table(sg, sg_size);
+	sg_init_table(sg, sg_size);
 
 	while (size > 0 && i < sg_size) {
 		pg = virt_to_page(addr);
@@ -520,7 +520,7 @@ static int encrypt_scatterlist(struct ecryptfs_crypt_stat *crypt_stat,
 	       || !(crypt_stat->flags & ECRYPTFS_STRUCT_INITIALIZED));
 #ifdef CONFIG_SDP
 	if (!(crypt_stat->flags & ECRYPTFS_KEY_SET)) {
-		if(crypt_stat->flags & ECRYPTFS_DEK_SDP_ENABLED && 
+		if(crypt_stat->flags & ECRYPTFS_DEK_SDP_ENABLED &&
 			crypt_stat->flags & ECRYPTFS_DEK_IS_SENSITIVE) {
 			rc = ecryptfs_get_sdp_dek(sig, &sig_len, crypt_stat);
 			if (rc) {
@@ -2699,4 +2699,3 @@ int ecryptfs_set_f_namelen(long *namelen, long lower_namelen,
 
 	return 0;
 }
-

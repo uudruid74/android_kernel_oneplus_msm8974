@@ -398,7 +398,7 @@ static struct msm_gpiomux_config msm_blsp_configs[] __initdata = {
 			[GPIOMUX_ACTIVE] = &gpio_spi_act_config,
 			[GPIOMUX_SUSPENDED] = &gpio_spi_susp_config,
 		},
-	},	
+	},
 	{
 		.gpio      = 8,			/* BLSP1 UART2 TX */
 		.settings = {
@@ -649,9 +649,9 @@ static struct gpiomux_setting melfas_int_act_cfg = {
 };
 
 static struct gpiomux_setting melfas_int_sus_cfg = {
- 	.func = GPIOMUX_FUNC_GPIO,
- 	.drv = GPIOMUX_DRV_2MA,
- 	.pull = GPIOMUX_PULL_NONE,
+	.func = GPIOMUX_FUNC_GPIO,
+	.drv = GPIOMUX_DRV_2MA,
+	.pull = GPIOMUX_PULL_NONE,
 };
 
 static struct gpiomux_setting gpio_i2c_tkey_act_config = {
@@ -866,14 +866,14 @@ static struct msm_gpiomux_config muic_configs[] __initdata = {
 			[GPIOMUX_ACTIVE] = &gpio_muic_config,
 			[GPIOMUX_SUSPENDED] = &gpio_muic_config,
 		},
- 	},
- 	{
+	},
+	{
 		.gpio      = 5,
 		.settings = {
 			[GPIOMUX_ACTIVE] = &gpio_muic_config,
 			[GPIOMUX_SUSPENDED] = &gpio_muic_config,
 		},
- 	},
+	},
 };
 
 /* NC pin configurations */
@@ -994,7 +994,7 @@ void __init msm8226_init_gpiomux(void)
 	/* BLSP */
 	msm_gpiomux_install(msm_blsp_configs,
 		ARRAY_SIZE(msm_blsp_configs));
-	/*HW */	
+	/*HW */
 	msm_gpiomux_install(hw_rev_configs,
 	ARRAY_SIZE(hw_rev_configs));
 
@@ -1002,9 +1002,9 @@ void __init msm8226_init_gpiomux(void)
 	/* WCNSS */
 	msm_gpiomux_install(wcnss_5wire_interface,
 		ARRAY_SIZE(wcnss_5wire_interface));
-		
+
 	/*T_FLASH_DETECT */
-	msm_gpiomux_install(&sd_card_det, 1);	
+	msm_gpiomux_install(&sd_card_det, 1);
 
 	/* TX_GTR */
 	msm_gpiomux_install(msm8226_tx_gtr_configs,
@@ -1052,4 +1052,3 @@ void __init msm8226_init_gpiomux(void)
 	/* NC */
 	msm_gpiomux_install(berluti3g_nc_gpio_cfgs, ARRAY_SIZE(berluti3g_nc_gpio_cfgs));
 }
-

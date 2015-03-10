@@ -5094,8 +5094,8 @@ qpnp_charger_read_dt_props(struct qpnp_chg_chip *chip)
 		return rc;
 
 	/* Bug-fix : to enter sleep mode under 6'C or over 60'C */
-	chip->warm_bat_decidegc = 1000; 
-	chip->cool_bat_decidegc = -500; 
+	chip->warm_bat_decidegc = 1000;
+	chip->cool_bat_decidegc = -500;
 
 	/* read GPIO address for EXT_OVP line */
 	//No Ext Ovp

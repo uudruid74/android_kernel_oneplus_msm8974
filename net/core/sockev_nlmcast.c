@@ -115,7 +115,7 @@ static int __init sockev_client_init(void)
 		pr_err("%s(): Failed to register cb (%d)\n", __func__, rc);
 	}
 	socknlmsgsk = netlink_kernel_create(&init_net,
-					    NETLINK_SOCKEV, 
+					    NETLINK_SOCKEV,
 					    0,
 					    sockev_skmsg_recv,
 					    NULL,
@@ -137,5 +137,3 @@ static void __exit sockev_client_exit(void)
 module_init(sockev_client_init)
 module_exit(sockev_client_exit)
 MODULE_LICENSE("GPL v2");
-
-

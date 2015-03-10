@@ -184,7 +184,7 @@
 		qcom,rx-gpio = <&msmgpio 28 0x00>;
 	};
     felica_gpio{
-    	compatible = "felica,gpio-table";
+	compatible = "felica,gpio-table";
 		interrupt-parent = <&pm8941_gpios>;
 		interrupts = <17 0>;
 		felica,irq-gpio = <&pm8941_gpios 17 0x1>;
@@ -1318,4 +1318,3 @@
 		es325-slim-ifd-elemental-addr = [00 00 02 00 BE 02];
 	};
 };
-

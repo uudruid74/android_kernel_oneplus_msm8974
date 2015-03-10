@@ -1,5 +1,5 @@
 /*
- *  PowerPC version 
+ *  PowerPC version
  *    Copyright (C) 1995-1996 Gary Thomas (gdt@linuxppc.org)
  *  Rewritten by Cort Dougan (cort@cs.nmt.edu) for PReP
  *    Copyright (C) 1996 Cort Dougan <cort@cs.nmt.edu>
@@ -242,12 +242,12 @@ END_FTR_SECTION_IFCLR(CPU_FTR_STCX_CHECKS_ADDRESS)
 	RFI
 	b	.	/* prevent speculative execution */
 
-syscall_error:	
+syscall_error:
 	oris	r5,r5,0x1000	/* Set SO bit in CR */
 	neg	r3,r3
 	std	r5,_CCR(r1)
 	b	syscall_error_cont
-	
+
 /* Traced system call support */
 syscall_dotrace:
 	bl	.save_nvgprs
@@ -273,7 +273,7 @@ syscall_dotrace:
 syscall_enosys:
 	li	r3,-ENOSYS
 	b	syscall_exit
-	
+
 syscall_exit_work:
 	/* If TIF_RESTOREALL is set, don't scribble on either r3 or ccr.
 	 If TIF_NOERROR is set, just save r3 as it is. */
@@ -332,7 +332,7 @@ _GLOBAL(save_nvgprs)
 	std	r0,_TRAP(r1)
 	blr
 
-	
+
 /*
  * The sigsuspend and rt_sigsuspend system calls can call do_signal
  * and thus put the process into the stopped state where we might
@@ -395,7 +395,7 @@ DSCR_DEFAULT:
  * the fork code also.
  *
  * The code which creates the new task context is in 'copy_thread'
- * in arch/powerpc/kernel/process.c 
+ * in arch/powerpc/kernel/process.c
  */
 	.align	7
 _GLOBAL(_switch)
@@ -739,8 +739,8 @@ restore_check_irq_replay:
 	 */
 	bl	.__check_irq_replay
 	cmpwi	cr0,r3,0
- 	beq	restore_no_replay
- 
+	beq	restore_no_replay
+
 	/*
 	 * We need to re-emit an interrupt. We do so by re-using our
 	 * existing exception frame. We first change the trap value,
@@ -758,7 +758,7 @@ restore_check_irq_replay:
 	cmpwi	cr0,r3,0x500
 	bne	1f
 	addi	r3,r1,STACK_FRAME_OVERHEAD;
- 	bl	.do_IRQ
+	bl	.do_IRQ
 	b	.ret_from_except
 1:	cmpwi	cr0,r3,0x900
 	bne	1f
@@ -773,7 +773,7 @@ restore_check_irq_replay:
 	b	.ret_from_except
 #endif /* CONFIG_PPC_BOOK3E */
 1:	b	.ret_from_except /* What else to do here ? */
- 
+
 
 
 3:
@@ -835,7 +835,7 @@ unrecov_restore:
  * called with the MMU off.
  *
  * In addition, we need to be in 32b mode, at least for now.
- * 
+ *
  * Note: r3 is an input parameter to rtas, so don't trash it...
  */
 _GLOBAL(enter_rtas)
@@ -846,7 +846,7 @@ _GLOBAL(enter_rtas)
 	/* Because RTAS is running in 32b mode, it clobbers the high order half
 	 * of all registers that it saves.  We therefore save those registers
 	 * RTAS might touch to the stack.  (r0, r3-r13 are caller saved)
-   	 */
+	 */
 	SAVE_GPR(2, r1)			/* Save the TOC */
 	SAVE_GPR(13, r1)		/* Save paca */
 	SAVE_8GPRS(14, r1)		/* Save the non-volatiles */
@@ -869,7 +869,7 @@ _GLOBAL(enter_rtas)
 	li	r0,0
 	mtcr	r0
 
-#ifdef CONFIG_BUG	
+#ifdef CONFIG_BUG
 	/* There is no way it is acceptable to get here with interrupts enabled,
 	 * check it with the asm equivalent of WARN_ON
 	 */
@@ -877,7 +877,7 @@ _GLOBAL(enter_rtas)
 1:	tdnei	r0,0
 	EMIT_BUG_ENTRY 1b,__FILE__,__LINE__,BUGFLAG_WARNING
 #endif
-	
+
 	/* Hard-disable interrupts */
 	mfmsr	r6
 	rldicl	r7,r6,48,1
@@ -891,15 +891,15 @@ _GLOBAL(enter_rtas)
 	std	r1,PACAR1(r13)
         std	r6,PACASAVEDMSR(r13)
 
-	/* Setup our real return addr */	
+	/* Setup our real return addr */
 	LOAD_REG_ADDR(r4,.rtas_return_loc)
 	clrldi	r4,r4,2			/* convert to realmode address */
-       	mtlr	r4
+	mtlr	r4
 
 	li	r0,0
 	ori	r0,r0,MSR_EE|MSR_SE|MSR_BE|MSR_RI
 	andc	r0,r6,r0
-	
+
         li      r9,1
         rldicr  r9,r9,MSR_SF_LG,(63-MSR_SF_LG)
 	ori	r9,r9,MSR_IR|MSR_DR|MSR_FE0|MSR_FE1|MSR_FP|MSR_RI
@@ -910,7 +910,7 @@ _GLOBAL(enter_rtas)
 	LOAD_REG_ADDR(r4, rtas)
 	ld	r5,RTASENTRY(r4)	/* get the rtas->entry value */
 	ld	r4,RTASBASE(r4)		/* get the rtas->base value */
-	
+
 	mtspr	SPRN_SRR0,r5
 	mtspr	SPRN_SRR1,r6
 	rfid
@@ -928,9 +928,9 @@ _STATIC(rtas_return_loc)
 	mfmsr   r6
 	li	r0,MSR_RI
 	andc	r6,r6,r0
-	sync	
+	sync
 	mtmsrd  r6
-        
+
         ld	r1,PACAR1(r4)           /* Restore our SP */
         ld	r4,PACASAVEDMSR(r4)     /* Restore our MSR */
 
@@ -978,7 +978,7 @@ _GLOBAL(enter_prom)
 	/* Because PROM is running in 32b mode, it clobbers the high order half
 	 * of all registers that it saves.  We therefore save those registers
 	 * PROM might touch to the stack.  (r0, r3-r13 are caller saved)
-   	 */
+	 */
 	SAVE_GPR(2, r1)
 	SAVE_GPR(13, r1)
 	SAVE_8GPRS(14, r1)
@@ -1028,7 +1028,7 @@ _GLOBAL(enter_prom)
 	REST_10GPRS(22, r1)
 	ld	r4,_CCR(r1)
 	mtcr	r4
-	
+
         addi	r1,r1,PROM_FRAME_SIZE
 	ld	r0,16(r1)
 	mtlr    r0

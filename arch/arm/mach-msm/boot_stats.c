@@ -119,4 +119,3 @@ int boot_stats_init(void)
 
 	return 0;
 }
-

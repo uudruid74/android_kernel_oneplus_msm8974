@@ -144,7 +144,7 @@ static int snd_opl4_detect(struct snd_opl4 *opl4)
 	id1 = snd_opl4_read(opl4, OPL4_REG_MIX_CONTROL_FM);
 	id2 = snd_opl4_read(opl4, OPL4_REG_MIX_CONTROL_PCM);
 	snd_printdd("OPL4 id1=%02x id2=%02x\n", id1, id2);
-       	if (id1 != 0x00 || id2 != 0xff)
+	if (id1 != 0x00 || id2 != 0xff)
 		return -ENODEV;
 
 	snd_opl4_write(opl4, OPL4_REG_MIX_CONTROL_FM, 0x3f);

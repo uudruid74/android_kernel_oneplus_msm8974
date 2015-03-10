@@ -2630,4 +2630,3 @@ EXPORT_SYMBOL(qce_f9_req);
 
 MODULE_LICENSE("GPL v2");
 MODULE_DESCRIPTION("Crypto Engine driver");
-

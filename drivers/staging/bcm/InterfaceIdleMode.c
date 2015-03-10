@@ -300,4 +300,3 @@ void InterfaceHandleShutdownModeWakeup(PMINI_ADAPTER Adapter)
 		}
 	}
 }
-

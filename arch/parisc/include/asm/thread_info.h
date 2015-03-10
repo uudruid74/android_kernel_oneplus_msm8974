@@ -25,7 +25,7 @@ struct thread_info {
 	.cpu		= 0,			\
 	.addr_limit	= KERNEL_DS,		\
 	.preempt_count	= INIT_PREEMPT_COUNT,	\
-  	.restart_block	= {			\
+	.restart_block	= {			\
 		.fn = do_no_restart_syscall	\
 	}					\
 }

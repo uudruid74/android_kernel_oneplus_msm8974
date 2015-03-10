@@ -469,4 +469,3 @@ PvtcpI6AddrUnpack(unsigned int addr[4],
 #endif /* __LP64__ || __LLP64__ */
 
 #endif /* _PVTCP_H_ */
-

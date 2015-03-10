@@ -459,4 +459,3 @@ if ((unsigned short)(iChecksumTarget&0xffff) !=
 	return 0;
 }
 #endif  /* (PROJECT_REV_) */
-

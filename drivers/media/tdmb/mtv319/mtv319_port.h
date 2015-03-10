@@ -498,4 +498,3 @@ void rtvOEM_PowerOn(int on);
 #endif
 
 #endif /* __MTV319_PORT_H__ */
-

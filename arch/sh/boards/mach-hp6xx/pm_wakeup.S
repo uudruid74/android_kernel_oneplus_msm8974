@@ -23,12 +23,12 @@
 ENTRY(wakeup_start)
 ! clear STBY bit
 	mov	#-126, k1
-   	and	#127, k0
+	and	#127, k0
 	mov.b	k0, @k1
 ! enable refresh
 	mov.l	5f, k1
 	mov.w	6f, k0
-  	mov.w	k0, @k1
+	mov.w	k0, @k1
 ! jump to handler
 	mov.l	4f, k1
 	jmp	@k1

@@ -969,7 +969,7 @@ static void au1200_setmode(struct au1200fb_device *fbdev)
 
 /* Bitfields format supported by the controller. */
 static struct fb_bitfield rgb_bitfields[][4] = {
-  	/*     Red, 	   Green, 	 Blue, 	     Transp   */
+	/*     Red, 	   Green, 	 Blue, 	     Transp   */
 	[LCD_WINCTRL1_FRM_16BPP655 >> 25] =
 		{ { 10, 6, 0 }, { 5, 5, 0 }, { 0, 5, 0 }, { 0, 0, 0 } },
 

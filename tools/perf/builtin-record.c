@@ -304,7 +304,7 @@ try_again:
 			fprintf(stderr, "incompatible append\n");
 			exit(-1);
 		}
- 	}
+	}
 
 	perf_session__update_sample_type(session);
 }

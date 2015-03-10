@@ -54,7 +54,7 @@ EXPORT_SYMBOL_GPL(mmc_app_cmd);
 
 /**
  *	mmc_wait_for_app_cmd - start an application command and wait for
- 			       completion
+			       completion
  *	@host: MMC host to start command
  *	@card: Card to send MMC_APP_CMD to
  *	@cmd: MMC command to start

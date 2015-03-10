@@ -43,7 +43,7 @@ static void udf_pc_to_char(struct super_block *sb, unsigned char *from,
 		case 1:
 			/*
 			 * Symlink points to some place which should be agreed
- 			 * upon between originator and receiver of the media. Ignore.
+			 * upon between originator and receiver of the media. Ignore.
 			 */
 			if (pc->lengthComponentIdent > 0)
 				break;

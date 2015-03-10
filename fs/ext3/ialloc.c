@@ -719,4 +719,3 @@ unsigned long ext3_count_dirs (struct super_block * sb)
 	}
 	return count;
 }
-

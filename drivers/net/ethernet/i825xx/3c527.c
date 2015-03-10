@@ -938,7 +938,7 @@ static int mc32_open(struct net_device *dev)
 
 	if(mc32_command(dev, 8, descnumbuffs, 4)) {
 		pr_info("%s: %s rejected our buffer configuration!\n",
-	 	       dev->name, cardname);
+		       dev->name, cardname);
 		mc32_close(dev);
 		return -ENOBUFS;
 	}
@@ -1102,7 +1102,7 @@ static void mc32_update_stats(struct net_device *dev)
 	rx_errors+=dev->stats.rx_fifo_errors  +=st->rx_overrun_errors;
 	                                           st->rx_overrun_errors=0;
 	rx_errors+=dev->stats.rx_frame_errors +=st->rx_alignment_errors;
- 	                                           st->rx_alignment_errors=0;
+	                                           st->rx_alignment_errors=0;
 	rx_errors+=dev->stats.rx_length_errors+=st->rx_tooshort_errors;
 	                                           st->rx_tooshort_errors=0;
 	rx_errors+=dev->stats.rx_missed_errors+=st->rx_outofresource_errors;
@@ -1192,8 +1192,8 @@ static void mc32_rx_ring(struct net_device *dev)
 			}
 
 			skb->protocol=eth_type_trans(skb,dev);
- 			dev->stats.rx_packets++;
- 			dev->stats.rx_bytes += length;
+			dev->stats.rx_packets++;
+			dev->stats.rx_bytes += length;
 			netif_rx(skb);
 		}
 

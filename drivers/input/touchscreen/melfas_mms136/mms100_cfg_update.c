@@ -113,9 +113,9 @@ struct mms_bin_hdr {
 	u32	binary_offset;
 	u32	binary_length;
 
-	u32	extention_offset;	
+	u32	extention_offset;
 	u32	reserved1;
-	
+
 } __attribute__ ((packed));
 
 struct mms_fw_img {
@@ -260,7 +260,7 @@ static eISCRet_t mms100_get_version_info(struct i2c_client *_client) {
 	for (i = 0; i < SECTION_NUM; i++) {
 		ts_info[i].start_addr = rd_buf[i];
 
-		/* 
+		/*
 		 *  previous core binary had 4 sections while current version contains 3 of them
 		 * for compatibleness, register address was not modified so we get 1,2,3,5,6,7th
 		 * data of read buffer
@@ -327,9 +327,9 @@ static eISCRet_t mms100_compare_version_info(struct i2c_client *_client) {
 	//unsigned char expected_compatibility[SECTION_NUM];
 	int target_ver[SECTION_NUM];
 	int fw_up_to_date = true;
-	
+
 	pr_info("[TSP ISC] %s\n", __func__);
-	
+
 	if (mms100_get_version_info(_client) != ISC_SUCCESS)
 		return ISC_I2C_ERROR;
 
@@ -338,12 +338,12 @@ static eISCRet_t mms100_compare_version_info(struct i2c_client *_client) {
 	target_ver[0] = mfsb_info[0].version;
 	section_update_flag[0] = false;
 	for (i = SEC_CORE; i < SECTION_NUM; i++) {
-		
+
 		if (mfsb_info[i].version != ts_info[i].version) {
 			fw_up_to_date = false;
 			section_update_flag[i] = true;
 			target_ver[i] = mfsb_info[i].version;
-		/*	
+		/*
 			if(mfsb_info[0].version != ts_info[0].version){
 				section_update_flag[0]=true;
 				section_update_flag[1]=true;
@@ -636,7 +636,7 @@ static eISCRet_t mms100_update_section_data(struct i2c_client *_client) {
 					ptr_fw += 1024;								// 2012.08.30
 
 				//if ((ptr_fw[0] != ISC_CMD_UPDATE_MODE) || (ptr_fw[1] != ISC_SUBCMD_DATA_WRITE) || (ptr_fw[2] != page_addr))	// 2012.08.30
-				//    return ISC_WRITE_BUFFER_ERROR;																			
+				//    return ISC_WRITE_BUFFER_ERROR;
 
 				g_wr_buf[0] = ISC_CMD_UPDATE_MODE;				// 2012.08.30
 				g_wr_buf[1] = ISC_SUBCMD_DATA_WRITE;
@@ -679,7 +679,7 @@ static eISCRet_t mms100_update_section_data(struct i2c_client *_client) {
 				section_update_flag[i] = false;
 				pr_info("section(%d) updated.\n", i);
 			}
-		}	
+		}
 	}
 
 	pr_info("End mms100_update_section_data()\n");
@@ -812,7 +812,7 @@ eISCRet_t mms100_ISC_download_mbinary(struct i2c_client *_client, bool force_upd
 	if (ret_msg != ISC_SUCCESS)
 		goto ISC_ERROR_HANDLE;
 
-	
+
 	ret_msg = mms100_ISC_clear_validate_markers(_client);
 	if (ret_msg != ISC_SUCCESS)
 		goto ISC_ERROR_HANDLE;
@@ -821,13 +821,13 @@ eISCRet_t mms100_ISC_download_mbinary(struct i2c_client *_client, bool force_upd
 	if (ret_msg != ISC_SUCCESS)
 		goto ISC_ERROR_HANDLE;
 	kfree(img);
-	//mms100_reset(_client); 
+	//mms100_reset(_client);
 
 	pr_info("FIRMWARE_UPDATE_FINISHED!!!\n");
 
 	ret_msg = ISC_SUCCESS;
 
-ISC_ERROR_HANDLE: 
+ISC_ERROR_HANDLE:
 	if (ret_msg != ISC_SUCCESS)
 		pr_info("ISC_ERROR_CODE: %d\n", ret_msg);
 
@@ -836,4 +836,3 @@ ISC_ERROR_HANDLE:
 
 	return ret_msg;
 }
-

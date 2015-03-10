@@ -1399,7 +1399,7 @@ static void __ref msm_therm_temp_log(struct work_struct *work)
 			tsens_dev.sensor_num = i;
 			tsens_get_temp(&tsens_dev, &temp);
 			ret = sprintf(buffer + added, "(%d --- %ld)", i, temp);
-			added += ret;						
+			added += ret;
 		}
 		pr_info("%s", buffer);
 	}
@@ -3402,4 +3402,3 @@ int __init msm_thermal_late_init(void)
 	return 0;
 }
 late_initcall(msm_thermal_late_init);
-

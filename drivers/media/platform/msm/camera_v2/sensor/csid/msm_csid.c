@@ -155,7 +155,7 @@ static irqreturn_t msm_csid_irq(int irq_num, void *data)
 		pr_err("%s:%d csid_dev NULL\n", __func__, __LINE__);
 		return IRQ_HANDLED;
 	}
-	
+
 	csidbase = csid_dev->base;
 
 	irq = msm_camera_io_r(csid_dev->base + CSID_IRQ_STATUS_ADDR);

@@ -615,7 +615,7 @@ static int generate_sched_domains(cpumask_var_t **domains,
 			child = cgroup_cs(cont);
 			list_add_tail(&child->stack_list, &q);
 		}
-  	}
+	}
 
 	for (i = 0; i < csn; i++)
 		csa[i]->pn = i;

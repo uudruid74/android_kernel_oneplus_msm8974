@@ -213,7 +213,7 @@ static ssize_t parport_read_device_id (struct parport *port, char *buffer,
 		 * the first 256 bytes or so that we must have read so
 		 * far. */
 		if (buffer[len-1] == ';') {
- 			printk (KERN_DEBUG "%s: Device ID reading stopped"
+			printk (KERN_DEBUG "%s: Device ID reading stopped"
 				" before device told data not available. "
 				"Current idlen %u of %u, len bytes %02X %02X\n",
 				port->name, current_idlen, numidlens,

@@ -367,7 +367,7 @@ int send_instruction_sync(struct ssp_data *data, u8 uInst,
 		break;
 	case GO_SLEEP:
 		command = MSG2SSP_AP_STATUS_SLEEP;
-		data->uLastAPState = MSG2SSP_AP_STATUS_SLEEP;	
+		data->uLastAPState = MSG2SSP_AP_STATUS_SLEEP;
 		break;
 	case REMOVE_LIBRARY:
 		command = MSG2SSP_INST_LIBRARY_REMOVE;
@@ -460,7 +460,7 @@ int get_batch_count(struct ssp_data *data, u8 uSensorType) {
 
 int get_chipid(struct ssp_data *data)
 {
-	int iRet, iReties = 0;	
+	int iRet, iReties = 0;
 	char buffer = 0;
 	struct ssp_msg *msg;
 
@@ -478,18 +478,18 @@ retries:
 	msg->free_buffer = 0;
 
 	iRet = ssp_spi_sync(data, msg, 1000);
-	
+
 	if (buffer != DEVICE_ID && iReties++ < 2) {
 	 mdelay(5);
-	 pr_err("[SSP] %s - get chip ID retry\n", __func__);	
+	 pr_err("[SSP] %s - get chip ID retry\n", __func__);
 	 goto retries;
 	}
 
 	if (iRet == SUCCESS)
 		return buffer;
 
-	pr_err("[SSP] %s - get chip ID failed %d\n", __func__, iRet);	
-	return ERROR;	
+	pr_err("[SSP] %s - get chip ID failed %d\n", __func__, iRet);
+	return ERROR;
 }
 
 int set_sensor_position(struct ssp_data *data)
@@ -536,7 +536,7 @@ int set_sensor_tilt(struct ssp_data *data)
 	iRet = ssp_spi_async(data, msg);
 
 	pr_info("[SSP] Sensor Position tilt : %u\n",
-        	data->rot_direction);
+		data->rot_direction);
 
 	if (iRet != SUCCESS) {
 		pr_err("[SSP]: %s - i2c fail %d\n", __func__, iRet);
@@ -648,8 +648,8 @@ void set_gesture_current(struct ssp_data *data, unsigned char uData1)
 }
 
 unsigned int get_sensor_scanning_info(struct ssp_data *data)
-{	
-	int iRet, iReties = 0;	
+{
+	int iRet, iReties = 0;
 	unsigned int iSensorState = 0;
 	char buffer[4] = { 0, };
 	struct ssp_msg *msg;
@@ -668,20 +668,20 @@ retries:
 	msg->free_buffer = 0;
 
 	iRet = ssp_spi_sync(data, msg, 1000);
-	
+
 	if (iRet != SUCCESS) {
 		pr_err("[SSP] %s -fail to get_sensor_scanning_info %d\n",
 				__func__, iRet);
 
 		if(iReties++ < 2)
-		{	
+		{
 			pr_err("[SSP] %s get_sensor_scanning_info fail retry\n",
 				__func__);
-			
+
 			mdelay(5);
 			goto retries;
 		}
-		
+
 		return 0;
 	}
 	else
@@ -693,12 +693,12 @@ retries:
 		{
 			pr_err("[SSP] %s get_sensor_scanning_info val retry %d\n",
 				__func__, iSensorState);
-			
+
 			mdelay(5);
 			goto retries;
 		}
 	}
-	
+
 	pr_err("[SSP]: %s - %d %d %d %d\n", __func__, buffer[0] ,buffer[1],buffer[2],buffer[3]);
 	return iSensorState;
 }

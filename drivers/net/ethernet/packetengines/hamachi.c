@@ -1596,7 +1596,7 @@ static int hamachi_rx(struct net_device *dev)
 			if (skb == NULL)
 				break;		/* Better luck next round. */
 			skb_reserve(skb, 2);	/* Align IP on 16 byte boundaries */
-                	desc->addr = cpu_to_leXX(pci_map_single(hmp->pci_dev,
+			desc->addr = cpu_to_leXX(pci_map_single(hmp->pci_dev,
 				skb->data, hmp->rx_buf_sz, PCI_DMA_FROMDEVICE));
 		}
 		desc->status_n_length = cpu_to_le32(hmp->rx_buf_sz);

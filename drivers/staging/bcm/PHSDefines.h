@@ -65,7 +65,7 @@ typedef struct _S_PHS_RULE
 
 	B_UINT8							u8Reserved[3];
 
-  	LONG							PHSModifiedBytes;
+	LONG							PHSModifiedBytes;
 	ULONG       				PHSModifiedNumPackets;
 	ULONG           			PHSErrorNumPackets;
 }S_PHS_RULE;

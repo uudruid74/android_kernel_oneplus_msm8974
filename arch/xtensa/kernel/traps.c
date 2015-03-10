@@ -173,7 +173,7 @@ __die_if_kernel(const char *str, struct pt_regs *regs, long err)
 void do_unhandled(struct pt_regs *regs, unsigned long exccause)
 {
 	__die_if_kernel("Caught unhandled exception - should not happen",
-	    		regs, SIGKILL);
+			regs, SIGKILL);
 
 	/* If in user mode, send SIGILL signal to current process */
 	printk("Caught unhandled exception in '%s' "
@@ -251,7 +251,7 @@ do_unaligned_user (struct pt_regs *regs)
 	siginfo_t info;
 
 	__die_if_kernel("Unhandled unaligned exception in kernel",
-	    		regs, SIGKILL);
+			regs, SIGKILL);
 
 	current->thread.bad_vaddr = regs->excvaddr;
 	current->thread.error_code = -3;
@@ -452,7 +452,7 @@ void show_stack(struct task_struct *task, unsigned long *sp)
 
 	if (!sp)
 		sp = stack_pointer(task);
- 	stack = sp;
+	stack = sp;
 
 	printk("\nStack: ");
 
@@ -523,5 +523,3 @@ void die(const char * str, struct pt_regs * regs, long err)
 
 	do_exit(err);
 }
-
-

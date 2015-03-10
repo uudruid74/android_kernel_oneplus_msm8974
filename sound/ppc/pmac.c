@@ -1407,4 +1407,3 @@ void snd_pmac_resume(struct snd_pmac *chip)
 }
 
 #endif /* CONFIG_PM */
-

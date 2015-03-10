@@ -788,4 +788,3 @@ MODULE_DESCRIPTION("BMA150 driver");
 
 module_init(BMA150_init);
 module_exit(BMA150_exit);
-

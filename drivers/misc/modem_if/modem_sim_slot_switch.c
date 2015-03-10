@@ -74,7 +74,7 @@ static ssize_t set_slot_switch(struct device *dev, struct device_attribute *attr
 			break;
 		case 1:
 			gpio_set_value(GPIO_SIM_SEL, 1);
-			sprintf(buffer, "1");			
+			sprintf(buffer, "1");
 			printk("set slot switch to %x\n", gpio_get_value(GPIO_SIM_SEL));
 			break;
 		default:
@@ -83,7 +83,7 @@ static ssize_t set_slot_switch(struct device *dev, struct device_attribute *attr
 
 	sys_write(fd, buffer, strlen(buffer));
 
-	sys_close(fd); 
+	sys_close(fd);
 	set_fs(fs);
 
 	return size;

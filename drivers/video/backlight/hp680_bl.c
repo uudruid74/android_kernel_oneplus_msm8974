@@ -168,7 +168,7 @@ static int __init hp680bl_init(void)
 static void __exit hp680bl_exit(void)
 {
 	platform_device_unregister(hp680bl_device);
- 	platform_driver_unregister(&hp680bl_driver);
+	platform_driver_unregister(&hp680bl_driver);
 }
 
 module_init(hp680bl_init);

@@ -43,4 +43,3 @@ MACHINE_START(CLEP7212, "Cirrus Logic 7212/7312")
 	.timer		= &clps711x_timer,
 	.restart	= clps711x_restart,
 MACHINE_END
-

@@ -54,7 +54,7 @@ INT SendControlPacket(PMINI_ADAPTER Adapter, char *pControlPacket)
 	if((atomic_read( &Adapter->CurrNumFreeTxDesc ) <
 		((PLeader->PLength-1)/MAX_DEVICE_DESC_SIZE)+1))
     {
-    	BCM_DEBUG_PRINT(Adapter,DBG_TYPE_TX, TX_CONTROL, DBG_LVL_ALL, "NO FREE DESCRIPTORS TO SEND CONTROL PACKET");
+	BCM_DEBUG_PRINT(Adapter,DBG_TYPE_TX, TX_CONTROL, DBG_LVL_ALL, "NO FREE DESCRIPTORS TO SEND CONTROL PACKET");
         return STATUS_FAILURE;
     }
 
@@ -244,7 +244,7 @@ int tx_pkt_handler(PMINI_ADAPTER Adapter  /**< pointer to adapter object*/
 		if((Adapter->IdleMode || Adapter->bShutStatus) && atomic_read(&Adapter->TotalPacketCount))
 		{
 				BCM_DEBUG_PRINT(Adapter,DBG_TYPE_TX, TX_PACKETS, DBG_LVL_ALL, "Device in Low Power mode...waking up");
-    			Adapter->usIdleModePattern = ABORT_IDLE_MODE;
+			Adapter->usIdleModePattern = ABORT_IDLE_MODE;
 				Adapter->bWakeUpDevice = TRUE;
 				wake_up(&Adapter->process_rx_cntrlpkt);
 		}

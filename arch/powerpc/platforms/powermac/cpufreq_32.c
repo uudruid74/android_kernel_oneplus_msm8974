@@ -250,7 +250,7 @@ static int pmu_set_cpu_speed(int low_speed)
 	pmu_suspend();
 
 	/* Disable all interrupt sources on openpic */
- 	pic_prio = mpic_cpu_get_priority();
+	pic_prio = mpic_cpu_get_priority();
 	mpic_cpu_set_priority(0xf);
 
 	/* Make sure the decrementer won't interrupt us */
@@ -295,10 +295,10 @@ static int pmu_set_cpu_speed(int low_speed)
 
 	/* Restore L2 cache */
 	if (save_l2cr != 0xffffffff && (save_l2cr & L2CR_L2E) != 0)
- 		_set_L2CR(save_l2cr);
+		_set_L2CR(save_l2cr);
 	/* Restore L3 cache */
 	if (save_l3cr != 0xffffffff && (save_l3cr & L3CR_L3E) != 0)
- 		_set_L3CR(save_l3cr);
+		_set_L3CR(save_l3cr);
 
 	/* Restore userland MMU context */
 	switch_mmu_context(NULL, current->active_mm);
@@ -318,7 +318,7 @@ static int pmu_set_cpu_speed(int low_speed)
 	set_dec(1);
 
 	/* Restore interrupts */
- 	mpic_cpu_set_priority(pic_prio);
+	mpic_cpu_set_priority(pic_prio);
 
 	/* Let interrupts flow again ... */
 	local_irq_restore(flags);
@@ -715,4 +715,3 @@ out:
 }
 
 module_init(pmac_cpufreq_setup);
-

@@ -1071,4 +1071,3 @@
 		qcom,cdc-on-demand-supplies = "cdc-vdd-spkdrv";
 	};
 };
-

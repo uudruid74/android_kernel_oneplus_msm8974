@@ -21,7 +21,7 @@
 		i2c-gpio,delay-us = <2>;
 		#address-cells = <1>;
 		#size-cells = <0>;
-	
+
 		max77823@66 {
 			compatible = "maxim,max77823";
 			reg = <0x66>;
@@ -30,7 +30,7 @@
 		};
 
 		max77823-fuelgauge {
-			compatible = "samsung,max77823-fuelgauge"; 
+			compatible = "samsung,max77823-fuelgauge";
 			fuelgauge,jig_gpio = <&pma8084_gpios 21 0x1>;
 			fuelgauge,bat_int = <&pma8084_mpps 8 0>;
 

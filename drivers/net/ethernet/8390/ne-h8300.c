@@ -493,7 +493,7 @@ static void ne_block_input(struct net_device *dev, int count, struct sk_buff *sk
 			if (((ring_offset + xfer_count) & 0xff) == low)
 				break;
 		} while (--tries > 0);
-	 	if (tries <= 0)
+		if (tries <= 0)
 			printk(KERN_WARNING "%s: RX transfer address mismatch,"
 				"%#4.4x (expected) vs. %#4.4x (actual).\n",
 				dev->name, ring_offset + xfer_count, addr);

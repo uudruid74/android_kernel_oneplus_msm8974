@@ -203,4 +203,3 @@ s32 bbm_data(HANDLE handle, DEVICEID devid, u16 addr, u8 *data, u32 length)
 		return BBM_E_BB_WRITE;
 	return BBM_OK;
 }
-

@@ -2397,10 +2397,10 @@ typedef struct DAC960_Controller
       dma_addr_t NewLogicalDriveInformationDMA;
 
       DAC960_V1_BackgroundInitializationStatus_T
-        	*BackgroundInitializationStatus;
+		*BackgroundInitializationStatus;
       dma_addr_t BackgroundInitializationStatusDMA;
       DAC960_V1_BackgroundInitializationStatus_T
-        	LastBackgroundInitializationStatus;
+		LastBackgroundInitializationStatus;
 
       DAC960_V1_DeviceState_T
 	DeviceState[DAC960_V1_MaxChannels][DAC960_V1_MaxTargets];
@@ -4396,7 +4396,7 @@ void DAC960_P_To_PD_TranslateReadWriteCommand(DAC960_V1_CommandMailbox_T
 
 static void DAC960_FinalizeController(DAC960_Controller_T *);
 static void DAC960_V1_QueueReadWriteCommand(DAC960_Command_T *);
-static void DAC960_V2_QueueReadWriteCommand(DAC960_Command_T *); 
+static void DAC960_V2_QueueReadWriteCommand(DAC960_Command_T *);
 static void DAC960_RequestFunction(struct request_queue *);
 static irqreturn_t DAC960_BA_InterruptHandler(int, void *);
 static irqreturn_t DAC960_LP_InterruptHandler(int, void *);

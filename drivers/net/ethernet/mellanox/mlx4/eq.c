@@ -1120,4 +1120,3 @@ void mlx4_release_eq(struct mlx4_dev *dev, int vec)
 
 }
 EXPORT_SYMBOL(mlx4_release_eq);
-

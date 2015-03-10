@@ -2236,7 +2236,7 @@ struct div_clk edp_mainlink_clk_src = {
 	.ops = &fixed_5div_ops,
 	.data = {
 		.div = 5,
-	},	
+	},
 	.c = {
 		.parent = &edp_vco_clk.c,
 		.dbg_name = "edp_mainlink_clk_src",

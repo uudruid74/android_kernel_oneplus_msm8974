@@ -13,7 +13,7 @@ int probe_drv(void)
 	int res;
 
 	fc8300_set_port_if((unsigned long)isdbt_get_if_handle());
-	
+
 	res = isdbt_drv_probe();
 
 	return res;
@@ -120,4 +120,3 @@ struct isdbt_drv_func *fc8300_drv_func(void)
 
 	return &fc8300_drv_func_struct;
 }
-

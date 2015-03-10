@@ -98,7 +98,7 @@ extern int avdd_gpio;
 static int cy_hw_power(int on, int use_irq, int irq_gpio)
 {
 	int ret = 0;
-	
+
 	static struct regulator *lvs1_1p8;
 
 	pr_info("[TSP] power %s\n", on ? "on" : "off");
@@ -175,7 +175,7 @@ static int cy_hw_power(int on, int use_irq, int irq_gpio)
 	return 0;
 }
 /*************************************************************************************************
- * 
+ *
  *************************************************************************************************/
 int cyttsp4_xres(struct cyttsp4_core_platform_data *pdata,
 		struct device *dev)
@@ -195,8 +195,8 @@ int cyttsp4_init(struct cyttsp4_core_platform_data *pdata,
 		int on, struct device *dev)
 {
 	int rc = 0;
-	int irq_gpio = pdata->irq_gpio;	
-	
+	int irq_gpio = pdata->irq_gpio;
+
 		if (on) {
 		rc = gpio_request(irq_gpio, "TSP_INT");
 		if(rc < 0){
@@ -215,7 +215,7 @@ int cyttsp4_init(struct cyttsp4_core_platform_data *pdata,
 				GPIO_CFG_INPUT, GPIO_CFG_PULL_UP, GPIO_CFG_2MA), 1);
 			}
 		else
-		#endif	
+		#endif
 		{
 			gpio_tlmm_config(GPIO_CFG(CYTTSP4_I2C_IRQ_GPIO, 0,
 				GPIO_CFG_INPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA), 1);
@@ -235,7 +235,7 @@ static int cyttsp4_wakeup(struct cyttsp4_core_platform_data *pdata,
 		struct device *dev, atomic_t *ignore_irq)
 {
 	int irq_gpio = pdata->irq_gpio;
-	
+
 	return cy_hw_power(1, true, irq_gpio);
 }
 
@@ -396,4 +396,3 @@ struct cyttsp4_platform_data _cyttsp4_platform_data = {
 	.loader_pdata = &_cyttsp4_loader_platform_data,
 };
 #endif /* !defined(CONFIG_TOUCHSCREEN_CYPRESS_CYTTSP4_DEVICETREE_SUPPORT) */
-

@@ -46,4 +46,3 @@ struct mdm_platform_data {
 };
 
 #endif
-

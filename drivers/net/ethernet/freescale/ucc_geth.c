@@ -2446,7 +2446,7 @@ static int ucc_geth_startup(struct ucc_geth_private *ugeth)
 	default:
 		if (netif_msg_ifup(ugeth))
 			ugeth_err("%s: Bad number of Rx threads value.",
-				       	__func__);
+					__func__);
 		return -EINVAL;
 		break;
 	}
@@ -2470,7 +2470,7 @@ static int ucc_geth_startup(struct ucc_geth_private *ugeth)
 	default:
 		if (netif_msg_ifup(ugeth))
 			ugeth_err("%s: Bad number of Tx threads value.",
-				       	__func__);
+					__func__);
 		return -EINVAL;
 		break;
 	}
@@ -2720,7 +2720,7 @@ static int ucc_geth_startup(struct ucc_geth_private *ugeth)
 				ugeth_err
 				    ("%s: Can not allocate DPRAM memory for"
 					" p_tx_fw_statistics_pram.",
-				       	__func__);
+					__func__);
 			return -ENOMEM;
 		}
 		ugeth->p_tx_fw_statistics_pram =
@@ -3844,7 +3844,7 @@ static int ucc_geth_probe(struct platform_device* ofdev)
 	if (ug_info == NULL) {
 		if (netif_msg_probe(&debug))
 			ugeth_err("%s: [%d] Missing additional data!",
-				       	__func__, ucc_num);
+					__func__, ucc_num);
 		return -ENODEV;
 	}
 

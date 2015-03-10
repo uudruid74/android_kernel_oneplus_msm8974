@@ -1023,7 +1023,7 @@ static int max77803_muic_set_charging_type(struct max77803_muic_info *info,
 			}
 			ret = mdata->charger_cb(CABLE_TYPE_NONE_MUIC);
 		} else {
-			if ((system_rev == 0) 
+			if ((system_rev == 0)
 #if defined(CONFIG_MACH_HLTEVZW) || defined(CONFIG_MACH_HLTESPR) || defined(CONFIG_MACH_HLTEUSC)
 				|| (system_rev == 6)
 #endif

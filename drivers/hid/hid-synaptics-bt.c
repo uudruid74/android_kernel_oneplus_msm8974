@@ -119,7 +119,7 @@ static int hid_synaptics_raw_event(struct hid_device *hdev,
 }
 
 static int hid_synaptics_event(struct hid_device *hdev, struct hid_field *field,
-		 		struct hid_usage *usage, __s32 value)
+				struct hid_usage *usage, __s32 value)
 {
 	if (field->report->id == 9)
 		return 1;

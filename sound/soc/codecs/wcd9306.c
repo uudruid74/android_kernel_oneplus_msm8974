@@ -5865,9 +5865,9 @@ static const struct tapan_reg_mask_val tapan_codec_reg_init_val[] = {
 	/* Initialize current threshold to 365MA
 	 * number of wait and run cycles to 4096
 	 */
-#if defined (CONFIG_MACH_MILLETLTE_KOR)	 
+#if defined (CONFIG_MACH_MILLETLTE_KOR)
 	{TAPAN_A_RX_HPH_OCP_CTL, 0xEB, 0x6B},
-#else	
+#else
 	{TAPAN_A_RX_HPH_OCP_CTL, 0xE9, 0x69},
 #endif
 	{TAPAN_A_RX_COM_OCP_COUNT, 0xFF, 0xFF},

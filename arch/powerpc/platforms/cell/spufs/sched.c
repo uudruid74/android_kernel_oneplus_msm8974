@@ -441,7 +441,7 @@ static void spu_unbind_context(struct spu *spu, struct spu_context *ctx)
 
 	spuctx_switch_state(ctx, SPU_UTIL_SYSTEM);
 
- 	if (spu->ctx->flags & SPU_CREATE_NOSCHED)
+	if (spu->ctx->flags & SPU_CREATE_NOSCHED)
 		atomic_dec(&cbe_spu_info[spu->node].reserved_spus);
 
 	if (ctx->gang)

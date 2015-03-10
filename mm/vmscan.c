@@ -2273,7 +2273,7 @@ unsigned long rtcc_reclaim_pages(unsigned long nr_to_reclaim, int swappiness, un
 	rc.nr_file = nr_to_reclaim - rc.nr_anon;
 	rc.nr_swapped = 0;
 	sc.rc = &rc;
-	
+
 	if (swappiness <= 1)
 		sc.may_swap = 0;
 
@@ -3276,7 +3276,7 @@ static int __init kswapd_init(void)
 
 	swap_setup();
 	for_each_node_state(nid, N_HIGH_MEMORY)
- 		kswapd_run(nid);
+		kswapd_run(nid);
 	hotcpu_notifier(cpu_callback, 0);
 	return 0;
 }

@@ -51,7 +51,7 @@ SECTIONS
   /* might get freed after init */
   . = ALIGN(PAGE_SIZE);
   .smp_locks : AT(ADDR(.smp_locks) - LOAD_OFFSET) {
-  	__smp_locks = .;
+	__smp_locks = .;
 	*(.smp_locks)
 	__smp_locks_end = .;
   }

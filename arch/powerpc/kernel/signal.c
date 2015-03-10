@@ -155,7 +155,7 @@ static int do_signal(struct pt_regs *regs)
 	thread_change_pc(current, regs);
 
 	if (is32) {
-        	if (ka.sa.sa_flags & SA_SIGINFO)
+		if (ka.sa.sa_flags & SA_SIGINFO)
 			ret = handle_rt_signal32(signr, &ka, &info, oldset,
 					regs);
 		else

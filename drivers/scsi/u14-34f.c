@@ -9,7 +9,7 @@
  *        + Module parameters  can now be specified only in the
  *          same format as the kernel boot options.
  *
- *             boot option    old module param 
+ *             boot option    old module param
  *             -----------    ------------------
  *             addr,...       io_port=addr,...
  *             lc:[y|n]       linked_comm=[1|0]
@@ -1314,7 +1314,7 @@ static int u14_34f_queuecommand_lck(struct scsi_cmnd *SCpnt, void (*done)(struct
       unmap_dma(i, j);
       SCpnt->host_scribble = NULL;
       scmd_printk(KERN_INFO, SCpnt,
-      		"qcomm, adapter busy.\n");
+		"qcomm, adapter busy.\n");
       return 1;
       }
 
@@ -1701,7 +1701,7 @@ static void flush_dev(struct scsi_device *dev, unsigned long cursec, unsigned in
 
       if (wait_on_busy(sh[j]->io_port, MAXLOOP)) {
          scmd_printk(KERN_INFO, SCpnt,
-	 	"%s, mbox %d, adapter"
+		"%s, mbox %d, adapter"
                 " busy, will abort.\n", (ihdlr ? "ihdlr" : "qcomm"),
                 k);
          HD(j)->cp_stat[k] = ABORTING;
@@ -1833,7 +1833,7 @@ static irqreturn_t ihdlr(unsigned int j)
              (!(tstatus == CHECK_CONDITION && HD(j)->iocount <= 1000 &&
                (SCpnt->sense_buffer[2] & 0xf) == NOT_READY)))
             scmd_printk(KERN_INFO, SCpnt,
-	    	"ihdlr, target_status 0x%x, sense key 0x%x.\n",
+		"ihdlr, target_status 0x%x, sense key 0x%x.\n",
                    spp->target_status,
                    SCpnt->sense_buffer[2]);
 

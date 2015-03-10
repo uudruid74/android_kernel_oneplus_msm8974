@@ -57,7 +57,7 @@ struct esxxx_platform_data {
 	unsigned int	gpiob_gpio;
 	unsigned int	accdet_gpio;
 	unsigned int	int_gpio;
-	struct slim_device intf_device;	
+	struct slim_device intf_device;
 
 };
 #endif

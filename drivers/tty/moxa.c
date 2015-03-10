@@ -1248,7 +1248,7 @@ static int moxa_chars_in_buffer(struct tty_struct *tty)
 		 * Make it possible to wakeup anything waiting for output
 		 * in tty_ioctl.c, etc.
 		 */
-        	set_bit(EMPTYWAIT, &ch->statusflags);
+		set_bit(EMPTYWAIT, &ch->statusflags);
 	return chars;
 }
 
@@ -1350,8 +1350,8 @@ static void moxa_new_dcdstate(struct moxa_port *p, u8 dcd)
 
 	spin_lock_irqsave(&p->port.lock, flags);
 	if (dcd != p->DCDState) {
-        	p->DCDState = dcd;
-        	spin_unlock_irqrestore(&p->port.lock, flags);
+		p->DCDState = dcd;
+		spin_unlock_irqrestore(&p->port.lock, flags);
 		tty = tty_port_tty_get(&p->port);
 		if (tty && C_CLOCAL(tty) && !dcd)
 			tty_hangup(tty);
@@ -1626,10 +1626,10 @@ static void MoxaPortFlushData(struct moxa_port *port, int mode)
  *      Syntax:
  *      void MoxaPortFlushData(int port, int mode);
  *           int port           : port number (0 - 127)
- *           int mode    
- *                      0       : flush the Rx buffer 
- *                      1       : flush the Tx buffer 
- *                      2       : flush the Rx and Tx buffer 
+ *           int mode
+ *                      0       : flush the Rx buffer
+ *                      1       : flush the Tx buffer
+ *                      2       : flush the Rx and Tx buffer
  *
  *
  *      Function 20:    Write data.

@@ -47,4 +47,3 @@ extern s32 fc8080_i2c_deinit(HANDLE handle);
 #endif
 
 #endif /* __FC8080_I2C_H__ */
-

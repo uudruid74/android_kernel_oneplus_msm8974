@@ -199,4 +199,3 @@ config UML_NET_SLIRP
         Startup example: "eth0=slirp,FE:FD:01:02:03:04,/usr/local/bin/slirp"
 
 endmenu
-

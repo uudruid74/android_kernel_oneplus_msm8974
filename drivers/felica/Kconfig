@@ -5,4 +5,3 @@ config FELICA
 config NFC_FELICA
 	bool "NFC FeliCa Driver"
 	default n
-

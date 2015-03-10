@@ -71,4 +71,3 @@ int mdfld_output_init(struct drm_device *dev)
 	mdfld_init_panel(dev, 1, HDMI);
 	return 0;
 }
-

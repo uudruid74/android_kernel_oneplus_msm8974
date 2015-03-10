@@ -1982,7 +1982,7 @@ unsigned char CARDbyGetPktType (void *pDeviceHandler)
         return PK_TYPE_11GA;
     }
     else {
-    	return PK_TYPE_11GB;
+	return PK_TYPE_11GB;
     }
 }
 
@@ -2216,10 +2216,3 @@ void CARDvUpdateNextTBTT (unsigned long dwIoBase, QWORD qwTSF, unsigned short wB
 
     return;
 }
-
-
-
-
-
-
-

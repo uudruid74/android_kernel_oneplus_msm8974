@@ -143,7 +143,7 @@ int eeh_send_failure_event(struct eeh_dev *edev)
 	if (event == NULL) {
 		printk(KERN_ERR "EEH: out of memory, event not handled\n");
 		return 1;
- 	}
+	}
 
 	if (edev->pdev)
 		pci_dev_get(edev->pdev);

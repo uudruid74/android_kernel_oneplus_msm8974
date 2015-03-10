@@ -659,4 +659,3 @@ module_exit(qbat_exit);
 MODULE_AUTHOR("Quanta Computer Inc.");
 MODULE_DESCRIPTION("Quanta Embedded Controller I2C Battery Driver");
 MODULE_LICENSE("GPL v2");
-

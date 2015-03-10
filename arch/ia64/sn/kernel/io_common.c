@@ -241,12 +241,12 @@ void sn_pci_fixup_slot(struct pci_dev *dev, struct pcidev_info *pcidev_info,
 	/*
 	 * Using the PROMs values for the PCI host bus, get the Linux
 	 * PCI host_pci_dev struct and set up host bus linkages
- 	 */
+	 */
 
 	bus_no = (pcidev_info->pdi_slot_host_handle >> 32) & 0xff;
 	devfn = pcidev_info->pdi_slot_host_handle & 0xffffffff;
- 	host_pci_bus = pci_find_bus(segment, bus_no);
- 	host_pci_dev = pci_get_slot(host_pci_bus, devfn);
+	host_pci_bus = pci_find_bus(segment, bus_no);
+	host_pci_dev = pci_get_slot(host_pci_bus, devfn);
 
 	pcidev_info->host_pci_dev = host_pci_dev;
 	pcidev_info->pdi_linux_pcidev = dev;
@@ -564,4 +564,3 @@ EXPORT_SYMBOL(sn_pci_unfixup_slot);
 EXPORT_SYMBOL(sn_bus_store_sysdata);
 EXPORT_SYMBOL(sn_bus_free_sysdata);
 EXPORT_SYMBOL(sn_generate_path);
-

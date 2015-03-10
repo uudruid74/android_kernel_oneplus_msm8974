@@ -546,7 +546,7 @@ static void max77828_muic_start_check_hv(struct max77828_muic_info *info)
 
 	if (!info->muic) {
 		dev_err(info->dev, "%s: no muic i2c client\n", __func__);
-		return;                                                      	
+		return;
 	}
 #if defined(CONFIG_MACH_KLTE_JPN)
 	/* Clear INT3 */
@@ -624,7 +624,7 @@ static void max77828_check_hv(unsigned long arg)
 		return;
 	dev_info(gInfo->dev, "%s:HV charger is detected.\n", __func__);
 
-	/* Set values about HV Charging 
+	/* Set values about HV Charging
 	 *  HVCTRL1 = 0x00
 	 *  HVCTRL2 = 0x06
 	 */
@@ -640,7 +640,7 @@ static void max77828_check_hv(unsigned long arg)
 	/* TX Data = 0x45 */
 	value = 0x45;
 	max77828_write_reg(gInfo->max77828->muic, MAX77828_MUIC_REG_HVTXBYTE, value);
-	
+
 	/* Set HVCTRL2 = 0x1B*/
 //	max77828_write_reg(gInfo->max77828->muic, MAX77828_MUIC_REG_HVCTRL2, 0x1B);
 	/* disable DNResN + enable HVDigEn + Mping + MTxEn + MPngEnb */
@@ -670,7 +670,7 @@ static int max77828_muic_check_vdnmon_status(struct max77828_muic_info *info)
 	return val;
 }
 
-static void max77828_muic_set_dpdnvden(struct max77828_muic_info *info, 
+static void max77828_muic_set_dpdnvden(struct max77828_muic_info *info,
 					int value)
 {
 	int ret;
@@ -2103,7 +2103,7 @@ static void max77828_muic_attach_hmt(struct max77828_muic_info *info,
 {
 	struct max77828_muic_data *mdata = info->muic_data;
 
-	pr_info("%s:%s Attached HMT adc(0x%x), vbvolt(0x%x), chgtyp(0x%x)", 
+	pr_info("%s:%s Attached HMT adc(0x%x), vbvolt(0x%x), chgtyp(0x%x)",
 		DEV_NAME, __func__, adc, vbvolt, chgtyp);
 	switch (info->cable_type) {
 	case CABLE_TYPE_HMT_MUIC:
@@ -2624,8 +2624,8 @@ static int max77828_muic_handle_detach(struct max77828_muic_info *info, int irq)
 		break;
 	case CABLE_TYPE_TA_MUIC:
 	case CABLE_TYPE_INCOMPATIBLE_MUIC:
-	case CABLE_TYPE_HV_TA_MUIC: 
-		
+	case CABLE_TYPE_HV_TA_MUIC:
+
 		dev_info(info->dev, "%s: TA\n", __func__);
 		info->cable_type = CABLE_TYPE_NONE_MUIC;
 		ret = max77828_muic_set_charging_type(info, false);

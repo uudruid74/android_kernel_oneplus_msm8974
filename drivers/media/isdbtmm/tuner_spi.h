@@ -110,5 +110,3 @@ typedef struct t_smt113j_ioctl_data
 extern int 	smt113j_spi_thread 	( void  *arg );
 extern int 	SMT113J_SPI_init	( void );
 extern void SMT113J_SPI_exit	( void );
-
-

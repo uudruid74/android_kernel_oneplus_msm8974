@@ -231,7 +231,7 @@ unsigned int uRateLen;
     }
 
     for (ii = 0; ii < uRateLen; ii++) {
-    	byRate = (unsigned char)(pItemRates->abyRates[ii]);
+	byRate = (unsigned char)(pItemRates->abyRates[ii]);
         if (WLAN_MGMT_IS_BASICRATE(byRate) &&
             (bUpdateBasicRate == true))  {
             // Add to basic rate set, update pDevice->byTopCCKBasicRate and pDevice->byTopOFDMBasicRate
@@ -257,7 +257,7 @@ unsigned int uRateLen;
             byRate = (unsigned char)(pItemExtRates->abyRates[ii]);
             // select highest basic rate
             if (WLAN_MGMT_IS_BASICRATE(pItemExtRates->abyRates[ii])) {
-            	// Add to basic rate set, update pDevice->byTopCCKBasicRate and pDevice->byTopOFDMBasicRate
+		// Add to basic rate set, update pDevice->byTopCCKBasicRate and pDevice->byTopOFDMBasicRate
                 CARDbAddBasicRate((void *)pDevice, wGetRateIdx(byRate));
                 DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"ParseMaxRate AddBasicRate: %d\n", wGetRateIdx(byRate));
             }
@@ -434,4 +434,3 @@ RATEuSetIE (
     }
     return (unsigned char)uRateCnt;
 }
-

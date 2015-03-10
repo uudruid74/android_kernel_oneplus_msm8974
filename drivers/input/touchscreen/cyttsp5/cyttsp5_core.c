@@ -4229,7 +4229,7 @@ static irqreturn_t cyttsp5_irq(int irq, void *handle)
 		dev_dbg(cd->dev, "%s: hw_power_state 0\n", __func__);
 		return IRQ_HANDLED;
 	}
-	if (cd->cpdata->irq_stat && 
+	if (cd->cpdata->irq_stat &&
 		cd->cpdata->irq_stat(cd->cpdata, cd->dev)) {
 		dev_dbg(cd->dev, "%s: interrupt pin is high\n", __func__);
 
@@ -4929,7 +4929,7 @@ int cyttsp5_core_resume(struct device *dev)
 const struct dev_pm_ops cyttsp5_pm_ops = {
 #if !defined(CONFIG_FB) && !defined(CONFIG_HAS_EARLYSUSPEND)
 	SET_SYSTEM_SLEEP_PM_OPS(cyttsp5_core_suspend, cyttsp5_core_resume)
-#endif	
+#endif
 	SET_RUNTIME_PM_OPS(cyttsp5_core_rt_suspend, cyttsp5_core_rt_resume,
 			NULL)
 };

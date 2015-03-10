@@ -65,7 +65,7 @@
  * This macro cleans and invalidates the entire L1 D cache.
  */
 
- 	.macro  clean_d_cache rd, rs
+	.macro  clean_d_cache rd, rs
 	mov	\rd, #0x1f00
 	orr	\rd, \rd, #0x00e0
 1:	mcr	p15, 0, \rd, c7, c14, 2		@ clean/invalidate L1 D line

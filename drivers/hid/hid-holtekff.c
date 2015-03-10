@@ -49,7 +49,7 @@ MODULE_DESCRIPTION("Force feedback support for Holtek On Line Grip based devices
  * 	06  stop all effects
  * 	(the difference between 04 and 06 isn't known; win driver
  * 	 sends 06,04 on application init, and 06 otherwise)
- * 
+ *
  * Commands 01 and 02 need to be sent as pairs, i.e. you need to send 01
  * before each 02.
  *
@@ -238,4 +238,3 @@ static void __exit holtek_exit(void)
 
 module_init(holtek_init);
 module_exit(holtek_exit);
-

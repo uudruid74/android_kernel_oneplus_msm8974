@@ -1571,4 +1571,3 @@ void zfcp_erp_clear_lun_status(struct scsi_device *sdev, u32 mask)
 	if (mask & ZFCP_STATUS_COMMON_ERP_FAILED)
 		atomic_set(&zfcp_sdev->erp_counter, 0);
 }
-

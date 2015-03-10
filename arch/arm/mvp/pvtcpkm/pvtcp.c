@@ -597,4 +597,3 @@ PvtcpSockInit(PvtcpSock *pvsk,
    }
    return rc;
 }
-

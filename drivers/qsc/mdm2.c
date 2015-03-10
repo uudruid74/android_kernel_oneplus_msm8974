@@ -80,7 +80,7 @@ out:
 
 static void mdm_do_clean_reset(struct mdm_modem_drv *mdm_drv)
 {
-	/* mdm clean reset 
+	/* mdm clean reset
 	 *
 	 * Shutdown PMIC and up if needed
 	 */
@@ -117,13 +117,13 @@ static void mdm_toggle_soft_reset(struct mdm_modem_drv *mdm_drv)
 	gpio_direction_output(mdm_drv->ap2mdm_soft_reset_gpio,
 			soft_reset_direction_de_assert);
 #endif//TD_CDMA
-	gpio_direction_output(MDM_GPIO(AP2MDM_SOFT_RESET), 
+	gpio_direction_output(MDM_GPIO(AP2MDM_SOFT_RESET),
 			soft_reset_direction_assert);
 	mdelay(10);
-	
+
 	mdm_do_clean_reset(mdm_drv);
 
-	gpio_direction_output(MDM_GPIO(AP2MDM_SOFT_RESET), 
+	gpio_direction_output(MDM_GPIO(AP2MDM_SOFT_RESET),
 			soft_reset_direction_de_assert);
 
 	gpio_direction_output(MDM_GPIO(AP2MDM_KPDPWR), 1);
@@ -140,39 +140,39 @@ static void mdm_atomic_soft_reset(struct mdm_modem_drv *mdm_drv)
 
 static void mdm_power_down_common(struct mdm_modem_drv *mdm_drv)
 {
-	int i = 0; 
+	int i = 0;
 	int soft_reset_direction =
 		mdm_drv->pdata->soft_reset_inverted ? 1 : 0;
 
 	mdm_peripheral_disconnect(mdm_drv);
 
-#if 0	// because we don't use the graceful shutdown function, we don't need this checking 
-	/* Wait for the modem to complete its power down actions. */ 
-	for (i = 20; i > 0; i--) { 
-		if (gpio_get_value(MDM_GPIO(MDM2AP_STATUS)) == 0) { 
-			if (mdm_debug_mask & MDM_DEBUG_MASK_SHDN_LOG) 
-				pr_debug("%s:id %d: mdm2ap_statuswent low, i=%d\n", 
-				__func__, mdm_drv->device_id, i); 
-			break; 
-		} 
-		msleep(100); 
-	} 
+#if 0	// because we don't use the graceful shutdown function, we don't need this checking
+	/* Wait for the modem to complete its power down actions. */
+	for (i = 20; i > 0; i--) {
+		if (gpio_get_value(MDM_GPIO(MDM2AP_STATUS)) == 0) {
+			if (mdm_debug_mask & MDM_DEBUG_MASK_SHDN_LOG)
+				pr_debug("%s:id %d: mdm2ap_statuswent low, i=%d\n",
+				__func__, mdm_drv->device_id, i);
+			break;
+		}
+		msleep(100);
+	}
 #endif
 
 	/* Assert the soft reset line whether mdm2ap_status went low or not */
-	gpio_direction_output(MDM_GPIO(AP2MDM_SOFT_RESET), soft_reset_direction); 
-	if (i == 0) { 
-		pr_debug("%s:id %d: MDM2AP_STATUS never went low. Doing a hard reset\n", 
-			__func__, mdm_drv->device_id); 
-		gpio_direction_output(MDM_GPIO(AP2MDM_SOFT_RESET), soft_reset_direction); 
+	gpio_direction_output(MDM_GPIO(AP2MDM_SOFT_RESET), soft_reset_direction);
+	if (i == 0) {
+		pr_debug("%s:id %d: MDM2AP_STATUS never went low. Doing a hard reset\n",
+			__func__, mdm_drv->device_id);
+		gpio_direction_output(MDM_GPIO(AP2MDM_SOFT_RESET), soft_reset_direction);
 	}
-	/* 
-	* Currently, there is a debounce timer on the charm PMIC. It is 
-	* necessary to hold the PMIC RESET low for ~3.5 seconds 
-	* for the reset to fully take place. Sleep here to ensure the 
-	* reset has occured before the function exits. 
-	*/ 
-	msleep(4000); 
+	/*
+	* Currently, there is a debounce timer on the charm PMIC. It is
+	* necessary to hold the PMIC RESET low for ~3.5 seconds
+	* for the reset to fully take place. Sleep here to ensure the
+	* reset has occured before the function exits.
+	*/
+	msleep(4000);
 }
 
 static void mdm_do_first_power_on(struct mdm_modem_drv *mdm_drv)
@@ -258,7 +258,7 @@ static void mdm_do_first_power_on(struct mdm_modem_drv *mdm_drv)
 
 
 start_mdm_peripheral:
-#endif	
+#endif
 	pr_err("%s %d\n", __func__,__LINE__);
 	mdm_peripheral_connect(mdm_drv);
 	msleep(200);
@@ -292,7 +292,7 @@ static void mdm_do_soft_power_on(struct mdm_modem_drv *mdm_drv)
 
 
 start_mdm_peripheral:
-#endif	
+#endif
 
 	mdm_peripheral_connect(mdm_drv);
 	msleep(200);
@@ -341,7 +341,7 @@ static void mdm_status_changed(struct mdm_modem_drv *mdm_drv, int value)
 
 	if (!mdm_drv->pdata->peripheral_platform_device)
 		return;
-	
+
 	pr_debug("%s: id %d: value:%d\n", __func__,
 			 value, mdm_drv->device_id);
 
@@ -403,5 +403,3 @@ int mdm_get_ops(struct mdm_ops **mdm_ops)
 	*mdm_ops = &mdm_cb;
 	return 0;
 }
-
-

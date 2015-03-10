@@ -55,4 +55,3 @@ struct vme_irq_id {
 #define VME_IRQ_GEN _IOW(VME_IOC_MAGIC, 5, struct vme_irq_id)
 
 #endif /* _VME_USER_H_ */
-

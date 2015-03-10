@@ -914,4 +914,3 @@ module_spi_driver(s6e63m0_driver);
 MODULE_AUTHOR("InKi Dae <inki.dae@samsung.com>");
 MODULE_DESCRIPTION("S6E63M0 LCD Driver");
 MODULE_LICENSE("GPL");
-

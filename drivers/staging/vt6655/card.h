@@ -193,6 +193,3 @@ CARDbyGetTransmitPower (
     );
 
 #endif // __CARD_H__
-
-
-

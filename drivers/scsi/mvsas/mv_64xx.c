@@ -825,4 +825,3 @@ const struct mvs_dispatch mvs_64xx_dispatch = {
 	mvs_64xx_tune_interrupt,
 	NULL,
 };
-

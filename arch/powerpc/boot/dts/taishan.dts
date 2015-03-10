@@ -223,7 +223,7 @@
 				compatible = "ns16550";
 				reg = <0x40000200 0x00000008>;
 				virtual-reg = <0xe0000200>;
- 				clock-frequency = <11059200>;
+				clock-frequency = <11059200>;
 				current-speed = <115200>; /* 115200 */
 				interrupt-parent = <&UIC0>;
 				interrupts = <0x0 0x4>;
@@ -301,7 +301,7 @@
 				zmii-device = <&ZMII0>;
 				zmii-channel = <0>;
 			};
-		 	EMAC1: ethernet@40000900 {
+			EMAC1: ethernet@40000900 {
 				unused = <0x1>;
 				device_type = "network";
 				compatible = "ibm,emac-440gx", "ibm,emac4";
@@ -318,11 +318,11 @@
 				tx-fifo-size = <2048>;
 				phy-mode = "rmii";
 				phy-map = <0x00000001>;
- 				zmii-device = <&ZMII0>;
+				zmii-device = <&ZMII0>;
 				zmii-channel = <1>;
 			};
 
-		 	EMAC2: ethernet@40000c00 {
+			EMAC2: ethernet@40000c00 {
 				device_type = "network";
 				compatible = "ibm,emac-440gx", "ibm,emac4";
 				interrupt-parent = <&UIC2>;
@@ -340,13 +340,13 @@
 				phy-address = <1>;
 				rgmii-device = <&RGMII0>;
 				rgmii-channel = <0>;
- 				zmii-device = <&ZMII0>;
+				zmii-device = <&ZMII0>;
 				zmii-channel = <2>;
 				tah-device = <&TAH0>;
 				tah-channel = <0>;
 			};
 
-		 	EMAC3: ethernet@40000e00 {
+			EMAC3: ethernet@40000e00 {
 				device_type = "network";
 				compatible = "ibm,emac-440gx", "ibm,emac4";
 				interrupt-parent = <&UIC2>;
@@ -364,7 +364,7 @@
 				phy-address = <3>;
 				rgmii-device = <&RGMII0>;
 				rgmii-channel = <1>;
- 				zmii-device = <&ZMII0>;
+				zmii-device = <&ZMII0>;
 				zmii-channel = <3>;
 				tah-device = <&TAH1>;
 				tah-channel = <0>;

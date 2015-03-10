@@ -74,7 +74,7 @@
 	   imagis,pwm-div = <256>;
 	   imagis,mode-ctrl = <2>;
 	   imagis,regulator {
-			  	regulator-name = "vcc_i2c";
+				regulator-name = "vcc_i2c";
 				  regulator-min-microvolt = <1800000>;
 				  regulator-max-microvolt = <1800000>;
 				  regulator-max-microamp = <9360>;
@@ -336,22 +336,22 @@
 		iovdd-supply = <&pma8084_lvs4>;
 		qcom,dsi-pref-prim-pan-dual = <&dsi_dual_samsung_cmd_0>;
 		qcom,dsi-pref-prim-pan = <&dsi_samsung_fhd>;
-    qcom,dsi-pref-prim-pan-magna = <&dsi_samsung_fhd_k_mag>;				
+    qcom,dsi-pref-prim-pan-magna = <&dsi_samsung_fhd_k_mag>;
 	};
-	
+
 	mdss_dsi1: qcom,mdss_dsi@fd922e00 {
 		qcom,dsi-pref-prim-pan-dual = <&dsi_dual_samsung_cmd_1>;
 	};
 
 	qcom,mdss_mdp@fd900000 {
 		qcom,mdss-pref-prim-intf = "dsi";
-		
+
 		mdss_fb0: qcom,mdss_fb_primary {
 			qcom,memory-alt-reservation-size = <0x1000000>;	 /* Framebuffer reservation only for LPM or recovery boot mode */
 			qcom,memblock-reserve = <0x03200000 0x00F00000>;
 			qcom,mdss-fb-split = <720 720>;
 		};
-		
+
 	};
 
 	qcom,ssusb@f9200000 {
@@ -812,11 +812,11 @@
 		/* LCD_RESET */
 		qcom,mode = <1>;		/* Digital output */
 		qcom,pull = <5>;		/* Pull down */
-		qcom,output-type = <0>;		/* CMOS */		
+		qcom,output-type = <0>;		/* CMOS */
 		qcom,vin-sel = <2>;		/* PMA8084 S4 = 1.8 V */
 		qcom,out-strength = <1>;	/* Low */
 		qcom,src-sel = <0>;		/* constant */
-		qcom,master-en = <1>;	
+		qcom,master-en = <1>;
 	};
 
 	gpio@d100 { /* GPIO 18 */
@@ -834,7 +834,7 @@
 	gpio@d300 { /* GPIO 20 */
 		/* Headset Det */
 		qcom,mode = <0>;		/* iutput */
-		qcom,pull = <5>;		/* Pull down */		
+		qcom,pull = <5>;		/* Pull down */
 		qcom,vin-sel = <2>;	/* PMA8084 S4 = 1.8 V */
 		qcom,src-sel = <0>;	/* Constant */
 		qcom,master-en = <1>;

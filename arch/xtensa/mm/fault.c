@@ -233,4 +233,3 @@ bad_page_fault(struct pt_regs *regs, unsigned long address, int sig)
 	die("Oops", regs, sig);
 	do_exit(sig);
 }
-

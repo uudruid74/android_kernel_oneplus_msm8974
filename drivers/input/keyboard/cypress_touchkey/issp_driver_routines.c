@@ -113,7 +113,7 @@ void LoadProgramData(struct cypress_touchkey_info *info, unsigned char bBlockNum
      Function InitTargetTestData fills buffer for demo
 */
 	int dataNum;
- 	int header_diff;
+	int header_diff;
 
 	header_diff = 16 - info->fw_img->hdr_len;	/* Header Ver 01 Length = 16 */
 
@@ -446,5 +446,3 @@ void RemoveTargetVDD(struct cypress_touchkey_info *info)
 
 #endif  /* (PROJECT_REV_) */
 /* end of file ISSP_Drive_Routines.c */
-
-

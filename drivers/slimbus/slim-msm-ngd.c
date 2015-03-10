@@ -1212,7 +1212,7 @@ static int ngd_notify_slaves(void *data)
 						((sbdev->e_addr[4] == 0xbe) && (sbdev->e_addr[2] == 0x83))) {
 						pr_info("%s : es704 fail to assign retry to assign the es705\n", __func__);
 						sbdev->e_addr[2] = 0x03;
-						ret = slim_get_logical_addr(sbdev, sbdev->e_addr, 6, &sbdev->laddr);		
+						ret = slim_get_logical_addr(sbdev, sbdev->e_addr, 6, &sbdev->laddr);
 					}
 				}
 #endif

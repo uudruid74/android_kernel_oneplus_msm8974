@@ -138,7 +138,7 @@ struct cm36283_info {
 	int irq;
 
 	int ls_calibrate;
-	
+
 	int (*power)(int, uint8_t); /* power to the chip */
 
 	uint32_t als_kadc;
@@ -151,7 +151,7 @@ struct cm36283_info {
 	uint8_t slave_addr;
 
 	uint8_t ps_close_thd_set;
-	uint8_t ps_away_thd_set;	
+	uint8_t ps_away_thd_set;
 	int current_level;
 	uint16_t current_adc;
 
@@ -205,7 +205,7 @@ static int I2C_RxData(uint16_t slaveAddr, uint8_t cmd, uint8_t *rxData, int leng
 		 .flags = I2C_M_RD,
 		 .len = length,
 		 .buf = rxData,
-		 },		 
+		 },
 	};
 
 	subaddr[0] = cmd;
@@ -285,8 +285,8 @@ static int _cm36283_I2C_Write_Word(uint16_t SlaveAddress, uint8_t cmd, uint16_t 
 
 	buffer[0] = cmd;
 	buffer[1] = (uint8_t)(data&0xff);
-	buffer[2] = (uint8_t)((data&0xff00)>>8);	
-	
+	buffer[2] = (uint8_t)((data&0xff00)>>8);
+
 	ret = I2C_TxData(SlaveAddress, buffer, 3);
 	if (ret < 0) {
 		pr_err("%s: I2C_TxData failed.\n", __func__);
@@ -343,10 +343,10 @@ static int get_ps_adc_value(uint16_t *data)
 	struct cm36283_info *lpi = lp_info;
 
 	if (data == NULL)
-		return -EFAULT;	
+		return -EFAULT;
 
 	ret = _cm36283_I2C_Read_Word(lpi->slave_addr, PS_DATA, data);
-	
+
 	if (ret < 0)
 		return ret;
 
@@ -524,11 +524,11 @@ static int als_power(int enable)
 }
 
 static void ls_initial_cmd(struct cm36283_info *lpi)
-{	
+{
 	/*must disable l-sensor interrupt befrore IST create*//*disable ALS func*/
 	lpi->ls_cmd &= CM36283_ALS_INT_MASK;
   lpi->ls_cmd |= CM36283_ALS_SD;
-  _cm36283_I2C_Write_Word(lpi->slave_addr, ALS_CONF, lpi->ls_cmd);  
+  _cm36283_I2C_Write_Word(lpi->slave_addr, ALS_CONF, lpi->ls_cmd);
 }
 
 static void psensor_initial_cmd(struct cm36283_info *lpi)
@@ -549,7 +549,7 @@ static int psensor_enable(struct cm36283_info *lpi)
 {
 	int ret = -EIO;
 	unsigned int delay;
-	
+
 	mutex_lock(&ps_enable_mutex);
 	dev_dbg(&lpi->i2c_client->dev, "psensor enable!\n");
 
@@ -734,7 +734,7 @@ static int lightsensor_disable(struct cm36283_info *lpi)
 	} else {
 		ret = control_and_report(lpi, CONTROL_ALS, 0, 0);
 	}
-	
+
 	mutex_unlock(&als_disable_mutex);
 	return ret;
 }
@@ -931,7 +931,7 @@ static ssize_t ps_thd_show(struct device *dev,
 	int ret;
 	struct cm36283_info *lpi = lp_info;
   ret = sprintf(buf, "%s ps_close_thd_set = 0x%x, ps_away_thd_set = 0x%x\n", __func__, lpi->ps_close_thd_set, lpi->ps_away_thd_set);
-  return ret;	
+  return ret;
 }
 static ssize_t ps_thd_store(struct device *dev,
 				struct device_attribute *attr,
@@ -1095,7 +1095,7 @@ static ssize_t ls_kadc_store(struct device *dev,
 		dev_err(&lpi->i2c_client->dev, "%s: als_kadc can't be set to zero\n",
 				__func__);
 	}
-				
+
 	mutex_unlock(&als_get_adc_mutex);
 	return count;
 }
@@ -1120,7 +1120,7 @@ static ssize_t ls_gadc_store(struct device *dev,
 	int gadc_temp = 0;
 
 	sscanf(buf, "%d", &gadc_temp);
-	
+
 	mutex_lock(&als_get_adc_mutex);
 	if (gadc_temp != 0) {
 		lpi->als_gadc = gadc_temp;
@@ -1420,7 +1420,7 @@ static int cm36283_setup(struct cm36283_info *lpi)
 			__func__, ret);
 		goto fail_free_intr_pin;
 	}
-	
+
 	/*Default disable P sensor and L sensor*/
 	ls_initial_cmd(lpi);
 	psensor_initial_cmd(lpi);
@@ -1611,15 +1611,15 @@ static int cm36283_probe(struct i2c_client *client,
 	lpi->irq = client->irq;
 
 	i2c_set_clientdata(client, lpi);
-	
+
   lpi->intr_pin = pdata->intr;
 	lpi->adc_table = pdata->levels;
 	lpi->power = pdata->power;
-	
+
 	lpi->slave_addr = pdata->slave_addr;
-	
+
 	lpi->ps_away_thd_set = pdata->ps_away_thd_set;
-	lpi->ps_close_thd_set = pdata->ps_close_thd_set;	
+	lpi->ps_close_thd_set = pdata->ps_close_thd_set;
 	lpi->ps_conf1_val = pdata->ps_conf1_val;
 	lpi->ps_conf3_val = pdata->ps_conf3_val;
 	lpi->polling = pdata->polling;
@@ -1628,14 +1628,14 @@ static int cm36283_probe(struct i2c_client *client,
 	atomic_set(&lpi->ps_poll_delay,
 			(unsigned int) CM36283_PS_DEFAULT_POLL_DELAY);
 
-	
+
 	lpi->ls_cmd  = pdata->ls_cmd;
-	
+
 	lpi->record_clear_int_fail=0;
-	
+
 	dev_dbg(&lpi->i2c_client->dev, "[PS][CM36283] %s: ls_cmd 0x%x\n",
 		__func__, lpi->ls_cmd);
-	
+
 	if (pdata->ls_cmd == 0) {
 		lpi->ls_cmd  = CM36283_ALS_IT_80ms | CM36283_ALS_GAIN_2;
 	}
@@ -1792,69 +1792,69 @@ static int control_and_report(struct cm36283_info *lpi, uint8_t mode,
 	uint16_t adc_value = 0;
 	uint16_t ps_data = 0;
 	int level = 0, i, val;
-	
+
   mutex_lock(&CM36283_control_mutex);
 
   if( mode == CONTROL_ALS ){
     if(param){
-      lpi->ls_cmd &= CM36283_ALS_SD_MASK;      
+      lpi->ls_cmd &= CM36283_ALS_SD_MASK;
     } else {
       lpi->ls_cmd |= CM36283_ALS_SD;
     }
     _cm36283_I2C_Write_Word(lpi->slave_addr, ALS_CONF, lpi->ls_cmd);
     lpi->als_enable=param;
   } else if( mode == CONTROL_PS ){
-    if(param){ 
+    if(param){
       lpi->ps_conf1_val &= CM36283_PS_SD_MASK;
-      lpi->ps_conf1_val |= CM36283_PS_INT_IN_AND_OUT;      
+      lpi->ps_conf1_val |= CM36283_PS_INT_IN_AND_OUT;
     } else {
       lpi->ps_conf1_val |= CM36283_PS_SD;
       lpi->ps_conf1_val &= CM36283_PS_INT_MASK;
     }
-    _cm36283_I2C_Write_Word(lpi->slave_addr, PS_CONF1, lpi->ps_conf1_val);    
-    lpi->ps_enable=param;  
+    _cm36283_I2C_Write_Word(lpi->slave_addr, PS_CONF1, lpi->ps_conf1_val);
+    lpi->ps_enable=param;
   }
-  if((mode == CONTROL_ALS)||(mode == CONTROL_PS)){  
+  if((mode == CONTROL_ALS)||(mode == CONTROL_PS)){
     if( param==1 ){
-		  msleep(100);  
+		  msleep(100);
     }
   }
-     	
+
   if(lpi->als_enable){
     if( mode == CONTROL_ALS ||
-      ( mode == CONTROL_INT_ISR_REPORT && 
+      ( mode == CONTROL_INT_ISR_REPORT &&
       ((param&INT_FLAG_ALS_IF_L)||(param&INT_FLAG_ALS_IF_H)))){
-    
-    	  lpi->ls_cmd &= CM36283_ALS_INT_MASK;
-    	  ret = _cm36283_I2C_Write_Word(lpi->slave_addr, ALS_CONF, lpi->ls_cmd);  
-      
+
+	  lpi->ls_cmd &= CM36283_ALS_INT_MASK;
+	  ret = _cm36283_I2C_Write_Word(lpi->slave_addr, ALS_CONF, lpi->ls_cmd);
+
         get_ls_adc_value(&adc_value, 0);
-          
+
         if( lpi->ls_calibrate ) {
-        	for (i = 0; i < 10; i++) {
-      	  	if (adc_value <= (*(lpi->cali_table + i))) {
-      		  	level = i;
-      			  if (*(lpi->cali_table + i))
-      				  break;
-      		  }
-      		  if ( i == 9) {/*avoid  i = 10, because 'cali_table' of size is 10 */
-      			  level = i;
-      			  break;
-      		  }
-      	  }
+		for (i = 0; i < 10; i++) {
+		if (adc_value <= (*(lpi->cali_table + i))) {
+			level = i;
+			  if (*(lpi->cali_table + i))
+				  break;
+		  }
+		  if ( i == 9) {/*avoid  i = 10, because 'cali_table' of size is 10 */
+			  level = i;
+			  break;
+		  }
+	  }
         } else {
-      	  for (i = 0; i < 10; i++) {
-      		  if (adc_value <= (*(lpi->adc_table + i))) {
-      			  level = i;
-      			  if (*(lpi->adc_table + i))
-      				  break;
-      		  }
-      		  if ( i == 9) {/*avoid  i = 10, because 'cali_table' of size is 10 */
-      			  level = i;
-      			  break;
-      		  }
-      	  }
-    	  }
+	  for (i = 0; i < 10; i++) {
+		  if (adc_value <= (*(lpi->adc_table + i))) {
+			  level = i;
+			  if (*(lpi->adc_table + i))
+				  break;
+		  }
+		  if ( i == 9) {/*avoid  i = 10, because 'cali_table' of size is 10 */
+			  level = i;
+			  break;
+		  }
+	  }
+	  }
 	if (!lpi->polling) {
 		ret = set_lsensor_range(((i == 0) ||
 					(adc_value == 0)) ? 0 :

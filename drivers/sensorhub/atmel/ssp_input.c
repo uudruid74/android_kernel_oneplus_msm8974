@@ -620,7 +620,7 @@ int initialize_input_dev(struct ssp_data *data)
 	input_set_abs_params(gesture_input_dev, ABS_Z, 0, 1024, 0, 0);
 	input_set_capability(gesture_input_dev, EV_ABS, ABS_RX);
 	input_set_abs_params(gesture_input_dev, ABS_RX, 0, 1024, 0, 0);
-	
+
 	input_set_capability(light_input_dev, EV_REL, REL_HWHEEL);
 	input_set_capability(light_input_dev, EV_REL, REL_DIAL);
 	input_set_capability(light_input_dev, EV_REL, REL_WHEEL);

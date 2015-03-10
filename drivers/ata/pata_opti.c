@@ -126,8 +126,8 @@ static void opti_set_piomode(struct ata_port *ap, struct ata_device *adev)
 	clock = ioread16(regio + 5) & 1;
 
 	/*
- 	 *	As with many controllers the address setup time is shared
- 	 *	and must suit both devices if present.
+	 *	As with many controllers the address setup time is shared
+	 *	and must suit both devices if present.
 	 */
 
 	addr = addr_timing[clock][pio];

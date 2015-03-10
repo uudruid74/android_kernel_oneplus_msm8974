@@ -225,7 +225,7 @@ static inline void snd_bt87x_writel(struct snd_bt87x *chip, u32 reg, u32 value)
 }
 
 static int snd_bt87x_create_risc(struct snd_bt87x *chip, struct snd_pcm_substream *substream,
-			       	 unsigned int periods, unsigned int period_bytes)
+				 unsigned int periods, unsigned int period_bytes)
 {
 	unsigned int i, offset;
 	u32 *risc;

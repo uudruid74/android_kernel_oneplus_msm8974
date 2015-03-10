@@ -442,4 +442,3 @@ int mpq_streambuffer_get_data_rw_offset(
 	u32 *write_offset);
 
 #endif /* _MPQ_STREAM_BUFFER_H */
-

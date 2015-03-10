@@ -883,4 +883,3 @@ int aac_do_ioctl(struct aac_dev * dev, int cmd, void __user *arg)
 	}
 	return status;
 }
-

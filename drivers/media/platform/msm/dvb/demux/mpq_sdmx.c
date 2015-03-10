@@ -1021,4 +1021,3 @@ out:
 	mutex_unlock(&sdmx_lock[session_handle]);
 	return ret;
 }
-

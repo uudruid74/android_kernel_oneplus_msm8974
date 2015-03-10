@@ -218,26 +218,26 @@ static int qnx4_fill_super(struct super_block *s, void *data, int silent)
 	qnx4_sb(s)->sb = (struct qnx4_super_block *) bh->b_data;
 
 
- 	/* check before allocating dentries, inodes, .. */
+	/* check before allocating dentries, inodes, .. */
 	errmsg = qnx4_checkroot(s);
 	if (errmsg != NULL) {
- 		if (!silent)
+		if (!silent)
 			printk(KERN_ERR "qnx4: %s\n", errmsg);
 		goto out;
 	}
 
- 	/* does root not have inode number QNX4_ROOT_INO ?? */
+	/* does root not have inode number QNX4_ROOT_INO ?? */
 	root = qnx4_iget(s, QNX4_ROOT_INO * QNX4_INODES_PER_BLOCK);
 	if (IS_ERR(root)) {
 		printk(KERN_ERR "qnx4: get inode failed\n");
 		ret = PTR_ERR(root);
- 		goto outb;
- 	}
+		goto outb;
+	}
 
 	ret = -ENOMEM;
- 	s->s_root = d_make_root(root);
- 	if (s->s_root == NULL)
- 		goto outb;
+	s->s_root = d_make_root(root);
+	if (s->s_root == NULL)
+		goto outb;
 
 	brelse(bh);
 	return 0;
@@ -435,4 +435,3 @@ static void __exit exit_qnx4_fs(void)
 module_init(init_qnx4_fs)
 module_exit(exit_qnx4_fs)
 MODULE_LICENSE("GPL");
-

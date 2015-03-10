@@ -57,7 +57,7 @@ int ssp_write_word(u16 data)
 
 	while (!(Ser4SSSR & SSSR_TNF)) {
 	        if (!--timeout)
-	        	return -ETIMEDOUT;
+			return -ETIMEDOUT;
 		cpu_relax();
 	}
 
@@ -66,7 +66,7 @@ int ssp_write_word(u16 data)
 	timeout = TIMEOUT;
 	while (!(Ser4SSSR & SSSR_BSY)) {
 	        if (!--timeout)
-	        	return -ETIMEDOUT;
+			return -ETIMEDOUT;
 		cpu_relax();
 	}
 
@@ -94,7 +94,7 @@ int ssp_read_word(u16 *data)
 
 	while (!(Ser4SSSR & SSSR_RNE)) {
 	        if (!--timeout)
-	        	return -ETIMEDOUT;
+			return -ETIMEDOUT;
 		cpu_relax();
 	}
 
@@ -122,11 +122,11 @@ int ssp_flush(void)
 	do {
 		while (Ser4SSSR & SSSR_RNE) {
 		        if (!--timeout)
-		        	return -ETIMEDOUT;
+				return -ETIMEDOUT;
 			(void) Ser4SSDR;
 		}
 	        if (!--timeout)
-	        	return -ETIMEDOUT;
+			return -ETIMEDOUT;
 	} while (Ser4SSSR & SSSR_BSY);
 
 	return 0;

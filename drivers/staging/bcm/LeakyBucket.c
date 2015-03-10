@@ -166,7 +166,7 @@ static VOID CheckAndSendPacketFromIndex(PMINI_ADAPTER Adapter, PacketInfo *psSF)
 
 	BCM_DEBUG_PRINT(Adapter,DBG_TYPE_TX, TX_PACKETS, DBG_LVL_ALL, "%zd ====>", (psSF-Adapter->PackInfo));
 	if((psSF != &Adapter->PackInfo[HiPriority]) && Adapter->LinkUpStatus && atomic_read(&psSF->uiPerSFTxResourceCount))//Get data packet
-  	{
+	{
 		if(!psSF->ucDirection )
 			return;
 
@@ -205,7 +205,7 @@ static VOID CheckAndSendPacketFromIndex(PMINI_ADAPTER Adapter, PacketInfo *psSF)
 				atomic_dec(&Adapter->TotalPacketCount);
 				spin_unlock_bh(&psSF->SFQueueLock);
 
-			   	Status = SendPacketFromQueue(Adapter, psSF, QueuePacket);
+				Status = SendPacketFromQueue(Adapter, psSF, QueuePacket);
 				psSF->uiPendedLast = FALSE;
 			}
 			else
@@ -258,7 +258,7 @@ static VOID CheckAndSendPacketFromIndex(PMINI_ADAPTER Adapter, PacketInfo *psSF)
 			{
 					BCM_DEBUG_PRINT(Adapter,DBG_TYPE_TX, TX_PACKETS, DBG_LVL_ALL, " Control Pkt is not available, Indexing is wrong....");
 			}
-	   	}
+		}
 	}
 }
 

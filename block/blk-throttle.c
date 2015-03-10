@@ -292,8 +292,8 @@ throtl_grp *throtl_find_tg(struct throtl_data *td, struct blkio_cgroup *blkcg)
 
 	/*
 	 * This is the common case when there are no blkio cgroups.
- 	 * Avoid lookup in this case
- 	 */
+	 * Avoid lookup in this case
+	 */
 	if (blkcg == &blkio_root_cgroup)
 		tg = td->root_tg;
 	else
@@ -690,7 +690,7 @@ static bool tg_may_dispatch(struct throtl_data *td, struct throtl_grp *tg,
 	unsigned long bps_wait = 0, iops_wait = 0, max_wait = 0;
 
 	/*
- 	 * Currently whole state machine of group depends on first bio
+	 * Currently whole state machine of group depends on first bio
 	 * queued in the group bio list. So one should not be calling
 	 * this function with a different bio if there are other bios
 	 * queued.

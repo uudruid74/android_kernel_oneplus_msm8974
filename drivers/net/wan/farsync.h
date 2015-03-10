@@ -226,7 +226,7 @@ struct fstioc_info {
 /* "cardMode" bitmask */
 #define CARD_MODE_IDENTIFY      0x0001
 
-/* 
+/*
  * Constants for T1/E1 configuration
  */
 
@@ -348,4 +348,3 @@ extern int fst_debug_mask;              /* Bit mask of actions to debug, bits
                                          * one of these then I've been an ass
                                          */
 #endif  /* FST_DEBUG */
-

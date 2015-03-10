@@ -143,4 +143,3 @@ INT vendorextnWriteSectionWithoutErase(PVOID  pContext, PUCHAR pBuffer, FLASH2X_
 {
 	return STATUS_FAILURE;
 }
-

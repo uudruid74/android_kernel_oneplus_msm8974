@@ -152,4 +152,3 @@ s32 fc8300_tuner_deinit(HANDLE handle, DEVICEID devid)
 
 	return BBM_OK;
 }
-

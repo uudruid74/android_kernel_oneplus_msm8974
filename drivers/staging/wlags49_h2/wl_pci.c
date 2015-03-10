@@ -1416,7 +1416,7 @@ void wl_pci_dma_hcf_reclaim_rx( struct wl_private *lp )
                 /* A reclaim descriptor is being given back by the HCF. Reclaim
                    descriptors have a NULL buf_addr */
                 lp->dma.rx_reclaim_desc = p;
-            	DBG_PRINT( "reclaim_descriptor: 0x%p\n", p );
+		DBG_PRINT( "reclaim_descriptor: 0x%p\n", p );
                 continue;
             }
             for( i = 0; i < NUM_RX_DESC; i++ ) {
@@ -1427,7 +1427,7 @@ void wl_pci_dma_hcf_reclaim_rx( struct wl_private *lp )
             /* An Rx buffer descriptor is being given back by the HCF */
             lp->dma.rx_packet[i] = p;
             lp->dma.rx_rsc_ind++;
-        	DBG_PRINT( "rx_packet[%d] 0x%p\n", i, lp->dma.rx_packet[i] );
+		DBG_PRINT( "rx_packet[%d] 0x%p\n", i, lp->dma.rx_packet[i] );
         }
     //}
     DBG_LEAVE( DbgInfo );
@@ -1548,7 +1548,7 @@ void wl_pci_dma_hcf_reclaim_tx( struct wl_private *lp )
                 /* A Reclaim descriptor is being given back by the HCF. Reclaim
                    descriptors have a NULL buf_addr */
                 lp->dma.tx_reclaim_desc = p;
-            	DBG_PRINT( "reclaim_descriptor: 0x%p\n", p );
+		DBG_PRINT( "reclaim_descriptor: 0x%p\n", p );
                 continue;
             }
             for( i = 0; i < NUM_TX_DESC; i++ ) {
@@ -1559,7 +1559,7 @@ void wl_pci_dma_hcf_reclaim_tx( struct wl_private *lp )
             /* An Rx buffer descriptor is being given back by the HCF */
             lp->dma.tx_packet[i] = p;
             lp->dma.tx_rsc_ind++;
-        	DBG_PRINT( "tx_packet[%d] 0x%p\n", i, lp->dma.tx_packet[i] );
+		DBG_PRINT( "tx_packet[%d] 0x%p\n", i, lp->dma.tx_packet[i] );
         }
     //}
 

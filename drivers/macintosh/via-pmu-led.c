@@ -68,7 +68,7 @@ static void pmu_led_set(struct led_classdev *led_cdev,
 	if (pmu_blink_req.complete && !pmu_sys_suspended)
 		pmu_request(&pmu_blink_req, NULL, 4, 0xee, 4, 0, requested_change);
  out:
- 	spin_unlock_irqrestore(&pmu_blink_lock, flags);
+	spin_unlock_irqrestore(&pmu_blink_lock, flags);
 }
 
 static struct led_classdev pmu_led = {

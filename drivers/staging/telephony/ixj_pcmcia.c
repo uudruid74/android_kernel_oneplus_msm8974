@@ -16,7 +16,7 @@
 /*
  *	PCMCIA service support for Quicknet cards
  */
- 
+
 
 typedef struct ixj_info_t {
 	int ndev;
@@ -135,7 +135,7 @@ static int ixj_config(struct pcmcia_device * link)
 		goto failed;
 
 	/*
- 	 *	Register the card with the core.
+	 *	Register the card with the core.
 	 */
 	j = ixj_pcmcia_probe(link->resource[0]->start,
 			     link->resource[0]->start + 0x10);

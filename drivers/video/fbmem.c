@@ -637,20 +637,20 @@ int fb_prepare_logo(struct fb_info *info, int rotate)
 		fb_logo.depth = 1;
 
 
- 	if (fb_logo.depth > 4 && depth > 4) {
- 		switch (info->fix.visual) {
- 		case FB_VISUAL_TRUECOLOR:
- 			fb_logo.needs_truepalette = 1;
- 			break;
- 		case FB_VISUAL_DIRECTCOLOR:
- 			fb_logo.needs_directpalette = 1;
- 			fb_logo.needs_cmapreset = 1;
- 			break;
- 		case FB_VISUAL_PSEUDOCOLOR:
- 			fb_logo.needs_cmapreset = 1;
- 			break;
- 		}
- 	}
+	if (fb_logo.depth > 4 && depth > 4) {
+		switch (info->fix.visual) {
+		case FB_VISUAL_TRUECOLOR:
+			fb_logo.needs_truepalette = 1;
+			break;
+		case FB_VISUAL_DIRECTCOLOR:
+			fb_logo.needs_directpalette = 1;
+			fb_logo.needs_cmapreset = 1;
+			break;
+		case FB_VISUAL_PSEUDOCOLOR:
+			fb_logo.needs_cmapreset = 1;
+			break;
+		}
+	}
 
 	return fb_prepare_extra_logos(info, fb_logo.logo->height, yres);
 }
@@ -754,7 +754,7 @@ fb_read(struct file *file, char __user *buf, size_t count, loff_t *ppos)
 
 	if (info->fbops->fb_read)
 		return info->fbops->fb_read(info, buf, count, ppos);
-	
+
 	total_size = info->screen_size;
 
 	if (total_size == 0)
@@ -819,7 +819,7 @@ fb_write(struct file *file, const char __user *buf, size_t count, loff_t *ppos)
 
 	if (info->fbops->fb_write)
 		return info->fbops->fb_write(info, buf, count, ppos);
-	
+
 	total_size = info->screen_size;
 
 	if (total_size == 0)
@@ -1045,16 +1045,16 @@ fb_set_var(struct fb_info *info, struct fb_var_screeninfo *var)
 
 int
 fb_blank(struct fb_info *info, int blank)
-{	
- 	int ret = -EINVAL;
+{
+	int ret = -EINVAL;
 
- 	if (blank > FB_BLANK_POWERDOWN)
- 		blank = FB_BLANK_POWERDOWN;
+	if (blank > FB_BLANK_POWERDOWN)
+		blank = FB_BLANK_POWERDOWN;
 
 	if (info->fbops->fb_blank)
- 		ret = info->fbops->fb_blank(blank, info);
+		ret = info->fbops->fb_blank(blank, info);
 
- 	if (!ret) {
+	if (!ret) {
 		struct fb_event event;
 
 		event.info = info;
@@ -1062,7 +1062,7 @@ fb_blank(struct fb_info *info, int blank)
 		fb_notifier_call_chain(FB_EVENT_BLANK, &event);
 	}
 
- 	return ret;
+	return ret;
 }
 
 static long do_fb_ioctl(struct fb_info *info, unsigned int cmd,
@@ -1447,7 +1447,7 @@ out:
 	return res;
 }
 
-static int 
+static int
 fb_release(struct inode *inode, struct file *file)
 __acquires(&info->lock)
 __releases(&info->lock)
@@ -1618,7 +1618,7 @@ static int do_register_framebuffer(struct fb_info *fb_info)
 			fb_info->pixmap.access_align = 32;
 			fb_info->pixmap.flags = FB_PIXMAP_DEFAULT;
 		}
-	}	
+	}
 	fb_info->pixmap.offset = 0;
 
 	if (!fb_info->pixmap.blit_x)
@@ -1914,24 +1914,24 @@ static int __init video_setup(char *options)
 	int i, global = 0;
 
 	if (!options || !*options)
- 		global = 1;
+		global = 1;
 
- 	if (!global && !strncmp(options, "ofonly", 6)) {
- 		ofonly = 1;
- 		global = 1;
- 	}
+	if (!global && !strncmp(options, "ofonly", 6)) {
+		ofonly = 1;
+		global = 1;
+	}
 
- 	if (!global && !strchr(options, ':')) {
- 		fb_mode_option = options;
- 		global = 1;
- 	}
+	if (!global && !strchr(options, ':')) {
+		fb_mode_option = options;
+		global = 1;
+	}
 
- 	if (!global) {
- 		for (i = 0; i < FB_MAX; i++) {
- 			if (video_options[i] == NULL) {
- 				video_options[i] = options;
- 				break;
- 			}
+	if (!global) {
+		for (i = 0; i < FB_MAX; i++) {
+			if (video_options[i] == NULL) {
+				video_options[i] = options;
+				break;
+			}
 
 		}
 	}

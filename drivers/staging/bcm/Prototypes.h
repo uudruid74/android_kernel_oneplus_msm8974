@@ -216,7 +216,3 @@ BOOLEAN IsReqGpioIsLedInNVM(PMINI_ADAPTER Adapter, UINT gpios);
 
 
 #endif
-
-
-
-

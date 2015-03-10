@@ -27,7 +27,7 @@ verify () {
 		echo ' *** You need to run "make" before "make install".' 1>&2
 		echo ""                                                   1>&2
 		exit 1
- 	fi
+	fi
 }
 
 # Make sure the files actually exist

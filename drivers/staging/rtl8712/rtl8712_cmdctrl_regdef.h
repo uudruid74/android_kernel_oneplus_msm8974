@@ -31,4 +31,3 @@
 
 
 #endif /* __RTL8712_CMDCTRL_REGDEF_H__ */
-

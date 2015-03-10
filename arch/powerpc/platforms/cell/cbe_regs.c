@@ -278,4 +278,3 @@ void __init cbe_regs_init(void)
 		cbe_fill_regs_map(map);
 	}
 }
-

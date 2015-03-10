@@ -65,4 +65,3 @@ s32 fci_hpi_deinit(HANDLE handle, DEVICEID devid)
 {
 	return BBM_OK;
 }
-

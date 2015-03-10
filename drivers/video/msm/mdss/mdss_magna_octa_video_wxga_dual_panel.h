@@ -85,7 +85,7 @@ struct display_status {
 
 	unsigned char main_panel_read_done;
 	unsigned char sub_panel_read_done;
-	
+
 	unsigned char auto_brightness;
 	unsigned char recovery_boot_mode;
 	unsigned char on;

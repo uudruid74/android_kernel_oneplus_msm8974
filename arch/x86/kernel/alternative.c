@@ -563,7 +563,7 @@ void __init alternative_instructions(void)
 			alternatives_smp_switch(0);
 	}
 #endif
- 	apply_paravirt(__parainstructions, __parainstructions_end);
+	apply_paravirt(__parainstructions, __parainstructions_end);
 
 	if (smp_alt_once)
 		free_init_pages("SMP alternatives",

@@ -273,7 +273,7 @@ struct ub_lun {
 	int cmda[1];
 	struct ub_scsi_cmd cmdv[1];
 
-	struct ub_capacity capacity; 
+	struct ub_capacity capacity;
 };
 
 /*
@@ -2033,7 +2033,7 @@ static int ub_sync_getmaxlun(struct ub_dev *sc)
 		if ((nluns = *p) == 55) {
 			nluns = 0;
 		} else {
-  			/* GetMaxLUN returns the maximum LUN number */
+			/* GetMaxLUN returns the maximum LUN number */
 			nluns += 1;
 			if (nluns > UB_MAX_LUNS)
 				nluns = UB_MAX_LUNS;
@@ -2142,7 +2142,7 @@ static int ub_get_pipes(struct ub_dev *sc, struct usb_device *dev,
 	sc->recv_ctrl_pipe = usb_rcvctrlpipe(dev, 0);
 	sc->send_bulk_pipe = usb_sndbulkpipe(dev,
 		usb_endpoint_num(ep_out));
-	sc->recv_bulk_pipe = usb_rcvbulkpipe(dev, 
+	sc->recv_bulk_pipe = usb_rcvbulkpipe(dev,
 		usb_endpoint_num(ep_in));
 
 	return 0;

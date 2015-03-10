@@ -398,7 +398,7 @@ config INET_DIAG
 	  Support for INET (TCP, DCCP, etc) socket monitoring interface used by
 	  native Linux tools such as ss. ss is included in iproute2, currently
 	  downloadable at:
-	  
+
 	    http://www.linuxfoundation.org/collaborate/workgroups/networking/iproute2
 
 	  If unsure, say Y.
@@ -484,7 +484,7 @@ config TCP_CONG_HSTCP
 	A modification to TCP's congestion control mechanism for use
 	with large congestion windows. A table indicates how much to
 	increase the congestion window by when an ACK is received.
- 	For more detail	see http://www.icir.org/floyd/hstcp.html
+	For more detail	see http://www.icir.org/floyd/hstcp.html
 
 config TCP_CONG_HYBLA
 	tristate "TCP-Hybla congestion control algorithm"
@@ -537,7 +537,7 @@ config TCP_CONG_VENO
 	distinguishing to circumvent the difficult judgment of the packet loss
 	type. TCP Veno cuts down less congestion window in response to random
 	loss packets.
-	See <http://ieeexplore.ieee.org/xpl/freeabs_all.jsp?arnumber=1177186> 
+	See <http://ieeexplore.ieee.org/xpl/freeabs_all.jsp?arnumber=1177186>
 
 config TCP_CONG_YEAH
 	tristate "YeAH TCP"

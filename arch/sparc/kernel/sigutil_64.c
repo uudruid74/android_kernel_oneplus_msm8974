@@ -16,7 +16,7 @@ int save_fpu_state(struct pt_regs *regs, __siginfo_fpu_t __user *fpu)
 	unsigned long *fpregs = current_thread_info()->fpregs;
 	unsigned long fprs;
 	int err = 0;
-	
+
 	fprs = current_thread_info()->fpsaved[0];
 	if (fprs & FPRS_DL)
 		err |= copy_to_user(&fpu->si_float_regs[0], fpregs,
@@ -42,10 +42,10 @@ int restore_fpu_state(struct pt_regs *regs, __siginfo_fpu_t __user *fpu)
 	regs->tstate &= ~TSTATE_PEF;
 	if (fprs & FPRS_DL)
 		err |= copy_from_user(fpregs, &fpu->si_float_regs[0],
-		       	       (sizeof(unsigned int) * 32));
+			       (sizeof(unsigned int) * 32));
 	if (fprs & FPRS_DU)
 		err |= copy_from_user(fpregs+16, &fpu->si_float_regs[32],
-		       	       (sizeof(unsigned int) * 32));
+			       (sizeof(unsigned int) * 32));
 	err |= __get_user(current_thread_info()->xfsr[0], &fpu->si_fsr);
 	err |= __get_user(current_thread_info()->gsr[0], &fpu->si_gsr);
 	current_thread_info()->fpsaved[0] |= fprs;

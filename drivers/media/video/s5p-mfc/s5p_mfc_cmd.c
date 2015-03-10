@@ -117,4 +117,3 @@ int s5p_mfc_close_inst_cmd(struct s5p_mfc_ctx *ctx)
 	}
 	return 0;
 }
-

@@ -1806,8 +1806,8 @@ int ft1000_poll(void* dev_id) {
                         // This is a dsp broadcast message
                         // Check which application has registered for dsp broadcast messages
 
-    	    	        for (i=0; i<MAX_NUM_APP; i++) {
-        	           if ( (info->app_info[i].DspBCMsgFlag) && (info->app_info[i].fileobject) &&
+		        for (i=0; i<MAX_NUM_APP; i++) {
+		           if ( (info->app_info[i].DspBCMsgFlag) && (info->app_info[i].fileobject) &&
                                          (info->app_info[i].NumOfMsg < MAX_MSG_LIMIT)  )
 			   {
 			       nxtph = FT1000_DPRAM_RX_BASE + 2;
@@ -1864,7 +1864,7 @@ int ft1000_poll(void* dev_id) {
                                        info->app_info[i].nRxMsg++;
                                        // Put message into the appropriate application block
                                        list_add_tail(&pdpram_blk->list, &info->app_info[i].app_sqlist);
-            			       info->app_info[i].NumOfMsg++;
+				       info->app_info[i].NumOfMsg++;
                                    }
                                }
                            }

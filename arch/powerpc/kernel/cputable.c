@@ -1188,7 +1188,7 @@ static struct cpu_spec __initdata cpu_specs[] = {
 		.cpu_name		= "403GCX",
 		.cpu_features		= CPU_FTRS_40X,
 		.cpu_user_features	= PPC_FEATURE_32 |
-		 	PPC_FEATURE_HAS_MMU | PPC_FEATURE_NO_TB,
+			PPC_FEATURE_HAS_MMU | PPC_FEATURE_NO_TB,
 		.mmu_features		= MMU_FTR_TYPE_40x,
 		.icache_bsize		= 16,
 		.dcache_bsize		= 16,

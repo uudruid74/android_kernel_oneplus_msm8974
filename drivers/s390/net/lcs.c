@@ -2509,4 +2509,3 @@ module_exit(lcs_cleanup_module);
 
 MODULE_AUTHOR("Frank Pavlic <fpavlic@de.ibm.com>");
 MODULE_LICENSE("GPL");
-

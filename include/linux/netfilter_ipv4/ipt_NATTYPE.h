@@ -25,4 +25,3 @@ extern bool nattype_refresh_timer(unsigned long nattype,
 unsigned long timeout_value);
 
 #endif /*_IPT_NATTYPE_H_target*/
-

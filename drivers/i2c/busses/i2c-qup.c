@@ -143,7 +143,7 @@ enum msm_i2c_state {
 #define QUP_OUT_FIFO_NOT_EMPTY		0x10
 #define I2C_GPIOS_DT_CNT		(2)		/* sda and scl */
 
-#if defined(CONFIG_MACH_KS01EUR) || defined(CONFIG_SEC_CHAGALL_PROJECT) 
+#if defined(CONFIG_MACH_KS01EUR) || defined(CONFIG_SEC_CHAGALL_PROJECT)
 /* Register:QUP_I2C_MASTER_CLK_CTL field setters */
 #define QUP_I2C_SCL_NOISE_REJECTION(reg_val, noise_rej_val) \
 		(((reg_val) & ~(0x3 << 24)) | (((noise_rej_val) & 0x3) << 24))
@@ -1897,4 +1897,3 @@ static void __exit qup_i2c_exit_driver(void)
 	platform_driver_unregister(&qup_i2c_driver);
 }
 module_exit(qup_i2c_exit_driver);
-

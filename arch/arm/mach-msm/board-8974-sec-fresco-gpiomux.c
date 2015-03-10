@@ -350,7 +350,7 @@ static struct gpiomux_setting lcd_en_act_cfg = {
 };
 
 static struct gpiomux_setting lcd_en_sus_cfg = {
-	.func = GPIOMUX_FUNC_GPIO, 
+	.func = GPIOMUX_FUNC_GPIO,
 	.drv = GPIOMUX_DRV_2MA,
 	.pull = GPIOMUX_PULL_NONE,
 	.dir = GPIOMUX_OUT_LOW,
@@ -737,7 +737,7 @@ static struct msm_gpiomux_config msm_epm_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &gpio_epm_marker_config,
 		},
 	},
-#endif	
+#endif
 	{
 		.gpio      = 96,		/* EPM MARKER1 */
 		.settings = {
@@ -801,7 +801,7 @@ static struct msm_gpiomux_config msm_blsp_configs[] __initdata = {
 			[GPIOMUX_ACTIVE] = &gpio_i2c_config,
 		},
 	},
- 	{
+	{
 		.gpio      = 25,		/* BLSP5 QUP I2C_DAT */
 		.settings = {
 			[GPIOMUX_ACTIVE]    = &gpio_i2c_config_4,
@@ -815,7 +815,7 @@ static struct msm_gpiomux_config msm_blsp_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &gpio_i2c_config_5,
 		},
 	},
-#if !defined(CONFIG_INPUT_WACOM_HL) 
+#if !defined(CONFIG_INPUT_WACOM_HL)
 	{
 		.gpio      = 29,                /* BLSP6 QUP I2C_DAT */
 		.settings = {
@@ -1003,7 +1003,7 @@ static struct msm_gpiomux_config msm_sensor_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &cam_settings[4],
 		},
 	},
-#if 0	
+#if 0
 	{
 		.gpio = 16, /* CAM_MCLK1 */
 		.settings = {
@@ -1161,7 +1161,7 @@ static struct msm_gpiomux_config sd_card_det __initdata = {
 };
 #ifdef CONFIG_MACH_H3GDUOS
  static struct gpiomux_setting cam_mclk2_suspend_settings = {
-	.func = GPIOMUX_FUNC_GPIO, 
+	.func = GPIOMUX_FUNC_GPIO,
 	.drv = GPIOMUX_DRV_2MA,
 	.pull = GPIOMUX_PULL_NONE,
 	.dir = GPIOMUX_OUT_LOW,
@@ -1301,7 +1301,7 @@ static struct msm_gpiomux_config msm_sensor_configs_dragonboard[] __initdata = {
 		},
 	},
 #endif
-#if 0 // es325 pin	
+#if 0 // es325 pin
 	{
 		.gpio = 94, /* CAM2_RST_N */
 		.settings = {
@@ -1309,7 +1309,7 @@ static struct msm_gpiomux_config msm_sensor_configs_dragonboard[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &gpio_suspend_config[1],
 		},
 	},
-#endif	
+#endif
 };
 
 static struct gpiomux_setting auxpcm_act_cfg = {
@@ -1825,7 +1825,7 @@ static struct msm_gpiomux_config msm8974_sdc4_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &sdc4_suspend_cfg,
 		},
 	},
-#if 0 // es325 pin	
+#if 0 // es325 pin
 	{
 		/* DAT2 */
 		.gpio      = 94,
@@ -1834,7 +1834,7 @@ static struct msm_gpiomux_config msm8974_sdc4_configs[] __initdata = {
 			[GPIOMUX_SUSPENDED] = &sdc4_suspend_cfg,
 		},
 	},
-#endif	
+#endif
 	{
 		/* DAT1 */
 		.gpio      = 95,
@@ -2108,7 +2108,7 @@ void __init msm_8974_init_gpiomux(void)
 
 	msm_gpiomux_install(msm_taiko_config, ARRAY_SIZE(msm_taiko_config));
 	msm_gpiomux_install(es325_config, ARRAY_SIZE(es325_config));
-	msm_gpiomux_install(msm8974_audio_configs, ARRAY_SIZE(msm8974_audio_configs));	
+	msm_gpiomux_install(msm8974_audio_configs, ARRAY_SIZE(msm8974_audio_configs));
 	msm_gpiomux_install(msm8974_pri_pri_auxpcm_configs,
 				 ARRAY_SIZE(msm8974_pri_pri_auxpcm_configs));
 #if 0 // MCU pin

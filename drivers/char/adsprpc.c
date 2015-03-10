@@ -147,7 +147,7 @@ struct smq_invoke_ctx {
 	struct fastrpc_buf obuf;
 	struct fastrpc_buf *abufs;
 	struct fastrpc_device *dev;
-	struct fastrpc_apps *apps; 
+	struct fastrpc_apps *apps;
 	int* fds;
 	struct ion_handle** handles;
 	int nbufs;
@@ -436,7 +436,7 @@ static void add_dev(struct fastrpc_apps *me, struct fastrpc_device *dev);
 static void context_free(struct smq_invoke_ctx *ctx, bool lock)
 {
 	struct smq_context_list *clst = &ctx->apps->clst;
-	struct fastrpc_apps *apps = ctx->apps; 
+	struct fastrpc_apps *apps = ctx->apps;
 	struct fastrpc_buf *b;
 	int i, bufs;
 	if (ctx->smmu) {
@@ -455,7 +455,7 @@ static void context_free(struct smq_invoke_ctx *ctx, bool lock)
 	}
 	for (i = 0, b = ctx->abufs; i < ctx->nbufs; ++i, ++b)
 		free_mem(b, ctx->cid);
-	
+
 	kfree(ctx->abufs);
 	if (ctx->dev) {
 		add_dev(apps, ctx->dev);
@@ -969,7 +969,7 @@ static int fastrpc_internal_invoke(struct fastrpc_apps *me, uint32_t mode,
 		VERIFY(err, 0 == context_restore_interrupted(me, invokefd, cid, &ctx));
 		if (err)
 			goto bail;
-		if(ctx) 
+		if(ctx)
 			goto wait;
 	}
 

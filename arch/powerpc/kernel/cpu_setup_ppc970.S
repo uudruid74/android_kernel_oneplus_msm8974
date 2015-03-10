@@ -207,4 +207,3 @@ _GLOBAL(__restore_cpu_ppc970)
 	sync
 	isync
 	blr
-

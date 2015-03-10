@@ -176,7 +176,7 @@ static int cycx_x25_configure(struct cycx_device *card,
 	   cycx_x25_connect_response(struct cycx_device *card,
 				struct cycx_x25_channel *chan),
 	   cycx_x25_disconnect_response(struct cycx_device *card, u8 link,
-			   		u8 lcn);
+					u8 lcn);
 
 /* channel functions */
 static int cycx_x25_chan_connect(struct net_device *dev),

@@ -48,4 +48,3 @@ extern s32 fc8080_spi_deinit(HANDLE handle);
 #endif
 
 #endif /* __FC8080_SPI__ */
-

@@ -466,4 +466,3 @@ struct genl_ops wimax_gnl_rfkill = {
 	.doit = wimax_gnl_doit_rfkill,
 	.dumpit = NULL,
 };
-

@@ -67,7 +67,7 @@
 						80 80 80 80 80 80 80 80
 						80 80 80 80 80 80 80 80
 						80 80 80 80 80 80 80 31
-						02 
+						02
 					39 01 00 00 00 00 03 f7 a5 a5	/* Gammna key OFF */
 					39 01 00 00 00 00 03 b3 00 0a	/* check mismatch wit opmanual AID Setting */
 					39 01 00 00 00 00 08		/* ELVSS Setting (300cd)*/

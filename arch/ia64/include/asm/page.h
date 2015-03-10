@@ -86,7 +86,7 @@ do {						\
 	struct page *page = alloc_page_vma(				\
 		GFP_HIGHUSER | __GFP_ZERO | movableflags, vma, vaddr);	\
 	if (page)							\
- 		flush_dcache_page(page);				\
+		flush_dcache_page(page);				\
 	page;								\
 })
 

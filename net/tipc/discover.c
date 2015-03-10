@@ -399,4 +399,3 @@ void tipc_disc_delete(struct tipc_link_req *req)
 	kfree_skb(req->buf);
 	kfree(req);
 }
-

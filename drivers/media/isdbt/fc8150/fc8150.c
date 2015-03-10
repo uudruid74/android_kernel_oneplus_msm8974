@@ -81,7 +81,7 @@ int isdbt_hw_setting(void)
 		PRINTF(0, "isdbt_hw_setting: Couldn't request isdbt_irq\n");
 		goto ISDBT_INT_ERR;
 	}
-	
+
 #ifndef BBM_I2C_TSIF
 	gpio_direction_input(isdbt_pdata->gpio_int);
 
@@ -103,7 +103,7 @@ int isdbt_hw_setting(void)
 		err = 0;
 	}
 	//gpio_free(isdbt_pdata->gpio_i2c_sda);
-	
+
 	err =	gpio_request(isdbt_pdata->gpio_i2c_scl, "isdbt_i2c_scl");
 	if (err) {
 		pr_err("isdbt_hw_setting: Couldn't request gpio_i2c_scl\n");
@@ -130,7 +130,7 @@ static void isdbt_gpio_init(void)
 {
 	pr_err("%s\n",__func__);
 
-					 
+
 	gpio_tlmm_config(GPIO_CFG(isdbt_pdata->gpio_en, GPIOMUX_FUNC_GPIO,
 						GPIO_CFG_OUTPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA),
 						GPIO_CFG_ENABLE);
@@ -144,15 +144,15 @@ static void isdbt_gpio_init(void)
 	gpio_tlmm_config(GPIO_CFG(isdbt_pdata->gpio_int, GPIOMUX_FUNC_GPIO,
 		GPIO_CFG_INPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA),
 		GPIO_CFG_ENABLE);
-		
+
 	gpio_tlmm_config(GPIO_CFG(isdbt_pdata->gpio_i2c_sda, GPIOMUX_FUNC_3,
 					 GPIO_CFG_OUTPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA),
-					 GPIO_CFG_ENABLE);		
-	
+					 GPIO_CFG_ENABLE);
+
 	gpio_tlmm_config(GPIO_CFG(isdbt_pdata->gpio_i2c_scl, GPIOMUX_FUNC_3,
 					 GPIO_CFG_OUTPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA),
-					 GPIO_CFG_ENABLE);			
-					 
+					 GPIO_CFG_ENABLE);
+
 	isdbt_hw_setting();
 }
 
@@ -587,7 +587,7 @@ long isdbt_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 static struct isdbt_platform_data *isdbt_populate_dt_pdata(struct device *dev)
 {
 	struct isdbt_platform_data *pdata;
-	
+
 	pr_err("%s\n", __func__);
 	pdata =  devm_kzalloc(dev, sizeof(*pdata), GFP_KERNEL);
 	if (!pdata) {
@@ -603,21 +603,21 @@ static struct isdbt_platform_data *isdbt_populate_dt_pdata(struct device *dev)
 		goto alloc_err;
 	} else
 		pr_err("%s : isdbt-detect-gpio gpio_en =%d\n", __func__, pdata->gpio_en);
-		
+
 	pdata->gpio_rst = of_get_named_gpio(dev->of_node, "qcom,isdb-gpio-rst", 0);
 	if (pdata->gpio_rst < 0) {
 		pr_err("%s : can not find the isdbt-detect-gpio gpio_rst in the dt\n", __func__);
 		goto alloc_err;
 	} else
 		pr_err("%s : isdbt-detect-gpio gpio_rst =%d\n", __func__, pdata->gpio_rst);
-		
+
 	pdata->gpio_int = of_get_named_gpio(dev->of_node, "qcom,isdb-gpio-irq", 0);
 	if (pdata->gpio_int < 0) {
 		pr_err("%s : can not find the isdbt-detect-gpio in the gpio_int dt\n", __func__);
 		goto alloc_err;
 	} else
 		pr_err("%s : isdbt-detect-gpio gpio_int =%d\n", __func__, pdata->gpio_int);
-		
+
 	pdata->gpio_i2c_sda = of_get_named_gpio(dev->of_node, "qcom,isdb-gpio-i2c_sda", 0);
 	if (pdata->gpio_i2c_sda < 0) {
 			pr_err("%s : can not find the isdbt-detect-gpio gpio_i2c_sda in the dt\n", __func__);
@@ -631,7 +631,7 @@ static struct isdbt_platform_data *isdbt_populate_dt_pdata(struct device *dev)
 			goto alloc_err;
 	} else
 			pr_err("%s : isdbt-detect-gpio gpio_i2c_scl=%d\n", __func__, pdata->gpio_i2c_scl);
-		
+
 
 	return pdata;
 alloc_err:
@@ -650,7 +650,7 @@ static int isdbt_probe(struct platform_device *pdev)
 		pr_err("%s : isdbt_pdata is NULL.\n", __func__);
 		return -ENODEV;
 	}
-	
+
 	isdbt_gpio_init();
 
 	res = misc_register(&fc8150_misc_device);
@@ -696,14 +696,14 @@ static int isdbt_remove(struct platform_device *pdev)
 static int isdbt_suspend(struct platform_device *pdev, pm_message_t mesg)
 {
        int value;
-	
-	
+
+
        value = gpio_get_value_cansleep(isdbt_pdata->gpio_en);
        pr_err("%s  value = %d\n",__func__,value);
        if(value == 1)
        {
           gpio_set_value(isdbt_pdata->gpio_en, 0);
-       }       
+       }
 
 	return 0;
 }
@@ -755,14 +755,14 @@ void isdbt_exit(void)
 	PRINTF(hInit, "isdbt isdbt_exit \n");
 
 	free_irq(gpio_to_irq(isdbt_pdata->gpio_int), NULL);
-#ifndef BBM_I2C_TSIF	
+#ifndef BBM_I2C_TSIF
 	gpio_free(isdbt_pdata->gpio_int);
 #endif
 	gpio_free(isdbt_pdata->gpio_rst);
 	gpio_free(isdbt_pdata->gpio_en);
 	gpio_free(isdbt_pdata->gpio_i2c_sda);
 	gpio_free(isdbt_pdata->gpio_i2c_scl);
-#ifndef BBM_I2C_TSIF	
+#ifndef BBM_I2C_TSIF
 	if (isdbt_kthread)
 		kthread_stop(isdbt_kthread);
 
@@ -782,4 +782,3 @@ module_init(isdbt_init);
 module_exit(isdbt_exit);
 
 MODULE_LICENSE("Dual BSD/GPL");
-

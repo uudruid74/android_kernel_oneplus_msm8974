@@ -23,4 +23,3 @@
 #define TLMM_MSM_SUMMARY_IRQ		(GIC_SPI_START + 208)
 
 #endif
-

@@ -392,7 +392,7 @@ static int apply_r_mips_pc16(struct module *me, uint32_t *location,
 
 	if( (rel > 32768) || (rel < -32768) ) {
 		printk(KERN_DEBUG "VPE loader: "
- 		       "apply_r_mips_pc16: relative address out of range 0x%x\n", rel);
+		       "apply_r_mips_pc16: relative address out of range 0x%x\n", rel);
 		return -ENOEXEC;
 	}
 
@@ -476,7 +476,7 @@ static int apply_r_mips_lo16(struct module *me, uint32_t *location,
 			/*
 			 * The value for the HI16 had best be the same.
 			 */
- 			if (v != l->value) {
+			if (v != l->value) {
 				printk(KERN_DEBUG "VPE loader: "
 				       "apply_r_mips_lo16/hi16: \t"
 				       "inconsistent value information\n");
@@ -585,7 +585,7 @@ static int apply_relocations(Elf32_Shdr *sechdrs,
 		res = reloc_handlers[ELF32_R_TYPE(r_info)](me, location, v);
 		if( res ) {
 			char *r = rstrs[ELF32_R_TYPE(r_info)];
-		    	printk(KERN_WARNING "VPE loader: .text+0x%x "
+			printk(KERN_WARNING "VPE loader: .text+0x%x "
 			       "relocation type %s for symbol \"%s\" failed\n",
 			       rel[i].r_offset, r ? r : "UNKNOWN",
 			       strtab + sym->st_name);
@@ -932,34 +932,34 @@ static int vpe_elfload(struct vpe * v)
 			       secstrings + sechdrs[i].sh_name, sechdrs[i].sh_addr);
 		}
 
- 		/* Fix up syms, so that st_value is a pointer to location. */
- 		simplify_symbols(sechdrs, symindex, strtab, secstrings,
- 				 hdr->e_shnum, &mod);
+		/* Fix up syms, so that st_value is a pointer to location. */
+		simplify_symbols(sechdrs, symindex, strtab, secstrings,
+				 hdr->e_shnum, &mod);
 
- 		/* Now do relocations. */
- 		for (i = 1; i < hdr->e_shnum; i++) {
- 			const char *strtab = (char *)sechdrs[strindex].sh_addr;
- 			unsigned int info = sechdrs[i].sh_info;
+		/* Now do relocations. */
+		for (i = 1; i < hdr->e_shnum; i++) {
+			const char *strtab = (char *)sechdrs[strindex].sh_addr;
+			unsigned int info = sechdrs[i].sh_info;
 
- 			/* Not a valid relocation section? */
- 			if (info >= hdr->e_shnum)
- 				continue;
+			/* Not a valid relocation section? */
+			if (info >= hdr->e_shnum)
+				continue;
 
- 			/* Don't bother with non-allocated sections */
- 			if (!(sechdrs[info].sh_flags & SHF_ALLOC))
- 				continue;
+			/* Don't bother with non-allocated sections */
+			if (!(sechdrs[info].sh_flags & SHF_ALLOC))
+				continue;
 
- 			if (sechdrs[i].sh_type == SHT_REL)
- 				err = apply_relocations(sechdrs, strtab, symindex, i,
- 							&mod);
- 			else if (sechdrs[i].sh_type == SHT_RELA)
- 				err = apply_relocate_add(sechdrs, strtab, symindex, i,
- 							 &mod);
- 			if (err < 0)
- 				return err;
+			if (sechdrs[i].sh_type == SHT_REL)
+				err = apply_relocations(sechdrs, strtab, symindex, i,
+							&mod);
+			else if (sechdrs[i].sh_type == SHT_RELA)
+				err = apply_relocate_add(sechdrs, strtab, symindex, i,
+							 &mod);
+			if (err < 0)
+				return err;
 
-  		}
-  	} else {
+		}
+	} else {
 		struct elf_phdr *phdr = (struct elf_phdr *) ((char *)hdr + hdr->e_phoff);
 
 		for (i = 0; i < hdr->e_phnum; i++) {
@@ -974,16 +974,16 @@ static int vpe_elfload(struct vpe * v)
 		}
 
 		for (i = 0; i < hdr->e_shnum; i++) {
- 			/* Internal symbols and strings. */
- 			if (sechdrs[i].sh_type == SHT_SYMTAB) {
- 				symindex = i;
- 				strindex = sechdrs[i].sh_link;
- 				strtab = (char *)hdr + sechdrs[strindex].sh_offset;
+			/* Internal symbols and strings. */
+			if (sechdrs[i].sh_type == SHT_SYMTAB) {
+				symindex = i;
+				strindex = sechdrs[i].sh_link;
+				strtab = (char *)hdr + sechdrs[strindex].sh_offset;
 
- 				/* mark the symtab's address for when we try to find the
- 				   magic symbols */
- 				sechdrs[i].sh_addr = (size_t) hdr + sechdrs[i].sh_offset;
- 			}
+				/* mark the symtab's address for when we try to find the
+				   magic symbols */
+				sechdrs[i].sh_addr = (size_t) hdr + sechdrs[i].sh_offset;
+			}
 		}
 	}
 
@@ -1135,11 +1135,11 @@ static int vpe_release(struct inode *inode, struct file *filp)
 		if (vpe_elfload(v) >= 0) {
 			vpe_run(v);
 		} else {
- 			printk(KERN_WARNING "VPE loader: ELF load failed.\n");
+			printk(KERN_WARNING "VPE loader: ELF load failed.\n");
 			ret = -ENOEXEC;
 		}
 	} else {
- 		printk(KERN_WARNING "VPE loader: only elf files are supported\n");
+		printk(KERN_WARNING "VPE loader: only elf files are supported\n");
 		ret = -ENOEXEC;
 	}
 

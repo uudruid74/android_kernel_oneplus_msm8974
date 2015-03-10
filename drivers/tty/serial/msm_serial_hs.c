@@ -104,7 +104,7 @@ extern int checkDualWaveStatus(void);
 	}while(0)
 
 char *g_szSysTime;
-char *g_szRefTime;	
+char *g_szRefTime;
 
 inline void UpdateTime(char *pchBuffer, int iLen)
 {

@@ -1041,4 +1041,3 @@ error:
 module_init(rmnet_init);
 MODULE_DESCRIPTION("MSM RMNET BAM TRANSPORT");
 MODULE_LICENSE("GPL v2");
-

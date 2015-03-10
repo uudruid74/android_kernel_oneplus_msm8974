@@ -503,10 +503,10 @@ claw_open(struct net_device *dev)
         /*   allocate and initialize CCW blocks */
 	if (privptr->buffs_alloc == 0) {
 	        rc=init_ccw_bk(dev);
-        	if (rc) {
+		if (rc) {
 			CLAW_DBF_TEXT(2, trace, "openmem");
-                	return -ENOMEM;
-        	}
+			return -ENOMEM;
+		}
 	}
         privptr->system_validate_comp=0;
         privptr->release_pend=0;
@@ -587,28 +587,28 @@ claw_open(struct net_device *dev)
                 if (privptr->p_env->read_size < PAGE_SIZE) {
                         free_pages((unsigned long)privptr->p_buff_read,
 			       (int)pages_to_order_of_mag(
-			       		privptr->p_buff_read_num));
+					privptr->p_buff_read_num));
                 }
                 else {
                         p_buf=privptr->p_read_active_first;
                         while (p_buf!=NULL) {
                                 free_pages((unsigned long)p_buf->p_buffer,
 				      (int)pages_to_order_of_mag(
-				      	privptr->p_buff_pages_perread ));
+					privptr->p_buff_pages_perread ));
                                 p_buf=p_buf->next;
                         }
                 }
                 if (privptr->p_env->write_size < PAGE_SIZE ) {
                         free_pages((unsigned long)privptr->p_buff_write,
 			     (int)pages_to_order_of_mag(
-			     	privptr->p_buff_write_num));
+				privptr->p_buff_write_num));
                 }
                 else {
                         p_buf=privptr->p_write_active_first;
                         while (p_buf!=NULL) {
                                 free_pages((unsigned long)p_buf->p_buffer,
 				     (int)pages_to_order_of_mag(
-				     	privptr->p_buff_pages_perwrite ));
+					privptr->p_buff_pages_perwrite ));
                                 p_buf=p_buf->next;
                         }
                 }
@@ -882,7 +882,7 @@ claw_release(struct net_device *dev)
                 spin_lock_irqsave(
 			get_ccwdev_lock(privptr->channel[i].cdev), saveflags);
 	     /*   del_timer(&privptr->channel[READ_CHANNEL].timer);  */
- 		privptr->channel[i].claw_state = CLAW_STOP;
+		privptr->channel[i].claw_state = CLAW_STOP;
                 privptr->channel[i].IO_active = 0;
                 parm = (unsigned long) &privptr->channel[i];
 		if (i == WRITE_CHANNEL)
@@ -912,8 +912,8 @@ claw_release(struct net_device *dev)
 	}
 	CLAW_DBF_TEXT(4, trace, "freebufs");
 	if (privptr->p_buff_ccw != NULL) {
-        	free_pages((unsigned long)privptr->p_buff_ccw,
-	        	(int)pages_to_order_of_mag(privptr->p_buff_ccw_num));
+		free_pages((unsigned long)privptr->p_buff_ccw,
+			(int)pages_to_order_of_mag(privptr->p_buff_ccw_num));
 	}
 	CLAW_DBF_TEXT(4, trace, "freeread");
         if (privptr->p_env->read_size < PAGE_SIZE) {
@@ -927,7 +927,7 @@ claw_release(struct net_device *dev)
                 while (p_buf!=NULL) {
                         free_pages((unsigned long)p_buf->p_buffer,
 			     (int)pages_to_order_of_mag(
-			     	privptr->p_buff_pages_perread ));
+				privptr->p_buff_pages_perread ));
                         p_buf=p_buf->next;
                 }
         }
@@ -1003,7 +1003,7 @@ claw_write_retry ( struct chbk *p_ch )
 
 	CLAW_DBF_TEXT(4, trace, "w_retry");
         if (p_ch->claw_state == CLAW_STOP) {
-        	return;
+		return;
         }
 	claw_strt_out_IO( dev );
 	CLAW_DBF_TEXT(4, trace, "rtry_xit");
@@ -1032,11 +1032,11 @@ claw_write_next ( struct chbk * p_ch )
         claw_free_wrt_buf( dev );
 	if ((privptr->write_free_count > 0) &&
 	    !skb_queue_empty(&p_ch->collect_queue)) {
-	  	pk_skb = claw_pack_skb(privptr);
+		pk_skb = claw_pack_skb(privptr);
 		while (pk_skb != NULL) {
 			claw_hw_tx(pk_skb, dev, 1);
 			if (privptr->write_free_count > 0) {
-	   			pk_skb = claw_pack_skb(privptr);
+				pk_skb = claw_pack_skb(privptr);
 			} else
 				pk_skb = NULL;
 		}
@@ -1280,18 +1280,18 @@ find_link(struct net_device *dev, char *host_name, char *ws_name )
 		case  PACKING_ASK:
 			if ((memcmp(WS_APPL_NAME_PACKED, host_name, 8)!=0) ||
 			    (memcmp(WS_APPL_NAME_PACKED, ws_name, 8)!=0 ))
-        	             rc = EINVAL;
+		             rc = EINVAL;
 			break;
 		case  DO_PACKED:
 		case  PACK_SEND:
 			if ((memcmp(WS_APPL_NAME_IP_NAME, host_name, 8)!=0) ||
 			    (memcmp(WS_APPL_NAME_IP_NAME, ws_name, 8)!=0 ))
-        	        	rc = EINVAL;
+				rc = EINVAL;
 			break;
 		default:
-	       		if ((memcmp(HOST_APPL_NAME, host_name, 8)!=0) ||
-		    	    (memcmp(p_env->api_type , ws_name, 8)!=0))
-        	        	rc = EINVAL;
+			if ((memcmp(HOST_APPL_NAME, host_name, 8)!=0) ||
+			    (memcmp(p_env->api_type , ws_name, 8)!=0))
+				rc = EINVAL;
 			break;
 	}
 
@@ -1330,7 +1330,7 @@ claw_hw_tx(struct sk_buff *skb, struct net_device *dev, long linkid)
         p_first_ccw=NULL;
         p_last_ccw=NULL;
 	if ((p_env->packing >= PACK_SEND) &&
-       	    (skb->cb[1] != 'P')) {
+	    (skb->cb[1] != 'P')) {
 		skb_push(skb,sizeof(struct clawph));
 		pk_head=(struct clawph *)skb->data;
 		pk_head->len=skb->len-sizeof(struct clawph);
@@ -1348,8 +1348,8 @@ claw_hw_tx(struct sk_buff *skb, struct net_device *dev, long linkid)
 		skb->cb[1] = 'P';
 	}
         if (linkid == 0) {
-        	if (claw_check_busy(dev)) {
-                	if (privptr->write_free_count!=0) {
+		if (claw_check_busy(dev)) {
+			if (privptr->write_free_count!=0) {
                                 claw_clear_busy(dev);
                         }
                         else {
@@ -1359,10 +1359,10 @@ claw_hw_tx(struct sk_buff *skb, struct net_device *dev, long linkid)
 					ch = &privptr->channel[WRITE_CHANNEL];
 					atomic_inc(&skb->users);
 					skb_queue_tail(&ch->collect_queue, skb);
-                                	goto Done;
+					goto Done;
                                 }
                                 else {
-                                	claw_clear_busy(dev);
+					claw_clear_busy(dev);
                                 }
                         }
                 }
@@ -1769,7 +1769,7 @@ init_ccw_bk(struct net_device *dev)
                    if (p_buff==NULL) {
                         free_pages((unsigned long)privptr->p_buff_ccw,
 			      (int)pages_to_order_of_mag(
-			      		privptr->p_buff_ccw_num));
+					privptr->p_buff_ccw_num));
                         privptr->p_buff_ccw=NULL;
 			p_buf=privptr->p_buff_write;
                         while (p_buf!=NULL) {
@@ -2379,10 +2379,10 @@ claw_send_control(struct net_device *dev, __u8 type, __u8 link,
 			if (privptr->p_env->packing > 0) {
 			/* How big is the biggest packet */
 				p_connect->reserved1[0]=CLAW_FRAME_SIZE;
-                        	p_connect->reserved1[1]=CLAW_FRAME_SIZE;
+				p_connect->reserved1[1]=CLAW_FRAME_SIZE;
 			} else {
 	                        memset(&p_connect->reserved1, 0x00, 4);
-        	                memset(&p_connect->reserved2, 0x00, 4);
+		                memset(&p_connect->reserved2, 0x00, 4);
 			}
                         break;
                 default:
@@ -2401,7 +2401,7 @@ claw_send_control(struct net_device *dev, __u8 type, __u8 link,
 	if (privptr->p_env->packing >= PACK_SEND)
 		claw_hw_tx(skb, dev, 1);
 	else
-        	claw_hw_tx(skb, dev, 0);
+		claw_hw_tx(skb, dev, 0);
         return 0;
 }  /*   end of claw_send_control  */
 
@@ -2425,14 +2425,14 @@ claw_snd_conn_req(struct net_device *dev, __u8 link)
         }
 	if (privptr->p_env->packing == PACKING_ASK )
 		rc=claw_send_control(dev, CONNECTION_REQUEST,0,0,0,
-        		WS_APPL_NAME_PACKED, WS_APPL_NAME_PACKED);
+			WS_APPL_NAME_PACKED, WS_APPL_NAME_PACKED);
 	if (privptr->p_env->packing == PACK_SEND)  {
 		rc=claw_send_control(dev, CONNECTION_REQUEST,0,0,0,
-        		WS_APPL_NAME_IP_NAME, WS_APPL_NAME_IP_NAME);
+			WS_APPL_NAME_IP_NAME, WS_APPL_NAME_IP_NAME);
 	}
 	if (privptr->p_env->packing == 0)
-        	rc=claw_send_control(dev, CONNECTION_REQUEST,0,0,0,
-       			HOST_APPL_NAME, privptr->p_env->api_type);
+		rc=claw_send_control(dev, CONNECTION_REQUEST,0,0,0,
+			HOST_APPL_NAME, privptr->p_env->api_type);
         return rc;
 
 }  /*  end of claw_snd_conn_req */
@@ -2619,7 +2619,7 @@ unpack_next:
 			pack_off += bytes_to_mov+sizeof(struct clawph);
 			p++;
 		} else {
-                	bytes_to_mov=p_this_ccw->header.length;
+			bytes_to_mov=p_this_ccw->header.length;
 		}
                 if (privptr->mtc_logical_link<0) {
 
@@ -2643,8 +2643,8 @@ unpack_next:
 				p_packd+sizeof(struct clawph), bytes_to_mov);
 
 		} else	{
-                	memcpy( privptr->p_mtc_envelope+ privptr->mtc_offset,
-                        	p_this_ccw->p_buffer, bytes_to_mov);
+			memcpy( privptr->p_mtc_envelope+ privptr->mtc_offset,
+				p_this_ccw->p_buffer, bytes_to_mov);
 		}
                 if (mtc_this_frm==0) {
                         len_of_data=privptr->mtc_offset+bytes_to_mov;

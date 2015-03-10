@@ -11,9 +11,9 @@
 #include <linux/ceph/messenger.h>
 #include <linux/ceph/auth.h>
 
-/* 
- * Maximum object name size 
- * (must be at least as big as RBD_MAX_MD_NAME_LEN -- currently 100) 
+/*
+ * Maximum object name size
+ * (must be at least as big as RBD_MAX_MD_NAME_LEN -- currently 100)
  */
 #define MAX_OBJ_NAME_SIZE 100
 
@@ -292,4 +292,3 @@ extern int ceph_osdc_wait_event(struct ceph_osd_event *event,
 				unsigned long timeout);
 extern void ceph_osdc_put_event(struct ceph_osd_event *event);
 #endif
-

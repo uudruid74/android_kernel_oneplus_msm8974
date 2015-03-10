@@ -464,7 +464,7 @@ static int ssp_probe(struct spi_device *spi_dev)
 	}
 
 	initialize_variable(data);
-	
+
 	ssp_enable(data, true);
 	/* check boot loader binary */
 	data->fw_dl_state = check_fwbl(data);

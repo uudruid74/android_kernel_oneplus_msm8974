@@ -54,11 +54,11 @@ sgl_fsub(
     {
     register unsigned int left, right, result, extent;
     register unsigned int signless_upper_left, signless_upper_right, save;
-    
+
     register int result_exponent, right_exponent, diff_exponent;
     register int sign_save, jumpsize;
     register boolean inexact = FALSE, underflowtrap;
-        
+
     /* Create local copies of the numbers */
     left = *leftptr;
     right = *rightptr;
@@ -72,13 +72,13 @@ sgl_fsub(
      */
     if ((result_exponent = Sgl_exponent(left)) == SGL_INFINITY_EXPONENT)
 	{
-	if (Sgl_iszero_mantissa(left)) 
+	if (Sgl_iszero_mantissa(left))
 	    {
-	    if (Sgl_isnotnan(right)) 
+	    if (Sgl_isnotnan(right))
 		{
-		if (Sgl_isinfinity(right) && save==0) 
+		if (Sgl_isinfinity(right) && save==0)
 		    {
-		    /* 
+		    /*
 		     * invalid since operands are same signed infinity's
 		     */
 		    if (Is_invalidtrap_enabled()) return(INVALIDEXCEPTION);
@@ -88,32 +88,32 @@ sgl_fsub(
 		    return(NOEXCEPTION);
 		    }
 		/*
-	 	 * return infinity
-	 	 */
+		 * return infinity
+		 */
 		*dstptr = left;
 		return(NOEXCEPTION);
 		}
 	    }
-	else 
+	else
 	    {
             /*
              * is NaN; signaling or quiet?
              */
-            if (Sgl_isone_signaling(left)) 
+            if (Sgl_isone_signaling(left))
 		{
-               	/* trap if INVALIDTRAP enabled */
+		/* trap if INVALIDTRAP enabled */
 		if (Is_invalidtrap_enabled()) return(INVALIDEXCEPTION);
-        	/* make NaN quiet */
-        	Set_invalidflag();
-        	Sgl_set_quiet(left);
-        	}
-	    /* 
-	     * is second operand a signaling NaN? 
+		/* make NaN quiet */
+		Set_invalidflag();
+		Sgl_set_quiet(left);
+		}
+	    /*
+	     * is second operand a signaling NaN?
 	     */
-	    else if (Sgl_is_signalingnan(right)) 
+	    else if (Sgl_is_signalingnan(right))
 		{
-        	/* trap if INVALIDTRAP enabled */
-               	if (Is_invalidtrap_enabled()) return(INVALIDEXCEPTION);
+		/* trap if INVALIDTRAP enabled */
+		if (Is_invalidtrap_enabled()) return(INVALIDEXCEPTION);
 		/* make NaN quiet */
 		Set_invalidflag();
 		Sgl_set_quiet(right);
@@ -121,18 +121,18 @@ sgl_fsub(
 		return(NOEXCEPTION);
 		}
 	    /*
- 	     * return quiet NaN
- 	     */
- 	    *dstptr = left;
- 	    return(NOEXCEPTION);
+	     * return quiet NaN
+	     */
+	    *dstptr = left;
+	    return(NOEXCEPTION);
 	    }
 	} /* End left NaN or Infinity processing */
     /*
      * check second operand for NaN's or infinity
      */
-    if (Sgl_isinfinity_exponent(right)) 
+    if (Sgl_isinfinity_exponent(right))
 	{
-	if (Sgl_iszero_mantissa(right)) 
+	if (Sgl_iszero_mantissa(right))
 	    {
 	    /* return infinity */
 	    Sgl_invert_sign(right);
@@ -142,7 +142,7 @@ sgl_fsub(
         /*
          * is NaN; signaling or quiet?
          */
-        if (Sgl_isone_signaling(right)) 
+        if (Sgl_isone_signaling(right))
 	    {
             /* trap if INVALIDTRAP enabled */
 	    if (Is_invalidtrap_enabled()) return(INVALIDEXCEPTION);
@@ -152,10 +152,10 @@ sgl_fsub(
 	    }
 	/*
 	 * return quiet NaN
- 	 */
+	 */
 	*dstptr = right;
 	return(NOEXCEPTION);
-    	} /* End right NaN or Infinity processing */
+	} /* End right NaN or Infinity processing */
 
     /* Invariant: Must be dealing with finite numbers */
 
@@ -173,12 +173,12 @@ sgl_fsub(
 	result_exponent = Sgl_exponent(left);
 	Sgl_invert_sign(left);
 	}
-    /* Invariant:  left is not smaller than right. */ 
+    /* Invariant:  left is not smaller than right. */
 
     if((right_exponent = Sgl_exponent(right)) == 0)
         {
 	/* Denormalized operands.  First look for zeroes */
-	if(Sgl_iszero_mantissa(right)) 
+	if(Sgl_iszero_mantissa(right))
 	    {
 	    /* right is zero */
 	    if(Sgl_iszero_exponentmantissa(left))
@@ -194,7 +194,7 @@ sgl_fsub(
 		    Sgl_and_signs(left,/*with*/right);
 		    }
 		}
-	    else 
+	    else
 		{
 		/* Left is not a zero and must be the result.  Trapped
 		 * underflows are signaled if left is denormalized.  Result
@@ -202,7 +202,7 @@ sgl_fsub(
 		if( (result_exponent == 0) && Is_underflowtrap_enabled() )
 		    {
 		    /* need to normalize results mantissa */
-	    	    sign_save = Sgl_signextendedsign(left);
+		    sign_save = Sgl_signextendedsign(left);
 		    Sgl_leftshiftby1(left);
 		    Sgl_normalize(left,result_exponent);
 		    Sgl_set_sign(left,/*using*/sign_save);
@@ -252,7 +252,7 @@ sgl_fsub(
 	    if(Is_underflowtrap_enabled())
 		{
 		/* need to normalize result */
-	    	sign_save = Sgl_signextendedsign(result);
+		sign_save = Sgl_signextendedsign(result);
 		Sgl_leftshiftby1(result);
 		Sgl_normalize(result,result_exponent);
 		Sgl_set_sign(result,/*using*/sign_save);
@@ -274,8 +274,8 @@ sgl_fsub(
     Sgl_clear_exponent_set_hidden(left);
     diff_exponent = result_exponent - right_exponent;
 
-    /* 
-     * Special case alignment of operands that would force alignment 
+    /*
+     * Special case alignment of operands that would force alignment
      * beyond the extent of the extension.  A further optimization
      * could special case this but only reduces the path length for this
      * infrequent case.
@@ -284,7 +284,7 @@ sgl_fsub(
 	{
 	diff_exponent = SGL_THRESHOLD;
 	}
-    
+
     /* Align right operand by shifting to right */
     Sgl_right_align(/*operand*/right,/*shifted by*/diff_exponent,
       /*and lower to*/extent);
@@ -307,8 +307,8 @@ sgl_fsub(
 	     * Only the two most significant bits (round and guard) are
 	     * needed.  If only a single shift is needed then the guard
 	     * bit becomes a significant low order bit and the extension
-	     * must participate in the rounding.  If more than a single 
-	     * shift is needed, then all bits to the right of the guard 
+	     * must participate in the rounding.  If more than a single
+	     * shift is needed, then all bits to the right of the guard
 	     * bit are zeros, and the guard bit may or may not be zero. */
 	    sign_save = Sgl_signextendedsign(result);
             Sgl_leftshiftby1_withextent(result,extent,result);
@@ -317,7 +317,7 @@ sgl_fsub(
 	     * fields have already been zeroed.  The more efficient test
 	     * of the full object can be used.
 	     */
-    	    if(Sgl_iszero(result))
+	    if(Sgl_iszero(result))
 		/* Must have been "x-x" or "x+(-x)". */
 		{
 		if(Is_rounding_mode(ROUNDMINUS)) Sgl_setone_sign(result);
@@ -331,14 +331,14 @@ sgl_fsub(
 		if(result_exponent==0)
 		    {
 		    /* Denormalized, exponent should be zero.  Left operand *
- 		     * was normalized, so extent (guard, round) was zero    */
+		     * was normalized, so extent (guard, round) was zero    */
 		    goto underflow;
 		    }
 		else
 		    {
 		    /* No further normalization is needed. */
 		    Sgl_set_sign(result,/*using*/sign_save);
-	    	    Ext_leftshiftby1(extent);
+		    Ext_leftshiftby1(extent);
 		    goto round;
 		    }
 		}
@@ -383,7 +383,7 @@ sgl_fsub(
 		return(NOEXCEPTION);
 		}
 	    Sgl_sethigh4bits(result,/*using*/sign_save);
-	    switch(jumpsize) 
+	    switch(jumpsize)
 		{
 		case 1:
 		    {
@@ -408,7 +408,7 @@ sgl_fsub(
 		    break;
 		    }
 		}
-	    if(result_exponent > 0) 
+	    if(result_exponent > 0)
 		{
 		Sgl_set_exponent(result,/*using*/result_exponent);
 		*dstptr = result;	/* Sign bit is already set */
@@ -436,7 +436,7 @@ sgl_fsub(
 	    } /* end if(hidden...)... */
 	/* Fall through and round */
 	} /* end if(save >= 0)... */
-    else 
+    else
 	{
 	/* Add magnitudes */
 	Sgl_addition(left,right,/*to*/result);
@@ -448,7 +448,7 @@ sgl_fsub(
 	    result_exponent++;
 	    } /* end if hiddenoverflow... */
 	} /* end else ...sub magnitudes... */
-    
+
     /* Round the result.  If the extension is all zeros,then the result is
      * exact.  Otherwise round in the correct direction.  No underflow is
      * possible. If a postnormalization is necessary, then the mantissa is
@@ -479,14 +479,14 @@ sgl_fsub(
 		Sgl_increment(result);
 		}
 	    break;
-	    
+
 	    case ROUNDMINUS:
 	    if(Sgl_isone_sign(result))
 		{
 		/* Round down negative results */
 		Sgl_increment(result);
 		}
-	    
+
 	    case ROUNDZERO:;
 	    /* truncate is simple */
 	    } /* end switch... */
@@ -514,7 +514,7 @@ sgl_fsub(
 	}
     else Sgl_set_exponent(result,result_exponent);
     *dstptr = result;
-    if(inexact) 
+    if(inexact)
 	if(Is_inexacttrap_enabled()) return(INEXACTEXCEPTION);
 	else Set_inexactflag();
     return(NOEXCEPTION);

@@ -389,17 +389,17 @@ static int max77888_muic_set_uart_path_pass2
 {
 	int ret = 0;
 
-	switch (info->cable_type) { 
-	case CABLE_TYPE_JIG_UART_OFF_MUIC: 
-	case CABLE_TYPE_JIG_UART_OFF_VB_MUIC: 
+	switch (info->cable_type) {
+	case CABLE_TYPE_JIG_UART_OFF_MUIC:
+	case CABLE_TYPE_JIG_UART_OFF_VB_MUIC:
 		ret = max77888_muic_set_comp2_comn1_pass2
 			(info, 1/*uart*/, path);
-		break; 
-	default: 
-		pr_info("%s:%s JIG UART OFF isn't connected," 
-			"don't change MUIC path\n", DEV_NAME, __func__); 
-		break; 
-	} 
+		break;
+	default:
+		pr_info("%s:%s JIG UART OFF isn't connected,"
+			"don't change MUIC path\n", DEV_NAME, __func__);
+		break;
+	}
 
 	return ret;
 
@@ -1439,7 +1439,7 @@ static int max77888_muic_attach_dock_type(struct max77888_muic_info *info,
 		} else	{
 			info->cable_type = CABLE_TYPE_SMARTDOCK_MUIC;
 		}
-		
+
 		if (info->is_usb_ready) {
 			pr_info("%s:%s usb is ready, D+,D- line(AP_USB)\n",
 				DEV_NAME, __func__);
@@ -1585,10 +1585,10 @@ void max77888_otg_control(struct max77888_muic_info *info, int enable)
 	u8 int_mask, int_mask2, ctrl3, chg_cnfg_00;
 	int jig_state;
 	pr_info("%s: enable(%d)\n", __func__, enable);
-	
+
 	/* Get jig state and set CTRL3 reg */
 	jig_state = max77888_get_jig_state();
-	
+
 	if (enable) {
 		/* Set CTRL3 Reg = 0x0E */
 		if(jig_state == 1){
@@ -1924,7 +1924,7 @@ static void max77888_muic_attach_smart_dock(struct max77888_muic_info *info,
 
 				if (mdata->usb_cb && info->is_usb_ready)
 					mdata->usb_cb(USB_CABLE_ATTACHED);
-			}		
+			}
 		} else {
 			/* set CDDelay 500ms */
 			/*max77888_muic_set_cddelay(info);*/
@@ -2145,7 +2145,7 @@ static int max77888_muic_handle_attach(struct max77888_muic_info *info,
 			ret = max77888_muic_set_charging_type(info, false);
 		else if (chgtyp == CHGTYP_NO_VOLTAGE && !chgdetrun)
 			ret = max77888_muic_set_charging_type(info, !vbvolt);
-		break;	
+		break;
 #if defined(CONFIG_MUIC_MAX77888_SUPPORT_SMART_DOCK)
 	case ADC_SMARTDOCK:
 		max77888_muic_attach_smart_dock(info, adc, vbvolt, chgtyp);
@@ -2700,7 +2700,7 @@ static void max77888_muic_detect_dev(struct max77888_muic_info *info, int irq)
 	wake_lock_timeout(&info->muic_wake_lock, HZ * 2);
 
 	intr = max77888_muic_filter_dev(info, status[0], status[1]);
-	
+
 	info->adc = status[0] & STATUS1_ADC_MASK;
 	info->chgtyp = status[1] & STATUS2_CHGTYP_MASK;
 	info->vbvolt = status[1] & STATUS2_VBVOLT_MASK;

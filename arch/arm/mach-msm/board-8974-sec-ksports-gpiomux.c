@@ -944,7 +944,7 @@ static struct msm_gpiomux_config es705_config[] __initdata = {
 		.settings = {
 			[GPIOMUX_SUSPENDED] = &es705_intrevent_config,
 		},
-	},	
+	},
 	{
 		.gpio	= 79,		/* es705 intr event */
 		.settings = {

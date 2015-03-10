@@ -1,7 +1,7 @@
 #ifndef __LINUX_BRIDGE_NETFILTER_H
 #define __LINUX_BRIDGE_NETFILTER_H
 
-/* bridge-specific defines for netfilter. 
+/* bridge-specific defines for netfilter.
  */
 
 #include <linux/netfilter.h>
@@ -53,7 +53,7 @@ static inline int nf_bridge_maybe_copy_header(struct sk_buff *skb)
 	if (skb->nf_bridge &&
 	    skb->nf_bridge->mask & (BRNF_BRIDGED | BRNF_BRIDGED_DNAT))
 		return nf_bridge_copy_header(skb);
-  	return 0;
+	return 0;
 }
 
 static inline unsigned int nf_bridge_encap_header_len(const struct sk_buff *skb)

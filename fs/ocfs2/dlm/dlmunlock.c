@@ -461,7 +461,7 @@ int dlm_unlock_lock_handler(struct o2net_msg *msg, u32 len, void *data,
 		list_for_each(iter, queue) {
 			lock = list_entry(iter, struct dlm_lock, list);
 			if (lock->ml.cookie == unlock->cookie &&
-		    	    lock->ml.node == unlock->node_idx) {
+			    lock->ml.node == unlock->node_idx) {
 				dlm_lock_get(lock);
 				found = 1;
 				break;
@@ -689,4 +689,3 @@ retry:
 	return status;
 }
 EXPORT_SYMBOL_GPL(dlmunlock);
-

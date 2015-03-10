@@ -59,7 +59,7 @@ static inline long access_ok(int type, const void __user * addr,
 /*
  * The exception table contains two values: the first is an address
  * for an instruction that is allowed to fault, and the second is
- * the address to the fixup routine. 
+ * the address to the fixup routine.
  */
 
 struct exception_table_entry {
@@ -167,7 +167,7 @@ struct exception_data {
 		ASM_EXCEPTIONTABLE_ENTRY(1b,fixup_put_user_skip_1)\
 		: "=r"(__pu_err)                            \
 		: "r"(ptr), "r"(x), "0"(__pu_err)	    \
-	    	: "r1")
+		: "r1")
 
 #define __put_user_asm(stx,x,ptr)                           \
 	__asm__ __volatile__ (                              \

@@ -636,11 +636,11 @@ static int rr_init1(struct net_device *dev)
 	writel(0x5000, &regs->ConRetry);
 	writel(0x100, &regs->ConRetryTmr);
 	writel(0x500000, &regs->ConTmout);
- 	writel(0x60, &regs->IntrTmr);
+	writel(0x60, &regs->IntrTmr);
 	writel(0x500000, &regs->TxDataMvTimeout);
 	writel(0x200000, &regs->RxDataMvTimeout);
- 	writel(0x80, &regs->WriteDmaThresh);
- 	writel(0x80, &regs->ReadDmaThresh);
+	writel(0x80, &regs->WriteDmaThresh);
+	writel(0x80, &regs->ReadDmaThresh);
 
 	rrpriv->fw_running = 0;
 	wmb();
@@ -715,7 +715,7 @@ static int rr_init1(struct net_device *dev)
 		struct sk_buff *skb = rrpriv->rx_skbuff[i];
 
 		if (skb) {
-	        	pci_unmap_single(rrpriv->pci_dev,
+			pci_unmap_single(rrpriv->pci_dev,
 					 rrpriv->rx_ring[i].addr.addrlo,
 					 dev->mtu + HIPPI_HLEN,
 					 PCI_DMA_FROMDEVICE);
@@ -990,13 +990,13 @@ static void rx_int(struct net_device *dev, u32 rxlimit, u32 index)
 				if (newskb){
 					dma_addr_t addr;
 
-	        			pci_unmap_single(rrpriv->pci_dev,
+					pci_unmap_single(rrpriv->pci_dev,
 						desc->addr.addrlo, dev->mtu +
 						HIPPI_HLEN, PCI_DMA_FROMDEVICE);
 					skb = rx_skb;
 					skb_put(skb, pkt_len);
 					rrpriv->rx_skbuff[index] = newskb;
-	        			addr = pci_map_single(rrpriv->pci_dev,
+					addr = pci_map_single(rrpriv->pci_dev,
 						newskb->data,
 						dev->mtu + HIPPI_HLEN,
 						PCI_DMA_FROMDEVICE);
@@ -1126,7 +1126,7 @@ static inline void rr_raz_tx(struct rr_private *rrpriv,
 		if (skb) {
 			struct tx_desc *desc = &(rrpriv->tx_ring[i]);
 
-	        	pci_unmap_single(rrpriv->pci_dev, desc->addr.addrlo,
+			pci_unmap_single(rrpriv->pci_dev, desc->addr.addrlo,
 				skb->len, PCI_DMA_TODEVICE);
 			desc->size = 0;
 			set_rraddr(&desc->addr, 0);
@@ -1148,7 +1148,7 @@ static inline void rr_raz_rx(struct rr_private *rrpriv,
 		if (skb) {
 			struct rx_desc *desc = &(rrpriv->rx_ring[i]);
 
-	        	pci_unmap_single(rrpriv->pci_dev, desc->addr.addrlo,
+			pci_unmap_single(rrpriv->pci_dev, desc->addr.addrlo,
 				dev->mtu + HIPPI_HLEN, PCI_DMA_FROMDEVICE);
 			desc->size = 0;
 			set_rraddr(&desc->addr, 0);

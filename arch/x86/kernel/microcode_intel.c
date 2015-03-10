@@ -12,7 +12,7 @@
  *	Software Developer's Manual
  *	Order Number 253668 or free download from:
  *
- *	http://developer.intel.com/Assets/PDF/manual/253668.pdf	
+ *	http://developer.intel.com/Assets/PDF/manual/253668.pdf
  *
  *	For more information, go to http://www.urbanmyth.org/microcode
  *
@@ -467,4 +467,3 @@ struct microcode_ops * __init init_intel_microcode(void)
 
 	return &microcode_intel_ops;
 }
-

@@ -1,5 +1,5 @@
 /* drivers/atm/zatm.c - ZeitNet ZN122x device driver */
- 
+
 /* Written 1995-2000 by Werner Almesberger, EPFL LRC/ICA */
 
 
@@ -70,7 +70,7 @@ static void event_dump(void)
 #else
 
 
-/* 
+/*
  * NULL pointer checking
  */
 
@@ -91,7 +91,7 @@ static int ec = 0;
 
 static void EVENT(const char *s,unsigned long a,unsigned long b)
 {
-	ev[ec] = s; 
+	ev[ec] = s;
 	ev_a[ec] = a;
 	ev_b[ec] = b;
 	ec = (ec+1) % EV;
@@ -1267,12 +1267,12 @@ static int __devinit zatm_start(struct atm_dev *dev)
 
 	DPRINTK("zatm_start\n");
 	zatm_dev->rx_map = zatm_dev->tx_map = NULL;
- 	for (i = 0; i < NR_MBX; i++)
- 		zatm_dev->mbx_start[i] = 0;
- 	error = request_irq(zatm_dev->irq, zatm_int, IRQF_SHARED, DEV_LABEL, dev);
+	for (i = 0; i < NR_MBX; i++)
+		zatm_dev->mbx_start[i] = 0;
+	error = request_irq(zatm_dev->irq, zatm_int, IRQF_SHARED, DEV_LABEL, dev);
 	if (error < 0) {
- 		printk(KERN_ERR DEV_LABEL "(itf %d): IRQ%d is already in use\n",
- 		    dev->number,zatm_dev->irq);
+		printk(KERN_ERR DEV_LABEL "(itf %d): IRQ%d is already in use\n",
+		    dev->number,zatm_dev->irq);
 		goto done;
 	}
 	/* define memory regions */
@@ -1355,7 +1355,7 @@ out_tx:
 	kfree(zatm_dev->tx_map);
 out:
 	while (i-- > 0) {
-		pci_free_consistent(pdev, 2*MBX_SIZE(i), 
+		pci_free_consistent(pdev, 2*MBX_SIZE(i),
 				    (void *)zatm_dev->mbx_start[i],
 				    zatm_dev->mbx_dma[i]);
 	}
@@ -1504,7 +1504,7 @@ static int zatm_ioctl(struct atm_dev *dev,unsigned int cmd,void __user *arg)
 				return 0;
 			}
 		default:
-        		if (!dev->phy->ioctl) return -ENOIOCTLCMD;
+			if (!dev->phy->ioctl) return -ENOIOCTLCMD;
 		        return dev->phy->ioctl(dev,cmd,arg);
 	}
 }

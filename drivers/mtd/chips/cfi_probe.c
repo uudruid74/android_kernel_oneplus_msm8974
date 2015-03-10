@@ -99,13 +99,13 @@ static int __xipram cfi_probe_chip(struct map_info *map, __u32 base,
 	}
 
 	/* Check each previous chip to see if it's an alias */
- 	for (i=0; i < (base >> cfi->chipshift); i++) {
- 		unsigned long start;
- 		if(!test_bit(i, chip_map)) {
+	for (i=0; i < (base >> cfi->chipshift); i++) {
+		unsigned long start;
+		if(!test_bit(i, chip_map)) {
 			/* Skip location; no valid chip at this address */
- 			continue;
- 		}
- 		start = i << cfi->chipshift;
+			continue;
+		}
+		start = i << cfi->chipshift;
 		/* This chip should be in read mode if it's one
 		   we've already touched. */
 		if (cfi_qry_present(map, start, cfi)) {

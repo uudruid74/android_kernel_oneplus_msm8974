@@ -169,7 +169,7 @@ void aty_init_engine(struct atyfb_par *par, struct fb_info *info)
 	aty_st_le32(DP_CHAIN_MASK, par->crtc.dp_chain_mask, par);
 
 	wait_for_fifo(5, par);
- 	aty_st_le32(SCALE_3D_CNTL, 0, par);
+	aty_st_le32(SCALE_3D_CNTL, 0, par);
 	aty_st_le32(Z_CNTL, 0, par);
 	aty_st_le32(CRTC_INT_CNTL, aty_ld_le32(CRTC_INT_CNTL, par) & ~0x20,
 		    par);

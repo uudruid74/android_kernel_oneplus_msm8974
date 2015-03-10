@@ -44,4 +44,3 @@
 
 
 #endif /* __RTL8712_MACSETTING_BITDEF_H__*/
-
