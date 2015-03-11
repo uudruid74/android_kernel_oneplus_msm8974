@@ -405,7 +405,6 @@ int current_cable_type = POWER_SUPPLY_TYPE_BATTERY;
 extern int poweroff_charging;
 extern unsigned int intelli_plug_nr_run_profile_sel;
 static unsigned int intelli_plug_prev_nr_run_profile_sel = 0;
-bool powerboosted = false;
 int max77803_muic_charger_cb(enum cable_type_muic cable_type)
 {
 #ifdef CONFIG_CHARGER_MAX77803
@@ -419,13 +418,11 @@ int max77803_muic_charger_cb(enum cable_type_muic cable_type)
 	if (cable_type > 0) {
 		intelli_plug_prev_nr_run_profile_sel = intelli_plug_nr_run_profile_sel;
 		intelli_plug_nr_run_profile_sel = 1;
-		powerboosted = true;
 		pr_info("%s: executing /sbin/powerboost.sh 1\n", __func__);
 		char *argv[] = { "/sbin/powerboost.sh", "1", NULL };
 		call_usermodehelper(argv[0], argv, NULL, UMH_WAIT_EXEC);
 	} else if (cable_type == 0) {
 		intelli_plug_nr_run_profile_sel = intelli_plug_prev_nr_run_profile_sel;
-		powerboosted = false;
 		pr_info("%s: executing /sbin/powerboost.sh 0\n", __func__);
 		char *argv[] = { "/sbin/powerboost.sh", "0", NULL };
 		call_usermodehelper(argv[0], argv, NULL, UMH_WAIT_EXEC);
