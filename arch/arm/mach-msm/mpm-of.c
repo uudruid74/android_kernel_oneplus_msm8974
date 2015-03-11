@@ -39,10 +39,6 @@
 #include <mach/mpm.h>
 #include <mach/clk.h>
 #include <mach/rpm-regulator-smd.h>
-#include <linux/mutex.h>
-
-static DEFINE_MUTEX(enable_xo_mutex);
-
 
 static DEFINE_MUTEX(enable_xo_mutex);
 
