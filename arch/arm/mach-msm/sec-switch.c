@@ -15,7 +15,6 @@
 #include <linux/gpio.h>
 #include <linux/module.h>
 #include <linux/switch.h>
-#include <linux/cpufreq.h>
 #include "devices.h"
 #include <linux/power_supply.h>
 
@@ -403,8 +402,6 @@ err:
 
 int current_cable_type = POWER_SUPPLY_TYPE_BATTERY;
 extern int poweroff_charging;
-extern unsigned int intelli_plug_nr_run_profile_sel;
-static unsigned int intelli_plug_prev_nr_run_profile_sel = 0;
 int max77803_muic_charger_cb(enum cable_type_muic cable_type)
 {
 #ifdef CONFIG_CHARGER_MAX77803
@@ -414,19 +411,6 @@ int max77803_muic_charger_cb(enum cable_type_muic cable_type)
 	static enum cable_type_muic previous_cable_type = CABLE_TYPE_NONE_MUIC;
 #endif
 	pr_info("%s: cable type : %d\n", __func__, cable_type);
-
-	if (cable_type > 0) {
-		intelli_plug_prev_nr_run_profile_sel = intelli_plug_nr_run_profile_sel;
-		intelli_plug_nr_run_profile_sel = 1;
-		pr_info("%s: executing /sbin/powerboost.sh 1\n", __func__);
-		char *argv[] = { "/sbin/powerboost.sh", "1", NULL };
-		call_usermodehelper(argv[0], argv, NULL, UMH_WAIT_EXEC);
-	} else if (cable_type == 0) {
-		intelli_plug_nr_run_profile_sel = intelli_plug_prev_nr_run_profile_sel;
-		pr_info("%s: executing /sbin/powerboost.sh 0\n", __func__);
-		char *argv[] = { "/sbin/powerboost.sh", "0", NULL };
-		call_usermodehelper(argv[0], argv, NULL, UMH_WAIT_EXEC);
-	}
 
 #ifdef SYNAPTICS_RMI_INFORM_CHARGER
 	synaptics_tsp_charger_infom(cable_type);
