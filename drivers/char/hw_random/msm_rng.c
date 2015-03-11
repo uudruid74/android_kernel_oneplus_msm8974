@@ -167,9 +167,6 @@ static int msm_rng_drbg_read(struct hwrng *rng,
 	pdev = msm_rng_dev->pdev;
 	base = msm_rng_dev->base;
 
-
-	down(&msm_rng_dev->drbg_sem);
-
 	/* calculate max size bytes to transfer back to caller */
 	maxsize = min_t(size_t, MAX_HW_FIFO_SIZE, max);
 
@@ -190,7 +187,6 @@ static int msm_rng_drbg_read(struct hwrng *rng,
 	ret = clk_prepare_enable(msm_rng_dev->prng_clk);
 	if (ret) {
 		dev_err(&pdev->dev, "failed to enable clock in callback\n");
-		up(&msm_rng_dev->drbg_sem);
 		return 0;
 	}
 	/* read random data from h/w */
@@ -215,8 +211,6 @@ static int msm_rng_drbg_read(struct hwrng *rng,
 	} while (currsize < maxsize);
 	/* vote to turn off clock */
 	clk_disable_unprepare(msm_rng_dev->prng_clk);
-
-	up(&msm_rng_dev->drbg_sem);
 
 	return currsize;
 }
