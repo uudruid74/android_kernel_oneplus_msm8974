@@ -4094,8 +4094,6 @@ CONFIG_DEBUG_FS=y
 CONFIG_DEBUG_KERNEL=y
 # CONFIG_DEBUG_SHIRQ is not set
 # CONFIG_LOCKUP_DETECTOR is not set
-# CONFIG_HARDLOCKUP_DETECTOR_NMI is not set
-# CONFIG_HARDLOCKUP_DETECTOR_OTHER_CPU is not set
 # CONFIG_HARDLOCKUP_DETECTOR is not set
 # CONFIG_DETECT_HUNG_TASK is not set
 CONFIG_SCHED_DEBUG=y
@@ -4311,7 +4309,7 @@ CONFIG_CRYPTO_SHA1_ARM=y
 CONFIG_CRYPTO_SHA1_ARM_NEON=y
 CONFIG_CRYPTO_SHA256=y
 CONFIG_CRYPTO_SHA512=y
-# CONFIG_CRYPTO_SHA512_ARM_NEON is not set
+CONFIG_CRYPTO_SHA512_ARM_NEON=y
 # CONFIG_CRYPTO_TGR192 is not set
 # CONFIG_CRYPTO_WP512 is not set
 
@@ -4358,38 +4356,6 @@ CONFIG_CRYPTO_HW=y
 # CONFIG_CRYPTO_DEV_QCE is not set
 # CONFIG_CRYPTO_DEV_QCEDEV is not set
 # CONFIG_CRYPTO_DEV_OTA_CRYPTO is not set
-
-#
-# Crypto core or helper
-#
-
-#
-# Authenticated Encryption with Associated Data
-#
-
-#
-# Block modes
-#
-
-#
-# Hash modes
-#
-
-#
-# Digest
-#
-
-#
-# Ciphers
-#
-
-#
-# Compression
-#
-
-#
-# Random Number Generation
-#
 # CONFIG_BINARY_PRINTF is not set
 
 #
