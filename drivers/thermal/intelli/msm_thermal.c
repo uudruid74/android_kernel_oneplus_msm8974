@@ -44,8 +44,8 @@ static struct msm_thermal_data msm_thermal_info = {
 	.poll_ms = DEFAULT_POLLING_MS,
 	.limit_temp_degC = 80,
 	.temp_hysteresis_degC = 10,
-	.freq_step = 2,
-	.freq_control_mask = 0xf,
+	.bootup_freq_step = 2,
+	.bootup_freq_control_mask = 0xf,
 	.core_limit_temp_degC = 85,
 	.core_temp_hysteresis_degC = 10,
 	.core_control_mask = 0xe,
@@ -67,7 +67,7 @@ static uint32_t hist_index = 0;
 module_param_named(poll_ms, msm_thermal_info.poll_ms, uint, 0664);
 module_param_named(limit_temp_degC, msm_thermal_info.limit_temp_degC,
 			int, 0664);
-module_param_named(freq_control_mask, msm_thermal_info.freq_control_mask,
+module_param_named(freq_control_mask, msm_thermal_info.bootup_freq_control_mask,
 			uint, 0664);
 module_param_named(core_limit_temp_degC, msm_thermal_info.core_limit_temp_degC,
 			int, 0664);
@@ -184,7 +184,7 @@ static void __ref do_freq_control(long temp)
 		if (limit_idx == limit_idx_low)
 			return;
 
-		limit_idx -= msm_thermal_info.freq_step;
+		limit_idx -= msm_thermal_info.bootup_freq_step;
 		if (limit_idx < limit_idx_low)
 			limit_idx = limit_idx_low;
 		max_freq = table[limit_idx].frequency;
@@ -193,7 +193,7 @@ static void __ref do_freq_control(long temp)
 		if (limit_idx == limit_idx_high)
 			return;
 
-		limit_idx += msm_thermal_info.freq_step;
+		limit_idx += msm_thermal_info.bootup_freq_step;
 		if (limit_idx >= limit_idx_high) {
 			limit_idx = limit_idx_high;
 			max_freq = MSM_CPUFREQ_NO_LIMIT;
@@ -206,7 +206,7 @@ static void __ref do_freq_control(long temp)
 
 
 	for_each_possible_cpu(cpu) {
-		if (!(msm_thermal_info.freq_control_mask & BIT(cpu)))
+		if (!(msm_thermal_info.bootup_freq_control_mask & BIT(cpu)))
 			continue;
 		ret = update_cpu_max_freq(cpu, max_freq);
 		if (ret)
