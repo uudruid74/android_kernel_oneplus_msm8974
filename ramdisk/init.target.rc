@@ -35,44 +35,44 @@ on early-init
     mkdir /firmware-modem 0771 system system
     symlink /data/tombstones /tombstones
 
-    setenforce 0
-    setprop ro.boot.selinux 0
-
 on fs
     write /sys/devices/msm_sdcc.1/mmc_host/mmc1/power/control on
     write /sys/devices/msm_sdcc.3/mmc_host/mmc2/power/control on
 
+    start fs_mount
+
+    wait /dev/block/mounted
+
     mount_all fstab.qcom
     restorecon_recursive /persist
-    setprop ro.crypto.fuse_sdcard true
+    restorecon_recursive /efs
 
-    exec /system/bin/sh /init.qcom.syspart_fixup.sh ${ro.board.platform} ${ro.serialno}
+    setprop ro.crypto.fuse_sdcard true
 
     # Keeping following partitions outside fstab file. As user may not have
     # these partition flashed on the device. Failure to mount any partition in fstab file
     # results in failure to launch late-start class.
 
-    exec /res/busybox sh /init.mount.sh
-
     wait /dev/block/platform/msm_sdcc.1/by-name/persist
-    mount ext4 /dev/block/platform/msm_sdcc.1/by-name/persist /persist nosuid nodev noatime noauto_da_alloc,discard,journal_async_commit,errors=panic
+    check_fs /dev/block/platform/msm_sdcc.1/by-name/persist ext4
+    mount ext4 /dev/block/platform/msm_sdcc.1/by-name/persist /persist nosuid nodev noatime data=ordered,nomblk_io_submit,noauto_da_alloc,errors=panic
 
     wait /dev/block/platform/msm_sdcc.1/by-name/efs
-    mount ext4 /dev/block/platform/msm_sdcc.1/by-name/efs /efs nosuid nodev noatime noauto_da_alloc,discard,journal_async_commit,errors=panic
-     chown system radio /efs
+    check_fs /dev/block/platform/msm_sdcc.1/by-name/efs ext4
+    mount ext4 /dev/block/platform/msm_sdcc.1/by-name/efs /efs nosuid nodev noatime data=ordered,nomblk_io_submit,noauto_da_alloc,errors=panic
+    chown system radio /efs
      chmod 0771 /efs
-    restorecon -R /efs
-
-#    wait /dev/block/platform/msm_sdcc.1/by-name/apnhlos
-#    mount vfat /dev/block/platform/msm_sdcc.1/by-name/apnhlos /firmware ro shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337
-
-#    wait /dev/block/platform/msm_sdcc.1/by-name/modem
-#    mount vfat /dev/block/platform/msm_sdcc.1/by-name/modem /firmware-modem ro shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337
+#firmware_file
+    wait /dev/block/platform/msm_sdcc.1/by-name/apnhlos
+    mount vfat /dev/block/platform/msm_sdcc.1/by-name/apnhlos /firmware ro shortname=lower,uid=1000,gid=1000,dmask=222,fmask=333,context=u:object_r:firmware_file:s0
+		# 444 file mode, 555 dirmode
+    wait /dev/block/platform/msm_sdcc.1/by-name/modem
+    mount vfat /dev/block/platform/msm_sdcc.1/by-name/modem /firmware-modem ro shortname=lower,uid=1000,gid=1000,dmask=222,fmask=333,context=u:object_r:firmware_file:s0
      write /sys/kernel/boot_adsp/boot 1
      setprop qcom.audio.init complete
 
 on post-fs-data
-      mkdir /data/tombstones 0771 system system
+    mkdir /data/tombstones 0771 system system
     mkdir /tombstones/modem 0771 system system
     mkdir /tombstones/lpass 0771 system system
     mkdir /tombstones/wcnss 0771 system system
@@ -90,7 +90,10 @@ on post-fs-data
     restorecon /efs/drm
     restorecon /efs/drm/sdrm
     restorecon /efs/drm/data_agent
-
+    restorecon /efs/imei
+    restorecon /efs/prox_cal
+    restorecon /efs/mps_code.dat
+    restorecon_recursive /efs/FactoryApp
     # DivX DRM
     mkdir /efs/.files 0775
     mkdir /efs/.files/.dx1 0775
@@ -178,6 +181,23 @@ on boot
     chmod 664  /sys/class/kgsl/kgsl-3d0/min_pwrlevel
     chown radio system /sys/class/kgsl/kgsl-3d0/gpu_available_frequencies
     chmod 664  /sys/class/kgsl/kgsl-3d0/gpu_available_frequencies
+
+    chown radio system /sys/class/devfreq/qcom,cpubw.34/available_frequencies
+    chmod 664 /sys/class/devfreq/qcom,cpubw.34/available_frequencies
+    chown radio system /sys/class/devfreq/qcom,cpubw.34/available_governors
+    chmod 664 /sys/class/devfreq/qcom,cpubw.34/available_governors
+    chown radio system /sys/class/devfreq/qcom,cpubw.34/governor
+    chmod 664 /sys/class/devfreq/qcom,cpubw.34/governor
+    chown radio system /sys/class/devfreq/qcom,cpubw.34/max_freq
+    chmod 664 /sys/class/devfreq/qcom,cpubw.34/max_freq
+    chown radio system /sys/class/devfreq/qcom,cpubw.34/min_freq
+    chmod 664 /sys/class/devfreq/qcom,cpubw.34/min_freq
+
+    # SEC PM sysfs node
+    chown system radio /sys/devices/system/soc/soc0/soc_iddq
+    chmod 0444 /sys/devices/system/soc/soc0/soc_iddq
+    chown system radio /sys/devices/system/soc/soc0/soc_pvs
+    chmod 0444 /sys/devices/system/soc/soc0/soc_pvs
 
     # Auto Brightness
     chown system system  /sys/class/backlight/panel/auto_brightness
@@ -384,6 +404,29 @@ on boot
     chown system radio /sys/class/sensors/ssp_sensor/ssp_flush
     chmod 0600 /dev/batch_io
     chown system system /dev/batch_io
+
+    # IIO devices for SensorHub
+    chmod 0600 /dev/iio:device0
+    chown system system /dev/iio:device0
+    chmod 0600 /dev/iio:device1
+    chown system system /dev/iio:device1
+    chmod 0600 /dev/iio:device2
+    chown system system /dev/iio:device2
+    chmod 0600 /dev/iio:device3
+    chown system system /dev/iio:device3
+    chmod 0600 /dev/iio:device4
+    chown system system /dev/iio:device4
+    chown system system /sys/bus/iio/devices/iio:device0/buffer/length
+    chown system system /sys/bus/iio/devices/iio:device0/buffer/enable
+    chown system system /sys/bus/iio/devices/iio:device1/buffer/length
+    chown system system /sys/bus/iio/devices/iio:device1/buffer/enable
+    chown system system /sys/bus/iio/devices/iio:device2/buffer/length
+    chown system system /sys/bus/iio/devices/iio:device2/buffer/enable
+    chown system system /sys/bus/iio/devices/iio:device3/buffer/length
+    chown system system /sys/bus/iio/devices/iio:device3/buffer/enable
+    chown system system /sys/bus/iio/devices/iio:device4/buffer/length
+    chown system system /sys/bus/iio/devices/iio:device4/buffer/enable
+
 # Gesture_sensor
     chown system radio /sys/class/sensors/gesture_sensor/vendor
     chown system radio /sys/class/sensors/gesture_sensor/name
@@ -430,23 +473,6 @@ on boot
     chown system radio /sys/class/sec/sec_ir/ir_send_result
 # Permission for HALL IC
     chown system radio /sys/class/sec/sec_key/hall_detect
-# Define TCP buffer sizes for various networks
-#   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
-    setprop net.tcp.buffersize.default 4096,87380,704512,4096,16384,110208
-    setprop net.tcp.buffersize.wifi    524288,1048576,2560000,524288,1048576,2560000
-    setprop net.tcp.buffersize.lte     524288,1048576,2560000,524288,1048576,2560000
-    setprop net.tcp.buffersize.umts    4094,87380,704512,4096,16384,110208
-    setprop net.tcp.buffersize.hspa    4092,87380,704512,4096,16384,262144
-    setprop net.tcp.buffersize.hsupa   4092,87380,704512,4096,16384,262144
-    setprop net.tcp.buffersize.hsdpa   4092,87380,704512,4096,16384,110208
-    setprop net.tcp.buffersize.hspap   4092,87380,704512,4096,16384,262144
-    setprop net.tcp.buffersize.edge    4093,26280,35040,4096,16384,35040
-    setprop net.tcp.buffersize.gprs    4096,30000,30000,4096,8760,11680
-    setprop net.tcp.buffersize.evdo    4094,87380,262144,4096,16384,262144
-
-#wifi display
-    write /proc/sys/net/core/rmem_max   1048576
-    write /proc/sys/net/core/wmem_max   2097152
 
 # HDCP 2.x
     mkdir /data/system/hdcp2 0775 system system
@@ -497,7 +523,7 @@ on boot
 	chmod 0660 /sys/class/timed_output/vibrator/pwm_default
 	chown system system /sys/class/timed_output/vibrator/pwm_threshold
 	chmod 0660 /sys/class/timed_output/vibrator/pwm_threshold
-    
+
     # Panel color temperature
     chmod 0660 /sys/class/lcd/panel/panel_colors
     chown system system /sys/class/lcd/panel/panel_colors
@@ -507,32 +533,16 @@ on boot
 on property:persist.usb.chgdisabled=1
     write /sys/class/power_supply/battery/charging_enabled 0
 
+service fs_mount /init.mount.sh
+    user root
+    oneshot
+    disabled
+
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
     class main
     user camera
     group camera system inet input graphics radio sdcard_rw sdcard_r media_rw shell log
-
-#start GNSS/Sensor interface daemon
-service gsiff_daemon /system/bin/gsiff_daemon
-    class late_start
-    user system
-    group gps qcom_oncrpc net_raw
-
-service qrngd /system/bin/qrngd -f
-   class main
-   user root
-   group root
-
-service qrngp /system/bin/qrngp
-    class main
-    user root
-    group root
-    oneshot
-    disabled
-
-on property:sys.boot_completed=1
-    start qrngp
 
 service qseecomd /system/bin/qseecomd
    class late_start
@@ -548,10 +558,4 @@ service audiod /system/bin/audiod
    class late_start
    user system
    group system
-
-service ppd /system/bin/mm-pp-daemon
-   class late_start
-   user system
-   socket pps stream 0660 system system graphics
-   group system graphics
 
