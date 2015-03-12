@@ -49,8 +49,6 @@ cd $RAMFS_TMP
 
 find . -name '*.sh' -exec chmod 755 {} \;
 
-sed -i -e 's/DEVICE/GT-I9506/g' default.prop
-
 $KERNELDIR/ramdisk_fix_permissions.sh 2>/dev/null
 
 #clear git repositories in ramfs

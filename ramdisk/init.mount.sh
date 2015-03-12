@@ -6,7 +6,7 @@ export ext4=1
 mount -t ext4 -o ro,noatime,nodiratime,data=ordered,barrier=0,nodiscard /dev/block/platform/msm_sdcc.1/by-name/system /system
 mount -t f2fs -o ro,noatime,nodiratime,background_gc=off,nodiscard /dev/block/platform/msm_sdcc.1/by-name/system /system
 
-if [ ! -f /system/priv-app/SystemUI/SystemUI.apk ] ; then
+if [ ! -f /system/framework/multiwindow.jar ] ; then
 	export ext4=0
 	umount -f /system
 	mount -t ext4 -o noatime,nodiratime,data=ordered,barrier=0,nodiscard,nosuid,nodev,noauto_da_alloc,errors=panic /dev/block/platform/msm_sdcc.1/by-name/userdata /arter97/data
@@ -50,18 +50,8 @@ else
 	mount -t f2fs -o noatime,nodiratime,background_gc=on,nodiscard,nosuid,nodev /dev/block/platform/msm_sdcc.1/by-name/cache /cache
 fi
 
-if [ ! -e /system/etc/firmware/wcd9320/wcd9320_mbhc.bin ] ; then
-	ln -s /data/misc/audio/mbhc.bin /system/etc/firmware/wcd9320/wcd9320_mbhc.bin
-fi
-if [ ! -e /system/etc/firmware/wcd9320/wcd9320_anc.bin ] ; then
-	ln -s /data/misc/audio/wcd9320_anc.bin /system/etc/firmware/wcd9320/wcd9320_anc.bin
-fi
-if [ ! -e /system/etc/firmware/wcd9320/wcd9320_mad_audio.bin ] ; then
-	ln -s /data/misc/audio/wcd9320_mad_audio.bin /system/etc/firmware/wcd9320/wcd9320_mad_audio.bin
-fi
-
 if [[ $ext4 == "1" ]]; then
-	sed -i -e 's/# VOLD/\/dev\/block\/platform\/msm_sdcc.1\/by-name\/userdata       \/data               ext4    nosuid,nodev,noatime,noauto_da_alloc,nodiscard,errors=panic                                   wait,check,encryptable=footer\n# VOLD/g' /fstab.qcom
+	sed -i -e 's/# VOLD/\/dev\/block\/platform\/msm_sdcc.1\/by-name\/userdata       \/data            ext4    nosuid,nodev,noatime,noauto_da_alloc,nodiscard,errors=panic      wait,check,encryptable=footer\n\n# VOLD/g' /fstab.qcom
 	umount -f /data
 fi
 

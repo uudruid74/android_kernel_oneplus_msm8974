@@ -5,10 +5,16 @@
 #TODO: Add 'check' as fs_mgr_flags with data partition.
 # Currently we dont have e2fsck compiled. So fs check would failed.
 
-#<src>                                                <mnt_point>  <type>  <mnt_flags and options>                     <fs_mgr_flags>
-/dev/block/platform/msm_sdcc.1/by-name/boot           /boot            emmc    defaults   defaults
-/dev/block/platform/msm_sdcc.1/by-name/recovery       /recovery        emmc    defaults   defaults
+#<src>                                                <mnt_point>         <type>  <mnt_flags and options>                                                                       <fs_mgr_flags>
+/dev/block/platform/msm_sdcc.1/by-name/apnhlos        /firmware           vfat    ro,shortname=lower,uid=1000,gid=1026,dmask=227,fmask=337,context=u:object_r:firmware_file:s0  wait
+/dev/block/platform/msm_sdcc.1/by-name/modem          /firmware-modem     vfat    ro,shortname=lower,uid=1000,gid=1026,dmask=227,fmask=337,context=u:object_r:firmware_file:s0  wait
 
 # VOLD
-/devices/msm_sdcc.3/mmc_host/mmc2*                     auto             auto    defaults	voldmanaged=sdcard1:auto
-/devices/platform/xhci-hcd*                            auto             auto    defaults	voldmanaged=usbdisk:auto
+/devices/msm_sdcc.[.23]/mmc_host/mmc*		auto		vfat	default		voldmanaged=extSdCard:auto,noemulatedsd
+/devices/platform/xhci-hcd/usb*sda		auto		vfat    default		voldmanaged=UsbDriveA:auto
+/devices/platform/xhci-hcd/usb*sdb		auto		vfat    default		voldmanaged=UsbDriveB:auto
+/devices/platform/xhci-hcd/usb*sdc		auto		vfat    default		voldmanaged=UsbDriveC:auto
+/devices/platform/xhci-hcd/usb*sdd		auto		vfat    default		voldmanaged=UsbDriveD:auto
+/devices/platform/xhci-hcd/usb*sde		auto		vfat    default		voldmanaged=UsbDriveE:auto
+/devices/platform/xhci-hcd/usb*sdf		auto		vfat    default		voldmanaged=UsbDriveF:auto
+

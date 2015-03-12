@@ -2,6 +2,8 @@
 
 export PATH=/res/asset:$PATH
 
+source /init.mount.sh
+
 echo "0" > /sys/module/intelli_plug/parameters/intelli_plug_active
 echo "0" > /sys/module/msm_thermal/parameters/enabled
 echo "0" > /sys/module/msm_thermal/core_control/enabled
