@@ -304,9 +304,7 @@ on post-fs-data
     mkdir /data/misc/location/mq 0770 gps gps
     mkdir /data/misc/location/xtwifi 0770 gps gps
     mkdir /data/misc/location/gpsone_d 0770 system gps
-    mkdir /data/misc/gpsone_d 0770 system gps
     mkdir /data/misc/location/quipc 0770 gps system
-    mkdir /data/misc/quipc 0770 gps system
     mkdir /data/misc/location/gsiff 0770 gps gps
 
     #Create directory from IMS services
@@ -471,7 +469,7 @@ service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
 service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
     class late_start
     user bluetooth
-    group bluetooth net_bt_admin
+	group bluetooth net_bt_admin net_bt_stack
     disabled
     oneshot
 

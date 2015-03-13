@@ -1,3 +1,6 @@
+user=gps domain=location_app type=location_app_data_file
+user=system seinfo=platform name=com.qualcomm.services.location domain=location_app type=location_app_data_file
+user=system seinfo=platform name=com.qualcomm.location.XT domain=location_app type=location_app_data_file
 user=system domain=s_system_app type=system_app_data_file
 user=bluetooth domain=s_bluetooth type=bluetooth_data_file
 user=nfc domain=s_nfc type=nfc_data_file
@@ -63,4 +66,3 @@ user=sprintitson seinfo=sprintitson domain=itsonclient_app type=sprintitson_file
 user=itson domain=itsonclient_app type=sprintitson_file
 user=_app seinfo=mmphone domain=carrier_app type=app_data_file
 user=system name=diagandroid.iqd domain=diagandroid_app type=system_app_data_file
-user=_app seinfo=tbaseplatform domain=carrier_app type=app_data_file

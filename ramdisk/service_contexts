@@ -124,6 +124,10 @@ wifi                                      u:object_r:system_server_service:s0
 window                                    u:object_r:system_server_service:s0
 
 *                                         u:object_r:default_android_service:s0
+#line 1 "vendor/samsung/common/sepolicy/BSP/bsp_qcom/qcom_common/service_contexts"
+############ compatible for bsp policy #############
+cneservice                                   u:object_r:system_app_service:s0
+vendor.qcom.PeripheralManager                  u:object_r:per_mgr_service:s0
 #line 1 "vendor/samsung/common/sepolicy/service_contexts"
 ############ aosp and sec_common #############
 com.samsung.android.jam.IAPAClient          u:object_r:apaservice_service:s0
@@ -161,6 +165,7 @@ phoneext2                                   u:object_r:radio_service:s0
 sensorhubservice                            u:object_r:sensorhubservice_service:s0
 batterymanager                              u:object_r:system_app_service:s0
 clipboarduiservice                          u:object_r:system_app_service:s0
+com.sc.scservice.ISCServiceFactory          u:object_r:system_app_service:s0
 emergency_service                           u:object_r:system_app_service:s0
 fingerprint_service                         u:object_r:system_app_service:s0
 application_policy                          u:object_r:system_server_service:s0
@@ -191,6 +196,7 @@ keyguard                                    u:object_r:system_server_service:s0
 kiesusb                                     u:object_r:system_server_service:s0
 layout_inflater                             u:object_r:system_server_service:s0
 log_manager_service                         u:object_r:system_server_service:s0
+LSManager                                   u:object_r:system_server_service:s0
 magazinecardservice                         u:object_r:system_server_service:s0
 mDNIe                                       u:object_r:system_server_service:s0
 mini_mode_app_manager                       u:object_r:system_server_service:s0
@@ -201,6 +207,7 @@ multiwindow_facade                          u:object_r:system_server_service:s0
 ReactiveService                             u:object_r:system_server_service:s0
 quickconnect                                u:object_r:system_server_service:s0
 remoteinjection                             u:object_r:system_server_service:s0
+saccessory_manager                          u:object_r:system_server_service:s0
 samsung.smartfaceservice                    u:object_r:system_server_service:s0
 samsung_overlay                             u:object_r:system_server_service:s0
 sb_service                                  u:object_r:system_server_service:s0
@@ -296,6 +303,7 @@ misc_policy                                 u:object_r:system_server_service:s0
 multi_user_manager_service                  u:object_r:system_server_service:s0
 mum_container_policy                        u:object_r:system_server_service:s0
 mum_container_rcp_policy                    u:object_r:system_server_service:s0
+otp_service                                 u:object_r:system_server_service:s0
 password_policy                             u:object_r:system_server_service:s0
 persona                                     u:object_r:system_server_service:s0
 persona_policy                              u:object_r:system_server_service:s0
@@ -335,6 +343,11 @@ ktuca                                       u:object_r:system_server_service:s0
 VZW_LOCATION_SERVICE                        u:object_r:system_server_service:s0
 wifioffload                                 u:object_r:system_server_service:s0
 com.skt.tbase.INativeService                u:object_r:tbased_service:s0
-# OSV models for carrier_jpn
+############ carrier_jpn
+# OSV models
 DeviceManager3LM                            u:object_r:system_server_service:s0
 OemExtendedApi3LM                           u:object_r:system_server_service:s0
+# Fullseg / Oneseg
+broadcast.ATSCMHProcessObserver             u:object_r:system_app_service:s0
+ISDtvService.SDtvStackService               u:object_r:system_app_service:s0
+broadcast.OneSegDsmcc                       u:object_r:system_app_service:s0
