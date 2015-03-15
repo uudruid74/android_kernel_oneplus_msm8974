@@ -8,19 +8,6 @@ on early-boot
     chown bluetooth net_bt_stack /dev/ttyHS0
     chmod 0660 /dev/ttyHS0
 
-# permissions for Multiverse
-    chown system system /sys/class/sec/Multiverse/Brane
-    chmod 0600 /sys/class/sec/Multiverse/Brane
-
-# efs
-    chmod 0660 /dev/block/mmcblk0p11
-    chown system system /dev/block/mmcblk0p11
-
-on init
-#Private Mode
-    mkdir /mnt/shell/privatemode 0700 system system
-    mkdir /storage/Private 0000 system system
-
 on post-fs-data
 #Private Mode
     mkdir /data/privatemode 0770 system system
@@ -67,29 +54,52 @@ on boot
     chown system radio /sys/class/sec/sec_touchkey/glove_mode
     chown system radio /sys/class/sec/sec_touchkey/flip_mode
     chown system radio /sys/class/sec/sec_touchkey/boost_level
+# permission for Input Device(Wacom).
+    chmod 0660 /sys/class/input/input3/enabled
+    chown system system /sys/class/input/input3/enabled
+    chown system radio /sys/class/sec/sec_epen/epen_firm_update
+    chown system radio /sys/class/sec/sec_epen/epen_rotation
+    chown system radio /sys/class/sec/sec_epen/epen_hand
+    chown system radio /sys/class/sec/sec_epen/epen_reset
+    chown system radio /sys/class/sec/sec_epen/epen_reset_result
+    chown system radio /sys/class/sec/sec_epen/epen_checksum
+    chown system radio /sys/class/sec/sec_epen/epen_checksum_result
+    chown system radio /sys/class/sec/sec_epen/epen_saving_mode
+    chown system radio /sys/class/sec/sec_epen/boost_level
 
-# IPSec for VOLTE
+# IPSec for VOLTE   
     chown root system /dev/socket
     chmod 0775 /dev/socket
 
+# SSWAP
+    write /proc/sys/vm/swappiness 130
+	
+# Define TCP buffer sizes for various networks
+#   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
+    setprop net.tcp.buffersize.default 4096,87380,704512,4096,16384,110208
+    setprop net.tcp.buffersize.wifi    524288,1048576,2560000,524288,1048576,2560000
+    setprop net.tcp.buffersize.ethernet 524288,1048576,3145728,524288,1048576,2097152
+    setprop net.tcp.buffersize.lte     524288,1048576,2560000,524288,1048576,2560000
+    setprop net.tcp.buffersize.umts    4094,87380,704512,4096,16384,110208
+    setprop net.tcp.buffersize.hspa    4094,87380,704512,4096,16384,262144
+    setprop net.tcp.buffersize.hsupa   4094,87380,704512,4096,16384,262144
+    setprop net.tcp.buffersize.hsdpa   4094,87380,704512,4096,16384,262144
+    setprop net.tcp.buffersize.hspap   4094,87380,1220608,4096,16384,1220608
+    setprop net.tcp.buffersize.edge    4093,26280,35040,4096,16384,35040
+    setprop net.tcp.buffersize.gprs    4092,30000,30000,4096,8760,11680
+    setprop net.tcp.buffersize.evdo    4094,87380,262144,4096,16384,262144
+
+# Assign TCP buffer thresholds to be ceiling value of technology maximums
+# Increased technology maximums should be reflected here.
+    write /proc/sys/net/core/rmem_max  1048576
+    write /proc/sys/net/core/wmem_max  2097152
+	
 # permissions for bluetooth.
     setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
     chown bluetooth net_bt_stack ro.bt.bdaddr_path
-    chown bluetooth net_bt_stack /dev/ttyHS0
-    chmod 0660 /dev/ttyHS0
     chmod 0660 /sys/class/rfkill/rfkill0/state
     chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/state
     chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/type
-
-# NFC_BROADCOM
-    chmod 0600 /dev/bcm2079x
-    chown nfc nfc /dev/bcm2079x
-    mkdir /data/bcmnfc
-    mkdir /data/bcmnfc/param
-    chmod 0700 /data/bcmnfc
-    chmod 0700 /data/bcmnfc/param
-    chown nfc nfc /data/bcmnfc
-    chown nfc nfc /data/bcmnfc/param
 
 # bluetooth LPM
     chmod 0660 /proc/bluetooth/sleep/lpm
@@ -140,6 +150,14 @@ on fs
      chown system system /persdata/absolute 
      chmod 0750 /persdata/absolute
 
+on post-fs-data
+# IPSec for VOLTE    
+service ipsec-daemon /system/bin/IPSecService
+    class main
+    socket ipsec_socket stream 660 system system
+    user system
+    group system net_raw inet net_admin
+
 # bluetooth dhcp config
 service dhcpcd_bt-pan /system/bin/dhcpcd -ABKL
     class main
@@ -150,13 +168,6 @@ service iprenew_bt-pan /system/bin/dhcpcd -n
     class late_start
  disabled
  oneshot
-
-# bootchecker
-service bootchecker /system/bin/bootchecker
-    class late_start
-    user system
-    group system log
-    oneshot
 
 service dmb /system/bin/dmbserver
     class main
@@ -174,16 +185,17 @@ service scranton_RD /system/bin/scranton_RD
 on property:sys.qseecomd.enable=true
     start scranton_RD
 
+# AT Distributor for factory test
+service at_distributor /system/bin/at_distributor
+    class late_start
+    user root
+    group radio misc log
+
 # umount service
 service umount_service /system/bin/umount /preload
     disabled
     oneshot
-
-# MOBILE OFFICE Permanent memory access
-    mkdir /efs/security 0771 root root
-    chown radio system /efs/security
-    chmod 0771 /efs/security
-
+    
 # Support Preload install apks
 on property:persist.sys.storage_preload=1
     mount ext4 /dev/block/platform/msm_sdcc.1/by-name/hidden /preload nosuid nodev ro barrier=1
@@ -192,23 +204,18 @@ on property:persist.sys.storage_preload=1
 on property:persist.sys.storage_preload=0
     start umount_service
 
-# SSWAP
+# TODO: replace it with device's DEXPREOPT_BOOT_JARS
+# bootchecker
+service bootchecker /system/bin/bootchecker
+    class late_start
+    user system
+    group system log
+    oneshot
+
+	# SSWAP
 service swapon /sbin/sswap -s
     class core
     user root
     group root
     seclabel u:r:sswap:s0
     oneshot
-
-# IPSec for VOLTE
-service ipsec-daemon /system/bin/IPSecService
-    class main
-    socket ipsec_socket stream 660 system system
-    user system
-    group system net_raw inet net_admin
-
-# AT Distributor for factory test
-service at_distributor /system/bin/at_distributor
-    class late_start
-    user root
-    group radio misc log

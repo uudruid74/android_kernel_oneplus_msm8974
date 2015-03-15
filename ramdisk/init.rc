@@ -930,6 +930,10 @@ on charger
     wait /dev/lpm_prepared
 
     mount_all fstab.qcom
+
+    copy /system/etc/battery_charging_temp.data /sys/class/power_supply/battery/batt_temp_table
+    chmod 0664 /sys/class/power_supply/battery/batt_temp_table
+    chown system radio /sys/class/power_supply/battery/batt_temp_table
     class_start charger
 
 on property:vold.decrypt=trigger_reset_main
@@ -1075,6 +1079,12 @@ service lmkd /system/bin/lmkd
     critical
     socket lmkd seqpacket 0660 system system
 
+service scs /system/bin/scs
+    class main
+    user system
+    group system
+    oneshot
+
 service servicemanager /system/bin/servicemanager
     class core
     user system
@@ -1147,11 +1157,22 @@ service BCS-daemon /system/bin/connfwexe
     user root
     group system radio inet net_raw
 
+service at_distributor /system/bin/at_distributor
+    class late_start
+    user root
+    group radio log
+
+service diag_uart_log /system/bin/diag_uart_log
+    class main
+    user root
+    group radio
+
 service surfaceflinger /system/bin/surfaceflinger
     class core
     user system
     group graphics drmrpc
     onrestart restart zygote
+    onrestart restart loc_launcher
 
 service SIDESYNC_service /system/bin/ss_conn_daemon
     class main
@@ -1350,6 +1371,26 @@ service sensorhubservice /system/bin/sensorhubservice
 on property:sys.qseecomd.enable=true
   start cs_service
   start insthk
+
+# ccm
+  service ccm /system/bin/tlc_server
+  user system
+  group system 
+  disabled
+
+on property:persist.security.tlc.ccm=1  
+  start ccm
+  setprop persist.security.tlc.ccm 0
+
+# tui
+  service tui /system/bin/tlc_server TUI
+  user system
+  group system
+  disabled
+
+on property:persist.security.tlc.tui=1
+  start tui
+  setprop persist.security.tlc.tui 0
 
 # bootchecker
 service bootchecker /system/bin/bootchecker
