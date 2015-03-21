@@ -4,47 +4,6 @@
 # This is a common source of Android security bugs.
 #
 
-on early-boot
-    chown bluetooth net_bt_stack /dev/ttyHS0
-    chmod 0660 /dev/ttyHS0
-
-on post-fs-data
-#Private Mode
-    mkdir /data/privatemode 0770 system system
-    chown system system /data/privatemode
-    restorecon /data/privatemode
-
-#skt except scan list
-    chmod 0644 /data/misc/wifi/hiddenAPs.txt
-
-# CP Reset Log
-    mkdir /data/radio 0770 radio radio
-
-# for SKT TBASED
-    mkdir /data/tbased 0775 root wifi
-    chown root wifi /data/tbased
-    chmod 0775 /data/tbased
-
-    chown wifi wifi /system/lib/libiwlan_module.so
-    chmod 0644 /system/lib/libiwlan_module.so
-    chmod 0755 /system/bin/tbased
-
-# SKT PM PlayReady
-    mkdir /data/playready 771 system skt
-    chown system skt /data/playready
-    chmod 0771 /data/playready
-
-# SKT DRM for hoppin
-    mkdir /data/data/.sktdrm 0775
-    chown system radio /data/data/.sktdrm
-    chmod 0775 /data/data/.sktdrm
-
-# SKT TBASE
-service tbased /system/bin/tbased
-    class main
-    user root
-    oneshot
-
 on boot
 # permission for Input Device(Touchkey).
     chmod 0660 /sys/class/input/input2/enabled
@@ -54,6 +13,14 @@ on boot
     chown system radio /sys/class/sec/sec_touchkey/glove_mode
     chown system radio /sys/class/sec/sec_touchkey/flip_mode
     chown system radio /sys/class/sec/sec_touchkey/boost_level
+
+# SSWAP
+    write /proc/sys/vm/swappiness 130
+
+# IPSec for VOLTE
+    chown root system /dev/socket
+	chmod 0775 /dev/socket
+
 # permission for Input Device(Wacom).
     chmod 0660 /sys/class/input/input3/enabled
     chown system system /sys/class/input/input3/enabled
@@ -67,36 +34,15 @@ on boot
     chown system radio /sys/class/sec/sec_epen/epen_saving_mode
     chown system radio /sys/class/sec/sec_epen/boost_level
 
-# IPSec for VOLTE   
-    chown root system /dev/socket
-    chmod 0775 /dev/socket
+# tdmb
+    chown system system /dev/tdmb
+    chmod 0660 /dev/tdmb
 
-# SSWAP
-    write /proc/sys/vm/swappiness 130
-	
-# Define TCP buffer sizes for various networks
-#   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
-    setprop net.tcp.buffersize.default 4096,87380,704512,4096,16384,110208
-    setprop net.tcp.buffersize.wifi    524288,1048576,2560000,524288,1048576,2560000
-    setprop net.tcp.buffersize.ethernet 524288,1048576,3145728,524288,1048576,2097152
-    setprop net.tcp.buffersize.lte     524288,1048576,2560000,524288,1048576,2560000
-    setprop net.tcp.buffersize.umts    4094,87380,704512,4096,16384,110208
-    setprop net.tcp.buffersize.hspa    4094,87380,704512,4096,16384,262144
-    setprop net.tcp.buffersize.hsupa   4094,87380,704512,4096,16384,262144
-    setprop net.tcp.buffersize.hsdpa   4094,87380,704512,4096,16384,262144
-    setprop net.tcp.buffersize.hspap   4094,87380,1220608,4096,16384,1220608
-    setprop net.tcp.buffersize.edge    4093,26280,35040,4096,16384,35040
-    setprop net.tcp.buffersize.gprs    4092,30000,30000,4096,8760,11680
-    setprop net.tcp.buffersize.evdo    4094,87380,262144,4096,16384,262144
-
-# Assign TCP buffer thresholds to be ceiling value of technology maximums
-# Increased technology maximums should be reflected here.
-    write /proc/sys/net/core/rmem_max  1048576
-    write /proc/sys/net/core/wmem_max  2097152
-	
 # permissions for bluetooth.
     setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
     chown bluetooth net_bt_stack ro.bt.bdaddr_path
+    chown bluetooth net_bt_stack /dev/ttyHS0
+    chmod 0660 /dev/ttyHS0
     chmod 0660 /sys/class/rfkill/rfkill0/state
     chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/state
     chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/type
@@ -108,28 +54,6 @@ on boot
     chown bluetooth net_bt_stack /proc/bluetooth/sleep/btwrite
     chmod 0600 /dev/btlock
     chown bluetooth bluetooth /dev/btlock
-
-# Permissions for usb_lock
-    chown system radio /sys/class/android_usb/android0/usb_lock
-
-# permission for Expander.
-    chown system system /sys/class/sec/expander/expgpio
-
-# permission for mDNIe
-    chown system system /sys/class/mdnie/mdnie/sensorRGB
-
-# permission for IPSec
-    chown root system /dev/socket
-    chmod 0775 /dev/socket
-
-# bluetooth dhcp config
-
-# tdmb
-    chown system system /dev/tdmb
-    chmod 0660 /dev/tdmb
-
-# SSWAP
-    write /proc/sys/vm/swappiness 130
 
 on fs
 
@@ -150,13 +74,49 @@ on fs
      chown system system /persdata/absolute 
      chmod 0750 /persdata/absolute
 
-on post-fs-data
-# IPSec for VOLTE    
-service ipsec-daemon /system/bin/IPSecService
+# MOBILE OFFICE Permanent memory access
+    mkdir /efs/security 0771 root root
+    chown radio system /efs/security
+    chmod 0771 /efs/security
+
+# n3rimd
+service n3rimd /system/bin/n3rimd
     class main
-    socket ipsec_socket stream 660 system system
-    user system
-    group system net_raw inet net_admin
+    user root
+    oneshot
+
+on post-fs-data
+#skt except scan list
+    chmod 0644 /data/misc/wifi/hiddenAPs.txt
+
+# for SKT TBASED
+    mkdir /data/tbased 0775 root wifi
+    chown root wifi /data/tbased
+    chmod 0775 /data/tbased
+
+    chown wifi wifi /system/lib/libiwlan_module.so
+    chmod 0644 /system/lib/libiwlan_module.so
+    chmod 0755 /system/bin/tbased
+
+# SKT PM PlayReady
+    mkdir /data/playready 771 system skt
+    chown system skt /data/playready
+    chmod 0771 /data/playready
+
+# SKT DRM for hoppin
+    mkdir /data/data/.sktdrm 0775
+    chown system radio /data/data/.sktdrm
+    chmod 0775 /data/data/.sktdrm
+    
+    
+# CP Reset Log
+    mkdir /data/radio 0770 radio radio
+
+# SKT TBASE
+service tbased /system/bin/tbased
+    class main
+    user root
+    oneshot
 
 # bluetooth dhcp config
 service dhcpcd_bt-pan /system/bin/dhcpcd -ABKL
@@ -169,11 +129,6 @@ service iprenew_bt-pan /system/bin/dhcpcd -n
  disabled
  oneshot
 
-service dmb /system/bin/dmbserver
-    class main
-    user system
-    group radio inet misc audio camera graphics net_bt net_bt_admin sdcard_rw sdcard_r shell
-
 # service for TZPR provisioning version check app
 service scranton_RD /system/bin/scranton_RD
     class main
@@ -184,12 +139,6 @@ service scranton_RD /system/bin/scranton_RD
 # start for TZPR provisioning version check app
 on property:sys.qseecomd.enable=true
     start scranton_RD
-
-# AT Distributor for factory test
-service at_distributor /system/bin/at_distributor
-    class late_start
-    user root
-    group radio misc log
 
 # umount service
 service umount_service /system/bin/umount /preload
@@ -212,7 +161,25 @@ service bootchecker /system/bin/bootchecker
     group system log
     oneshot
 
-	# SSWAP
+service dmb /system/bin/dmbserver
+    class main
+    user media
+    group system radio inet misc audio camera graphics net_bt net_bt_admin sdcard_rw sdcard_r shell media_rw
+
+# IPSec for VOLTE
+service ipsec-daemon /system/bin/IPSecService
+    class main
+    socket ipsec_socket stream 660 system system
+    user system
+    group system net_raw inet net_admin
+
+# AT Distributor for factory test
+service at_distributor /system/bin/at_distributor
+    class late_start
+    user root
+    group radio misc log
+
+# SSWAP
 service swapon /sbin/sswap -s
     class core
     user root
