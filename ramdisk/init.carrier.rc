@@ -123,14 +123,6 @@ service bootchecker /system/bin/bootchecker
     group system log
     oneshot
 
-# SSWAP
-service swapon /sbin/sswap -s
-    class core
-    user root
-    group root
-    seclabel u:r:sswap:s0
-    oneshot
-
 # IPSec for VOLTE
 service ipsec-daemon /system/bin/IPSecService
     class main
