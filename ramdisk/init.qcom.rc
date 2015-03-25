@@ -35,15 +35,15 @@ on init
     # Set permissions for persist partition
     mkdir /persist 0771 system system
     mkdir /mnt/shell/emulated 0700 shell shell
-    mkdir /mnt/shell/container 0700 system system
     mkdir /storage 0550 system sdcard_r
     mkdir /storage/emulated 0555 root root
 
     #External storage directories
+    mkdir /mnt/media_rw/sdcard0 0700 media_rw media_rw
     mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
-    mkdir /storage/usbdisk 0000 system system
     mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
 
+    mkdir /storage/sdcard0 0700 root root
     mkdir /storage/sdcard1 0700 root root
     mkdir /storage/usbdisk 0700 root root
 
@@ -57,7 +57,6 @@ on init
     symlink /storage/emulated/legacy /mnt/sdcard
     symlink /storage/emulated/legacy /storage/sdcard0
     symlink /mnt/shell/emulated/0 /storage/emulated/legacy
-    symlink /mnt/shell/container /storage/container
     symlink /storage/sdcard1 /extSdCard
     symlink /storage/sdcard1 /mnt/extSdCard
     symlink /storage/sdcard1 /external_sd
@@ -169,10 +168,6 @@ on post-fs-data
     # we will remap this as /mnt/sdcard with the sdcard fuse tool
     mkdir /data/media 0770 media_rw media_rw
     chown media_rw media_rw /data/media
-
-# we will remap this as /storage/container with the sdcard fuse tool
-    mkdir /data/container 0770 system system
-    chown system system /data/container
     
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
 
@@ -235,6 +230,11 @@ on post-fs-data
     chown system system /sys/class/sec/sec_touchkey/keypad_enable
     chmod 0660 /sys/class/sec/sec_touchkey/keypad_enable
     restorecon /sys/class/sec/sec_touchkey/keypad_enable
+
+# LiveDisplay Feature
+    chown system system /sys/devices/virtual/graphics/fb0/rgb
+    chmod 0660 /sys/devices/virtual/graphics/fb0/rgb
+
 # permission for Input Device(Touchkey).
     chmod 0440 /sys/class/input/input2/enabled
     chown system system /sys/class/input/input2/enabled
@@ -247,7 +247,6 @@ on post-fs-data
 # permission for Input Device(Wacom).
     chmod 0440 /sys/class/input/input4/enabled
     chown system system /sys/class/input/input4/enabled
-    chmod 0660 /sys/class/input/input18/enabled
     chown system system /sys/class/input/input18/enabled
 
 # permissions for bluetooth.
@@ -492,17 +491,6 @@ service wifi-crda /system/bin/sh /system/etc/init.crda.sh
    disabled
    oneshot
 
-on property:sys.boot_completed=1
-    chown root system /sys/devices/system/cpu/mfreq
-    chmod 220 /sys/devices/system/cpu/mfreq
-    chown root system /sys/devices/system/cpu/cpu1/online
-    chown root system /sys/devices/system/cpu/cpu2/online
-    chown root system /sys/devices/system/cpu/cpu3/online
-    chmod 664 /sys/devices/system/cpu/cpu1/online
-    chmod 664 /sys/devices/system/cpu/cpu2/online
-    chmod 664 /sys/devices/system/cpu/cpu3/online
-    write /dev/cpuctl/apps/cpu.notify_on_migrate 1
-
 service hostapd /system/bin/hostapd -dddd /data/hostapd/hostapd.conf
     class late_start
     user root
@@ -522,11 +510,6 @@ on property:persist.data.ds_fmc_app.mode=1
 on property:ro.data.large_tcp_window_size=true
     # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
     write /proc/sys/net/ipv4/tcp_adv_win_scale  2
-
-# virtual sdcard daemon running as system (1000)
-service container /res/busybox mount -t sdcardfs -o rw,nosuid,nodev,noatime,nodiratime,uid=1000,gid=1000,wgid=1015 /data/container /mnt/shell/container
-    class late_start
-    oneshot
 
 # virtual sdcard daemon running as media_rw (1023)
 service sdcard /res/busybox mount -t sdcardfs -o rw,nosuid,nodev,noatime,nodiratime,uid=1023,gid=1023,wgid=1015,derive=legacy,reserved_mb=20 /data/media /mnt/shell/emulated
@@ -583,11 +566,4 @@ on property:persist.sys.ssr.restart_level=3
 service arter97 /system/bin/sh /sbin/boot.sh
     class late_start
     user root
-    oneshot
-
-# Boot Audio - Default Silent
-service bootsnd /system/bin/tinyplay /system/etc/sound/silence.wav -D 0 -d 0 -p 880
-    class late_start
-    user root
-    group audio
     oneshot
