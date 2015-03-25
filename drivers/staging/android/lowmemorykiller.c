@@ -262,6 +262,7 @@ void tune_lmk_param(int *other_free, int *other_file, struct shrink_control *sc)
 
 static int lowmem_shrink(struct shrinker *s, struct shrink_control *sc)
 {
+	struct sysinfo si;
 	struct task_struct *tsk;
 	struct task_struct *selected = NULL;
 	int rem = 0;
@@ -275,13 +276,29 @@ static int lowmem_shrink(struct shrinker *s, struct shrink_control *sc)
 	int other_free;
 	int other_file;
 	unsigned long nr_to_scan = sc->nr_to_scan;
+	long cached;
 
 	if (nr_to_scan > 0) {
 		if (mutex_lock_interruptible(&scan_mutex) < 0)
 			return 0;
 	}
 
-	other_free = global_page_state(NR_FREE_PAGES);
+	si_meminfo(&si);
+	si_swapinfo(&si);
+
+	cached = global_page_state(NR_FILE_PAGES) - total_swapcache_pages - si.bufferram;
+	if (cached < 0)
+		cached = 0;
+
+	/*
+	 * arter97 - Make other_free aware of the entire allocatable pages
+	 *           with or without clearing caches or buffers
+	 *
+	 *           others_free = MemFree + Buffers + Cached
+	 *           (from stackoverflow.com/questions/3019748 and fs/proc/meminfo.c)
+	 *
+	 */
+	other_free = (int)(si.freeram + cached + si.bufferram);
 	other_file = global_page_state(NR_FILE_PAGES) -
 						global_page_state(NR_SHMEM);
 
