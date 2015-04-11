@@ -472,8 +472,6 @@ static void msm_hs_clock_unvote(struct msm_hs_port *msm_uport)
 		WARN(rc, "msm_uport->clk_count < 0!");
 		dev_err(msm_uport->uport.dev,
 			"%s: Clocks count invalid  [%d]\n", __func__, rc);
-		/* to balance clk_state */
-		atomic_set(&msm_uport->clk_count, 0);
 		return;
 	}
 
@@ -3334,8 +3332,6 @@ static void msm_hs_shutdown(struct uart_port *uport)
 		if (use_low_power_wakeup(msm_uport))
 			disable_irq(msm_uport->wakeup.irq);
 	} else {
-		/* to balance clk_state */
-		msm_hs_clock_unvote(msm_uport);
 		disable_irq(uport->irq);
 		wake_unlock(&msm_uport->dma_wake_lock);
 	}
