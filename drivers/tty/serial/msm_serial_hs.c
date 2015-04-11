@@ -663,12 +663,7 @@ static int msm_serial_loopback_enable_set(void *data, u64 val)
 	unsigned long flags;
 	int ret = 0;
 
-	ret = msm_hs_clock_vote(msm_uport);
-	if (ret) {
-		printk(KERN_ERR "%s: Error could not turn on UART clk\n",
-				__func__);
-		return ret;
-	}
+	msm_hs_clock_vote(msm_uport);
 
 	if (val) {
 		spin_lock_irqsave(&uport->lock, flags);
@@ -699,12 +694,7 @@ static int msm_serial_loopback_enable_get(void *data, u64 *val)
 	unsigned long flags;
 	int ret = 0;
 
-	ret = msm_hs_clock_vote(msm_uport);
-	if (ret) {
-		printk(KERN_ERR "%s: Error could not turn on UART clk\n",
-				__func__);
-		return ret;
-	}
+	msm_hs_clock_vote(msm_uport);
 
 	spin_lock_irqsave(&uport->lock, flags);
 	ret = msm_hs_read(&msm_uport->uport, UART_DM_MR2);
@@ -793,7 +783,7 @@ static int msm_hs_init_clk(struct uart_port *uport)
 
 	ret = msm_hs_clock_vote(msm_uport);
 	if (ret) {
-		MSM_HS_ERR("%s: Error could not turn on UART clk\n", __func__);
+		MSM_HS_ERR("Error could not turn on UART clk\n");
 		return ret;
 	}
 
@@ -1094,13 +1084,7 @@ static void msm_hs_set_termios(struct uart_port *uport,
 	 * the clocks are off and the client has not had a chance
 	 * to turn them on. Make sure that they are on
 	 */
-	ret = msm_hs_clock_vote(msm_uport);
-	if (ret) {
-		printk(KERN_ERR "%s: Error could not turn on UART clk\n",
-				__func__);
-		return;
-	}
-
+	msm_hs_clock_vote(msm_uport);
 	mutex_lock(&msm_uport->clk_mutex);
 	msm_hs_write(uport, UART_DM_IMR, 0);
 
@@ -1257,13 +1241,7 @@ unsigned int msm_hs_tx_empty(struct uart_port *uport)
 		return -EPERM;
 	}
 
-	ret = msm_hs_clock_vote(msm_uport);
-	if (ret) {
-		printk(KERN_ERR "%s: Error could not turn on UART clk\n",
-				__func__);
-		return ret;
-	}
-
+	msm_hs_clock_vote(msm_uport);
 	data = msm_hs_read(uport, UART_DM_SR);
 	msm_hs_clock_unvote(msm_uport);
 	MSM_HS_DBG("%s(): SR Reg Read 0x%x", __func__, data);
@@ -1300,12 +1278,7 @@ static void hsuart_disconnect_rx_endpoint_work(struct work_struct *w)
 					pdev->dev.platform_data;
 	int ret = 0;
 
-	ret = msm_hs_clock_vote(msm_uport);
-	if (ret) {
-		printk(KERN_ERR "%s: Error could not turn on UART clk\n",
-				__func__);
-		return;
-	}
+	msm_hs_clock_vote(msm_uport);
 	ret = sps_rx_disconnect(sps_pipe_handle);
 	msm_hs_clock_unvote(msm_uport);
 
@@ -1872,12 +1845,7 @@ void msm_hs_set_mctrl(struct uart_port *uport,
 		return ;
 	}
 
-	if (msm_hs_clock_vote(msm_uport)) {
-		printk(KERN_ERR "%s: Error could not turn on UART clk\n",
-				__func__);
-		return;
-	}
-
+	msm_hs_clock_vote(msm_uport);
 	spin_lock_irqsave(&uport->lock, flags);
 	msm_hs_set_mctrl_locked(uport, mctrl);
 	spin_unlock_irqrestore(&uport->lock, flags);
@@ -3218,12 +3186,7 @@ static int __devinit msm_hs_probe(struct platform_device *pdev)
 		goto destroy_mutex;
 	}
 
-	ret = msm_hs_clock_vote(msm_uport);
-	if (ret) {
-		printk(KERN_ERR "%s: Error could not turn on UART clk\n",
-				__func__);
-		goto destroy_mutex;
-	}
+	msm_hs_clock_vote(msm_uport);
 
 	ret = uartdm_init_port(uport);
 	if (unlikely(ret)) {
@@ -3378,12 +3341,7 @@ static void msm_hs_shutdown(struct uart_port *uport)
 	cancel_delayed_work_sync(&msm_uport->rx.flip_insert_work);
 	flush_workqueue(msm_uport->hsuart_wq);
 
-	ret = msm_hs_clock_vote(msm_uport);
-	if (ret) {
-		printk(KERN_ERR "%s(): Error could not turn on UART clk\n",
-				__func__);
-		return;
-	}
+	msm_hs_clock_vote(msm_uport);
 	mutex_lock(&msm_uport->clk_mutex);
 	/* BAM Disconnect for TX */
 	ret = sps_disconnect(sps_pipe_handle);
