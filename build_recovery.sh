@@ -36,8 +36,13 @@ CONFIG_WLAN_REGION_CODE=100
 ' >> .config
 	make oldconfig
 	sed -i -e 's/config->fsg.luns\[0\].cdrom = 1;/config->fsg.luns\[0\].cdrom = 0;/g' drivers/usb/gadget/android.c
+	rm 0001-* 2>/dev/null
+	git format-patch a2533a3a0872f82933632016197df79bd3d25854^..a2533a3a0872f82933632016197df79bd3d25854
+	patch -R -p1 < 0001-*
+	rm 0001-*
 	make "$@" || exit 1
 	git checkout drivers/usb/gadget/android.c
+	git checkout drivers/cpufreq/cpufreq_ondemand.c init/Kconfig kernel/sched/fair.c mm/page-writeback.c
 fi
 
 echo "Building new ramdisk"
