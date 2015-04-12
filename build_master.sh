@@ -66,7 +66,7 @@ cd ..
 ls -al arter97-kernel*.zip
 
 ./build_clean.sh nozip
-./build_recovery.sh CC='$(CROSS_COMPILE)gcc'
+./build_recovery.sh CC='$(CROSS_COMPILE)gcc' "$@" || exit 1
 
 rm arter97-recovery-i9506-"$(cat version_recovery | awk '{print $1}')".zip 2>/dev/null
 cp recovery.img recoveryzip/recovery.img

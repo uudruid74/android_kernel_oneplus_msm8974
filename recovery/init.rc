@@ -59,47 +59,7 @@ on init
     setenforce 0
     setprop ro.boot.selinux 0
 
-    write /sys/module/intelli_plug/parameters/intelli_plug_active 1
-    write /sys/module/msm_thermal_v2/parameters/enabled 1
-    write /sys/module/msm_thermal_v2/core_control/enabled 1
-    write /sys/module/lpm_resources/enable_low_power/l2 2
-    write /sys/module/lpm_resources/enable_low_power/pxo 1
-    write /sys/module/lpm_resources/enable_low_power/vdd_dig 1
-    write /sys/module/lpm_resources/enable_low_power/vdd_mem 1
-    write /sys/module/msm_pm/modes/cpu0/power_collapse/suspend_enabled 1
-    write /sys/module/msm_pm/modes/cpu1/power_collapse/suspend_enabled 1
-    write /sys/module/msm_pm/modes/cpu2/power_collapse/suspend_enabled 1
-    write /sys/module/msm_pm/modes/cpu3/power_collapse/suspend_enabled 1
-    write /sys/module/msm_pm/modes/cpu0/power_collapse/idle_enabled 1
-    write /sys/module/msm_pm/modes/cpu1/power_collapse/idle_enabled 1
-    write /sys/module/msm_pm/modes/cpu2/power_collapse/idle_enabled 1
-    write /sys/module/msm_pm/modes/cpu3/power_collapse/idle_enabled 1
-    write /sys/module/msm_pm/modes/cpu0/standalone_power_collapse/suspend_enabled 1
-    write /sys/module/msm_pm/modes/cpu1/standalone_power_collapse/suspend_enabled 1
-    write /sys/module/msm_pm/modes/cpu2/standalone_power_collapse/suspend_enabled 1
-    write /sys/module/msm_pm/modes/cpu3/standalone_power_collapse/suspend_enabled 1
-    write /sys/module/msm_pm/modes/cpu0/standalone_power_collapse/idle_enabled 1
-    write /sys/module/msm_pm/modes/cpu1/standalone_power_collapse/idle_enabled 1
-    write /sys/module/msm_pm/modes/cpu2/standalone_power_collapse/idle_enabled 1
-    write /sys/module/msm_pm/modes/cpu3/standalone_power_collapse/idle_enabled 1
-    write /sys/module/msm_pm/modes/cpu0/retention/idle_enabled 1
-    write /sys/module/msm_pm/modes/cpu1/retention/idle_enabled 1
-    write /sys/module/msm_pm/modes/cpu2/retention/idle_enabled 1
-    write /sys/module/msm_pm/modes/cpu3/retention/idle_enabled 1
-    write /proc/sys/kernel/sched_wake_to_idle 1
-    write /sys/module/cpubw_krait/parameters/enable 0
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor arteractive
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor arteractive
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor arteractive
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor arteractive
-    write /sys/devices/system/cpu/cpufreq/arteractive/timer_rate 20000
-    write /sys/devices/system/cpu/cpufreq/arteractive/timer_slack 20000
-    write /sys/devices/system/cpu/cpufreq/arteractive/min_sample_time 40000
-    write /sys/devices/system/cpu/cpufreq/arteractive/hispeed_freq 1190400
-    write /sys/devices/system/cpu/cpufreq/arteractive/go_hispeed_load 99
-    write /sys/devices/system/cpu/cpufreq/arteractive/above_hispeed_delay "20000 1400000:80000 1500000:40000 1700000:20000"
-    write /sys/devices/system/cpu/cpufreq/arteractive/target_loads "85 1400000:90 1700000:95"
-    write /sys/devices/system/cpu/cpufreq/arteractive/sampling_down_factor 100000
+    start arter97
 
 on boot
 
@@ -111,6 +71,11 @@ on boot
 
 on property:sys.powerctl=*
     powerctl ${sys.powerctl}
+
+service arter97 /sbin/arter97.sh
+    user root
+    disabled
+    oneshot
 
 service ueventd /sbin/ueventd
     critical
