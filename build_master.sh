@@ -13,6 +13,9 @@ if [ "${1}" = "skip" ] ; then
 		rm arter97-recovery-i9506-"$(cat ../version_recovery | awk '{print $1}')"-tmp.zip
 		cd ..
 		rm recoveryzip/META-INF/com/google/android/update-binary
+		fakeroot tar -H ustar -c recovery.img > arter97-recovery-i9506-"$(cat version_recovery | awk '{print $1}')".tar
+		md5sum -t arter97-recovery-i9506-"$(cat version_recovery | awk '{print $1}')".tar >> arter97-recovery-i9506-"$(cat version_recovery | awk '{print $1}')".tar
+		mv arter97-recovery-i9506-"$(cat version_recovery | awk '{print $1}')".tar arter97-recovery-i9506-"$(cat version_recovery | awk '{print $1}')".tar.md5
 		ls -al arter97-recovery-i9506-"$(cat version_recovery | awk '{print $1}')".zip
 	else
 		rm arter97-kernel-"$device"-"$(cat version)".zip 2>/dev/null
@@ -79,4 +82,7 @@ sed -i -e s/$(cat ../version_recovery | awk '{print $1}')/PHILZ_VERSION/g -e s/$
 rm arter97-recovery-i9506-"$(cat ../version_recovery | awk '{print $1}')"-tmp.zip
 cd ..
 rm recoveryzip/META-INF/com/google/android/update-binary
+fakeroot tar -H ustar -c recovery.img > arter97-recovery-i9506-"$(cat version_recovery | awk '{print $1}')".tar
+md5sum -t arter97-recovery-i9506-"$(cat version_recovery | awk '{print $1}')".tar >> arter97-recovery-i9506-"$(cat version_recovery | awk '{print $1}')".tar
+mv arter97-recovery-i9506-"$(cat version_recovery | awk '{print $1}')".tar arter97-recovery-i9506-"$(cat version_recovery | awk '{print $1}')".tar.md5
 ls -al arter97-recovery-i9506-"$(cat version_recovery | awk '{print $1}')".zip
