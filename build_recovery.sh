@@ -40,9 +40,13 @@ CONFIG_WLAN_REGION_CODE=100
 	git format-patch a2533a3a0872f82933632016197df79bd3d25854^..a2533a3a0872f82933632016197df79bd3d25854
 	patch -R -p1 < 0001-*
 	rm 0001-*
+	git format-patch 407b222fa4acfe43a302a0b095e638a6a33ad175^..407b222fa4acfe43a302a0b095e638a6a33ad175
+	patch -R -p1 < 0001-*
+	rm 0001-*
 	make "$@" || exit 1
 	git checkout drivers/usb/gadget/android.c
 	git checkout drivers/cpufreq/cpufreq_ondemand.c init/Kconfig kernel/sched/fair.c mm/page-writeback.c
+	git checkout fs/f2fs/file.c
 fi
 
 echo "Building new ramdisk"
