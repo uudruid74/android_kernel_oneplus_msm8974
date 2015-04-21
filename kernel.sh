@@ -33,7 +33,7 @@ REPACK_DIR="${HOME}/new/anykernel"
 PATCH_DIR="${HOME}/new/anykernel"
 MODULES_DIR="${HOME}/new/modules"
 ZIP_MOVE="${HOME}/new/out"
-ZIMAGE_DIR="${HOME}/msm8974/arch/arm/boot"
+ZIMAGE_DIR="${HOME}/new/kernel/arch/arm/boot"
 
 # Functions
 function clean_all {
@@ -59,7 +59,7 @@ function make_modules {
 }
 
 function make_dtb {
-		dtbToolCM -2 -o /home/jgcaap/new/anykernel/dtb -s 2048 -p /home/jgcaap/msm8974/scripts/dtc/ /home/jgcaap/msm8974/arch/arm/boot/
+		dtbToolCM -2 -o /home/jgcaap/new/anykernel/dtb -s 2048 -p /home/jgcaap/new/kernel/scripts/dtc/ /home/jgcaap/new/kernel/arch/arm/boot/
 }
 
 function make_zip {
