@@ -245,8 +245,8 @@ CONFIG_SHELL := $(shell if [ -x "$$BASH" ]; then echo $$BASH; \
 
 HOSTCC       = gcc
 HOSTCXX      = g++
-HOSTCFLAGS = -Wall -Wmissing-prototypes -Wstrict-prototypes -O3 -fomit-frame-pointer -floop-flatten -floop-parallelize-all -ftree-loop-linear -floop-interchange -floop-strip-mine -floop-block -fgcse-las
-HOSTCXXFLAGS = -O3 -floop-flatten -floop-parallelize-all -ftree-loop-linear -floop-interchange -floop-strip-mine -floop-block -fgcse-las
+HOSTCFLAGS = -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -floop-flatten -floop-parallelize-all -ftree-loop-linear -floop-interchange -floop-strip-mine -floop-block -fgcse-las -fpredictive-commoning -fgcse-after-reload -ftree-loop-vectorize   -ftree-loop-distribute-patterns -ftree-slp-vectorize 
+HOSTCXXFLAGS = -O2 -floop-flatten -floop-parallelize-all -ftree-loop-linear -floop-interchange -floop-strip-mine -floop-block -fgcse-las -fpredictive-commoning -fgcse-after-reload -ftree-loop-vectorize   -ftree-loop-distribute-patterns -ftree-slp-vectorize 
 
 #archer
 KBUILD_CFLAGS	+= -s -pipe -fno-pic -mcpu=cortex-a15 -mtune=cortex-a15 -mfloat-abi=softfp -mfpu=vfpv4  -Wno-unused --param l1-cache-size=16 --param l1-cache-line-size=16 --param l2-cache-size=2048
@@ -378,8 +378,14 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -Wno-format-security \
 		   -fno-delete-null-pointer-checks \
 		   -mcpu=cortex-a15 -mtune=cortex-a15 -mfpu=neon-vfpv4 -marm \
-		   -ffast-math -fsingle-precision-constant \
-		   -fgcse-lm -fgcse-sm -fsched-spec-load -fforce-addr
+		   -fsingle-precision-constant \
+		   -fgcse-lm -fgcse-sm -fsched-spec-load -fforce-addr \
+		   -fpredictive-commoning -fgcse-after-reload -ftree-loop-vectorize \
+		   -ftree-loop-distribute-patterns -ftree-slp-vectorize 
+
+
+# O3 = -O2 -finline-functions, -funswitch-loops -fpredictive-commoning -fgcse-after-reload, -ftree-loop-vectorize, -ftree-loop-distribute-patterns, -ftree-slp-vectorize, -fvect-cost-model, -ftree-partial-pre and -fipa-cp-clone
+		   
 		   
 # arter97's optimizations
 KBUILD_CFLAGS	+= -s -pipe -fno-pic -O2 -mcpu=cortex-a15 -mtune=cortex-a15 -mfloat-abi=softfp -mfpu=vfpv4
@@ -584,7 +590,7 @@ ifdef CONFIG_CC_OPTIMIZE_DEFAULT
 KBUILD_CFLAGS += -O2
 endif
 ifdef CONFIG_CC_OPTIMIZE_MORE
-KBUILD_CFLAGS += -O3 -fmodulo-sched -fmodulo-sched-allow-regmoves -fno-tree-vectorize -Wno-array-bounds
+KBUILD_CFLAGS += -O2 -fmodulo-sched -fmodulo-sched-allow-regmoves -fno-tree-vectorize -Wno-array-bounds
 endif
 
 include $(srctree)/arch/$(SRCARCH)/Makefile
