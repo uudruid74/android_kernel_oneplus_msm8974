@@ -382,7 +382,7 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -fgcse-lm -fgcse-sm -fsched-spec-load -fforce-addr
 		   
 # arter97's optimizations
-KBUILD_CFLAGS	+= -s -pipe -fno-pic -O2 -mcpu=cortex-a15 -mtune=cortex-a15 -mfloat-abi=softfp -mfpu=vfpv4
+KBUILD_CFLAGS	+= -s -pipe -fno-pic -O3 -mcpu=cortex-a15 -mtune=cortex-a15 -mfloat-abi=softfp -mfpu=vfpv4
 # -Wno-unused
 KBUILD_CFLAGS	+= -Wno-unused
 # L1/L2 cache size parameters by @JustArchi
@@ -581,7 +581,7 @@ ifdef CONFIG_CC_OPTIMIZE_FOR_SIZE
 KBUILD_CFLAGS	+= -Os $(call cc-disable-warning,maybe-uninitialized,)
 endif
 ifdef CONFIG_CC_OPTIMIZE_DEFAULT
-KBUILD_CFLAGS += -O2
+KBUILD_CFLAGS += -O3
 endif
 ifdef CONFIG_CC_OPTIMIZE_MORE
 KBUILD_CFLAGS += -O3 -fmodulo-sched -fmodulo-sched-allow-regmoves -fno-tree-vectorize -Wno-array-bounds
