@@ -380,7 +380,7 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -mcpu=cortex-a15 -mtune=cortex-a15 -mfpu=neon-vfpv4 -marm \
 		   -fsingle-precision-constant \
 		   -fgcse-lm -fgcse-sm -fsched-spec-load -fforce-addr \
-		   -fpredictive-commoning -fgcse-after-reload -ftree-loop-vectorize \
+		   -fpredictive-commoning -fgcse-after-reload \
 		   -ftree-loop-distribute-patterns -ftree-slp-vectorize 
 
 
