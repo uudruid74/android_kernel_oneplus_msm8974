@@ -44,25 +44,3 @@ else
 fi
 
 sync
-
-while ! pgrep com.android.systemui ; do
-	sleep 1
-done
-
-# Special handlings for ViPER4Android
-if \ls -d /data/data/*viper4android* 1>/dev/null 2>/dev/null; then
-	viperspawntimecount=0
-	sleep 5
-	# Wait up to 60 seconds to detect ViPER4Android process
-	while [[ $viperspawntimecount -le 60 ]]; do
-		am startservice com.vipercn.viper4android_v2/.service.ViPER4AndroidService
-		if pgrep viper4android; then
-			# Treat ViPER4Android process' OOM priority the same as SystemUI
-			chown root:root /proc/$(pgrep viper4android)/oom*
-			echo $(cat /proc/$(pgrep com.android.systemui)/oom_score_adj) > /proc/$(pgrep viper4android)/oom_score_adj
-			break
-		fi
-		sleep 1
-		viperspawntimecount=$(($viperspawntimecount + 1))
-	done
-fi
