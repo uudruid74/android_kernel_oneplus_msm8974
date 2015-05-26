@@ -16,8 +16,8 @@ echo "199000"	> /sys/devices/system/cpu/cpufreq/arteractive/single_enter_time
 echo "60"	> /sys/devices/system/cpu/cpufreq/arteractive/single_exit_load
 echo "99000"	> /sys/devices/system/cpu/cpufreq/arteractive/single_exit_time
 echo "0"	> /sys/devices/system/cpu/cpufreq/arteractive/param_index
-echo "30000"	> /sys/devices/system/cpu/cpufreq/arteractive/timer_rate
-echo "30000"	> /sys/devices/system/cpu/cpufreq/arteractive/timer_slack
+echo "20000"	> /sys/devices/system/cpu/cpufreq/arteractive/timer_rate
+echo "20000"	> /sys/devices/system/cpu/cpufreq/arteractive/timer_slack
 echo "40000"	> /sys/devices/system/cpu/cpufreq/arteractive/min_sample_time
 echo "1190400"	> /sys/devices/system/cpu/cpufreq/arteractive/hispeed_freq
 echo "99"	> /sys/devices/system/cpu/cpufreq/arteractive/go_hispeed_load
@@ -30,7 +30,7 @@ echo "95"	> /sys/devices/system/cpu/cpufreq/arteractive/go_hispeed_load
 echo "1497600"	> /sys/devices/system/cpu/cpufreq/arteractive/hispeed_freq
 echo "59000"	> /sys/devices/system/cpu/cpufreq/arteractive/min_sample_time
 echo "60 800000:65 1400000:70 1700000:80"	> /sys/devices/system/cpu/cpufreq/arteractive/target_loads
-echo "30000"	> /sys/devices/system/cpu/cpufreq/arteractive/timer_rate
+echo "20000"	> /sys/devices/system/cpu/cpufreq/arteractive/timer_rate
 echo "150000"	> /sys/devices/system/cpu/cpufreq/arteractive/sampling_down_factor
 echo "2"	> /sys/devices/system/cpu/cpufreq/arteractive/param_index
 echo "19000"	> /sys/devices/system/cpu/cpufreq/arteractive/above_hispeed_delay
@@ -38,7 +38,7 @@ echo "90"	> /sys/devices/system/cpu/cpufreq/arteractive/go_hispeed_load
 echo "1728000"	> /sys/devices/system/cpu/cpufreq/arteractive/hispeed_freq
 echo "79000"	> /sys/devices/system/cpu/cpufreq/arteractive/min_sample_time
 echo "50 800000:60 1400000:70"	> /sys/devices/system/cpu/cpufreq/arteractive/target_loads
-echo "30000"	> /sys/devices/system/cpu/cpufreq/arteractive/timer_rate
+echo "20000"	> /sys/devices/system/cpu/cpufreq/arteractive/timer_rate
 echo "200000"	> /sys/devices/system/cpu/cpufreq/arteractive/sampling_down_factor
 echo "3"	> /sys/devices/system/cpu/cpufreq/arteractive/param_index
 echo "19000"	> /sys/devices/system/cpu/cpufreq/arteractive/above_hispeed_delay
@@ -46,6 +46,6 @@ echo "85"	> /sys/devices/system/cpu/cpufreq/arteractive/go_hispeed_load
 echo "1958400"	> /sys/devices/system/cpu/cpufreq/arteractive/hispeed_freq
 echo "99000"	> /sys/devices/system/cpu/cpufreq/arteractive/min_sample_time
 echo "50 1200000:60"	> /sys/devices/system/cpu/cpufreq/arteractive/target_loads
-echo "30000"	> /sys/devices/system/cpu/cpufreq/arteractive/timer_rate
+echo "20000"	> /sys/devices/system/cpu/cpufreq/arteractive/timer_rate
 echo "300000"	> /sys/devices/system/cpu/cpufreq/arteractive/sampling_down_factor
 echo "0"	> /sys/devices/system/cpu/cpufreq/arteractive/param_index
