@@ -45,7 +45,9 @@ cd $RAMFS_TMP
 
 find . -name '*.sh' -exec chmod 755 {} \;
 
-sed -i -e 's/DEVICE/SHV-E330S/g' default.prop
+echo "ro.product.model=SHV-E330S
+ro.build.description=ks01lteskt-user 5.0.1 LRX22C E330SKSUDOD2 release-keys
+ro.build.fingerprint=samsung/ks01lteskt/ks01lteskt:5.0.1/LRX22C/E330SKSUDOD2:user/release-keys" >> default.prop
 
 $KERNELDIR/ramdisk_fix_permissions.sh 2>/dev/null
 

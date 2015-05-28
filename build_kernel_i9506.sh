@@ -49,7 +49,9 @@ cd $RAMFS_TMP
 
 find . -name '*.sh' -exec chmod 755 {} \;
 
-sed -i -e 's/DEVICE/GT-I9506/g' default.prop
+echo "ro.product.model=GT-I9506
+ro.build.description=ks01ltexx-user 5.0.1 LRX22C I9506XXUDOD6 release-keys
+ro.build.fingerprint=samsung/ks01ltexx/ks01lte:5.0.1/LRX22C/I9506XXUDOD6:user/release-keys" >> default.prop
 
 $KERNELDIR/ramdisk_fix_permissions.sh 2>/dev/null
 
