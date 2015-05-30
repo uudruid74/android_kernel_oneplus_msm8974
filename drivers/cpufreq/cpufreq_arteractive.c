@@ -664,7 +664,7 @@ static void exit_mode(void)
 }
 #endif
 
-static void __cpufreq_interactive_timer(unsigned long data, bool is_notif)
+static void cpufreq_interactive_timer(unsigned long data)
 {
 	u64 now;
 	unsigned int delta_time;
@@ -814,7 +814,7 @@ static void __cpufreq_interactive_timer(unsigned long data, bool is_notif)
 		pcpu->minfreq_boost = 0;
 	}
 	max_fvtime = max(pcpu->floor_validate_time, pcpu->local_fvtime);
-	if (!is_notif && new_freq < pcpu->floor_freq &&
+	if (new_freq < pcpu->floor_freq &&
 	    pcpu->target_freq >= pcpu->policy->cur) {
 		if (now - max_fvtime < mod_min_sample_time) {
 			spin_unlock_irqrestore(&pcpu->target_freq_lock, flags);
@@ -932,7 +932,7 @@ static void cpufreq_interactive_idle_end(void)
 	} else if (time_after_eq(jiffies, pcpu->cpu_timer.expires)) {
 		del_timer(&pcpu->cpu_timer);
 		del_timer(&pcpu->cpu_slack_timer);
-		__cpufreq_interactive_timer(smp_processor_id(), true);
+		cpufreq_interactive_timer(smp_processor_id());
 	}
 
 	up_read(&pcpu->enable_sem);
@@ -2064,10 +2064,6 @@ static struct power_suspend arteractive_suspend = {
 	.resume = arteractive_late_resume,
 };
 
-static void cpufreq_interactive_timer(unsigned long data)
-{
-	__cpufreq_interactive_timer(data, false);
-}
 
 static int __init cpufreq_arteractive_init(void)
 {
