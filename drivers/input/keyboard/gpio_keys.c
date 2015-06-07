@@ -103,7 +103,6 @@ struct gpio_keys_drvdata {
 	bool	workaround_set;
 #endif
 	struct gpio_button_data data[0];
-	struct power_suspend power_suspend;
 };
 #ifdef CONFIG_SENSORS_HALL_IRQ_CTRL
 #define enable_hall_irq() \
@@ -583,30 +582,6 @@ static void gpio_keys_gpio_report_event(struct gpio_button_data *bdata)
 			}
 		}
 	}
-}
-
-static int gpio_keys_suspend(struct gpio_keys_drvdata *ddata);
-static int gpio_keys_resume(struct gpio_keys_drvdata *ddata);
-static void gpio_keys_early_suspend(struct power_suspend *handler)
-{
-	struct gpio_keys_drvdata *ddata =
-		container_of(handler, struct gpio_keys_drvdata,
-				power_suspend);
-
-	gpio_keys_suspend(ddata);
-
-	return;
-}
-
-static void gpio_keys_late_resume(struct power_suspend *handler)
-{
-	struct gpio_keys_drvdata *ddata =
-		container_of(handler, struct gpio_keys_drvdata,
-				power_suspend);
-
-	gpio_keys_resume(ddata);
-
-	return;
 }
 
 static void gpio_keys_gpio_work_func(struct work_struct *work)
@@ -1568,10 +1543,6 @@ static int __devinit gpio_keys_probe(struct platform_device *pdev)
 	input->id.product = 0x0001;
 	input->id.version = 0x0100;
 
-	ddata->power_suspend.suspend = gpio_keys_early_suspend;
-	ddata->power_suspend.resume = gpio_keys_late_resume;
-	register_power_suspend(&ddata->power_suspend);
-
 	/* Enable auto repeat feature of Linux input subsystem */
 	if (pdata->rep)
 		__set_bit(EV_REP, input->evbit);
@@ -1772,15 +1743,18 @@ static int __devexit gpio_keys_remove(struct platform_device *pdev)
 	return 0;
 }
 
-static int gpio_keys_suspend(struct gpio_keys_drvdata *ddata)
+#ifdef CONFIG_PM_SLEEP
+static int gpio_keys_suspend(struct device *dev)
 {
+	struct gpio_keys_drvdata *ddata = dev_get_drvdata(dev);
 	int i;
 
-	for (i = 0; i < ddata->n_buttons; i++) {
-		struct gpio_button_data *bdata = &ddata->data[i];
-		if (bdata->button->wakeup)
-			enable_irq_wake(bdata->irq);
-	}
+	if (device_may_wakeup(dev)) {
+		for (i = 0; i < ddata->n_buttons; i++) {
+			struct gpio_button_data *bdata = &ddata->data[i];
+			if (bdata->button->wakeup)
+				enable_irq_wake(bdata->irq);
+		}
 #ifdef CONFIG_SENSORS_HALL
 	if(ddata->gpio_flip_cover != 0) {
 #ifdef CONFIG_SENSORS_HALL_IRQ_CTRL
@@ -1791,23 +1765,25 @@ static int gpio_keys_suspend(struct gpio_keys_drvdata *ddata)
 			enable_irq_wake(ddata->irq_flip_cover);
 	}
 #endif
-	return 0;
+	}
+		return 0;
 }
 
-static int gpio_keys_resume(struct gpio_keys_drvdata *ddata)
+static int gpio_keys_resume(struct device *dev)
 {
+	struct gpio_keys_drvdata *ddata = dev_get_drvdata(dev);
 	int i;
 
 	for (i = 0; i < ddata->n_buttons; i++) {
 		struct gpio_button_data *bdata = &ddata->data[i];
-		if (bdata->button->wakeup)
+		if (bdata->button->wakeup && device_may_wakeup(dev))
 			disable_irq_wake(bdata->irq);
 
 		if (gpio_is_valid(bdata->button->gpio))
 			gpio_keys_gpio_report_event(bdata);
 	}
 #ifdef CONFIG_SENSORS_HALL
-	if (ddata->gpio_flip_cover != 0) {
+	if (device_may_wakeup(dev) && ddata->gpio_flip_cover != 0) {
 		disable_irq_wake(ddata->irq_flip_cover);
 #ifdef CONFIG_SENSORS_HALL_IRQ_CTRL
 		if (ddata->cover_state && ddata->gsm_area)
@@ -1819,6 +1795,9 @@ static int gpio_keys_resume(struct gpio_keys_drvdata *ddata)
 
 	return 0;
 }
+#endif
+
+static SIMPLE_DEV_PM_OPS(gpio_keys_pm_ops, gpio_keys_suspend, gpio_keys_resume);
 
 static struct platform_driver gpio_keys_device_driver = {
 	.probe		= gpio_keys_probe,
@@ -1826,6 +1805,7 @@ static struct platform_driver gpio_keys_device_driver = {
 	.driver		= {
 		.name	= "gpio-keys",
 		.owner	= THIS_MODULE,
+		.pm	= &gpio_keys_pm_ops,
 		.of_match_table = gpio_keys_of_match,
 	}
 };
