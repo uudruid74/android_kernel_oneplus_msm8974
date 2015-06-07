@@ -157,11 +157,9 @@ static void sync_system(struct work_struct *work);
 static DECLARE_WORK(sync_system_work, sync_system);
 struct wake_lock sync_wake_lock;
 
-static bool suspended = false;
-
 static void sync_system(struct work_struct *work)
 {
-	if (suspended)
+	if (power_suspended)
 		msleep(5000);
 
 	pr_info("%s +\n", __func__);
@@ -531,7 +529,7 @@ extern void mdnie_toggle_negative(void);
 void gpio_sync_worker(bool pwr)
 {
 	/* sys_sync(); */
-	if (suspended) {
+	if (power_suspended) {
 		if (pwr)
 			pr_info("%s: KEY_POWER pressed, calling sys_sync() in 5 sec...\n", __func__);
 		else
@@ -565,7 +563,7 @@ static void gpio_keys_gpio_report_event(struct gpio_button_data *bdata)
 	}
 	input_sync(input);
 
-	if (!suspended) {
+	if (!power_suspended) {
 		//mdnie negative effect toggle by gm
 		if (button->code == 172) {
 			if (state) {
@@ -595,8 +593,6 @@ static void gpio_keys_early_suspend(struct power_suspend *handler)
 		container_of(handler, struct gpio_keys_drvdata,
 				power_suspend);
 
-	suspended = true;
-
 	gpio_keys_suspend(ddata);
 
 	return;
@@ -607,8 +603,6 @@ static void gpio_keys_late_resume(struct power_suspend *handler)
 	struct gpio_keys_drvdata *ddata =
 		container_of(handler, struct gpio_keys_drvdata,
 				power_suspend);
-
-	suspended = false;
 
 	gpio_keys_resume(ddata);
 
