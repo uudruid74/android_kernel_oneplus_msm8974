@@ -156,7 +156,6 @@ static struct adreno_device device_3d0 = {
 
 unsigned int ft_detect_regs[FT_DETECT_REGS_COUNT];
 
-
 /*
  * This is the master list of all GPU cores that are supported by this
  * driver.
@@ -1933,7 +1932,6 @@ static int adreno_init(struct kgsl_device *device)
 	int i;
 	int ret;
 
-
 	kgsl_pwrctrl_set_state(device, KGSL_STATE_INIT);
 	/*
 	 * initialization only needs to be done once initially until
@@ -2119,16 +2117,14 @@ error_clk_off:
 	return status;
 }
 
-
 /**
  * adreno_start() - Power up and initialize the GPU
  * @device: Pointer to the KGSL device to power up
  * @priority:  Boolean flag to specify of the start should be scheduled in a low
  * latency work queue
  *
- * Power up the GPU and initialize it.  If priority is specified then elevate
+ * Power up the GPU and initialize it. If priority is specified then elevate
  * the thread priority for the duration of the start operation
-
  */
 static int adreno_start(struct kgsl_device *device, int priority)
 {
@@ -2244,15 +2240,15 @@ int adreno_reset(struct kgsl_device *device)
  *
  * This is a common routine to write to FT sysfs files.
  */
-static int _ft_sysfs_store(const char *buf, size_t count, unsigned int *ptr)
+static int _ft_sysfs_store(const char *buf, size_t count, int *ptr)
 {
 	char temp[20];
-	unsigned long val;
+	long val;
 	int rc;
 
 	snprintf(temp, sizeof(temp), "%.*s",
 			 (int)min(count, sizeof(temp) - 1), buf);
-	rc = kstrtoul(temp, 0, &val);
+	rc = kstrtol(temp, 0, &val);
 	if (rc)
 		return rc;
 
@@ -2617,6 +2613,36 @@ static ssize_t _ft_hang_intr_status_show(struct device *dev,
 		test_bit(ADRENO_DEVICE_HANG_INTR, &adreno_dev->priv) ? 1 : 0);
 }
 
+/**
+ * _wake_nice_store() - Store nice level for the higher priority GPU start
+ * thread
+ * @dev: device ptr
+ * @attr: Device attribute
+ * @buf: value to write
+ * @count: size of the value to write
+ *
+ */
+static ssize_t _wake_nice_store(struct device *dev,
+				     struct device_attribute *attr,
+				     const char *buf, size_t count)
+{
+	return _ft_sysfs_store(buf, count, &_wake_nice);
+}
+
+/**
+ * _wake_nice_show() -  Show nice level for the higher priority GPU start
+ * thread
+ * @dev: device ptr
+ * @attr: Device attribute
+ * @buf: value read
+ */
+static ssize_t _wake_nice_show(struct device *dev,
+					struct device_attribute *attr,
+					char *buf)
+{
+	return snprintf(buf, PAGE_SIZE, "%d\n", _wake_nice);
+}
+
 #define FT_DEVICE_ATTR(name) \
 	DEVICE_ATTR(name, 0644,	_ ## name ## _show, _ ## name ## _store);
 
@@ -2626,7 +2652,7 @@ FT_DEVICE_ATTR(ft_fast_hang_detect);
 FT_DEVICE_ATTR(ft_long_ib_detect);
 FT_DEVICE_ATTR(ft_hang_intr_status);
 
-static DEVICE_INT_ATTR(wake_nice, 0644, _wake_nice);
+static FT_DEVICE_ATTR(wake_nice);
 static FT_DEVICE_ATTR(wake_timeout);
 
 const struct device_attribute *ft_attr_list[] = {
@@ -2634,7 +2660,7 @@ const struct device_attribute *ft_attr_list[] = {
 	&dev_attr_ft_pagefault_policy,
 	&dev_attr_ft_fast_hang_detect,
 	&dev_attr_ft_long_ib_detect,
-	&dev_attr_wake_nice.attr,
+	&dev_attr_wake_nice,
 	&dev_attr_wake_timeout,
 	&dev_attr_ft_hang_intr_status,
 	NULL,
