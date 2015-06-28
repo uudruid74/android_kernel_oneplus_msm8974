@@ -354,8 +354,8 @@ CHECKFLAGS     := -D__linux__ -Dlinux -D__STDC__ -Dunix -D__unix__ \
 CFLAGS_MODULE   =
 AFLAGS_MODULE   =
 LDFLAGS_MODULE  =
-CFLAGS_KERNEL	=
-AFLAGS_KERNEL	=
+CFLAGS_KERNEL	= $(CHIP)
+AFLAGS_KERNEL	= $(CHIP)
 CFLAGS_GCOV	= -fprofile-arcs -ftest-coverage
 
 
@@ -377,12 +377,10 @@ KBUILD_CFLAGS   := -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -Wno-sizeof-pointer-memaccess \
 		   -std=gnu89
 
-# arter97's optimizations
-KBUILD_CFLAGS	+= -s -pipe -fno-pic -O2 -mcpu=cortex-a15 -mtune=cortex-a15 -mfloat-abi=softfp -mfpu=vfpv4
-# -Wno-unused
+KBUILD_CFLAGS	+= -O2 -mcpu=cortex-a15 -mtune=cortex-a15 -mfloat-abi=softfp -mfpu=neon-vfpv4
 KBUILD_CFLAGS	+= -Wno-unused
-# L1/L2 cache size parameters by @JustArchi
-KBUILD_CFLAGS	+= --param l1-cache-size=16 --param l1-cache-line-size=16 --param l2-cache-size=2048
+
+CHIP = -mcpu=cortex-a15 -mtune=cortex-a15 -mfpu=neon-vfpv4
 
 KBUILD_AFLAGS_KERNEL :=
 KBUILD_CFLAGS_KERNEL :=
