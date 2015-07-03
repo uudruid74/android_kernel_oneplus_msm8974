@@ -50,6 +50,17 @@ else
 	mount -t f2fs -o noatime,nodiratime,background_gc=on,discard,nosuid,nodev /dev/block/platform/msm_sdcc.1/by-name/cache /cache
 fi
 
+if [ -f /data/arter97/system-cache ]; then
+	rm -rf /data/dalvik-cache
+	mkdir -p /system/dalvik-cache /data/dalvik-cache
+	chown 0.0 /system/dalvik-cache
+	chmod 771 /system/dalvik-cache
+	chown 0.0 /data/dalvik-cache
+	chmod 771 /data/dalvik-cache
+	mount -o rw,remount /system
+	mount --bind /system/dalvik-cache /data/dalvik-cache
+fi
+
 if [[ $ext4 == "1" ]]; then
 	sed -i -e 's/# VOLD/\/dev\/block\/platform\/msm_sdcc.1\/by-name\/userdata       \/data            ext4    nosuid,nodev,noatime,noauto_da_alloc,nodiscard,errors=panic      wait,check,encryptable=footer\n\n# VOLD/g' /fstab.qcom
 	umount -f /data
