@@ -14,9 +14,6 @@ on boot
     chown system radio /sys/class/sec/sec_touchkey/flip_mode
     chown system radio /sys/class/sec/sec_touchkey/boost_level
 
-# SSWAP
-    write /proc/sys/vm/swappiness 130
-
 # IPSec for VOLTE
     chown root system /dev/socket
 	chmod 0775 /dev/socket
@@ -179,10 +176,3 @@ service at_distributor /system/bin/at_distributor
     user root
     group radio misc log
 
-# SSWAP
-service swapon /sbin/sswap -s
-    class core
-    user root
-    group root
-    seclabel u:r:sswap:s0
-    oneshot
