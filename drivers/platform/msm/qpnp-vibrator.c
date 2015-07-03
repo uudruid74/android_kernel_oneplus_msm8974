@@ -277,6 +277,9 @@ static void qpnp_vib_enable(struct timed_output_dev *dev, int value)
 	if (disable_vib)
 		return;
 
+	if (disable_vib)
+		return;
+
 retry:
 	spin_lock_irqsave(&vib->lock, flags);
 	if (hrtimer_try_to_cancel(&vib->vib_timer) < 0) {
