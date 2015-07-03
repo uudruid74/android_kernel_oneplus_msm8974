@@ -84,6 +84,9 @@ on init
     mkdir /mnt/shell/privatemode 0700 system system
     mkdir /storage/Private 0000 system system
 
+    # SSWAP
+    write /proc/sys/vm/swappiness 130
+
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
