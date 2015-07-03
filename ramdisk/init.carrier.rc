@@ -58,9 +58,6 @@ on boot
     chmod 0600 /dev/btlock
     chown bluetooth bluetooth /dev/btlock
 
-# SSWAP
-    write /proc/sys/vm/swappiness 130
-
 on fs
 
 # Support Preload install apks
