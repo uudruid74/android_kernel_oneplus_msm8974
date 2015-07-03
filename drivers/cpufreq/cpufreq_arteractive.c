@@ -35,6 +35,7 @@
  *                     Rest of the cores can slowly ramp up and match the actual workload.
  *                     This is not recommended on devices where reducing latency is very important.
  *                 Apply some several CAF(3.4 & 3.10) and Chromium(3.14) commits.
+ *           2.1 - Disable mode change on suspend and optimize go_hispeed_load poll
  *
  */
 
@@ -694,28 +695,30 @@ static void __cpufreq_interactive_timer(unsigned long data, bool is_notif)
 		goto rearm;
 
 #ifdef CONFIG_MODE_AUTO_CHANGE
-	spin_lock_irqsave(&mode_lock, flags);
-	if (enforced_mode)
-		new_mode = enforced_mode;
-	else
-		new_mode = check_mode(data, mode, now);
-	if (new_mode != mode) {
-		mode = new_mode;
-		if (new_mode & MULTI_MODE || new_mode & SINGLE_MODE) {
+	if (!suspended) {
+		spin_lock_irqsave(&mode_lock, flags);
+		if (enforced_mode)
+			new_mode = enforced_mode;
+		else
+			new_mode = check_mode(data, mode, now);
+		if (new_mode != mode) {
+			mode = new_mode;
+			if (new_mode & MULTI_MODE || new_mode & SINGLE_MODE) {
 #ifdef CONFIG_RETENTION_CHANGE
-			++mode_count;
+				++mode_count;
 #endif
-			pr_info("Governor: enter mode 0x%x\n", mode);
-			enter_mode();
-		} else {
+				pr_info("Governor: enter mode 0x%x\n", mode);
+				enter_mode();
+			} else {
 #ifdef CONFIG_RETENTION_CHANGE
-			mode_count=0;
+				mode_count=0;
 #endif
-			pr_info("Governor: exit mode 0x%x\n", mode);
-			exit_mode();
+				pr_info("Governor: exit mode 0x%x\n", mode);
+				exit_mode();
+			}
 		}
+		spin_unlock_irqrestore(&mode_lock, flags);
 	}
-	spin_unlock_irqrestore(&mode_lock, flags);
 #endif
 
 	spin_lock_irqsave(&pcpu->target_freq_lock, flags);
@@ -730,9 +733,7 @@ static void __cpufreq_interactive_timer(unsigned long data, bool is_notif)
 	pcpu->policy->util = cpu_load;
 #endif
 
-	if ( (suspended && (cpu_load >= DEFAULT_GO_HISPEED_LOAD_SCREEN_OFF)) ||
-	    (!suspended && (cpu_load >= go_hispeed_load)) ||
-	     (boosted)) {
+	if (cpu_load >= go_hispeed_load || boosted) {
 		if (pcpu->policy->cpu == 0) {
 			if (pcpu->target_freq < this_hispeed_freq) {
 				new_freq = this_hispeed_freq;
@@ -2014,12 +2015,14 @@ static void cpufreq_interactive_nop_timer(unsigned long data)
 static void arteractive_early_suspend(struct power_suspend *handler)
 {
 	suspended = true;
+	go_hispeed_load = DEFAULT_GO_HISPEED_LOAD_SCREEN_OFF;
 	return;
 }
 
 static void arteractive_late_resume(struct power_suspend *handler)
 {
 	suspended = false;
+	go_hispeed_load = DEFAULT_GO_HISPEED_LOAD;
 	return;
 }
 
