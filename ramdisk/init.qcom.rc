@@ -358,9 +358,6 @@ on post-fs-data
     chmod 0640 /efs/gyro_cal_data
     restorecon /efs/gyro_cal_data
 
-# SSWAP
-    write /proc/sys/vm/swappiness 130
-
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
 
@@ -586,11 +583,4 @@ service bootsnd /system/bin/tinyplay /system/etc/sound/silence.wav -D 0 -d 0 -p 
     class late_start
     user root
     group audio
-    oneshot
-
-# SSWAP
-service swapon /sbin/sswap -s
-    class core
-    user root
-    group root
     oneshot
