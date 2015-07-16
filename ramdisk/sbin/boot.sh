@@ -15,7 +15,7 @@ source /sbin/arteractive.sh
 DEFAULTPOLLMS=$(cat /sys/module/msm_thermal/parameters/poll_ms)
 echo "50" > /sys/module/msm_thermal/parameters/poll_ms
 
-if [[ $(cat /data/.arter97/vnswap) == "1" ]]; then
+if [[ $(cat /data/.arter97/vnswap) != "0" ]]; then
 	/sbin/sswap -s
 fi
 
