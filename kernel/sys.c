@@ -40,10 +40,14 @@
 #include <linux/syscore_ops.h>
 #include <linux/version.h>
 #include <linux/ctype.h>
+
 #include <linux/mm.h>
 #include <linux/mempolicy.h>
 #include <linux/sched.h>
 
+#ifdef CONFIG_RESTART_REASON_SEC_PARAM
+#include <mach/sec_debug.h>
+#endif
 #include <linux/compat.h>
 #include <linux/syscalls.h>
 #include <linux/kprobes.h>
@@ -440,6 +444,9 @@ static void migrate_to_reboot_cpu(void)
  */
 void kernel_restart(char *cmd)
 {
+#ifdef CONFIG_RESTART_REASON_SEC_PARAM
+	sec_param_restart_reason(cmd);
+#endif
 #ifdef CONFIG_SEC_MONITOR_BATTERY_REMOVAL
 	kernel_sec_set_normal_pwroff(1);
 #endif
@@ -2102,7 +2109,7 @@ SYSCALL_DEFINE5(prctl, int, option, unsigned long, arg2, unsigned long, arg3,
 		unsigned long, arg4, unsigned long, arg5)
 {
 	struct task_struct *me = current;
-	//struct task_struct *tsk;
+	struct task_struct *tsk;
 	unsigned char comm[sizeof(me->comm)];
 	long error;
 
