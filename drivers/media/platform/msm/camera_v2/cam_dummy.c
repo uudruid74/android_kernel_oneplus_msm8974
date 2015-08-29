@@ -182,12 +182,6 @@ static int __init cam_dummy_init_module(void)
 	pr_err("%s:%d\n", __func__, __LINE__);
 	rc = platform_driver_probe(&cam_dummy_platform_driver,
 		cam_dummy_platform_probe);
-
-	if (rc < 0)
-	  pr_err("%s: failed", __func__);
-	else
-	  pr_warn("%s: succeed", __func__);
-
 	return rc;
 }
 
@@ -202,4 +196,3 @@ module_init(cam_dummy_init_module);
 module_exit(cam_dummy_exit_module);
 MODULE_DESCRIPTION("cam_dummy");
 MODULE_LICENSE("GPL v2");
-
