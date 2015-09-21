@@ -29,8 +29,8 @@ export KBUILD_BUILD_HOST=kernel
 
 # Paths
 KERNEL_DIR=`pwd`
-REPACK_DIR="${HOME}/new/anykernel"
-PATCH_DIR="${HOME}/new/anykernel"
+REPACK_DIR="${HOME}/new/bricked"
+PATCH_DIR="${HOME}/new/bricked"
 MODULES_DIR="${HOME}/new/modules"
 ZIP_MOVE="${HOME}/new/out"
 ZIMAGE_DIR="${HOME}/new/kernel/arch/arm/boot"
@@ -59,7 +59,7 @@ function make_modules {
 }
 
 function make_dtb {
-		dtbToolCM -2 -o /home/jgcaap/new/anykernel/dtb -s 2048 -p /home/jgcaap/new/kernel/scripts/dtc/ /home/jgcaap/new/kernel/arch/arm/boot/
+		dtbToolCM -2 -o /home/jgcaap/new/bricked/dtb -s 2048 -p /home/jgcaap/new/kernel/scripts/dtc/ /home/jgcaap/new/kernel/arch/arm/boot/
 }
 
 function make_zip {
@@ -129,4 +129,4 @@ DATE_END=$(date +"%s")
 DIFF=$(($DATE_END - $DATE_START))
 echo "Time: $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) seconds."
 echo
-mv ~/new/out/newKernel-CM12-.zip /www/devs/jgcaap/oneplus/kernel/newKernel-CM12-2.55.zip
+mv ~/new/out/newKernel-CM12-.zip /www/devs/jgcaap/oneplus/kernel/newKernel-CM12-2.60-bricked.zip
