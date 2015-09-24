@@ -64,8 +64,8 @@ function make_dtb {
 
 function make_zip {
 		cd $REPACK_DIR
-		zip -r9 newKernel-CM12-"$VARIANT".zip *
-		mv newKernel-CM12-"$VARIANT".zip $ZIP_MOVE
+		zip -r9 newKernel-CM12.1-"$VARIANT".zip *
+		mv newKernel-CM12.1-"$VARIANT".zip $ZIP_MOVE
 		cd $KERNEL_DIR
 }
 
@@ -129,4 +129,4 @@ DATE_END=$(date +"%s")
 DIFF=$(($DATE_END - $DATE_START))
 echo "Time: $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) seconds."
 echo
-mv ~/new/out/newKernel-CM12-.zip /www/devs/jgcaap/oneplus/kernel/newKernel-CM12-2.62-bricked.zip
+mv ~/new/out/newKernel-CM12.1-.zip /www/devs/jgcaap/oneplus/kernel/newKernel-CM12.1-2.64-bricked.zip
