@@ -372,7 +372,7 @@ KBUILD_CFLAGS   := -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -fno-strict-aliasing -fno-common \
 		   -Werror-implicit-function-declaration \
 		   -Wno-format-security \
-		   -fno-delete-null-pointer-checks
+		   -fno-delete-null-pointer-checks \
 		   -Wno-maybe-uninitialized \
 		   -fno-delete-null-pointer-checks \
 		   -Wno-sizeof-pointer-memaccess \
