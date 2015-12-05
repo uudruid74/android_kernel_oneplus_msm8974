@@ -1,0 +1,1 @@
+cmd_drivers/media/platform/msm/camera_oppo_v2/pproc/cpp/built-in.o :=  /home/jgcaap/new/arm-eabi-5.2/bin/arm-eabi-ld -EL    -r -o drivers/media/platform/msm/camera_oppo_v2/pproc/cpp/built-in.o drivers/media/platform/msm/camera_oppo_v2/pproc/cpp/msm_cpp.o 

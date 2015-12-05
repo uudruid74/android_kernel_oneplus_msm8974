@@ -1,1 +1,1 @@
-cmd_drivers/media/common/tuners/tda18271.o := /home/jgcaap/new/arm-eabi-4.8/bin/arm-eabi-ld -EL    -r -o drivers/media/common/tuners/tda18271.o drivers/media/common/tuners/tda18271-maps.o drivers/media/common/tuners/tda18271-common.o drivers/media/common/tuners/tda18271-fe.o 
+cmd_drivers/media/common/tuners/tda18271.o := /home/jgcaap/new/arm-eabi-5.2/bin/arm-eabi-ld -EL    -r -o drivers/media/common/tuners/tda18271.o drivers/media/common/tuners/tda18271-maps.o drivers/media/common/tuners/tda18271-common.o drivers/media/common/tuners/tda18271-fe.o 

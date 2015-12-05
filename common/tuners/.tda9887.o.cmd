@@ -1,4 +1,4 @@
-cmd_drivers/media/common/tuners/tda9887.o := /home/jgcaap/new/kernel/scripts/gcc-wrapper.py /home/jgcaap/new/arm-eabi-4.8/bin/arm-eabi-gcc -Wp,-MD,drivers/media/common/tuners/.tda9887.o.d  -nostdinc -isystem /home/jgcaap/new/arm-eabi-4.8/bin/../lib/gcc/arm-eabi/4.8.5/include -I/home/jgcaap/new/kernel/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include /home/jgcaap/new/kernel/include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-msm/include -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -Wno-maybe-uninitialized -fno-delete-null-pointer-checks -Wno-sizeof-pointer-memaccess -std=gnu89 -O2 -mcpu=cortex-a15 -mtune=cortex-a15 -mfloat-abi=softfp -mfpu=neon-vfpv4 -Wno-unused -O2 -marm -fno-dwarf2-cfi-asm -fno-pic -fstack-protector -mabi=aapcs-linux -mno-thumb-interwork -funwind-tables -D__LINUX_ARM_ARCH__=7 -mcpu=cortex-a15 -mtune=cortex-a15 -msoft-float -Uarm -Wframe-larger-than=1024 -Wno-unused-but-set-variable -fomit-frame-pointer -fno-var-tracking-assignments -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -DCC_HAVE_ASM_GOTO -I/home/jgcaap/new/kernel/drivers/media/dvb/dvb-core -I/home/jgcaap/new/kernel/drivers/media/dvb/frontends   -mcpu=cortex-a15 -mtune=cortex-a15 -mfpu=neon-vfpv4 -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(tda9887)"  -D"KBUILD_MODNAME=KBUILD_STR(tda9887)" -c -o drivers/media/common/tuners/tda9887.o drivers/media/common/tuners/tda9887.c
+cmd_drivers/media/common/tuners/tda9887.o := /home/jgcaap/new/kernel/scripts/gcc-wrapper.py /home/jgcaap/new/arm-eabi-5.2/bin/arm-eabi-gcc -Wp,-MD,drivers/media/common/tuners/.tda9887.o.d  -nostdinc -isystem /home/jgcaap/new/arm-eabi-5.2/bin/../lib/gcc/arm-eabi/5.2.1/include -I/home/jgcaap/new/kernel/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include /home/jgcaap/new/kernel/include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-msm/include -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -Wno-maybe-uninitialized -fno-delete-null-pointer-checks -Wno-sizeof-pointer-memaccess -std=gnu89 -O2 -mcpu=cortex-a15 -mtune=cortex-a15 -mfloat-abi=softfp -mfpu=neon-vfpv4 -Wno-unused -O2 -marm -fno-dwarf2-cfi-asm -fno-pic -fstack-protector -mabi=aapcs-linux -mno-thumb-interwork -funwind-tables -D__LINUX_ARM_ARCH__=7 -mcpu=cortex-a15 -mtune=cortex-a15 -msoft-float -Uarm -Wframe-larger-than=1024 -Wno-unused-but-set-variable -fomit-frame-pointer -fno-var-tracking-assignments -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -DCC_HAVE_ASM_GOTO -I/home/jgcaap/new/kernel/drivers/media/dvb/dvb-core -I/home/jgcaap/new/kernel/drivers/media/dvb/frontends   -mcpu=cortex-a15 -mtune=cortex-a15 -mfpu=neon-vfpv4 -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(tda9887)"  -D"KBUILD_MODNAME=KBUILD_STR(tda9887)" -c -o drivers/media/common/tuners/tda9887.o drivers/media/common/tuners/tda9887.c
 
 source_drivers/media/common/tuners/tda9887.o := drivers/media/common/tuners/tda9887.c
 
@@ -40,7 +40,8 @@ deps_drivers/media/common/tuners/tda9887.o := \
   include/linux/compiler-gcc.h \
     $(wildcard include/config/arch/supports/optimized/inlining.h) \
     $(wildcard include/config/optimize/inlining.h) \
-  include/linux/compiler-gcc4.h \
+  include/linux/compiler-gcc5.h \
+    $(wildcard include/config/arch/use/builtin/bswap.h) \
   /home/jgcaap/new/kernel/arch/arm/include/asm/posix_types.h \
   include/asm-generic/posix_types.h \
   include/linux/poison.h \
@@ -60,7 +61,7 @@ deps_drivers/media/common/tuners/tda9887.o := \
     $(wildcard include/config/numa.h) \
     $(wildcard include/config/compaction.h) \
   include/linux/sysinfo.h \
-  /home/jgcaap/new/arm-eabi-4.8/lib/gcc/arm-eabi/4.8.5/include/stdarg.h \
+  /home/jgcaap/new/arm-eabi-5.2/lib/gcc/arm-eabi/5.2.1/include/stdarg.h \
   include/linux/linkage.h \
   /home/jgcaap/new/kernel/arch/arm/include/asm/linkage.h \
   include/linux/bitops.h \

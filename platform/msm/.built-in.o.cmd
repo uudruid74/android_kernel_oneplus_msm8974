@@ -1,0 +1,1 @@
+cmd_drivers/media/platform/msm/built-in.o :=  /home/jgcaap/new/arm-eabi-5.2/bin/arm-eabi-ld -EL    -r -o drivers/media/platform/msm/built-in.o drivers/media/platform/msm/vidc/built-in.o drivers/media/platform/msm/wfd/built-in.o drivers/media/platform/msm/camera_oppo_v2/built-in.o drivers/media/platform/msm/vcap/built-in.o 
