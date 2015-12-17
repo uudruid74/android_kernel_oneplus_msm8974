@@ -88,3 +88,5 @@ GTAGS
 
 # Generated source files
 smd_rpc_sym.c
+
+arch/arm/boot/compressed/bswapsdi2.S
