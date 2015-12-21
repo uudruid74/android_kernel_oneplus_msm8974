@@ -39,9 +39,9 @@
 #define SCHED_BATCH		3
 /* SCHED_ISO: Implemented on BFS only */
 #define SCHED_IDLE		5
+#define SCHED_IDLEPRIO		SCHED_IDLE
 #ifdef CONFIG_SCHED_BFS
 #define SCHED_ISO		4
-#define SCHED_IDLEPRIO		SCHED_IDLE
 #define SCHED_MAX		(SCHED_IDLEPRIO)
 #define SCHED_RANGE(policy)	((policy) <= SCHED_MAX)
 #endif
@@ -370,6 +370,7 @@ extern signed long schedule_timeout_killable(signed long timeout);
 extern signed long schedule_timeout_uninterruptible(signed long timeout);
 asmlinkage void schedule(void);
 extern void schedule_preempt_disabled(void);
+/* EKL - extern int mutex_spin_on_owner(struct mutex *lock, struct task_struct *owner); */
 
 struct nsproxy;
 struct user_namespace;
@@ -682,6 +683,11 @@ struct signal_struct {
 					 * credential calculations
 					 * (notably. ptrace) */
 };
+
+/* Context switch must be unlocked if interrupts are to be enabled */
+#ifdef __ARCH_WANT_INTERRUPTS_ON_CTXSW
+# define __ARCH_WANT_UNLOCKED_CTXSW
+#endif
 
 /*
  * Bits in flags field of signal_struct.
@@ -1488,6 +1494,7 @@ struct task_struct {
 	unsigned int sessionid;
 #endif
 	struct seccomp seccomp;
+/* EKL - seccomp_t seccomp; */
 
 /* Thread group tracking */
    	u32 parent_exec_id;
@@ -1694,7 +1701,9 @@ static inline void cpu_nonscaling(int cpu)
 
 static inline void tsk_cpus_current(struct task_struct *p)
 {
-	p->nr_cpus_allowed = current->nr_cpus_allowed;
+	p->cpus_allowed = current->cpus_allowed;
+	/* p->nr_cpus_allowed = current->nr_cpus_allowed; */
+	/* EKL - p->rt.nr_cpus_allowed = current->rt.nr_cpus_allowed; */
 }
 
 static inline void print_scheduler_version(void)
@@ -1942,6 +1951,7 @@ extern int task_free_unregister(struct notifier_block *n);
 #define PF_RANDOMIZE	0x00400000	/* randomize virtual address space */
 #define PF_SWAPWRITE	0x00800000	/* Allowed to write to swap */
 #define PF_NO_SETAFFINITY 0x04000000	/* Userland is not allowed to meddle with cpus_allowed */
+#define PF_THREAD_BOUND PF_NO_SETAFFINITY	/* Compatibility with existing */
 #define PF_MCE_EARLY    0x08000000      /* Early kill for mce process policy */
 #define PF_MEMPOLICY	0x10000000	/* Non-default NUMA mempolicy */
 #define PF_MUTEX_TESTER	0x20000000	/* Thread belongs to the rt mutex tester */

@@ -231,7 +231,9 @@ static ssize_t gentle_fair_sleepers_store(struct kobject *kobj, struct kobj_attr
 		input = 0;
 
 	Lgentle_fair_sleepers = input;
+#ifndef CONFIG_SCHED_BFS		// EKL - Need a fix
 	relay_gfs(Lgentle_fair_sleepers);
+#endif
 	return count;
 }
 KERNEL_ATTR_READ_ONLY(gentle_fair_sleepers);
@@ -250,7 +252,9 @@ static ssize_t arch_power_store(struct kobject *kobj, struct kobj_attribute *att
 		input = 0;
 	
 	Larch_power = input;
+#ifndef CONFIG_SCHED_BFS		// EKL - Need a fix
 	relay_ap(Larch_power);
+#endif
 	return count;
 }
 KERNEL_ATTR_READ_ONLY(arch_power);
