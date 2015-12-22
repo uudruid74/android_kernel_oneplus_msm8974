@@ -1702,8 +1702,6 @@ static inline void cpu_nonscaling(int cpu)
 static inline void tsk_cpus_current(struct task_struct *p)
 {
 	p->cpus_allowed = current->cpus_allowed;
-	/* p->nr_cpus_allowed = current->nr_cpus_allowed; */
-	/* EKL - p->rt.nr_cpus_allowed = current->rt.nr_cpus_allowed; */
 }
 
 static inline void print_scheduler_version(void)
