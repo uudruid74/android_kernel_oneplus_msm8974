@@ -27,7 +27,7 @@
  *  now		Brainfuck deadline scheduling policy by Con Kolivas deletes
  *              a whole lot of those previous things.
  */
-
+#include "bfs_sched.h"
 #include <linux/mm.h>
 #include <linux/module.h>
 #include <linux/nmi.h>
@@ -106,17 +106,8 @@
 #define NICE_TO_PRIO(nice)	(MAX_RT_PRIO + (nice) + 20)
 #define PRIO_TO_NICE(prio)	((prio) - MAX_RT_PRIO - 20)
 #define TASK_NICE(p)		PRIO_TO_NICE((p)->static_prio)
-
-/*
- * 'User priority' is the nice value converted to something we
- * can work with better when scaling various scheduler parameters,
- * it's a [ 0 ... 39 ] range.
- */
-#define USER_PRIO(p)		((p) - MAX_RT_PRIO)
-#define TASK_USER_PRIO(p)	USER_PRIO((p)->static_prio)
-#define MAX_USER_PRIO		(USER_PRIO(MAX_PRIO))
 #define SCHED_PRIO(p)		((p) + MAX_RT_PRIO)
-#define STOP_PRIO		(MAX_RT_PRIO - 1)
+#define STOP_PRIO			(MAX_RT_PRIO - 1)
 
 /*
  * Some helpers for converting to/from various scales. Use shifts to get
@@ -192,127 +183,9 @@ struct global_rq {
 	bool iso_refractory;
 };
 
-#ifdef CONFIG_SMP
-
-/*
- * We add the notion of a root-domain which will be used to define per-domain
- * variables. Each exclusive cpuset essentially defines an island domain by
- * fully partitioning the member cpus from any other cpuset. Whenever a new
- * exclusive cpuset is created, we also create and attach a new root-domain
- * object.
- *
- */
-struct root_domain {
-	atomic_t refcount;
-	atomic_t rto_count;
-	struct rcu_head rcu;
-	cpumask_var_t span;
-	cpumask_var_t online;
-
-	/*
-	 * The "RT overload" flag: it gets set if a CPU has more than
-	 * one runnable RT task.
-	 */
-	cpumask_var_t rto_mask;
-	struct cpupri cpupri;
-};
-
-/*
- * By default the system creates a single root-domain with all cpus as
- * members (mimicking the global state we have today).
- */
-static struct root_domain def_root_domain;
-
-#endif /* CONFIG_SMP */
-
 /* There can be only one */
 static struct global_rq grq;
-
-/*
- * This is the main, per-CPU runqueue data structure.
- * This data should only be modified by the local cpu.
- */
-struct rq {
-#ifdef CONFIG_SMP
-#ifdef CONFIG_NO_HZ
-	u64 nohz_stamp;
-	unsigned char in_nohz_recently;
-#endif
-#endif
-
-	struct task_struct *curr, *idle, *stop;
-	struct mm_struct *prev_mm;
-
-	/* Stored data about rq->curr to work outside grq lock */
-	u64 rq_deadline;
-	unsigned int rq_policy;
-	int rq_time_slice;
-	u64 rq_last_ran;
-	int rq_prio;
-	bool rq_running; /* There is a task running */
-
-	/* Accurate timekeeping data */
-	u64 timekeep_clock;
-	unsigned long user_pc, nice_pc, irq_pc, softirq_pc, system_pc,
-		iowait_pc, idle_pc;
-	long account_pc;
-	atomic_t nr_iowait;
-
-#ifdef CONFIG_SMP
-	int cpu;		/* cpu of this runqueue */
-	bool online;
-	bool scaling; /* This CPU is managed by a scaling CPU freq governor */
-	struct task_struct *sticky_task;
-
-	struct root_domain *rd;
-	struct sched_domain *sd;
-	int *cpu_locality; /* CPU relative cache distance */
-#ifdef CONFIG_SCHED_SMT
-	bool (*siblings_idle)(int cpu);
-	/* See if all smt siblings are idle */
-	cpumask_t smt_siblings;
-#endif
-#ifdef CONFIG_SCHED_MC
-	bool (*cache_idle)(int cpu);
-	/* See if all cache siblings are idle */
-	cpumask_t cache_siblings;
-#endif
-	u64 last_niffy; /* Last time this RQ updated grq.niffies */
-#endif
-#ifdef CONFIG_IRQ_TIME_ACCOUNTING
-	u64 prev_irq_time;
-#endif
-#ifdef CONFIG_PARAVIRT
-	u64 prev_steal_time;
-#endif
-#ifdef CONFIG_PARAVIRT_TIME_ACCOUNTING
-	u64 prev_steal_time_rq;
-#endif
-
-	u64 clock, old_clock, last_tick;
-	u64 clock_task;
-	bool dither;
-
-#ifdef CONFIG_SCHEDSTATS
-
-	/* latency stats */
-	struct sched_info rq_sched_info;
-	unsigned long long rq_cpu_time;
-	/* could above be rq->cfs_rq.exec_clock + rq->rt_rq.rt_runtime ? */
-
-	/* sys_sched_yield() stats */
-	unsigned int yld_count;
-
-	/* schedule() stats */
-	unsigned int sched_switch;
-	unsigned int sched_count;
-	unsigned int sched_goidle;
-
-	/* try_to_wake_up() stats */
-	unsigned int ttwu_count;
-	unsigned int ttwu_local;
-#endif
-};
+static struct root_domain def_root_domain;
 
 DEFINE_PER_CPU_SHARED_ALIGNED(struct rq, runqueues);
 static DEFINE_MUTEX(sched_hotcpu_mutex);
@@ -323,12 +196,6 @@ static DEFINE_MUTEX(sched_hotcpu_mutex);
  * detach_destroy_domains and partition_sched_domains.
  */
 static DEFINE_MUTEX(sched_domains_mutex);
-
-/*
- * By default the system creates a single root-domain with all cpus as
- * members (mimicking the global state we have today).
- */
-static struct root_domain def_root_domain;
 
 int __weak arch_sd_sibling_asym_packing(void)
 {
@@ -374,10 +241,6 @@ static inline void niffy_diff(s64 *niff_diff, int jiff_diff)
 }
 
 #ifdef CONFIG_SMP
-#define cpu_rq(cpu)		(&per_cpu(runqueues, (cpu)))
-#define this_rq()		(&__get_cpu_var(runqueues))
-#define task_rq(p)		cpu_rq(task_cpu(p))
-#define cpu_curr(cpu)		(cpu_rq(cpu)->curr)
 static inline int cpu_of(struct rq *rq)
 {
 	return rq->cpu;
@@ -407,11 +270,6 @@ static inline void update_clocks(struct rq *rq)
 	rq->last_niffy = grq.niffies;
 }
 #else /* CONFIG_SMP */
-static struct rq *uprq;
-#define cpu_rq(cpu)	(uprq)
-#define this_rq()	(uprq)
-#define task_rq(p)	(uprq)
-#define cpu_curr(cpu)	((uprq)->curr)
 static inline int cpu_of(struct rq *rq)
 {
 	return 0;
@@ -3829,6 +3687,41 @@ bool completion_done(struct completion *x)
 	return ret;
 }
 EXPORT_SYMBOL(completion_done);
+
+/**
+ * This stuff copied from other parts of the code
+ * Its duplicated here because this scheduler
+ * doesn't use any of the rest of the code, so
+ * it won't otherwise be included!
+ *                                -- EKL
+ * FIXME: These values can be set via kernelfs, but
+ * right now, the rest of the code ignores them!!
+ */
+static unsigned int Lgentle_fair_sleepers = 0;
+static unsigned int Larch_power = 0;
+
+void relay_gfs(unsigned int gfs)
+{
+    Lgentle_fair_sleepers = gfs;
+}
+
+void relay_ap(unsigned int ap)
+{
+    Larch_power = ap;
+}
+
+unsigned long __weak arch_scale_freq_power(struct sched_domain *sd, int cpu)
+{
+    return default_scale_freq_power(sd, cpu);
+}
+
+unsigned long __weak arch_scale_smt_power(struct sched_domain *sd, int cpu)
+{
+    return default_scale_smt_power(sd, cpu);
+}
+/**
+ * End of EKL hacks
+ */
 
 static long __sched
 sleep_on_common(wait_queue_head_t *q, int state, long timeout)
