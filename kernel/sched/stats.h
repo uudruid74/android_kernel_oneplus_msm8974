@@ -1,4 +1,5 @@
-
+#ifndef __STATS_H_INCLUDED
+#define __STATS_H_INCLUDED
 #ifdef CONFIG_SCHEDSTATS
 
 /*
@@ -229,3 +230,6 @@ static inline void account_group_exec_runtime(struct task_struct *tsk,
 	cputimer->cputime.sum_exec_runtime += ns;
 	raw_spin_unlock(&cputimer->lock);
 }
+
+#endif
+
