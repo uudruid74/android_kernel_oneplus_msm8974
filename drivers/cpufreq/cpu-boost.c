@@ -189,6 +189,7 @@ static struct smp_hotplug_thread cpuboost_threads = {
 	.thread_comm	= "boost_sync/%u",
 };
 
+#ifndef CONFIG_SCHED_BFS
 static int boost_migration_notify(struct notifier_block *nb,
 				unsigned long dest_cpu, void *arg)
 {
@@ -214,6 +215,7 @@ static int boost_migration_notify(struct notifier_block *nb,
 static struct notifier_block boost_migration_nb = {
 	.notifier_call = boost_migration_notify,
 };
+#endif
 
 static void do_input_boost(struct work_struct *work)
 {
@@ -351,9 +353,10 @@ static int cpu_boost_init(void)
 		INIT_DELAYED_WORK(&s->boost_rem, do_boost_rem);
 		INIT_DELAYED_WORK(&s->input_boost_rem, do_input_boost_rem);
 	}
+#ifndef CONFIG_SCHED_BFS
 	atomic_notifier_chain_register(&migration_notifier_head,
 					&boost_migration_nb);
-
+#endif
 	ret = smpboot_register_percpu_thread(&cpuboost_threads);
 	if (ret)
 		pr_err("Cannot register cpuboost threads.\n");
